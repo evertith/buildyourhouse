@@ -544,18 +544,22 @@ Follow this systematic approach for every subcontractor:
 
 Rate each contractor on these factors (1-5, with 5 being best):
 
-| Factor | Weight | Contractor A | Contractor B | Contractor C |
-|--------|--------|--------------|--------------|--------------|
-| License verified | Must have | Pass/Fail | Pass/Fail | Pass/Fail |
-| Insurance verified | Must have | Pass/Fail | Pass/Fail | Pass/Fail |
-| References | High | 4 | 5 | 3 |
-| Experience | High | 5 | 4 | 4 |
-| Communication | High | 4 | 5 | 3 |
-| Price | Medium | 3 | 4 | 5 |
-| Availability | Medium | 5 | 3 | 4 |
-| Professional demeanor | Medium | 4 | 5 | 3 |
-| Code knowledge | High | 5 | 5 | 3 |
-| **Total** | | **30** | **31** | **25** |
+<DataTable
+  caption="Contractor Decision Matrix - Rate Each Factor"
+  headers={["Factor", "Weight", "Contractor A", "Contractor B", "Contractor C"]}
+  rows={[
+    ["License verified", "Must have", "Pass/Fail", "Pass/Fail", "Pass/Fail"],
+    ["Insurance verified", "Must have", "Pass/Fail", "Pass/Fail", "Pass/Fail"],
+    ["References", "High", "4", "5", "3"],
+    ["Experience", "High", "5", "4", "4"],
+    ["Communication", "High", "4", "5", "3"],
+    ["Price", "Medium", "3", "4", "5"],
+    ["Availability", "Medium", "5", "3", "4"],
+    ["Professional demeanor", "Medium", "4", "5", "3"],
+    ["Code knowledge", "High", "5", "5", "3"],
+    ["**Total**", "", "**30**", "**31**", "**25**"]
+  ]}
+/>
 
 **Must-haves (pass/fail)**:
 - Valid license (if required)

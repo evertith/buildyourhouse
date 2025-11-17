@@ -99,33 +99,45 @@ The money saved on DIY insulation often pays for hiring another trade (like dryw
 
 **Check IRC Table N1102.1.3 for your specific location. General guidelines:**
 
-| Climate Zone | Walls | Ceiling/Attic | Floor |
-|--------------|-------|---------------|-------|
-| Zone 1-2 (Florida, South Texas) | R-13 | R-30 | R-13 |
-| Zone 3 (South/Coastal) | R-13 to R-20 | R-30 to R-38 | R-19 |
-| Zone 4 (Mid-Atlantic, NC) | R-20 | R-38 | R-19 |
-| Zone 5 (Midwest, Mid-Atlantic) | R-20 | R-49 | R-30 |
-| Zone 6-7 (North, Mountains) | R-20 to R-21 | R-49 | R-30 |
-| Zone 8 (Alaska) | R-21 | R-49 | R-30 |
+<DataTable
+  headers={["Climate Zone", "Walls", "Ceiling/Attic", "Floor"]}
+  rows={[
+    ["Zone 1-2 (Florida, South Texas)", "R-13", "R-30", "R-13"],
+    ["Zone 3 (South/Coastal)", "R-13 to R-20", "R-30 to R-38", "R-19"],
+    ["Zone 4 (Mid-Atlantic, NC)", "R-20", "R-38", "R-19"],
+    ["Zone 5 (Midwest, Mid-Atlantic)", "R-20", "R-49", "R-30"],
+    ["Zone 6-7 (North, Mountains)", "R-20 to R-21", "R-49", "R-30"],
+    ["Zone 8 (Alaska)", "R-21", "R-49", "R-30"]
+  ]}
+  caption="Required R-Values by Climate Zone"
+/>
 
-💡 **TIP**: Always meet or exceed minimum code requirements. Adding insulation during construction is cheap. Adding it later is expensive and difficult.
+<CalloutBox type="tip">
+Always meet or exceed minimum code requirements. Adding insulation during construction is cheap. Adding it later is expensive and difficult.
+</CalloutBox>
 
 ## Materials Needed
 
 ### Insulation Materials (2,000 sq ft house, Zone 4)
-| Item | Quantity | Typical Cost | Notes |
-|------|----------|--------------|-------|
-| R-19 batts (walls) | 180 batts (15" x 93") | $1,100-$1,800 | 2x6 walls, 16" OC |
-| R-38 batts (ceiling) | 95 batts | $950-$1,500 | Attic floor or cathedral |
-| Faced or unfaced | As needed | Included | Faced if no separate vapor barrier |
-| Vapor barrier 6-mil | 2,500 sq ft | $150-$250 | If unfaced insulation |
+<DataTable
+  headers={["Item", "Quantity", "Typical Cost", "Notes"]}
+  rows={[
+    ["R-19 batts (walls)", "180 batts (15\" x 93\")", "$1,100-$1,800", "2x6 walls, 16\" OC"],
+    ["R-38 batts (ceiling)", "95 batts", "$950-$1,500", "Attic floor or cathedral"],
+    ["Faced or unfaced", "As needed", "Included", "Faced if no separate vapor barrier"],
+    ["Vapor barrier 6-mil", "2,500 sq ft", "$150-$250", "If unfaced insulation"]
+  ]}
+/>
 
 ### Air Sealing Materials
-| Item | Quantity | Typical Cost | Notes |
-|------|----------|--------------|-------|
-| Spray foam (cans) | 10-15 cans | $60-$120 | Gaps around windows, penetrations |
-| Caulk (acoustical) | 6-10 tubes | $40-$80 | Top and bottom plates |
-| Foam gaskets | 100 | $30-$60 | Electrical boxes |
+<DataTable
+  headers={["Item", "Quantity", "Typical Cost", "Notes"]}
+  rows={[
+    ["Spray foam (cans)", "10-15 cans", "$60-$120", "Gaps around windows, penetrations"],
+    ["Caulk (acoustical)", "6-10 tubes", "$40-$80", "Top and bottom plates"],
+    ["Foam gaskets", "100", "$30-$60", "Electrical boxes"]
+  ]}
+/>
 
 ### Tools and Safety Equipment
 
@@ -144,7 +156,9 @@ The money saved on DIY insulation often pays for hiring another trade (like dryw
 - Hat or hood
 - Shower immediately after work
 
-⚠️ **WARNING**: Fiberglass insulation irritates skin, eyes, and lungs. Always wear full protective equipment. Shower immediately after working with fiberglass - don't sit on furniture or get fibers in your home.
+<CalloutBox type="warning">
+Fiberglass insulation irritates skin, eyes, and lungs. Always wear full protective equipment. Shower immediately after working with fiberglass - don't sit on furniture or get fibers in your home.
+</CalloutBox>
 
 ## Step-by-Step Process
 
@@ -175,7 +189,9 @@ The money saved on DIY insulation often pays for hiring another trade (like dryw
    - Seal around all duct boots and register penetrations
    - Seal where ducts pass through framing
 
-💡 **TIP**: Air sealing is MORE important than insulation thickness. A R-30 wall with air leaks performs like R-15. Seal first, insulate second.
+<CalloutBox type="tip">
+Air sealing is MORE important than insulation thickness. A R-30 wall with air leaks performs like R-15. Seal first, insulate second.
+</CalloutBox>
 
 ### Days 2-3: Wall Insulation
 
@@ -368,21 +384,27 @@ Before insulation inspection, verify:
 
 Example for 2,000 sq ft house, Zone 4 (R-20 walls, R-38 ceiling):
 
-| Item | Cost | Notes |
-|------|------|-------|
-| **Materials** |
-| R-19 wall batts | $1,100-$1,800 | ~180 batts |
-| R-38 ceiling batts | $950-$1,500 | ~95 batts |
-| Vapor barrier (if needed) | $150-$250 | 6-mil poly |
-| Air sealing materials | $130-$260 | Foam, caulk, gaskets |
-| Rafter vents | $100-$200 | Soffit to ridge airflow |
-| **Labor (if hiring)** | $2,000-$4,000 | Installation |
-| **Safety equipment** | $80-$150 | Respirator, gloves, glasses |
-| **Tools** | $40-$80 | Stapler, knife |
-| **Total (DIY)** | **$2,550-$4,240** | Materials and equipment |
-| **Total (Hired)** | **$4,550-$8,240** | Materials and labor |
+<DataTable
+  headers={["Item", "Cost", "Notes"]}
+  rows={[
+    ["**Materials**", "", ""],
+    ["R-19 wall batts", "$1,100-$1,800", "~180 batts"],
+    ["R-38 ceiling batts", "$950-$1,500", "~95 batts"],
+    ["Vapor barrier (if needed)", "$150-$250", "6-mil poly"],
+    ["Air sealing materials", "$130-$260", "Foam, caulk, gaskets"],
+    ["Rafter vents", "$100-$200", "Soffit to ridge airflow"],
+    ["**Labor (if hiring)**", "$2,000-$4,000", "Installation"],
+    ["**Safety equipment**", "$80-$150", "Respirator, gloves, glasses"],
+    ["**Tools**", "$40-$80", "Stapler, knife"],
+    ["**Total (DIY)**", "**$2,550-$4,240**", "Materials and equipment"],
+    ["**Total (Hired)**", "**$4,550-$8,240**", "Materials and labor"]
+  ]}
+  caption="Budget Breakdown for 2,000 sq ft house, Zone 4 (R-20 walls, R-38 ceiling)"
+/>
 
-💡 **TIP**: Insulation is one of the best DIY phases for cost savings. The work is uncomfortable but simple, and you'll save $2,000-$4,000 in labor.
+<CalloutBox type="tip">
+Insulation is one of the best DIY phases for cost savings. The work is uncomfortable but simple, and you'll save $2,000-$4,000 in labor.
+</CalloutBox>
 
 ## Energy Savings
 

@@ -449,20 +449,24 @@ Percentage Complete = (Actual Costs / Total Budget) × 100
 **Start Date: [DATE]**
 **Completion Date: [DATE]**
 
-| Phase | Duration | Start | End | Dependencies | Status |
-|-------|----------|-------|-----|--------------|--------|
-| Planning & Permitting | 8-12 weeks | Week 1 | Week 12 | None | Pending |
-| Site Preparation | 1-2 weeks | Week 13 | Week 14 | Permits | Pending |
-| Foundation | 2-4 weeks | Week 15 | Week 18 | Site Prep | Pending |
-| Framing | 4-8 weeks | Week 19 | Week 26 | Foundation | Pending |
-| Roof | 1-2 weeks | Week 27 | Week 28 | Framing | Pending |
-| Exterior | 3-6 weeks | Week 27 | Week 32 | Framing | Pending |
-| Rough Mechanicals | 3-4 weeks | Week 29 | Week 32 | Roof | Pending |
-| Insulation | 1 week | Week 33 | Week 33 | Rough-ins | Pending |
-| Drywall | 2-3 weeks | Week 34 | Week 36 | Insulation | Pending |
-| Interior Finishes | 6-10 weeks | Week 37 | Week 46 | Drywall | Pending |
-| Final Mechanicals | 2-3 weeks | Week 44 | Week 46 | Interiors | Pending |
-| Cleanup & Punch | 1-2 weeks | Week 47 | Week 48 | All work | Pending |
+<DataTable
+  caption="Construction Schedule Timeline"
+  headers={["Phase", "Duration", "Start", "End", "Dependencies", "Status"]}
+  rows={[
+    ["Planning & Permitting", "8-12 weeks", "Week 1", "Week 12", "None", "Pending"],
+    ["Site Preparation", "1-2 weeks", "Week 13", "Week 14", "Permits", "Pending"],
+    ["Foundation", "2-4 weeks", "Week 15", "Week 18", "Site Prep", "Pending"],
+    ["Framing", "4-8 weeks", "Week 19", "Week 26", "Foundation", "Pending"],
+    ["Roof", "1-2 weeks", "Week 27", "Week 28", "Framing", "Pending"],
+    ["Exterior", "3-6 weeks", "Week 27", "Week 32", "Framing", "Pending"],
+    ["Rough Mechanicals", "3-4 weeks", "Week 29", "Week 32", "Roof", "Pending"],
+    ["Insulation", "1 week", "Week 33", "Week 33", "Rough-ins", "Pending"],
+    ["Drywall", "2-3 weeks", "Week 34", "Week 36", "Insulation", "Pending"],
+    ["Interior Finishes", "6-10 weeks", "Week 37", "Week 46", "Drywall", "Pending"],
+    ["Final Mechanicals", "2-3 weeks", "Week 44", "Week 46", "Interiors", "Pending"],
+    ["Cleanup & Punch", "1-2 weeks", "Week 47", "Week 48", "All work", "Pending"]
+  ]}
+/>
 
 ### Critical Path Items to Monitor
 - Long lead time items (windows, cabinets, specialty materials)

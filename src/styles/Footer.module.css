@@ -24,6 +24,14 @@
   grid-template-columns: repeat(4, 1fr);
   gap: var(--space-6);
   margin-bottom: var(--space-8);
+  justify-items: center;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.column {
+  text-align: center;
 }
 
 .column h3 {
@@ -38,6 +46,7 @@
   list-style: none;
   padding: 0;
   margin: 0;
+  text-align: center;
 }
 
 .links li {
@@ -63,6 +72,10 @@
 .bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.15);
   padding-top: var(--space-6);
+  text-align: center;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .tagline {
@@ -71,6 +84,9 @@
   font-size: var(--text-sm);
   font-weight: var(--weight-semibold);
   margin-bottom: var(--space-4);
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .disclaimer {
@@ -82,6 +98,10 @@
   line-height: var(--leading-relaxed);
   margin-bottom: var(--space-4);
   color: rgba(255, 255, 255, 0.85);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 
 .disclaimer strong {
@@ -94,6 +114,9 @@
   font-size: var(--text-sm);
   margin-top: 0;
   margin-bottom: 0;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* ============================================

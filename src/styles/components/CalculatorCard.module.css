@@ -1,0 +1,125 @@
+/* ============================================
+   CALCULATOR CARD COMPONENT
+   Container for calculator UIs
+   ============================================ */
+
+.card {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  margin: var(--space-4) 0;
+  border: 1px solid var(--bg-tertiary);
+}
+
+.header {
+  background: linear-gradient(135deg, var(--accent-primary) 0%, #e67e22 100%);
+  padding: var(--space-4);
+  color: white;
+}
+
+.title {
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
+  margin: 0 0 var(--space-1) 0;
+  color: white;
+}
+
+.description {
+  font-size: var(--text-sm);
+  margin: 0;
+  opacity: 0.95;
+  line-height: var(--leading-normal);
+}
+
+.content {
+  padding: var(--space-4);
+}
+
+/* Form elements inside calculator cards */
+.content label {
+  display: block;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--text-heading);
+  margin-bottom: var(--space-1);
+}
+
+.content input[type="number"],
+.content input[type="text"],
+.content select {
+  width: 100%;
+  padding: var(--space-2);
+  font-size: var(--text-base);
+  border: 1px solid var(--bg-tertiary);
+  border-radius: 6px;
+  margin-bottom: var(--space-3);
+  transition: border-color 0.2s ease;
+  font-family: var(--font-body);
+}
+
+.content input[type="number"]:focus,
+.content input[type="text"]:focus,
+.content select:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(212, 118, 59, 0.1);
+}
+
+.content button {
+  background-color: var(--button-primary);
+  color: white;
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-family: var(--font-body);
+}
+
+.content button:hover {
+  background-color: var(--button-primary-hover);
+}
+
+.content button:active {
+  transform: translateY(1px);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 640px) {
+  .card {
+    border-radius: 8px;
+    margin: var(--space-3) 0;
+  }
+
+  .header {
+    padding: var(--space-3);
+  }
+
+  .title {
+    font-size: var(--text-xl);
+  }
+
+  .description {
+    font-size: var(--text-xs);
+  }
+
+  .content {
+    padding: var(--space-3);
+  }
+
+  .content input[type="number"],
+  .content input[type="text"],
+  .content select {
+    font-size: var(--text-sm);
+  }
+
+  .content button {
+    width: 100%;
+    padding: var(--space-2);
+  }
+}

@@ -35,72 +35,21 @@ Covering work before inspection means you'll have to **tear it out and rebuild i
 
 Here's the standard inspection sequence for a new home build. **Do not skip or reorder these—each must pass before the next.**
 
-<table className="dataTable">
-  <thead>
-    <tr>
-      <th>Inspection</th>
-      <th>When</th>
-      <th>What They Check</th>
-      <th>Duration</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>1. Footing</strong><br/><a href="/inspections/foundation-inspection">Detailed Guide →</a></td>
-      <td>Before pouring footings</td>
-      <td>Excavation depth, soil bearing, rebar, footing dimensions</td>
-      <td>15-30 min</td>
-    </tr>
-    <tr>
-      <td><strong>2. Foundation</strong><br/><a href="/inspections/foundation-inspection">Detailed Guide →</a></td>
-      <td>Before backfill</td>
-      <td>Wall thickness, rebar, anchor bolts, waterproofing</td>
-      <td>20-40 min</td>
-    </tr>
-    <tr>
-      <td><strong>3. Under-Slab Plumbing</strong></td>
-      <td>Before slab pour</td>
-      <td>Drain lines, water lines, proper slope, pressure test</td>
-      <td>15-30 min</td>
-    </tr>
-    <tr>
-      <td><strong>4. Framing</strong><br/><a href="/inspections/framing-inspection">Detailed Guide →</a></td>
-      <td>Before insulation/drywall</td>
-      <td>Structural members, connections, headers, shear walls, fire blocking</td>
-      <td>30-60 min</td>
-    </tr>
-    <tr>
-      <td><strong>5. Rough Plumbing</strong><br/><a href="/inspections/rough-in-inspections">Detailed Guide →</a></td>
-      <td>Before covering walls</td>
-      <td>Pipe sizing, venting, drainage, fittings, pressure test</td>
-      <td>30-45 min</td>
-    </tr>
-    <tr>
-      <td><strong>6. Rough Electrical</strong><br/><a href="/inspections/rough-in-inspections">Detailed Guide →</a></td>
-      <td>Before covering walls</td>
-      <td>Wire sizing, boxes, grounding, panel, AFCI/GFCI</td>
-      <td>30-60 min</td>
-    </tr>
-    <tr>
-      <td><strong>7. Rough HVAC</strong><br/><a href="/inspections/rough-in-inspections">Detailed Guide →</a></td>
-      <td>Before covering</td>
-      <td>Ductwork, equipment, combustion air, venting</td>
-      <td>20-40 min</td>
-    </tr>
-    <tr>
-      <td><strong>8. Insulation</strong><br/><a href="/inspections/insulation-inspection">Detailed Guide →</a></td>
-      <td>Before drywall</td>
-      <td>R-value, installation, vapor barriers, energy code</td>
-      <td>20-30 min</td>
-    </tr>
-    <tr>
-      <td><strong>9. Final</strong><br/><a href="/inspections/final-inspection">Detailed Guide →</a></td>
-      <td>All work complete</td>
-      <td>Everything—structure, systems, finishes, safety</td>
-      <td>45-90 min</td>
-    </tr>
-  </tbody>
-</table>
+<DataTable
+  caption="Required Inspections Sequence"
+  headers={["Inspection", "When", "What They Check", "Duration"]}
+  rows={[
+    ["**1. Footing**<br/><a href=\"/inspections/foundation-inspection\">Detailed Guide →</a>", "Before pouring footings", "Excavation depth, soil bearing, rebar, footing dimensions", "15-30 min"],
+    ["**2. Foundation**<br/><a href=\"/inspections/foundation-inspection\">Detailed Guide →</a>", "Before backfill", "Wall thickness, rebar, anchor bolts, waterproofing", "20-40 min"],
+    ["**3. Under-Slab Plumbing**", "Before slab pour", "Drain lines, water lines, proper slope, pressure test", "15-30 min"],
+    ["**4. Framing**<br/><a href=\"/inspections/framing-inspection\">Detailed Guide →</a>", "Before insulation/drywall", "Structural members, connections, headers, shear walls, fire blocking", "30-60 min"],
+    ["**5. Rough Plumbing**<br/><a href=\"/inspections/rough-in-inspections\">Detailed Guide →</a>", "Before covering walls", "Pipe sizing, venting, drainage, fittings, pressure test", "30-45 min"],
+    ["**6. Rough Electrical**<br/><a href=\"/inspections/rough-in-inspections\">Detailed Guide →</a>", "Before covering walls", "Wire sizing, boxes, grounding, panel, AFCI/GFCI", "30-60 min"],
+    ["**7. Rough HVAC**<br/><a href=\"/inspections/rough-in-inspections\">Detailed Guide →</a>", "Before covering", "Ductwork, equipment, combustion air, venting", "20-40 min"],
+    ["**8. Insulation**<br/><a href=\"/inspections/insulation-inspection\">Detailed Guide →</a>", "Before drywall", "R-value, installation, vapor barriers, energy code", "20-30 min"],
+    ["**9. Final**<br/><a href=\"/inspections/final-inspection\">Detailed Guide →</a>", "All work complete", "Everything—structure, systems, finishes, safety", "45-90 min"]
+  ]}
+/>
 
 <CalloutBox type="tip" title="Typical Timeline">
 From footing to final inspection: **12-18 weeks** for a typical new build, assuming no failed inspections. Each failed inspection adds 5-7 days to your timeline.

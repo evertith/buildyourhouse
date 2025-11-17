@@ -426,7 +426,7 @@ Walk your work 48 hours before each inspection. Fix issues now, not during the i
 
 ### Plumbing Rough-In
 
-<CalloutBox type="warning" title="Shower Pan Test Is Make or Break">
+<CalloutBox type="warning">
 The shower pan flood test is non-negotiable. If you haven't done a 24-hour flood test with documented results, you will fail.
 
 Do not tile before testing. Once tile is installed, fixing a failed test costs $2,000-$5,000 instead of $200-$500.
@@ -483,91 +483,24 @@ Do not tile before testing. Once tile is installed, fixing a failed test costs $
 
 These are the most common reasons owner-builders fail electrical rough-in. Know them. Fix them before the inspector arrives.
 
-<table className="dataTable">
-  <thead>
-    <tr>
-      <th>Failure</th>
-      <th>Code</th>
-      <th>How to Fix</th>
-      <th>Re-Inspect Time</th>
-      <th>Cost</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>1. Missing AFCI or GFCI Protection</strong><br/>Standard breakers used instead of required AFCI or GFCI</td>
-      <td>NEC 210.12<br/>NEC 210.8</td>
-      <td>Replace standard breakers with AFCI/GFCI types</td>
-      <td>1-3 days</td>
-      <td className="numeric">$150-$500</td>
-    </tr>
-    <tr>
-      <td><strong>2. Improper Box Fill</strong><br/>Too many wires in electrical box</td>
-      <td>NEC 314.16</td>
-      <td>Install larger box or reduce number of wires</td>
-      <td>2-4 days</td>
-      <td className="numeric">$200-$600</td>
-    </tr>
-    <tr>
-      <td><strong>3. Wire Size Doesn't Match Breaker</strong><br/>14 AWG wire on 20 amp breaker</td>
-      <td>NEC 240.4</td>
-      <td>Downgrade breaker to 15A or rewire with 12 AWG</td>
-      <td>2-5 days</td>
-      <td className="numeric">$50-$800+</td>
-    </tr>
-    <tr>
-      <td><strong>4. Receptacles Too Far Apart</strong><br/>More than 12' between receptacles</td>
-      <td>NEC 210.52</td>
-      <td>Add additional receptacles</td>
-      <td>2-4 days</td>
-      <td className="numeric">$200-$500</td>
-    </tr>
-    <tr>
-      <td><strong>5. Missing Protection Plates</strong><br/>Wires within 1-1/4" of stud edge without steel plates</td>
-      <td>NEC 334.15(B)</td>
-      <td>Install steel nail plates over vulnerable wiring</td>
-      <td>1-2 days</td>
-      <td className="numeric">$50-$150</td>
-    </tr>
-    <tr>
-      <td><strong>6. Improper Grounding/Bonding</strong><br/>Missing grounding electrode, no metal system bonding</td>
-      <td>NEC 250</td>
-      <td>Install ground rods, bond water and gas lines</td>
-      <td>2-4 days</td>
-      <td className="numeric">$300-$800</td>
-    </tr>
-    <tr>
-      <td><strong>7. Boxes Not Flush</strong><br/>Boxes recessed or protruding from finished wall plane</td>
-      <td>NEC 314.20</td>
-      <td>Add box extenders or remount boxes</td>
-      <td>2-3 days</td>
-      <td className="numeric">$100-$400</td>
-    </tr>
-    <tr>
-      <td><strong>8. Missing Cable Support</strong><br/>Cables not stapled within 12" of boxes or every 4.5'</td>
-      <td>NEC 334.30</td>
-      <td>Add staples at required intervals</td>
-      <td>1-2 days</td>
-      <td className="numeric">$100-$300</td>
-    </tr>
-    <tr>
-      <td><strong>9. Improper Kitchen Circuits</strong><br/>Missing two 20A small appliance circuits or GFCI protection</td>
-      <td>NEC 210.52(B)</td>
-      <td>Add required circuits, install GFCI protection</td>
-      <td>3-5 days</td>
-      <td className="numeric">$400-$1,200</td>
-    </tr>
-    <tr>
-      <td><strong>10. Double-Tapped Breakers</strong><br/>Two wires on single breaker not rated for double tap</td>
-      <td>NEC 110.14(A)</td>
-      <td>Install additional breaker or use rated breaker</td>
-      <td>1-2 days</td>
-      <td className="numeric">$50-$200</td>
-    </tr>
-  </tbody>
-</table>
+<DataTable
+  caption="Top 10 Electrical Inspection Failures"
+  headers={["Failure", "Code", "How to Fix", "Re-Inspect Time", "Cost"]}
+  rows={[
+    ["**1. Missing AFCI or GFCI Protection**<br/>Standard breakers used instead of required AFCI or GFCI", "NEC 210.12<br/>NEC 210.8", "Replace standard breakers with AFCI/GFCI types", "1-3 days", "$150-$500"],
+    ["**2. Improper Box Fill**<br/>Too many wires in electrical box", "NEC 314.16", "Install larger box or reduce number of wires", "2-4 days", "$200-$600"],
+    ["**3. Wire Size Doesn't Match Breaker**<br/>14 AWG wire on 20 amp breaker", "NEC 240.4", "Downgrade breaker to 15A or rewire with 12 AWG", "2-5 days", "$50-$800+"],
+    ["**4. Receptacles Too Far Apart**<br/>More than 12' between receptacles", "NEC 210.52", "Add additional receptacles", "2-4 days", "$200-$500"],
+    ["**5. Missing Protection Plates**<br/>Wires within 1-1/4\" of stud edge without steel plates", "NEC 334.15(B)", "Install steel nail plates over vulnerable wiring", "1-2 days", "$50-$150"],
+    ["**6. Improper Grounding/Bonding**<br/>Missing grounding electrode, no metal system bonding", "NEC 250", "Install ground rods, bond water and gas lines", "2-4 days", "$300-$800"],
+    ["**7. Boxes Not Flush**<br/>Boxes recessed or protruding from finished wall plane", "NEC 314.20", "Add box extenders or remount boxes", "2-3 days", "$100-$400"],
+    ["**8. Missing Cable Support**<br/>Cables not stapled within 12\" of boxes or every 4.5'", "NEC 334.30", "Add staples at required intervals", "1-2 days", "$100-$300"],
+    ["**9. Improper Kitchen Circuits**<br/>Missing two 20A small appliance circuits or GFCI protection", "NEC 210.52(B)", "Add required circuits, install GFCI protection", "3-5 days", "$400-$1,200"],
+    ["**10. Double-Tapped Breakers**<br/>Two wires on single breaker not rated for double tap", "NEC 110.14(A)", "Install additional breaker or use rated breaker", "1-2 days", "$50-$200"]
+  ]}
+/>
 
-<CalloutBox type="warning" title="#1 Failure: Missing AFCI/GFCI">
+<CalloutBox type="warning">
 This is the single most common electrical failure. Inspectors check this first.
 
 AFCI breakers are required on virtually all 15/20 amp circuits in living areas. GFCI is required in bathrooms, kitchens, garages, outdoors, and within 6' of sinks.
@@ -580,91 +513,24 @@ If you installed standard breakers instead, you will fail. Period.
 
 Plumbing failures are expensive. Improper venting can cost $1,000-$4,000 to fix after walls are up.
 
-<table className="dataTable">
-  <thead>
-    <tr>
-      <th>Failure</th>
-      <th>Code</th>
-      <th>How to Fix</th>
-      <th>Re-Inspect Time</th>
-      <th>Cost</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>1. Improper Drain Slope</strong><br/>Drains don't slope properly or have sags/bellies</td>
-      <td>IRC P3005.3</td>
-      <td>Re-pipe sections with improper slope (min 1/4" per foot)</td>
-      <td>3-7 days</td>
-      <td className="numeric">$500-$2,000</td>
-    </tr>
-    <tr>
-      <td><strong>2. Improper or Missing Venting</strong><br/>Fixtures not vented, or vent pipe too small</td>
-      <td>IRC P3104-P3111</td>
-      <td>Install proper venting system</td>
-      <td>5-10 days</td>
-      <td className="numeric">$1,000-$4,000</td>
-    </tr>
-    <tr>
-      <td><strong>3. Shower Pan Leak</strong><br/>Pan doesn't pass 24-hour flood test</td>
-      <td>IRC P2709</td>
-      <td>Find and repair leak in pan liner</td>
-      <td>3-7 days + 24hr retest</td>
-      <td className="numeric">$500-$3,000</td>
-    </tr>
-    <tr>
-      <td><strong>4. Undersized Drain Pipe</strong><br/>Drain pipe too small for fixture load</td>
-      <td>IRC Table P3004.1</td>
-      <td>Replace with properly sized pipe</td>
-      <td>3-7 days</td>
-      <td className="numeric">$600-$2,500</td>
-    </tr>
-    <tr>
-      <td><strong>5. Water Pipe Too Close to Stud Edge</strong><br/>Pipe within 1-1/2" without protection plate</td>
-      <td>IRC P2603</td>
-      <td>Install steel plates over vulnerable pipe</td>
-      <td>1-2 days</td>
-      <td className="numeric">$50-$200</td>
-    </tr>
-    <tr>
-      <td><strong>6. Missing Cleanouts</strong><br/>No cleanouts at required locations</td>
-      <td>IRC P3005.2</td>
-      <td>Install cleanouts at base of stacks and direction changes</td>
-      <td>2-4 days</td>
-      <td className="numeric">$300-$800</td>
-    </tr>
-    <tr>
-      <td><strong>7. Improper Pipe Support</strong><br/>Pipes not supported at code intervals</td>
-      <td>IRC Table P2605.1</td>
-      <td>Add supports (every 4' horizontal, every floor vertical)</td>
-      <td>1-3 days</td>
-      <td className="numeric">$200-$500</td>
-    </tr>
-    <tr>
-      <td><strong>8. Missing Water Hammer Arrestors</strong><br/>No arrestors at quick-closing valves</td>
-      <td>IRC P2903.5</td>
-      <td>Install arrestors at washing machine and dishwasher</td>
-      <td>2-4 days</td>
-      <td className="numeric">$200-$500</td>
-    </tr>
-    <tr>
-      <td><strong>9. Gas Line Pressure Test Failure</strong><br/>Gas piping doesn't hold pressure</td>
-      <td>Various</td>
-      <td>Find and repair leak, retest (15 psi for 15 min)</td>
-      <td>2-5 days</td>
-      <td className="numeric">$300-$1,500</td>
-    </tr>
-    <tr>
-      <td><strong>10. Vent Termination Issues</strong><br/>Vent too close to windows/doors/openings</td>
-      <td>IRC P3103.7</td>
-      <td>Extend or relocate vent (10' from windows, 3' above roof)</td>
-      <td>3-5 days</td>
-      <td className="numeric">$400-$1,200</td>
-    </tr>
-  </tbody>
-</table>
+<DataTable
+  caption="Top 10 Plumbing Inspection Failures"
+  headers={["Failure", "Code", "How to Fix", "Re-Inspect Time", "Cost"]}
+  rows={[
+    ["**1. Improper Drain Slope**<br/>Drains don't slope properly or have sags/bellies", "IRC P3005.3", "Re-pipe sections with improper slope (min 1/4\" per foot)", "3-7 days", "$500-$2,000"],
+    ["**2. Improper or Missing Venting**<br/>Fixtures not vented, or vent pipe too small", "IRC P3104-P3111", "Install proper venting system", "5-10 days", "$1,000-$4,000"],
+    ["**3. Shower Pan Leak**<br/>Pan doesn't pass 24-hour flood test", "IRC P2709", "Find and repair leak in pan liner", "3-7 days + 24hr retest", "$500-$3,000"],
+    ["**4. Undersized Drain Pipe**<br/>Drain pipe too small for fixture load", "IRC Table P3004.1", "Replace with properly sized pipe", "3-7 days", "$600-$2,500"],
+    ["**5. Water Pipe Too Close to Stud Edge**<br/>Pipe within 1-1/2\" without protection plate", "IRC P2603", "Install steel plates over vulnerable pipe", "1-2 days", "$50-$200"],
+    ["**6. Missing Cleanouts**<br/>No cleanouts at required locations", "IRC P3005.2", "Install cleanouts at base of stacks and direction changes", "2-4 days", "$300-$800"],
+    ["**7. Improper Pipe Support**<br/>Pipes not supported at code intervals", "IRC Table P2605.1", "Add supports (every 4' horizontal, every floor vertical)", "1-3 days", "$200-$500"],
+    ["**8. Missing Water Hammer Arrestors**<br/>No arrestors at quick-closing valves", "IRC P2903.5", "Install arrestors at washing machine and dishwasher", "2-4 days", "$200-$500"],
+    ["**9. Gas Line Pressure Test Failure**<br/>Gas piping doesn't hold pressure", "Various", "Find and repair leak, retest (15 psi for 15 min)", "2-5 days", "$300-$1,500"],
+    ["**10. Vent Termination Issues**<br/>Vent too close to windows/doors/openings", "IRC P3103.7", "Extend or relocate vent (10' from windows, 3' above roof)", "3-5 days", "$400-$1,200"]
+  ]}
+/>
 
-<CalloutBox type="warning" title="Shower Pan Test BEFORE Tiling">
+<CalloutBox type="warning">
 Failure #3 (shower pan leak) costs $500 to fix before tile, $2,000-$5,000 after tile is installed.
 
 Test procedure: Fill pan to dam height (2" above curb), mark water level, wait 24 hours. ANY water loss = failure.
@@ -676,56 +542,19 @@ Document with photos and timestamps. Inspector may require proof of 24-hour test
 
 HVAC is often inspected with plumbing. The most common failures involve ductwork sealing and exhaust venting.
 
-<table className="dataTable">
-  <thead>
-    <tr>
-      <th>Failure</th>
-      <th>Code</th>
-      <th>How to Fix</th>
-      <th>Re-Inspect Time</th>
-      <th>Cost</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>1. Inadequate Combustion Air</strong><br/>Not enough combustion air for fuel-fired equipment</td>
-      <td>IRC M1701-M1705</td>
-      <td>Add or enlarge combustion air openings</td>
-      <td>3-5 days</td>
-      <td className="numeric">$400-$1,200</td>
-    </tr>
-    <tr>
-      <td><strong>2. Ductwork Not Sealed</strong><br/>Duct joints not sealed with mastic or foil tape</td>
-      <td>IRC N1103.3.3</td>
-      <td>Seal all duct joints (not cloth duct tape)</td>
-      <td>2-4 days</td>
-      <td className="numeric">$300-$800</td>
-    </tr>
-    <tr>
-      <td><strong>3. Insufficient Duct Insulation</strong><br/>Ducts in unconditioned spaces not insulated</td>
-      <td>IRC N1103.3.3</td>
-      <td>Add insulation to meet R-value (typically R-8)</td>
-      <td>2-4 days</td>
-      <td className="numeric">$400-$1,200</td>
-    </tr>
-    <tr>
-      <td><strong>4. Exhaust Not Vented to Exterior</strong><br/>Bath/kitchen exhaust vented to attic or soffit</td>
-      <td>IRC M1502.3</td>
-      <td>Extend vent to proper exterior termination</td>
-      <td>3-5 days</td>
-      <td className="numeric">$300-$800</td>
-    </tr>
-    <tr>
-      <td><strong>5. Dryer Vent Too Long or Wrong Material</strong><br/>Exceeds 25' or uses vinyl flex duct</td>
-      <td>IRC M1502.4.4</td>
-      <td>Shorten run or use rigid metal duct</td>
-      <td>2-4 days</td>
-      <td className="numeric">$200-$600</td>
-    </tr>
-  </tbody>
-</table>
+<DataTable
+  caption="Top 5 HVAC Inspection Failures"
+  headers={["Failure", "Code", "How to Fix", "Re-Inspect Time", "Cost"]}
+  rows={[
+    ["**1. Inadequate Combustion Air**<br/>Not enough combustion air for fuel-fired equipment", "IRC M1701-M1705", "Add or enlarge combustion air openings", "3-5 days", "$400-$1,200"],
+    ["**2. Ductwork Not Sealed**<br/>Duct joints not sealed with mastic or foil tape", "IRC N1103.3.3", "Seal all duct joints (not cloth duct tape)", "2-4 days", "$300-$800"],
+    ["**3. Insufficient Duct Insulation**<br/>Ducts in unconditioned spaces not insulated", "IRC N1103.3.3", "Add insulation to meet R-value (typically R-8)", "2-4 days", "$400-$1,200"],
+    ["**4. Exhaust Not Vented to Exterior**<br/>Bath/kitchen exhaust vented to attic or soffit", "IRC M1502.3", "Extend vent to proper exterior termination", "3-5 days", "$300-$800"],
+    ["**5. Dryer Vent Too Long or Wrong Material**<br/>Exceeds 25' or uses vinyl flex duct", "IRC M1502.4.4", "Shorten run or use rigid metal duct", "2-4 days", "$200-$600"]
+  ]}
+/>
 
-<CalloutBox type="warning" title="Cloth Duct Tape Is NOT Code">
+<CalloutBox type="warning">
 Regular cloth "duct tape" is specifically prohibited by code for sealing ductwork.
 
 Use mastic (goopy paste) or foil tape with aluminum backing. These create air-tight seals that won't fail over time.
@@ -735,7 +564,7 @@ Cloth duct tape dries out and falls off within 2-3 years. Automatic failure.
 
 ## If You Fail
 
-<CalloutBox type="info" title="Don't Panic">
+<CalloutBox type="info">
 Rough-in failures are common, even for experienced builders. They're usually straightforward to fix.
 
 Most owner-builders experience at least one failure across all three trades (electrical, plumbing, HVAC). It's part of the learning process.
@@ -775,36 +604,17 @@ Some jurisdictions will re-inspect all trades at once. Others require separate c
 
 Every week rough-in inspections are delayed costs you money:
 
-<table className="dataTable">
-  <thead>
-    <tr>
-      <th>Cost Category</th>
-      <th>Weekly Impact</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Construction loan interest</td>
-      <td className="numeric">$100-$200</td>
-    </tr>
-    <tr>
-      <td>Subcontractor delays (insulation, drywall can't start)</td>
-      <td className="numeric">$200-$500</td>
-    </tr>
-    <tr>
-      <td>Cascade delays (all remaining phases pushed back)</td>
-      <td className="numeric">$300-$800</td>
-    </tr>
-    <tr>
-      <td>Weather exposure (house open longer)</td>
-      <td className="numeric">Risk of damage</td>
-    </tr>
-    <tr className="totalRow">
-      <td><strong>Total Weekly Cost</strong></td>
-      <td className="numeric"><strong>$1,000-$2,500+</strong></td>
-    </tr>
-  </tbody>
-</table>
+<DataTable
+  caption="Cost of Delay per Week"
+  headers={["Cost Category", "Weekly Impact"]}
+  rows={[
+    ["Construction loan interest", "$100-$200"],
+    ["Subcontractor delays (insulation, drywall can't start)", "$200-$500"],
+    ["Cascade delays (all remaining phases pushed back)", "$300-$800"],
+    ["Weather exposure (house open longer)", "Risk of damage"],
+    ["**Total Weekly Cost**", "**$1,000-$2,500+**"]
+  ]}
+/>
 
 **Pass on first try** by being thorough. One hour of prep work can save you $1,000+ in delays.
 
@@ -871,7 +681,7 @@ Use this comprehensive checklist to verify you're ready before scheduling inspec
 
 ## Pro Tips
 
-<CalloutBox type="tip" title="Test Your Own Work First">
+<CalloutBox type="tip">
 Before calling the inspector:
 
 - Test all GFCI outlets (push test button, should trip)
@@ -882,7 +692,7 @@ Before calling the inspector:
 Catch your own failures before the inspector does.
 </CalloutBox>
 
-<CalloutBox type="tip" title="Document Everything with Photos">
+<CalloutBox type="tip">
 Take photos of:
 
 - All pipe and wire routing (before insulation covers)
@@ -925,7 +735,7 @@ Have these test results documented and ready to show inspector:
 
 No documentation = may have to retest with inspector present (delays and additional fees).
 
-<CalloutBox type="tip" title="Mark Critical Items">
+<CalloutBox type="tip">
 Use painter's tape or spray paint to mark:
 
 - GFCI circuits at panel (so inspector can easily verify)
@@ -940,45 +750,17 @@ This shows attention to detail and makes inspector's job easier. Happy inspector
 
 Code requirements vary by climate and seismic zone. Know your area's special requirements.
 
-<table className="dataTable">
-  <thead>
-    <tr>
-      <th>Climate/Zone</th>
-      <th>Additional Requirements</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Cold Climates</strong><br/>(Northern states, high elevation)</td>
-      <td>
-        • Pipe insulation in exterior walls<br/>
-        • Heat tape in vulnerable locations<br/>
-        • Frost-proof hose bibs required<br/>
-        • Enhanced attic insulation on ductwork
-      </td>
-    </tr>
-    <tr>
-      <td><strong>Hot/Humid Climates</strong><br/>(Southeast, Gulf Coast)</td>
-      <td>
-        • Refrigerant line insulation (condensation prevention)<br/>
-        • Condensate drain provisions (primary + secondary)<br/>
-        • Dehumidification provisions<br/>
-        • Mold-resistant materials in moisture-prone areas
-      </td>
-    </tr>
-    <tr>
-      <td><strong>High Wind/Seismic</strong><br/>(California, Pacific NW, hurricane zones)</td>
-      <td>
-        • Seismic bracing of gas lines<br/>
-        • Flexible gas connectors (earthquake shutoff)<br/>
-        • Special water heater strapping<br/>
-        • Additional bracing for equipment
-      </td>
-    </tr>
-  </tbody>
-</table>
+<DataTable
+  caption="Regional Climate Requirements"
+  headers={["Climate/Zone", "Additional Requirements"]}
+  rows={[
+    ["**Cold Climates**<br/>(Northern states, high elevation)", "• Pipe insulation in exterior walls<br/>• Heat tape in vulnerable locations<br/>• Frost-proof hose bibs required<br/>• Enhanced attic insulation on ductwork"],
+    ["**Hot/Humid Climates**<br/>(Southeast, Gulf Coast)", "• Refrigerant line insulation (condensation prevention)<br/>• Condensate drain provisions (primary + secondary)<br/>• Dehumidification provisions<br/>• Mold-resistant materials in moisture-prone areas"],
+    ["**High Wind/Seismic**<br/>(California, Pacific NW, hurricane zones)", "• Seismic bracing of gas lines<br/>• Flexible gas connectors (earthquake shutoff)<br/>• Special water heater strapping<br/>• Additional bracing for equipment"]
+  ]}
+/>
 
-<CalloutBox type="info" title="Ask Your Building Department">
+<CalloutBox type="info">
 Your local building department can tell you which additional requirements apply to your area.
 
 Ask when you submit your permit application, not when the inspector shows up and fails you for missing regional requirements.

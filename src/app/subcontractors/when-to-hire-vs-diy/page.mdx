@@ -527,18 +527,22 @@ Most successful owner-builders follow this pattern:
 
 For each trade, rate 1-5 (5 = best case for DIY):
 
-| Trade | Skill Level | Time Available | Tools/Equipment | Risk Tolerance | ROI | Total Score | Decision |
-|-------|-------------|----------------|-----------------|----------------|-----|-------------|----------|
-| Foundation | 1 | 2 | 1 | 1 | 2 | 7/25 | HIRE |
-| Framing | 3 | 4 | 4 | 3 | 5 | 19/25 | DIY |
-| Roofing | 2 | 2 | 2 | 1 | 3 | 10/25 | HIRE |
-| Electrical | 1 | 3 | 3 | 1 | 3 | 11/25 | HIRE |
-| Plumbing | 2 | 3 | 3 | 2 | 4 | 14/25 | MAYBE |
-| HVAC | 1 | 2 | 1 | 1 | 2 | 7/25 | HIRE |
-| Insulation | 5 | 5 | 5 | 5 | 5 | 25/25 | DIY |
-| Drywall | 3 | 3 | 4 | 4 | 4 | 18/25 | DIY/HYBRID |
-| Painting | 5 | 5 | 5 | 5 | 5 | 25/25 | DIY |
-| Flooring | 4 | 4 | 4 | 4 | 5 | 21/25 | DIY |
+<DataTable
+  caption="DIY Decision Worksheet - Rate Each Factor 1-5 (5 = Best for DIY)"
+  headers={["Trade", "Skill Level", "Time Available", "Tools/Equipment", "Risk Tolerance", "ROI", "Total Score", "Decision"]}
+  rows={[
+    ["Foundation", "1", "2", "1", "1", "2", "7/25", "HIRE"],
+    ["Framing", "3", "4", "4", "3", "5", "19/25", "DIY"],
+    ["Roofing", "2", "2", "2", "1", "3", "10/25", "HIRE"],
+    ["Electrical", "1", "3", "3", "1", "3", "11/25", "HIRE"],
+    ["Plumbing", "2", "3", "3", "2", "4", "14/25", "MAYBE"],
+    ["HVAC", "1", "2", "1", "1", "2", "7/25", "HIRE"],
+    ["Insulation", "5", "5", "5", "5", "5", "25/25", "DIY"],
+    ["Drywall", "3", "3", "4", "4", "4", "18/25", "DIY/HYBRID"],
+    ["Painting", "5", "5", "5", "5", "5", "25/25", "DIY"],
+    ["Flooring", "4", "4", "4", "4", "5", "21/25", "DIY"]
+  ]}
+/>
 
 **Scoring guide**:
 - 20-25: Strong DIY candidate

@@ -41,18 +41,22 @@ The difference between a smooth build and a nightmare project often comes down t
 - Busy season (spring/summer) requires even more lead time
 
 **Typical lead times by trade**:
-| Trade | Lead Time to Book |
-|-------|------------------|
-| Excavation | 2-4 weeks |
-| Foundation | 4-8 weeks |
-| Framing | 6-12 weeks |
-| Roofing | 3-6 weeks |
-| Plumbing | 4-8 weeks |
-| Electrical | 4-8 weeks |
-| HVAC | 6-10 weeks |
-| Drywall | 4-6 weeks |
-| Flooring | 3-6 weeks |
-| Cabinets | 8-16 weeks (including manufacture time) |
+<DataTable
+  caption="Typical Lead Times to Book Quality Subcontractors"
+  headers={["Trade", "Lead Time to Book"]}
+  rows={[
+    ["Excavation", "2-4 weeks"],
+    ["Foundation", "4-8 weeks"],
+    ["Framing", "6-12 weeks"],
+    ["Roofing", "3-6 weeks"],
+    ["Plumbing", "4-8 weeks"],
+    ["Electrical", "4-8 weeks"],
+    ["HVAC", "6-10 weeks"],
+    ["Drywall", "4-6 weeks"],
+    ["Flooring", "3-6 weeks"],
+    ["Cabinets", "8-16 weeks (including manufacture time)"]
+  ]}
+/>
 
 **Pro tip**: Start with long-lead items (framing, HVAC, cabinets) first.
 
@@ -384,11 +388,15 @@ Here are the most reliable places to find good contractors, ranked by success ra
 
 Track your subcontractor search with this structure:
 
-| Trade | Company Name | Contact | Phone | Source | License # | Insurance Verified | Available | Status | Notes |
-|-------|--------------|---------|-------|--------|-----------|-------------------|-----------|--------|-------|
-| Foundation | ABC Concrete | John Smith | 555-0123 | Inspector | 12345 | Yes | June | Quoted | Great reviews |
-| Foundation | XYZ Concrete | Jane Doe | 555-0124 | Lumber yard | 67890 | Yes | June | Quoted | Higher price |
-| Framing | Best Frames | Bob Jones | 555-0125 | Other builder | 11111 | Pending | July | Contacted | Checking refs |
+<DataTable
+  caption="Sample Contractor Tracking Spreadsheet"
+  headers={["Trade", "Company Name", "Contact", "Phone", "Source", "License #", "Insurance Verified", "Available", "Status", "Notes"]}
+  rows={[
+    ["Foundation", "ABC Concrete", "John Smith", "555-0123", "Inspector", "12345", "Yes", "June", "Quoted", "Great reviews"],
+    ["Foundation", "XYZ Concrete", "Jane Doe", "555-0124", "Lumber yard", "67890", "Yes", "June", "Quoted", "Higher price"],
+    ["Framing", "Best Frames", "Bob Jones", "555-0125", "Other builder", "11111", "Pending", "July", "Contacted", "Checking refs"]
+  ]}
+/>
 
 **Track**:
 - All contact information

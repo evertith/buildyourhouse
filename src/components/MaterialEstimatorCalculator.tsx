@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { calculateMaterialEstimate, MaterialEstimatorInputs, MaterialEstimatorResults } from '@/lib/calculators';
+import CalculatorCard from '@/components/CalculatorCard';
 import styles from '@/styles/Calculator.module.css';
 
 export default function MaterialEstimatorCalculator() {
@@ -39,9 +40,13 @@ export default function MaterialEstimatorCalculator() {
   };
 
   return (
-    <div className={styles.calculator}>
-      <div className={styles.inputs}>
-        <h3 className={styles.sectionTitle}>Project Specifications</h3>
+    <CalculatorCard
+      title="Material Estimator"
+      description="Calculate material quantities and costs for your home build project"
+    >
+      <div className={styles.calculator}>
+        <div className={styles.inputs}>
+          <h3 className={styles.sectionTitle}>Project Specifications</h3>
 
         <div className={styles.inputGroup}>
           <label htmlFor="homeSize">Home Size (square feet)</label>
@@ -206,6 +211,7 @@ export default function MaterialEstimatorCalculator() {
           </div>
         </div>
       )}
-    </div>
+      </div>
+    </CalculatorCard>
   );
 }

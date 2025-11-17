@@ -31,40 +31,18 @@ Inspectors ensure minimum safety standards are met. They're not there to make yo
 
 ### The People You'll Work With
 
-<table className="dataTable">
-  <thead>
-    <tr>
-      <th>Role</th>
-      <th>Responsibilities</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Plan Reviewer</strong></td>
-      <td>Reviews permit applications, checks plans for code compliance, issues correction lists, approves final plans</td>
-    </tr>
-    <tr>
-      <td><strong>Building Inspector</strong></td>
-      <td>Conducts field inspections, verifies work matches approved plans, enforces code requirements, issues pass/fail decisions</td>
-    </tr>
-    <tr>
-      <td><strong>Electrical Inspector</strong></td>
-      <td>Inspects all electrical work, checks panel installation, verifies GFCI/AFCI protection, ensures NEC compliance</td>
-    </tr>
-    <tr>
-      <td><strong>Plumbing Inspector</strong></td>
-      <td>Inspects drain/waste/vent systems, checks water supply, verifies fixture installation, ensures IPC compliance</td>
-    </tr>
-    <tr>
-      <td><strong>Mechanical Inspector</strong></td>
-      <td>Inspects HVAC installation, checks ductwork, verifies equipment sizing, ensures IMC compliance</td>
-    </tr>
-    <tr>
-      <td><strong>Front Desk Staff</strong></td>
-      <td>Process applications, schedule inspections, answer questions, provide forms</td>
-    </tr>
-  </tbody>
-</table>
+<DataTable
+  caption="Building Department Roles and Responsibilities"
+  headers={["Role", "Responsibilities"]}
+  rows={[
+    ["Plan Reviewer", "Reviews permit applications, checks plans for code compliance, issues correction lists, approves final plans"],
+    ["Building Inspector", "Conducts field inspections, verifies work matches approved plans, enforces code requirements, issues pass/fail decisions"],
+    ["Electrical Inspector", "Inspects all electrical work, checks panel installation, verifies GFCI/AFCI protection, ensures NEC compliance"],
+    ["Plumbing Inspector", "Inspects drain/waste/vent systems, checks water supply, verifies fixture installation, ensures IPC compliance"],
+    ["Mechanical Inspector", "Inspects HVAC installation, checks ductwork, verifies equipment sizing, ensures IMC compliance"],
+    ["Front Desk Staff", "Process applications, schedule inspections, answer questions, provide forms"]
+  ]}
+/>
 
 <CalloutBox type="tip" title="Don't Underestimate Front Desk Staff">
 Front desk staff can make your life **much easier** if you treat them well. They control scheduling, know the ins and outs of the process, and can guide you through procedures.
@@ -211,32 +189,16 @@ This happens more than you'd think, especially in small departments. Always get 
 
 **How to Ask Effectively**:
 
-<table className="dataTable">
-  <thead>
-    <tr>
-      <th>Step</th>
-      <th>What to Do</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1. Reference Specific Code</td>
-      <td>Cite the IRC/IBC section you're questioning</td>
-    </tr>
-    <tr>
-      <td>2. Explain Your Situation</td>
-      <td>Be clear and specific about your circumstances</td>
-    </tr>
-    <tr>
-      <td>3. Offer to Meet in Person</td>
-      <td>Shows seriousness and allows visual discussion</td>
-    </tr>
-    <tr>
-      <td>4. Request Written Response</td>
-      <td>For significant decisions, always get it in writing</td>
-    </tr>
-  </tbody>
-</table>
+<DataTable
+  caption="How to Ask Code Questions Effectively"
+  headers={["Step", "What to Do"]}
+  rows={[
+    ["1. Reference Specific Code", "Cite the IRC/IBC section you're questioning"],
+    ["2. Explain Your Situation", "Be clear and specific about your circumstances"],
+    ["3. Offer to Meet in Person", "Shows seriousness and allows visual discussion"],
+    ["4. Request Written Response", "For significant decisions, always get it in writing"]
+  ]}
+/>
 
 **Email Template**:
 ```
@@ -320,40 +282,18 @@ Thank you,
 
 ### What NOT to Do During Inspections
 
-<table className="dataTable">
-  <thead>
-    <tr>
-      <th>DON'T Do This ❌</th>
-      <th>DO This Instead ✅</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Argue with the inspector</td>
-      <td>Listen carefully and ask clarifying questions</td>
-    </tr>
-    <tr>
-      <td>Make excuses for problems</td>
-      <td>Take responsibility and ask how to fix</td>
-    </tr>
-    <tr>
-      <td>Try to distract from issues</td>
-      <td>Address problems head-on</td>
-    </tr>
-    <tr>
-      <td>Hide deficiencies</td>
-      <td>Point out anything you're unsure about</td>
-    </tr>
-    <tr>
-      <td>Get defensive</td>
-      <td>Stay calm and professional</td>
-    </tr>
-    <tr>
-      <td>Blame your subcontractors</td>
-      <td>Take ownership as the permit holder</td>
-    </tr>
-  </tbody>
-</table>
+<DataTable
+  caption="Inspection Behavior: What NOT to Do vs. What TO Do"
+  headers={["DON'T Do This", "DO This Instead"]}
+  rows={[
+    ["Argue with the inspector", "Listen carefully and ask clarifying questions"],
+    ["Make excuses for problems", "Take responsibility and ask how to fix"],
+    ["Try to distract from issues", "Address problems head-on"],
+    ["Hide deficiencies", "Point out anything you're unsure about"],
+    ["Get defensive", "Stay calm and professional"],
+    ["Blame your subcontractors", "Take ownership as the permit holder"]
+  ]}
+/>
 
 ## Handling Failed Inspections
 
@@ -605,44 +545,19 @@ Inspectors have final say on your project. Work **with** them, not against them.
 
 ## Real-World Comparison
 
-<table className="dataTable">
-  <thead>
-    <tr>
-      <th>Bad Approach ❌</th>
-      <th>Good Approach ✅</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Shows up late to pre-app meeting</td>
-      <td>Shows up 10 minutes early, prepared</td>
-    </tr>
-    <tr>
-      <td>Argues about setback requirements</td>
-      <td>Takes detailed notes on all requirements</td>
-    </tr>
-    <tr>
-      <td>Submits incomplete plans</td>
-      <td>Submits professionally drawn complete plans</td>
-    </tr>
-    <tr>
-      <td>Isn't present for inspections</td>
-      <td>Present for all inspections, takes notes</td>
-    </tr>
-    <tr>
-      <td>Argues when work fails inspection</td>
-      <td>Asks questions, fixes problems immediately</td>
-    </tr>
-    <tr>
-      <td>Tries to hide problems</td>
-      <td>Points out anything questionable proactively</td>
-    </tr>
-    <tr>
-      <td>Blames inspector for delays</td>
-      <td>Thanks inspector for catching issues early</td>
-    </tr>
-  </tbody>
-</table>
+<DataTable
+  caption="Bad vs. Good Approach Comparison"
+  headers={["Bad Approach", "Good Approach"]}
+  rows={[
+    ["Shows up late to pre-app meeting", "Shows up 10 minutes early, prepared"],
+    ["Argues about setback requirements", "Takes detailed notes on all requirements"],
+    ["Submits incomplete plans", "Submits professionally drawn complete plans"],
+    ["Isn't present for inspections", "Present for all inspections, takes notes"],
+    ["Argues when work fails inspection", "Asks questions, fixes problems immediately"],
+    ["Tries to hide problems", "Points out anything questionable proactively"],
+    ["Blames inspector for delays", "Thanks inspector for catching issues early"]
+  ]}
+/>
 
 **Bad Approach Result**: Project delayed months, every inspection strictly by the book, no leeway given, expensive corrections required, stressful experience.
 

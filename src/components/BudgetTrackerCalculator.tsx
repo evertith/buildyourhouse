@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { calculateBudgetTracker, BudgetTrackerInputs, BudgetTrackerResults, BudgetPhase } from '@/lib/calculators';
+import CalculatorCard from '@/components/CalculatorCard';
 import styles from '@/styles/Calculator.module.css';
 
 export default function BudgetTrackerCalculator() {
@@ -70,9 +71,13 @@ export default function BudgetTrackerCalculator() {
   };
 
   return (
-    <div className={styles.calculator}>
-      <div className={styles.inputs}>
-        <h3 className={styles.sectionTitle}>Budget Input</h3>
+    <CalculatorCard
+      title="Budget Tracker"
+      description="Track your actual spending against budgeted amounts for each build phase"
+    >
+      <div className={styles.calculator}>
+        <div className={styles.inputs}>
+          <h3 className={styles.sectionTitle}>Budget Input</h3>
 
         <div className={styles.inputGroup}>
           <label htmlFor="contingency">Contingency Reserve (%)</label>
@@ -302,6 +307,7 @@ export default function BudgetTrackerCalculator() {
           </div>
         </div>
       )}
-    </div>
+      </div>
+    </CalculatorCard>
   );
 }

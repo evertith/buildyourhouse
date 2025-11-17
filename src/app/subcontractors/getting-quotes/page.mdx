@@ -273,16 +273,20 @@ Break down each quote into these elements:
 ### Labor Costs
 **Typical ranges by trade** (per project, not hourly):
 
-| Trade | Labor Cost Range | Notes |
-|-------|-----------------|-------|
-| Foundation | $8,000-15,000 | For 2,000 sq ft home |
-| Framing | $25,000-40,000 | Labor only |
-| Roofing | $3,000-6,000 | Installation only |
-| Plumbing Rough | $8,000-12,000 | Labor only |
-| Electrical Rough | $6,000-10,000 | Labor only |
-| HVAC Install | $8,000-12,000 | Full installation |
-| Drywall Hang+Finish | $8,000-12,000 | Labor only |
-| Interior Paint | $6,000-10,000 | Labor only |
+<DataTable
+  caption="Typical Labor Cost Ranges by Trade"
+  headers={["Trade", "Labor Cost Range", "Notes"]}
+  rows={[
+    ["Foundation", "$8,000-15,000", "For 2,000 sq ft home"],
+    ["Framing", "$25,000-40,000", "Labor only"],
+    ["Roofing", "$3,000-6,000", "Installation only"],
+    ["Plumbing Rough", "$8,000-12,000", "Labor only"],
+    ["Electrical Rough", "$6,000-10,000", "Labor only"],
+    ["HVAC Install", "$8,000-12,000", "Full installation"],
+    ["Drywall Hang+Finish", "$8,000-12,000", "Labor only"],
+    ["Interior Paint", "$6,000-10,000", "Labor only"]
+  ]}
+/>
 
 **Variations based on**:
 - Geographic location (higher in cities, coasts)
@@ -422,15 +426,19 @@ Example:
 
 **Create weighted decision matrix**:
 
-| Factor | Weight | Contractor A | Contractor B | Contractor C |
-|--------|--------|--------------|--------------|--------------|
-| Price (adjusted) | 30% | 9/10 | 9/10 | 7/10 |
-| References/Quality | 25% | 9/10 | 8/10 | 6/10 |
-| Timeline | 15% | 8/10 | 10/10 | 6/10 |
-| Communication | 15% | 8/10 | 9/10 | 7/10 |
-| Warranty | 10% | 7/10 | 9/10 | 5/10 |
-| Experience | 5% | 9/10 | 8/10 | 7/10 |
-| **Weighted Score** | | **8.5** | **8.9** | **6.6** |
+<DataTable
+  caption="Weighted Quote Comparison Matrix"
+  headers={["Factor", "Weight", "Contractor A", "Contractor B", "Contractor C"]}
+  rows={[
+    ["Price (adjusted)", "30%", "9/10", "9/10", "7/10"],
+    ["References/Quality", "25%", "9/10", "8/10", "6/10"],
+    ["Timeline", "15%", "8/10", "10/10", "6/10"],
+    ["Communication", "15%", "8/10", "9/10", "7/10"],
+    ["Warranty", "10%", "7/10", "9/10", "5/10"],
+    ["Experience", "5%", "9/10", "8/10", "7/10"],
+    ["**Weighted Score**", "", "**8.5**", "**8.9**", "**6.6**"]
+  ]}
+/>
 
 **Winner**: Contractor B (even though not lowest price)
 
@@ -534,20 +542,24 @@ Watch for these warning signs:
 
 **Typical costs for 2,000 sq ft new home** (your area may vary):
 
-| Trade | Low Range | Mid Range | High Range | Notes |
-|-------|-----------|-----------|------------|-------|
-| Excavation | $6,000 | $10,000 | $15,000 | Site-dependent |
-| Foundation | $20,000 | $28,000 | $38,000 | Includes materials |
-| Framing | $30,000 | $40,000 | $55,000 | Labor + materials |
-| Roofing | $7,000 | $10,000 | $15,000 | Includes materials |
-| Plumbing | $12,000 | $18,000 | $25,000 | Rough + finish |
-| Electrical | $10,000 | $15,000 | $20,000 | Rough + finish |
-| HVAC | $10,000 | $15,000 | $22,000 | Full system |
-| Insulation | $5,000 | $7,500 | $12,000 | Varies by type |
-| Drywall | $10,000 | $15,000 | $20,000 | Hang + finish |
-| Flooring | $8,000 | $12,000 | $20,000 | Varies by material |
-| Paint (interior) | $6,000 | $9,000 | $15,000 | Materials + labor |
-| Cabinets | $12,000 | $20,000 | $40,000 | Huge range |
+<DataTable
+  caption="Typical Price Ranges for 2,000 sq ft New Home"
+  headers={["Trade", "Low Range", "Mid Range", "High Range", "Notes"]}
+  rows={[
+    ["Excavation", "$6,000", "$10,000", "$15,000", "Site-dependent"],
+    ["Foundation", "$20,000", "$28,000", "$38,000", "Includes materials"],
+    ["Framing", "$30,000", "$40,000", "$55,000", "Labor + materials"],
+    ["Roofing", "$7,000", "$10,000", "$15,000", "Includes materials"],
+    ["Plumbing", "$12,000", "$18,000", "$25,000", "Rough + finish"],
+    ["Electrical", "$10,000", "$15,000", "$20,000", "Rough + finish"],
+    ["HVAC", "$10,000", "$15,000", "$22,000", "Full system"],
+    ["Insulation", "$5,000", "$7,500", "$12,000", "Varies by type"],
+    ["Drywall", "$10,000", "$15,000", "$20,000", "Hang + finish"],
+    ["Flooring", "$8,000", "$12,000", "$20,000", "Varies by material"],
+    ["Paint (interior)", "$6,000", "$9,000", "$15,000", "Materials + labor"],
+    ["Cabinets", "$12,000", "$20,000", "$40,000", "Huge range"]
+  ]}
+/>
 
 **Use these ranges to**:
 - Spot obviously high or low bids

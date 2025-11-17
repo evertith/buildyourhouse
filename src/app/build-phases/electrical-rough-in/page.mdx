@@ -59,35 +59,50 @@ Buy a code book, watch training videos, and work methodically. Most owner-builde
 ## Materials Needed
 
 ### Service and Panels (200-amp service)
-| Item | Quantity | Typical Cost | Notes |
-|------|----------|--------------|-------|
-| 200-amp main panel | 1 | $200-$400 | 40-circuit minimum |
-| Subpanel (if needed) | 1 | $150-$300 | Garage, workshop |
-| Main breaker | 1 | Included | 200-amp |
-| Circuit breakers | 30-40 | $300-$600 | 15A, 20A, GFCI, AFCI |
-| Meter base | 1 | Included in service | Power company installs |
+
+<DataTable
+  headers={["Item", "Quantity", "Typical Cost", "Notes"]}
+  rows={[
+    ["200-amp main panel", "1", "$200-$400", "40-circuit minimum"],
+    ["Subpanel (if needed)", "1", "$150-$300", "Garage, workshop"],
+    ["Main breaker", "1", "Included", "200-amp"],
+    ["Circuit breakers", "30-40", "$300-$600", "15A, 20A, GFCI, AFCI"],
+    ["Meter base", "1", "Included in service", "Power company installs"]
+  ]}
+  caption="Service and panel requirements for 200-amp service"
+/>
 
 ### Wiring (2,000 sq ft home)
-| Item | Quantity | Typical Cost | Notes |
-|------|----------|--------------|-------|
-| 14/2 Romex (NM-B) | 1,000 ft | $200-$350 | 15-amp lighting circuits |
-| 12/2 Romex (NM-B) | 2,500 ft | $750-$1,250 | 20-amp receptacle circuits |
-| 12/3 Romex (NM-B) | 200 ft | $150-$250 | 3-way switches, range |
-| 10/3 Romex (NM-B) | 50 ft | $100-$175 | Electric dryer (30A) |
-| 6/3 Romex (NM-B) | 50 ft | $150-$250 | Electric range (50A) |
+
+<DataTable
+  headers={["Item", "Quantity", "Typical Cost", "Notes"]}
+  rows={[
+    ["14/2 Romex (NM-B)", "1,000 ft", "$200-$350", "15-amp lighting circuits"],
+    ["12/2 Romex (NM-B)", "2,500 ft", "$750-$1,250", "20-amp receptacle circuits"],
+    ["12/3 Romex (NM-B)", "200 ft", "$150-$250", "3-way switches, range"],
+    ["10/3 Romex (NM-B)", "50 ft", "$100-$175", "Electric dryer (30A)"],
+    ["6/3 Romex (NM-B)", "50 ft", "$150-$250", "Electric range (50A)"]
+  ]}
+  caption="Wiring requirements for a 2,000 sq ft home"
+/>
 
 ### Boxes and Devices
-| Item | Quantity | Typical Cost | Notes |
-|------|----------|--------------|-------|
-| Plastic work boxes (single) | 60-80 | $120-$200 | Switches, receptacles |
-| Plastic work boxes (double) | 15-20 | $60-$100 | Multi-gang |
-| Ceiling boxes | 20-30 | $80-$150 | Lights, fans |
-| Junction boxes | 10-15 | $40-$75 | Wire joins |
-| Receptacles (standard) | 50-60 | $150-$240 | 15 or 20-amp |
-| GFCI receptacles | 6-8 | $120-$200 | Required locations |
-| Switches (single) | 25-30 | $75-$150 | Standard |
-| 3-way switches | 8-12 | $40-$90 | Stairs, hallways |
-| Dimmer switches | 6-10 | $120-$250 | Dining, bedrooms |
+
+<DataTable
+  headers={["Item", "Quantity", "Typical Cost", "Notes"]}
+  rows={[
+    ["Plastic work boxes (single)", "60-80", "$120-$200", "Switches, receptacles"],
+    ["Plastic work boxes (double)", "15-20", "$60-$100", "Multi-gang"],
+    ["Ceiling boxes", "20-30", "$80-$150", "Lights, fans"],
+    ["Junction boxes", "10-15", "$40-$75", "Wire joins"],
+    ["Receptacles (standard)", "50-60", "$150-$240", "15 or 20-amp"],
+    ["GFCI receptacles", "6-8", "$120-$200", "Required locations"],
+    ["Switches (single)", "25-30", "$75-$150", "Standard"],
+    ["3-way switches", "8-12", "$40-$90", "Stairs, hallways"],
+    ["Dimmer switches", "6-10", "$120-$250", "Dining, bedrooms"]
+  ]}
+  caption="Boxes and devices required for electrical rough-in"
+/>
 
 ### Tools Required
 
@@ -133,7 +148,9 @@ Buy a code book, watch training videos, and work methodically. Most owner-builde
 - **Garage**: One 20A circuit minimum (GFCI required)
 - **Dedicated circuits**: Range (40-50A), dryer (30A), HVAC, water heater, dishwasher, disposal
 
-💡 **TIP**: Always install more circuits than minimum code requires. Adding circuits during rough-in costs $30. Adding them later costs $500-$1,000.
+<CalloutBox type="tip">
+Always install more circuits than minimum code requires. Adding circuits during rough-in costs $30. Adding them later costs $500-$1,000.
+</CalloutBox>
 
 **Create circuit schedule**:
 - List every circuit with description
@@ -204,7 +221,9 @@ Buy a code book, watch training videos, and work methodically. Most owner-builde
 - HVAC: Size per unit specifications
 - Water heater: 10/2 wire, 30A breaker typical
 
-⚠️ **WARNING**: Never splice wire inside walls. All splices must be in accessible junction boxes. This is a critical code requirement and safety issue.
+<CalloutBox type="warning">
+Never splice wire inside walls. All splices must be in accessible junction boxes. This is a critical code requirement and safety issue.
+</CalloutBox>
 
 ### Days 11-12: Special Circuits
 
@@ -223,7 +242,9 @@ Buy a code book, watch training videos, and work methodically. Most owner-builde
 - Living rooms (varies by code year)
 - Check IRC E4002.16 for your code year
 
-💡 **TIP**: AFCI requirements have expanded over recent code cycles. Check your specific code year. Many jurisdictions now require AFCI on nearly all circuits except kitchen, bathroom, and garage.
+<CalloutBox type="tip">
+AFCI requirements have expanded over recent code cycles. Check your specific code year. Many jurisdictions now require AFCI on nearly all circuits except kitchen, bathroom, and garage.
+</CalloutBox>
 
 **Smoke detector wiring**:
 - Hardwired with battery backup
@@ -396,34 +417,38 @@ Before rough-in inspection, verify:
 
 Example for 2,000 sq ft home:
 
-| Item | Cost | Notes |
-|------|------|-------|
-| **Main Service** |
-| 200-amp panel | $200-$400 | 40-circuit minimum |
-| Main breaker | Included | 200-amp |
-| Circuit breakers | $300-$600 | Mixed 15A, 20A, GFCI, AFCI |
-| Meter base | $150-$250 | If not included in service |
-| Ground rods and wire | $80-$150 | Code required |
-| **Wire and Cable** |
-| 14/2 Romex | $200-$350 | Lighting circuits |
-| 12/2 Romex | $750-$1,250 | Receptacle circuits |
-| 12/3 Romex | $150-$250 | 3-way switches, special |
-| 10/2 and 10/3 | $100-$175 | 30A circuits |
-| 6/3 or 8/3 | $150-$250 | Range, large appliances |
-| **Boxes and Devices** |
-| Work boxes | $180-$300 | All types |
-| Ceiling boxes | $80-$150 | Lights and fans |
-| Junction boxes | $40-$75 | Wire splices |
-| Receptacles | $270-$440 | Regular and GFCI |
-| Switches | $235-$490 | Regular, 3-way, dimmers |
-| **Hardware** |
-| Staples | $30-$60 | Cable support |
-| Nail plates | $40-$80 | Wire protection |
-| Wire nuts | $20-$40 | Connections |
-| Labels | $15-$30 | Panel labeling |
-| **Labor (if hiring)** | $3,500-$7,000 | Complete rough-in |
-| **Total (DIY)** | **$3,095-$5,490** | Materials only |
-| **Total (Hired)** | **$6,095-$11,990** | Materials + labor |
+<DataTable
+  headers={["Item", "Cost", "Notes"]}
+  rows={[
+    ["**Main Service**", "", ""],
+    ["200-amp panel", "$200-$400", "40-circuit minimum"],
+    ["Main breaker", "Included", "200-amp"],
+    ["Circuit breakers", "$300-$600", "Mixed 15A, 20A, GFCI, AFCI"],
+    ["Meter base", "$150-$250", "If not included in service"],
+    ["Ground rods and wire", "$80-$150", "Code required"],
+    ["**Wire and Cable**", "", ""],
+    ["14/2 Romex", "$200-$350", "Lighting circuits"],
+    ["12/2 Romex", "$750-$1,250", "Receptacle circuits"],
+    ["12/3 Romex", "$150-$250", "3-way switches, special"],
+    ["10/2 and 10/3", "$100-$175", "30A circuits"],
+    ["6/3 or 8/3", "$150-$250", "Range, large appliances"],
+    ["**Boxes and Devices**", "", ""],
+    ["Work boxes", "$180-$300", "All types"],
+    ["Ceiling boxes", "$80-$150", "Lights and fans"],
+    ["Junction boxes", "$40-$75", "Wire splices"],
+    ["Receptacles", "$270-$440", "Regular and GFCI"],
+    ["Switches", "$235-$490", "Regular, 3-way, dimmers"],
+    ["**Hardware**", "", ""],
+    ["Staples", "$30-$60", "Cable support"],
+    ["Nail plates", "$40-$80", "Wire protection"],
+    ["Wire nuts", "$20-$40", "Connections"],
+    ["Labels", "$15-$30", "Panel labeling"],
+    ["**Labor (if hiring)**", "$3,500-$7,000", "Complete rough-in"],
+    ["**Total (DIY)**", "**$3,095-$5,490**", "Materials only"],
+    ["**Total (Hired)**", "**$6,095-$11,990**", "Materials + labor"]
+  ]}
+  caption="Budget breakdown for 2,000 sq ft home electrical rough-in"
+/>
 
 ## Timeline Tips
 

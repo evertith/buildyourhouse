@@ -185,25 +185,29 @@ Some phases can overlap, but the critical path looks like this:
 
 For a typical 2,000 sq ft home ($250,000 total):
 
-| Phase | Cost | % of Total | Owner-Builder Savings |
-|-------|------|------------|----------------------|
-| Site Preparation | $25,000 | 10% | Moderate - Can self-perform some work |
-| Foundation | $30,000 | 12% | Low - Usually hire out |
-| Framing | $45,000 | 18% | High - Very DIY-able |
-| Roofing | $12,000 | 5% | Moderate - Can DIY if experienced |
-| Windows/Doors | $15,000 | 6% | Moderate - Can install yourself |
-| Plumbing Rough | $10,000 | 4% | Moderate - Need some knowledge |
-| Electrical Rough | $12,000 | 5% | Moderate - Need some knowledge |
-| HVAC | $15,000 | 6% | Low - Specialized work |
-| Insulation | $5,000 | 2% | High - Very DIY-able |
-| Drywall | $12,000 | 5% | Moderate - Labor intensive |
-| Interior Trim | $12,000 | 5% | High - Time consuming but doable |
-| Flooring | $15,000 | 6% | Moderate - Varies by material |
-| Kitchen/Bath | $40,000 | 16% | Moderate - Some specialized work |
-| Painting | $8,000 | 3% | High - Very DIY-able |
-| Final Finishes | $5,000 | 2% | High - Mostly DIY-able |
-| Landscaping | $15,000 | 6% | High - Very DIY-able |
-| **Total** | **$250,000** | **100%** | **$40,000-$65,000** |
+<DataTable
+  headers={["Phase", "Cost", "% of Total", "Owner-Builder Savings"]}
+  rows={[
+    ["Site Preparation", "$25,000", "10%", "Moderate - Can self-perform some work"],
+    ["Foundation", "$30,000", "12%", "Low - Usually hire out"],
+    ["Framing", "$45,000", "18%", "High - Very DIY-able"],
+    ["Roofing", "$12,000", "5%", "Moderate - Can DIY if experienced"],
+    ["Windows/Doors", "$15,000", "6%", "Moderate - Can install yourself"],
+    ["Plumbing Rough", "$10,000", "4%", "Moderate - Need some knowledge"],
+    ["Electrical Rough", "$12,000", "5%", "Moderate - Need some knowledge"],
+    ["HVAC", "$15,000", "6%", "Low - Specialized work"],
+    ["Insulation", "$5,000", "2%", "High - Very DIY-able"],
+    ["Drywall", "$12,000", "5%", "Moderate - Labor intensive"],
+    ["Interior Trim", "$12,000", "5%", "High - Time consuming but doable"],
+    ["Flooring", "$15,000", "6%", "Moderate - Varies by material"],
+    ["Kitchen/Bath", "$40,000", "16%", "Moderate - Some specialized work"],
+    ["Painting", "$8,000", "3%", "High - Very DIY-able"],
+    ["Final Finishes", "$5,000", "2%", "High - Mostly DIY-able"],
+    ["Landscaping", "$15,000", "6%", "High - Very DIY-able"],
+    ["**Total**", "**$250,000**", "**100%**", "**$40,000-$65,000**"]
+  ]}
+  caption="Cost breakdown for a typical 2,000 sq ft home"
+/>
 
 ## Timeline Planning
 
@@ -247,30 +251,35 @@ Based on managing owner-builder projects, here's my recommendation:
 
 ## Common Sequencing Mistakes
 
-### ❌ Mistake 1: Rushing the Foundation
+<CalloutBox type="warning" title="Mistake 1: Rushing the Foundation">
 **Problem**: Foundation issues affect everything else
 **Impact**: Can add $10,000-$50,000 to fix structural problems
 **Solution**: Take extra time, get it inspected thoroughly
+</CalloutBox>
 
-### ❌ Mistake 2: Not Getting Weathertight Fast Enough
+<CalloutBox type="warning" title="Mistake 2: Not Getting Weathertight Fast Enough">
 **Problem**: Weather damage to framing and subfloor
 **Impact**: $5,000-$15,000 in water damage repairs
 **Solution**: Roof, windows, and doors within 4 weeks of framing start
+</CalloutBox>
 
-### ❌ Mistake 3: Ordering Long-Lead Items Too Late
+<CalloutBox type="warning" title="Mistake 3: Ordering Long-Lead Items Too Late">
 **Problem**: Waiting 12 weeks for custom windows or cabinets
 **Impact**: 3-4 month project delay, carrying costs
 **Solution**: Order windows before framing starts, cabinets before drywall
+</CalloutBox>
 
-### ❌ Mistake 4: Starting Finish Work Too Early
+<CalloutBox type="warning" title="Mistake 4: Starting Finish Work Too Early">
 **Problem**: Damage to completed finishes during other work
 **Impact**: Refinishing floors, repainting walls
 **Solution**: Follow the proper sequence, protect finished areas
+</CalloutBox>
 
-### ❌ Mistake 5: Not Planning Inspection Timing
+<CalloutBox type="warning" title="Mistake 5: Not Planning Inspection Timing">
 **Problem**: Covering work before inspection, requiring tear-out
 **Impact**: $2,000-$8,000 in tear-out and repair
 **Solution**: Know inspection points before you start each phase
+</CalloutBox>
 
 ## Managing the Overall Project
 

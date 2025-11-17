@@ -608,54 +608,18 @@ Ask inspector for:
 
 ### Common Fixes and Timeline
 
-<table className="dataTable">
-  <thead>
-    <tr>
-      <th>Issue</th>
-      <th>Fix</th>
-      <th>Cost</th>
-      <th>Timeline</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Missing fire blocking</td>
-      <td>Install blocking in walls</td>
-      <td className="numeric">$200-$600</td>
-      <td>1-3 days</td>
-    </tr>
-    <tr>
-      <td>Joist hangers incomplete</td>
-      <td>Add missing nails</td>
-      <td className="numeric">$100-$300</td>
-      <td>1-2 days</td>
-    </tr>
-    <tr>
-      <td>Undersized header</td>
-      <td>Replace with correct size</td>
-      <td className="numeric">$500-$2,000</td>
-      <td>3-7 days</td>
-    </tr>
-    <tr>
-      <td>Missing hurricane ties</td>
-      <td>Install all required ties</td>
-      <td className="numeric">$300-$1,000</td>
-      <td>2-4 days</td>
-    </tr>
-    <tr>
-      <td>Stair dimensions wrong</td>
-      <td>Rebuild stairs to code</td>
-      <td className="numeric">$800-$2,500</td>
-      <td>3-7 days</td>
-    </tr>
-    <tr>
-      <td>Cut or modified truss</td>
-      <td>Engineer design repair</td>
-      <td className="numeric">$2,000-$8,000</td>
-      <td>1-3 weeks</td>
-    </tr>
-  </tbody>
-</table>
+<DataTable
+  caption="Common Framing Inspection Fixes"
+  headers={["Issue", "Fix", "Cost", "Timeline"]}
+  rows={[
+    ["Missing fire blocking", "Install blocking in walls", "$200-$600", "1-3 days"],
+    ["Joist hangers incomplete", "Add missing nails", "$100-$300", "1-2 days"],
+    ["Undersized header", "Replace with correct size", "$500-$2,000", "3-7 days"],
+    ["Missing hurricane ties", "Install all required ties", "$300-$1,000", "2-4 days"],
+    ["Stair dimensions wrong", "Rebuild stairs to code", "$800-$2,500", "3-7 days"],
+    ["Cut or modified truss", "Engineer design repair", "$2,000-$8,000", "1-3 weeks"]
+  ]}
+/>
 
 ### Re-Inspection Process
 

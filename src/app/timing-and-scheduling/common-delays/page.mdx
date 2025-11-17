@@ -706,10 +706,15 @@ Small delays compound. Here's how a typical project slips from 8 months to 14 mo
 - Improve future estimates
 
 **Example tracking spreadsheet**:
-| Date | Item Delayed | Cause | Duration | Cost | Prevention Next Time |
-|------|-------------|-------|----------|------|---------------------|
-| 3/15 | Foundation | Rain | 5 days | $750 | Check forecast, have indoor work ready |
-| 4/22 | Framing | Windows late | 8 days | $1,200 | Order windows earlier |
+
+<DataTable
+  headers={["Date", "Item Delayed", "Cause", "Duration", "Cost", "Prevention Next Time"]}
+  rows={[
+    ["3/15", "Foundation", "Rain", "5 days", "$750", "Check forecast, have indoor work ready"],
+    ["4/22", "Framing", "Windows late", "8 days", "$1,200", "Order windows earlier"]
+  ]}
+  caption="Example delay tracking spreadsheet"
+/>
 
 ## Delay Prevention Checklist
 

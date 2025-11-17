@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { calculateCostSavings, CostSavingsInputs, CostSavingsResults } from '@/lib/calculators';
+import CalculatorCard from '@/components/CalculatorCard';
 import styles from '@/styles/Calculator.module.css';
 
 export default function CostSavingsCalculator() {
@@ -33,9 +34,13 @@ export default function CostSavingsCalculator() {
   };
 
   return (
-    <div className={styles.calculator}>
-      <div className={styles.inputs}>
-        <h3 className={styles.sectionTitle}>Your Project Details</h3>
+    <CalculatorCard
+      title="Cost Savings Calculator"
+      description="Calculate how much money you can save by being your own general contractor"
+    >
+      <div className={styles.calculator}>
+        <div className={styles.inputs}>
+          <h3 className={styles.sectionTitle}>Your Project Details</h3>
 
         <div className={styles.inputGroup}>
           <label htmlFor="homeSize">Home Size (square feet)</label>
@@ -165,6 +170,7 @@ export default function CostSavingsCalculator() {
           </div>
         </div>
       )}
-    </div>
+      </div>
+    </CalculatorCard>
   );
 }

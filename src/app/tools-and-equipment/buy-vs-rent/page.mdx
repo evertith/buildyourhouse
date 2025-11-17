@@ -1,3 +1,6 @@
+import CalloutBox from '@/components/CalloutBox';
+import DataTable from '@/components/DataTable';
+
 export const metadata = {
   title: 'Buy vs Rent Tools: Complete ROI Analysis for Owner-Builders | Build-Your-House.com',
   description: 'Financial analysis of buying vs renting construction tools. Break-even calculations, rental cost tables, and smart decision framework for owner-builders.',
@@ -387,30 +390,32 @@ Consider ongoing utility after project completion:
 
 ### Average Daily Rental Rates
 
-| Tool | Daily | Weekly | Monthly |
-|------|-------|--------|---------|
-| Circular saw | $10-15 | $40-60 | $120-180 |
-| Miter saw (10") | $25-35 | $100-140 | $300-420 |
-| Miter saw (12" sliding) | $35-50 | $140-200 | $420-600 |
-| Table saw | $40-60 | $160-240 | $480-720 |
-| Reciprocating saw | $15-25 | $60-100 | $180-300 |
-| Jigsaw | $12-20 | $48-80 | $144-240 |
-| Framing nailer | $35-50 | $140-200 | $420-600 |
-| Finish nailer | $25-40 | $100-160 | $300-480 |
-| Flooring nailer | $35-55 | $140-220 | $420-660 |
-| Air compressor | $20-30 | $80-120 | $240-360 |
-| Paint sprayer | $50-80 | $200-320 | $600-960 |
-| Tile saw | $40-60 | $150-240 | $450-720 |
-| Plate compactor | $65-95 | $260-380 | $780-1,140 |
-| Mini excavator | $200-350 | $800-1,400 | $2,400-4,200 |
-| Skid steer | $250-400 | $1,000-1,600 | $3,000-4,800 |
-| Drywall lift | $30-50 | $120-200 | $360-600 |
-| Floor sander | $50-80 | $200-320 | $600-960 |
-| Scaffolding (per section) | $25-40 | $100-160 | $300-480 |
-| Extension ladder | $15-25 | $60-100 | $180-300 |
-| Generator (5000W) | $50-80 | $200-320 | $600-960 |
-
-*Rates vary by location, provider, and season. These are national averages.*
+<DataTable
+  headers={["Tool", "Daily", "Weekly", "Monthly"]}
+  rows={[
+    ["Circular saw", "$10-15", "$40-60", "$120-180"],
+    ["Miter saw (10\")", "$25-35", "$100-140", "$300-420"],
+    ["Miter saw (12\" sliding)", "$35-50", "$140-200", "$420-600"],
+    ["Table saw", "$40-60", "$160-240", "$480-720"],
+    ["Reciprocating saw", "$15-25", "$60-100", "$180-300"],
+    ["Jigsaw", "$12-20", "$48-80", "$144-240"],
+    ["Framing nailer", "$35-50", "$140-200", "$420-600"],
+    ["Finish nailer", "$25-40", "$100-160", "$300-480"],
+    ["Flooring nailer", "$35-55", "$140-220", "$420-660"],
+    ["Air compressor", "$20-30", "$80-120", "$240-360"],
+    ["Paint sprayer", "$50-80", "$200-320", "$600-960"],
+    ["Tile saw", "$40-60", "$150-240", "$450-720"],
+    ["Plate compactor", "$65-95", "$260-380", "$780-1,140"],
+    ["Mini excavator", "$200-350", "$800-1,400", "$2,400-4,200"],
+    ["Skid steer", "$250-400", "$1,000-1,600", "$3,000-4,800"],
+    ["Drywall lift", "$30-50", "$120-200", "$360-600"],
+    ["Floor sander", "$50-80", "$200-320", "$600-960"],
+    ["Scaffolding (per section)", "$25-40", "$100-160", "$300-480"],
+    ["Extension ladder", "$15-25", "$60-100", "$180-300"],
+    ["Generator (5000W)", "$50-80", "$200-320", "$600-960"]
+  ]}
+  caption="Rates vary by location, provider, and season. These are national averages."
+/>
 
 ### Weekly vs. Daily Rental Savings
 

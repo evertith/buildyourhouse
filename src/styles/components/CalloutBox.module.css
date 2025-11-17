@@ -95,6 +95,22 @@
 }
 
 /* ============================================
+   CRITICAL (RED)
+   ============================================ */
+.critical {
+  background-color: #fdf0ef;
+  border-left-color: var(--accent-critical);
+}
+
+.critical .title {
+  color: var(--accent-critical);
+}
+
+.critical .content {
+  color: var(--text-primary);
+}
+
+/* ============================================
    RESPONSIVE
    ============================================ */
 @media (max-width: 640px) {

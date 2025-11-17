@@ -15,47 +15,18 @@ Getting your building permit approved doesn't have to be intimidating. This guid
 
 Here's what to expect for the full permit process:
 
-<table className="dataTable">
-  <thead>
-    <tr>
-      <th>Phase</th>
-      <th>Timeframe</th>
-      <th>Key Activities</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Preparation</td>
-      <td>Weeks 1-2</td>
-      <td>Document gathering, property research</td>
-    </tr>
-    <tr>
-      <td>Pre-Application Meeting</td>
-      <td>Weeks 3-4</td>
-      <td>Meeting with building department, final prep</td>
-    </tr>
-    <tr>
-      <td>Submit Application</td>
-      <td>Week 4</td>
-      <td>Submit complete application package</td>
-    </tr>
-    <tr>
-      <td>Plan Review</td>
-      <td>Weeks 5-10</td>
-      <td>Department reviews (varies widely)</td>
-    </tr>
-    <tr>
-      <td>Corrections</td>
-      <td>Weeks 11-12</td>
-      <td>Address feedback, resubmit</td>
-    </tr>
-    <tr>
-      <td>Final Approval</td>
-      <td>Weeks 13-16</td>
-      <td>Permit issuance, ready to build</td>
-    </tr>
-  </tbody>
-</table>
+<DataTable
+  caption="Permit Process Timeline Overview"
+  headers={["Phase", "Timeframe", "Key Activities"]}
+  rows={[
+    ["Preparation", "Weeks 1-2", "Document gathering, property research"],
+    ["Pre-Application Meeting", "Weeks 3-4", "Meeting with building department, final prep"],
+    ["Submit Application", "Week 4", "Submit complete application package"],
+    ["Plan Review", "Weeks 5-10", "Department reviews (varies widely)"],
+    ["Corrections", "Weeks 11-12", "Address feedback, resubmit"],
+    ["Final Approval", "Weeks 13-16", "Permit issuance, ready to build"]
+  ]}
+/>
 
 ## Phase 1: Preparation (Weeks 1-2)
 
@@ -151,53 +122,16 @@ Call your building department and request a pre-application conference. Most off
 
 ### Critical Questions to Ask
 
-<table className="dataTable">
-  <thead>
-    <tr>
-      <th>Category</th>
-      <th>Questions to Ask</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Application Requirements</strong></td>
-      <td>
-        • Which version of the IRC do you enforce?<br/>
-        • What local amendments apply?<br/>
-        • Do you require engineer stamps?<br/>
-        • What energy code compliance is needed?<br/>
-        • Are there any site-specific concerns?
-      </td>
-    </tr>
-    <tr>
-      <td><strong>Fees</strong></td>
-      <td>
-        • What are the permit fees? (based on project value)<br/>
-        • Are there impact fees?<br/>
-        • Are there school fees or other add-ons?<br/>
-        • What forms of payment do you accept?
-      </td>
-    </tr>
-    <tr>
-      <td><strong>Timeline</strong></td>
-      <td>
-        • What's the current plan review backlog?<br/>
-        • How long until first review?<br/>
-        • How many review cycles should I expect?<br/>
-        • What's the typical correction turnaround time?
-      </td>
-    </tr>
-    <tr>
-      <td><strong>Inspections</strong></td>
-      <td>
-        • What inspections are required?<br/>
-        • How much notice for scheduling?<br/>
-        • Can I do rough-in inspections together?<br/>
-        • What are common failure points?
-      </td>
-    </tr>
-  </tbody>
-</table>
+<DataTable
+  caption="Critical Questions for Pre-Application Meeting"
+  headers={["Category", "Questions to Ask"]}
+  rows={[
+    ["Application Requirements", "• Which version of the IRC do you enforce?\n• What local amendments apply?\n• Do you require engineer stamps?\n• What energy code compliance is needed?\n• Are there any site-specific concerns?"],
+    ["Fees", "• What are the permit fees? (based on project value)\n• Are there impact fees?\n• Are there school fees or other add-ons?\n• What forms of payment do you accept?"],
+    ["Timeline", "• What's the current plan review backlog?\n• How long until first review?\n• How many review cycles should I expect?\n• What's the typical correction turnaround time?"],
+    ["Inspections", "• What inspections are required?\n• How much notice for scheduling?\n• Can I do rough-in inspections together?\n• What are common failure points?"]
+  ]}
+/>
 
 <CalloutBox type="tip" title="Build Relationships Early">
 The relationship you build with the building department staff **now** will pay dividends throughout your project. Be respectful, prepared, and eager to learn.
@@ -375,44 +309,19 @@ Submit **in person** for your first time. The front desk staff can catch simple 
 
 ### Typical Permit Fees (2,000 sq ft home)
 
-<table className="dataTable">
-  <thead>
-    <tr>
-      <th>Fee Type</th>
-      <th>Typical Cost</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Building permit</td>
-      <td className="numeric">$1,500 - $3,500</td>
-    </tr>
-    <tr>
-      <td>Electrical permit</td>
-      <td className="numeric">$200 - $500</td>
-    </tr>
-    <tr>
-      <td>Plumbing permit</td>
-      <td className="numeric">$200 - $500</td>
-    </tr>
-    <tr>
-      <td>Mechanical permit</td>
-      <td className="numeric">$150 - $400</td>
-    </tr>
-    <tr>
-      <td>Plan review</td>
-      <td className="numeric">$300 - $800</td>
-    </tr>
-    <tr>
-      <td>Impact fees</td>
-      <td className="numeric">$0 - $20,000+</td>
-    </tr>
-    <tr className="totalRow">
-      <td><strong>TOTAL TYPICAL COST</strong></td>
-      <td className="numeric"><strong>$2,500 - $6,000</strong></td>
-    </tr>
-  </tbody>
-</table>
+<DataTable
+  caption="Typical Permit Fees for 2,000 sq ft Home"
+  headers={["Fee Type", "Typical Cost"]}
+  rows={[
+    ["Building permit", "$1,500 - $3,500"],
+    ["Electrical permit", "$200 - $500"],
+    ["Plumbing permit", "$200 - $500"],
+    ["Mechanical permit", "$150 - $400"],
+    ["Plan review", "$300 - $800"],
+    ["Impact fees", "$0 - $20,000+"],
+    ["TOTAL TYPICAL COST", "$2,500 - $6,000"]
+  ]}
+/>
 
 <CalloutBox type="warning" title="Impact Fees Can Shock You">
 Impact fees vary **wildly** and can add $0-$20,000+ to your costs. Always ask about these during your pre-application meeting.
@@ -424,42 +333,17 @@ Impact fees vary **wildly** and can add $0-$20,000+ to your costs. Always ask ab
 
 Your plans will be reviewed by multiple departments in parallel:
 
-<table className="dataTable">
-  <thead>
-    <tr>
-      <th>Department</th>
-      <th>Review Time</th>
-      <th>What They Check</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Building Department</td>
-      <td>2-4 weeks</td>
-      <td>Structural compliance, code adherence, energy code, accessibility</td>
-    </tr>
-    <tr>
-      <td>Electrical Review</td>
-      <td>1-2 weeks</td>
-      <td>Panel sizing, circuit layout, GFCI/AFCI protection, service size</td>
-    </tr>
-    <tr>
-      <td>Plumbing Review</td>
-      <td>1-2 weeks</td>
-      <td>Fixture units, vent sizing, drain sizing, water supply</td>
-    </tr>
-    <tr>
-      <td>Mechanical Review</td>
-      <td>1-2 weeks</td>
-      <td>Load calculations, equipment sizing, ductwork design, combustion air</td>
-    </tr>
-    <tr>
-      <td>Other Departments</td>
-      <td>Varies</td>
-      <td>Fire marshal, health (septic), DOT (driveway), zoning, engineering</td>
-    </tr>
-  </tbody>
-</table>
+<DataTable
+  caption="Plan Review Process by Department"
+  headers={["Department", "Review Time", "What They Check"]}
+  rows={[
+    ["Building Department", "2-4 weeks", "Structural compliance, code adherence, energy code, accessibility"],
+    ["Electrical Review", "1-2 weeks", "Panel sizing, circuit layout, GFCI/AFCI protection, service size"],
+    ["Plumbing Review", "1-2 weeks", "Fixture units, vent sizing, drain sizing, water supply"],
+    ["Mechanical Review", "1-2 weeks", "Load calculations, equipment sizing, ductwork design, combustion air"],
+    ["Other Departments", "Varies", "Fire marshal, health (septic), DOT (driveway), zoning, engineering"]
+  ]}
+/>
 
 ### Review Timeline Factors
 
@@ -620,152 +504,53 @@ Once all corrections are satisfied:
 
 ## Common Application Mistakes to Avoid
 
-<table className="dataTable">
-  <thead>
-    <tr>
-      <th>Mistake</th>
-      <th>Better Approach</th>
-      <th>Cost of Mistake</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Rushing the application with incomplete plans</td>
-      <td>Submit complete, high-quality plans</td>
-      <td>Delays add thousands in holding costs</td>
-    </tr>
-    <tr>
-      <td>Drawing plans yourself without experience</td>
-      <td>Hire professional draftsperson ($2,000-$8,000)</td>
-      <td>Months of delays, multiple resubmissions</td>
-    </tr>
-    <tr>
-      <td>Not meeting with building department first</td>
-      <td>Schedule pre-app meeting, take notes</td>
-      <td>Massive delays from wrong assumptions</td>
-    </tr>
-    <tr>
-      <td>Using wrong code version</td>
-      <td>Confirm code version with department first</td>
-      <td>Complete plan redesign ($5,000+)</td>
-    </tr>
-    <tr>
-      <td>Missing engineer stamps</td>
-      <td>Ask at pre-app, budget for stamps</td>
-      <td>Rush engineering fees + delays</td>
-    </tr>
-    <tr>
-      <td>Incomplete energy calculations</td>
-      <td>Run REScheck (free), include in submission</td>
-      <td>Delay costs add up quickly</td>
-    </tr>
-    <tr>
-      <td>Poor site plan without clear setbacks</td>
-      <td>Professional survey ($400-$1,000)</td>
-      <td>Automatic rejection, resubmit delays</td>
-    </tr>
-    <tr>
-      <td>Not budgeting for impact fees</td>
-      <td>Ask about ALL fees at pre-app meeting</td>
-      <td>$10,000-$20,000+ surprise</td>
-    </tr>
-  </tbody>
-</table>
+<DataTable
+  caption="Common Application Mistakes and Solutions"
+  headers={["Mistake", "Better Approach", "Cost of Mistake"]}
+  rows={[
+    ["Rushing the application with incomplete plans", "Submit complete, high-quality plans", "Delays add thousands in holding costs"],
+    ["Drawing plans yourself without experience", "Hire professional draftsperson ($2,000-$8,000)", "Months of delays, multiple resubmissions"],
+    ["Not meeting with building department first", "Schedule pre-app meeting, take notes", "Massive delays from wrong assumptions"],
+    ["Using wrong code version", "Confirm code version with department first", "Complete plan redesign ($5,000+)"],
+    ["Missing engineer stamps", "Ask at pre-app, budget for stamps", "Rush engineering fees + delays"],
+    ["Incomplete energy calculations", "Run REScheck (free), include in submission", "Delay costs add up quickly"],
+    ["Poor site plan without clear setbacks", "Professional survey ($400-$1,000)", "Automatic rejection, resubmit delays"],
+    ["Not budgeting for impact fees", "Ask about ALL fees at pre-app meeting", "$10,000-$20,000+ surprise"]
+  ]}
+/>
 
 ## Complete Permit Application Cost Breakdown
 
 ### Professional Services
 
-<table className="dataTable">
-  <thead>
-    <tr>
-      <th>Item</th>
-      <th>Cost Range</th>
-      <th>Notes</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>House plans</td>
-      <td className="numeric">$2,000 - $8,000</td>
-      <td>Don't skimp on this</td>
-    </tr>
-    <tr>
-      <td>Structural engineering</td>
-      <td className="numeric">$500 - $2,500</td>
-      <td>If needed for complex spans</td>
-    </tr>
-    <tr>
-      <td>Truss design</td>
-      <td className="numeric">$300 - $800</td>
-      <td>If using engineered trusses</td>
-    </tr>
-    <tr>
-      <td>Energy calculations</td>
-      <td className="numeric">$0 - $300</td>
-      <td>REScheck is free DIY</td>
-    </tr>
-    <tr>
-      <td>Site survey</td>
-      <td className="numeric">$400 - $1,000</td>
-      <td>Required, no shortcuts</td>
-    </tr>
-    <tr>
-      <td>Soil/percolation test</td>
-      <td className="numeric">$500 - $1,500</td>
-      <td>If septic system needed</td>
-    </tr>
-  </tbody>
-</table>
+<DataTable
+  caption="Professional Services Costs"
+  headers={["Item", "Cost Range", "Notes"]}
+  rows={[
+    ["House plans", "$2,000 - $8,000", "Don't skimp on this"],
+    ["Structural engineering", "$500 - $2,500", "If needed for complex spans"],
+    ["Truss design", "$300 - $800", "If using engineered trusses"],
+    ["Energy calculations", "$0 - $300", "REScheck is free DIY"],
+    ["Site survey", "$400 - $1,000", "Required, no shortcuts"],
+    ["Soil/percolation test", "$500 - $1,500", "If septic system needed"]
+  ]}
+/>
 
 ### Permit Fees
 
-<table className="dataTable">
-  <thead>
-    <tr>
-      <th>Fee Type</th>
-      <th>Cost Range</th>
-      <th>Notes</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Building permit</td>
-      <td className="numeric">$1,500 - $5,000</td>
-      <td>Based on project value</td>
-    </tr>
-    <tr>
-      <td>Electrical permit</td>
-      <td className="numeric">$200 - $500</td>
-      <td>Separate fee usually</td>
-    </tr>
-    <tr>
-      <td>Plumbing permit</td>
-      <td className="numeric">$200 - $500</td>
-      <td>Separate fee usually</td>
-    </tr>
-    <tr>
-      <td>Mechanical permit</td>
-      <td className="numeric">$150 - $400</td>
-      <td>Separate fee usually</td>
-    </tr>
-    <tr>
-      <td>Plan review</td>
-      <td className="numeric">$300 - $800</td>
-      <td>Sometimes separate charge</td>
-    </tr>
-    <tr>
-      <td>Impact fees</td>
-      <td className="numeric">$0 - $20,000+</td>
-      <td>Highly location dependent</td>
-    </tr>
-    <tr className="totalRow">
-      <td><strong>TOTAL TYPICAL</strong></td>
-      <td className="numeric"><strong>$6,000 - $40,000+</strong></td>
-      <td><strong>For complete permit ready-to-build</strong></td>
-    </tr>
-  </tbody>
-</table>
+<DataTable
+  caption="Complete Permit Fee Breakdown"
+  headers={["Fee Type", "Cost Range", "Notes"]}
+  rows={[
+    ["Building permit", "$1,500 - $5,000", "Based on project value"],
+    ["Electrical permit", "$200 - $500", "Separate fee usually"],
+    ["Plumbing permit", "$200 - $500", "Separate fee usually"],
+    ["Mechanical permit", "$150 - $400", "Separate fee usually"],
+    ["Plan review", "$300 - $800", "Sometimes separate charge"],
+    ["Impact fees", "$0 - $20,000+", "Highly location dependent"],
+    ["TOTAL TYPICAL", "$6,000 - $40,000+", "For complete permit ready-to-build"]
+  ]}
+/>
 
 <CalloutBox type="info" title="Budget Rule of Thumb">
 Plan for **2-3% of total build cost** in permits and related fees.

@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { calculateTimelineEstimate, TimelineEstimatorInputs, TimelineEstimatorResults } from '@/lib/calculators';
+import CalculatorCard from '@/components/CalculatorCard';
 import styles from '@/styles/Calculator.module.css';
 
 export default function TimelineEstimatorCalculator() {
@@ -29,9 +30,13 @@ export default function TimelineEstimatorCalculator() {
   };
 
   return (
-    <div className={styles.calculator}>
-      <div className={styles.inputs}>
-        <h3 className={styles.sectionTitle}>Your Project Details</h3>
+    <CalculatorCard
+      title="Timeline Estimator"
+      description="Estimate how long your DIY home build will take based on your schedule and experience"
+    >
+      <div className={styles.calculator}>
+        <div className={styles.inputs}>
+          <h3 className={styles.sectionTitle}>Your Project Details</h3>
 
         <div className={styles.inputGroup}>
           <label htmlFor="homeSize">Home Size (square feet)</label>
@@ -197,6 +202,7 @@ export default function TimelineEstimatorCalculator() {
           </div>
         </div>
       )}
-    </div>
+      </div>
+    </CalculatorCard>
   );
 }

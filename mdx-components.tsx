@@ -2,6 +2,8 @@ import type { MDXComponents } from 'mdx/types';
 import CalloutBox from '@/components/CalloutBox';
 import Checklist from '@/components/Checklist';
 import StepGuide from '@/components/StepGuide';
+import DataTable from '@/components/DataTable';
+import Section from '@/components/Section';
 import styles from '@/styles/article.module.css';
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
@@ -15,5 +17,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     CalloutBox,
     Checklist,
     StepGuide,
+    DataTable,
+    Section,
   };
 }

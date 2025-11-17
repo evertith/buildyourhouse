@@ -32,6 +32,7 @@ html {
   --accent-primary: #d4763b;    /* Construction orange - CTAs, important callouts */
   --accent-secondary: #5b8a72;  /* Sage green - tips, success states, checkboxes */
   --accent-warning: #e67e22;    /* Warm orange - warnings, caution */
+  --accent-critical: #c0392b;   /* Red - critical warnings, danger */
   --accent-info: #3b7dbd;       /* Blueprint blue - informational callouts */
 
   /* Interactive States */
@@ -41,6 +42,19 @@ html {
   --button-primary-hover: #c75f32;
   --button-secondary: #5b8a72;  /* Secondary buttons */
   --button-secondary-hover: #4a7c59;
+
+  /* Legacy color aliases (for backward compatibility) */
+  --color-primary: #d4763b;
+  --color-primary-dark: #c75f32;
+  --color-secondary: #c75f32;
+  --color-success: #5b8a72;
+  --color-warning: #e67e22;
+  --color-text: #2d2d2d;
+  --color-text-light: #5a5a5a;
+  --color-bg: #faf8f5;
+  --color-bg-light: #f0ede8;
+  --color-border: #e8e4df;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
 
   /* ============================================
      SPACING SYSTEM (8px base unit)

@@ -173,14 +173,18 @@ This guide provides templates and step-by-step instructions for creating and man
 
 **Example durations for 2,000 sq ft home**:
 
-| Task | Professional | Owner-Builder Hiring Out | Owner-Builder DIY |
-|------|-------------|-------------------------|-------------------|
-| Foundation | 3-4 weeks | 4-5 weeks | 5-6 weeks |
-| Framing | 4-6 weeks | 6-8 weeks | 10-14 weeks |
-| Rough-ins | 4-6 weeks | 6-8 weeks | 8-12 weeks |
-| Insulation/Drywall | 3-4 weeks | 4-5 weeks | 5-7 weeks |
-| Interior finishes | 6-8 weeks | 8-10 weeks | 12-16 weeks |
-| Exterior finishes | 4-6 weeks | 6-8 weeks | 8-12 weeks |
+<DataTable
+  headers={["Task", "Professional", "Owner-Builder Hiring Out", "Owner-Builder DIY"]}
+  rows={[
+    ["Foundation", "3-4 weeks", "4-5 weeks", "5-6 weeks"],
+    ["Framing", "4-6 weeks", "6-8 weeks", "10-14 weeks"],
+    ["Rough-ins", "4-6 weeks", "6-8 weeks", "8-12 weeks"],
+    ["Insulation/Drywall", "3-4 weeks", "4-5 weeks", "5-7 weeks"],
+    ["Interior finishes", "6-8 weeks", "8-10 weeks", "12-16 weeks"],
+    ["Exterior finishes", "4-6 weeks", "6-8 weeks", "8-12 weeks"]
+  ]}
+  caption="Duration estimates for 2,000 sq ft home by builder type"
+/>
 
 **Add buffer**:
 - Owner-builder hiring out: Add 25% to professional estimates
@@ -195,15 +199,19 @@ This guide provides templates and step-by-step instructions for creating and man
 
 **Example dependencies**:
 
-| Task | Must Be Complete First |
-|------|----------------------|
-| Framing | Foundation complete and inspected |
-| Rough-ins | Framing complete, building dried in |
-| Insulation | All rough-ins complete and inspected |
-| Drywall | Insulation complete and inspected |
-| Cabinets | Drywall finished and painted |
-| Countertops | Cabinets installed |
-| Flooring | Paint complete (typically) |
+<DataTable
+  headers={["Task", "Must Be Complete First"]}
+  rows={[
+    ["Framing", "Foundation complete and inspected"],
+    ["Rough-ins", "Framing complete, building dried in"],
+    ["Insulation", "All rough-ins complete and inspected"],
+    ["Drywall", "Insulation complete and inspected"],
+    ["Cabinets", "Drywall finished and painted"],
+    ["Countertops", "Cabinets installed"],
+    ["Flooring", "Paint complete (typically)"]
+  ]}
+  caption="Task dependencies for construction phases"
+/>
 
 **Some tasks can happen in parallel**:
 - Siding can happen during interior rough-ins
@@ -216,15 +224,19 @@ This guide provides templates and step-by-step instructions for creating and man
 
 **Order before phase starts**:
 
-| Material | Lead Time | Order When |
-|----------|-----------|-----------|
-| Windows/doors | 8-12 weeks | Before framing starts |
-| Trusses | 6-8 weeks | Before framing starts |
-| HVAC equipment | 4-8 weeks | Before rough-in starts |
-| Cabinets | 8-12 weeks | During framing |
-| Countertops | 3-5 weeks | After cabinets installed (template) |
-| Special flooring | 4-8 weeks | During drywall |
-| Appliances | 4-6 weeks | During interior finishes |
+<DataTable
+  headers={["Material", "Lead Time", "Order When"]}
+  rows={[
+    ["Windows/doors", "8-12 weeks", "Before framing starts"],
+    ["Trusses", "6-8 weeks", "Before framing starts"],
+    ["HVAC equipment", "4-8 weeks", "Before rough-in starts"],
+    ["Cabinets", "8-12 weeks", "During framing"],
+    ["Countertops", "3-5 weeks", "After cabinets installed (template)"],
+    ["Special flooring", "4-8 weeks", "During drywall"],
+    ["Appliances", "4-6 weeks", "During interior finishes"]
+  ]}
+  caption="Material ordering timeline and lead times"
+/>
 
 **Add these deadlines to your schedule**
 
@@ -234,16 +246,20 @@ This guide provides templates and step-by-step instructions for creating and man
 
 **Schedule inspections**:
 
-| Inspection | When | Advance Notice Needed |
-|-----------|------|---------------------|
-| Footing | Before concrete pour | 24-48 hours |
-| Foundation | Before backfill | 24-48 hours |
-| Framing | After dried in, before insulation | 24-48 hours |
-| Rough plumbing | Before covering | 24-48 hours |
-| Rough electrical | Before covering | 24-48 hours |
-| Rough HVAC | Before covering | 24-48 hours |
-| Insulation | Before drywall | 24-48 hours |
-| Final | When 95%+ complete | 24-48 hours |
+<DataTable
+  headers={["Inspection", "When", "Advance Notice Needed"]}
+  rows={[
+    ["Footing", "Before concrete pour", "24-48 hours"],
+    ["Foundation", "Before backfill", "24-48 hours"],
+    ["Framing", "After dried in, before insulation", "24-48 hours"],
+    ["Rough plumbing", "Before covering", "24-48 hours"],
+    ["Rough electrical", "Before covering", "24-48 hours"],
+    ["Rough HVAC", "Before covering", "24-48 hours"],
+    ["Insulation", "Before drywall", "24-48 hours"],
+    ["Final", "When 95%+ complete", "24-48 hours"]
+  ]}
+  caption="Inspection schedule and notice requirements"
+/>
 
 **Build in correction time**:
 - 3-5 days after each inspection for potential failures
@@ -256,19 +272,23 @@ This guide provides templates and step-by-step instructions for creating and man
 
 **When to book each trade**:
 
-| Trade | Book How Far Ahead |
-|-------|-------------------|
-| Foundation | 6-8 weeks |
-| Framing | 6-8 weeks |
-| Roofing | 4-6 weeks |
-| HVAC | 6-8 weeks |
-| Plumbing | 6-8 weeks |
-| Electrical | 6-8 weeks |
-| Insulation | 4-6 weeks |
-| Drywall | 4-6 weeks |
-| Cabinets | 6-8 weeks |
-| Flooring | 4-6 weeks |
-| Tile | 4-6 weeks |
+<DataTable
+  headers={["Trade", "Book How Far Ahead"]}
+  rows={[
+    ["Foundation", "6-8 weeks"],
+    ["Framing", "6-8 weeks"],
+    ["Roofing", "4-6 weeks"],
+    ["HVAC", "6-8 weeks"],
+    ["Plumbing", "6-8 weeks"],
+    ["Electrical", "6-8 weeks"],
+    ["Insulation", "4-6 weeks"],
+    ["Drywall", "4-6 weeks"],
+    ["Cabinets", "6-8 weeks"],
+    ["Flooring", "4-6 weeks"],
+    ["Tile", "4-6 weeks"]
+  ]}
+  caption="Subcontractor booking timeline"
+/>
 
 **Add booking deadlines to schedule**
 

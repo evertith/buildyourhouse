@@ -1,0 +1,74 @@
+/* ============================================
+   SECTION COMPONENT
+   Content container with optional title/subtitle
+   ============================================ */
+
+.section {
+  margin: var(--space-8) 0;
+  padding: var(--space-6) 0;
+}
+
+.header {
+  margin-bottom: var(--space-4);
+}
+
+.title {
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-bold);
+  color: var(--text-heading);
+  margin: 0 0 var(--space-2) 0;
+  line-height: var(--leading-tight);
+}
+
+.subtitle {
+  font-size: var(--text-lg);
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: var(--leading-normal);
+  max-width: var(--width-content);
+}
+
+.content {
+  line-height: var(--leading-relaxed);
+}
+
+/* ============================================
+   VARIANTS
+   ============================================ */
+
+.default {
+  background-color: transparent;
+}
+
+.highlighted {
+  background-color: var(--bg-secondary);
+  padding: var(--space-6);
+  border-radius: 12px;
+  border-left: 4px solid var(--accent-primary);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 640px) {
+  .section {
+    margin: var(--space-6) 0;
+    padding: var(--space-4) 0;
+  }
+
+  .header {
+    margin-bottom: var(--space-3);
+  }
+
+  .title {
+    font-size: var(--text-2xl);
+  }
+
+  .subtitle {
+    font-size: var(--text-base);
+  }
+
+  .highlighted {
+    padding: var(--space-4);
+  }
+}
