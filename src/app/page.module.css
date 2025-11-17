@@ -1,141 +1,364 @@
+/* ============================================
+   HOMEPAGE - Build Your House
+   Warm, trustworthy, professional
+   ============================================ */
+
 .page {
-  --background: #fafafa;
-  --foreground: #fff;
-
-  --text-primary: #000;
-  --text-secondary: #666;
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-  --button-secondary-border: #ebebeb;
-
-  display: flex;
   min-height: 100vh;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-geist-sans);
-  background-color: var(--background);
 }
 
-.main {
-  display: flex;
-  min-height: 100vh;
-  width: 100%;
-  max-width: 800px;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  background-color: var(--foreground);
-  padding: 120px 60px;
+/* ============================================
+   HERO SECTION
+   ============================================ */
+.hero {
+  text-align: center;
+  padding: var(--space-10) var(--container-padding-mobile) var(--space-8);
+  max-width: var(--width-content);
+  margin: 0 auto;
 }
 
-.intro {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  gap: 24px;
+.heroTitle {
+  font-size: var(--text-5xl);     /* 56px */
+  font-weight: var(--weight-extrabold);
+  line-height: var(--leading-tight);
+  color: var(--text-heading);
+  margin-bottom: var(--space-3);
+  letter-spacing: -0.02em;
 }
 
-.intro h1 {
-  max-width: 320px;
-  font-size: 40px;
-  font-weight: 600;
-  line-height: 48px;
-  letter-spacing: -2.4px;
-  text-wrap: balance;
-  color: var(--text-primary);
-}
-
-.intro p {
-  max-width: 440px;
-  font-size: 18px;
-  line-height: 32px;
-  text-wrap: balance;
+.heroSubtitle {
+  font-size: var(--text-lg);      /* 20px */
+  font-weight: var(--weight-normal);
+  line-height: var(--leading-normal);
   color: var(--text-secondary);
+  margin-bottom: var(--space-5);
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.intro a {
-  font-weight: 500;
-  color: var(--text-primary);
-}
-
-.ctas {
+.heroCtas {
   display: flex;
-  flex-direction: row;
-  width: 100%;
-  max-width: 440px;
-  gap: 16px;
-  font-size: 14px;
-}
-
-.ctas a {
-  display: flex;
+  gap: var(--space-2);
   justify-content: center;
-  align-items: center;
-  height: 40px;
-  padding: 0 16px;
-  border-radius: 128px;
-  border: 1px solid transparent;
-  transition: 0.2s;
+  flex-wrap: wrap;
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+.buttonPrimary {
+  display: inline-block;
+  padding: var(--space-2) var(--space-4);
+  background-color: var(--button-primary);
+  color: #ffffff;
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+  text-decoration: none;
+  border-radius: 8px;
+  border: none;
   cursor: pointer;
-  width: fit-content;
-  font-weight: 500;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(212, 118, 59, 0.2);
 }
 
-a.primary {
-  background: var(--text-primary);
-  color: var(--background);
-  gap: 8px;
+.buttonPrimary:hover {
+  background-color: var(--button-primary-hover);
+  box-shadow: 0 4px 12px rgba(212, 118, 59, 0.3);
+  transform: translateY(-2px);
+  text-decoration: none;
+  color: #ffffff;
 }
 
-a.secondary {
-  border-color: var(--button-secondary-border);
+.buttonSecondary {
+  display: inline-block;
+  padding: var(--space-2) var(--space-4);
+  background-color: transparent;
+  color: var(--accent-primary);
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+  text-decoration: none;
+  border-radius: 8px;
+  border: 2px solid var(--accent-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
+.buttonSecondary:hover {
+  background-color: var(--accent-primary);
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/* ============================================
+   INTRODUCTION
+   ============================================ */
+.intro {
+  padding: var(--space-8) var(--container-padding-mobile);
+  background-color: var(--bg-primary);
+}
+
+.introContent {
+  max-width: var(--width-content);
+  margin: 0 auto;
+}
+
+.lead {
+  font-size: var(--text-lg);      /* 20px */
+  font-weight: var(--weight-normal);
+  line-height: var(--leading-normal);
+  color: var(--text-primary);
+  margin-bottom: var(--space-4);
+}
+
+/* ============================================
+   TOPIC CARDS SECTION
+   ============================================ */
+.topics {
+  padding: var(--space-8) var(--container-padding-mobile);
+  background-color: var(--bg-primary);
+}
+
+.sectionTitle {
+  text-align: center;
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-bold);
+  color: var(--text-heading);
+  margin-bottom: var(--space-6);
+}
+
+.topicGrid {
+  max-width: var(--width-full);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-3);
+}
+
+/* ============================================
+   CARD COMPONENT
+   ============================================ */
+.card {
+  background-color: #ffffff;
+  border: 1px solid var(--bg-tertiary);
+  border-radius: 8px;
+  padding: var(--space-4);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  display: block;
+  position: relative;
+}
+
+.card:hover {
+  border-color: var(--accent-primary);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transform: translateY(-4px);
+  text-decoration: none;
+}
+
+.cardIcon {
+  font-size: 40px;
+  margin-bottom: var(--space-2);
+  display: block;
+}
+
+.cardTitle {
+  font-size: var(--text-xl);
+  font-weight: var(--weight-bold);
+  color: var(--text-heading);
+  margin-bottom: var(--space-2);
+  margin-top: 0;
+}
+
+.cardDescription {
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-2);
+}
+
+.cardLink {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--accent-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.card:hover .cardLink {
+  color: var(--link-hover);
+}
+
+/* ============================================
+   TRUST SECTION
+   ============================================ */
+.trust {
+  padding: var(--space-10) var(--container-padding-mobile);
+  background-color: var(--bg-secondary);
+}
+
+.trustContent {
+  max-width: var(--width-wide);
+  margin: 0 auto;
+}
+
+.trustTitle {
+  text-align: center;
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-bold);
+  color: var(--text-heading);
+  margin-bottom: var(--space-6);
+}
+
+.trustGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-4);
+}
+
+.trustPoint {
+  display: flex;
+  gap: var(--space-2);
+  align-items: flex-start;
+}
+
+.trustIcon {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  background-color: var(--accent-secondary);
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: var(--weight-bold);
+  margin-top: 4px;
+}
+
+.trustPoint h3 {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  color: var(--text-heading);
+  margin-bottom: var(--space-1);
+  margin-top: 0;
+}
+
+.trustPoint p {
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  color: var(--text-secondary);
+  margin-bottom: 0;
+}
+
+/* ============================================
+   CTA SECTION
+   ============================================ */
+.cta {
+  padding: var(--space-10) var(--container-padding-mobile);
+  background-color: var(--bg-primary);
+  text-align: center;
+}
+
+.cta h2 {
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-bold);
+  color: var(--text-heading);
+  margin-bottom: var(--space-2);
+  margin-top: 0;
+}
+
+.ctaDescription {
+  font-size: var(--text-lg);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-5);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ctaButtons {
+  display: flex;
+  gap: var(--space-2);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 640px) {
+  .heroTitle {
+    font-size: var(--text-5xl);  /* Will be 40px on mobile from globals.css */
   }
 
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
+  .heroSubtitle {
+    font-size: var(--text-base);
+  }
+
+  .sectionTitle {
+    font-size: var(--text-2xl);
+  }
+
+  .topicGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .trustGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .heroCtas,
+  .ctaButtons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .buttonPrimary,
+  .buttonSecondary {
+    width: 100%;
+    text-align: center;
   }
 }
 
-@media (max-width: 600px) {
-  .main {
-    padding: 48px 24px;
-  }
-
-  .intro {
-    gap: 16px;
-  }
-
-  .intro h1 {
-    font-size: 32px;
-    line-height: 40px;
-    letter-spacing: -1.92px;
+@media (min-width: 641px) and (max-width: 1024px) {
+  .topicGrid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
+@media (min-width: 768px) {
+  .hero {
+    padding-left: var(--container-padding-tablet);
+    padding-right: var(--container-padding-tablet);
   }
 
-  .page {
-    --background: #000;
-    --foreground: #000;
+  .intro,
+  .topics,
+  .trust,
+  .cta {
+    padding-left: var(--container-padding-tablet);
+    padding-right: var(--container-padding-tablet);
+  }
+}
 
-    --text-primary: #ededed;
-    --text-secondary: #999;
+@media (min-width: 1024px) {
+  .hero {
+    padding-left: var(--container-padding-desktop);
+    padding-right: var(--container-padding-desktop);
+  }
 
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-    --button-secondary-border: #1a1a1a;
+  .intro,
+  .topics,
+  .trust,
+  .cta {
+    padding-left: var(--container-padding-desktop);
+    padding-right: var(--container-padding-desktop);
+  }
+
+  .topicGrid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
