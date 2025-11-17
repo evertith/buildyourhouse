@@ -1,0 +1,126 @@
+/* ============================================
+   STEP GUIDE COMPONENT
+   Step-by-step visual guide with connecting lines
+   ============================================ */
+
+.stepGuide {
+  margin: var(--space-5) 0;
+}
+
+.title {
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
+  color: var(--text-heading);
+  margin-bottom: var(--space-4);
+  margin-top: 0;
+}
+
+.steps {
+  display: flex;
+  flex-direction: column;
+}
+
+.step {
+  display: flex;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+  position: relative;
+}
+
+.step::before {
+  content: "";
+  position: absolute;
+  left: 23px;
+  top: 60px;
+  bottom: calc(-1 * var(--space-6));
+  width: 2px;
+  background-color: var(--bg-tertiary);
+}
+
+.step:last-child::before {
+  display: none;
+}
+
+.stepNumber {
+  min-width: 48px;
+  height: 48px;
+  background-color: var(--accent-primary);
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
+  z-index: 1;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(212, 118, 59, 0.2);
+}
+
+.stepContent {
+  flex: 1;
+  padding-top: 4px;
+}
+
+.stepTitle {
+  font-size: var(--text-xl);
+  font-weight: var(--weight-bold);
+  color: var(--text-heading);
+  margin-bottom: var(--space-2);
+  margin-top: 0;
+  line-height: var(--leading-tight);
+}
+
+.stepDescription {
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  color: var(--text-primary);
+}
+
+.stepDescription p {
+  margin-bottom: var(--space-2);
+}
+
+.stepDescription p:last-child {
+  margin-bottom: 0;
+}
+
+.stepDescription ul,
+.stepDescription ol {
+  margin-bottom: var(--space-2);
+  padding-left: var(--space-3);
+}
+
+.stepDescription li {
+  margin-bottom: var(--space-1);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 640px) {
+  .step {
+    gap: var(--space-2);
+    margin-bottom: var(--space-5);
+  }
+
+  .step::before {
+    left: 19px;
+    top: 48px;
+    bottom: calc(-1 * var(--space-5));
+  }
+
+  .stepNumber {
+    min-width: 40px;
+    height: 40px;
+    font-size: var(--text-base);
+  }
+
+  .stepTitle {
+    font-size: var(--text-lg);
+  }
+
+  .stepDescription {
+    font-size: var(--text-sm);
+  }
+}

@@ -1,0 +1,635 @@
+export const metadata = {
+  title: 'Critical Path Method for Home Building - Construction Scheduling Guide',
+  description: 'Learn critical path scheduling for your owner-builder project. Identify which tasks control your completion date and manage delays effectively.',
+};
+
+# Critical Path Method: Focus on What Actually Matters
+
+Not all delays are equal. Some tasks can slip by days or weeks without affecting your completion date. Others delay the entire project by every minute they're late.
+
+Understanding critical path scheduling helps you focus your attention on the right tasks and avoid wasting time worrying about things that don't matter.
+
+## What Is Critical Path?
+
+**Critical path** is the sequence of tasks that determines your minimum project duration. Any delay to a task on the critical path delays your entire project completion.
+
+**Non-critical tasks** have "float" or "slack" - they can be delayed by a certain amount without affecting project completion.
+
+### Simple Example
+
+You're building a house. Here are two parallel task sequences:
+
+**Sequence A** (Interior):
+Foundation (4 weeks) → Framing (6 weeks) → Rough-ins (6 weeks) → Drywall (4 weeks) → Paint (2 weeks) = **22 weeks**
+
+**Sequence B** (Exterior siding):
+Foundation (4 weeks) → Framing (6 weeks) → Siding (4 weeks) = **14 weeks**
+
+**Critical path**: Sequence A (22 weeks) - this determines your completion date
+**Float in Sequence B**: 8 weeks - siding could start 8 weeks later than framing and still finish when interior finishes
+
+**What this means**:
+- Delay framing by 1 week: Project delayed 1 week
+- Delay rough-ins by 1 week: Project delayed 1 week
+- Delay siding by 1 week: No impact (still has 7 weeks of float)
+
+## Why Critical Path Matters
+
+### Example: Wrong Focus
+**Scenario**: Your siding crew is running 3 days behind schedule. Meanwhile, your electrician who's doing rough-in work texts that he needs to push back 2 days.
+
+**Wrong response**: Panic about siding delay, accept electrician's delay
+**Right response**: Accept siding delay (it has float), push back hard on electrician (he's on critical path)
+
+**Result**: By focusing on critical path (electrical), you keep project on schedule. Siding delay doesn't matter because it still finishes before you need it.
+
+### Financial Impact
+
+**Knowing your critical path saves money**:
+- Rush the right items (on critical path)
+- Don't waste money rushing non-critical items
+- Allocate your attention efficiently
+- Negotiate effectively with subcontractors
+
+**Example**: You have $2,000 to accelerate schedule
+- **Wrong**: Pay siding crew $2,000 to finish faster (saves 1 week but doesn't impact completion)
+- **Right**: Pay electrician $2,000 to start earlier (saves 1 week on completion date)
+
+**Same money, but only the right choice actually shortens your schedule.**
+
+## Identifying Your Critical Path
+
+### Step 1: List All Tasks
+Break your project into major phases:
+- Site work
+- Foundation
+- Framing
+- Rough-ins (plumbing, electrical, HVAC)
+- Insulation
+- Drywall
+- Interior trim
+- Cabinets
+- Countertops
+- Flooring
+- Paint
+- Fixtures
+- Exterior finishes
+- Final
+
+### Step 2: Estimate Duration
+For each task, estimate realistic duration:
+- Use timelines from past projects
+- Ask subcontractors
+- Add buffer for your experience level
+- Account for weather/seasonal factors
+
+**[Realistic timeline guide →](/timing-and-scheduling/realistic-timeline)**
+
+### Step 3: Identify Dependencies
+What must finish before each task can start?
+
+**Example dependencies**:
+- Framing requires: Foundation complete
+- Rough-in requires: Framing complete, dried in
+- Drywall requires: Rough-ins complete and inspected
+- Cabinets require: Drywall finished, painted
+- Countertops require: Cabinets installed
+
+### Step 4: Map the Sequences
+Draw out task sequences from start to finish:
+
+```
+Start → Site work → Foundation → Framing → Roof → Dry-in →
+  ↓
+  → Rough plumbing → Rough electrical → HVAC → Inspections →
+  ↓
+  → Insulation → Insulation inspection → Drywall → Paint →
+  ↓
+  → Cabinets → Countertops → Finish plumbing → Final inspection → Complete
+```
+
+Meanwhile, parallel tasks:
+```
+After framing:
+  → Siding (can happen during rough-ins)
+  → Exterior trim (can happen during interior work)
+  → Landscaping (can happen anytime after foundation)
+```
+
+### Step 5: Calculate Path Durations
+Add up duration for each sequence from start to finish.
+
+**Example for 2,000 sq ft home**:
+
+**Path A** (Main interior sequence):
+- Site work: 2 weeks
+- Foundation: 4 weeks
+- Framing: 6 weeks
+- Rough-ins: 6 weeks
+- Insulation/drywall: 5 weeks
+- Cabinets: 2 weeks
+- Countertops: 1 week
+- Interior finishes: 6 weeks
+- Final: 2 weeks
+- **Total: 34 weeks**
+
+**Path B** (Exterior sequence):
+- Site work: 2 weeks
+- Foundation: 4 weeks
+- Framing: 6 weeks
+- Siding: 4 weeks
+- Exterior trim: 1 week
+- **Total: 17 weeks**
+
+**Path C** (Flooring sequence):
+- Site work through drywall: 23 weeks
+- Flooring: 2 weeks
+- **Total: 25 weeks**
+
+**Critical path**: Path A (34 weeks) - longest sequence
+
+**Float**:
+- Path B: 17 weeks float (siding can start anytime from week 12 to week 29)
+- Path C: 9 weeks float (flooring can install anytime from week 23 to week 32)
+
+### Step 6: Identify Critical Tasks
+Tasks on the critical path (Path A in example):
+- Site work
+- Foundation
+- Framing
+- Rough-ins
+- Insulation/drywall
+- Cabinets
+- Countertops
+- Interior finishes
+- Final inspection
+
+**These are your focus areas**. Any delay here delays project completion.
+
+## Common Critical Path for Residential
+
+For most home builds, the critical path follows this sequence:
+
+### 1. Permits and Approvals (4-12 weeks)
+**Why it's critical**: Can't start without it
+**Float**: Zero
+**How to accelerate**:
+- Submit complete application
+- Follow up weekly
+- Have expeditor handle it
+- Consider pre-approved plans
+
+### 2. Foundation (3-5 weeks)
+**Why it's critical**: Everything else depends on it
+**Float**: Zero
+**How to accelerate**:
+- Have excavator on standby for weather window
+- Pre-order materials
+- Schedule inspections in advance
+- Use experienced foundation crew
+
+### 3. Framing (4-8 weeks)
+**Why it's critical**: Most work can't start until framing complete
+**Float**: Zero to minimal
+**How to accelerate**:
+- Pre-order trusses (6-8 week lead time)
+- Use professional framers
+- Have materials on-site before they start
+- Focus on getting dried in ASAP
+
+### 4. Rough-Ins (4-8 weeks)
+**Why it's critical**: Must be complete before closing walls
+**Float**: Minimal
+**Dependencies**: Each rough-in can happen in parallel, but all must finish before next phase
+
+**How to accelerate**:
+- Schedule all rough-in trades to work simultaneously
+- Have materials ready
+- Pre-schedule inspections
+- Address failures immediately
+
+### 5. Insulation and Drywall (4-6 weeks)
+**Why it's critical**: Can't do finish work without walls
+**Float**: Zero
+**Cannot be rushed**: Drying time is required
+
+**How to accelerate**:
+- Schedule insulation inspection immediately after install
+- Have drywall crew ready to start
+- Optimal temperature for drying
+- Don't skip drying time (causes bigger problems)
+
+### 6. Cabinets (1-3 weeks install)
+**Why it's critical**: Countertops can't happen without them
+**Float**: Minimal
+**Long lead time**: 6-12 weeks fabrication
+
+**How to accelerate**:
+- Order cabinets 3+ months before install
+- Confirm ship dates weekly
+- Have installer scheduled
+- Do all pre-work (paint walls, install flooring first if needed)
+
+### 7. Countertops (3-5 days install)
+**Why it's critical**: Kitchen can't finish without them
+**Float**: Minimal
+**Lead time**: 2-4 weeks after template
+
+**How to accelerate**:
+- Template as soon as cabinets installed
+- Choose in-stock materials
+- Stay in communication with fabricator
+- Have finish plumber ready for sink install
+
+### 8. Final Inspection (1 day inspection, 1-2 weeks prep)
+**Why it's critical**: Can't occupy without it
+**Float**: Zero
+
+**How to accelerate**:
+- Create detailed punch list
+- Address items as you go
+- Pre-inspect yourself
+- Schedule inspection when 95% complete
+
+## Tasks Usually NOT on Critical Path
+
+These tasks typically have float and can be delayed without impacting completion:
+
+### Exterior Siding
+**Typical float**: 4-8 weeks
+**Can happen**: While interior rough-ins and finishes happen
+**Exception**: In cold climates, must finish before weather turns
+
+### Exterior Painting
+**Typical float**: 6-10 weeks
+**Can happen**: Anytime after siding
+**Exception**: Temperature-dependent, so weather window matters
+
+### Landscaping
+**Typical float**: 8-20 weeks
+**Can happen**: Anytime after foundation, but typically last
+**Exception**: Final grading needed for final inspection
+
+### Driveway Paving
+**Typical float**: 8-20 weeks
+**Can happen**: Last item before occupancy
+**Exception**: May need temporary drive for access
+
+### Gutters
+**Typical float**: 6-12 weeks
+**Can happen**: After roof and siding complete
+**Usually done**: Just before final inspection
+
+### Garage Doors
+**Typical float**: 4-8 weeks
+**Can happen**: Anytime after framing
+**Usually done**: After siding complete
+
+## Using Critical Path for Scheduling
+
+### Priority 1: Critical Path Tasks
+Focus your attention here:
+- **Book earliest**: Get these subs scheduled first
+- **Follow up most**: Weekly contact to confirm dates
+- **Pay premium if needed**: Worth it to avoid delays
+- **Be present**: Attend these phases to catch issues
+- **Inspect closely**: Failures here are most expensive
+- **Have backup plans**: Alternative subs standing by
+
+### Priority 2: Tasks with Little Float
+Near-critical tasks (1-2 weeks float):
+- **Monitor closely**: Track progress weekly
+- **Schedule tightly**: Don't waste the float
+- **Coordinate carefully**: With critical path items
+
+### Priority 3: Tasks with Significant Float
+Non-critical tasks (4+ weeks float):
+- **More flexible**: Can adjust dates as needed
+- **Fill gaps**: Schedule when crews available
+- **Lower priority**: If they delay, usually not a problem
+- **Negotiate harder**: You have leverage on timing
+
+### Example Schedule Management
+
+**Week 12**: Framing is complete, three tasks can now start:
+1. Rough-ins (critical path - 6 weeks needed)
+2. Siding (4 weeks float - can start week 12-16)
+3. Windows (2 weeks float - can start week 12-14)
+
+**Your electrician**: Available week 14
+**Your plumber**: Available week 12
+**Your siding crew**: Available week 12
+
+**Wrong decision**: Let plumber wait, do siding first (plumber is critical path)
+**Right decision**: Start plumber week 12, delay siding to week 14
+
+**Why it works**: Siding has float, plumbing doesn't. Starting siding first delays project by 2 weeks. Starting plumbing first keeps project on schedule, and siding still finishes with 2 weeks of float remaining.
+
+## Managing Critical Path Delays
+
+When critical path tasks delay (and they will), you need to respond aggressively:
+
+### Step 1: Assess Impact
+- How long is the delay?
+- What downstream tasks are affected?
+- How much does this push completion date?
+
+### Step 2: Explore Recovery Options
+
+**Option A: Accelerate the delayed task**
+- Pay overtime/premium
+- Add crew members
+- Work weekends
+- Extend work hours
+
+**Cost**: $500-3,000 depending on task
+**When to use**: Small delay (1-2 weeks), critical timing
+
+**Option B: Accelerate downstream tasks**
+Can't speed up the delayed task? Speed up something later:
+- Pre-order materials for next phase
+- Add crews to future tasks
+- Work parallel instead of sequential
+
+**Cost**: $1,000-5,000 depending on task
+**When to use**: Delay is locked in, but you can make up time later
+
+**Option C: Change task sequencing**
+Find work that can happen in parallel instead of sequential:
+- Do exterior while waiting for interior item
+- Do flooring in some rooms while others finish
+- Split tasks between multiple crews
+
+**Cost**: Usually minimal
+**When to use**: When calendar delay but work available
+
+**Option D: Accept the delay**
+Sometimes it's the right call:
+- Delay is unavoidable (weather, permit issues)
+- Cost to accelerate exceeds cost of delay
+- Other tasks also delayed (no point rushing)
+
+**Cost**: Carrying costs ($1,500-3,000 per week)
+**When to use**: When recovery cost exceeds delay cost
+
+### Step 3: Update Schedule
+Every critical path delay requires full schedule update:
+- Adjust all downstream dates
+- Notify all affected subcontractors
+- Reschedule inspections
+- Update material deliveries
+- Communicate with stakeholders
+
+### Example: Foundation Delay
+
+**Situation**: Foundation pour delayed 2 weeks due to weather
+
+**Impact**:
+- Framing starts 2 weeks late
+- Rough-ins start 2 weeks late
+- Everything downstream delayed 2 weeks
+- **Project completion**: 2 weeks later
+
+**Recovery options**:
+
+**Option 1**: Work weekends during framing
+- Cuts 1 week from 6-week framing
+- **Cost**: $3,000 premium
+- **Net delay**: 1 week instead of 2
+
+**Option 2**: Add second electrical crew during rough-in
+- Cuts 1 week from 6-week rough-in
+- **Cost**: $4,000 premium
+- **Net delay**: 1 week instead of 2
+
+**Option 3**: Accept 2-week delay
+- **Cost**: $3,000 in carrying costs
+- **Benefit**: No premium labor costs
+
+**Decision**: Compare costs
+- Option 1 or 2: $3,000-4,000 to save 1 week ($3,000 in carrying costs) - probably not worth it
+- Option 3: Accept delay - financially makes sense
+
+**But if**: You have a hard deadline (selling current home, school starts), paying $3,000-4,000 to save 1 week might be worth it despite financial loss.
+
+## Tools for Critical Path Scheduling
+
+### Method 1: Spreadsheet
+**Simple approach for straightforward builds**:
+- List all tasks in sequence
+- Estimate duration
+- Note dependencies
+- Identify longest path
+- Track actual vs. planned
+
+**Pros**: Simple, free, easy to understand
+**Cons**: Hard to visualize, manual calculation, doesn't show parallel tasks well
+
+**Good for**: Small projects (under 1,500 sq ft), simple designs
+
+### Method 2: Gantt Chart
+**Better visualization**:
+- Shows tasks as bars on timeline
+- Shows dependencies with arrows
+- Shows parallel tasks
+- Highlights critical path
+
+**Tools**:
+- Microsoft Project: $600+ (professional)
+- Excel/Google Sheets templates: Free
+- Online tools (Smartsheet, Monday.com): $10-30/month
+- GanttProject: Free open-source
+
+**Good for**: Most owner-builder projects
+
+**[Download our template →](/timing-and-scheduling/schedule-template)**
+
+### Method 3: Professional Scheduler
+**For complex projects**:
+- Professional CPM analysis
+- Resource loading
+- Crash analysis (what to accelerate)
+- Regular updates
+
+**Cost**: $1,500-5,000 for development, $500-1,000/month for updates
+
+**Good for**: Complex custom homes, projects over $500,000, tight deadlines
+
+### Method 4: Simple Visual Timeline
+**Easiest approach**:
+- Draw out month-by-month timeline
+- Block out each major phase
+- Identify which can overlap
+- Focus on sequence that takes longest
+
+**Tools**: Pen and paper, whiteboard, sticky notes
+
+**Good for**: Very simple projects, visual learners, quick planning
+
+## Critical Path Checklist
+
+Use this to stay focused on what matters:
+
+### Weekly Review
+- [ ] All critical path tasks on schedule?
+- [ ] Any upcoming critical path items at risk?
+- [ ] Are critical path subcontractors confirmed?
+- [ ] Are critical path materials ordered and scheduled?
+- [ ] Any inspections needed for critical path?
+
+### When Delays Occur
+- [ ] Is the delayed task on the critical path?
+- [ ] If yes, what's the impact to completion date?
+- [ ] What are the recovery options and costs?
+- [ ] Is recovery cost less than delay cost?
+- [ ] Have I updated the entire downstream schedule?
+- [ ] Have I notified affected subcontractors?
+
+### Resource Allocation
+- [ ] Am I spending most time on critical path items?
+- [ ] Am I paying premium only for critical path acceleration?
+- [ ] Am I using float on non-critical items?
+- [ ] Am I accepting delays on non-critical items to save money?
+
+## Common Mistakes
+
+### Mistake #1: Treating All Tasks Equally
+**What happens**: Waste time and money rushing non-critical items while critical path items slide
+
+**Example**: Paying premium to get siding done faster while rough-ins are delayed
+
+**Fix**: Focus 80% of attention on critical path tasks
+
+### Mistake #2: Not Updating After Delays
+**What happens**: Schedule becomes meaningless, can't make good decisions
+
+**Example**: Foundation delayed 2 weeks, but you don't update schedule, so you think framing starts on time (it can't)
+
+**Fix**: Update entire schedule every time critical path changes
+
+### Mistake #3: No Float in Critical Path
+**What happens**: Any minor delay becomes project delay
+
+**Example**: Schedule with zero buffer, where perfect execution required
+
+**Fix**: Add 15-20% buffer to critical path tasks
+
+### Mistake #4: Ignoring Task Dependencies
+**What happens**: Schedule tasks that can't actually happen yet
+
+**Example**: Scheduling countertops before cabinets are installed
+
+**Fix**: Map all dependencies before scheduling
+
+### Mistake #5: Working on Non-Critical Items
+**What happens**: Critical items get neglected, project delays
+
+**Example**: Spending weekends on landscaping while cabinets are delayed
+
+**Fix**: Always work on critical path tasks first
+
+## Advanced: Crashing the Schedule
+
+"Crashing" means accelerating the schedule by adding resources. Focus on critical path:
+
+### Tasks Worth Crashing
+**Foundation**: Add crew, work overtime
+- **Cost**: $1,500-3,000 to save 1 week
+- **Worth it if**: Tight deadline, good weather window
+
+**Framing**: Add crew, work weekends
+- **Cost**: $2,000-4,000 to save 1 week
+- **Worth it if**: Need to get dried in before weather
+
+**Rough-ins**: Add second crew, work parallel
+- **Cost**: $2,000-5,000 to save 1 week
+- **Worth it if**: Compressed schedule, hard deadline
+
+**Drywall**: Add crew (but can't rush drying time)
+- **Cost**: $1,000-2,000 to save a few days
+- **Worth it if**: Minimal gain, usually not worth it
+
+### Tasks Not Worth Crashing (Usually)
+**Siding**: Has float, delay doesn't matter
+**Landscaping**: Has float, delay doesn't matter
+**Driveway**: Has float, can wait
+
+**Exception**: If these become critical path (rare), then worth accelerating
+
+## Real-World Example
+
+**Project**: 2,400 sq ft two-story home
+**Timeline**: 32 weeks planned
+**Critical path**: Foundation → Framing → Rough-ins → Drywall → Cabinets → Countertops → Finals
+
+### Week 8: Foundation Delay
+**Issue**: Foundation delayed 3 weeks due to rain and inspection failure
+
+**Impact**: Everything pushed 3 weeks, new completion week 35
+
+**Response**:
+- Accepted delay (couldn't be helped)
+- Updated entire schedule
+- Notified all subcontractors
+- Identified recovery opportunity later
+
+### Week 15: Framing Complete (2 weeks behind)
+**Issue**: Made up 1 week during framing with good weather
+
+**Impact**: Only 2 weeks behind now, completion week 34
+
+### Week 20: Rough-In Issue
+**Issue**: HVAC equipment delayed 2 weeks (supply chain)
+
+**Impact**: Would push completion to week 36
+
+**Response**: Crash recovery
+- Paid electrician $2,000 premium to finish in 1 week instead of 2
+- Scheduled drywall crew to start 1 week earlier than planned
+- Made up 1 week
+
+**Result**: Completion back to week 35 (2 weeks behind original)
+
+### Week 30: Cabinet Delay
+**Issue**: Cabinets arrived damaged, 2-week replacement
+
+**Impact**: Would push completion to week 37
+
+**Response**: Parallel scheduling
+- Did all other finish work while waiting (flooring, paint, trim)
+- When cabinets arrived, they went in quickly
+- Countertops already templated and ready
+
+**Result**: Only 1-week impact, completion week 36
+
+**Final**: 4 weeks late, but avoided being 7 weeks late through active critical path management
+
+**Cost**: $2,000 in crash costs vs. $10,000+ if hadn't managed critical path
+
+## Key Takeaways
+
+**Not all delays matter equally**: Focus on critical path tasks that actually affect completion.
+
+**Calculate the path**: Map out your task sequences and identify the longest one.
+
+**Manage attention**: Spend 80% of time on 20% of tasks (the critical ones).
+
+**Use float wisely**: Non-critical tasks can slide - that's okay and saves money.
+
+**Update constantly**: Every delay requires full schedule review and update.
+
+**Know when to crash**: Pay premium to accelerate critical path items when cost of delay exceeds cost of acceleration.
+
+**Accept delays smartly**: Some delays aren't worth fighting - accept them and focus on what you can control.
+
+## Related Resources
+
+- [Realistic Timeline Guide →](/timing-and-scheduling/realistic-timeline)
+- [Coordinating Trades →](/timing-and-scheduling/coordinating-trades)
+- [Common Delays →](/timing-and-scheduling/common-delays)
+- [Schedule Template →](/timing-and-scheduling/schedule-template)
+- [Material Lead Times →](/timing-and-scheduling/material-lead-times)
+
+---
+
+**Need help identifying and managing your critical path?** Our [consulting services](/consulting) include professional schedule analysis and ongoing critical path management for owner-builder projects.

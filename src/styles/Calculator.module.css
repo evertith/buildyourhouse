@@ -1,0 +1,212 @@
+.calculator {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  background-color: var(--color-bg-light);
+  padding: 2rem;
+  border-radius: 15px;
+  margin: 2rem 0;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  color: var(--color-text);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--color-border);
+}
+
+.inputs, .results {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: var(--shadow-sm);
+}
+
+.inputGroup {
+  margin-bottom: 1.5rem;
+}
+
+.inputGroup label {
+  display: block;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+}
+
+.inputGroup input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid var(--color-border);
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.inputGroup input:focus {
+  border-color: var(--color-primary);
+  outline: none;
+}
+
+.hint {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--color-text-light);
+  margin-top: 0.25rem;
+  font-style: italic;
+}
+
+.calculateButton {
+  width: 100%;
+  background-color: var(--color-primary);
+  color: white;
+  padding: 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.calculateButton:hover {
+  background-color: var(--color-primary-dark);
+  transform: translateY(-2px);
+}
+
+.resultCard {
+  background-color: var(--color-bg-light);
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  text-align: center;
+  border: 2px solid var(--color-border);
+}
+
+.resultCard.highlight {
+  background: linear-gradient(135deg, var(--color-success) 0%, #2d7a4e 100%);
+  color: white;
+  border: none;
+}
+
+.resultLabel {
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5rem;
+  opacity: 0.9;
+}
+
+.highlight .resultLabel {
+  color: white;
+}
+
+.resultValue {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--color-primary);
+}
+
+.highlight .resultValue {
+  color: white;
+}
+
+.resultDetail {
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+}
+
+.highlight .resultDetail {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.breakdown {
+  background-color: var(--color-bg-light);
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin-top: 2rem;
+}
+
+.breakdown h4 {
+  font-size: 1.2rem;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+}
+
+.breakdown ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.breakdown li {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.breakdown li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--color-success);
+  font-weight: 700;
+}
+
+.comparison {
+  color: var(--color-text-light);
+  font-size: 0.9rem;
+}
+
+.cta {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 2px solid var(--color-border);
+  text-align: center;
+}
+
+.cta p {
+  font-size: 1.1rem;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+}
+
+.ctaButton {
+  background-color: var(--color-secondary);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.ctaButton:hover {
+  background-color: #c05621;
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+@media (max-width: 1024px) {
+  .calculator {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .calculator {
+    padding: 1rem;
+  }
+
+  .inputs, .results {
+    padding: 1.5rem;
+  }
+
+  .resultValue {
+    font-size: 2rem;
+  }
+}

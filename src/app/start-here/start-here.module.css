@@ -1,0 +1,370 @@
+/* ============================================
+   START HERE PAGE
+   Owner-builder roadmap with warm design
+   ============================================ */
+
+.container {
+  max-width: var(--width-prose);
+  margin: 0 auto;
+  padding: var(--space-8) var(--container-padding-mobile);
+}
+
+.article {
+  line-height: var(--leading-relaxed);
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+.header {
+  text-align: center;
+  margin-bottom: var(--space-8);
+  padding-bottom: var(--space-6);
+  border-bottom: 3px solid var(--accent-primary);
+}
+
+.header h1 {
+  font-size: var(--text-4xl);
+  font-weight: var(--weight-bold);
+  color: var(--text-heading);
+  margin-bottom: var(--space-3);
+  line-height: var(--leading-tight);
+}
+
+.intro {
+  font-size: var(--text-lg);
+  color: var(--text-secondary);
+  max-width: var(--width-narrow);
+  margin: 0 auto;
+  line-height: var(--leading-relaxed);
+}
+
+/* ============================================
+   SECTIONS
+   ============================================ */
+.section {
+  margin-bottom: var(--space-10);
+}
+
+.section h2 {
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
+  color: var(--text-heading);
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-2);
+  border-left: 4px solid var(--accent-primary);
+  padding-left: var(--space-3);
+}
+
+/* ============================================
+   ROADMAP/PHASES
+   ============================================ */
+.roadmap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  margin-top: var(--space-6);
+}
+
+.phase {
+  display: flex;
+  gap: var(--space-4);
+  background-color: var(--bg-secondary);
+  padding: var(--space-5);
+  border-radius: 12px;
+  border-left: 4px solid var(--accent-primary);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.phase:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.phaseNumber {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  background-color: var(--accent-primary);
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
+  box-shadow: 0 2px 8px rgba(212, 118, 59, 0.25);
+}
+
+.phaseContent {
+  flex: 1;
+}
+
+.phaseContent h3 {
+  font-size: var(--text-xl);
+  font-weight: var(--weight-bold);
+  color: var(--text-heading);
+  margin-bottom: var(--space-2);
+  line-height: var(--leading-tight);
+}
+
+.phaseContent p {
+  color: var(--text-primary);
+  margin-bottom: var(--space-3);
+  line-height: var(--leading-relaxed);
+}
+
+.phaseContent ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.phaseContent li {
+  margin-bottom: var(--space-2);
+  padding-left: var(--space-4);
+  position: relative;
+  color: var(--text-primary);
+}
+
+.phaseContent li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--accent-primary);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-lg);
+}
+
+.phaseContent a {
+  color: var(--accent-primary);
+  text-decoration: underline;
+  text-decoration-color: rgba(212, 118, 59, 0.3);
+  transition: all 0.2s ease;
+}
+
+.phaseContent a:hover {
+  color: var(--button-primary-hover);
+  text-decoration-color: var(--button-primary-hover);
+}
+
+/* ============================================
+   SAVINGS CARDS
+   ============================================ */
+.savings {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-5);
+  margin: var(--space-6) 0;
+}
+
+.savingsCard {
+  background-color: #ffffff;
+  padding: var(--space-5);
+  border-radius: 12px;
+  text-align: center;
+  border: 2px solid var(--bg-tertiary);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: all 0.2s ease;
+}
+
+.savingsCard:hover {
+  border-color: var(--accent-secondary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.savingsCard h3 {
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-3);
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.amount {
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-bold);
+  color: var(--accent-secondary);
+  margin-bottom: var(--space-2);
+  line-height: 1.2;
+}
+
+.savingsCard p {
+  color: var(--text-primary);
+  font-size: var(--text-sm);
+  margin: 0;
+  line-height: var(--leading-relaxed);
+}
+
+/* ============================================
+   RESOURCE CARDS
+   ============================================ */
+.resources {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+}
+
+.resourceCard {
+  background-color: #ffffff;
+  border: 2px solid var(--bg-tertiary);
+  border-radius: 12px;
+  padding: var(--space-5);
+  text-align: center;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: block;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.resourceCard:hover {
+  border-color: var(--accent-primary);
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(212, 118, 59, 0.15);
+  text-decoration: none;
+}
+
+.resourceCard h3 {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
+  color: var(--text-heading);
+  margin-bottom: var(--space-2);
+}
+
+.resourceCard p {
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  margin: 0;
+  line-height: var(--leading-relaxed);
+}
+
+/* ============================================
+   CALLOUT SECTION
+   ============================================ */
+.callout {
+  background: linear-gradient(135deg, var(--accent-primary) 0%, var(--button-primary-hover) 100%);
+  color: #ffffff;
+  padding: var(--space-8);
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 4px 16px rgba(212, 118, 59, 0.25);
+}
+
+.callout h2 {
+  color: #ffffff;
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-bold);
+  margin-bottom: var(--space-3);
+  border: none;
+  padding: 0;
+}
+
+.callout p {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-5);
+  opacity: 0.95;
+  line-height: var(--leading-relaxed);
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+.button {
+  background-color: var(--accent-secondary);
+  color: #ffffff;
+  padding: var(--space-3) var(--space-6);
+  border-radius: 8px;
+  font-weight: var(--weight-bold);
+  font-size: var(--text-base);
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: 0 2px 8px rgba(91, 138, 114, 0.2);
+}
+
+.button:hover {
+  background-color: var(--button-secondary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(91, 138, 114, 0.3);
+  text-decoration: none;
+}
+
+.cta {
+  text-align: center;
+  margin-top: var(--space-6);
+}
+
+/* ============================================
+   RESPONSIVE - TABLET
+   ============================================ */
+@media (min-width: 768px) {
+  .container {
+    padding-left: var(--container-padding-tablet);
+    padding-right: var(--container-padding-tablet);
+  }
+}
+
+/* ============================================
+   RESPONSIVE - DESKTOP
+   ============================================ */
+@media (min-width: 1024px) {
+  .container {
+    padding-left: var(--container-padding-desktop);
+    padding-right: var(--container-padding-desktop);
+  }
+}
+
+/* ============================================
+   RESPONSIVE - MOBILE
+   ============================================ */
+@media (max-width: 768px) {
+  .container {
+    padding: var(--space-6) var(--container-padding-mobile);
+  }
+
+  .header h1 {
+    font-size: var(--text-2xl);
+  }
+
+  .intro {
+    font-size: var(--text-base);
+  }
+
+  .phase {
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-4);
+  }
+
+  .phaseNumber {
+    width: 48px;
+    height: 48px;
+    font-size: var(--text-xl);
+  }
+
+  .savings {
+    grid-template-columns: 1fr;
+  }
+
+  .callout {
+    padding: var(--space-6);
+  }
+
+  .callout h2 {
+    font-size: var(--text-2xl);
+  }
+
+  .callout p {
+    font-size: var(--text-base);
+  }
+}
+
+@media (max-width: 640px) {
+  .resources {
+    grid-template-columns: 1fr;
+  }
+}

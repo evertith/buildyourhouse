@@ -1,0 +1,287 @@
+.page {
+  min-height: 100vh;
+  padding: 2rem 1rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #1a1a1a;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: #666;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.contactOptions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.contactCard {
+  background: #f9f9f9;
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+}
+
+.contactCard h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #1a1a1a;
+}
+
+.email {
+  display: inline-block;
+  color: #0066cc;
+  text-decoration: none;
+  font-weight: 500;
+  margin: 1rem 0;
+}
+
+.email:hover {
+  text-decoration: underline;
+}
+
+.button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: #0066cc;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 500;
+  margin-top: 1rem;
+}
+
+.button:hover {
+  background: #0052a3;
+}
+
+.orText {
+  margin: 1rem 0 0.5rem 0;
+  color: #666;
+  font-style: italic;
+}
+
+.note {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #fff;
+  border-left: 3px solid #0066cc;
+}
+
+.faqSection {
+  background: #f5f5f5;
+  padding: 2rem;
+  border-radius: 8px;
+}
+
+.faqList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.faqItem h4 {
+  margin: 0 0 0.5rem 0;
+  color: #1a1a1a;
+}
+
+.faqItem p {
+  margin: 0;
+  color: #666;
+}
+
+.faqItem a {
+  color: #0066cc;
+  text-decoration: none;
+}
+
+.faqItem a:hover {
+  text-decoration: underline;
+}
+
+.responseSection h2 {
+  margin-bottom: 1.5rem;
+}
+
+.expectations {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.expectationItem h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #1a1a1a;
+}
+
+.expectationItem ul {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.expectationItem li {
+  margin-bottom: 0.5rem;
+  color: #666;
+}
+
+.socialSection {
+  text-align: center;
+  padding: 2rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+.socialLinks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #1a1a1a;
+  font-weight: 500;
+}
+
+.socialLink:hover {
+  background: #f5f5f5;
+}
+
+.socialIcon {
+  font-size: 1.5rem;
+}
+
+.placeholder {
+  font-size: 0.8rem;
+  color: #999;
+  margin-left: 0.5rem;
+}
+
+.socialNote {
+  color: #666;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+}
+
+.locationSection {
+  padding: 2rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+.locationSection p {
+  margin: 0.5rem 0;
+}
+
+.ctaSection {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
+  color: white;
+  border-radius: 8px;
+}
+
+.ctaSection h2 {
+  color: white;
+  margin-top: 0;
+}
+
+.ctaLinks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.ctaButton {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background: white;
+  color: #0066cc;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.ctaButton:hover {
+  background: #f5f5f5;
+}
+
+.disclaimer {
+  margin-top: 3rem;
+  padding: 1.5rem;
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.disclaimer a {
+  color: #0066cc;
+  text-decoration: none;
+}
+
+.disclaimer a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+  }
+
+  .contactOptions,
+  .expectations {
+    grid-template-columns: 1fr;
+  }
+
+  .socialLinks {
+    flex-direction: column;
+  }
+
+  .ctaLinks {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,112 @@
+/* ============================================
+   CALLOUT BOX COMPONENT
+   For tips, warnings, and informational boxes
+   ============================================ */
+
+.callout {
+  padding: var(--space-3);
+  margin: var(--space-4) 0;
+  border-radius: 4px;
+  border-left: 4px solid;
+}
+
+.title {
+  font-size: var(--text-base);
+  font-weight: var(--weight-bold);
+  margin-bottom: var(--space-2);
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.icon {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.content {
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+}
+
+.content p {
+  margin-bottom: var(--space-2);
+}
+
+.content p:last-child {
+  margin-bottom: 0;
+}
+
+.content ul,
+.content ol {
+  margin-bottom: var(--space-2);
+}
+
+.content li {
+  margin-bottom: var(--space-1);
+}
+
+/* ============================================
+   TIP (GREEN)
+   ============================================ */
+.tip {
+  background-color: #f0f5f2;
+  border-left-color: var(--accent-secondary);
+}
+
+.tip .title {
+  color: var(--accent-secondary);
+}
+
+.tip .content {
+  color: var(--text-primary);
+}
+
+/* ============================================
+   WARNING (ORANGE)
+   ============================================ */
+.warning {
+  background-color: #fef5f0;
+  border-left-color: var(--accent-warning);
+}
+
+.warning .title {
+  color: var(--accent-warning);
+}
+
+.warning .content {
+  color: var(--text-primary);
+}
+
+/* ============================================
+   INFO (BLUE)
+   ============================================ */
+.info {
+  background-color: #f0f5fa;
+  border-left-color: var(--accent-info);
+}
+
+.info .title {
+  color: var(--accent-info);
+}
+
+.info .content {
+  color: var(--text-primary);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 640px) {
+  .callout {
+    padding: var(--space-2);
+  }
+
+  .title {
+    font-size: var(--text-sm);
+  }
+
+  .content {
+    font-size: var(--text-sm);
+  }
+}

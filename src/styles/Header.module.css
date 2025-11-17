@@ -1,0 +1,190 @@
+/* ============================================
+   HEADER COMPONENT
+   Sticky header with warm design
+   ============================================ */
+
+.header {
+  background-color: var(--bg-primary);
+  border-bottom: 1px solid var(--bg-tertiary);
+  padding: var(--space-3) var(--container-padding-mobile);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(8px);
+  background-color: rgba(250, 248, 245, 0.95);
+}
+
+.container {
+  max-width: var(--width-full);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ============================================
+   LOGO
+   ============================================ */
+.logo a {
+  font-size: var(--text-xl);
+  font-weight: var(--weight-bold);
+  color: var(--text-heading);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.logo a:hover {
+  color: var(--accent-primary);
+  text-decoration: none;
+}
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+.nav {
+  display: flex;
+  gap: var(--space-4);
+  align-items: center;
+}
+
+.navLink {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+}
+
+.navLink:hover {
+  color: var(--accent-primary);
+  text-decoration: none;
+}
+
+.ctaLink {
+  background-color: var(--accent-primary);
+  color: #ffffff;
+  padding: var(--space-1) var(--space-2);
+  border-radius: 6px;
+  font-weight: var(--weight-semibold);
+  box-shadow: 0 2px 4px rgba(212, 118, 59, 0.15);
+  transition: all 0.2s ease;
+}
+
+.ctaLink:hover {
+  background-color: var(--button-primary-hover);
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(212, 118, 59, 0.25);
+}
+
+/* ============================================
+   MOBILE MENU BUTTON
+   ============================================ */
+.mobileMenuButton {
+  display: none;
+  background: none;
+  border: none;
+  padding: var(--space-1);
+  cursor: pointer;
+  z-index: 101;
+}
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 24px;
+}
+
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--text-heading);
+  transition: all 0.3s ease;
+  border-radius: 2px;
+}
+
+.hamburgerOpen span:nth-child(1) {
+  transform: rotate(45deg) translate(7px, 7px);
+}
+
+.hamburgerOpen span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburgerOpen span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* ============================================
+   RESPONSIVE - TABLET
+   ============================================ */
+@media (min-width: 768px) {
+  .header {
+    padding-left: var(--container-padding-tablet);
+    padding-right: var(--container-padding-tablet);
+  }
+}
+
+/* ============================================
+   RESPONSIVE - DESKTOP
+   ============================================ */
+@media (min-width: 1024px) {
+  .header {
+    padding-left: var(--container-padding-desktop);
+    padding-right: var(--container-padding-desktop);
+  }
+}
+
+/* ============================================
+   RESPONSIVE - MOBILE
+   ============================================ */
+@media (max-width: 768px) {
+  .mobileMenuButton {
+    display: block;
+  }
+
+  .nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 70%;
+    max-width: 300px;
+    background-color: var(--bg-primary);
+    box-shadow: -4px 0 16px rgba(0, 0, 0, 0.1);
+    flex-direction: column;
+    align-items: stretch;
+    padding: var(--space-10) var(--space-4) var(--space-4);
+    gap: var(--space-2);
+    transition: right 0.3s ease;
+    overflow-y: auto;
+  }
+
+  .navOpen {
+    right: 0;
+  }
+
+  .navLink {
+    padding: var(--space-2);
+    font-size: var(--text-base);
+    border-bottom: 1px solid var(--bg-tertiary);
+  }
+
+  .navLink:last-child {
+    border-bottom: none;
+  }
+
+  .ctaLink {
+    text-align: center;
+    margin-top: var(--space-2);
+  }
+}
+
+@media (max-width: 480px) {
+  .logo a {
+    font-size: var(--text-lg);
+  }
+}

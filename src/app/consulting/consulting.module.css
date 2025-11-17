@@ -1,0 +1,302 @@
+.page {
+  min-height: 100vh;
+  background-color: var(--color-bg);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 1rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: var(--color-text-light);
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.serviceCard {
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  border: 2px solid var(--color-border);
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+}
+
+.serviceCard:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.serviceCard.featured {
+  border-color: var(--color-secondary);
+}
+
+.serviceCard.premium {
+  border-color: var(--color-primary);
+}
+
+.badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: var(--color-secondary);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.serviceHeader {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  color: white;
+  padding: 2rem;
+  text-align: center;
+}
+
+.featured .serviceHeader {
+  background: linear-gradient(135deg, var(--color-secondary) 0%, #c05621 100%);
+}
+
+.serviceHeader h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: white;
+  border: none;
+  padding: 0;
+}
+
+.price {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-top: 0.5rem;
+}
+
+.serviceContent {
+  padding: 2rem;
+}
+
+.serviceDescription {
+  font-size: 1.05rem;
+  color: var(--color-text);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.serviceContent h4 {
+  font-size: 1.1rem;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+}
+
+.serviceContent ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1.5rem;
+}
+
+.serviceContent li {
+  padding-left: 1.5rem;
+  margin-bottom: 0.75rem;
+  position: relative;
+  color: var(--color-text);
+}
+
+.serviceContent li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--color-success);
+  font-weight: 700;
+}
+
+.timeline {
+  background-color: var(--color-bg-light);
+  padding: 1rem;
+  border-radius: 5px;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  color: var(--color-text-light);
+}
+
+.button {
+  width: 100%;
+  display: block;
+  text-align: center;
+  background-color: var(--color-primary);
+  color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.button:hover {
+  background-color: var(--color-primary-dark);
+  text-decoration: none;
+}
+
+.why {
+  margin: 4rem 0;
+  text-align: center;
+}
+
+.why h2 {
+  font-size: 2rem;
+  color: var(--color-text);
+  margin-bottom: 3rem;
+}
+
+.benefits {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.benefit {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: var(--shadow-sm);
+}
+
+.benefit h3 {
+  font-size: 1.2rem;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+}
+
+.benefit p {
+  color: var(--color-text);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.process {
+  margin: 4rem 0;
+  text-align: center;
+}
+
+.process h2 {
+  font-size: 2rem;
+  color: var(--color-text);
+  margin-bottom: 3rem;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.step {
+  background-color: var(--color-bg-light);
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+.stepNumber {
+  width: 60px;
+  height: 60px;
+  background-color: var(--color-primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0 auto 1.5rem;
+}
+
+.step h3 {
+  font-size: 1.2rem;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+}
+
+.step p {
+  color: var(--color-text-light);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.cta {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  color: white;
+  padding: 4rem 2rem;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.cta h2 {
+  font-size: 2rem;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.cta p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  opacity: 0.95;
+}
+
+.ctaButton {
+  background-color: var(--color-secondary);
+  color: white;
+  padding: 1.25rem 3rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1.2rem;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.ctaButton:hover {
+  background-color: #c05621;
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 2rem 1rem;
+  }
+
+  .header h1 {
+    font-size: 2rem;
+  }
+
+  .services {
+    grid-template-columns: 1fr;
+  }
+
+  .benefits, .steps {
+    grid-template-columns: 1fr;
+  }
+}
