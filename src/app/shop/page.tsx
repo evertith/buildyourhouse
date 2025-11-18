@@ -473,7 +473,7 @@ export default function JobSiteBinder() {
             {/* Gumroad embed or button will go here */}
             <div className="purchase-button-container">
               <a
-                href="https://evertith.gumroad.com/l/jobsite-binder"
+                href="https://gumroad.com/l/jobsite-binder?utm_source=website&utm_medium=nav&utm_campaign=shop"
                 className="button button-large"
                 style={{
                   fontSize: 'var(--text-xl)',
