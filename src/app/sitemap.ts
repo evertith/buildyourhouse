@@ -27,22 +27,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/consulting`,
+      url: `${baseUrl}/shop`,
       lastModified: currentDate,
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
+      changeFrequency: 'weekly' as const,
+      priority: 0.9,
     },
     {
       url: `${baseUrl}/contact`,
       lastModified: currentDate,
       changeFrequency: 'monthly' as const,
       priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/newsletter`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
     },
   ];
 
@@ -194,11 +188,45 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   });
 
+  // Planning section
+  const planningPages = [
+    {
+      url: `${baseUrl}/planning/secure-land`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/planning/house-plans`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/planning/budget`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/planning/financing`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/planning/timeline`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    },
+  ];
+
   // Build phases
   const buildPhasesList = [
     'site-preparation', 'foundation', 'framing', 'roofing',
-    'windows-and-doors', 'electrical-rough-in', 'plumbing-rough-in',
-    'hvac-installation', 'insulation', 'drywall', 'interior-trim',
+    'windows-and-doors', 'rough-in', 'electrical-rough-in', 'plumbing-rough-in',
+    'hvac-installation', 'insulation', 'drywall', 'finish', 'interior-trim',
     'painting', 'flooring', 'kitchen-and-bath', 'final-finishes',
     'landscaping'
   ];
@@ -216,6 +244,34 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: 'monthly' as const,
     priority: 0.8,
   });
+
+  // Move-in section
+  const moveInPages = [
+    {
+      url: `${baseUrl}/move-in/punch-list`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/move-in/certificate-of-occupancy`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/move-in/loan-conversion`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/move-in/moving-in`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    },
+  ];
 
   // Inspections
   const inspectionPages = [
@@ -404,6 +460,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Resources
   const resourcePages = [
     {
+      url: `${baseUrl}/resources`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/resources/checklists`,
       lastModified: currentDate,
       changeFrequency: 'monthly' as const,
@@ -450,9 +512,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...blogPages,
     ...feasibilityPages,
     ...calculatorPages,
+    ...planningPages,
     ...permittingPages,
     ...stateGuides,
     ...buildPhases,
+    ...moveInPages,
     ...inspectionPages,
     ...subcontractorPages,
     ...timingPages,
