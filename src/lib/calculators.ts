@@ -70,20 +70,59 @@ export function calculateMaterialEstimate(inputs: MaterialEstimatorInputs): Mate
 
   // Foundation concrete (4" slab + footings)
   const foundationArea = homeSize / stories;
-  const concreteYards = (foundationArea * 0.33) / 27 + (foundationArea * 0.5 / 27); // slab + footings
+  // Slab: 4 inches thick = 0.33 feet; Footings: assume 16" wide x 12" deep around perimeter
+  const slabCubicFeet = foundationArea * (4 / 12); // 4 inches = 0.33 feet
+  const perimeterEstimate = 4 * Math.sqrt(foundationArea); // Assume square-ish house
+  const footingCubicFeet = perimeterEstimate * (16 / 12) * (12 / 12); // 16" wide x 12" deep
+  const concreteYards = (slabCubicFeet + footingCubicFeet) / 27; // Convert cubic feet to cubic yards
   const concreteCost = concreteYards * 150; // $150/cubic yard
 
   // Framing lumber
-  const wallArea = (foundationArea * 2 * Math.sqrt(foundationArea / Math.PI)) * wallHeight * stories;
+  // Calculate perimeter for a rectangular house (assume aspect ratio of 1.5:1)
+  const width = Math.sqrt(foundationArea / 1.5);
+  const length = foundationArea / width;
+  const perimeter = 2 * (width + length);
+
+  // Exterior walls
+  const exteriorWallArea = perimeter * wallHeight * stories;
+
+  // Interior walls (assume 1 linear foot of interior wall per 3 sq ft of floor space)
+  const interiorWallLinearFeet = homeSize / 3;
+  const interiorWallArea = interiorWallLinearFeet * wallHeight;
+
+  const totalWallArea = exteriorWallArea + interiorWallArea;
+
+  // Roof area with complexity multiplier
   const roofMultiplier = roofComplexity === 'simple' ? 1.1 : roofComplexity === 'moderate' ? 1.3 : 1.5;
   const roofArea = foundationArea * roofMultiplier;
 
-  const totalBoardFeet = (wallArea / 8) * 1.5 + (roofArea / 2) * 2 + (homeSize * 2); // walls + roof + floor joists
+  // Board feet calculation:
+  // - Wall studs: 2x4 or 2x6 studs at 16" OC = 1 stud per linear foot, plus plates (3 per wall) = ~2.5 bf per linear foot
+  // - Wall sheathing: 1/2" OSB/plywood = ~0.5 bf per sq ft of wall area (exterior only)
+  // - Floor joists: 2x10 at 16" OC = ~3 bf per sq ft of floor
+  // - Subfloor: 3/4" T&G plywood = ~0.75 bf per sq ft
+  // - Roof: rafters/trusses + sheathing = ~4 bf per sq ft of roof
+
+  // Wall studs for ALL walls (exterior + interior)
+  const totalWallLinearFeet = perimeter + interiorWallLinearFeet;
+  const wallStudsBoardFeet = totalWallLinearFeet * wallHeight * stories * 2.5;
+
+  // Wall sheathing for exterior walls only
+  const wallSheathingBoardFeet = exteriorWallArea * 0.5;
+
+  // Floor system
+  const floorJoistsBoardFeet = foundationArea * 3;
+  const subfloorBoardFeet = foundationArea * 0.75;
+
+  // Roof system (already includes sheathing)
+  const roofBoardFeet = roofArea * 4;
+
+  const totalBoardFeet = (wallStudsBoardFeet + wallSheathingBoardFeet + floorJoistsBoardFeet + subfloorBoardFeet + roofBoardFeet) * 1.15; // Add 15% waste
   const lumberCost = totalBoardFeet * (finishLevel === 'basic' ? 0.85 : finishLevel === 'standard' ? 1.10 : 1.50);
 
-  // Drywall (interior walls + ceilings)
-  const drywallArea = wallArea * 0.7 + homeSize; // 70% of wall area is interior + all ceilings
-  const drywallSheets = Math.ceil(drywallArea / 32); // 4x8 sheets
+  // Drywall (interior walls + ceilings, both sides of walls)
+  const drywallArea = (interiorWallArea * 2) + homeSize; // Both sides of interior walls + all ceilings
+  const drywallSheets = Math.ceil(drywallArea / 32); // 4x8 sheets = 32 sq ft
   const drywallCost = drywallSheets * (finishLevel === 'basic' ? 12 : finishLevel === 'standard' ? 15 : 22);
 
   // Roofing
@@ -94,8 +133,8 @@ export function calculateMaterialEstimate(inputs: MaterialEstimatorInputs): Mate
   const flooringArea = homeSize;
   const flooringCost = flooringArea * (finishLevel === 'basic' ? 3 : finishLevel === 'standard' ? 5 : 8);
 
-  // Insulation
-  const insulationArea = wallArea + homeSize; // walls + ceiling
+  // Insulation (exterior walls + ceiling)
+  const insulationArea = exteriorWallArea + homeSize; // Only exterior walls + ceiling
   const insulationCost = insulationArea * (finishLevel === 'basic' ? 1.25 : finishLevel === 'standard' ? 1.75 : 2.50);
 
   return {

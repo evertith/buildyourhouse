@@ -4,7 +4,7 @@ import React from 'react';
 import styles from '@/styles/components/CalloutBox.module.css';
 
 interface CalloutBoxProps {
-  type: 'tip' | 'warning' | 'critical' | 'info';
+  type: 'tip' | 'warning' | 'critical' | 'info' | 'success';
   title?: string;
   children: React.ReactNode;
 }
@@ -14,6 +14,7 @@ const iconMap = {
   warning: '⚠️',
   critical: '🚨',
   info: 'ℹ️',
+  success: '✅',
 };
 
 const defaultTitles = {
@@ -21,6 +22,7 @@ const defaultTitles = {
   warning: 'Warning',
   critical: 'Critical',
   info: 'Important Information',
+  success: 'Success',
 };
 
 export default function CalloutBox({ type, title, children }: CalloutBoxProps) {

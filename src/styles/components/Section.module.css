@@ -47,6 +47,22 @@
   border-left: 4px solid var(--accent-primary);
 }
 
+/* Spacing variants */
+.spacingLarge {
+  margin: var(--space-12) 0;
+  padding: var(--space-10) 0;
+}
+
+/* Background variants */
+.backgroundWarm {
+  background-color: var(--bg-primary);
+  padding: var(--space-10) var(--space-6);
+  margin-left: calc(-1 * var(--container-padding-mobile));
+  margin-right: calc(-1 * var(--container-padding-mobile));
+  padding-left: var(--container-padding-mobile);
+  padding-right: var(--container-padding-mobile);
+}
+
 /* ============================================
    RESPONSIVE
    ============================================ */

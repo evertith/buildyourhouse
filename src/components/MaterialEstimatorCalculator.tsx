@@ -145,7 +145,7 @@ export default function MaterialEstimatorCalculator() {
             <div className={styles.resultLabel}>Framing Lumber</div>
             <div className={styles.resultValue}>{formatNumber(results.lumber.boardFeet)} bf</div>
             <div className={styles.resultDetail}>
-              {formatCurrency(results.lumber.cost)} (Studs, joists, rafters)
+              {formatCurrency(results.lumber.cost)} (Studs, joists, rafters, subfloor, sheathing)
             </div>
           </div>
 

@@ -111,6 +111,22 @@
 }
 
 /* ============================================
+   SUCCESS (GREEN)
+   ============================================ */
+.success {
+  background-color: #e8f5e9;
+  border-left-color: var(--accent-secondary);
+}
+
+.success .title {
+  color: var(--accent-secondary);
+}
+
+.success .content {
+  color: var(--text-primary);
+}
+
+/* ============================================
    RESPONSIVE
    ============================================ */
 @media (max-width: 640px) {

@@ -58,8 +58,8 @@ export default function Header() {
           <Link href="/about" className={styles.navLink} onClick={closeMobileMenu}>
             About
           </Link>
-          <Link href="/consulting" className={`${styles.navLink} ${styles.ctaLink}`} onClick={closeMobileMenu}>
-            Consulting
+          <Link href="/shop" className={`${styles.navLink} ${styles.ctaLink}`} onClick={closeMobileMenu}>
+            Shop
           </Link>
         </nav>
       </div>

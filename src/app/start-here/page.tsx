@@ -46,11 +46,11 @@ export default function StartHere() {
                 <h3>Planning Phase (Month 1-3)</h3>
                 <p>Set yourself up for success with proper planning.</p>
                 <ul>
-                  <li>Secure land (if you don't have it)</li>
-                  <li>Get financing/construction loan approved</li>
-                  <li>Choose or design your house plans</li>
-                  <li>Create detailed budget</li>
-                  <li>Develop project timeline</li>
+                  <li><Link href="/planning/secure-land">Secure land</Link> (if you don't have it)</li>
+                  <li><Link href="/planning/financing">Get financing/construction loan approved</Link></li>
+                  <li><Link href="/planning/house-plans">Choose or design your house plans</Link></li>
+                  <li><Link href="/planning/budget">Create detailed budget</Link></li>
+                  <li><Link href="/planning/timeline">Develop project timeline</Link></li>
                 </ul>
               </div>
             </div>
@@ -121,10 +121,10 @@ export default function StartHere() {
                 <h3>Move In & Celebrate!</h3>
                 <p>Final walkthrough, certificate of occupancy, and enjoy your new home.</p>
                 <ul>
-                  <li>Complete punch list items</li>
-                  <li>Get certificate of occupancy</li>
-                  <li>Convert construction loan to mortgage</li>
-                  <li>Move in and enjoy the fruits of your labor</li>
+                  <li><Link href="/move-in/punch-list">Complete punch list items</Link></li>
+                  <li><Link href="/move-in/certificate-of-occupancy">Get certificate of occupancy</Link></li>
+                  <li><Link href="/move-in/loan-conversion">Convert construction loan to mortgage</Link></li>
+                  <li><Link href="/move-in/moving-in">Move in and enjoy the fruits of your labor</Link></li>
                 </ul>
               </div>
             </div>
@@ -172,9 +172,9 @@ export default function StartHere() {
               <h3>Templates</h3>
               <p>Contracts, budgets, schedules</p>
             </Link>
-            <Link href="/consulting" className={styles.resourceCard}>
-              <h3>Consulting</h3>
-              <p>Get personalized guidance</p>
+            <Link href="/resources" className={styles.resourceCard}>
+              <h3>Resources</h3>
+              <p>Guides, tools, and downloads</p>
             </Link>
           </div>
         </section>

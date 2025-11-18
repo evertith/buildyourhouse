@@ -109,7 +109,7 @@ export default function TimelineEstimatorPage() {
         <section className={styles.reality}>
           <h2>Phase-by-Phase Realities</h2>
           <p>
-            Here's what actually happens during each phase, based on hundreds of owner-builder projects:
+            Here's what actually happens during each phase, based on owner-builder projects:
           </p>
 
           <div className={styles.considerations}>
@@ -181,7 +181,7 @@ export default function TimelineEstimatorPage() {
         <section className={styles.reality} style={{ backgroundColor: 'var(--color-bg-light)', marginTop: '3rem' }}>
           <h2>Timeline Management Strategies</h2>
           <p>
-            After managing hundreds of builds, here's how to keep your project on track:
+            Here's how to keep your project on track:
           </p>
 
           <div className={styles.considerations}>

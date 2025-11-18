@@ -143,8 +143,9 @@ export default function TimelineEstimatorCalculator() {
             <h4>Phase-by-Phase Timeline</h4>
             <ul style={{ listStyle: 'none', padding: 0 }}>
               {results.phases.map((phase, index) => (
-                <li key={index} style={{ marginBottom: '1rem', paddingLeft: 0 }}>
-                  <strong style={{ color: 'var(--color-primary)' }}>{phase.name}:</strong> {phase.weeks} weeks
+                <li key={index} style={{ marginBottom: '1rem', paddingLeft: '1.8rem', position: 'relative' }}>
+                  <span style={{ position: 'absolute', left: 0, top: '0.1rem', fontSize: '1.1rem' }}>✓</span>
+                  <strong style={{ color: 'var(--color-primary)', display: 'inline' }}>{phase.name}:</strong> {phase.weeks} weeks
                   <br />
                   <span style={{ fontSize: '0.9rem', color: 'var(--color-text-light)' }}>
                     {phase.description}

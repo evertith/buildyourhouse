@@ -4,7 +4,7 @@ import styles from './contact.module.css';
 
 export const metadata: Metadata = {
   title: 'Contact Us - Get Owner-Builder Guidance | Build-Your-House.com',
-  description: 'Have questions about building your own home? Get in touch with our retired general contractor for guidance, consulting services, or general inquiries.',
+  description: 'Have questions about building your own home? Get in touch with our retired general contractor for guidance or general inquiries.',
 };
 
 export default function Contact() {
@@ -14,8 +14,8 @@ export default function Contact() {
         <header className={styles.header}>
           <h1>Get In Touch</h1>
           <p className={styles.subtitle}>
-            Questions about building your own home? Want to discuss consulting services?
-            Or just need to point out something on the site? We're here to help.
+            Questions about building your own home? Need to point out something on the site?
+            We're here to help.
           </p>
         </header>
 
@@ -24,21 +24,6 @@ export default function Contact() {
             <h2>How Can We Help?</h2>
 
             <div className={styles.contactOptions}>
-              <div className={styles.contactCard}>
-                <h3>For Consulting Services</h3>
-                <p>
-                  Interested in one-on-one consulting, plan reviews, or project oversight?
-                  Check out our consulting services page for details on what we offer and pricing.
-                </p>
-                <Link href="/consulting" className={styles.button}>
-                  View Consulting Services
-                </Link>
-                <p className={styles.orText}>Or email us directly:</p>
-                <a href="mailto:consulting@build-your-house.com" className={styles.email}>
-                  consulting@build-your-house.com
-                </a>
-              </div>
-
               <div className={styles.contactCard}>
                 <h3>For General Questions</h3>
                 <p>
@@ -49,8 +34,7 @@ export default function Contact() {
                   info@build-your-house.com
                 </a>
                 <p className={styles.note}>
-                  <strong>Note:</strong> We receive a lot of email. For specific project questions
-                  that require professional review, please use our consulting services. General questions
+                  <strong>Note:</strong> We receive a lot of email. General questions
                   may be answered in future blog posts or guides.
                 </p>
               </div>
@@ -115,10 +99,10 @@ export default function Contact() {
               </div>
 
               <div className={styles.faqItem}>
-                <h4>"Can you review my plans or answer specific questions about my project?"</h4>
+                <h4>"Where can I find templates and tools?"</h4>
                 <p>
-                  Yes! That's what our <Link href="/consulting">consulting services</Link> are for.
-                  For project-specific professional advice, we offer plan reviews and phone consultations.
+                  Visit our <Link href="/resources">resources page</Link> for templates, checklists,
+                  calculators, and other helpful tools.
                 </p>
               </div>
             </div>
@@ -131,9 +115,6 @@ export default function Contact() {
               <div className={styles.expectationItem}>
                 <h3>Response Time</h3>
                 <p>
-                  <strong>Consulting inquiries:</strong> Within 24-48 hours
-                </p>
-                <p>
                   <strong>General questions:</strong> Within 3-5 business days
                 </p>
                 <p>
@@ -145,7 +126,6 @@ export default function Contact() {
                 <h3>What We Can Help With</h3>
                 <ul>
                   <li>General owner-building guidance and strategy</li>
-                  <li>Consulting service questions and scheduling</li>
                   <li>Clarification on content from the site</li>
                   <li>Suggestions for new content or tools</li>
                   <li>Site issues or technical problems</li>
@@ -156,12 +136,11 @@ export default function Contact() {
               <div className={styles.expectationItem}>
                 <h3>What We Can't Help With (Via Email)</h3>
                 <ul>
-                  <li>Detailed plan reviews (requires paid consultation)</li>
-                  <li>Specific problem diagnosis on your project (requires consultation)</li>
+                  <li>Detailed plan reviews</li>
+                  <li>Specific problem diagnosis on your project</li>
                   <li>Emergency on-site issues (contact a local contractor)</li>
                   <li>Acting as your contractor of record</li>
                   <li>Local code interpretations (contact your building department)</li>
-                  <li>Product recommendations for commission (we don't do affiliate marketing)</li>
                 </ul>
               </div>
             </div>
@@ -204,24 +183,6 @@ export default function Contact() {
             </p>
           </section>
 
-          <section className={styles.locationSection}>
-            <h2>Location & Service Area</h2>
-            <p>
-              <strong>Primary License:</strong> [State placeholder - update with your actual state and license number]
-            </p>
-            <p>
-              <strong>Consulting Services:</strong> Available nationwide (remote consultation)
-            </p>
-            <p>
-              <strong>On-Site Visits:</strong> [Primary service area placeholder - e.g., "Within 100 miles of Charlotte, NC" or "By arrangement, travel fees apply"]
-            </p>
-            <p>
-              While my license is specific to [State], the building code guidance on this site applies to most U.S.
-              locations since the majority of jurisdictions use the International Residential Code (IRC) as their base.
-              State-specific differences are noted in our <Link href="/permitting/state-guides">state guides</Link>.
-            </p>
-          </section>
-
           <section className={styles.ctaSection}>
             <h2>Ready to Start Building?</h2>
             <p>
@@ -234,8 +195,8 @@ export default function Contact() {
               <Link href="/feasibility/is-it-right-for-you" className={styles.ctaButton}>
                 Is It Right for You?
               </Link>
-              <Link href="/consulting" className={styles.ctaButton}>
-                Consulting Services
+              <Link href="/resources" className={styles.ctaButton}>
+                Resources
               </Link>
             </div>
           </section>
@@ -244,9 +205,7 @@ export default function Contact() {
         <footer className={styles.disclaimer}>
           <p>
             <strong>Important:</strong> Email communication does not establish a client relationship or
-            create professional liability. For professional consulting services with formal engagement,
-            see our <Link href="/consulting">consulting services page</Link>. For legal terms governing
-            this website, see our <Link href="/terms">Terms of Service</Link>.
+            create professional liability. For legal terms governing this website, see our <Link href="/terms">Terms of Use</Link>.
           </p>
         </footer>
       </div>
