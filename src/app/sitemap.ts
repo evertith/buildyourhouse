@@ -3,7 +3,7 @@ import { MetadataRoute } from 'next';
 export const dynamic = 'force-static';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://buildyourhouse.com';
+  const baseUrl = 'https://build-your-house.com';
   const currentDate = new Date();
 
   // Main pages with high priority

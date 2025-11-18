@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import "@/styles/globals.css";
 import { generateOrganizationSchema, generateWebSiteSchema, schemaToScriptTag } from "@/lib/schema";
 
-const siteUrl = "https://buildyourhouse.com";
+const siteUrl = "https://build-your-house.com";
 const siteName = "Build Your House";
 const siteDescription = "Step-by-step guidance from a retired general contractor to build your dream home yourself and save a fortune. Expert advice on permits, inspections, and managing subcontractors.";
 
