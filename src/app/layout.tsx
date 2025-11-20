@@ -121,6 +121,14 @@ export default function RootLayout({
             }),
           }}
         />
+
+        {/* Google AdSense */}
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2899164454337185"
+          crossOrigin="anonymous"
+          strategy="beforeInteractive"
+        />
       </head>
       <body>
         {/* Google Analytics */}
@@ -136,14 +144,6 @@ export default function RootLayout({
             gtag('config', 'G-75MNQ8RDT7');
           `}
         </Script>
-
-        {/* Google AdSense */}
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2899164454337185"
-          crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
 
         <Header />
         <main>{children}</main>
