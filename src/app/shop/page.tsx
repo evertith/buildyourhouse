@@ -470,10 +470,10 @@ export default function JobSiteBinder() {
               </div>
             </div>
 
-            {/* Gumroad embed or button will go here */}
+            {/* Stripe Payment Link */}
             <div className="purchase-button-container">
               <a
-                href="https://gumroad.com/l/jobsite-binder?utm_source=website&utm_medium=nav&utm_campaign=shop"
+                href="https://buy.stripe.com/5kQ28racn54z0ReeZ5fAc00"
                 className="button button-large"
                 style={{
                   fontSize: 'var(--text-xl)',
@@ -492,7 +492,7 @@ export default function JobSiteBinder() {
                 <span style={{ fontSize: 'var(--text-2xl)' }}>🔒</span>
                 <div>
                   <strong>Secure Checkout</strong>
-                  <p>Powered by Gumroad - your payment info is safe</p>
+                  <p>Powered by Stripe - your payment info is safe</p>
                 </div>
               </div>
 
