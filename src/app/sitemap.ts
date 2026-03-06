@@ -491,6 +491,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
+  // AI Advisor
+  const advisorPages = [
+    {
+      url: `${baseUrl}/advisor`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly' as const,
+      priority: 0.9,
+    },
+  ];
+
   // Newsletter
   const newsletterPages = [
     {
@@ -532,6 +542,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...timingPages,
     ...toolsPages,
     ...resourcePages,
+    ...advisorPages,
     ...newsletterPages,
     ...legalPages,
   ];
