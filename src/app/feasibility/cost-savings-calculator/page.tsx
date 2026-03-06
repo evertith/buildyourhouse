@@ -3,8 +3,8 @@ import type { Metadata } from 'next';
 import styles from './calculator-page.module.css';
 
 export const metadata: Metadata = {
-  title: 'Cost Savings Calculator - Calculate Your Owner-Builder Savings',
-  description: 'Calculate exactly how much money you can save by building your own home. Factor in GC fees, your labor value, and get a realistic estimate.',
+  title: 'Owner-Builder Savings Calculator — How Much Will You Save?',
+  description: 'Calculate your real savings from owner-building. Factor in GC markups, your labor value, and material costs to see if building yourself is worth it.',
 };
 
 export default function CostSavingsCalculatorPage() {

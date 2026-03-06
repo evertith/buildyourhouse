@@ -3,8 +3,8 @@ import type { Metadata } from 'next';
 import styles from './contact.module.css';
 
 export const metadata: Metadata = {
-  title: 'Contact Us - Get Owner-Builder Guidance | Build-Your-House.com',
-  description: 'Have questions about building your own home? Get in touch with our retired general contractor for guidance or general inquiries.',
+  title: 'Contact Us — Questions About Building Your Own Home?',
+  description: 'Have questions about your owner-builder project? Reach out for guidance on permits, inspections, subcontractors, or any part of the build process.',
 };
 
 export default function Contact() {

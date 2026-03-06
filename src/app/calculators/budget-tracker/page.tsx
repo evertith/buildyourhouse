@@ -3,8 +3,8 @@ import type { Metadata } from 'next';
 import styles from '../../feasibility/cost-savings-calculator/calculator-page.module.css';
 
 export const metadata: Metadata = {
-  title: 'Budget Tracker - Track Your Build Budget vs. Actual Costs',
-  description: 'Monitor your construction budget in real-time. Track budgeted vs. actual costs by phase, analyze variances, and get recommendations to stay on track.',
+  title: 'Free Construction Budget Tracker — Budgeted vs. Actual Costs',
+  description: 'Track your owner-builder budget in real time. Compare budgeted vs. actual costs by phase, spot overruns early, and stay on track.',
 };
 
 export default function BudgetTrackerPage() {

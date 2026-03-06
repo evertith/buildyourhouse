@@ -1,6 +1,12 @@
 import Section from '@/components/Section';
 import CalloutBox from '@/components/CalloutBox';
 import Link from 'next/link';
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: 'Free Owner-Builder Resources — Checklists, Templates & Glossary',
+  description: 'Free construction checklists, contract templates, budget forms, and a glossary of building terms. Based on 15+ years of general contracting experience.',
+};
 
 export default function ResourcesPage() {
   return (

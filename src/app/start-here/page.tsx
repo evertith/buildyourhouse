@@ -3,8 +3,8 @@ import type { Metadata } from 'next';
 import styles from './start-here.module.css';
 
 export const metadata: Metadata = {
-  title: 'Start Here - Owner-Builder Roadmap | Build-Your-House.com',
-  description: 'Complete roadmap for building your own home. Learn the step-by-step process from planning to completion.',
+  title: 'Start Here — Your Owner-Builder Roadmap From Day 1 to Move-In',
+  description: 'The complete owner-builder roadmap. Where to start, what order to tackle things, and the step-by-step path from idea to moving into your new home.',
 };
 
 export default function StartHere() {

@@ -1,5 +1,11 @@
 import Link from 'next/link';
 import styles from './page.module.css';
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: 'Build Your Own House — Save $50K-$150K | Step-by-Step Owner-Builder Guide',
+  description: 'A retired general contractor with 15+ years of experience shows you exactly how to build your own home. Free calculators, checklists, permit guides, and phase-by-phase instructions.',
+};
 
 export default function Home() {
   return (

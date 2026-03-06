@@ -2,8 +2,8 @@ import Section from '@/components/Section';
 import CalloutBox from '@/components/CalloutBox';
 
 export const metadata = {
-  title: 'Owner-Builder Job Site Binder System - $97 | Build Your House',
-  description: 'Complete owner-builder toolkit with 229 pages of templates, checklists, and forms. Everything you need organized in one printable binder system. Instant download.',
+  title: 'Owner-Builder Job Site Binder — 229 Pages of Templates & Checklists',
+  description: 'The complete owner-builder toolkit: 229 pages of contracts, checklists, inspection forms, and budget trackers. Print it, take it to the job site. $97 instant download.',
   keywords: 'owner builder templates, construction checklists, job site binder, building contracts, owner builder tools',
 };
 

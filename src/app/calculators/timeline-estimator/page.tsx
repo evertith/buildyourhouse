@@ -3,8 +3,8 @@ import type { Metadata } from 'next';
 import styles from '../../feasibility/cost-savings-calculator/calculator-page.module.css';
 
 export const metadata: Metadata = {
-  title: 'Build Timeline Estimator - Calculate Your Owner-Builder Timeline',
-  description: 'Estimate how long it will take to build your home based on your schedule, experience level, and DIY percentage. Get realistic phase-by-phase timelines.',
+  title: 'Free Build Timeline Calculator — How Long Will Your House Take?',
+  description: 'Estimate your owner-builder timeline based on house size, experience level, and DIY percentage. Phase-by-phase schedule with realistic durations.',
 };
 
 export default function TimelineEstimatorPage() {
