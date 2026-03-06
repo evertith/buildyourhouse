@@ -491,6 +491,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
+  // Newsletter
+  const newsletterPages = [
+    {
+      url: `${baseUrl}/newsletter`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.6,
+    },
+  ];
+
   // Legal pages
   const legalPages = [
     {
@@ -522,6 +532,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...timingPages,
     ...toolsPages,
     ...resourcePages,
+    ...newsletterPages,
     ...legalPages,
   ];
 }
