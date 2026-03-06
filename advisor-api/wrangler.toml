@@ -4,8 +4,8 @@ compatibility_date = "2024-12-01"
 
 [[d1_databases]]
 binding = "DB"
-database_name = "buildyourhouse-advisor"
-database_id = "placeholder-replace-after-creation"
+database_name = "advisor-db"
+database_id = "bfa9314c-cd6f-4265-bbcf-3e900e777a7b"
 
 # After deploying, set secrets:
 #   wrangler secret put ANTHROPIC_API_KEY

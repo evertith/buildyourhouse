@@ -66,8 +66,8 @@ async function createCheckoutSession(request: Request, env: Env, auth: Authentic
   const plan = body.plan || 'starter';
 
   const priceIds: Record<string, string> = {
-    starter: 'price_starter_placeholder', // Replace with real Stripe price ID
-    pro: 'price_pro_placeholder',         // Replace with real Stripe price ID
+    starter: 'price_1T83lYK5ZC8FJBSWJevJJY0c',
+    pro: 'price_1T83lIK5ZC8FJBSWir164tqI',
   };
 
   const priceId = priceIds[plan];
