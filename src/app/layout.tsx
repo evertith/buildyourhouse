@@ -110,6 +110,14 @@ export default function RootLayout({
       <head>
         <meta name="google-adsense-account" content="ca-pub-2899164454337185" />
 
+        {/* Plausible Analytics - privacy-friendly, no cookie banner needed */}
+        <Script
+          defer
+          data-domain="build-your-house.com"
+          src="https://plausible.io/js/script.js"
+          strategy="afterInteractive"
+        />
+
         {/* Structured Data - Organization and Website Schema */}
         <script
           type="application/ld+json"
