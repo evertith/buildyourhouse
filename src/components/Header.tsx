@@ -61,8 +61,11 @@ export default function Header() {
           <Link href="/shop" className={styles.navLink} onClick={closeMobileMenu}>
             Shop
           </Link>
-          <Link href="/advisor" className={`${styles.navLink} ${styles.ctaLink}`} onClick={closeMobileMenu}>
-            AI Advisor
+          <Link href="/pricing" className={styles.navLink} onClick={closeMobileMenu}>
+            Pricing
+          </Link>
+          <Link href="/chat" className={`${styles.navLink} ${styles.ctaLink}`} onClick={closeMobileMenu}>
+            Meet Reed
           </Link>
         </nav>
       </div>

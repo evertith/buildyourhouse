@@ -1,10 +1,11 @@
 import Link from 'next/link';
 import styles from './page.module.css';
 import type { Metadata } from "next";
+import EmailCapture from '@/components/EmailCapture';
 
 export const metadata: Metadata = {
-  title: 'Build Your Own House — Save $50K-$150K | Step-by-Step Owner-Builder Guide',
-  description: 'A retired general contractor with 15+ years of experience shows you exactly how to build your own home. Free calculators, checklists, permit guides, and phase-by-phase instructions.',
+  title: 'Build Your Own House & Save $50K-$150K+ — Step-by-Step Owner-Builder Guide',
+  description: 'Retired GC shows you exactly how to build your own home. Free calculators, checklists, permit guides for all 50 states, and phase-by-phase instructions. Start planning today.',
 };
 
 export default function Home() {
@@ -143,6 +144,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Email Capture - above footer */}
+      <EmailCapture source="homepage" />
+
       {/* CTA Section */}
       <section className={styles.cta}>
         <h2>Ready to Start Your Owner-Builder Journey?</h2>
@@ -153,8 +157,8 @@ export default function Home() {
           <Link href="/start-here" className={styles.buttonPrimary}>
             Start Here
           </Link>
-          <Link href="/consulting" className={styles.buttonSecondary}>
-            Get Personal Guidance
+          <Link href="/pricing" className={styles.buttonSecondary}>
+            See Pricing Plans
           </Link>
         </div>
       </section>

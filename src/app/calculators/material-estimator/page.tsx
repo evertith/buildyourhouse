@@ -3,8 +3,8 @@ import type { Metadata } from 'next';
 import styles from '../../feasibility/cost-savings-calculator/calculator-page.module.css';
 
 export const metadata: Metadata = {
-  title: 'Free Material Estimator — Calculate Lumber, Concrete & More',
-  description: 'Estimate exactly how much lumber, concrete, drywall, roofing, and other materials your build needs. Free calculator with real-time cost estimates.',
+  title: "Free Construction Material Calculator — Estimate Lumber, Concrete & Roofing",
+  description: "Calculate exactly how much lumber, concrete, roofing, and siding you need for your build. Free material estimator with cost breakdowns. Save thousands on materials.",
 };
 
 export default function MaterialEstimatorPage() {

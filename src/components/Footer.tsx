@@ -42,7 +42,8 @@ export default function Footer() {
             <h3>Connect</h3>
             <ul className={styles.links}>
               <li><Link href="/blog">Blog</Link></li>
-              {/* <li><Link href="/consulting">Consulting</Link></li> */}
+              <li><Link href="/pricing">Pricing</Link></li>
+              <li><Link href="/chat">Meet Reed</Link></li>
               <li><Link href="/about">About</Link></li>
               <li><Link href="/contact">Contact</Link></li>
             </ul>
