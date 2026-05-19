@@ -39,25 +39,3 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-# Sensitive product files
-*.zip
-
-# Planning & internal docs (not for public repo)
-BINDER-COMPLETION-REPORT.md
-COMPLETION-STATUS.md
-CONTENT-CREATION-GUIDE.md
-IMPLEMENTATION-SUMMARY.md
-NEXT-STEPS.md
-PROJECT-SUMMARY.md
-QUICK-REFERENCE.md
-REFORMATTING_PROGRESS.md
-SEO-GUIDE.md
-build-your-house-design-system.md
-claude-code-design-overhaul-prompt.md
-jobsite-binder-full-content-prompt.md
-parallel-agent-jobsite-binder-prompt.md
-
-# Binder source files
-owner-builder-job-site-binder/
-section-*-output/

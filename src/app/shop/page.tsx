@@ -2,8 +2,8 @@ import Section from '@/components/Section';
 import CalloutBox from '@/components/CalloutBox';
 
 export const metadata = {
-  title: 'Owner-Builder Job Site Binder — 229 Pages of Templates & Checklists | $97',
-  description: 'The complete owner-builder toolkit: 229 pages of contracts, checklists, inspection forms & budget trackers. Print it, take it to the job site. $97 instant download. Or get it free with Builder Pro.',
+  title: 'Owner-Builder Job Site Binder — 229 Pages of Templates & Checklists',
+  description: 'The complete owner-builder toolkit: 229 pages of contracts, checklists, inspection forms, and budget trackers. Print it, take it to the job site. $97 instant download.',
   keywords: 'owner builder templates, construction checklists, job site binder, building contracts, owner builder tools',
 };
 
@@ -596,42 +596,6 @@ export default function JobSiteBinder() {
               all files.
             </p>
           </div>
-        </div>
-      </Section>
-
-      {/* Builder Pro Upsell */}
-      <Section spacing="large">
-        <div style={{
-          textAlign: 'center',
-          maxWidth: '700px',
-          margin: '0 auto',
-          padding: 'var(--space-8)',
-          border: '2px solid var(--color-secondary, #d4763b)',
-          borderRadius: 'var(--radius-lg, 12px)',
-          backgroundColor: 'var(--surface-warm, #f5f0eb)'
-        }}>
-          <h2 style={{ fontSize: 'var(--text-2xl)', marginTop: 0 }}>
-            Want the Binder + an AI General Contractor?
-          </h2>
-          <p style={{ fontSize: 'var(--text-lg)', color: 'var(--text-secondary)' }}>
-            <strong>Builder Pro ($20/month)</strong> includes the complete Job Site Binder
-            plus <strong>Reed</strong> — an AI general contractor who answers your
-            construction questions 24/7. Code-specific, jurisdiction-aware advice
-            whenever you need it.
-          </p>
-          <a
-            href="/pricing"
-            className="button button-large"
-            style={{
-              fontSize: 'var(--text-lg)',
-              padding: 'var(--space-4) var(--space-8)',
-              backgroundColor: 'var(--color-secondary, #d4763b)',
-              color: 'white',
-              textDecoration: 'none'
-            }}
-          >
-            See Builder Pro Plans
-          </a>
         </div>
       </Section>
 

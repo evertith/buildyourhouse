@@ -3,23 +3,19 @@
 import { useState, FormEvent } from 'react';
 import styles from '@/styles/EmailCapture.module.css';
 
-const SUBSCRIBE_API_URL = process.env.NEXT_PUBLIC_SUBSCRIBE_API_URL || '';
-
 interface EmailCaptureProps {
   title?: string;
   description?: string;
   buttonText?: string;
   placeholderText?: string;
-  source?: string;
   onSubmit?: (email: string) => Promise<void>;
 }
 
 export default function EmailCapture({
-  title = "Get the Free Owner-Builder Permit Checklist",
-  description = "The same checklist I used on every custom home build. Plus weekly tips from a retired GC.",
-  buttonText = "Send Me the Checklist",
+  title = "Join Our Newsletter",
+  description = "Get expert tips on building your own house delivered to your inbox.",
+  buttonText = "Subscribe",
   placeholderText = "Enter your email",
-  source = "website",
   onSubmit
 }: EmailCaptureProps) {
   const [email, setEmail] = useState('');
@@ -52,27 +48,20 @@ export default function EmailCapture({
     try {
       if (onSubmit) {
         await onSubmit(email);
-      } else if (SUBSCRIBE_API_URL) {
-        const res = await fetch(SUBSCRIBE_API_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, source }),
-        });
-
-        if (!res.ok) {
-          const data = await res.json().catch(() => ({}));
-          throw new Error(data.error || 'Subscription failed');
-        }
       } else {
-        // Fallback: log and simulate success when no API is configured
-        console.log('Email submitted (no API configured):', email);
-        await new Promise(resolve => setTimeout(resolve, 500));
+        // Placeholder for email service integration
+        // TODO: Integrate with Mailchimp, ConvertKit, or other email service
+        await new Promise(resolve => setTimeout(resolve, 1000));
+
+        // For now, just log to console
+        console.log('Email submitted:', email);
       }
 
       setStatus('success');
-      setMessage('Check your inbox! We sent you the permit checklist.');
+      setMessage('Thank you for subscribing!');
       setEmail('');
 
+      // Reset success message after 5 seconds
       setTimeout(() => {
         setStatus('idle');
         setMessage('');
@@ -126,7 +115,7 @@ export default function EmailCapture({
         </form>
 
         <p className={styles.privacy}>
-          We respect your privacy. Unsubscribe at any time. No spam, ever.
+          We respect your privacy. Unsubscribe at any time.
         </p>
       </div>
     </div>

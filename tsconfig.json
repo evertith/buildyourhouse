@@ -30,5 +30,5 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts"
   ],
-  "exclude": ["node_modules", "advisor-api", "owner-builder-job-site-binder", "section-*-output"]
+  "exclude": ["node_modules"]
 }
