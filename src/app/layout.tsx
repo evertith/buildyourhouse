@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import AdSenseRouteHandler from "@/components/AdSenseRouteHandler";
 import "@/styles/globals.css";
 import { generateOrganizationSchema, generateWebSiteSchema, schemaToScriptTag } from "@/lib/schema";
 
@@ -126,7 +127,7 @@ export default function RootLayout({
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2899164454337185"
           crossOrigin="anonymous"
-          strategy="beforeInteractive"
+          strategy="afterInteractive"
         />
       </head>
       <body>
@@ -144,6 +145,7 @@ export default function RootLayout({
           `}
         </Script>
 
+        <AdSenseRouteHandler />
         <Header />
         <main>{children}</main>
         <Footer />
