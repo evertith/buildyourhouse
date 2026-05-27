@@ -173,7 +173,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // State guides
   const stateGuides = [
     'arizona', 'california', 'colorado', 'florida', 'georgia',
-    'north-carolina', 'tennessee', 'texas', 'virginia', 'washington'
+    'indiana', 'north-carolina', 'ohio', 'oregon', 'pennsylvania',
+    'south-carolina', 'tennessee', 'texas', 'virginia', 'washington'
   ].map(state => ({
     url: `${baseUrl}/permitting/state-guides/${state}`,
     lastModified: currentDate,
