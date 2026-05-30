@@ -15,10 +15,25 @@ export interface CostSavingsResults {
 }
 
 export function calculateCostSavings(inputs: CostSavingsInputs): CostSavingsResults {
-  const gcFeeSavings = inputs.estimatedCost * (inputs.gcFeePercentage / 100);
-  const laborValueSavings = inputs.laborHours * inputs.hourlyWage;
-  const totalSavings = gcFeeSavings + laborValueSavings;
-  const percentageSaved = (totalSavings / inputs.estimatedCost) * 100;
+  // Guard and clamp inputs (HTML min/max are bypassable).
+  const estimatedCost = Math.max(0, inputs.estimatedCost || 0);
+  const gcFeePercentage = Math.min(30, Math.max(0, inputs.gcFeePercentage || 0));
+  const laborHours = Math.max(0, inputs.laborHours || 0);
+  const hourlyWage = Math.max(0, inputs.hourlyWage || 0);
+
+  // Cash savings = the GC fee you avoid by managing the project yourself.
+  const gcFeeSavings = estimatedCost * (gcFeePercentage / 100);
+
+  // Imputed value of your own time. This is NOT cash savings: estimatedCost
+  // already includes subcontractor labor, so adding this would double-count.
+  const laborValueSavings = laborHours * hourlyWage;
+
+  // Headline cash savings is the GC fee only — no labor value added in.
+  const totalSavings = gcFeeSavings;
+
+  // Honest headline percentage: equals the GC fee percentage you avoid.
+  // Return 0 when estimatedCost is missing/zero to avoid Infinity/NaN.
+  const percentageSaved = estimatedCost > 0 ? (gcFeeSavings / estimatedCost) * 100 : 0;
 
   return {
     gcFeeSavings,

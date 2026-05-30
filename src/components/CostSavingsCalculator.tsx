@@ -9,7 +9,7 @@ export default function CostSavingsCalculator() {
   const [inputs, setInputs] = useState<CostSavingsInputs>({
     homeSize: 2000,
     estimatedCost: 300000,
-    gcFeePercentage: 18,
+    gcFeePercentage: 14,
     laborHours: 500,
     hourlyWage: 30
   });
@@ -121,10 +121,10 @@ export default function CostSavingsCalculator() {
           <h3 className={styles.sectionTitle}>Your Potential Savings</h3>
 
           <div className={styles.resultCard + ' ' + styles.highlight}>
-            <div className={styles.resultLabel}>Total Savings</div>
+            <div className={styles.resultLabel}>Total Cash Savings</div>
             <div className={styles.resultValue}>{formatCurrency(results.totalSavings)}</div>
             <div className={styles.resultDetail}>
-              {results.percentageSaved.toFixed(1)}% of construction cost
+              {results.percentageSaved.toFixed(1)}% of construction cost — the GC fee you avoid
             </div>
           </div>
 
@@ -137,11 +137,17 @@ export default function CostSavingsCalculator() {
           </div>
 
           <div className={styles.resultCard}>
-            <div className={styles.resultLabel}>Your Labor Value</div>
+            <div className={styles.resultLabel}>Imputed Value of Your Time (not cash savings)</div>
             <div className={styles.resultValue}>{formatCurrency(results.laborValueSavings)}</div>
             <div className={styles.resultDetail}>
-              Value of {inputs.laborHours} hours at ${inputs.hourlyWage}/hour
+              Value of {inputs.laborHours} hours at ${inputs.hourlyWage}/hour. This is the worth of
+              your own labor — it is not added to your cash savings above.
             </div>
+          </div>
+
+          <div className={styles.disclaimer}>
+            Estimate only — not financial advice. Actual savings vary, and owner-building
+            carries additional costs and risks (insurance, permits, financing, re-work).
           </div>
 
           <div className={styles.breakdown}>
@@ -156,8 +162,9 @@ export default function CostSavingsCalculator() {
                 <strong>Your Time Investment:</strong> {inputs.laborHours} hours ({(inputs.laborHours / 40).toFixed(0)} weeks at 40 hrs/week)
               </li>
               <li>
-                <strong>True Savings:</strong> You pocket {formatCurrency(results.gcFeeSavings)} immediately,
-                plus gain skills and satisfaction worth {formatCurrency(results.laborValueSavings)}
+                <strong>Cash Savings:</strong> You pocket {formatCurrency(results.gcFeeSavings)} by
+                avoiding the GC fee. Your {formatCurrency(results.laborValueSavings)} of labor is
+                sweat equity you contribute, not cash you save.
               </li>
             </ul>
           </div>
