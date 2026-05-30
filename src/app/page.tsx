@@ -3,7 +3,7 @@ import styles from './page.module.css';
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'Build Your Own House — Save $50K-$150K | Step-by-Step Owner-Builder Guide',
+  title: 'Build Your Own House — Step-by-Step Owner-Builder Guide',
   description: 'A retired general contractor with 15+ years of experience shows you exactly how to build your own home. Free calculators, checklists, permit guides, and phase-by-phase instructions.',
 };
 
@@ -13,10 +13,12 @@ export default function Home() {
       {/* Hero Section */}
       <section className={styles.hero}>
         <h1 className={styles.heroTitle}>
-          Build Your Own House and Save $50,000+
+          Build Your Own House and Potentially Save Tens of Thousands
         </h1>
         <p className={styles.heroSubtitle}>
-          Complete guide from a retired general contractor with 15+ years experience helping owner-builders succeed
+          Owner-builders who stay organized can save roughly 10–25% of project cost by skipping the GC markup—though
+          lost contractor discounts and overruns can eat into that. Complete guide from a retired general contractor
+          with 15+ years experience helping owner-builders succeed.
         </p>
         <div className={styles.heroCtas}>
           <Link href="/start-here" className={styles.buttonPrimary}>

@@ -146,13 +146,18 @@ export default function StartHere() {
             </div>
             <div className={styles.savingsCard}>
               <h3>Total Potential Savings</h3>
-              <div className={styles.amount}>$50,000 - $150,000+</div>
-              <p>On a $300,000-$500,000 home</p>
+              <div className={styles.amount}>~10–25% of project cost</div>
+              <p>Best case, on a $300,000-$500,000 home</p>
             </div>
           </div>
+          <p className={styles.savingsCaveat}>
+            A reality check: those two figures overlap, so don&apos;t simply stack them. Owner-builders also tend to give
+            some savings back—through the bulk-buying and trade discounts a GC gets, plus the cost overruns that come
+            with learning on the job. Plan for a realistic net of roughly 10–25% of project cost, not a guaranteed windfall.
+          </p>
           <div className={styles.cta}>
             <Link href="/feasibility/cost-savings-calculator" className={styles.button}>
-              Calculate Your Exact Savings
+              Calculate Your Potential Savings
             </Link>
           </div>
         </section>

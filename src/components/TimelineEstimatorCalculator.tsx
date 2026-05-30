@@ -139,6 +139,11 @@ export default function TimelineEstimatorCalculator() {
             </div>
           </div>
 
+          <div className={styles.disclaimer}>
+            Estimate only — not financial or scheduling advice. Actual build times vary
+            widely with weather, permits, inspections, material delays, and life events.
+          </div>
+
           <div className={styles.breakdown}>
             <h4>Phase-by-Phase Timeline</h4>
             <ul style={{ listStyle: 'none', padding: 0 }}>

@@ -508,7 +508,7 @@ export default function JobSiteBinder() {
                 <span style={{ fontSize: 'var(--text-2xl)' }}>✅</span>
                 <div>
                   <strong>30-Day Guarantee</strong>
-                  <p>If it doesn&apos;t save you 10+ hours, get a full refund</p>
+                  <p>Not satisfied? Email us within 30 days for a full refund</p>
                 </div>
               </div>
             </div>
@@ -516,9 +516,8 @@ export default function JobSiteBinder() {
         </div>
 
         <CalloutBox type="success" title="🎯 Money-Back Guarantee">
-          If the Job Site Binder doesn&apos;t save you at least 10 hours of frustration
-          and keep you organized throughout your build, just email us within 30 days
-          for a full refund. No questions asked.
+          If the Job Site Binder isn&apos;t right for you for any reason, just email us
+          within 30 days of purchase for a full refund. No questions asked.
         </CalloutBox>
       </Section>
 

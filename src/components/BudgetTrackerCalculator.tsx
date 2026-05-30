@@ -219,6 +219,12 @@ export default function BudgetTrackerCalculator() {
             </div>
           </div>
 
+          <div className={styles.disclaimer}>
+            Estimate only — not financial advice. This tracker is a planning aid, not a
+            substitute for a professional cost estimate, accounting, or your lender's
+            requirements. Verify figures before making spending decisions.
+          </div>
+
           <div className={styles.breakdown}>
             <h4>Phase-by-Phase Breakdown</h4>
             <div style={{ overflowX: 'auto' }}>

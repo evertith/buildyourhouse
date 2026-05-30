@@ -120,7 +120,7 @@ Never let a contractor size your system based on square footage alone. Demand a 
 <DataTable
   headers={["Item", "Typical Cost", "Notes"]}
   rows={[
-    ["Outdoor condensing unit", "$1,800-$3,500", "3-ton, 14-16 SEER"],
+    ["Outdoor condensing unit", "$1,800-$3,500", "3-ton, at/above your region's SEER2 minimum"],
     ["Indoor air handler", "$800-$1,500", "With coil"],
     ["Furnace (if separate heat)", "$1,200-$2,500", "Gas or electric"],
     ["Thermostat", "$150-$400", "Programmable or smart"],
@@ -362,7 +362,7 @@ Example for 2,000 sq ft home, forced air system:
   headers={["Item", "Cost", "Notes"]}
   rows={[
     ["**Equipment**", "", ""],
-    ["3-ton AC condenser", "$1,800-$3,500", "14-16 SEER rating"],
+    ["3-ton AC condenser", "$1,800-$3,500", "At/above region's SEER2 minimum"],
     ["Air handler with coil", "$800-$1,500", "Indoor unit"],
     ["80,000 BTU gas furnace", "$1,200-$2,500", "92-96% AFUE"],
     ["Thermostat (programmable)", "$150-$400", "Smart thermostats higher"],
@@ -393,11 +393,13 @@ HVAC is one phase where spending more upfront (higher efficiency equipment, bett
 ## Energy Efficiency Considerations
 
 **Equipment efficiency ratings**:
-- **SEER** (Seasonal Energy Efficiency Ratio): Cooling efficiency
-  - Minimum: 14 SEER (code minimum in most areas)
-  - Good: 16-18 SEER
-  - Excellent: 20+ SEER
-  - Each 2 SEER increase = ~10% energy savings
+- **SEER2** (the current cooling-efficiency metric): Since January 1, 2023 the federal minimums are expressed in SEER2 (a revised test method) and split by region:
+  - **North**: 13.4 SEER2 minimum (roughly the old 14 SEER)
+  - **South and Southwest**: 14.3 SEER2 minimum for systems under 45,000 BTU (roughly the old 15 SEER)
+  - Good: ~15-17 SEER2
+  - Excellent: ~19+ SEER2
+  - Roughly each 2 SEER2 increase = ~10% cooling-energy savings
+  - SEER2 numbers run a bit lower than the old SEER for the same equipment—don't compare them one-to-one. Verify the current minimum for your region, since standards change
 
 - **AFUE** (Annual Fuel Utilization Efficiency): Heating efficiency
   - Minimum: 80% AFUE
@@ -405,10 +407,10 @@ HVAC is one phase where spending more upfront (higher efficiency equipment, bett
   - Excellent: 95-96% AFUE
 
 **Payback on higher efficiency**:
-- 14 SEER to 16 SEER: Added cost $500-$1,000, payback 3-7 years
+- Stepping up roughly 2 SEER2 (e.g., from the regional minimum to the next tier): Added cost $500-$1,000, payback 3-7 years
 - 80% to 95% AFUE furnace: Added cost $800-$1,500, payback 5-10 years
 
-**My recommendation**: Minimum 15 SEER AC and 92% AFUE furnace. The small upfront premium pays back quickly in lower bills.
+**My recommendation**: Meet or beat your region's SEER2 minimum—stepping one tier above it (and pairing with a 92%+ AFUE furnace) is usually worth the small upfront premium in lower bills. Confirm the current minimum for your region before you buy.
 
 ## Timeline Tips
 

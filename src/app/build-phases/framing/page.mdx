@@ -74,7 +74,7 @@ Floor and walls are straightforward and done at comfortable heights. Roof framin
     ["Wall plates 2x4", "600 LF", "$600-$900", "Top and bottom plates"],
     ["Wall studs 2x4", "650 studs (8' or 9')", "$2,600-$3,900", "16\" OC spacing"],
     ["Headers 2x10, 2x12", "300 LF", "$900-$1,500", "Window/door openings"],
-    ["Roof rafters 2x8 or 2x10", "80 pieces (16')", "$2,400-$3,600", "Varies by span/pitch"],
+    ["Roof rafters 2x8 or 2x10", "80 pieces (16')", "$2,400-$3,600", "Size set by span table (load/species/grade/spacing)"],
     ["Ridge beam 2x10", "40 LF", "$240-$400", "Continuous ridge"],
     ["Roof sheathing 7/16\" OSB", "32 sheets", "$640-$960", "Roof deck"],
     ["Wall sheathing 7/16\" OSB", "85 sheets", "$1,700-$2,550", "Exterior walls"]
@@ -198,11 +198,9 @@ Glue AND screw subfloor. Screws alone lead to squeaky floors. Glue alone allows 
   - Cut window and door openings in sheathing
 
 **Header sizing** (critical for structural integrity):
-- 3-foot opening: 2x6 header
-- 4-5 foot opening: 2x8 header
-- 6-8 foot opening: 2x10 header
-- 9-12 foot opening: 2x12 header or engineered beam
-- Always verify with span tables or engineer
+- Header size is not set by opening width alone. It depends on the opening width, the building width (tributary load), the ground-snow load, and what the header carries (roof only, roof + one floor, etc.).
+- Size every header from IRC Table R602.7(1), R602.7(2), or R602.7(3) for your loading condition - or have an engineer specify it. Verify your jurisdiction's adopted code edition.
+- Don't rely on a single rule-of-thumb depth per opening width - the same opening can require a deeper header on a wider house or under heavier snow load.
 
 <CalloutBox type="tip">
 Build walls 1/4" shorter than measured height. Slight compression is easier to fix than walls that don't fit. You can shim up but can't compress wood.
@@ -328,13 +326,13 @@ Key IRC framing requirements:
 
 - **IRC R602.10 - Wall bracing**: Walls require bracing per prescriptive methods or engineered. Sheathing provides bracing if properly nailed.
 
-- **IRC R802.3 - Roof framing spans**: Prescriptive rafter span tables. 2x8 rafter can span 14'7" at 16" OC with 4:12 pitch (#2 Southern Pine).
+- **IRC R802.4.1 - Roof framing spans**: Prescriptive rafter span tables. Allowable rafter span depends on roof live load or ground-snow load, lumber species, grade, and spacing - not on pitch. (Pitch affects rafter *length* via a length multiplier, not the allowable horizontal span.) Use Tables R802.4.1(1) through R802.4.1(8) for your loading condition, and verify your jurisdiction's adopted code edition.
 
 - **IRC R802.5.1 - Purlins**: If roof spans exceed tables, purlins (horizontal supports) required
 
 - **IRC R802.11 - Roof tie-down**: Rafters must be tied to walls with approved connectors (hurricane ties minimum)
 
-- **IRC R806.1 - Ventilation**: Attic requires 1:150 ventilation ratio (1 sq ft vent per 150 sq ft attic)
+- **IRC R806.2 - Ventilation**: Attic requires 1:150 net free ventilation area (1 sq ft vent per 150 sq ft attic), reducible to 1:300 where intake and exhaust are balanced (40-50% of the vent area placed high, near the ridge) - plus a Class I or II vapor retarder on the warm side in Climate Zones 6-8. Verify your jurisdiction's adopted code edition.
 
 ## Subcontractor Considerations
 

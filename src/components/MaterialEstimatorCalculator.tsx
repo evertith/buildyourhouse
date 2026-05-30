@@ -181,6 +181,12 @@ export default function MaterialEstimatorCalculator() {
             </div>
           </div>
 
+          <div className={styles.disclaimer}>
+            Estimate only — not financial advice. Quantities and costs are rough,
+            assumption-based ballparks; actual takeoffs and prices vary by design, region,
+            and supplier. Get local quotes before ordering.
+          </div>
+
           <div className={styles.breakdown}>
             <h4>Important Notes</h4>
             <ul>
