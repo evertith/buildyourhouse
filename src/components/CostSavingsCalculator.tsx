@@ -14,7 +14,7 @@ export default function CostSavingsCalculator() {
     hourlyWage: 30
   });
 
-  const [results, setResults] = useState<CostSavingsResults | null>(null);
+  const [results, setResults] = useState<CostSavingsResults | null>(() => calculateCostSavings(inputs));
 
   const handleInputChange = (field: keyof CostSavingsInputs, value: number) => {
     setInputs(prev => ({ ...prev, [field]: value }));

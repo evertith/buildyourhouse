@@ -14,7 +14,7 @@ export default function TimelineEstimatorCalculator() {
     helpers: 0
   });
 
-  const [results, setResults] = useState<TimelineEstimatorResults | null>(null);
+  const [results, setResults] = useState<TimelineEstimatorResults | null>(() => calculateTimelineEstimate(inputs));
 
   const handleInputChange = (field: keyof TimelineEstimatorInputs, value: number | string) => {
     setInputs(prev => ({ ...prev, [field]: value }));

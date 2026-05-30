@@ -14,7 +14,7 @@ export default function MaterialEstimatorCalculator() {
     finishLevel: 'standard'
   });
 
-  const [results, setResults] = useState<MaterialEstimatorResults | null>(null);
+  const [results, setResults] = useState<MaterialEstimatorResults | null>(() => calculateMaterialEstimate(inputs));
 
   const handleInputChange = (field: keyof MaterialEstimatorInputs, value: number | string) => {
     setInputs(prev => ({ ...prev, [field]: value }));

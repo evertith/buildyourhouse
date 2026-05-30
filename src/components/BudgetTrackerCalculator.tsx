@@ -16,7 +16,7 @@ export default function BudgetTrackerCalculator() {
     { name: 'Final & Landscaping', budgeted: 25000, actual: 0 }
   ]);
 
-  const [results, setResults] = useState<BudgetTrackerResults | null>(null);
+  const [results, setResults] = useState<BudgetTrackerResults | null>(() => calculateBudgetTracker({ phases, contingency }));
 
   const handlePhaseChange = (index: number, field: 'budgeted' | 'actual', value: number) => {
     const newPhases = [...phases];
