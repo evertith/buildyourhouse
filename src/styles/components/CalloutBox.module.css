@@ -1,144 +1,64 @@
 /* ============================================
-   CALLOUT BOX COMPONENT
-   For tips, warnings, and informational boxes
+   CALLOUT BOX — drafting note
    ============================================ */
-
 .callout {
-  padding: var(--space-3);
-  margin: var(--space-4) 0;
-  border-radius: 4px;
-  border-left: 4px solid;
+  position: relative;
+  margin: var(--space-5) 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--hairline);
+  border-left: 3px solid;
+  border-radius: 2px;
+  background: var(--bg-secondary);
 }
 
 .title {
-  font-size: var(--text-base);
-  font-weight: var(--weight-bold);
-  margin-bottom: var(--space-2);
   display: flex;
   align-items: center;
-  gap: var(--space-1);
+  gap: 10px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--text-lg);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin-bottom: var(--space-2);
 }
 
 .icon {
-  font-size: 20px;
-  line-height: 1;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
 }
 
 .content {
-  font-size: var(--text-sm);
+  font-size: 16px;
   line-height: var(--leading-relaxed);
-}
-
-.content p {
-  margin-bottom: var(--space-2);
-}
-
-.content p:last-child {
-  margin-bottom: 0;
-}
-
-.content ul,
-.content ol {
-  margin-bottom: var(--space-2);
-}
-
-.content li {
-  margin-bottom: var(--space-1);
-}
-
-/* ============================================
-   TIP (GREEN)
-   ============================================ */
-.tip {
-  background-color: #f0f5f2;
-  border-left-color: var(--accent-secondary);
-}
-
-.tip .title {
-  color: var(--accent-secondary);
-}
-
-.tip .content {
   color: var(--text-primary);
 }
+.content > :last-child { margin-bottom: 0; }
+.content p { margin-bottom: var(--space-2); }
+.content p:last-child { margin-bottom: 0; }
+.content ul, .content ol { margin-bottom: var(--space-2); padding-left: var(--space-4); }
+.content li { margin-bottom: var(--space-1); }
+.content a { color: var(--link-color); }
+.content code { font-family: var(--font-mono); font-size: 0.88em; }
 
-/* ============================================
-   WARNING (ORANGE)
-   ============================================ */
-.warning {
-  background-color: #fef5f0;
-  border-left-color: var(--accent-warning);
-}
+/* Type variants — left rule + marker color + warm tint */
+.info { border-left-color: var(--accent-info); background: var(--info-bg); }
+.info .title, .info .icon { color: var(--accent-info); }
 
-.warning .title {
-  color: var(--accent-warning);
-}
+.tip { border-left-color: var(--accent-secondary); background: var(--success-bg); }
+.tip .title, .tip .icon { color: #3f6b50; }
 
-.warning .content {
-  color: var(--text-primary);
-}
+.success { border-left-color: var(--accent-secondary); background: var(--success-bg); }
+.success .title, .success .icon { color: #3f6b50; }
 
-/* ============================================
-   INFO (BLUE)
-   ============================================ */
-.info {
-  background-color: #f0f5fa;
-  border-left-color: var(--accent-info);
-}
+.warning { border-left-color: var(--accent-warning); background: #f6ecd8; }
+.warning .title, .warning .icon { color: #95580f; }
 
-.info .title {
-  color: var(--accent-info);
-}
+.critical { border-left-color: var(--accent-critical); background: var(--critical-bg); }
+.critical .title, .critical .icon { color: var(--accent-critical); }
 
-.info .content {
-  color: var(--text-primary);
-}
-
-/* ============================================
-   CRITICAL (RED)
-   ============================================ */
-.critical {
-  background-color: #fdf0ef;
-  border-left-color: var(--accent-critical);
-}
-
-.critical .title {
-  color: var(--accent-critical);
-}
-
-.critical .content {
-  color: var(--text-primary);
-}
-
-/* ============================================
-   SUCCESS (GREEN)
-   ============================================ */
-.success {
-  background-color: #e8f5e9;
-  border-left-color: var(--accent-secondary);
-}
-
-.success .title {
-  color: var(--accent-secondary);
-}
-
-.success .content {
-  color: var(--text-primary);
-}
-
-/* ============================================
-   RESPONSIVE
-   ============================================ */
 @media (max-width: 640px) {
-  .callout {
-    padding: var(--space-2);
-  }
-
-  .title {
-    font-size: var(--text-sm);
-  }
-
-  .content {
-    font-size: var(--text-sm);
-  }
+  .callout { padding: var(--space-3); }
+  .title { font-size: var(--text-base); }
 }

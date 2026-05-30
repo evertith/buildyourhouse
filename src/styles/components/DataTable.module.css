@@ -1,89 +1,61 @@
 /* ============================================
-   DATA TABLE COMPONENT
-   Professional tables with alternating rows
+   DATA TABLE — drafting schedule
    ============================================ */
-
 .tableWrapper {
+  margin: var(--space-5) 0;
+  border: 1px solid var(--hairline);
+  border-top: 2px solid var(--accent-primary);
   overflow-x: auto;
-  margin: var(--space-4) 0;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .table {
   width: 100%;
   border-collapse: collapse;
-  font-size: var(--text-sm);
-  background-color: white;
+  font-size: 15px;
+  background: var(--bg-primary);
 }
 
 .caption {
-  font-size: var(--text-base);
-  font-weight: var(--weight-semibold);
-  color: var(--text-heading);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
   text-align: left;
-  padding: var(--space-2) var(--space-3);
-  background-color: var(--bg-secondary);
+  padding: 12px var(--space-3);
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--hairline);
 }
 
 .header {
-  background-color: var(--accent-primary);
-  color: white;
-  padding: var(--space-2) var(--space-3);
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-heading);
+  background: var(--bg-secondary);
   text-align: left;
-  font-weight: var(--weight-semibold);
-  font-size: var(--text-sm);
-  letter-spacing: 0.3px;
-}
-
-.header:first-child {
-  border-top-left-radius: 8px;
-}
-
-.header:last-child {
-  border-top-right-radius: 8px;
+  padding: 12px var(--space-3);
+  border-bottom: 1px solid var(--hairline-strong);
 }
 
 .cell {
-  padding: var(--space-2) var(--space-3);
+  padding: 12px var(--space-3);
   color: var(--text-primary);
-  border-bottom: 1px solid var(--bg-tertiary);
+  border-bottom: 1px solid var(--hairline);
+  vertical-align: top;
 }
 
-.evenRow {
-  background-color: #ffffff;
-}
-
-.oddRow {
-  background-color: var(--bg-secondary);
-}
-
-.evenRow:hover,
-.oddRow:hover {
-  background-color: #fef5f0;
+.evenRow, .oddRow { background: var(--bg-primary); }
+.evenRow:hover, .oddRow:hover {
+  background: var(--bg-secondary);
   transition: background-color 0.15s ease;
 }
 
-/* Last row - no bottom border */
-.table tbody tr:last-child .cell {
-  border-bottom: none;
-}
+.table tbody tr:last-child .cell { border-bottom: none; }
 
-/* ============================================
-   RESPONSIVE
-   ============================================ */
 @media (max-width: 640px) {
-  .table {
-    font-size: var(--text-xs);
-  }
-
-  .header,
-  .cell {
-    padding: var(--space-1) var(--space-2);
-  }
-
-  .caption {
-    font-size: var(--text-sm);
-    padding: var(--space-1) var(--space-2);
-  }
+  .table { font-size: 13.5px; }
+  .header, .cell, .caption { padding: var(--space-2); }
 }

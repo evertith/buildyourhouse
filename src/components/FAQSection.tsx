@@ -25,7 +25,7 @@ export default function FAQSection({ title = 'Frequently Asked Questions', faqs 
   };
 
   return (
-    <section>
+    <section className="faqSection">
       <h2>{title}</h2>
       {faqs.map(({ question, answer }, i) => (
         <div key={i}>

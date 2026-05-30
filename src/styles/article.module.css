@@ -1,328 +1,220 @@
 /* ============================================
-   ARTICLE/GUIDE PAGE TEMPLATE
-   Warm, readable design for long-form content
+   ARTICLE / GUIDE — editorial reading layout
    ============================================ */
-
 .article {
   max-width: var(--width-prose);
   margin: 0 auto;
-  padding: var(--space-6) var(--container-padding-mobile);
+  padding: var(--space-7) var(--container-padding-mobile);
 }
 
-/* ============================================
-   TYPOGRAPHY
-   ============================================ */
+/* ---------- Typography ---------- */
 .article h1 {
   font-size: var(--text-3xl);
-  font-weight: var(--weight-bold);
+  font-weight: var(--weight-semibold);
   color: var(--text-heading);
-  line-height: var(--leading-tight);
-  margin-bottom: var(--space-4);
-  margin-top: 0;
-  border-bottom: 3px solid var(--accent-primary);
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+  margin: 0 0 var(--space-4);
   padding-bottom: var(--space-3);
+  border-bottom: 2px solid var(--accent-primary);
 }
-
 .article h2 {
   font-size: var(--text-2xl);
-  font-weight: var(--weight-bold);
+  font-weight: var(--weight-semibold);
   color: var(--text-heading);
-  line-height: var(--leading-tight);
-  margin-top: var(--space-8);
-  margin-bottom: var(--space-4);
-  border-left: 4px solid var(--accent-primary);
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+  margin: var(--space-8) 0 var(--space-4);
   padding-left: var(--space-3);
+  border-left: 3px solid var(--accent-primary);
 }
-
 .article h3 {
   font-size: var(--text-xl);
-  font-weight: var(--weight-bold);
+  font-weight: var(--weight-semibold);
   color: var(--text-heading);
-  line-height: var(--leading-tight);
-  margin-top: var(--space-6);
-  margin-bottom: var(--space-3);
+  line-height: 1.2;
+  margin: var(--space-6) 0 var(--space-3);
 }
-
 .article h4 {
   font-size: var(--text-lg);
   font-weight: var(--weight-semibold);
   color: var(--text-heading);
-  margin-top: var(--space-4);
-  margin-bottom: var(--space-2);
+  margin: var(--space-4) 0 var(--space-2);
 }
-
 .article p {
   font-size: var(--text-base);
   line-height: var(--leading-relaxed);
   color: var(--text-primary);
   margin-bottom: var(--space-4);
+  max-width: none;
 }
+.article strong { font-weight: var(--weight-bold); color: var(--text-heading); }
+.article em { font-style: italic; }
 
-.article strong {
-  font-weight: var(--weight-bold);
-  color: var(--text-heading);
-}
-
-/* ============================================
-   LISTS
-   ============================================ */
-.article ul,
-.article ol {
-  margin-bottom: var(--space-4);
-  padding-left: var(--space-5);
-}
-
+/* ---------- Lists ---------- */
+.article ul, .article ol { margin-bottom: var(--space-4); padding-left: var(--space-5); }
 .article li {
   font-size: var(--text-base);
   line-height: var(--leading-relaxed);
   color: var(--text-primary);
   margin-bottom: var(--space-2);
 }
+.article ul > li { list-style-type: disc; }
+.article ul > li::marker { color: var(--accent-primary); }
+.article ol > li { list-style-type: decimal; }
+.article ol > li::marker { color: var(--accent-primary); font-weight: var(--weight-bold); }
+.article li > ul, .article li > ol { margin-top: var(--space-2); margin-bottom: var(--space-2); }
 
-.article ul > li {
-  list-style-type: disc;
-}
-
-.article ul > li::marker {
-  color: var(--accent-primary);
-}
-
-.article ol > li {
-  list-style-type: decimal;
-}
-
-.article ol > li::marker {
-  color: var(--accent-primary);
-  font-weight: var(--weight-bold);
-}
-
-/* Nested lists */
-.article li > ul,
-.article li > ol {
-  margin-top: var(--space-2);
-  margin-bottom: var(--space-2);
-}
-
-/* ============================================
-   LINKS
-   ============================================ */
+/* ---------- Links ---------- */
 .article a {
-  color: var(--accent-primary);
+  color: var(--link-color);
   text-decoration: underline;
-  text-decoration-color: rgba(212, 118, 59, 0.3);
+  text-decoration-color: rgba(199, 90, 34, 0.35);
   text-underline-offset: 2px;
-  transition: all 0.2s ease;
+  transition: all 0.18s ease;
 }
+.article a:hover { color: var(--link-hover); text-decoration-color: var(--link-hover); }
 
-.article a:hover {
-  color: var(--button-primary-hover);
-  text-decoration-color: var(--button-primary-hover);
-}
-
-/* ============================================
-   BLOCKQUOTES & CALLOUTS
-   ============================================ */
+/* ---------- Blockquote (drafting note) ---------- */
 .article blockquote {
-  background-color: var(--bg-secondary);
-  border-left: 4px solid var(--accent-secondary);
+  background: var(--bg-secondary);
+  border: 1px solid var(--hairline);
+  border-left: 3px solid var(--accent-warning);
+  border-radius: 2px;
   padding: var(--space-3) var(--space-4);
   margin: var(--space-5) 0;
-  border-radius: 4px;
+  color: var(--text-primary);
 }
+.article blockquote p { margin-bottom: var(--space-2); }
+.article blockquote p:last-child { margin-bottom: 0; }
 
-.article blockquote p {
-  margin-bottom: var(--space-2);
-}
-
-.article blockquote p:last-child {
-  margin-bottom: 0;
-}
-
-/* ============================================
-   TABLES
-   ============================================ */
+/* ---------- Tables (markdown + DataTable global) ---------- */
 .article table,
 .article :global(.dataTable) {
   width: 100%;
   border-collapse: collapse;
   margin: var(--space-5) 0;
-  background-color: #ffffff;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
-
-.article thead,
-.article :global(.dataTable) thead {
-  background-color: var(--bg-secondary);
-}
-
-.article th,
-.article :global(.dataTable) th {
-  font-size: var(--text-base);
-  font-weight: var(--weight-bold);
-  text-align: left;
-  padding: var(--space-3) var(--space-4);
-  border-bottom: 2px solid var(--bg-tertiary);
-  color: var(--text-heading);
-}
-
-.article td,
-.article :global(.dataTable) td {
-  font-size: var(--text-base);
-  padding: var(--space-3) var(--space-4);
-  border-bottom: 1px solid var(--bg-secondary);
-  color: var(--text-primary);
-}
-
-.article tbody tr:last-child td,
-.article :global(.dataTable) tbody tr:last-child td {
-  border-bottom: none;
-}
-
-.article tbody tr:hover,
-.article :global(.dataTable) tbody tr:hover {
-  background-color: var(--bg-secondary);
-}
-
-/* Right-align numeric columns */
-.article :global(.numeric) {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-/* Highlight total row */
-.article :global(.totalRow) {
-  background-color: var(--bg-secondary);
-  font-weight: var(--weight-semibold);
-}
-
-.article :global(.totalRow) td {
+  background: var(--bg-primary);
+  border: 1px solid var(--hairline);
   border-top: 2px solid var(--accent-primary);
-  padding-top: var(--space-3);
-  padding-bottom: var(--space-3);
+  font-size: 15px;
 }
-
-/* ============================================
-   CODE
-   ============================================ */
-.article code {
-  background-color: var(--bg-secondary);
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 0.9em;
+.article thead, .article :global(.dataTable) thead { background: var(--bg-secondary); }
+.article th, .article :global(.dataTable) th {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: left;
+  padding: 12px var(--space-3);
+  border-bottom: 1px solid var(--hairline-strong);
   color: var(--text-heading);
 }
+.article td, .article :global(.dataTable) td {
+  padding: 12px var(--space-3);
+  border-bottom: 1px solid var(--hairline);
+  color: var(--text-primary);
+  vertical-align: top;
+}
+.article tbody tr:last-child td,
+.article :global(.dataTable) tbody tr:last-child td { border-bottom: none; }
+.article tbody tr:hover,
+.article :global(.dataTable) tbody tr:hover { background: var(--bg-secondary); }
+.article :global(.numeric) { text-align: right; font-variant-numeric: tabular-nums; }
+.article :global(.totalRow) { background: var(--bg-secondary); font-weight: var(--weight-semibold); }
+.article :global(.totalRow) td { border-top: 2px solid var(--accent-primary); }
 
+/* ---------- Code ---------- */
+.article code {
+  background: var(--bg-secondary);
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  color: var(--text-heading);
+}
 .article pre {
-  background-color: var(--bg-secondary);
+  background: var(--navy);
+  color: var(--cream);
   padding: var(--space-4);
-  border-radius: 8px;
+  border-radius: 4px;
   overflow-x: auto;
   margin: var(--space-5) 0;
-  border-left: 4px solid var(--accent-secondary);
+  border-left: 3px solid var(--accent-primary);
 }
+.article pre code { background: transparent; padding: 0; color: inherit; }
 
-.article pre code {
-  background-color: transparent;
-  padding: 0;
-}
-
-/* ============================================
-   HORIZONTAL RULES
-   ============================================ */
+/* ---------- Horizontal rule ---------- */
 .article hr {
   border: none;
-  border-top: 2px solid var(--bg-tertiary);
+  border-top: 1px solid var(--hairline);
   margin: var(--space-8) 0;
 }
 
-/* ============================================
-   BREADCRUMBS
-   ============================================ */
+/* ---------- FAQ section (editorial Q&A) ---------- */
+.article :global(.faqSection) {
+  margin-top: var(--space-8);
+  padding-top: var(--space-5);
+  border-top: 2px solid var(--accent-primary);
+}
+.article :global(.faqSection) > h2 {
+  border: none;
+  padding: 0;
+  margin: 0 0 var(--space-2);
+}
+.article :global(.faqSection) > div {
+  border-top: 1px solid var(--hairline);
+  padding: var(--space-4) 0;
+}
+.article :global(.faqSection) h3 {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  color: var(--text-heading);
+}
+.article :global(.faqSection) p {
+  margin: 0;
+  color: var(--text-secondary);
+  max-width: none;
+}
+
+/* ---------- Breadcrumbs / intro (kept) ---------- */
 .breadcrumbs {
   font-size: var(--text-sm);
   color: var(--text-secondary);
   margin-bottom: var(--space-4);
   padding: var(--space-2) 0;
 }
+.breadcrumbs a { color: var(--text-secondary); text-decoration: none; transition: color 0.2s ease; }
+.breadcrumbs a:hover { color: var(--accent-primary); }
+.breadcrumbs span { margin: 0 var(--space-1); color: var(--text-secondary); }
 
-.breadcrumbs a {
-  color: var(--text-secondary);
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.breadcrumbs a:hover {
-  color: var(--accent-primary);
-}
-
-.breadcrumbs span {
-  margin: 0 var(--space-1);
-  color: var(--text-tertiary);
-}
-
-/* ============================================
-   INTRO/LEAD PARAGRAPH
-   ============================================ */
 .intro {
   font-size: var(--text-lg);
   line-height: var(--leading-relaxed);
   color: var(--text-secondary);
   margin-bottom: var(--space-6);
   padding-bottom: var(--space-4);
-  border-bottom: 1px solid var(--bg-tertiary);
+  border-bottom: 1px solid var(--hairline);
 }
 
-/* ============================================
-   RESPONSIVE - TABLET
-   ============================================ */
+/* ---------- Responsive ---------- */
 @media (min-width: 768px) {
   .article {
     padding-left: var(--container-padding-tablet);
     padding-right: var(--container-padding-tablet);
     padding-top: var(--space-8);
   }
-
-  .article h1 {
-    font-size: var(--text-4xl);
-  }
+  .article h1 { font-size: var(--text-4xl); }
 }
-
-/* ============================================
-   RESPONSIVE - DESKTOP
-   ============================================ */
 @media (min-width: 1024px) {
-  .article {
-    padding-left: var(--container-padding-desktop);
-    padding-right: var(--container-padding-desktop);
-    padding-top: var(--space-10);
-  }
+  .article { padding-top: var(--space-10); }
 }
-
-/* ============================================
-   RESPONSIVE - MOBILE
-   ============================================ */
 @media (max-width: 640px) {
-  .article h1 {
-    font-size: var(--text-2xl);
-  }
-
-  .article h2 {
-    font-size: var(--text-xl);
-  }
-
-  .article h3 {
-    font-size: var(--text-lg);
-  }
-
-  .article table {
-    font-size: var(--text-xs);
-  }
-
-  .article th,
-  .article td {
-    padding: var(--space-2);
-  }
+  .article h1 { font-size: var(--text-2xl); }
+  .article h2 { font-size: var(--text-xl); }
+  .article h3 { font-size: var(--text-lg); }
+  .article table { font-size: 13px; }
+  .article th, .article td { padding: var(--space-2); }
 }
