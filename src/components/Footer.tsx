@@ -22,6 +22,7 @@ export default function Footer() {
             <h3>Critical Guides</h3>
             <ul className={styles.links}>
               <li><Link href="/permitting">Permitting Guide</Link></li>
+              <li><Link href="/permitting/state-guides">State Permit Guides</Link></li>
               <li><Link href="/inspections">Inspections</Link></li>
               <li><Link href="/subcontractors">Finding Subs</Link></li>
               <li><Link href="/timing-and-scheduling">Scheduling</Link></li>

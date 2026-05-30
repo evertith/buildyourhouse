@@ -49,6 +49,9 @@ export default function Header() {
           <Link href="/permitting" className={styles.navLink} onClick={closeMobileMenu}>
             Guides
           </Link>
+          <Link href="/permitting/state-guides" className={styles.navLink} onClick={closeMobileMenu}>
+            State Guides
+          </Link>
           <Link href="/resources" className={styles.navLink} onClick={closeMobileMenu}>
             Resources
           </Link>
