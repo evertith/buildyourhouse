@@ -1,10 +1,32 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import { Fraunces, Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AdSenseRouteHandler from "@/components/AdSenseRouteHandler";
 import "@/styles/globals.css";
 import { generateOrganizationSchema, generateWebSiteSchema, schemaToScriptTag } from "@/lib/schema";
+
+// Self-hosted via next/font — zero layout shift, no external request.
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "900"],
+  style: ["normal", "italic"],
+  display: "swap",
+  variable: "--ff-display",
+});
+const hankenGrotesk = Hanken_Grotesk({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  variable: "--ff-body",
+});
+const jetBrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  display: "swap",
+  variable: "--ff-mono",
+});
 
 const siteUrl = "https://build-your-house.com";
 const siteName = "Build Your House";
@@ -107,7 +129,7 @@ export default function RootLayout({
   });
 
   return (
-    <html lang="en">
+    <html lang="en" className={`${fraunces.variable} ${hankenGrotesk.variable} ${jetBrainsMono.variable}`}>
       <head>
         <meta name="google-adsense-account" content="ca-pub-2899164454337185" />
 

@@ -18,43 +18,50 @@ html {
    COLOR SYSTEM
    ============================================ */
 :root {
-  /* Backgrounds - Warm and inviting */
-  --bg-primary: #faf8f5;        /* Warm off-white - main background */
-  --bg-secondary: #f0ede8;      /* Slightly darker warm gray - cards, sections */
-  --bg-tertiary: #e8e4df;       /* Subtle borders, dividers */
+  /* Backgrounds - warm paper */
+  --bg-primary: #f2ecdf;        /* Warm paper - main background */
+  --bg-secondary: #e9e0ce;      /* Deeper paper - cards, sections */
+  --bg-tertiary: #ded2bb;       /* Borders, dividers */
 
-  /* Text - Readable and professional */
-  --text-primary: #2d2d2d;      /* Dark charcoal - body text */
-  --text-secondary: #5a5a5a;    /* Medium gray - secondary text, captions */
-  --text-heading: #1a1a1a;      /* Deep black - headings */
+  /* Text - warm ink */
+  --text-primary: #232019;      /* Warm near-black - body text */
+  --text-secondary: #56503f;    /* Muted ink - secondary text, captions */
+  --text-heading: #1a1710;      /* Deep ink - headings */
 
-  /* Accents - Construction-inspired */
-  --accent-primary: #d4763b;    /* Construction orange - CTAs, important callouts */
-  --accent-secondary: #5b8a72;  /* Sage green - tips, success states, checkboxes */
-  --accent-warning: #e67e22;    /* Warm orange - warnings, caution */
-  --accent-critical: #c0392b;   /* Red - critical warnings, danger */
-  --accent-info: #3b7dbd;       /* Blueprint blue - informational callouts */
+  /* Accents - construction-inspired */
+  --accent-primary: #c75a22;    /* Construction orange - CTAs, callouts */
+  --accent-secondary: #5e8c6f;  /* Sage green - tips, success states */
+  --accent-warning: #d98324;    /* Amber - warnings, caution */
+  --accent-critical: #b23a2a;   /* Brick red - critical warnings */
+  --accent-info: #2f5d7c;       /* Blueprint blue - informational callouts */
+
+  /* Blueprint depth - dark anchor sections */
+  --navy: #102c42;
+  --navy-2: #0b2032;
+  --cream: #f6f1e4;
+  --hairline: rgba(35, 32, 25, 0.16);
+  --hairline-strong: rgba(35, 32, 25, 0.32);
 
   /* Interactive States */
-  --link-color: #c75f32;        /* Darker orange for links */
-  --link-hover: #a84d27;        /* Even darker on hover */
-  --button-primary: #d4763b;    /* Primary CTA buttons */
-  --button-primary-hover: #c75f32;
-  --button-secondary: #5b8a72;  /* Secondary buttons */
-  --button-secondary-hover: #4a7c59;
+  --link-color: #b44e1a;        /* Orange for links */
+  --link-hover: #93390f;        /* Darker on hover */
+  --button-primary: #c75a22;    /* Primary CTA buttons */
+  --button-primary-hover: #aa4716;
+  --button-secondary: #5e8c6f;  /* Secondary buttons */
+  --button-secondary-hover: #4d7a5e;
 
-  /* Legacy color aliases (for backward compatibility) */
-  --color-primary: #d4763b;
-  --color-primary-dark: #c75f32;
-  --color-secondary: #c75f32;
-  --color-success: #5b8a72;
-  --color-warning: #e67e22;
-  --color-text: #2d2d2d;
-  --color-text-light: #5a5a5a;
-  --color-bg: #faf8f5;
-  --color-bg-light: #f0ede8;
-  --color-border: #e8e4df;
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  /* Legacy color aliases (remapped to new palette) */
+  --color-primary: #c75a22;
+  --color-primary-dark: #aa4716;
+  --color-secondary: #b44e1a;
+  --color-success: #5e8c6f;
+  --color-warning: #d98324;
+  --color-text: #232019;
+  --color-text-light: #56503f;
+  --color-bg: #f2ecdf;
+  --color-bg-light: #e9e0ce;
+  --color-border: #ded2bb;
+  --shadow-sm: 0 1px 2px rgba(35, 32, 25, 0.08);
 
   /* ============================================
      SPACING SYSTEM (8px base unit)
@@ -85,9 +92,10 @@ html {
   /* ============================================
      TYPOGRAPHY SYSTEM
      ============================================ */
-  --font-heading: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-  --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-  --font-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, monospace;
+  --font-display: var(--ff-display), Georgia, 'Times New Roman', serif;
+  --font-heading: var(--font-display);
+  --font-body: var(--ff-body), system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: var(--ff-mono), ui-monospace, 'SF Mono', Monaco, monospace;
 
   /* Font Sizes */
   --text-xs: 13px;
@@ -140,16 +148,19 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-size: var(--text-4xl);      /* 48px */
-  line-height: var(--leading-tight);
+  font-weight: var(--weight-semibold);
+  line-height: 1.04;
   margin-bottom: var(--space-3);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
 }
 
 h2 {
   font-size: var(--text-3xl);      /* 36px */
-  line-height: 1.3;
+  font-weight: var(--weight-semibold);
+  line-height: 1.12;
   margin-top: var(--space-8);       /* 64px */
   margin-bottom: var(--space-3);
+  letter-spacing: -0.02em;
 }
 
 h3 {
@@ -484,13 +495,13 @@ article {
   --surface-warm: var(--bg-primary);
   --border-light: var(--bg-tertiary);
   --accent-orange: var(--accent-primary);
-  --critical-bg: #fde8e8;
+  --critical-bg: #f6e3dc;
   --danger: var(--accent-critical);
-  --success-bg: #e8f5e9;
-  --info-bg: #e3f2fd;
+  --success-bg: #e4ede2;
+  --info-bg: #e2e9ee;
   --font-bold: var(--weight-bold);
-  --radius-md: 8px;
-  --radius-lg: 12px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
 }
 
 /* Stat Badges (Hero) */
@@ -856,4 +867,82 @@ article {
     font-size: var(--text-sm);
     padding: var(--space-2) var(--space-3);
   }
+}
+
+/* ============================================
+   BLUEPRINT PRIMITIVES (redesign system)
+   Reusable drafting details for chrome, content, and landing.
+   ============================================ */
+.bp-eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: var(--weight-medium);
+  color: var(--accent-primary);
+}
+
+.bp-mono-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+/* Dark blueprint-navy anchor band */
+.bp-band {
+  position: relative;
+  background: var(--navy);
+  color: var(--cream);
+  overflow: hidden;
+}
+.bp-band :is(h1, h2, h3, h4) { color: var(--cream); }
+
+/* Blueprint grid texture overlay (apply alongside .bp-band) */
+.bp-grid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(246, 241, 228, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(246, 241, 228, 0.08) 1px, transparent 1px),
+    linear-gradient(rgba(246, 241, 228, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(246, 241, 228, 0.12) 1px, transparent 1px);
+  background-size: 30px 30px, 30px 30px, 150px 150px, 150px 150px;
+  pointer-events: none;
+}
+
+/* Dimension line: a label flanked by drafting rules with end ticks */
+.bp-dimline {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+.bp-dimline::before,
+.bp-dimline::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: var(--hairline-strong);
+}
+
+/* Drawing-sheet number tag */
+.bp-sheet-no {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.12em;
+  color: var(--accent-primary);
+}
+
+/* Hairline rule */
+.bp-rule {
+  border: none;
+  border-top: 1px solid var(--hairline);
+  margin: var(--space-6) 0;
 }
