@@ -7,17 +7,35 @@ export const metadata = {
 
 ## Overview
 
-- **Typical Duration**: 1-2 weeks
-- **DIY Difficulty**: ⭐⭐⭐⭐☆ (4/5)
-- **Typical Cost**: $8,000-$15,000 (2,000 sq ft house)
-- **When to Hire**: Most owner-builders hire this out or get help
-- **Required Inspection**: Yes - must pass before covering walls
+<CalloutBox type="info" title="The Big Picture">
+
+Plumbing rough-in installs all water supply and drain-waste-vent (DWV) pipes before walls are closed. This is one of the most code-intensive phases, requiring knowledge of proper sizing, slopes, and venting. Many owner-builders successfully DIY it, but it takes careful study and planning — mistakes here mean cutting open walls later.
+
+</CalloutBox>
+
+<DataTable
+  caption="Plumbing rough-in at a glance (2,000 sq ft house)"
+  headers={["Factor", "Detail"]}
+  rows={[
+    ["Typical duration", "1-2 weeks"],
+    ["DIY difficulty", "4/5"],
+    ["Typical cost", "$8,000-$15,000"],
+    ["When to hire", "Most owner-builders hire this out or get help"],
+    ["Required inspection", "Yes - must pass before covering walls"]
+  ]}
+/>
 
 Plumbing rough-in installs all water supply and drain-waste-vent (DWV) pipes before walls are closed. This is one of the most code-intensive phases, requiring knowledge of proper sizing, slopes, and venting requirements.
 
 I've seen many owner-builders successfully DIY their plumbing rough-in, but it requires studying code requirements and planning carefully. Mistakes here mean cutting open walls later - expensive and frustrating.
 
 ## When This Phase Happens
+
+<CalloutBox type="info" title="Sequence in one line">
+
+Plumbing rough-in happens after the house is weathertight, runs in parallel with electrical and HVAC rough-in, and is followed by the rough-in inspection, insulation, then drywall.
+
+</CalloutBox>
 
 Plumbing rough-in happens after house is weathertight.
 
@@ -54,9 +72,17 @@ Plumbing rough-in happens after house is weathertight.
 - Want liability protection
 - Need speed (pros do in 3-5 days vs 1-2 weeks DIY)
 
-**My recommendation**: Hire a plumber for planning and inspection prep, DIY the installation under guidance. This ensures code compliance while saving 40-60% of labor costs.
+<CalloutBox type="tip" title="My recommendation">
 
-Many codes require licensed plumber for testing and inspection, even if you do the work. Verify local requirements before starting.
+Hire a plumber for planning and inspection prep, DIY the installation under guidance. This ensures code compliance while saving 40-60% of labor costs.
+
+</CalloutBox>
+
+<CalloutBox type="warning" title="A licensed plumber may still be required">
+
+Many codes require a licensed plumber for testing and inspection, even if you do the work. Verify local requirements before starting.
+
+</CalloutBox>
 
 ## Materials Needed
 
@@ -94,8 +120,10 @@ Many codes require licensed plumber for testing and inspection, even if you do t
   caption="Drain-waste-vent system materials (ABS example)"
 />
 
-<CalloutBox type="warning">
+<CalloutBox type="warning" title="ABS and PVC are not interchangeable">
+
 ABS and PVC are **not** interchangeable and use different solvents—don't mix them in the same run without an approved transition. ABS uses a one-step cement (no primer). PVC requires primer **and** cement. This example is built around ABS; if your area uses PVC for DWV, switch the pipe, fittings, **and** solvent to match (and add primer). Pick one DWV material and stick with it. Check which material your local code allows.
+
 </CalloutBox>
 
 ### Tools Required
@@ -131,25 +159,45 @@ ABS and PVC are **not** interchangeable and use different solvents—don't mix t
 - Plan water supply routing (minimize long runs)
 - Mark all penetrations on framing
 
-<CalloutBox type="tip">
+<CalloutBox type="tip" title="Venting is the #1 beginner mistake">
+
 The biggest mistake beginners make is inadequate venting. Every fixture must be properly vented per code. Study IRC P3100 before starting.
+
 </CalloutBox>
 
-**Fixture unit calculations** (determines pipe sizing):
-- Toilet: 3 fixture units
-- Shower: 2 fixture units
-- Lavatory: 1 fixture unit
-- Kitchen sink: 2 fixture units
-- Dishwasher: 2 fixture units
-- Clothes washer: 3 fixture units
+Fixture unit calculations determine pipe sizing:
 
-**Pipe sizing based on fixture units**:
-- 1.5" drain: up to 2 fixture units (lavatory)
-- 2" drain: up to 6 fixture units (sinks, showers)
-- 3" drain: up to 20 fixture units (toilets, multiple fixtures)
-- 4" main drain: building drain (preferred for main)
+<DataTable
+  caption="Fixture units by fixture (determines pipe sizing)"
+  headers={["Fixture", "Fixture units"]}
+  rows={[
+    ["Toilet", "3 fixture units"],
+    ["Shower", "2 fixture units"],
+    ["Lavatory", "1 fixture unit"],
+    ["Kitchen sink", "2 fixture units"],
+    ["Dishwasher", "2 fixture units"],
+    ["Clothes washer", "3 fixture units"]
+  ]}
+/>
+
+<DataTable
+  caption="Drain pipe sizing based on fixture units"
+  headers={["Drain size", "Capacity", "Typical use"]}
+  rows={[
+    ["1.5\" drain", "Up to 2 fixture units", "Lavatory"],
+    ["2\" drain", "Up to 6 fixture units", "Sinks, showers"],
+    ["3\" drain", "Up to 20 fixture units", "Toilets, multiple fixtures"],
+    ["4\" main drain", "Building drain", "Preferred for main"]
+  ]}
+/>
 
 ### Days 3-5: DWV Rough-In (Do This First!)
+
+<CalloutBox type="tip" title="Rough-in DWV before water supply">
+
+**Always rough-in DWV before water supply.** DWV pipes are larger and less flexible in routing, so you want to claim their paths first and fit the supply lines around them.
+
+</CalloutBox>
 
 **Always rough-in DWV before water supply.** DWV pipes are larger and less flexible in routing.
 
@@ -177,15 +225,24 @@ The biggest mistake beginners make is inadequate venting. Every fixture must be 
 - Main vent stack: 3" minimum
 - Branch vents: 1.5" minimum
 - Wet venting allowed in some configurations (check code)
-- The maximum trap-to-vent distance is set by the **trap-arm (drain) size**, not the fixture type. Under the IPC (Table 909.1), typical maximum developed lengths are:
-  - 1.5" trap arm: 6 feet
-  - 2" trap arm: 8 feet
-  - 3" trap arm: 12 feet
-  - Water closets are exempt—self-siphoning fixtures have **no** distance limit (IPC 909.1)
+- The maximum trap-to-vent distance is set by the **trap-arm (drain) size**, not the fixture type
 - These figures vary by code—verify your adopted IPC/IRC edition and local rules
 
-<CalloutBox type="warning">
+<DataTable
+  caption="Maximum trap-to-vent distance by trap-arm size (IPC Table 909.1) — verify your adopted edition"
+  headers={["Trap-arm size", "Maximum developed length"]}
+  rows={[
+    ["1.5\" trap arm", "6 feet"],
+    ["2\" trap arm", "8 feet"],
+    ["3\" trap arm", "12 feet"],
+    ["Water closet (self-siphoning)", "No distance limit — exempt (IPC 909.1)"]
+  ]}
+/>
+
+<CalloutBox type="warning" title="Improper venting is the #1 inspection failure">
+
 Improper venting causes slow drains, gurgling, and sewer gas entry. This is the #1 plumbing rough-in failure point in inspections.
+
 </CalloutBox>
 
 **Shower/tub drain**:
@@ -195,6 +252,12 @@ Improper venting causes slow drains, gurgling, and sewer gas entry. This is the 
 4. Test drain before installation (fill and check for leaks)
 
 ### Days 6-8: Water Supply Rough-In
+
+<CalloutBox type="tip" title="Pick one PEX connection method and stick with it">
+
+Use either crimp **or** expansion fittings—not both—and support PEX every 32" with plastic hangers. Run 3/4" trunks to a distribution point, then branch 1/2" lines to each fixture.
+
+</CalloutBox>
 
 **Main supply planning**:
 1. 3/4" main from water heater to distribution point
@@ -227,6 +290,12 @@ Improper venting causes slow drains, gurgling, and sewer gas entry. This is the 
 
 ### Days 9-10: Testing and Inspection Prep
 
+<CalloutBox type="critical" title="Two separate tests — don't confuse them">
+
+The supply system and the DWV (drainage) system are tested **separately**, with different methods: the supply side holds pressure, while the DWV side most often gets a 10-foot head of water. Each has its own pass criteria.
+
+</CalloutBox>
+
 The supply system and the DWV (drainage) system are tested separately, with different methods. Don't confuse the two.
 
 **Supply (water) test (required)**:
@@ -242,8 +311,10 @@ The supply system and the DWV (drainage) system are tested separately, with diff
 3. Some jurisdictions accept an air test, smoke test, or peppermint test instead
 4. Confirm which DWV test your inspector requires
 
-<CalloutBox type="tip">
+<CalloutBox type="tip" title="Test early and often">
+
 Test early and often. Finding leaks before walls close is easy. Finding them after drywall costs $500-$2,000 per leak to repair.
+
 </CalloutBox>
 
 **Inspection preparation**:
@@ -257,6 +328,12 @@ Test early and often. Finding leaks before walls close is easy. Finding them aft
 - All cleanouts accessible
 
 ## Code Requirements
+
+<CalloutBox type="info" title="Verify your adopted edition first">
+
+Code numbers and figures change between editions—always verify your adopted IPC/IRC edition and local rules before relying on any of these.
+
+</CalloutBox>
 
 Key IRC/IPC plumbing requirements. Code numbers and figures change between editions—always verify your adopted IPC/IRC edition and local rules before relying on any of these:
 
@@ -278,10 +355,15 @@ Key IRC/IPC plumbing requirements. Code numbers and figures change between editi
 
 If hiring plumbers:
 
-**Typical pricing**:
-- **Complete rough-in**: $4,000-$8,000 for 2,000 sq ft home
-- **Hourly rate**: $75-$125 per hour
-- **Per fixture**: $300-$600 per fixture rough-in
+<DataTable
+  caption="Typical plumber pricing for rough-in"
+  headers={["Basis", "Typical price"]}
+  rows={[
+    ["Complete rough-in", "$4,000-$8,000 for 2,000 sq ft home"],
+    ["Hourly rate", "$75-$125 per hour"],
+    ["Per fixture", "$300-$600 per fixture rough-in"]
+  ]}
+/>
 
 **Timeline**: 3-7 days for typical house
 
@@ -300,6 +382,12 @@ If hiring plumbers:
 - Pressure to skip testing
 
 ## Common Mistakes
+
+<CalloutBox type="critical" title="Most of these fail inspection — and get expensive after drywall">
+
+Venting, drain slope, pipe support, and missing cleanouts or nail plates are the recurring rough-in failures. Catch them before walls close: fixing a hidden leak after drywall runs $1,000-$5,000 per leak.
+
+</CalloutBox>
 
 ### 1. Inadequate Venting
 **Why it's a problem**: Slow drains, gurgling, sewer gas, fails inspection. #1 plumbing rough-in failure.
@@ -353,6 +441,12 @@ If hiring plumbers:
 
 ## Quality Checkpoints
 
+<CalloutBox type="success" title="Walk this list before you call for inspection">
+
+Run through every item below before scheduling the rough-in inspection. Clearing it in one pass is the difference between a same-day approval and a costly re-inspection after walls are open.
+
+</CalloutBox>
+
 Before rough-in inspection, verify:
 
 - [ ] All fixtures have proper drain size (1.5", 2", or 3")
@@ -374,12 +468,18 @@ Before rough-in inspection, verify:
 
 ## Budget Breakdown
 
+<CalloutBox type="warning" title="These are planning estimates">
+
+The figures below are planning estimates for a 2,000 sq ft home with 2.5 baths. Actual costs vary by region, material choice, and fixture count—price your own materials before budgeting.
+
+</CalloutBox>
+
 Example for 2,000 sq ft home, 2.5 baths:
 
 <DataTable
   headers={["Item", "Cost", "Notes"]}
   rows={[
-    ["**Materials**", "", ""],
+    ["Materials", "", ""],
     ["PEX supply piping", "$450-$700", "Hot and cold, all sizes"],
     ["PEX fittings", "$200-$400", "Crimps, fittings, valves"],
     ["DWV pipe (ABS in this example)", "$550-$1,090", "All drains and vents; use PVC if that's your local DWV material"],
@@ -389,16 +489,18 @@ Example for 2,000 sq ft home, 2.5 baths:
     ["Support hardware", "$150-$250", "Hangers, straps, nail plates"],
     ["Testing equipment", "$80-$150", "Pressure gauge, caps"],
     ["Water heater kit", "$80-$150", "Connections, expansion tank"],
-    ["**Labor (if hiring)**", "$4,500-$7,500", "Complete rough-in"],
-    ["**Tools (if buying)**", "$200-$400", "PEX crimper, cutters"],
-    ["**Total (DIY)**", "**$2,030-$3,790**", "Materials and tools"],
-    ["**Total (Hired)**", "**$6,030-$10,790**", "Materials and labor"]
+    ["Labor (if hiring)", "$4,500-$7,500", "Complete rough-in"],
+    ["Tools (if buying)", "$200-$400", "PEX crimper, cutters"],
+    ["Total (DIY)", "$2,030-$3,790", "Materials and tools"],
+    ["Total (Hired)", "$6,030-$10,790", "Materials and labor"]
   ]}
   caption="Complete plumbing rough-in budget breakdown"
 />
 
-<CalloutBox type="tip">
+<CalloutBox type="tip" title="Hiring buys expertise, speed, and code compliance">
+
 Hiring a plumber for rough-in costs $4,500-$7,500 but includes expertise, speed, and code compliance. Many owner-builders hire this to ensure proper installation.
+
 </CalloutBox>
 
 ## Timeline Tips
