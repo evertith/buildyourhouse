@@ -17,12 +17,12 @@ export default function Header() {
 
   return (
     <header className={styles.header}>
+      <div className={styles.draftMargin} />
       <div className={styles.container}>
-        <div className={styles.logo}>
-          <Link href="/" onClick={closeMobileMenu}>
-            Build Your House
-          </Link>
-        </div>
+        <Link href="/" className={styles.logo} onClick={closeMobileMenu}>
+          <span className={styles.logoMark}>Build Your <em>House</em></span>
+          <span className={styles.logoTag}>Owner-Builder<br />Field Guide</span>
+        </Link>
 
         {/* Mobile Menu Button */}
         <button

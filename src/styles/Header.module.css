@@ -1,86 +1,116 @@
 /* ============================================
-   HEADER COMPONENT
-   Sticky header with warm design
+   HEADER — drafting titleblock
    ============================================ */
-
 .header {
-  background-color: var(--bg-primary);
-  border-bottom: 1px solid var(--bg-tertiary);
-  padding: var(--space-3) var(--container-padding-mobile);
   position: sticky;
   top: 0;
   z-index: 100;
+  background: rgba(242, 236, 223, 0.9);
   backdrop-filter: blur(8px);
-  background-color: rgba(250, 248, 245, 0.95);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.draftMargin {
+  height: 4px;
+  background: var(--accent-primary);
 }
 
 .container {
   max-width: var(--width-full);
   margin: 0 auto;
+  height: 74px;
+  padding: 0 var(--container-padding-mobile);
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 }
 
-/* ============================================
-   LOGO
-   ============================================ */
-.logo a {
-  font-size: var(--text-xl);
-  font-weight: var(--weight-bold);
+/* Brand wordmark + drafting tag */
+.logo {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  text-decoration: none;
+}
+.logo:hover { text-decoration: none; }
+
+.logoMark {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 25px;
+  letter-spacing: -0.02em;
+  line-height: 1;
   color: var(--text-heading);
-  text-decoration: none;
-  transition: color 0.2s ease;
 }
-
-.logo a:hover {
+.logoMark em {
+  font-style: italic;
   color: var(--accent-primary);
-  text-decoration: none;
 }
 
-/* ============================================
-   NAVIGATION
-   ============================================ */
+.logoTag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  border-left: 1px solid var(--hairline-strong);
+  padding-left: 12px;
+}
+
+/* Navigation */
 .nav {
   display: flex;
-  gap: var(--space-4);
   align-items: center;
+  gap: 28px;
 }
 
 .navLink {
-  font-size: var(--text-sm);
-  font-weight: var(--weight-medium);
+  position: relative;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--text-secondary);
   text-decoration: none;
-  transition: color 0.2s ease;
   white-space: nowrap;
+  transition: color 0.15s ease;
 }
-
 .navLink:hover {
-  color: var(--accent-primary);
+  color: var(--text-heading);
   text-decoration: none;
 }
+.navLink::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  height: 2px;
+  width: 0;
+  background: var(--accent-primary);
+  transition: width 0.2s ease;
+}
+.navLink:hover::after { width: 100%; }
 
+/* CTA "ticket" button */
 .ctaLink {
-  background-color: var(--accent-primary);
-  color: #ffffff;
-  padding: var(--space-1) var(--space-2);
-  border-radius: 6px;
-  font-weight: var(--weight-semibold);
-  box-shadow: 0 2px 4px rgba(212, 118, 59, 0.15);
-  transition: all 0.2s ease;
+  color: var(--cream);
+  background: var(--accent-primary);
+  border: 1px solid var(--accent-primary);
+  padding: 9px 16px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  transition: all 0.15s ease;
 }
-
 .ctaLink:hover {
-  background-color: var(--button-primary-hover);
-  color: #ffffff;
+  background: var(--button-primary-hover);
+  border-color: var(--button-primary-hover);
+  color: var(--cream);
   transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(212, 118, 59, 0.25);
 }
+.ctaLink::after { display: none; }
 
-/* ============================================
-   MOBILE MENU BUTTON
-   ============================================ */
+/* Mobile menu button */
 .mobileMenuButton {
   display: none;
   background: none;
@@ -89,14 +119,12 @@
   cursor: pointer;
   z-index: 101;
 }
-
 .hamburger {
   display: flex;
   flex-direction: column;
   gap: 5px;
   width: 24px;
 }
-
 .hamburger span {
   display: block;
   width: 100%;
@@ -105,56 +133,30 @@
   transition: all 0.3s ease;
   border-radius: 2px;
 }
+.hamburgerOpen span:nth-child(1) { transform: rotate(45deg) translate(7px, 7px); }
+.hamburgerOpen span:nth-child(2) { opacity: 0; }
+.hamburgerOpen span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
 
-.hamburgerOpen span:nth-child(1) {
-  transform: rotate(45deg) translate(7px, 7px);
-}
-
-.hamburgerOpen span:nth-child(2) {
-  opacity: 0;
-}
-
-.hamburgerOpen span:nth-child(3) {
-  transform: rotate(-45deg) translate(7px, -7px);
-}
-
-/* ============================================
-   RESPONSIVE - TABLET
-   ============================================ */
 @media (min-width: 768px) {
-  .header {
-    padding-left: var(--container-padding-tablet);
-    padding-right: var(--container-padding-tablet);
-  }
+  .container { padding-left: var(--container-padding-tablet); padding-right: var(--container-padding-tablet); }
 }
-
-/* ============================================
-   RESPONSIVE - DESKTOP
-   ============================================ */
 @media (min-width: 1024px) {
-  .header {
-    padding-left: var(--container-padding-desktop);
-    padding-right: var(--container-padding-desktop);
-  }
+  .container { padding-left: var(--container-padding-desktop); padding-right: var(--container-padding-desktop); }
 }
 
-/* ============================================
-   RESPONSIVE - MOBILE
-   ============================================ */
-@media (max-width: 768px) {
-  .mobileMenuButton {
-    display: block;
-  }
-
+/* Mobile drawer */
+@media (max-width: 960px) {
+  .mobileMenuButton { display: block; }
+  .logoTag { display: none; }
   .nav {
     position: fixed;
     top: 0;
     right: -100%;
     height: 100vh;
-    width: 70%;
-    max-width: 300px;
-    background-color: var(--bg-primary);
-    box-shadow: -4px 0 16px rgba(0, 0, 0, 0.1);
+    width: 78%;
+    max-width: 320px;
+    background: var(--bg-primary);
+    box-shadow: -4px 0 16px rgba(0, 0, 0, 0.12);
     flex-direction: column;
     align-items: stretch;
     padding: var(--space-10) var(--space-4) var(--space-4);
@@ -162,29 +164,15 @@
     transition: right 0.3s ease;
     overflow-y: auto;
   }
-
-  .navOpen {
-    right: 0;
-  }
-
+  .navOpen { right: 0; }
   .navLink {
-    padding: var(--space-2);
-    font-size: var(--text-base);
-    border-bottom: 1px solid var(--bg-tertiary);
+    padding: var(--space-2) 0;
+    font-size: 14px;
+    border-bottom: 1px solid var(--hairline);
   }
-
-  .navLink:last-child {
-    border-bottom: none;
-  }
-
+  .navLink::after { display: none; }
   .ctaLink {
     text-align: center;
     margin-top: var(--space-2);
-  }
-}
-
-@media (max-width: 480px) {
-  .logo a {
-    font-size: var(--text-lg);
   }
 }

@@ -1,14 +1,12 @@
 /* ============================================
-   FOOTER COMPONENT
-   Dark footer with warm accents
+   FOOTER — navy drawing titleblock
    ============================================ */
-
 .footer {
-  background-color: #2d2d2d;
-  color: #f5f5f5;
-  padding: var(--space-8) var(--container-padding-mobile) var(--space-6);
+  background: var(--navy-2);
+  color: rgba(246, 241, 228, 0.82);
+  padding: var(--space-8) var(--container-padding-mobile) var(--space-5);
   margin-top: var(--space-12);
-  border-top: 3px solid var(--accent-primary);
+  border-top: 4px solid var(--accent-primary);
 }
 
 .container {
@@ -16,152 +14,98 @@
   margin: 0 auto;
 }
 
-/* ============================================
-   FOOTER COLUMNS
-   ============================================ */
 .columns {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: var(--space-6);
-  margin-bottom: var(--space-8);
-  justify-items: center;
-  max-width: 1000px;
+  margin-bottom: var(--space-6);
+  max-width: 1040px;
   margin-left: auto;
   margin-right: auto;
 }
 
-.column {
-  text-align: center;
-}
+.column { text-align: left; }
 
 .column h3 {
-  font-size: var(--text-lg);
-  font-weight: var(--weight-bold);
-  margin-bottom: var(--space-3);
-  margin-top: 0;
-  color: #ffffff;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-primary);
+  margin: 0 0 var(--space-3);
 }
 
 .links {
   list-style: none;
   padding: 0;
   margin: 0;
-  text-align: center;
+  text-align: left;
 }
-
-.links li {
-  margin-bottom: var(--space-2);
-}
-
+.links li { margin-bottom: 10px; }
 .links a {
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(246, 241, 228, 0.78);
   text-decoration: none;
-  font-size: var(--text-sm);
-  transition: color 0.2s ease;
-  display: inline-block;
+  font-size: 14.5px;
+  transition: color 0.15s ease;
 }
-
 .links a:hover {
-  color: var(--accent-primary);
+  color: var(--cream);
   text-decoration: none;
 }
 
-/* ============================================
-   BOTTOM SECTION
-   ============================================ */
+/* Bottom titleblock bar */
 .bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
-  padding-top: var(--space-6);
-  text-align: center;
-  max-width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
+  border-top: 1px solid rgba(246, 241, 228, 0.14);
+  padding-top: var(--space-4);
+  max-width: 1040px;
+  margin: 0 auto;
+  text-align: left;
 }
 
 .tagline {
-  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   color: var(--accent-primary);
-  font-size: var(--text-sm);
-  font-weight: var(--weight-semibold);
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-3);
   max-width: none;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .disclaimer {
-  background-color: rgba(255, 255, 255, 0.08);
-  padding: var(--space-3);
-  border-radius: 8px;
-  border-left: 3px solid var(--accent-warning);
-  font-size: var(--text-sm);
+  font-size: 13px;
   line-height: var(--leading-relaxed);
-  margin-bottom: var(--space-4);
-  color: rgba(255, 255, 255, 0.85);
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
+  color: rgba(246, 241, 228, 0.6);
+  border-left: 2px solid rgba(246, 241, 228, 0.2);
+  padding-left: var(--space-3);
+  max-width: 840px;
+  margin: 0 0 var(--space-3);
+  text-align: left;
 }
-
-.disclaimer strong {
-  color: #ffffff;
-}
+.disclaimer strong { color: var(--cream); }
 
 .copyright {
-  text-align: center;
-  color: rgba(255, 255, 255, 0.5);
-  font-size: var(--text-sm);
-  margin-top: 0;
-  margin-bottom: 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(246, 241, 228, 0.45);
+  margin: 0;
   max-width: none;
-  margin-left: auto;
-  margin-right: auto;
 }
 
-/* ============================================
-   RESPONSIVE - TABLET
-   ============================================ */
 @media (min-width: 768px) {
-  .footer {
-    padding-left: var(--container-padding-tablet);
-    padding-right: var(--container-padding-tablet);
-  }
+  .footer { padding-left: var(--container-padding-tablet); padding-right: var(--container-padding-tablet); }
 }
-
-/* ============================================
-   RESPONSIVE - DESKTOP
-   ============================================ */
 @media (min-width: 1024px) {
-  .footer {
-    padding-left: var(--container-padding-desktop);
-    padding-right: var(--container-padding-desktop);
-  }
+  .footer { padding-left: var(--container-padding-desktop); padding-right: var(--container-padding-desktop); }
 }
 
-/* ============================================
-   RESPONSIVE - MOBILE
-   ============================================ */
 @media (max-width: 768px) {
-  .columns {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-5);
-  }
+  .columns { grid-template-columns: repeat(2, 1fr); gap: var(--space-5); }
 }
-
 @media (max-width: 480px) {
-  .footer {
-    padding-top: var(--space-6);
-    padding-bottom: var(--space-5);
-  }
-
-  .columns {
-    grid-template-columns: 1fr;
-    gap: var(--space-4);
-    margin-bottom: var(--space-6);
-  }
-
-  .column h3 {
-    font-size: var(--text-base);
-  }
+  .footer { padding-top: var(--space-6); }
+  .columns { grid-template-columns: 1fr; gap: var(--space-4); margin-bottom: var(--space-5); }
 }
