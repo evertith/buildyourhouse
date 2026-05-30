@@ -3,6 +3,17 @@
    ============================================ */
 .page { background: var(--bg-primary); }
 
+/* Full-bleed bands break out of the width-constrained <main>; inner
+   wrappers (.heroInner/.wrap/.stripInner/.ctaInner) re-center at 1200px. */
+.hero,
+.strip,
+.block,
+.notesWrap,
+.ctaBand {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+}
+
 .wrap {
   max-width: var(--width-full);
   margin: 0 auto;
