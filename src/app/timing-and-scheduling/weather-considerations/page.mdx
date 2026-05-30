@@ -7,30 +7,50 @@ export const metadata = {
 
 Weather is the one thing you can't control on your build. But you can plan for it, work around it, and minimize its impact on your schedule.
 
-I've seen perfect schedules destroyed by rain, builds shut down for winter, and owner-builders lose tens of thousands because they didn't respect weather windows.
+<CalloutBox type="info" title="The bottom line">
 
-This guide will help you plan your build to work with weather, not against it.
+I've seen perfect schedules destroyed by rain, builds shut down for winter, and owner-builders lose tens of thousands because they didn't respect weather windows. This guide will help you plan your build to work with weather, not against it.
+
+</CalloutBox>
 
 ## Weather Impact by Construction Phase
 
+<DataTable
+  caption="Weather sensitivity by phase, from most to least exposed"
+  headers={["Phase", "Weather sensitivity", "Typical delay per event", "Seasonal delay"]}
+  rows={[
+    ["Roofing", "Extremely weather dependent", "1-3 days", "1-3 weeks (rainy seasons)"],
+    ["Foundation", "Highly weather dependent", "3-7 days", "1-4 weeks spring (rain); 2-4 months winter (north)"],
+    ["Concrete (slabs, driveways)", "Highly weather dependent", "1-5 days", "1-2 weeks"],
+    ["Exterior painting/staining", "Highly weather dependent", "1-3 days", "1-4 weeks"],
+    ["Framing", "Weather dependent", "Rain days lose 50-100% productivity", "1-2 weeks rain; 3-4 month winter shutdown (north)"],
+    ["Exterior siding", "Weather dependent", "3-7 days", "1-3 weeks"],
+    ["Interior work (once dried in)", "Minimal weather dependency", "—", "—"]
+  ]}
+/>
+
 ### Foundation (Highly Weather Dependent)
 
-**Can't work in**:
-- Heavy rain (excavation turns to mud, can't pour)
-- Frozen ground (can't excavate)
-- Extreme cold below 40°F (concrete won't cure properly without blankets/heat)
-- Snow/ice (safety and quality issues)
-
-**Best conditions**:
-- Dry weather for excavation
-- Temperatures 50-80°F for concrete curing
-- Clear skies for 3-7 days after pour
+<DataTable
+  caption="Foundation work: when you can and can't pour"
+  headers={["Can't work in", "Best conditions"]}
+  rows={[
+    ["Heavy rain (excavation turns to mud, can't pour)", "Dry weather for excavation"],
+    ["Frozen ground (can't excavate)", "Temperatures 50-80°F for concrete curing"],
+    ["Extreme cold below 40°F (concrete won't cure properly without blankets/heat)", "Clear skies for 3-7 days after pour"],
+    ["Snow/ice (safety and quality issues)", "—"]
+  ]}
+/>
 
 **Weather delays**:
 - **Typical**: 3-7 days per weather event
 - **Seasonal**: 1-4 weeks in spring (rain), 2-4 months in winter (northern climates)
 
-**What I've learned**: Don't start excavation if rain is forecast within 48 hours. Dry excavation costs half as much as muddy excavation.
+<CalloutBox type="tip" title="What I've learned">
+
+Don't start excavation if rain is forecast within 48 hours. Dry excavation costs half as much as muddy excavation.
+
+</CalloutBox>
 
 **Cold weather concrete** (below 40°F):
 - Requires heated water and aggregates
@@ -41,205 +61,212 @@ This guide will help you plan your build to work with weather, not against it.
 
 ### Framing (Weather Dependent)
 
-**Can't work in**:
-- Heavy rain (lumber swells, crew productivity drops to near zero)
-- High winds over 25 mph (safety issue for walls and trusses)
-- Snow (lumber gets wet, safety issues)
-- Extreme cold below 20°F (materials brittle, crew productivity poor)
-
-**Can work with limitations**:
-- Light rain (slower pace, focus on interior if dried in)
-- Moderate cold 20-40°F (slower, need breaks, shorter days)
-- Overcast/drizzle (with good rain gear)
-
-**Best conditions**:
-- Dry weather
-- Temperatures 40-85°F
-- Light winds
-- Low humidity (lumber stays dry)
+<DataTable
+  caption="Framing: working limits and ideal conditions"
+  headers={["Can't work in", "Can work with limitations", "Best conditions"]}
+  rows={[
+    ["Heavy rain (lumber swells, crew productivity drops to near zero)", "Light rain (slower pace, focus on interior if dried in)", "Dry weather"],
+    ["High winds over 25 mph (safety issue for walls and trusses)", "Moderate cold 20-40°F (slower, need breaks, shorter days)", "Temperatures 40-85°F"],
+    ["Snow (lumber gets wet, safety issues)", "Overcast/drizzle (with good rain gear)", "Light winds"],
+    ["Extreme cold below 20°F (materials brittle, crew productivity poor)", "—", "Low humidity (lumber stays dry)"]
+  ]}
+/>
 
 **Weather delays**:
 - **Rain days**: Lose 50-100% productivity
 - **Typical seasonal**: 1-2 weeks for rain delays
 - **Winter shutdown**: 3-4 months in northern climates
 
-**What I've learned**: Framers can work through light rain, but productivity drops 50%. Full rain day costs you 1 day of labor ($500-800) plus 1 day of schedule.
+<CalloutBox type="tip" title="What I've learned">
 
-**Getting "dried in" is critical**: Once roof sheathing and felt are on, weather impact drops dramatically. Push hard to get dried in ASAP.
+Framers can work through light rain, but productivity drops 50%. Full rain day costs you 1 day of labor ($500-800) plus 1 day of schedule.
+
+</CalloutBox>
+
+<CalloutBox type="critical" title="Getting 'dried in' is critical">
+
+Once roof sheathing and felt are on, weather impact drops dramatically. Push hard to get dried in ASAP.
+
+</CalloutBox>
 
 ### Roofing (Extremely Weather Dependent)
 
-**Can't work in**:
-- Any rain (shingles won't seal, safety hazard)
-- High winds over 20 mph (safety hazard)
-- Snow or ice (impossible and dangerous)
-- Extreme heat over 90°F (shingles too soft, can be damaged)
-- Cold below 40°F (shingles brittle, won't seal properly)
-
-**Best conditions**:
-- Dry, clear skies for 48 hours
-- Temperatures 50-85°F
-- Light winds
-- Low chance of afternoon thunderstorms
+<DataTable
+  caption="Roofing: working limits and ideal conditions"
+  headers={["Can't work in", "Best conditions"]}
+  rows={[
+    ["Any rain (shingles won't seal, safety hazard)", "Dry, clear skies for 48 hours"],
+    ["High winds over 20 mph (safety hazard)", "Temperatures 50-85°F"],
+    ["Snow or ice (impossible and dangerous)", "Light winds"],
+    ["Extreme heat over 90°F (shingles too soft, can be damaged)", "Low chance of afternoon thunderstorms"],
+    ["Cold below 40°F (shingles brittle, won't seal properly)", "—"]
+  ]}
+/>
 
 **Weather delays**:
 - **Each weather event**: 1-3 days
 - **Seasonal**: 1-3 weeks in rainy seasons
 
-**What I've learned**: Weather forecast is your friend. Never start roofing if rain is possible in next 48 hours. A partially-roofed house is worse than no roof (water can get in, damage materials).
+<CalloutBox type="warning" title="What I've learned">
 
-**Regional considerations**:
-- **Pacific Northwest**: Avoid November-March (constant rain)
-- **Southeast**: Avoid July-August (afternoon thunderstorms daily)
-- **Northeast**: Avoid November-March (snow/ice)
-- **Southwest**: Ideal year-round (minimal rain)
+Weather forecast is your friend. Never start roofing if rain is possible in next 48 hours. A partially-roofed house is worse than no roof (water can get in, damage materials).
+
+</CalloutBox>
+
+<DataTable
+  caption="Regional roofing considerations"
+  headers={["Region", "Consideration"]}
+  rows={[
+    ["Pacific Northwest", "Avoid November-March (constant rain)"],
+    ["Southeast", "Avoid July-August (afternoon thunderstorms daily)"],
+    ["Northeast", "Avoid November-March (snow/ice)"],
+    ["Southwest", "Ideal year-round (minimal rain)"]
+  ]}
+/>
 
 ### Concrete Work - Slabs, Driveways (Highly Weather Dependent)
 
-**Can't work in**:
-- Rain (ruins finish, dilutes concrete)
-- Freezing temperatures (concrete won't cure)
-- Extreme heat over 90°F (too fast curing without special measures)
-
-**Best conditions**:
-- Dry weather for 24-48 hours after pour
-- Temperatures 50-80°F
-- Overcast (not direct sun in extreme heat)
+<DataTable
+  caption="Concrete slabs and driveways: working limits and ideal conditions"
+  headers={["Can't work in", "Best conditions"]}
+  rows={[
+    ["Rain (ruins finish, dilutes concrete)", "Dry weather for 24-48 hours after pour"],
+    ["Freezing temperatures (concrete won't cure)", "Temperatures 50-80°F"],
+    ["Extreme heat over 90°F (too fast curing without special measures)", "Overcast (not direct sun in extreme heat)"]
+  ]}
+/>
 
 **Weather delays**:
 - **Each event**: 1-5 days (need ground dry, good forecast)
 - **Seasonal**: 1-2 weeks
 
-**What I've learned**: Concrete contractors watch weather like hawks. Be ready to pour on short notice when weather window opens.
+<CalloutBox type="tip" title="What I've learned">
+
+Concrete contractors watch weather like hawks. Be ready to pour on short notice when weather window opens.
+
+</CalloutBox>
 
 ### Exterior Siding (Weather Dependent)
 
-**Can't work in**:
-- Heavy rain (some materials can't get wet before install)
-- Extreme cold below 32°F (many materials brittle)
-- High winds (safety and quality)
-
-**Can work with limitations**:
-- Light rain (for many siding types)
-- Cool weather (slower but manageable)
-
-**Best conditions**:
-- Dry weather
-- Moderate temperatures 40-80°F
-- Calm winds
+<DataTable
+  caption="Exterior siding: working limits and ideal conditions"
+  headers={["Can't work in", "Can work with limitations", "Best conditions"]}
+  rows={[
+    ["Heavy rain (some materials can't get wet before install)", "Light rain (for many siding types)", "Dry weather"],
+    ["Extreme cold below 32°F (many materials brittle)", "Cool weather (slower but manageable)", "Moderate temperatures 40-80°F"],
+    ["High winds (safety and quality)", "—", "Calm winds"]
+  ]}
+/>
 
 **Weather delays**:
 - **Typical**: 3-7 days per weather event
 - **Seasonal**: 1-3 weeks
 
-**Material-specific**:
-- **Fiber cement**: Can't get wet before install, paint must cure
-- **Vinyl**: Brittle in extreme cold
-- **Wood**: Needs dry conditions
-- **Metal/steel**: More weather-tolerant
+<DataTable
+  caption="Material-specific siding weather notes"
+  headers={["Material", "Weather note"]}
+  rows={[
+    ["Fiber cement", "Can't get wet before install, paint must cure"],
+    ["Vinyl", "Brittle in extreme cold"],
+    ["Wood", "Needs dry conditions"],
+    ["Metal/steel", "More weather-tolerant"]
+  ]}
+/>
 
 ### Exterior Painting/Staining (Highly Weather Dependent)
 
-**Can't work in**:
-- Rain (won't dry, ruins finish)
-- High humidity over 85% (won't dry properly)
-- Cold below 50°F (most paints won't cure)
-- Direct hot sun (too fast drying, poor finish)
-- Dew/frost (surface must be dry)
-
-**Best conditions**:
-- Dry weather for 24-48 hours
-- Temperatures 50-85°F
-- Moderate humidity 40-60%
-- Overcast or indirect sun
+<DataTable
+  caption="Exterior painting/staining: working limits and ideal conditions"
+  headers={["Can't work in", "Best conditions"]}
+  rows={[
+    ["Rain (won't dry, ruins finish)", "Dry weather for 24-48 hours"],
+    ["High humidity over 85% (won't dry properly)", "Temperatures 50-85°F"],
+    ["Cold below 50°F (most paints won't cure)", "Moderate humidity 40-60%"],
+    ["Direct hot sun (too fast drying, poor finish)", "Overcast or indirect sun"],
+    ["Dew/frost (surface must be dry)", "—"]
+  ]}
+/>
 
 **Weather delays**:
 - **Each event**: 1-3 days
 - **Seasonal**: 1-4 weeks
 
-**What I've learned**: Exterior painting has the narrowest weather window. In many climates, only April-May and September-October are ideal. July-August too hot/humid, November-March too cold/wet.
+<CalloutBox type="warning" title="What I've learned">
 
-**Product-specific**: Check manufacturer requirements. Some paints work down to 35°F, others need 50°F+.
+Exterior painting has the narrowest weather window. In many climates, only April-May and September-October are ideal. July-August too hot/humid, November-March too cold/wet.
+
+</CalloutBox>
+
+<CalloutBox type="tip" title="Product-specific">
+
+Check manufacturer requirements. Some paints work down to 35°F, others need 50°F+.
+
+</CalloutBox>
 
 ### Interior Work (Minimal Weather Dependency)
 
-**Once building is dried in** (roof on, windows in, doors in):
-- Rough-ins: Not weather dependent
-- Insulation: Not weather dependent
-- Drywall: Not weather dependent (if building stays dry)
-- Interior finishes: Not weather dependent
-- Flooring: Not weather dependent (if subfloor dry)
-- Cabinets: Not weather dependent
+Once the building is **dried in** (roof on, windows in, doors in), the following are **not weather dependent**:
+
+- Rough-ins
+- Insulation
+- Drywall (if building stays dry)
+- Interior finishes
+- Flooring (if subfloor dry)
+- Cabinets
 
 **Weather still matters**:
 - Need heat in winter (for worker comfort and material performance)
 - Need to keep building dry (leaks damage interior work)
 - Some materials require specific temps (paint, stains, adhesives)
 
-**What I've learned**: Getting dried in transforms your build. Suddenly 70% of work becomes weather-independent. This is why pushing to dry-in before bad weather is critical.
+<CalloutBox type="success" title="What I've learned">
+
+Getting dried in transforms your build. Suddenly 70% of work becomes weather-independent. This is why pushing to dry-in before bad weather is critical.
+
+</CalloutBox>
 
 ## Best Start Date by Climate
 
+<CalloutBox type="tip" title="Align your foundation start with your climate's best window">
+
+The single biggest scheduling lever you control is when you break ground. Start in the wrong season and you can waste 3-4 months waiting on frozen or saturated ground, or push completion into the next winter.
+
+</CalloutBox>
+
 ### Northern Climate (Snow/Freeze November-March)
 
-**Ideal start**: Late March - April
-- Foundation: April-May (ground thawed, before spring rain peaks)
-- Framing: May-July (good weather, long days)
-- Dried in: By August
-- Rough-ins and interior: September-February (inside work during winter)
-- Exterior finishes: March-May (spring weather)
-- **Completion**: 10-14 months (April next year)
-
-**Alternative start**: September
-- Foundation: September-October (before freeze)
-- Framing: October-November (tight timeline, risky)
-- Dried in: November (critical deadline)
-- Rough-ins and interior: December-April (inside work)
-- Exterior finishes: May-June
-- **Completion**: 9-12 months (June-August next year)
-
-**Worst start**: November-February
-- Can't start foundation until March-April (frozen ground)
-- Wastes 3-4 months waiting
-- Pushes completion into next winter
+<DataTable
+  caption="Northern climate: start-date scenarios"
+  headers={["Scenario", "Sequence", "Completion"]}
+  rows={[
+    ["Ideal start: Late March - April", "Foundation Apr-May (ground thawed, before spring rain peaks); framing May-Jul (good weather, long days); dried in by Aug; rough-ins and interior Sep-Feb (inside work during winter); exterior finishes Mar-May (spring weather)", "10-14 months (April next year)"],
+    ["Alternative start: September", "Foundation Sep-Oct (before freeze); framing Oct-Nov (tight timeline, risky); dried in Nov (critical deadline); rough-ins and interior Dec-Apr (inside work); exterior finishes May-Jun", "9-12 months (June-August next year)"],
+    ["Worst start: November-February", "Can't start foundation until Mar-Apr (frozen ground); wastes 3-4 months waiting; pushes completion into next winter", "—"]
+  ]}
+/>
 
 ### Southern Climate (Mild Winters, Hot Humid Summers)
 
-**Ideal start**: September-October
-- Foundation: October-November (cooler, less rain than spring)
-- Framing: November-January (mild, dry)
-- Dried in: January-February
-- Rough-ins and interior: January-April (inside work before heat)
-- Exterior finishes: March-May (before summer heat/humidity)
-- **Completion**: 9-12 months (June-August)
-
-**Alternative start**: January-February
-- Foundation: February-March
-- Framing: March-April (before extreme heat)
-- Dried in: May (before summer thunderstorms)
-- Rough-ins and interior: June-August (AC while working)
-- Exterior finishes: September-November (after summer heat)
-- **Completion**: 10-14 months (November-February next year)
-
-**Worst start**: June-July
-- Foundation and framing in extreme heat (100°F+)
-- Daily afternoon thunderstorms (common in Southeast)
-- Poor working conditions (worker productivity and safety)
+<DataTable
+  caption="Southern climate: start-date scenarios"
+  headers={["Scenario", "Sequence", "Completion"]}
+  rows={[
+    ["Ideal start: September-October", "Foundation Oct-Nov (cooler, less rain than spring); framing Nov-Jan (mild, dry); dried in Jan-Feb; rough-ins and interior Jan-Apr (inside work before heat); exterior finishes Mar-May (before summer heat/humidity)", "9-12 months (June-August)"],
+    ["Alternative start: January-February", "Foundation Feb-Mar; framing Mar-Apr (before extreme heat); dried in May (before summer thunderstorms); rough-ins and interior Jun-Aug (AC while working); exterior finishes Sep-Nov (after summer heat)", "10-14 months (November-February next year)"],
+    ["Worst start: June-July", "Foundation and framing in extreme heat (100°F+); daily afternoon thunderstorms (common in Southeast); poor working conditions (worker productivity and safety)", "—"]
+  ]}
+/>
 
 ### Pacific Northwest (Rainy October-April)
 
-**Ideal start**: April-May
-- Foundation: May-June (drying out, reliable weather)
-- Framing: June-August (dry season)
-- Dried in: August-September (before rain returns)
-- Rough-ins and interior: September-February (inside work during rain)
-- Exterior finishes: March-May (rain tapering)
-- **Completion**: 10-13 months (February-April next year)
-
-**Worst start**: October-November
-- Foundation during rainy season (constant delays)
-- Framing during rainy season (miserable, slow)
-- Risk of not getting dried in before winter
+<DataTable
+  caption="Pacific Northwest: start-date scenarios"
+  headers={["Scenario", "Sequence", "Completion"]}
+  rows={[
+    ["Ideal start: April-May", "Foundation May-Jun (drying out, reliable weather); framing Jun-Aug (dry season); dried in Aug-Sep (before rain returns); rough-ins and interior Sep-Feb (inside work during rain); exterior finishes Mar-May (rain tapering)", "10-13 months (February-April next year)"],
+    ["Worst start: October-November", "Foundation during rainy season (constant delays); framing during rainy season (miserable, slow); risk of not getting dried in before winter", "—"]
+  ]}
+/>
 
 ### Desert/Southwest (Hot Summers, Mild Winters)
 
@@ -248,38 +275,33 @@ This guide will help you plan your build to work with weather, not against it.
 - **Avoid**: June-August for concrete and roofing (extreme heat)
 - **Otherwise**: Very flexible, minimal weather delays
 
-**Advantage**: Can build 12 months/year with minimal weather delays
+<CalloutBox type="success" title="Advantage">
+
+Can build 12 months/year with minimal weather delays.
+
+</CalloutBox>
 
 ## Weather Buffer Planning
 
+<CalloutBox type="tip" title="Add buffer time before you commit to a date">
+
+Weather delays are not optional padding — they're a near-certainty. Build them into the schedule by phase and by region so a rained-out pour doesn't blow up your whole timeline.
+
+</CalloutBox>
+
 ### How Much Weather Time to Add
 
-**Foundation phase**:
-- **Northern climates**: 2-4 weeks (rain, cold)
-- **Southern climates**: 1-2 weeks (rain)
-- **Pacific Northwest**: 3-6 weeks (rain) if working in rainy season
-- **Desert/Southwest**: 1 week (minimal delay)
-
-**Framing phase**:
-- **Northern climates**: 2-3 weeks (rain, wind, cold)
-- **Southern climates**: 1-3 weeks (rain, thunderstorms)
-- **Pacific Northwest**: 4-8 weeks if working in rainy season
-- **Desert/Southwest**: 1 week (minimal delay)
-
-**Roofing**:
-- **All climates**: 1-2 weeks (very weather dependent)
-
-**Exterior finishes**:
-- **Northern climates**: 2-3 weeks (rain, cold)
-- **Southern climates**: 2-4 weeks (rain, humidity)
-- **Pacific Northwest**: 3-6 weeks if working in rainy season
-- **Desert/Southwest**: 1 week
-
-**Total project weather buffer**:
-- **Northern climates**: 6-12 weeks
-- **Southern climates**: 4-8 weeks
-- **Pacific Northwest**: 8-16 weeks (very seasonal)
-- **Desert/Southwest**: 2-4 weeks
+<DataTable
+  caption="Weather buffer to add by phase and region"
+  headers={["Phase", "Northern climates", "Southern climates", "Pacific Northwest", "Desert/Southwest"]}
+  rows={[
+    ["Foundation", "2-4 weeks (rain, cold)", "1-2 weeks (rain)", "3-6 weeks (rain) if working in rainy season", "1 week (minimal delay)"],
+    ["Framing", "2-3 weeks (rain, wind, cold)", "1-3 weeks (rain, thunderstorms)", "4-8 weeks if working in rainy season", "1 week (minimal delay)"],
+    ["Roofing", "1-2 weeks (very weather dependent)", "1-2 weeks (very weather dependent)", "1-2 weeks (very weather dependent)", "1-2 weeks (very weather dependent)"],
+    ["Exterior finishes", "2-3 weeks (rain, cold)", "2-4 weeks (rain, humidity)", "3-6 weeks if working in rainy season", "1 week"],
+    ["Total project weather buffer", "6-12 weeks", "4-8 weeks", "8-16 weeks (very seasonal)", "2-4 weeks"]
+  ]}
+/>
 
 ### Example: 2,000 sq ft Home in North Carolina
 
@@ -287,16 +309,39 @@ This guide will help you plan your build to work with weather, not against it.
 **Weather buffer**: 6 weeks (moderate climate)
 **Realistic timeline**: 38 weeks (9 months)
 
-**Breakdown**:
-- Foundation: 4 weeks + 1 week weather = 5 weeks
-- Framing: 6 weeks + 2 weeks weather = 8 weeks
-- Rough-ins: 6 weeks + 0 weather (inside) = 6 weeks
-- Insulation/drywall: 5 weeks + 0 weather = 5 weeks
-- Interior finishes: 8 weeks + 0 weather = 8 weeks
-- Exterior finishes: 3 weeks + 2 weeks weather = 5 weeks
-- Final: 1 week + 1 week weather = 2 weeks
+<DataTable
+  caption="Example weather-buffer breakdown: 2,000 sq ft home in North Carolina"
+  headers={["Phase", "Base", "Weather", "Total"]}
+  rows={[
+    ["Foundation", "4 weeks", "+1 week", "5 weeks"],
+    ["Framing", "6 weeks", "+2 weeks", "8 weeks"],
+    ["Rough-ins", "6 weeks", "+0 (inside)", "6 weeks"],
+    ["Insulation/drywall", "5 weeks", "+0", "5 weeks"],
+    ["Interior finishes", "8 weeks", "+0", "8 weeks"],
+    ["Exterior finishes", "3 weeks", "+2 weeks", "5 weeks"],
+    ["Final", "1 week", "+1 week", "2 weeks"]
+  ]}
+/>
 
 ## Weather Mitigation Strategies
+
+<CalloutBox type="info" title="Five ways to take weather time back">
+
+The strategies below range from free (just planning) to a few thousand dollars. Aggressive dry-in is the one that pays off almost every time.
+
+</CalloutBox>
+
+<DataTable
+  caption="Weather mitigation strategies at a glance"
+  headers={["Strategy", "Approach", "Saves", "Cost", "Worth it"]}
+  rows={[
+    ["1. Seasonal Sequencing", "Schedule weather-dependent work during best seasons", "2-4 weeks of weather delays", "Free (just planning)", "—"],
+    ["2. Aggressive Dry-In", "Push hard to get roof and windows in ASAP", "4-8 weeks (transforms 70% of work to weather-independent)", "$2,000-5,000 in premiums", "Almost always yes"],
+    ["3. Temporary Protection", "Protect work from weather during construction", "1-3 weeks of delays", "$500-3,000 for materials and equipment", "In harsh climates or tight timelines"],
+    ["4. Weather-Ready Scheduling", "Have indoor work ready when weather forces outdoor shutdown", "2-4 weeks (keeps project moving)", "Better planning (minimal cost)", "Yes, especially for full-time owner-builders"],
+    ["5. Weather Windows", "Monitor forecast and move fast when windows open", "1-3 weeks (catch windows instead of waiting)", "Requires flexibility and responsiveness", "Critical for weather-dependent phases"]
+  ]}
+/>
 
 ### Strategy 1: Seasonal Sequencing
 **Approach**: Schedule weather-dependent work during best seasons
@@ -370,6 +415,17 @@ This guide will help you plan your build to work with weather, not against it.
 
 ## Seasonal Construction Advantages/Disadvantages
 
+<DataTable
+  caption="Construction season trade-offs at a glance"
+  headers={["Season", "Advantages", "Disadvantages", "Best for"]}
+  rows={[
+    ["Spring (March-May)", "Ground thawing (can start foundation); moderate temperatures; increasing daylight; good for all phases", "Spring rain (can be significant); subcontractors booking up (busy season); ground may be muddy from snowmelt; unpredictable weather swings", "Starting foundation, framing"],
+    ["Summer (June-August)", "Longest days (more work hours); warmest temperatures; generally dry in many regions; good for exterior work", "Extreme heat (slows work, safety concern); thunderstorms (Southeast); vacation schedules (crew availability); concrete curing challenges in heat", "Framing, roofing, siding"],
+    ["Fall (September-November)", "Moderate temperatures (ideal working conditions); less rain in many regions; good concrete curing temps; crews less busy (better availability)", "Shortening days (fewer work hours); approaching winter (deadline pressure); leaves and debris (cleanup); must finish exterior before freeze", "All exterior work, starting interior work"],
+    ["Winter (December-February)", "Subcontractors more available (slow season); better pricing (less demand); good for interior work if dried in; can work on clear, cold days", "Frozen ground (can't excavate); cold concrete curing (expensive); short days (limited work hours); snow/ice delays; worker productivity lower; can't do most exterior work in North", "Interior finishes, planning next spring start"]
+  ]}
+/>
+
 ### Spring Construction (March-May)
 
 **Advantages**:
@@ -438,6 +494,19 @@ This guide will help you plan your build to work with weather, not against it.
 
 ## Regional-Specific Considerations
 
+<DataTable
+  caption="Building season and timeline impact by region"
+  headers={["Region", "Building season", "Off-season", "Timeline impact"]}
+  rows={[
+    ["Northeast (NY, PA, MA, etc.)", "April-October (7 months)", "Winter shutdown November-March (5 months)", "Add 5 months if not dried in before winter"],
+    ["Southeast (NC, SC, GA, FL)", "Year-round (with considerations)", "Summer: heat, humidity, daily thunderstorms; winter mild, can work through", "Minimal winter impact, 2-3 weeks for summer thunderstorms"],
+    ["Midwest (OH, IN, IL, MI)", "April-October", "Winter shutdown November-March; spring mud season (late March-April)", "Add 4-5 months if not dried in before winter"],
+    ["Pacific Northwest (WA, OR)", "May-September (dry season)", "Rainy season October-April (very wet)", "Add 5-6 months if working through rainy season, or wait for spring"],
+    ["Southwest (AZ, NM, NV)", "Year-round", "Summer extreme heat (110°F+); winter mild and dry", "Minimal, most flexible region"],
+    ["Mountain West (CO, UT, WY)", "May-October", "Winter shutdown November-April (harsh); higher elevation = shorter season", "Add 5-6 months if not dried in before winter"]
+  ]}
+/>
+
 ### Northeast (NY, PA, MA, etc.)
 **Building season**: April-October (7 months)
 **Winter shutdown**: November-March (5 months)
@@ -482,46 +551,35 @@ This guide will help you plan your build to work with weather, not against it.
 
 ## Weather-Related Costs
 
+<CalloutBox type="warning" title="Weather costs money — directly and indirectly">
+
+A failed pour, damaged materials, or a missed dry-in deadline all carry real dollar figures. The numbers below show why not rushing weather-dependent work usually saves money.
+
+</CalloutBox>
+
 ### Direct Weather Costs
 
-**Failed concrete pour** (rained out):
-- Concrete return fee: $500-1,000
-- Labor wasted: $500-1,000
-- Reschedule delay: 3-7 days
-- **Total**: $1,000-2,000 + 1 week
-
-**Damaged materials** (rain, snow):
-- Lumber (warped, moldy): $1,000-3,000
-- Drywall (water damage): $2,000-5,000
-- Insulation (wet): $1,000-2,000
-- **Total**: $4,000-10,000
-
-**Cold weather concrete protection**:
-- Blankets and heating: $500-1,500
-- Heated water/aggregates: $300-800
-- Extended curing time: $200-500
-- **Total**: $1,000-2,800
-
-**Winter shutdown** (project not dried in):
-- Construction loan interest (4 months): $4,000-6,000
-- Temporary housing (4 months): $8,000-12,000
-- Equipment rental: $1,000-2,000
-- **Total**: $13,000-20,000
+<DataTable
+  caption="Direct weather costs"
+  headers={["Event", "Line items", "Total"]}
+  rows={[
+    ["Failed concrete pour (rained out)", "Concrete return fee $500-1,000; labor wasted $500-1,000; reschedule delay 3-7 days", "$1,000-2,000 + 1 week"],
+    ["Damaged materials (rain, snow)", "Lumber (warped, moldy) $1,000-3,000; drywall (water damage) $2,000-5,000; insulation (wet) $1,000-2,000", "$4,000-10,000"],
+    ["Cold weather concrete protection", "Blankets and heating $500-1,500; heated water/aggregates $300-800; extended curing time $200-500", "$1,000-2,800"],
+    ["Winter shutdown (project not dried in)", "Construction loan interest (4 months) $4,000-6,000; temporary housing (4 months) $8,000-12,000; equipment rental $1,000-2,000", "$13,000-20,000"]
+  ]}
+/>
 
 ### Indirect Weather Costs
 
-**Extended timeline** (weather delays):
-- 4 weeks of weather delays
-- Construction loan interest: $2,000-3,000
-- Temporary housing: $2,000-4,000
-- Extended equipment: $500-1,000
-- **Total**: $4,500-8,000
-
-**Subcontractor re-scheduling**:
-- Crew has to leave for another job
-- Return mobilization: $500-1,500
-- Delay waiting for return: 1-3 weeks
-- **Total**: $500-1,500 + 1-3 week delay
+<DataTable
+  caption="Indirect weather costs"
+  headers={["Event", "Line items", "Total"]}
+  rows={[
+    ["Extended timeline (4 weeks of weather delays)", "Construction loan interest $2,000-3,000; temporary housing $2,000-4,000; extended equipment $500-1,000", "$4,500-8,000"],
+    ["Subcontractor re-scheduling", "Crew has to leave for another job; return mobilization $500-1,500; delay waiting for return 1-3 weeks", "$500-1,500 + 1-3 week delay"]
+  ]}
+/>
 
 ## Weather Monitoring Tools
 
@@ -545,15 +603,26 @@ This guide will help you plan your build to work with weather, not against it.
 - NOAA weather radio (alerts)
 
 ### What to Track
-- **Temperature**: High/low (affects concrete, paint, worker productivity)
-- **Precipitation**: Chance and amount
-- **Wind**: Speed and gusts (affects framing, roofing safety)
-- **Humidity**: Affects paint, concrete, drying times
-- **UV index**: Affects asphalt roofing installation
+
+<DataTable
+  caption="What to track and why"
+  headers={["Metric", "Why it matters"]}
+  rows={[
+    ["Temperature", "High/low (affects concrete, paint, worker productivity)"],
+    ["Precipitation", "Chance and amount"],
+    ["Wind", "Speed and gusts (affects framing, roofing safety)"],
+    ["Humidity", "Affects paint, concrete, drying times"],
+    ["UV index", "Affects asphalt roofing installation"]
+  ]}
+/>
 
 ## Weather Decision Checklist
 
-Before scheduling weather-dependent work:
+<CalloutBox type="tip" title="Run this checklist before scheduling weather-dependent work">
+
+Each phase has its own go/no-go conditions. Confirm every box before you commit crews and materials to an outdoor task.
+
+</CalloutBox>
 
 ### Foundation/Concrete
 - [ ] Check 3-day forecast (no rain)
@@ -584,6 +653,12 @@ Before scheduling weather-dependent work:
 - [ ] Dry surface to paint
 
 ## Key Takeaways
+
+<CalloutBox type="critical" title="Get dried in ASAP — the single most important weather milestone">
+
+Once the roof and windows are in, 70% of your work becomes weather-independent. Everything in this guide points back to hitting that milestone before bad weather arrives.
+
+</CalloutBox>
 
 **Weather will delay your project**: Plan for it, don't fight it
 

@@ -15,22 +15,49 @@ The **IRC is your friend**. Every table you need is in there. Learn to use it, a
 
 ## What Are Building Codes?
 
+<CalloutBox type="info" title="What codes actually are">
+
 Building codes are legally enforceable standards that govern the design and construction of buildings. They ensure structures are safe, healthy, and energy-efficient.
 
-**The main codes you'll encounter:**
+</CalloutBox>
 
-- **International Residential Code (IRC)**: Single-family homes, duplexes, townhouses
-- **International Building Code (IBC)**: Commercial buildings, multi-family (3+ units)
-- **International Energy Conservation Code (IECC)**: Energy efficiency requirements
-- **National Electrical Code (NEC)**: Electrical systems
-- **International Plumbing Code (IPC)**: Plumbing systems
-- **International Mechanical Code (IMC)**: HVAC systems
+The main codes you'll encounter break down by what they regulate:
+
+<DataTable
+  caption="The model codes you'll encounter"
+  headers={["Code", "Covers"]}
+  rows={[
+    ["International Residential Code (IRC)", "Single-family homes, duplexes, townhouses"],
+    ["International Building Code (IBC)", "Commercial buildings, multi-family (3+ units)"],
+    ["International Energy Conservation Code (IECC)", "Energy efficiency requirements"],
+    ["National Electrical Code (NEC)", "Electrical systems"],
+    ["International Plumbing Code (IPC)", "Plumbing systems"],
+    ["International Mechanical Code (IMC)", "HVAC systems"]
+  ]}
+/>
 
 <CalloutBox type="tip" title="Which Code Do You Need?">
 For a typical single-family home, you'll primarily use the **IRC**. Buy this book and keep it on site.
 </CalloutBox>
 
 ## IRC vs IBC: Which Applies to You?
+
+<CalloutBox type="success" title="For 99% of owner-builders: stick with the IRC">
+
+The IRC is written for builders, not engineers, and tells you exactly what to use. The IBC is for commercial and larger multi-family work and requires engineering to prove compliance.
+
+</CalloutBox>
+
+<DataTable
+  caption="IRC vs. IBC at a glance"
+  headers={["", "IRC (International Residential Code)", "IBC (International Building Code)"]}
+  rows={[
+    ["Covers", "1-2 family dwellings up to 3 stories", "Commercial buildings, multi-family 3+ units"],
+    ["Ease of use", "Easier to use — written for builders, not engineers", "Engineering required — more complex calculations"],
+    ["Approach", "Prescriptive — tells you exactly what to use (2x10 @ 16\" OC, etc.)", "Performance-based — requires engineering to prove compliance"],
+    ["When you need it", "Most owner-builders — this is your primary code book", "Rarely needed — unless you're building something unusual"]
+  ]}
+/>
 
 ### IRC (International Residential Code)
 - **Covers**: 1-2 family dwellings up to 3 stories
@@ -44,11 +71,13 @@ For a typical single-family home, you'll primarily use the **IRC**. Buy this boo
 - **Performance-based**: Requires engineering to prove compliance
 - **Rarely needed**: Unless you're building something unusual
 
-**For 99% of owner-builders**: Stick with the IRC.
-
 ## How Codes Are Adopted
 
-Understanding how codes are adopted helps you know which version applies to your project:
+<CalloutBox type="info" title="Why adoption matters">
+
+Understanding how codes are adopted helps you know which version applies to your project — the edition your jurisdiction enforces is what governs your build, not the latest one ICC has published.
+
+</CalloutBox>
 
 <StepGuide
   steps={[
@@ -86,18 +115,30 @@ Many states amend the model codes. Common amendments:
 
 ## Reading the IRC: A Practical Guide
 
+<CalloutBox type="tip" title="The whole skill is knowing where to look">
+
+You don't memorize the IRC — you learn its structure, then look up the chapter, section, and table for the question in front of you.
+
+</CalloutBox>
+
 ### Code Organization
 
-The IRC is organized into chapters:
+The IRC is organized into chapters, grouped by building system:
 
-- **R301-R302**: Design criteria (snow loads, wind, seismic)
-- **R403-R404**: Foundations
-- **R502-R505**: Floors
-- **R602-R606**: Walls
-- **R802-R808**: Roof-ceiling
-- **E3401-E4204**: Electrical (NEC)
-- **P2601-P3103**: Plumbing
-- **M1301-M2301**: Mechanical (HVAC)
+<DataTable
+  caption="IRC chapter organization"
+  headers={["Sections", "Covers"]}
+  rows={[
+    ["R301-R302", "Design criteria (snow loads, wind, seismic)"],
+    ["R403-R404", "Foundations"],
+    ["R502-R505", "Floors"],
+    ["R602-R606", "Walls"],
+    ["R802-R808", "Roof-ceiling"],
+    ["E3401-E4204", "Electrical (NEC)"],
+    ["P2601-P3103", "Plumbing"],
+    ["M1301-M2301", "Mechanical (HVAC)"]
+  ]}
+/>
 
 ### How to Look Things Up
 
@@ -134,12 +175,18 @@ Using **2x10 Southern Pine #2**, at **16" OC**, you can span **16'1"** for a liv
 
 ### Understanding Tables
 
-Code tables are your best friend. They give you prescriptive solutions:
+Code tables are your best friend — they give you prescriptive solutions without any engineering:
 
-- **Table R502.3.1**: Floor joist spans
-- **Table R602.3(1)**: Fastening schedule
-- **Table R802.5.1**: Rafter spans
-- **Table R802.4.1**: Headers and beams
+<DataTable
+  caption="High-use IRC tables"
+  headers={["Table", "What it gives you"]}
+  rows={[
+    ["Table R502.3.1", "Floor joist spans"],
+    ["Table R602.3(1)", "Fastening schedule"],
+    ["Table R802.5.1", "Rafter spans"],
+    ["Table R802.4.1", "Headers and beams"]
+  ]}
+/>
 
 <CalloutBox type="tip" title="Pro Tip">
 Bookmark the tables you'll use most. I have mine tabbed in my physical code book.
@@ -147,49 +194,89 @@ Bookmark the tables you'll use most. I have mine tabbed in my physical code book
 
 ## Common Code Requirements Every Owner-Builder Must Know
 
+<CalloutBox type="info" title="The specs you'll reach for most">
+
+These are the prescriptive numbers owner-builders hit on nearly every job — foundations, framing, stairs, electrical, and insulation. Confirm the exact values against the code edition your jurisdiction enforces.
+
+</CalloutBox>
+
 ### Foundation (R403)
 
-- **Footing width**: Minimum 12" for 1-story, 15" for 2-story
-- **Footing depth**: Below frost line (varies by location)
-- **Concrete strength**: Minimum 2,500 psi
-- **Anchor bolts**: 1/2" diameter, max 6' spacing, within 12" of plate ends
+<DataTable
+  caption="Foundation requirements (R403)"
+  headers={["Item", "Requirement"]}
+  rows={[
+    ["Footing width", "Minimum 12\" for 1-story, 15\" for 2-story"],
+    ["Footing depth", "Below frost line (varies by location)"],
+    ["Concrete strength", "Minimum 2,500 psi"],
+    ["Anchor bolts", "1/2\" diameter, max 6' spacing, within 12\" of plate ends"]
+  ]}
+/>
 
 ### Framing (R602)
 
-- **Stud spacing**: Typically 16" OC, can use 24" OC with proper sizing
-- **Header sizing**: See Table R502.5 based on span and loads
-- **Corner bracing**: Required wall bracing per R602.10
-- **Bottom plate**: Minimum 2x4, pressure-treated on concrete
+<DataTable
+  caption="Framing requirements (R602)"
+  headers={["Item", "Requirement"]}
+  rows={[
+    ["Stud spacing", "Typically 16\" OC, can use 24\" OC with proper sizing"],
+    ["Header sizing", "See Table R502.5 based on span and loads"],
+    ["Corner bracing", "Required wall bracing per R602.10"],
+    ["Bottom plate", "Minimum 2x4, pressure-treated on concrete"]
+  ]}
+/>
 
 ### Stairs (R311.7)
 
-- **Riser height**: 7-3/4" maximum
-- **Tread depth**: 10" minimum
-- **Headroom**: 6'8" minimum
-- **Handrails**: Required on one side, 34-38" height
-- **Guards**: Required at 30" height or more
+<DataTable
+  caption="Stair requirements (R311.7)"
+  headers={["Item", "Requirement"]}
+  rows={[
+    ["Riser height", "7-3/4\" maximum"],
+    ["Tread depth", "10\" minimum"],
+    ["Headroom", "6'8\" minimum"],
+    ["Handrails", "Required on one side, 34-38\" height"],
+    ["Guards", "Required at 30\" height or more"]
+  ]}
+/>
 
 ### Electrical (Chapter 34-42)
 
-- **Kitchen outlets**: Every 4' of counter space
-- **GFCI protection**: Kitchen, bathrooms, outdoors, garages, crawlspaces
-- **AFCI protection**: Bedrooms, living areas (required in newer codes)
-- **Service size**: Minimum 100A for homes under 3,000 sq ft
+<DataTable
+  caption="Electrical requirements (Chapter 34-42)"
+  headers={["Item", "Requirement"]}
+  rows={[
+    ["Kitchen outlets", "Every 4' of counter space"],
+    ["GFCI protection", "Kitchen, bathrooms, outdoors, garages, crawlspaces"],
+    ["AFCI protection", "Bedrooms, living areas (required in newer codes)"],
+    ["Service size", "Minimum 100A for homes under 3,000 sq ft"]
+  ]}
+/>
 
 ### Insulation (N1102)
 
 Based on climate zone (find yours in the code):
 
-- **Ceiling**: R30-R60 depending on zone
-- **Walls**: R13-R21 depending on zone
-- **Floor**: R13-R30 depending on zone
-- **Windows**: U-factor and SHGC requirements
+<DataTable
+  caption="Insulation requirements by climate zone (N1102)"
+  headers={["Item", "Requirement"]}
+  rows={[
+    ["Ceiling", "R30-R60 depending on zone"],
+    ["Walls", "R13-R21 depending on zone"],
+    ["Floor", "R13-R30 depending on zone"],
+    ["Windows", "U-factor and SHGC requirements"]
+  ]}
+/>
 
 ## Local Codes vs. State Codes
+
+<CalloutBox type="info" title="What your inspector actually enforces">
 
 Your building inspector enforces the **local** code, which is typically:
 
 **State code + local amendments + local interpretations**
+
+</CalloutBox>
 
 ### How to Find Local Requirements
 
@@ -207,6 +294,22 @@ Your building inspector enforces the **local** code, which is typically:
 - **HOA requirements**: Beyond code minimums
 
 ## Code Compliance Strategies
+
+<CalloutBox type="tip" title="Stay prescriptive whenever you can">
+
+You have three ways to satisfy the code. Prescriptive is fastest and cheapest; reach for performance or alternative methods only when the tables can't cover your design.
+
+</CalloutBox>
+
+<DataTable
+  caption="The three code-compliance paths compared"
+  headers={["Strategy", "Use when", "Example", "Cost / note"]}
+  rows={[
+    ["Prescriptive (easiest) — follow the tables exactly, no engineering needed", "Standard construction, common materials, typical spans", "Using Table R802.4.1 for a beam span", "No engineer required; inspector familiar with approach"],
+    ["Performance (advanced) — hire an engineer to design and stamp non-standard elements", "Long spans, unusual designs, custom solutions", "24' ridge beam without mid-span support", "$500-$2,500 for engineering; can exceed table limitations"],
+    ["Alternative methods — prove equivalence through testing or engineering", "Innovative materials, new techniques", "ICF foundations, structural insulated panels", "Must convince inspector of equivalence"]
+  ]}
+/>
 
 ### Strategy 1: Prescriptive (Easiest)
 
@@ -238,6 +341,25 @@ For owner-builders: Stick with prescriptive methods whenever possible. It's fast
 </CalloutBox>
 
 ## Common Code Violations (And How to Avoid Them)
+
+<CalloutBox type="warning" title="These six trip up owner-builders most">
+
+Every one of these is avoidable by following the relevant table or code section. Catch them before the inspector does.
+
+</CalloutBox>
+
+<DataTable
+  caption="Common code violations and how to fix them"
+  headers={["Violation", "Fix"]}
+  rows={[
+    ["Incorrect joist spacing — using 24\" OC without upsizing joists", "Use span tables, upsize lumber if needed"],
+    ["Missing flashing — no flashing over windows/doors", "Install proper flashing per R703.8"],
+    ["Improper stair dimensions — inconsistent riser heights", "Calculate run/rise, keep within 3/8\" variance"],
+    ["Inadequate ventilation — insufficient attic ventilation", "1 sq ft per 150 sq ft of attic (R806.2)"],
+    ["Wrong fastener schedule — using wrong nails or spacing", "Follow Table R602.3(1) exactly"],
+    ["Electrical code issues — too many outlets on one circuit", "Limit 12 outlets per 15A circuit (general rule)"]
+  ]}
+/>
 
 ### 1. Incorrect Joist Spacing
 
@@ -271,16 +393,28 @@ For owner-builders: Stick with prescriptive methods whenever possible. It's fast
 
 ## Energy Code Compliance
 
+<CalloutBox type="info" title="Energy compliance is mostly paperwork">
+
+Most of the energy code comes down to two things: knowing your climate zone, then proving compliance — usually with free REScheck software. Air sealing and duct sealing are where inspectors actually test.
+
+</CalloutBox>
+
 ### Understanding Climate Zones
 
 The US is divided into 8 climate zones (1-8, warmest to coldest):
 
-- **Zone 1-2**: South Florida, Hawaii
-- **Zone 3**: Most of Florida, Gulf Coast
-- **Zone 4**: Most of Southeast, mid-Atlantic
-- **Zone 5**: Mid-Atlantic, Midwest
-- **Zone 6**: Northern states
-- **Zone 7-8**: Alaska, high mountains
+<DataTable
+  caption="US climate zones (1-8, warmest to coldest)"
+  headers={["Zone", "Region"]}
+  rows={[
+    ["Zone 1-2", "South Florida, Hawaii"],
+    ["Zone 3", "Most of Florida, Gulf Coast"],
+    ["Zone 4", "Most of Southeast, mid-Atlantic"],
+    ["Zone 5", "Mid-Atlantic, Midwest"],
+    ["Zone 6", "Northern states"],
+    ["Zone 7-8", "Alaska, high mountains"]
+  ]}
+/>
 
 **Find your zone**: Check IECC Climate Zone Map or ask building department.
 
@@ -293,8 +427,11 @@ The easiest way to prove energy compliance:
 3. **Generate report**: Shows pass/fail
 4. **Submit with permit**: Attach to permit application
 
-**Cost to comply**: $0 (software is free)
-**Time**: 30 minutes to run calculations
+<CalloutBox type="tip" title="REScheck is free and fast">
+
+**Cost to comply**: $0 (software is free). **Time**: 30 minutes to run calculations.
+
+</CalloutBox>
 
 ### Common Energy Code Requirements
 
@@ -305,29 +442,59 @@ The easiest way to prove energy compliance:
 
 ## Resources for Learning Codes
 
+<CalloutBox type="tip" title="Two books answer most questions">
+
+The physical IRC plus Code Check Complete cover the overwhelming majority of what you'll look up. Everything below is supplemental.
+
+</CalloutBox>
+
 ### Essential Books
 
-1. **IRC** (2024 is the latest published edition—but buy the edition your jurisdiction actually enforces, which is often 2018 or 2021): $150-200, essential reference
-2. **Code Check Complete**: $30, simplified visual guide
-3. **Builder's Guide to the IRC**: $80, detailed explanations
+<DataTable
+  caption="Essential code reference books"
+  headers={["Book", "Price", "Note"]}
+  rows={[
+    ["IRC (2024 is the latest published edition—but buy the edition your jurisdiction actually enforces, which is often 2018 or 2021)", "$150-200", "Essential reference"],
+    ["Code Check Complete", "$30", "Simplified visual guide"],
+    ["Builder's Guide to the IRC", "$80", "Detailed explanations"]
+  ]}
+/>
 
 ### Online Resources
 
-- **ICC Digital Codes**: Subscription-based searchable code ($25/month)
-- **UpCodes**: Free searchable code database
-- **Building Department website**: Local amendments and guides
+<DataTable
+  caption="Online code resources"
+  headers={["Resource", "Details"]}
+  rows={[
+    ["ICC Digital Codes", "Subscription-based searchable code ($25/month)"],
+    ["UpCodes", "Free searchable code database"],
+    ["Building Department website", "Local amendments and guides"]
+  ]}
+/>
 
 ### Training
 
-- **ICC Certification courses**: 16-40 hours, $200-$500
-- **Local builder associations**: Code update seminars
-- **YouTube**: "Code School" channels (free)
+<DataTable
+  caption="Code training options"
+  headers={["Option", "Details"]}
+  rows={[
+    ["ICC Certification courses", "16-40 hours, $200-$500"],
+    ["Local builder associations", "Code update seminars"],
+    ["YouTube", "\"Code School\" channels (free)"]
+  ]}
+/>
 
 <CalloutBox type="tip" title="My Book Recommendation">
 Buy the physical IRC book and Code Check Complete. These two resources will answer 95% of your questions.
 </CalloutBox>
 
 ## When to Hire an Engineer
+
+<CalloutBox type="info" title="When the tables run out, call an engineer">
+
+Anything that exceeds the prescriptive span tables or involves non-standard structure needs a stamp. It's a small, predictable cost relative to the risk.
+
+</CalloutBox>
 
 You'll need engineering for:
 
@@ -338,10 +505,33 @@ You'll need engineering for:
 - **Custom designs**: Anything unusual or non-prescriptive
 - **Local requirements**: Some jurisdictions require engineer stamps
 
-**Cost**: $500-$2,500 for a typical residential project
-**Timeline**: 1-3 weeks for engineering drawings
+<DataTable
+  caption="Typical residential engineering cost and timeline"
+  headers={["Factor", "Typical"]}
+  rows={[
+    ["Cost", "$500-$2,500 for a typical residential project"],
+    ["Timeline", "1-3 weeks for engineering drawings"]
+  ]}
+/>
 
 ## Code Questions: Who to Ask
+
+<CalloutBox type="tip" title="Ask the right source the right question">
+
+Each source is good for some questions and wrong for others. Don't ask an inspector to design your house, and don't ask a builder to interpret code.
+
+</CalloutBox>
+
+<DataTable
+  caption="Who to ask — and what not to ask them"
+  headers={["Source", "Ask", "Don't ask"]}
+  rows={[
+    ["Building inspector", "Interpretations, local amendments, inspection requirements", "To design your house or solve problems"],
+    ["Engineer", "Structural design, beam sizing, complex spans", "Basic questions answered in span tables"],
+    ["Experienced builder", "Practical application, best practices, local norms", "Code interpretations (they may be wrong)"],
+    ["Code books", "Everything prescriptive, standard details", "For advice on complex engineering"]
+  ]}
+/>
 
 ### Building Inspector
 
@@ -447,7 +637,11 @@ Understanding codes is not about memorizing everything—it's about:
 4. **Staying prescriptive** (avoid custom engineering when possible)
 5. **Building relationships** (with inspectors and engineers)
 
+<CalloutBox type="success" title="The IRC is your friend">
+
 **The IRC is your friend**. Every table you need is in there. Learn to use it, and you'll save thousands in engineering fees.
+
+</CalloutBox>
 
 ## Related Resources
 

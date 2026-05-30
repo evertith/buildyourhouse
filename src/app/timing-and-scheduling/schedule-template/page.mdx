@@ -5,38 +5,43 @@ export const metadata = {
 
 # Construction Schedule Template: Create Your Build Timeline
 
-A good schedule is your roadmap through the construction process. It keeps you organized, helps you coordinate trades, and prevents costly delays.
+<CalloutBox type="info" title="Why this matters">
 
-This guide provides templates and step-by-step instructions for creating and managing your construction schedule.
+A good schedule is your roadmap through the construction process. It keeps you organized, helps you coordinate trades, and prevents costly delays. This guide provides templates and step-by-step instructions for creating and managing your construction schedule.
+
+</CalloutBox>
 
 ## Why You Need a Schedule
 
-**Without a schedule**:
-- Subcontractors showing up at wrong time
-- Materials arriving too early or too late
-- Not knowing what's next
-- Reactive instead of proactive
-- Constant surprises and delays
+<DataTable
+  caption="With a schedule vs. without one"
+  headers={["Without a schedule", "With a schedule"]}
+  rows={[
+    ["Subcontractors showing up at wrong time", "Everyone knows when they're needed"],
+    ["Materials arriving too early or too late", "Materials ordered with proper lead time"],
+    ["Not knowing what's next", "You're 2-4 weeks ahead in planning"],
+    ["Reactive instead of proactive", "Proactive problem-solving"],
+    ["Constant surprises and delays", "Smooth transitions between phases"]
+  ]}
+/>
 
-**With a schedule**:
-- Everyone knows when they're needed
-- Materials ordered with proper lead time
-- You're 2-4 weeks ahead in planning
-- Proactive problem-solving
-- Smooth transitions between phases
+<CalloutBox type="success" title="The payoff">
 
-**Time to create**: 4-8 hours initially
-**Time to maintain**: 1-2 hours per week
-**Value**: Saves 4-8 weeks of delays ($5,000-15,000)
+- **Time to create**: 4-8 hours initially
+- **Time to maintain**: 1-2 hours per week
+- **Value**: Saves 4-8 weeks of delays ($5,000-15,000)
+
+</CalloutBox>
 
 ## Schedule Template Options
 
 ### Option 1: Simple Spreadsheet (Recommended for Most)
 
-**Best for**:
-- Straightforward projects
-- First-time owner-builders
-- Those comfortable with Excel/Google Sheets
+<CalloutBox type="tip" title="Best for most owner-builders">
+
+Straightforward projects, first-time owner-builders, and those comfortable with Excel/Google Sheets.
+
+</CalloutBox>
 
 **Pros**:
 - Easy to create and update
@@ -69,12 +74,17 @@ This guide provides templates and step-by-step instructions for creating and man
 - Takes longer to set up
 - Can be overkill for simple projects
 
-**Tools**:
-- Microsoft Project: $600+ (professional)
-- Excel with Gantt template: Free
-- GanttProject: Free open-source software
-- Smartsheet: $10-30/month
-- Monday.com: $10-20/month
+<DataTable
+  caption="Gantt chart tools and pricing"
+  headers={["Tool", "Cost", "Notes"]}
+  rows={[
+    ["Microsoft Project", "$600+", "Professional"],
+    ["Excel with Gantt template", "Free", "Spreadsheet-based"],
+    ["GanttProject", "Free", "Open-source software"],
+    ["Smartsheet", "$10-30/month", "Collaborative"],
+    ["Monday.com", "$10-20/month", "Project management"]
+  ]}
+/>
 
 **Download**: [Excel Gantt Template](#) | [Google Sheets Gantt](#)
 
@@ -101,7 +111,7 @@ This guide provides templates and step-by-step instructions for creating and man
 
 ### Step 1: List All Major Tasks
 
-**Break your project into phases**:
+Break your project into phases. Each phase below groups the tasks that typically move together on site.
 
 **Pre-Construction**:
 - Feasibility and planning
@@ -169,11 +179,10 @@ This guide provides templates and step-by-step instructions for creating and man
 
 ### Step 2: Estimate Duration for Each Task
 
-**Use realistic estimates**:
-
-**Example durations for 2,000 sq ft home**:
+Use realistic estimates. The table below shows example durations for a 2,000 sq ft home, split by who is doing the work.
 
 <DataTable
+  caption="Duration estimates for 2,000 sq ft home by builder type"
   headers={["Task", "Professional", "Owner-Builder Hiring Out", "Owner-Builder DIY"]}
   rows={[
     ["Foundation", "3-4 weeks", "4-5 weeks", "5-6 weeks"],
@@ -183,23 +192,24 @@ This guide provides templates and step-by-step instructions for creating and man
     ["Interior finishes", "6-8 weeks", "8-10 weeks", "12-16 weeks"],
     ["Exterior finishes", "4-6 weeks", "6-8 weeks", "8-12 weeks"]
   ]}
-  caption="Duration estimates for 2,000 sq ft home by builder type"
 />
 
-**Add buffer**:
+<CalloutBox type="tip" title="Add buffer to your estimates">
+
 - Owner-builder hiring out: Add 25% to professional estimates
 - Owner-builder DIY: Add 50-100% to professional estimates
 - Weather-dependent work: Add 20-30% for weather buffer
 
-**Be realistic**: Better to finish early than constantly behind
+**Be realistic**: Better to finish early than constantly behind.
+
+</CalloutBox>
 
 ### Step 3: Identify Dependencies
 
-**For each task, ask**: "What must be complete before this can start?"
-
-**Example dependencies**:
+For each task, ask: "What must be complete before this can start?"
 
 <DataTable
+  caption="Task dependencies for construction phases"
   headers={["Task", "Must Be Complete First"]}
   rows={[
     ["Framing", "Foundation complete and inspected"],
@@ -210,21 +220,22 @@ This guide provides templates and step-by-step instructions for creating and man
     ["Countertops", "Cabinets installed"],
     ["Flooring", "Paint complete (typically)"]
   ]}
-  caption="Task dependencies for construction phases"
 />
 
-**Some tasks can happen in parallel**:
+<CalloutBox type="tip" title="Some tasks can run in parallel">
+
 - Siding can happen during interior rough-ins
 - Exterior finishes during interior finishes
 - Different rooms can be at different stages
 
+</CalloutBox>
+
 ### Step 4: Add Material Lead Times
 
-**Critical to schedule**:
-
-**Order before phase starts**:
+Material lead times are critical to schedule. Order each item before its phase starts so deliveries don't stall the build.
 
 <DataTable
+  caption="Material ordering timeline and lead times"
   headers={["Material", "Lead Time", "Order When"]}
   rows={[
     ["Windows/doors", "8-12 weeks", "Before framing starts"],
@@ -235,18 +246,18 @@ This guide provides templates and step-by-step instructions for creating and man
     ["Special flooring", "4-8 weeks", "During drywall"],
     ["Appliances", "4-6 weeks", "During interior finishes"]
   ]}
-  caption="Material ordering timeline and lead times"
 />
 
-**Add these deadlines to your schedule**
+Add these deadlines to your schedule.
 
 **[Complete lead time guide →](/timing-and-scheduling/material-lead-times)**
 
 ### Step 5: Add Inspection Points
 
-**Schedule inspections**:
+Schedule inspections at each gate, and call ahead — most jurisdictions need 24-48 hours of notice.
 
 <DataTable
+  caption="Inspection schedule and notice requirements"
   headers={["Inspection", "When", "Advance Notice Needed"]}
   rows={[
     ["Footing", "Before concrete pour", "24-48 hours"],
@@ -258,21 +269,22 @@ This guide provides templates and step-by-step instructions for creating and man
     ["Insulation", "Before drywall", "24-48 hours"],
     ["Final", "When 95%+ complete", "24-48 hours"]
   ]}
-  caption="Inspection schedule and notice requirements"
 />
 
-**Build in correction time**:
-- 3-5 days after each inspection for potential failures
-- Corrections
-- Re-inspection
+<CalloutBox type="warning" title="Build in correction time">
+
+Leave 3-5 days after each inspection for potential failures, corrections, and re-inspection.
+
+</CalloutBox>
 
 **[Inspection guide →](/inspections)**
 
 ### Step 6: Add Subcontractor Booking Deadlines
 
-**When to book each trade**:
+Book each trade far enough ahead to secure your dates — and add those booking deadlines to your schedule.
 
 <DataTable
+  caption="Subcontractor booking timeline"
   headers={["Trade", "Book How Far Ahead"]}
   rows={[
     ["Foundation", "6-8 weeks"],
@@ -287,19 +299,15 @@ This guide provides templates and step-by-step instructions for creating and man
     ["Flooring", "4-6 weeks"],
     ["Tile", "4-6 weeks"]
   ]}
-  caption="Subcontractor booking timeline"
 />
-
-**Add booking deadlines to schedule**
 
 ### Step 7: Identify Critical Path
 
-**Critical path** = longest sequence of dependent tasks
+<CalloutBox type="info" title="What the critical path is">
 
-**Typical critical path**:
-Foundation → Framing → Rough-ins → Insulation → Drywall → Cabinets → Countertops → Final
+The **critical path** is the longest sequence of dependent tasks. A typical critical path runs: Foundation → Framing → Rough-ins → Insulation → Drywall → Cabinets → Countertops → Final. Mark these as high priority in your schedule.
 
-**Mark these** as high priority in your schedule
+</CalloutBox>
 
 **[Critical path guide →](/timing-and-scheduling/critical-path-method)**
 
@@ -313,10 +321,13 @@ Foundation → Framing → Rough-ins → Insulation → Drywall → Cabinets →
 
 **Overall buffer**: 20-30% of total timeline
 
-**Example**:
+<CalloutBox type="tip" title="Worked example">
+
 - Calculated timeline: 32 weeks
 - Add 30% buffer: 42 weeks
 - Planned completion: Week 42 (10 months)
+
+</CalloutBox>
 
 ## Using the Spreadsheet Template
 
@@ -352,7 +363,11 @@ Foundation → Framing → Rough-ins → Insulation → Drywall → Cabinets →
 
 ### Weekly Updates
 
-**Every Friday** (or Sunday):
+<CalloutBox type="tip" title="Every Friday (or Sunday)">
+
+Block 30-60 minutes once a week to keep the schedule alive. Walk through the five steps below in order.
+
+</CalloutBox>
 
 **1. Update completed tasks**:
 - Mark tasks complete
@@ -434,108 +449,81 @@ Foundation → Framing → Rough-ins → Insulation → Drywall → Cabinets →
 - Adjust future tasks based on current status
 - Review critical path
 
-**When delays occur**:
+<CalloutBox type="tip" title="When delays occur">
+
 - Extend task bar
 - Chart automatically adjusts downstream tasks
 - See immediate impact on completion date
+
+</CalloutBox>
 
 ## Sample Schedules by Project Type
 
 ### 2,000 sq ft Ranch, Owner-Builder Hiring Out (10-month timeline)
 
-**Month 1-2**: Pre-construction and permitting
-- Week 1-4: Planning and design
-- Week 5-8: Permit application and approval
-
-**Month 3**: Site work and foundation
-- Week 9-10: Site work
-- Week 11-13: Foundation
-
-**Month 4-5**: Framing
-- Week 14-19: Framing and dry-in
-- Week 20: Framing inspection
-
-**Month 6-7**: Rough-ins
-- Week 21-22: HVAC rough-in
-- Week 23-24: Plumbing rough-in
-- Week 25-26: Electrical rough-in
-- Week 27: Rough inspections
-
-**Month 7-8**: Insulation and drywall
-- Week 28: Insulation and inspection
-- Week 29-32: Drywall
-
-**Month 8-10**: Finishes
-- Week 33-34: Interior trim
-- Week 35-36: Cabinets and counters
-- Week 37-38: Flooring and paint
-- Week 39-40: Fixtures and final items
-- Week 41-42: Final inspection and close-out
+<DataTable
+  caption="2,000 sq ft ranch, owner-builder hiring out — 10-month schedule"
+  headers={["Phase", "Timing", "Activities"]}
+  rows={[
+    ["Pre-construction and permitting", "Month 1-2", "Week 1-4: Planning and design; Week 5-8: Permit application and approval"],
+    ["Site work and foundation", "Month 3", "Week 9-10: Site work; Week 11-13: Foundation"],
+    ["Framing", "Month 4-5", "Week 14-19: Framing and dry-in; Week 20: Framing inspection"],
+    ["Rough-ins", "Month 6-7", "Week 21-22: HVAC; Week 23-24: Plumbing; Week 25-26: Electrical; Week 27: Rough inspections"],
+    ["Insulation and drywall", "Month 7-8", "Week 28: Insulation and inspection; Week 29-32: Drywall"],
+    ["Finishes", "Month 8-10", "Week 33-34: Interior trim; Week 35-36: Cabinets and counters; Week 37-38: Flooring and paint; Week 39-40: Fixtures and final items; Week 41-42: Final inspection and close-out"]
+  ]}
+/>
 
 **Parallel work**: Exterior finishes (siding, roofing) during weeks 21-38
 
 ### 2,400 sq ft Two-Story, Part-Time Owner-Builder DIY (16-month timeline)
 
-**Month 1-3**: Pre-construction and permitting
-- Month 1: Planning
-- Month 2-3: Permitting
-
-**Month 4**: Site work and foundation start
-- Weeks 1-2: Site work
-- Weeks 3-4: Foundation start
-
-**Month 5**: Foundation complete
-- Weeks 1-4: Foundation finish and cure
-
-**Month 6-9**: Framing (DIY)
-- 16 weeks framing (weekends, part-time)
-
-**Month 10-11**: Rough-ins (hired out)
-- 8 weeks for HVAC, plumbing, electrical
-
-**Month 12**: Insulation and drywall start
-- Hired out
-
-**Month 13**: Drywall complete
-
-**Month 14-16**: Interior finishes
-- Cabinets: Hired out (2 weeks)
-- Counters: Hired out (1 week)
-- Flooring: DIY (4 weeks)
-- Paint: DIY (4 weeks)
-- Trim: DIY (4 weeks)
-- Many overlap
-
-**Month 14-16**: Exterior finishes (parallel)
-- Siding: Hired out
-- Trim: DIY
-
-**Month 16**: Final inspection and close-out
+<DataTable
+  caption="2,400 sq ft two-story, part-time owner-builder DIY — 16-month schedule"
+  headers={["Phase", "Timing", "Activities"]}
+  rows={[
+    ["Pre-construction and permitting", "Month 1-3", "Month 1: Planning; Month 2-3: Permitting"],
+    ["Site work and foundation start", "Month 4", "Weeks 1-2: Site work; Weeks 3-4: Foundation start"],
+    ["Foundation complete", "Month 5", "Weeks 1-4: Foundation finish and cure"],
+    ["Framing (DIY)", "Month 6-9", "16 weeks framing (weekends, part-time)"],
+    ["Rough-ins (hired out)", "Month 10-11", "8 weeks for HVAC, plumbing, electrical"],
+    ["Insulation and drywall start", "Month 12", "Hired out"],
+    ["Drywall complete", "Month 13", "Drywall complete"],
+    ["Interior finishes", "Month 14-16", "Cabinets: hired out (2 weeks); Counters: hired out (1 week); Flooring: DIY (4 weeks); Paint: DIY (4 weeks); Trim: DIY (4 weeks); many overlap"],
+    ["Exterior finishes (parallel)", "Month 14-16", "Siding: hired out; Trim: DIY"],
+    ["Final inspection and close-out", "Month 16", "Final inspection and close-out"]
+  ]}
+/>
 
 ## Schedule Management Tools
 
 ### Digital Tools
 
-**Free**:
-- Google Sheets (spreadsheet)
-- Excel (if you have it)
-- GanttProject (open-source Gantt software)
-- Trello (kanban-style task management)
+<DataTable
+  caption="Digital scheduling tools by price tier"
+  headers={["Tier", "Tool", "Best for"]}
+  rows={[
+    ["Free", "Google Sheets", "Spreadsheet"],
+    ["Free", "Excel (if you have it)", "Spreadsheet"],
+    ["Free", "GanttProject", "Open-source Gantt software"],
+    ["Free", "Trello", "Kanban-style task management"],
+    ["Paid ($10-30/month)", "Smartsheet", "Collaborative Gantt"],
+    ["Paid ($10-30/month)", "Monday.com", "Project management"],
+    ["Paid ($10-30/month)", "Asana", "Task management"],
+    ["Paid ($10-30/month)", "CoConstruct", "Construction-specific"],
+    ["Professional ($600+)", "Microsoft Project", "Full project management"]
+  ]}
+/>
 
-**Paid** ($10-30/month):
-- Smartsheet (collaborative Gantt)
-- Monday.com (project management)
-- Asana (task management)
-- CoConstruct (construction-specific)
+<CalloutBox type="tip" title="Recommendation for most owner-builders">
 
-**Professional** ($600+):
-- Microsoft Project (full project management)
+Google Sheets or Excel template — free, flexible, and easy.
 
-**Recommendation for most owner-builders**: Google Sheets or Excel template (free, flexible, easy)
+</CalloutBox>
 
 ### Communication Tools
 
-**For coordinating with subcontractors**:
+For coordinating with subcontractors:
 
 **Text messaging**:
 - Create contact groups
@@ -572,40 +560,25 @@ Foundation → Framing → Rough-ins → Insulation → Drywall → Cabinets →
 
 ## Common Scheduling Mistakes
 
-### Mistake #1: Creating Schedule and Never Updating
-**Problem**: Schedule becomes meaningless after first week
+<CalloutBox type="warning" title="Avoid these seven traps">
 
-**Fix**: Weekly updates, every Friday/Sunday, no exceptions
+The mistakes below are the ones that most often blow up an owner-builder schedule. Each lists the problem and the fix.
 
-### Mistake #2: No Buffer Time
-**Problem**: Any delay cascades to completion
+</CalloutBox>
 
-**Fix**: Add 20-30% buffer throughout
-
-### Mistake #3: Not Accounting for Lead Times
-**Problem**: Material delays stop entire project
-
-**Fix**: Add material ordering deadlines to schedule
-
-### Mistake #4: Ignoring Dependencies
-**Problem**: Schedule tasks that can't actually happen yet
-
-**Fix**: Clearly identify what must be complete first
-
-### Mistake #5: Too Much Detail
-**Problem**: Spending hours tracking every small task
-
-**Fix**: Focus on major phases and critical milestones, not daily tasks
-
-### Mistake #6: Not Sharing Schedule
-**Problem**: Subcontractors don't know timeline
-
-**Fix**: Share relevant portions with each trade, update them weekly
-
-### Mistake #7: Rigid Timeline
-**Problem**: Can't adapt when delays occur (and they will)
-
-**Fix**: Use schedule as guide, not gospel. Adjust as needed.
+<DataTable
+  caption="Common scheduling mistakes and their fixes"
+  headers={["Mistake", "Problem", "Fix"]}
+  rows={[
+    ["#1: Creating schedule and never updating", "Schedule becomes meaningless after first week", "Weekly updates, every Friday/Sunday, no exceptions"],
+    ["#2: No buffer time", "Any delay cascades to completion", "Add 20-30% buffer throughout"],
+    ["#3: Not accounting for lead times", "Material delays stop entire project", "Add material ordering deadlines to schedule"],
+    ["#4: Ignoring dependencies", "Schedule tasks that can't actually happen yet", "Clearly identify what must be complete first"],
+    ["#5: Too much detail", "Spending hours tracking every small task", "Focus on major phases and critical milestones, not daily tasks"],
+    ["#6: Not sharing schedule", "Subcontractors don't know timeline", "Share relevant portions with each trade, update them weekly"],
+    ["#7: Rigid timeline", "Can't adapt when delays occur (and they will)", "Use schedule as guide, not gospel. Adjust as needed."]
+  ]}
+/>
 
 ## Schedule Review Checklist
 
@@ -624,25 +597,20 @@ Foundation → Framing → Rough-ins → Insulation → Drywall → Cabinets →
 
 ## Key Takeaways
 
-**You need a schedule**: It's your roadmap, prevents chaos
+<CalloutBox type="success" title="The essentials">
 
-**Keep it simple**: Spreadsheet or basic Gantt is sufficient for most projects
+- **You need a schedule**: It's your roadmap, prevents chaos
+- **Keep it simple**: Spreadsheet or basic Gantt is sufficient for most projects
+- **Update weekly**: Schedule only works if you maintain it
+- **Focus on big picture**: Major phases and milestones, not daily minutiae
+- **Build in buffer**: 20-30% overall, more for weather-dependent and DIY work
+- **Track dependencies**: Know what must be complete before next task
+- **Add material deadlines**: Order long-lead items with plenty of time
+- **Share with team**: Subcontractors need to know when they're needed
+- **Be flexible**: Schedule guides you, but adjust to reality
+- **Review regularly**: Weekly updates, monthly big-picture review
 
-**Update weekly**: Schedule only works if you maintain it
-
-**Focus on big picture**: Major phases and milestones, not daily minutiae
-
-**Build in buffer**: 20-30% overall, more for weather-dependent and DIY work
-
-**Track dependencies**: Know what must be complete before next task
-
-**Add material deadlines**: Order long-lead items with plenty of time
-
-**Share with team**: Subcontractors need to know when they're needed
-
-**Be flexible**: Schedule guides you, but adjust to reality
-
-**Review regularly**: Weekly updates, monthly big-picture review
+</CalloutBox>
 
 ## Template Downloads
 

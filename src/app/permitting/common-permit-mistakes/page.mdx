@@ -15,394 +15,552 @@ Most permit mistakes are **completely avoidable** with proper education and prep
 
 ## The Top 20 Permit Mistakes
 
+<CalloutBox type="critical" title="The pattern behind every expensive mistake">
+
+These 20 mistakes share one root cause: skipping a step to save time or money up front. Each one trades a small, known cost for a large, unpredictable one. The fixes are cheap; the failures are not.
+
+</CalloutBox>
+
 ### 1. Starting Without a Permit
 
-**The Mistake**: "I'll just start and get the permit later."
+<CalloutBox type="critical" title="The cardinal sin of owner-building">
 
-This is the cardinal sin of owner-building. Never, ever do this.
+"I'll just start and get the permit later." Never, ever do this. It's illegal in nearly all incorporated and code-adopting jurisdictions — only a minority of rural counties have no permit requirement (parts of MO, CO, west TX, AZ, and a few states with no statewide residential code). Verify locally before assuming you're exempt.
 
-**Why it's terrible**:
-- Illegal in nearly all incorporated and code-adopting jurisdictions—but a minority of rural counties have no permit requirement (parts of MO, CO, west TX, AZ, and a few states with no statewide residential code). Verify locally before assuming you're exempt.
-- Subject to immediate stop-work orders
-- Fines of $500-$5,000+ per violation
-- Usually requires a retroactive (legalization) permit: you submit as-built plans, get the work inspected, correct anything that fails, and pay fees plus fines (often a double or "investigation" fee). Full demolition is the last resort—reserved for work that can't be made code-compliant.
-- Harder to sell—you *can* sell as-is with disclosure, but it narrows your buyer pool (often to cash buyers or investors) and can complicate the mortgage and appraisal
-- Insurance complications—an insurer may deny a claim *caused by* the unpermitted work, raise your premium, or decline to renew; unrelated losses are typically still covered
-- Lenders won't finance
+</CalloutBox>
+
+<DataTable
+  caption="What 'build now, permit later' actually exposes you to"
+  headers={["Consequence", "What it means"]}
+  rows={[
+    ["Stop-work order", "Issued immediately once the work is discovered"],
+    ["Fines", "$500-$5,000+ per violation"],
+    ["Retroactive (legalization) permit", "The standard remedy: submit as-built plans, get the work inspected, correct anything that fails, and pay fees plus fines (often a double or 'investigation' fee). Full demolition is the last resort, reserved for work that can't be made code-compliant."],
+    ["Harder to sell", "You can sell as-is with disclosure, but it narrows your buyer pool (often to cash buyers or investors) and can complicate the mortgage and appraisal"],
+    ["Insurance complications", "An insurer may deny a claim caused by the unpermitted work, raise your premium, or decline to renew; unrelated losses are typically still covered"],
+    ["No financing", "Lenders won't finance unpermitted work"]
+  ]}
+/>
 
 <CalloutBox type="warning" title="Real Cost Example">
 One owner-builder had to tear down **$15,000 worth of foundation work** because he started before getting the permit. Then paid $2,500 in fines. Then waited 3 months for new permit approval. **Total loss: $17,500 and 3 months.**
 </CalloutBox>
 
-**Solution**: Always get permit before starting. No exceptions.
+<CalloutBox type="tip" title="Solution">
+Always get the permit before starting. No exceptions.
+</CalloutBox>
 
 ### 2. Using Old or Wrong Code Version
 
-**The Mistake**: Plans based on 2015 IRC when jurisdiction uses 2021 IRC.
+**The Mistake**: Plans based on 2015 IRC when jurisdiction uses 2021 IRC. This happens when you hire a draftsperson without checking which code version your jurisdiction enforces.
 
-This happens when you hire a draftsperson without checking which code version your jurisdiction enforces.
-
-**Why it's a problem**:
-- Plans get rejected immediately
-- Expensive redesign required
-- Months of delay
-- Structural elements may need to be different
-- Energy code requirements have changed significantly
+<DataTable
+  caption="Why the wrong code version is so costly"
+  headers={["Why it's a problem", "Impact"]}
+  rows={[
+    ["Immediate rejection", "Plans get rejected on submittal"],
+    ["Redesign", "Expensive redraw required; months of delay"],
+    ["Structural changes", "Structural elements may need to be different"],
+    ["Energy code", "Energy code requirements have changed significantly"]
+  ]}
+/>
 
 **Real cost**: $3,000-$8,000 to redraw plans + 6-12 week delay
 
-**Solution**: Ask building department which code version they enforce BEFORE hiring draftsperson. Confirm this in writing.
+<CalloutBox type="tip" title="Solution">
+Ask the building department which code version they enforce **before** hiring a draftsperson. Confirm this in writing.
+</CalloutBox>
 
 ### 3. Incomplete Plans
 
-**The Mistake**: Submitting plans with missing details, unclear specs, or vague notes.
+**The Mistake**: Submitting plans with missing details, unclear specs, or vague notes. This is the #1 reason for permit delays and rejections.
 
-This is the #1 reason for permit delays and rejections.
-
-**Common missing items**:
-- Fastener schedules
-- Structural calculations
-- Energy calculations (REScheck)
-- Window specifications
-- Header sizes and calculations
-- Foundation details
-- Electrical panel schedule
-- HVAC load calculations
+<DataTable
+  caption="Commonly missing items that trigger corrections"
+  headers={["Missing item", "Category"]}
+  rows={[
+    ["Fastener schedules", "Structural"],
+    ["Structural calculations", "Structural"],
+    ["Header sizes and calculations", "Structural"],
+    ["Foundation details", "Structural"],
+    ["Energy calculations (REScheck)", "Energy"],
+    ["Window specifications", "Envelope"],
+    ["Electrical panel schedule", "Electrical"],
+    ["HVAC load calculations", "Mechanical"]
+  ]}
+/>
 
 **Real cost**: 2-6 week delay per correction cycle, potential $1,000+ in plan revisions
 
-<CalloutBox type="tip" title="Pro Tip">
+<CalloutBox type="tip" title="Pro Tip: Hire a professional, don't cut corners on plans">
 Use a **professional draftsperson or architect**. Yes, it costs $4,000-$12,000. But cheap plans cost way more in delays, rejections, and revisions. Every dollar spent on good plans saves $10 in avoided mistakes.
 </CalloutBox>
 
-**Solution**: Hire a professional. Don't cut corners on plans.
-
 ### 4. Wrong Setbacks
 
-**The Mistake**: Placing house too close to property lines.
+**The Mistake**: Placing house too close to property lines. This is one of the most expensive mistakes if not caught early.
 
-This is one of the most expensive mistakes if not caught early.
-
-**How it happens**:
-- Using old survey
-- Misunderstanding setback requirements
-- Not accounting for eaves/overhangs (some jurisdictions count them toward setbacks—verify your rule)
-- Ignoring corner lot requirements
-- Missing utility easements
-
-**Real cost**:
-- If caught during plan review: redesign ($2,000-$5,000)
-- If caught after foundation poured: **total disaster** ($20,000-$50,000+ to move foundation or seek variance)
+<DataTable
+  caption="How setback mistakes happen — and what they cost by timing"
+  headers={["Factor", "Detail"]}
+  rows={[
+    ["Using old survey", "How it happens"],
+    ["Misunderstanding setback requirements", "How it happens"],
+    ["Not accounting for eaves/overhangs", "Some jurisdictions count them toward setbacks — verify your rule"],
+    ["Ignoring corner lot requirements", "How it happens"],
+    ["Missing utility easements", "How it happens"],
+    ["Caught during plan review", "Redesign ($2,000-$5,000)"],
+    ["Caught after foundation poured", "Total disaster ($20,000-$50,000+ to move foundation or seek variance)"]
+  ]}
+/>
 
 <CalloutBox type="warning" title="Catastrophic If Missed">
 If you pour your foundation in the wrong location, you have three terrible options: (1) Seek variance (often denied), (2) Demo foundation and rebuild ($35,000+), or (3) Redesign house smaller. All options are expensive and painful.
 </CalloutBox>
 
-**Solution**:
+<CalloutBox type="tip" title="Solution">
+
 - Get current survey (dated within 6 months)
 - Verify ALL setback requirements (front, side, rear, street side)
 - Check how your jurisdiction treats eaves and overhangs—some count them toward the setback, but many allow a projection of 2-3 ft into a setback (some measure from the wall when the overhang is 24" or less). Verify your local rule.
 - Double-check before staking house location
 - Have building department verify placement before excavating
 
+</CalloutBox>
+
 ### 5. Ignoring Energy Code
 
-**The Mistake**: No energy calculations with permit application.
+**The Mistake**: No energy calculations with permit application. This is an automatic rejection in most jurisdictions.
 
-This is an automatic rejection in most jurisdictions.
-
-**Why it fails**:
-- Energy compliance is required in most states (a few—AZ, KS, MO—have no mandatory statewide residential energy code, so confirm yours)
-- REScheck or equivalent is mandatory where an energy code applies
-- Plans won't be approved without it
-- Takes 30 minutes to complete
+<DataTable
+  caption="Why missing energy calcs gets you rejected"
+  headers={["Why it fails", "Detail"]}
+  rows={[
+    ["Energy compliance required", "Required in most states; a few — AZ, KS, MO — have no mandatory statewide residential energy code, so confirm yours"],
+    ["REScheck or equivalent mandatory", "Required wherever an energy code applies"],
+    ["No approval without it", "Plans won't be approved until it's submitted"],
+    ["Fast to do", "Takes about 30 minutes to complete"]
+  ]}
+/>
 
 **Real cost**: 1-3 week delay while you create and submit energy calculations
 
-**Solution**: Run REScheck (free software) or hire someone ($200-$500). Most states accept REScheck, but a few require their own tools—California (Title 24/CBECC), Oregon, and Virginia among them—so confirm which method your state uses. Include it with your initial application. This is easy—don't skip it.
+<CalloutBox type="tip" title="Solution">
+Run REScheck (free software) or hire someone ($200-$500). Most states accept REScheck, but a few require their own tools — California (Title 24/CBECC), Oregon, and Virginia among them — so confirm which method your state uses. Include it with your initial application. This is easy — don't skip it.
+</CalloutBox>
 
 ### 6. Missing Engineer Stamps
 
 **The Mistake**: Not knowing what requires engineering seals.
 
-**Common items requiring engineering**:
-- Custom beam spans exceeding tables
-- Truss design
-- Retaining walls over 4'
-- Steep slopes
-- Poor soil conditions
-- Seismic zones
-- High wind areas
-- Unusual structural elements
+<DataTable
+  caption="Common items that require an engineer's stamp"
+  headers={["Item", "Why engineering is required"]}
+  rows={[
+    ["Custom beam spans exceeding tables", "Beyond prescriptive code tables"],
+    ["Truss design", "Manufactured/engineered component"],
+    ["Retaining walls over 4'", "Structural/geotechnical"],
+    ["Steep slopes", "Site condition"],
+    ["Poor soil conditions", "Geotechnical"],
+    ["Seismic zones", "Lateral design"],
+    ["High wind areas", "Lateral design"],
+    ["Unusual structural elements", "Outside standard details"]
+  ]}
+/>
 
 **Real cost**: Rush engineering fees (50-100% premium) + 2-4 week delay
 
-✅ **Solution**: Ask at pre-application meeting what requires engineering. Budget $500-$2,500 for stamps.
+<CalloutBox type="tip" title="Solution">
+Ask at the pre-application meeting what requires engineering. Budget $500-$2,500 for stamps.
+</CalloutBox>
 
 ### 7. Not Getting Septic Approval First
 
 **The Mistake**: Submitting building permit before septic is approved.
 
-**Why it's a problem**:
-- Septic location affects house placement
-- Septic approval can be denied
-- May need to redesign house location
-- Some jurisdictions won't review building permit until septic approved
+<DataTable
+  caption="Why septic has to come first"
+  headers={["Why it's a problem", "Detail"]}
+  rows={[
+    ["Affects house placement", "Septic location drives where the house can go"],
+    ["Can be denied", "Septic approval is not guaranteed"],
+    ["May force redesign", "House location may need to change"],
+    ["Blocks building review", "Some jurisdictions won't review the building permit until septic is approved"]
+  ]}
+/>
 
 **Real cost**: Complete redesign if septic approval changes available building area
 
-✅ **Solution**: Get septic permit approved BEFORE finalizing house plans.
+<CalloutBox type="tip" title="Solution">
+Get the septic permit approved **before** finalizing house plans.
+</CalloutBox>
 
 ### 8. Underestimating Project Value
 
 **The Mistake**: Claiming $150,000 project cost when real cost is $300,000.
 
-**Why it backfires**:
-- Permit fees are based on project value
-- Building department knows typical costs
-- They'll increase your valuation
-- Could be accused of fraud
-- Affects property tax assessment
+<DataTable
+  caption="Why lowballing your project value backfires"
+  headers={["Why it backfires", "Detail"]}
+  rows={[
+    ["Fees are valuation-based", "Permit fees are based on project value"],
+    ["They know typical costs", "Building departments track typical costs"],
+    ["They'll adjust you up", "They'll increase your valuation"],
+    ["Fraud exposure", "Could be accused of fraud"],
+    ["Tax impact", "Affects property tax assessment"]
+  ]}
+/>
 
 **Real cost**: Higher permit fees than you planned + potential legal issues
 
-✅ **Solution**: Use honest, realistic project costs. Building departments have cost databases and will adjust if too low.
+<CalloutBox type="tip" title="Solution">
+Use honest, realistic project costs. Building departments have cost databases and will adjust if too low.
+</CalloutBox>
 
 ### 9. Not Budgeting for Impact Fees
 
 **The Mistake**: Not asking about ALL fees at pre-application.
 
-**Hidden fees that catch people**:
-- Impact fees ($5,000-$25,000+)
-- School fees ($2,000-$10,000)
-- Traffic impact fees
-- Parks and recreation fees
-- Water/sewer connection fees
-- Fire suppression fees
+<DataTable
+  caption="Hidden fees that catch owner-builders by surprise"
+  headers={["Hidden fee", "Typical amount"]}
+  rows={[
+    ["Impact fees", "$5,000-$25,000+"],
+    ["School fees", "$2,000-$10,000"],
+    ["Traffic impact fees", "Varies by jurisdiction"],
+    ["Parks and recreation fees", "Varies by jurisdiction"],
+    ["Water/sewer connection fees", "Varies by jurisdiction"],
+    ["Fire suppression fees", "Varies by jurisdiction"]
+  ]}
+/>
 
 **Real cost**: $10,000-$40,000 surprise when you go to pay for permit
 
-✅ **Solution**: Ask specifically about ALL fees at pre-app meeting. Get itemized list in writing.
+<CalloutBox type="tip" title="Solution">
+Ask specifically about ALL fees at the pre-app meeting. Get an itemized list in writing.
+</CalloutBox>
 
 ### 10. Wrong Flood Zone Information
 
 **The Mistake**: Not checking flood zone, or using outdated FEMA maps.
 
-**Why it matters**:
-- If in flood zone, different construction requirements
-- Elevation certificates required
-- Higher foundation costs
-- Flood insurance required
-- Lender requirements stricter
+<DataTable
+  caption="Why flood zone status changes your build"
+  headers={["Why it matters", "Detail"]}
+  rows={[
+    ["Different construction requirements", "Flood-zone builds follow different rules"],
+    ["Elevation certificates", "Required in a flood zone"],
+    ["Higher foundation costs", "Elevated/flood-resistant foundations cost more"],
+    ["Flood insurance", "Required in a flood zone"],
+    ["Stricter lender requirements", "Lenders impose extra conditions"]
+  ]}
+/>
 
 **Real cost**: $5,000-$25,000+ in additional foundation costs if caught later
 
-✅ **Solution**: Check current FEMA flood maps, get elevation certificate if in flood zone, design accordingly.
+<CalloutBox type="tip" title="Solution">
+Check current FEMA flood maps, get an elevation certificate if in a flood zone, and design accordingly.
+</CalloutBox>
 
 ### 11. Not Understanding Owner-Builder Requirements
 
 **The Mistake**: Not filing owner-builder affidavit or not understanding restrictions.
 
-**Requirements vary sharply by state—don't assume these apply to you**:
+<CalloutBox type="warning" title="Owner-builder rules vary sharply by state — don't assume these apply to you">
+
 - Resale restrictions vary: FL and CA presume a sale within 1 year was built for sale (not personal use), GA uses 2 years, and many states impose none at all
 - Some states limit how often you can pull an owner-builder permit; many don't
-- A few states require a disclosure or signed verification (CA, for example)—but no state makes you pass an *exam* to pull an owner-builder permit
+- A few states require a disclosure or signed verification (CA, for example) — but no state makes you pass an *exam* to pull an owner-builder permit
 - Can't hire yourself as GC on paper
 - Disclosure requirements if selling soon
 
 Check your specific state's rules before you count on any of these.
 
+</CalloutBox>
+
 **Real cost**: Legal penalties, inability to sell, project shutdown
 
-✅ **Solution**: Ask about owner-builder requirements at pre-app. File all required paperwork. Understand restrictions.
+<CalloutBox type="tip" title="Solution">
+Ask about owner-builder requirements at pre-app. File all required paperwork. Understand the restrictions.
+</CalloutBox>
 
 ### 12. Not Having Plans on Site
 
 **The Mistake**: Losing permit or not keeping approved plans at job site.
 
-**Why it's required**:
-- Inspectors need to reference plans
-- Required by law in most jurisdictions
-- Subject to fines if not present
-- Inspections can be refused
+<DataTable
+  caption="Why approved plans must stay on site"
+  headers={["Why it's required", "Detail"]}
+  rows={[
+    ["Inspectors reference them", "Inspectors need to check work against the plans"],
+    ["Required by law", "Mandatory in most jurisdictions"],
+    ["Fines if absent", "Subject to fines if not present"],
+    ["Inspections refused", "Inspections can be refused without plans on site"]
+  ]}
+/>
 
 **Real cost**: $500+ fine, failed inspection, delay to get replacement plans
 
-✅ **Solution**: Keep one full set of approved plans in weatherproof container on site at all times. Post permit card visibly.
+<CalloutBox type="tip" title="Solution">
+Keep one full set of approved plans in a weatherproof container on site at all times. Post the permit card visibly.
+</CalloutBox>
 
 ### 13. Covering Work Before Inspection
 
 **The Mistake**: Drywalling before framing inspection, backfilling before foundation inspection, etc.
 
-**Why it's terrible**:
-- Work MUST be inspected before covering
-- Inspector will make you tear it out
-- Complete waste of materials and labor
-- Delays project significantly
+<CalloutBox type="warning" title="Work MUST be inspected before it's covered">
+
+If you cover work before inspection, the inspector will make you tear it out — a complete waste of materials and labor that delays the project significantly. I've seen this dozens of times. It's always painful and expensive.
+
+</CalloutBox>
 
 **Real cost**: $2,000-$10,000+ in demolition and reconstruction, plus several weeks delay
 
-**My experience**: I've seen this dozens of times. Always painful and expensive.
-
-✅ **Solution**: Know the inspection sequence. NEVER cover work until it's inspected and approved.
+<CalloutBox type="tip" title="Solution">
+Know the inspection sequence. **NEVER** cover work until it's inspected and approved.
+</CalloutBox>
 
 ### 14. Wrong Inspection Sequence
 
 **The Mistake**: Calling for wrong inspection or skipping required inspections.
 
-**Typical required sequence**:
-1. Footing inspection (before pouring)
-2. Foundation inspection (before backfilling)
-3. Rough framing inspection (before insulation/drywall)
-4. Plumbing rough-in (before covering)
-5. Electrical rough-in (before covering)
-6. HVAC rough-in (before covering)
-7. Insulation inspection (before drywall)
-8. Final inspection (everything complete)
+<DataTable
+  caption="Typical required inspection sequence"
+  headers={["#", "Inspection", "When"]}
+  rows={[
+    ["1", "Footing inspection", "Before pouring"],
+    ["2", "Foundation inspection", "Before backfilling"],
+    ["3", "Rough framing inspection", "Before insulation/drywall"],
+    ["4", "Plumbing rough-in", "Before covering"],
+    ["5", "Electrical rough-in", "Before covering"],
+    ["6", "HVAC rough-in", "Before covering"],
+    ["7", "Insulation inspection", "Before drywall"],
+    ["8", "Final inspection", "Everything complete"]
+  ]}
+/>
 
 **Real cost**: Tear-out and reconstruction if done out of order
 
-✅ **Solution**: Get inspection schedule from building department. Post it on site. Don't skip or reorder.
+<CalloutBox type="tip" title="Solution">
+Get the inspection schedule from the building department. Post it on site. Don't skip or reorder.
+</CalloutBox>
 
 ### 15. Not Being Present for Inspections
 
 **The Mistake**: Not being on-site when inspector arrives.
 
-**Why it's a problem**:
-- Many jurisdictions require owner/GC present
-- Can't answer inspector questions
-- May fail inspection for this alone
-- Can't take notes on issues
-- Misses learning opportunity
+<DataTable
+  caption="Why you should be on-site for every inspection"
+  headers={["Why it's a problem", "Detail"]}
+  rows={[
+    ["Presence may be required", "Many jurisdictions require owner/GC present"],
+    ["Can't answer questions", "No one to address the inspector's questions"],
+    ["Automatic fail", "May fail inspection for this alone"],
+    ["Can't take notes", "Miss the record of issues raised"],
+    ["Lost learning", "Miss the learning opportunity"]
+  ]}
+/>
 
 **Real cost**: Failed inspection, re-inspection delay and fees
 
-✅ **Solution**: Always be present for inspections. It's your project—be there.
+<CalloutBox type="tip" title="Solution">
+Always be present for inspections. It's your project — be there.
+</CalloutBox>
 
 ### 16. Arguing With Inspectors
 
 **The Mistake**: Getting confrontational when inspector finds problems.
 
-**Why it backfires**:
-- Inspector has final authority
-- Arguing never changes their mind
-- Damages relationship for all future inspections
-- May result in extra scrutiny
-- Won't get any flexibility or help
+<CalloutBox type="warning" title="The inspector has final authority — arguing only costs you">
+
+Arguing never changes their mind. It damages the relationship for all future inspections, may invite extra scrutiny, and means you won't get any flexibility or help. The result is a difficult relationship for the entire project and strict enforcement of every minor issue.
+
+</CalloutBox>
 
 **Real cost**: Difficult relationship for entire project, strict enforcement of every minor issue
 
-✅ **Solution**: Stay professional. Ask questions. Take notes. Fix issues. Thank inspector for feedback.
+<CalloutBox type="tip" title="Solution">
+Stay professional. Ask questions. Take notes. Fix issues. Thank the inspector for feedback.
+</CalloutBox>
 
 ### 17. Not Calling for Re-Inspection
 
 **The Mistake**: After failing inspection, fixing issues but not calling for re-inspection.
 
-**Why it's a problem**:
-- Work can't proceed until passed
-- Inspector doesn't know you fixed it
-- Permit can expire
-- Project stalls
+<DataTable
+  caption="Why skipping the re-inspection call stalls you"
+  headers={["Why it's a problem", "Detail"]}
+  rows={[
+    ["Work can't proceed", "No progress until the work passes"],
+    ["Inspector doesn't know", "They don't know you fixed it"],
+    ["Permit can expire", "An idle permit can lapse"],
+    ["Project stalls", "Everything waits on the re-inspection"]
+  ]}
+/>
 
 **Real cost**: Project delays, potential permit expiration
 
-✅ **Solution**: Fix issues promptly, call for re-inspection immediately, keep project moving.
+<CalloutBox type="tip" title="Solution">
+Fix issues promptly, call for re-inspection immediately, and keep the project moving.
+</CalloutBox>
 
 ### 18. Letting Permit Expire
 
 **The Mistake**: Not progressing work, missing inspection deadlines, letting permit lapse.
 
-**Typical permit validity**: Under the IRC default (R105.5), a permit becomes invalid if work doesn't commence within 180 days (6 months) or is abandoned for 180 days. Some jurisdictions extend this to a year or longer—confirm your local period.
+<CalloutBox type="warning" title="Typical permit validity: the IRC 180-day default">
 
-**What happens**:
-- Permit expires if no progress
-- Must apply for extension (if available)
-- May need to reapply and repay fees
-- New code requirements may apply
-- Extremely expensive and time-consuming
+Under the IRC default (R105.5), a permit becomes invalid if work doesn't commence within 180 days (6 months) or is abandoned for 180 days. Some jurisdictions extend this to a year or longer — confirm your local period.
+
+</CalloutBox>
+
+<DataTable
+  caption="What happens when a permit lapses"
+  headers={["What happens", "Detail"]}
+  rows={[
+    ["Permit expires", "Lapses if there's no progress"],
+    ["Apply for extension", "Required if an extension is even available"],
+    ["Reapply and repay", "May need to reapply and pay fees again"],
+    ["New code applies", "Current code requirements may now apply"],
+    ["Costly and slow", "Extremely expensive and time-consuming"]
+  ]}
+/>
 
 **Real cost**: $2,000-$10,000+ in new permit fees, months of delay, possible plan redesign for new codes
 
-✅ **Solution**: Keep permit active by scheduling regular inspections. File for extension if needed BEFORE expiration.
+<CalloutBox type="tip" title="Solution">
+Keep the permit active by scheduling regular inspections. File for an extension if needed **before** expiration.
+</CalloutBox>
 
 ### 19. Unpermitted Changes During Construction
 
 **The Mistake**: Making significant changes from approved plans without permit amendment.
 
-**Common unpermitted changes**:
-- Moving walls
-- Changing window locations
-- Different foundation type
-- Altering roof design
-- Adding square footage
-- Changing structural elements
+<DataTable
+  caption="Common changes that require a permit amendment"
+  headers={["Change", "Category"]}
+  rows={[
+    ["Moving walls", "Layout"],
+    ["Changing window locations", "Envelope"],
+    ["Different foundation type", "Structural"],
+    ["Altering roof design", "Structural"],
+    ["Adding square footage", "Scope"],
+    ["Changing structural elements", "Structural"]
+  ]}
+/>
 
 **Real cost**: Red tag (stop work order), forced redesign, amendment fees, delays
 
-✅ **Solution**: If you need to make changes, ask inspector first. File amendment if required. Document all changes.
+<CalloutBox type="tip" title="Solution">
+If you need to make changes, ask the inspector first. File an amendment if required. Document all changes.
+</CalloutBox>
 
 ### 20. Not Researching Local Amendments
 
 **The Mistake**: Assuming statewide code is what your jurisdiction enforces.
 
-**Common local amendments**:
-- Higher snow load requirements
-- Deeper frost line
-- Wildfire protection zones
-- Historic district requirements
-- Stricter energy requirements
-- Additional engineering requirements
+<DataTable
+  caption="Common local amendments that override statewide code"
+  headers={["Local amendment", "Type"]}
+  rows={[
+    ["Higher snow load requirements", "Structural"],
+    ["Deeper frost line", "Foundation"],
+    ["Wildfire protection zones", "Site/envelope"],
+    ["Historic district requirements", "Aesthetic/zoning"],
+    ["Stricter energy requirements", "Energy"],
+    ["Additional engineering requirements", "Structural"]
+  ]}
+/>
 
 **Real cost**: Plan rejection, redesign, potential rebuild of non-compliant work
 
-✅ **Solution**: Ask for local amendments at pre-app meeting. Verify code version AND local modifications.
+<CalloutBox type="tip" title="Solution">
+Ask for local amendments at the pre-app meeting. Verify the code version **and** local modifications.
+</CalloutBox>
 
 ## Mistakes by Project Phase
 
+<CalloutBox type="info" title="Each phase has its own failure points">
+
+The same mistakes cluster by stage. Use this as a phase-by-phase watchlist — catch the items below as you move through each step and you'll avoid the most common derailments.
+
+</CalloutBox>
+
 ### Pre-Application Phase
 
-❌ Not scheduling pre-app meeting
-❌ Coming unprepared to meeting
-❌ Not asking about ALL fees
-❌ Not confirming code version
-❌ Skipping property survey
-❌ Ignoring zoning restrictions
+<DataTable
+  caption="Pre-application phase mistakes to avoid"
+  headers={["Mistake"]}
+  rows={[
+    ["Not scheduling pre-app meeting"],
+    ["Coming unprepared to meeting"],
+    ["Not asking about ALL fees"],
+    ["Not confirming code version"],
+    ["Skipping property survey"],
+    ["Ignoring zoning restrictions"]
+  ]}
+/>
 
 ### Application Phase
 
-❌ Incomplete plans
-❌ Missing signatures
-❌ Wrong number of plan sets
-❌ No energy calculations
-❌ Missing engineer stamps
-❌ Inaccurate project valuation
+<DataTable
+  caption="Application phase mistakes to avoid"
+  headers={["Mistake"]}
+  rows={[
+    ["Incomplete plans"],
+    ["Missing signatures"],
+    ["Wrong number of plan sets"],
+    ["No energy calculations"],
+    ["Missing engineer stamps"],
+    ["Inaccurate project valuation"]
+  ]}
+/>
 
 ### Review Phase
 
-❌ Not following up on application status
-❌ Ignoring correction requests
-❌ Incomplete correction responses
-❌ Arguing about code requirements
-❌ Not asking questions about unclear items
+<DataTable
+  caption="Review phase mistakes to avoid"
+  headers={["Mistake"]}
+  rows={[
+    ["Not following up on application status"],
+    ["Ignoring correction requests"],
+    ["Incomplete correction responses"],
+    ["Arguing about code requirements"],
+    ["Not asking questions about unclear items"]
+  ]}
+/>
 
 ### Construction Phase
 
-❌ Starting before permit issued
-❌ Not posting permit on site
-❌ No plans on site
-❌ Covering work before inspection
-❌ Wrong inspection sequence
-❌ Not being present for inspections
-❌ Making unpermitted changes
+<DataTable
+  caption="Construction phase mistakes to avoid"
+  headers={["Mistake"]}
+  rows={[
+    ["Starting before permit issued"],
+    ["Not posting permit on site"],
+    ["No plans on site"],
+    ["Covering work before inspection"],
+    ["Wrong inspection sequence"],
+    ["Not being present for inspections"],
+    ["Making unpermitted changes"]
+  ]}
+/>
 
 ### Inspection Phase
 
-❌ Site not ready when inspector arrives
-❌ Work not complete
-❌ Not taking notes during inspection
-❌ Arguing with inspector
-❌ Not fixing failures promptly
-❌ Not calling for re-inspection
+<DataTable
+  caption="Inspection phase mistakes to avoid"
+  headers={["Mistake"]}
+  rows={[
+    ["Site not ready when inspector arrives"],
+    ["Work not complete"],
+    ["Not taking notes during inspection"],
+    ["Arguing with inspector"],
+    ["Not fixing failures promptly"],
+    ["Not calling for re-inspection"]
+  ]}
+/>
 
 ## Financial Impact of Common Mistakes
 
