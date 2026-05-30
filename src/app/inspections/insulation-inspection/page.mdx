@@ -9,13 +9,19 @@ The insulation inspection verifies your home meets energy code requirements.
 
 This is where air sealing, insulation R-values, and thermal envelope integrity are checked. Pass this and you'll have a comfortable, energy-efficient home.
 
-<CalloutBox type="info">
+<CalloutBox type="critical" title="Timing is everything">
+
 This inspection must happen **after insulation is installed** but **BEFORE drywall**. Once you drywall, the inspector can't verify insulation quality or air sealing.
+
 </CalloutBox>
 
 ## When to Schedule
 
-**Timing**: After insulation is installed but BEFORE interior wall covering (drywall)
+<CalloutBox type="info" title="The window">
+
+**Timing**: After insulation is installed but BEFORE interior wall covering (drywall). **Notice required**: 24-48 hours typically. **Weather**: Interior inspection, so weather rarely delays it.
+
+</CalloutBox>
 
 **Critical sequence**:
 1. Rough-in inspections passed (electrical, plumbing, HVAC)
@@ -24,58 +30,73 @@ This inspection must happen **after insulation is installed** but **BEFORE drywa
 4. Vapor barriers installed where required
 5. NO drywall or interior finish installed yet
 
-**Notice required**: 24-48 hours typically
+<CalloutBox type="tip" title="My pro tip">
 
-**My pro tip**: This inspection often gets skipped or combined with final inspection in some jurisdictions. Ask your building department. If required as separate inspection, schedule it promptly after insulation is complete - don't delay.
+This inspection often gets skipped or combined with final inspection in some jurisdictions. Ask your building department. If required as separate inspection, schedule it promptly after insulation is complete - don't delay.
 
-**Weather consideration**: Interior inspection, so weather rarely delays it.
+</CalloutBox>
 
-**Special note**: Some jurisdictions use blower door testing or thermal imaging. Ask beforehand what testing methods will be used.
+<CalloutBox type="warning" title="Ask about testing methods">
+
+Some jurisdictions use blower door testing or thermal imaging. Ask beforehand what testing methods will be used.
+
+</CalloutBox>
 
 ## What the Inspector Checks
 
 ### Energy Code Compliance
 
-**Applicable code**: IRC Chapter 11 (N1101-N1107) and local amendments
+<CalloutBox type="info" title="The key concept">
 
-**Climate zone**: Your requirements depend on climate zone (check IRC Figure N1101.7 or ask building department)
+The thermal envelope must be continuous with minimal gaps or voids.
 
-**Compliance path**:
-- Prescriptive (follow tables for R-values)
-- Performance (energy modeling)
-- Most owner-builders use prescriptive
+</CalloutBox>
 
-**Key concept**: The thermal envelope must be continuous with minimal gaps or voids.
+- **Applicable code**: IRC Chapter 11 (N1101-N1107) and local amendments
+- **Climate zone**: Your requirements depend on climate zone (check IRC Figure N1101.7 or ask building department)
+- **Compliance path**: Prescriptive (follow tables for R-values), Performance (energy modeling) — most owner-builders use prescriptive
 
 ### Insulation R-Values
 
-**Walls** (IRC Table N1102.1.3):
-- Climate zones 1-2: R-13 (or R-15 for 2x6)
-- Climate zones 3-4: R-13 to R-20 depending on specific zone
-- Climate zones 5-6: R-20 or R-13+5 (continuous insulation)
-- Climate zones 7-8: R-21 or R-13+10
+R-value requirements scale with climate zone. The colder the zone, the more insulation required. All values from IRC Table N1102.1.3.
 
-**Ceilings/Attics** (IRC Table N1102.1.3):
-- Climate zones 1-2: R-30
-- Climate zones 3-4: R-38 (some R-49)
-- Climate zones 5-8: R-49
+<DataTable
+  caption="Wall R-value by climate zone (IRC Table N1102.1.3)"
+  headers={["Climate zones", "Walls"]}
+  rows={[
+    ["1-2", "R-13 (or R-15 for 2x6)"],
+    ["3-4", "R-13 to R-20 depending on specific zone"],
+    ["5-6", "R-20 or R-13+5 (continuous insulation)"],
+    ["7-8", "R-21 or R-13+10"]
+  ]}
+/>
 
-**Floors over unconditioned space** (IRC Table N1102.1.3):
-- Climate zones 1-2: R-13
-- Climate zones 3-4: R-19
-- Climate zones 5-8: R-30
+<DataTable
+  caption="Ceiling/attic and floor R-value by climate zone (IRC Table N1102.1.3)"
+  headers={["Climate zones", "Ceilings / Attics", "Floors over unconditioned space"]}
+  rows={[
+    ["1-2", "R-30", "R-13"],
+    ["3-4", "R-38 (some R-49)", "R-19"],
+    ["5-8", "R-49", "R-30"]
+  ]}
+/>
 
-**Basement walls** (IRC Table N1102.1.3):
-- Varies by climate zone: R-0 to R-15/19
-
-**Crawl space walls** (IRC Table N1102.1.3):
-- Varies by climate zone: R-0 to R-15/19
+<DataTable
+  caption="Below-grade insulation (IRC Table N1102.1.3)"
+  headers={["Assembly", "Requirement"]}
+  rows={[
+    ["Basement walls", "Varies by climate zone: R-0 to R-15/19"],
+    ["Crawl space walls", "Varies by climate zone: R-0 to R-15/19"]
+  ]}
+/>
 
 **Foundation details**:
 - Can insulate walls OR floor above
 - R-value requirements depend on which you choose
 
 ### Insulation Installation Quality
+
+The right R-value only counts if the insulation is installed correctly. Inspectors check each assembly for full coverage and no compression.
 
 **Wall insulation**:
 - Completely fills cavities (no gaps or voids)
@@ -107,7 +128,11 @@ This inspection must happen **after insulation is installed** but **BEFORE drywa
 
 ### Air Sealing (Critical!)
 
-**Concept**: Air leakage wastes more energy than missing insulation. Inspector focuses heavily on this.
+<CalloutBox type="critical" title="Air leakage beats missing insulation">
+
+Air leakage wastes more energy than missing insulation. Inspector focuses heavily on this.
+
+</CalloutBox>
 
 **Key air sealing locations** (IRC N1102.4.1):
 - Penetrations through thermal envelope sealed
@@ -129,81 +154,98 @@ This inspection must happen **after insulation is installed** but **BEFORE drywa
 - Mastic (ductwork)
 - Proper weatherstripping (access doors)
 
-**Blower door test** (if required):
-- Measures air leakage of entire house
-- Maximum ACH50 (air changes per hour at 50 pascals): 3 or 5 depending on climate zone
-- Some jurisdictions require, others don't
-- Ask building department beforehand
+<CalloutBox type="warning" title="Blower door test (if required)">
+
+Measures air leakage of the entire house. **Maximum ACH50** (air changes per hour at 50 pascals): **3 or 5** depending on climate zone. Some jurisdictions require it, others don't — ask your building department beforehand.
+
+</CalloutBox>
 
 ### Vapor Barriers and Retarders
 
-**Vapor retarder required** (IRC N1102.5):
-- Climate zones 5, 6, 7, 8, Marine 4
-- Class I or II vapor retarder on interior (winter) side
-- Examples: Poly sheeting, kraft facing on insulation, vapor retarder paint
+Whether you need a vapor retarder — and which side it goes on — depends entirely on your climate zone.
 
-**Not required**:
-- Climate zones 1, 2, 3 (generally)
-- May be prohibited in some hot/humid climates
+<DataTable
+  caption="Vapor retarder requirements by climate zone (IRC N1102.5)"
+  headers={["Climate zones", "Requirement"]}
+  rows={[
+    ["5, 6, 7, 8, Marine 4", "Class I or II vapor retarder on interior (winter) side — e.g. poly sheeting, kraft facing on insulation, vapor retarder paint"],
+    ["1, 2, 3 (generally)", "Not required; may be prohibited in some hot/humid climates"]
+  ]}
+/>
 
 **Installation**:
 - Continuous (overlapped at seams)
 - Sealed at penetrations
 - Proper side of insulation (toward conditioned space in cold climates)
 
-**Common mistake**: Installing vapor barrier in climate where it causes moisture problems. Check your climate zone requirements.
+<CalloutBox type="warning" title="Common mistake">
+
+Installing vapor barrier in a climate where it causes moisture problems. Check your climate zone requirements.
+
+</CalloutBox>
 
 ### Windows and Doors
 
-**U-factor requirements** (IRC Table N1102.1.3):
-- Maximum U-factor varies by climate zone
-- Climate zones 1-2: U-0.50 to U-0.65
-- Climate zones 3-4: U-0.35 to U-0.40
-- Climate zones 5-8: U-0.30 to U-0.32
+Windows have a maximum U-factor that tightens as climate gets colder. You can't fix a wrong window with insulation — buy correct from the start.
 
-**Skylight U-factor**:
-- Typically 0.05 higher than vertical fenestration allowed
+<DataTable
+  caption="Maximum window U-factor by climate zone (IRC Table N1102.1.3)"
+  headers={["Climate zones", "Maximum U-factor"]}
+  rows={[
+    ["Zones 1-2", "U-0.50 to U-0.65"],
+    ["Zones 3-4", "U-0.35 to U-0.40"],
+    ["Zones 5-8", "U-0.30 to U-0.32"]
+  ]}
+/>
 
-**SHGC** (Solar Heat Gain Coefficient):
-- Requirements in some climate zones (cooling dominant)
+- **Skylight U-factor**: Typically 0.05 higher than vertical fenestration allowed
+- **SHGC** (Solar Heat Gain Coefficient): Requirements in some climate zones (cooling dominant)
 
 **Installation**:
 - Properly flashed and sealed
 - Insulated around rough opening
 - Air sealed at frame
 
-**Documentation**: Be ready to show window labels proving U-factor compliance.
+<CalloutBox type="tip" title="Documentation">
+
+Be ready to show window labels proving U-factor compliance.
+
+</CalloutBox>
 
 ### Duct Insulation
 
-**Ducts in unconditioned spaces** (IRC N1103.3.3):
-- Minimum R-8 insulation required
-- R-6 for ducts buried in attic insulation
-- All joints sealed with mastic or tape
+<DataTable
+  caption="Duct insulation in unconditioned spaces (IRC N1103.3.3)"
+  headers={["Condition", "Requirement"]}
+  rows={[
+    ["Ducts in unconditioned spaces", "Minimum R-8 insulation required"],
+    ["Ducts buried in attic insulation", "R-6"],
+    ["All joints", "Sealed with mastic or tape"]
+  ]}
+/>
 
-**Supply ducts**:
-- Insulated where in unconditioned space
-- Sealed to prevent air leakage
+- **Supply ducts**: Insulated where in unconditioned space; sealed to prevent air leakage
+- **Return ducts**: Fully sealed; insulated in unconditioned spaces
 
-**Return ducts**:
-- Fully sealed
-- Insulated in unconditioned spaces
+<CalloutBox type="warning" title="Common issue">
 
-**Common issue**: Ducts in vented attic or crawlspace not insulated.
+Ducts in vented attic or crawlspace not insulated.
+
+</CalloutBox>
 
 ### Recessed Lighting
 
-**IC-rated fixtures**:
-- Insulation can touch these fixtures
-- Must be labeled IC (Insulation Contact)
-- Must be airtight rated for energy code (in some jurisdictions)
+<CalloutBox type="critical" title="IC vs non-IC fixtures">
 
-**Non-IC fixtures**:
-- Require 3" clearance from insulation
-- Require box around fixture to maintain clearance
-- Box must be sealed
+**IC-rated fixtures**: Insulation can touch these; must be labeled IC (Insulation Contact); must be airtight rated for energy code (in some jurisdictions). **Non-IC fixtures**: Require 3" clearance from insulation, a box around the fixture to maintain clearance, and the box must be sealed.
 
-**Better approach**: Use IC-rated, airtight fixtures throughout.
+</CalloutBox>
+
+<CalloutBox type="tip" title="Better approach">
+
+Use IC-rated, airtight fixtures throughout.
+
+</CalloutBox>
 
 ### Specific Details Checked
 
@@ -287,10 +329,12 @@ This inspection must happen **after insulation is installed** but **BEFORE drywa
   ]}
 />
 
-<CalloutBox type="tip">
+<CalloutBox type="tip" title="Spot gaps before the inspector does">
+
 **Use flashlight**: Shine from different angles to see gaps or voids you'd otherwise miss.
 
 **Use phone camera**: Take photos from different angles - it's often easier to see issues in photos than with naked eye.
+
 </CalloutBox>
 
 ## During the Inspection
@@ -305,7 +349,11 @@ This inspection must happen **after insulation is installed** but **BEFORE drywa
 6. **Thermal imaging** (if used): Scans for air leakage and missing insulation
 7. **Blower door test** (if required): Tests overall air tightness
 
-**Timeline**: Expect 30 minutes to 1.5 hours depending on house size and testing required.
+<CalloutBox type="info" title="Timeline">
+
+Expect 30 minutes to 1.5 hours depending on house size and testing required.
+
+</CalloutBox>
 
 **Your role**:
 - Walk with inspector
@@ -324,9 +372,11 @@ This inspection must happen **after insulation is installed** but **BEFORE drywa
 
 ### 1. Insulation Voids and Gaps
 
-**Failure**: Missing insulation in cavities, gaps around boxes, or incomplete coverage
+<CalloutBox type="warning" title="Failure: missing insulation in cavities, gaps around boxes, or incomplete coverage">
 
 **Code requirement**: IRC N1102.4.2 - Insulation shall provide continuous thermal barrier
+
+</CalloutBox>
 
 **Common locations**:
 - Around electrical boxes
@@ -335,21 +385,24 @@ This inspection must happen **after insulation is installed** but **BEFORE drywa
 - At top and bottom plates
 - In corners
 
-**How to fix**: Fill all voids with insulation, split batts around obstacles
+- **How to fix**: Fill all voids with insulation, split batts around obstacles
+- **Time to re-inspect**: 1-3 days
+- **Cost**: $200-$600 (labor to add insulation)
+- **Prevention**: Take time to insulate completely, split batts around obstacles, use pieces to fill small gaps
 
-**Time to re-inspect**: 1-3 days
+<CalloutBox type="tip" title="Inspector tip">
 
-**Cost**: $200-$600 (labor to add insulation)
+They use thermal imaging cameras - voids show up clearly as cold spots.
 
-**Prevention**: Take time to insulate completely, split batts around obstacles, use pieces to fill small gaps
-
-**Inspector tip**: They use thermal imaging cameras - voids show up clearly as cold spots.
+</CalloutBox>
 
 ### 2. Compressed Insulation
 
-**Failure**: Insulation compressed, reducing effective R-value
+<CalloutBox type="warning" title="Failure: insulation compressed, reducing effective R-value">
 
 **Code requirement**: IRC N1102.4.2 - Must achieve rated R-value
+
+</CalloutBox>
 
 **How it happens**:
 - Forcing wrong thickness into cavity (R-19 in 2x4 wall)
@@ -357,19 +410,18 @@ This inspection must happen **after insulation is installed** but **BEFORE drywa
 - Over-stuffing cavities
 - Walking on attic insulation
 
-**How to fix**: Remove and reinstall with proper thickness, don't compress
-
-**Time to re-inspect**: 2-4 days
-
-**Cost**: $300-$800 (labor to redo insulation)
-
-**Prevention**: Use correct insulation thickness for cavity depth, don't compress to fit
+- **How to fix**: Remove and reinstall with proper thickness, don't compress
+- **Time to re-inspect**: 2-4 days
+- **Cost**: $300-$800 (labor to redo insulation)
+- **Prevention**: Use correct insulation thickness for cavity depth, don't compress to fit
 
 ### 3. Missing Air Sealing
 
-**Failure**: Penetrations and gaps not sealed with foam or caulk
+<CalloutBox type="critical" title="Failure: penetrations and gaps not sealed with foam or caulk">
 
-**Code requirement**: IRC N1102.4.1 - Thermal envelope shall be sealed
+**Code requirement**: IRC N1102.4.1 - Thermal envelope shall be sealed. **This is critical**: more important than insulation R-value in many ways.
+
+</CalloutBox>
 
 **Critical locations often missed**:
 - Bottom plates to subfloor
@@ -381,98 +433,98 @@ This inspection must happen **after insulation is installed** but **BEFORE drywa
 - HVAC register boots
 - Rim joist to sill plate
 
-**How to fix**: Seal all penetrations with appropriate material (foam, caulk, gaskets)
-
-**Time to re-inspect**: 2-4 days
-
-**Cost**: $300-$1,000 (labor and materials for extensive air sealing)
-
-**Prevention**: Air seal as you go, don't wait until end, use foam for gaps, caulk for small cracks
-
-**This is critical**: More important than insulation R-value in many ways.
+- **How to fix**: Seal all penetrations with appropriate material (foam, caulk, gaskets)
+- **Time to re-inspect**: 2-4 days
+- **Cost**: $300-$1,000 (labor and materials for extensive air sealing)
+- **Prevention**: Air seal as you go, don't wait until end, use foam for gaps, caulk for small cracks
 
 ### 4. No Baffles at Eaves
 
-**Failure**: Missing ventilation baffles at attic eaves
+<CalloutBox type="warning" title="Failure: missing ventilation baffles at attic eaves">
 
 **Code requirement**: IRC N1102.2.3 - Maintain ventilation while insulating
+
+</CalloutBox>
 
 **Why required**:
 - Maintains air flow from soffit vents
 - Prevents insulation from blocking ventilation
 - Prevents wind-washing of insulation
 
-**How to fix**: Install baffles at each rafter bay
-
-**Time to re-inspect**: 1-2 days
-
-**Cost**: $150-$400 (baffles and labor)
-
-**Prevention**: Install baffles before blowing or laying insulation
+- **How to fix**: Install baffles at each rafter bay
+- **Time to re-inspect**: 1-2 days
+- **Cost**: $150-$400 (baffles and labor)
+- **Prevention**: Install baffles before blowing or laying insulation
 
 ### 5. Recessed Lights Not Properly Treated
 
-**Failure**: Non-IC lights in contact with insulation, or non-airtight lights without sealing
+<CalloutBox type="critical" title="Failure: non-IC lights in contact with insulation, or non-airtight lights without sealing">
 
 **Code requirement**: IRC N1102.4.4 - Recessed lights must be IC-rated airtight, or sealed box with clearance
+
+</CalloutBox>
 
 **Issues**:
 - Insulation touching non-IC fixture (fire hazard)
 - IC fixture but not airtight (air leakage)
 - Missing or improper clearance box for non-IC
 
-**How to fix**: Replace with IC-rated airtight fixtures, or build proper clearance box
-
-**Time to re-inspect**: 3-5 days (electrical work)
-
-**Cost**: $300-$1,200 (replacing fixtures or building boxes)
-
-**Prevention**: Use only IC-rated airtight recessed lights, or avoid recessed lights in insulated ceilings
+- **How to fix**: Replace with IC-rated airtight fixtures, or build proper clearance box
+- **Time to re-inspect**: 3-5 days (electrical work)
+- **Cost**: $300-$1,200 (replacing fixtures or building boxes)
+- **Prevention**: Use only IC-rated airtight recessed lights, or avoid recessed lights in insulated ceilings
 
 ### 6. Insufficient Attic Insulation Depth
 
-**Failure**: Attic insulation doesn't meet required R-value
+<CalloutBox type="warning" title="Failure: attic insulation doesn't meet required R-value">
 
 **Code requirement**: IRC Table N1102.1.3 (typically R-38 to R-49 depending on climate)
 
-**How to check**:
-- Measure depth with ruler
-- R-30 blown fiberglass ≈ 8-9"
-- R-38 blown fiberglass ≈ 10-11"
-- R-49 blown fiberglass ≈ 14-16"
-- (Cellulose is denser, less depth needed)
+</CalloutBox>
 
-**How to fix**: Add insulation to achieve required depth
+Measure depth with a ruler and compare against the target for your R-value. Cellulose is denser, so less depth is needed.
 
-**Time to re-inspect**: 1-3 days
+<DataTable
+  caption="Approximate blown fiberglass depth by R-value"
+  headers={["R-value", "Approximate depth (blown fiberglass)"]}
+  rows={[
+    ["R-30", "8-9\""],
+    ["R-38", "10-11\""],
+    ["R-49", "14-16\""]
+  ]}
+/>
 
-**Cost**: $400-$1,500 (additional insulation and labor)
-
-**Prevention**: Calculate required depth before installation, verify throughout attic, add more if marginal
+- **How to fix**: Add insulation to achieve required depth
+- **Time to re-inspect**: 1-3 days
+- **Cost**: $400-$1,500 (additional insulation and labor)
+- **Prevention**: Calculate required depth before installation, verify throughout attic, add more if marginal
 
 ### 7. Rim Joist Not Insulated
 
-**Failure**: Rim joist (band joist) not insulated or air sealed
+<CalloutBox type="warning" title="Failure: rim joist (band joist) not insulated or air sealed">
 
-**Code requirement**: IRC N1102.4.2 - Must insulate to full wall R-value
+**Code requirement**: IRC N1102.4.2 - Must insulate to full wall R-value. **Common issue**: often forgotten because framing covers it.
 
-**Common issue**: Often forgotten because framing covers it
+</CalloutBox>
 
-**How to fix**: Insulate rim joist with spray foam or batt insulation, air seal to subfloor and sill plate
+- **How to fix**: Insulate rim joist with spray foam or batt insulation, air seal to subfloor and sill plate
+- **Time to re-inspect**: 2-4 days
+- **Cost**: $400-$1,200 (accessing and insulating rim joist)
+- **Prevention**: Insulate rim joist before framing walls, or from exterior before sheathing
 
-**Time to re-inspect**: 2-4 days
+<CalloutBox type="tip" title="Pro tip">
 
-**Cost**: $400-$1,200 (accessing and insulating rim joist)
+Spray foam works best for rim joist.
 
-**Prevention**: Insulate rim joist before framing walls, or from exterior before sheathing
-
-**Pro tip**: Spray foam works best for rim joist.
+</CalloutBox>
 
 ### 8. Wrong Vapor Barrier Installation
 
-**Failure**: Vapor barrier on wrong side, or installed where not appropriate
+<CalloutBox type="warning" title="Failure: vapor barrier on wrong side, or installed where not appropriate">
 
 **Code requirement**: IRC N1102.5 - Climate-dependent requirements
+
+</CalloutBox>
 
 **Common mistakes**:
 - Vapor barrier on both sides of wall (moisture trap)
@@ -480,56 +532,49 @@ This inspection must happen **after insulation is installed** but **BEFORE drywa
 - Vapor barrier on inside in hot/humid climate
 - Kraft facing on insulation facing wrong direction
 
-**How to fix**: Remove incorrect vapor barrier, install correctly if required
-
-**Time to re-inspect**: 3-7 days (can be extensive)
-
-**Cost**: $500-$2,000 (removing and reinstalling)
-
-**Prevention**: Know your climate zone requirements, understand vapor barrier theory, consult with building department
+- **How to fix**: Remove incorrect vapor barrier, install correctly if required
+- **Time to re-inspect**: 3-7 days (can be extensive)
+- **Cost**: $500-$2,000 (removing and reinstalling)
+- **Prevention**: Know your climate zone requirements, understand vapor barrier theory, consult with building department
 
 ### 9. Windows Don't Meet U-Factor Requirements
 
-**Failure**: Windows exceed maximum U-factor for climate zone
+<CalloutBox type="critical" title="Failure: windows exceed maximum U-factor for climate zone">
 
-**Code requirement**: IRC Table N1102.1.3
+**Code requirement**: IRC Table N1102.1.3. **Issue**: can't fix by adding insulation - windows are wrong. **This is expensive**: order correct windows from the start.
 
-**Issue**: Can't fix by adding insulation - windows are wrong
+</CalloutBox>
 
-**How to fix**: Replace windows with code-compliant models
-
-**Time to re-inspect**: 1-2 weeks (ordering and installing windows)
-
-**Cost**: $3,000-$15,000+ (replacing all windows)
-
-**Prevention**: Verify window U-factor BEFORE ordering, check against climate zone requirements, keep labels
-
-**This is expensive**: Order correct windows from the start.
+- **How to fix**: Replace windows with code-compliant models
+- **Time to re-inspect**: 1-2 weeks (ordering and installing windows)
+- **Cost**: $3,000-$15,000+ (replacing all windows)
+- **Prevention**: Verify window U-factor BEFORE ordering, check against climate zone requirements, keep labels
 
 ### 10. Attic Access Not Insulated or Sealed
 
-**Failure**: Attic access hatch or stairs not insulated and weatherstripped
+<CalloutBox type="warning" title="Failure: attic access hatch or stairs not insulated and weatherstripped">
 
 **Code requirement**: IRC N1102.2.4 - Access doors shall be insulated and sealed
+
+</CalloutBox>
 
 **Requirements**:
 - Insulated to at least R-value of surrounding ceiling
 - Weatherstripped on all sides
 - Latched or weighted to compress weatherstripping
 
-**How to fix**: Add insulation to hatch, install weatherstripping, add latches
-
-**Time to re-inspect**: 1-2 days
-
-**Cost**: $100-$300 (materials and labor)
-
-**Prevention**: Insulate and weatherstrip attic access before calling inspection
+- **How to fix**: Add insulation to hatch, install weatherstripping, add latches
+- **Time to re-inspect**: 1-2 days
+- **Cost**: $100-$300 (materials and labor)
+- **Prevention**: Insulate and weatherstrip attic access before calling inspection
 
 ### 11. Kneewall Not Properly Insulated
 
-**Failure**: Kneewall insulation missing, or no air barrier on attic side
+<CalloutBox type="warning" title="Failure: kneewall insulation missing, or no air barrier on attic side">
 
 **Code requirement**: IRC N1102.2.10 - Kneewalls must be insulated with air barrier
+
+</CalloutBox>
 
 **What's needed**:
 - Wall insulated to full wall R-value
@@ -537,57 +582,54 @@ This inspection must happen **after insulation is installed** but **BEFORE drywa
 - Floor beyond kneewall insulated to ceiling R-value
 - Access door insulated and sealed
 
-**How to fix**: Insulate kneewall, install air barrier, insulate attic floor
-
-**Time to re-inspect**: 3-5 days
-
-**Cost**: $500-$1,500 (depends on extent)
-
-**Prevention**: Plan kneewall insulation strategy, include air barrier, insulate attic floor beyond
+- **How to fix**: Insulate kneewall, install air barrier, insulate attic floor
+- **Time to re-inspect**: 3-5 days
+- **Cost**: $500-$1,500 (depends on extent)
+- **Prevention**: Plan kneewall insulation strategy, include air barrier, insulate attic floor beyond
 
 ### 12. Cantilevered Floor Not Insulated
 
-**Failure**: Cantilevered floor section not insulated or air sealed
+<CalloutBox type="warning" title="Failure: cantilevered floor section not insulated or air sealed">
 
 **Code requirement**: IRC N1102.2.7 - Cantilevered floors over exterior walls or unconditioned space shall be insulated
+
+</CalloutBox>
 
 **What's needed**:
 - Insulated to floor R-value
 - Air sealed at perimeter
 - Vapor barrier if required
 
-**How to fix**: Access from below and insulate, or remove floor sheathing from above
-
-**Time to re-inspect**: 3-5 days
-
-**Cost**: $400-$1,200 (accessing and insulating)
-
-**Prevention**: Insulate cantilevers from below before closing in, or from above before subfloor
+- **How to fix**: Access from below and insulate, or remove floor sheathing from above
+- **Time to re-inspect**: 3-5 days
+- **Cost**: $400-$1,200 (accessing and insulating)
+- **Prevention**: Insulate cantilevers from below before closing in, or from above before subfloor
 
 ### 13. Duct Insulation Insufficient
 
-**Failure**: Ducts in unconditioned spaces not insulated to R-8
+<CalloutBox type="warning" title="Failure: ducts in unconditioned spaces not insulated to R-8">
 
 **Code requirement**: IRC N1103.3.3 - R-8 in unconditioned spaces
+
+</CalloutBox>
 
 **Common issues**:
 - Only R-6 insulation on ducts
 - No insulation on some duct runs
 - Insulation damaged or missing at joints
 
-**How to fix**: Add insulation to achieve R-8, seal all joints
-
-**Time to re-inspect**: 2-4 days
-
-**Cost**: $400-$1,200 (adding duct insulation)
-
-**Prevention**: Specify R-8 duct insulation in unconditioned spaces, verify installation
+- **How to fix**: Add insulation to achieve R-8, seal all joints
+- **Time to re-inspect**: 2-4 days
+- **Cost**: $400-$1,200 (adding duct insulation)
+- **Prevention**: Specify R-8 duct insulation in unconditioned spaces, verify installation
 
 ### 14. Blower Door Test Failure
 
-**Failure**: House too leaky, exceeds maximum ACH50
+<CalloutBox type="critical" title="Failure: house too leaky, exceeds maximum ACH50">
 
 **Code requirement**: IRC N1102.4.1.2 - Maximum 3 or 5 ACH50 depending on climate
+
+</CalloutBox>
 
 **Common leakage points**:
 - Unsealed penetrations
@@ -596,21 +638,24 @@ This inspection must happen **after insulation is installed** but **BEFORE drywa
 - Unsealed attic access
 - Missing air sealing at plates
 
-**How to fix**: Systematic air sealing of all penetrations and joints
+- **How to fix**: Systematic air sealing of all penetrations and joints
+- **Time to re-inspect**: 3-7 days (extensive air sealing)
+- **Cost**: $500-$2,000 (labor and materials for air sealing)
+- **Prevention**: Air seal thoroughly during construction, test yourself with blower door before calling inspection
 
-**Time to re-inspect**: 3-7 days (extensive air sealing)
+<CalloutBox type="tip" title="Consider">
 
-**Cost**: $500-$2,000 (labor and materials for air sealing)
+Hiring energy auditor to test before official inspection.
 
-**Prevention**: Air seal thoroughly during construction, test yourself with blower door before calling inspection
-
-**Consider**: Hiring energy auditor to test before official inspection.
+</CalloutBox>
 
 ### 15. Garage Separation Not Sealed
 
-**Failure**: Air barrier between garage and house not complete
+<CalloutBox type="warning" title="Failure: air barrier between garage and house not complete">
 
 **Code requirement**: IRC N1102.4.1 - Separate conditioned from unconditioned spaces
+
+</CalloutBox>
 
 **What's needed**:
 - Wall between garage and house fully insulated
@@ -618,19 +663,20 @@ This inspection must happen **after insulation is installed** but **BEFORE drywa
 - Garage access door weatherstripped
 - Fire-rated assembly maintained
 
-**How to fix**: Air seal all penetrations, weatherstrip door, complete insulation
-
-**Time to re-inspect**: 2-4 days
-
-**Cost**: $300-$800 (air sealing and weatherstripping)
-
-**Prevention**: Treat garage wall as exterior wall, air seal thoroughly
+- **How to fix**: Air seal all penetrations, weatherstrip door, complete insulation
+- **Time to re-inspect**: 2-4 days
+- **Cost**: $300-$800 (air sealing and weatherstripping)
+- **Prevention**: Treat garage wall as exterior wall, air seal thoroughly
 
 ## If You Fail
 
 ### Stay Calm
 
+<CalloutBox type="success" title="Usually an easy fix">
+
 Insulation inspection failures are usually easy to fix - just adding more insulation or air sealing.
+
+</CalloutBox>
 
 ### Get Specific Details
 
@@ -640,19 +686,27 @@ Ask inspector:
 - Which air sealing locations need attention?
 - Can they mark problem areas?
 
-**Request infrared images** if thermal camera was used - shows exactly where problems are.
+<CalloutBox type="tip" title="Request infrared images">
+
+If a thermal camera was used, ask for the infrared images - they show exactly where problems are.
+
+</CalloutBox>
 
 ### Common Fixes and Timeline
 
-| Issue | Fix | Cost | Timeline |
-|-------|-----|------|----------|
-| Insulation voids | Fill gaps | $200-600 | 1-3 days |
-| Insufficient depth | Add insulation | $400-1,500 | 1-3 days |
-| Missing air sealing | Foam/caulk penetrations | $300-1,000 | 2-4 days |
-| No baffles | Install baffles | $150-400 | 1-2 days |
-| Rim joist not insulated | Insulate rim joist | $400-1,200 | 2-4 days |
-| Attic access not sealed | Insulate and weatherstrip | $100-300 | 1-2 days |
-| Wrong windows | Replace windows | $3,000-15,000+ | 1-2 weeks |
+<DataTable
+  caption="Common insulation fixes, costs, and timelines"
+  headers={["Issue", "Fix", "Cost", "Timeline"]}
+  rows={[
+    ["Insulation voids", "Fill gaps", "$200-600", "1-3 days"],
+    ["Insufficient depth", "Add insulation", "$400-1,500", "1-3 days"],
+    ["Missing air sealing", "Foam/caulk penetrations", "$300-1,000", "2-4 days"],
+    ["No baffles", "Install baffles", "$150-400", "1-2 days"],
+    ["Rim joist not insulated", "Insulate rim joist", "$400-1,200", "2-4 days"],
+    ["Attic access not sealed", "Insulate and weatherstrip", "$100-300", "1-2 days"],
+    ["Wrong windows", "Replace windows", "$3,000-15,000+", "1-2 weeks"]
+  ]}
+/>
 
 ### Re-Inspection Process
 
@@ -672,9 +726,11 @@ Each week insulation inspection is delayed:
 - **Construction loan interest**: $100-$200
 - **Cascade delays**: All finish work pushed back
 
-**One week delay** = $800-$2,000
+<CalloutBox type="warning" title="One week delay = $800-$2,000">
 
-**However**: Better to delay and do it right than rush and fail.
+Better to delay and do it right than rush and fail.
+
+</CalloutBox>
 
 ## Special Considerations
 
@@ -691,7 +747,11 @@ Each week insulation inspection is delayed:
 - No voids or gaps
 - Fire protection if required
 
-**Cost**: 2-3x batts but includes air sealing.
+<CalloutBox type="tip" title="Cost">
+
+2-3x batts but includes air sealing.
+
+</CalloutBox>
 
 ### Blown-In Insulation
 

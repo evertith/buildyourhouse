@@ -11,25 +11,49 @@ This guide will teach you how to request quotes that are actually comparable, un
 
 ## Why the Quote Process Matters
 
+<CalloutBox type="info" title="The core problem — and the fix">
+
 **The problem**: Many owner-builders get quotes that seem similar but include vastly different scopes of work, making comparison impossible. Or they choose the lowest bid without understanding what's included, leading to change orders and cost overruns.
-
-**Real example**:
-- Quote A: $15,000 for framing (includes labor only)
-- Quote B: $18,000 for framing (includes labor + sheathing + house wrap)
-- Quote C: $12,000 for framing (includes labor only, assumes owner provides all materials on-site)
-
-**Which is cheapest?** Can't tell without understanding what's included.
 
 **The solution**: Request detailed quotes with identical scope, understand what you're comparing, and make decisions based on value, not just price.
 
+</CalloutBox>
+
+**Real example** — three framing quotes that look comparable but aren't:
+
+<DataTable
+  caption="Why a lower number isn't always the cheaper quote"
+  headers={["Quote", "Price", "What's included"]}
+  rows={[
+    ["Quote A", "$15,000", "Labor only"],
+    ["Quote B", "$18,000", "Labor + sheathing + house wrap"],
+    ["Quote C", "$12,000", "Labor only, assumes owner provides all materials on-site"]
+  ]}
+/>
+
+**Which is cheapest?** Can't tell without understanding what's included.
+
 ## Types of Quotes
 
-Subcontractors price work in different ways:
+Subcontractors price work in different ways. Here's the quick map before the details:
+
+<DataTable
+  caption="The four pricing structures at a glance"
+  headers={["Structure", "How it works", "Best for"]}
+  rows={[
+    ["Lump Sum (Fixed Price)", "Single price for complete scope of work", "Well-defined scope, complete plans, standard construction"],
+    ["Time and Materials (T&M)", "Pay for actual hours worked plus materials used", "Uncertain scope, remodel work, small projects, repair work"],
+    ["Unit Pricing", "Price per unit of work completed", "Projects where quantity is main variable"],
+    ["Cost-Plus", "Actual costs plus fixed percentage or fee", "Complex projects, high-end work, trusted relationships"]
+  ]}
+/>
 
 ### 1. Lump Sum (Fixed Price)
-**What it is**: Single price for complete scope of work
 
-**Example**: "$35,000 to frame your house per the attached plans"
+- **What it is**: Single price for complete scope of work
+- **Example**: "$35,000 to frame your house per the attached plans"
+- **Best for**: Well-defined scope, complete plans, standard construction
+- **Common trades**: Framing, roofing, siding, cabinets
 
 **Pros**:
 - Know exact cost upfront
@@ -42,14 +66,12 @@ Subcontractors price work in different ways:
 - Changes result in change orders
 - Less flexibility
 
-**Best for**: Well-defined scope, complete plans, standard construction
-
-**Common trades**: Framing, roofing, siding, cabinets
-
 ### 2. Time and Materials (T&M)
-**What it is**: Pay for actual hours worked plus materials used
 
-**Example**: "$65/hour for labor + materials at cost + 15% markup"
+- **What it is**: Pay for actual hours worked plus materials used
+- **Example**: "$65/hour for labor + materials at cost + 15% markup"
+- **Best for**: Uncertain scope, remodel work, small projects, repair work
+- **Less common for**: New construction (use lump sum instead)
 
 **Pros**:
 - Pay only for actual work
@@ -62,12 +84,11 @@ Subcontractors price work in different ways:
 - Can go over budget
 - Contractor has incentive to work slowly
 
-**Best for**: Uncertain scope, remodel work, small projects, repair work
-
-**Less common for**: New construction (use lump sum instead)
-
 ### 3. Unit Pricing
-**What it is**: Price per unit of work completed
+
+- **What it is**: Price per unit of work completed
+- **Best for**: Projects where quantity is main variable
+- **Common trades**: Concrete, drywall, roofing, flooring, painting
 
 **Example**:
 - "$8.50 per square foot of drywall hung"
@@ -85,14 +106,12 @@ Subcontractors price work in different ways:
 - Final cost depends on exact measurements
 - May not account for complexity
 
-**Best for**: Projects where quantity is main variable
-
-**Common trades**: Concrete, drywall, roofing, flooring, painting
-
 ### 4. Cost-Plus
-**What it is**: Actual costs plus fixed percentage or fee
 
-**Example**: "Materials and labor at cost + 20% contractor fee"
+- **What it is**: Actual costs plus fixed percentage or fee
+- **Example**: "Materials and labor at cost + 20% contractor fee"
+- **Best for**: Complex projects, high-end work, trusted relationships
+- **Less common**: For standard construction
 
 **Pros**:
 - Transparent pricing
@@ -105,13 +124,13 @@ Subcontractors price work in different ways:
 - More paperwork
 - Need to verify costs
 
-**Best for**: Complex projects, high-end work, trusted relationships
-
-**Less common**: For standard construction
-
 ## How to Request Quotes
 
-The quality of quotes you receive depends on the quality of information you provide.
+<CalloutBox type="tip" title="Garbage in, garbage out">
+
+The quality of quotes you receive depends on the quality of information you provide. Give every contractor the same complete package and you'll get bids you can actually compare side by side.
+
+</CalloutBox>
 
 ### Step 1: Prepare Your Request for Quote (RFQ)
 
@@ -187,12 +206,17 @@ Plans: See attached foundation plan dated [plan date]
 
 ### Step 2: Send RFQ to Multiple Contractors
 
-**How many quotes to get**: 3-5 per trade
+**How many quotes to get**: 3-5 per trade.
 
-**Why this number**:
-- Too few (1-2): Can't compare, may overpay
-- Right amount (3-5): Can compare, see market rate
-- Too many (6+): Diminishing returns, wastes time
+<DataTable
+  caption="How many quotes to gather per trade"
+  headers={["Number of quotes", "Outcome"]}
+  rows={[
+    ["Too few (1-2)", "Can't compare, may overpay"],
+    ["Right amount (3-5)", "Can compare, see market rate"],
+    ["Too many (6+)", "Diminishing returns, wastes time"]
+  ]}
+/>
 
 **How to send**:
 - Email is fine for initial contact
@@ -200,10 +224,15 @@ Plans: See attached foundation plan dated [plan date]
 - Provide all documents electronically
 - Offer to meet at site if they prefer
 
-**Timeline to allow**:
-- Simple projects: 1 week for quotes
-- Complex projects: 2 weeks for quotes
-- Custom work: 3 weeks for quotes
+<DataTable
+  caption="How long to give contractors to respond"
+  headers={["Project type", "Timeline to allow"]}
+  rows={[
+    ["Simple projects", "1 week for quotes"],
+    ["Complex projects", "2 weeks for quotes"],
+    ["Custom work", "3 weeks for quotes"]
+  ]}
+/>
 
 **Follow-up**:
 - If no response in 3-4 days, call
@@ -247,24 +276,22 @@ Plans: See attached foundation plan dated [plan date]
    - Insurance coverage amounts
    - Will provide certificates
 
-**Red flags in quotes**:
-- Vague scope ("frame house")
-- No payment terms specified
-- No timeline provided
-- "Materials TBD" or unclear specs
-- No warranty mentioned
-- Missing contact information
-- Handwritten on scrap paper
-- Spelling/grammar errors throughout
+**Red flags vs. green flags** — what a quote's format and completeness tell you:
 
-**Green flags**:
-- Detailed scope broken down by task
-- Clear payment schedule
-- Specific timeline with milestones
-- Named materials and specifications
-- Professional format (letterhead, formatted)
-- License and insurance info included
-- Contact information clear
+<DataTable
+  caption="Reading the quote itself: red flags vs. green flags"
+  headers={["Red flags in quotes", "Green flags"]}
+  rows={[
+    ["Vague scope (\"frame house\")", "Detailed scope broken down by task"],
+    ["No payment terms specified", "Clear payment schedule"],
+    ["No timeline provided", "Specific timeline with milestones"],
+    ["\"Materials TBD\" or unclear specs", "Named materials and specifications"],
+    ["No warranty mentioned", "Professional format (letterhead, formatted)"],
+    ["Missing contact information", "License and insurance info included"],
+    ["Handwritten on scrap paper", "Contact information clear"],
+    ["Spelling/grammar errors throughout", "—"]
+  ]}
+/>
 
 ## Understanding Quote Components
 
@@ -297,39 +324,43 @@ Break down each quote into these elements:
 
 ### Material Costs
 
-**Who provides materials matters**:
+**Who provides materials matters** — it shifts both cost and risk:
 
-**Option 1: Contractor provides all materials**
-- **Pros**: One-stop shopping, contractor manages ordering/delivery, warranty included
-- **Cons**: Contractor markup (10-30%), less control over brands, may use cheaper options
-- **When to use**: Full turnkey, busy schedule, trust contractor
+<DataTable
+  caption="Who provides the materials: three options compared"
+  headers={["Option", "Pros", "Cons", "When to use"]}
+  rows={[
+    ["Contractor provides all", "One-stop shopping, contractor manages ordering/delivery, warranty included", "Contractor markup (10-30%), less control over brands, may use cheaper options", "Full turnkey, busy schedule, trust contractor"],
+    ["Owner provides all", "No markup, choose exact brands, potentially cheaper, can shop sales", "Timing risk, wrong quantities, storage issues, no contractor warranty on materials", "Want control, have time, know what you're doing"],
+    ["Hybrid (split)", "Control on key items, contractor manages difficult items", "Coordination complexity, potential delays, unclear responsibility", "Strategic approach to save money on big-ticket items"]
+  ]}
+/>
 
-**Option 2: Owner provides all materials**
-- **Pros**: No markup, choose exact brands, potentially cheaper, can shop sales
-- **Cons**: Timing risk, wrong quantities, storage issues, no contractor warranty on materials
-- **When to use**: Want control, have time, know what you're doing
+<CalloutBox type="tip" title="My recommendation on who buys what">
 
-**Option 3: Hybrid (owner provides some, contractor provides others)**
-- **Pros**: Control on key items, contractor manages difficult items
-- **Cons**: Coordination complexity, potential delays, unclear responsibility
-- **When to use**: Strategic approach to save money on big-ticket items
-
-**My recommendation**:
 - Specialized trades (plumbing, electrical, HVAC): Contractor provides materials
 - Commodity items (lumber, drywall): Consider owner-provided to save markup
 - Finish items (fixtures, flooring, cabinets): Owner provides for brand control
 
+</CalloutBox>
+
 ### Markup and Profit
 
-**Standard contractor markups**:
-- **Materials**: 10-30% above their cost
-- **Subcontractors**: 10-20% if GC hires subs
-- **Overhead and profit**: 10-20% on labor
+<DataTable
+  caption="Standard contractor markups"
+  headers={["Markup type", "Typical range"]}
+  rows={[
+    ["Materials", "10-30% above their cost"],
+    ["Subcontractors", "10-20% if GC hires subs"],
+    ["Overhead and profit", "10-20% on labor"]
+  ]}
+/>
 
-**As owner-builder**:
-- You eliminate GC markup
-- But pay retail for materials (no trade discount)
-- Net savings: 15-25% typically
+<CalloutBox type="info" title="What it means as an owner-builder">
+
+You eliminate the GC markup, but you pay retail for materials (no trade discount). **Net savings: 15-25% typically.**
+
+</CalloutBox>
 
 **What's fair**:
 - Contractors need profit to stay in business
@@ -349,14 +380,21 @@ Break down each quote into these elements:
 - **Understand**: You'll pay actual cost, may be more or less
 - **Get clear**: How allowance overages are handled
 
-**Watch for**:
+<CalloutBox type="warning" title="Watch for padded estimates">
+
 - Large contingencies on well-defined work (padding)
 - Allowances that seem low (will lead to overages)
 - Unclear allowance terms
 
+</CalloutBox>
+
 ## Comparing Quotes (Apples to Apples)
 
-You received 3-5 quotes. Now compare them intelligently:
+<CalloutBox type="tip" title="The four-step comparison method">
+
+You received 3-5 quotes. Compare them intelligently: **(1)** normalize every quote into the same format, **(2)** identify where scopes differ, **(3)** adjust each price to a true comparable cost, then **(4)** evaluate beyond price with a weighted matrix.
+
+</CalloutBox>
 
 ### Step 1: Normalize the Quotes
 
@@ -446,7 +484,26 @@ Example:
 
 ## Red Flags in Quotes
 
-Watch for these warning signs:
+<CalloutBox type="warning" title="The eight warning signs at a glance">
+
+Any one of these can signal trouble. The details for each follow below.
+
+</CalloutBox>
+
+<DataTable
+  caption="Quote red flags and what each one looks like"
+  headers={["Red flag", "What it looks like"]}
+  rows={[
+    ["1. Significantly lower than others", "30%+ lower than other bids"],
+    ["2. Vague or incomplete scope", "\"Frame house per plans - $35,000\""],
+    ["3. Large upfront payment", "Requires 50%+ deposit"],
+    ["4. No timeline specified", "Price and scope but no start/end dates"],
+    ["5. \"Allowance\" for everything", "Multiple large allowances for standard items"],
+    ["6. No license/insurance information", "Doesn't mention licensing or insurance"],
+    ["7. Pressure to sign immediately", "\"This price only good until end of day\""],
+    ["8. Handwritten or unprofessional", "Scribbled on a napkin or torn paper"]
+  ]}
+/>
 
 ### 1. Significantly Lower Than Others
 **The quote**: 30%+ lower than other bids
@@ -484,7 +541,11 @@ Watch for these warning signs:
 - Reduces your leverage
 - Higher risk if they abandon project
 
+<CalloutBox type="critical" title="Deposits: a market norm is not a legal limit">
+
 **25% is a market ceiling, not a legal one — and your state may cap it far lower.** Several states legally cap residential deposits — California and Nevada at the lesser of 10% or $1,000, and Maryland/Massachusetts/Pennsylvania at one-third — and progress payments generally can't exceed the value of work performed. Check your state before agreeing to any deposit.
+
+</CalloutBox>
 
 ### 4. No Timeline Specified
 **The quote**: Price and scope but no start/end dates
@@ -526,7 +587,11 @@ Watch for these warning signs:
 - Good contractors don't operate this way
 - Usually indicates desperation
 
-**Reality**: Legitimate quotes are valid for 30-60 days typically
+<CalloutBox type="tip" title="Reality check">
+
+Legitimate quotes are valid for 30-60 days typically. Anyone forcing a same-day decision is using pressure, not pricing.
+
+</CalloutBox>
 
 ### 8. Handwritten or Unprofessional
 **The quote**: Scribbled on a napkin or torn paper
@@ -566,11 +631,19 @@ Watch for these warning signs:
 - Budget realistically
 - Understand what affects pricing
 
-**Remember**: These are estimates. Your costs will vary based on location, complexity, finishes, and market conditions.
+<CalloutBox type="info" title="Treat these as ballpark figures">
+
+These are estimates. Your costs will vary based on location, complexity, finishes, and market conditions.
+
+</CalloutBox>
 
 ## Negotiating Quotes
 
-**Yes, you can negotiate. Here's how**:
+<CalloutBox type="tip" title="Yes, you can negotiate">
+
+Quotes are a starting point, not a final number. Know which levers move and which ones don't before you open the conversation.
+
+</CalloutBox>
 
 ### What's Negotiable
 - **Price** (within reason, 5-10% possible)
@@ -605,16 +678,16 @@ Watch for these warning signs:
 
 ### What NOT to Say
 
-**Don't**:
-- "That's way too expensive" (insulting, no data)
-- "I can get it cheaper on Craigslist" (then do that)
-- "I'll pay cash if you lower the price" (asking for tax evasion)
-- "My buddy says that should cost half" (your buddy isn't the professional)
-
-**Do**:
-- "I'd like to work with you, but I need to stay in budget. Can we find a solution?"
-- "I have quotes ranging from X to Y. Here's what I'm looking for..."
-- "What would bring the price down while maintaining quality?"
+<DataTable
+  caption="Negotiation phrasing: what to say and what to avoid"
+  headers={["Don't say", "Do say"]}
+  rows={[
+    ["\"That's way too expensive\" (insulting, no data)", "\"I'd like to work with you, but I need to stay in budget. Can we find a solution?\""],
+    ["\"I can get it cheaper on Craigslist\" (then do that)", "\"I have quotes ranging from X to Y. Here's what I'm looking for...\""],
+    ["\"I'll pay cash if you lower the price\" (asking for tax evasion)", "\"What would bring the price down while maintaining quality?\""],
+    ["\"My buddy says that should cost half\" (your buddy isn't the professional)", "—"]
+  ]}
+/>
 
 ### When to Walk Away
 
@@ -624,16 +697,23 @@ Watch for these warning signs:
 - You're asking for unrealistic reductions
 - They've already given you their best price
 
-**Quality contractors won't**:
+<CalloutBox type="warning" title="Quality contractors won't bend on these">
+
 - Slash prices 20-30%
 - Compromise on quality to meet your price
 - Work for below-market rates
 
-**If they won't budge**: Either pay their price (if fair) or choose another contractor
+**If they won't budge**: Either pay their price (if fair) or choose another contractor.
+
+</CalloutBox>
 
 ## Making Your Final Decision
 
-**The decision process**:
+<CalloutBox type="info" title="The decision process in five steps">
+
+**(1)** Eliminate any quote with red flags, **(2)** compare what's left apples-to-apples, **(3)** check references one more time, **(4)** apply your decision matrix, and **(5)** trust your gut on who you actually want to work with.
+
+</CalloutBox>
 
 ### 1. Eliminate Any Quote That Has Red Flags
 - No license/insurance
@@ -694,10 +774,11 @@ Watch for these warning signs:
    - Add any negotiated changes
    - Both parties sign
 
-4. **Don't start work without contract**
-   - Handshake + quote is not enough
-   - Protect yourself legally
-   - Clarifies expectations
+<CalloutBox type="critical" title="Don't start work without a contract">
+
+A handshake plus a quote is not enough. A written contract protects you legally and clarifies expectations before anyone picks up a tool.
+
+</CalloutBox>
 
 ## Common Mistakes
 

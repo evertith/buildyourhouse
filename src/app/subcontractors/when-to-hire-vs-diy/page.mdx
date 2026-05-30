@@ -7,17 +7,25 @@ export const metadata = {
 
 One of your most important decisions as an owner-builder is determining which work you'll do yourself and which you'll hire out. Get this right, and you save money while managing risk. Get it wrong, and you waste time, money, and potentially compromise your build quality or safety.
 
-This guide will help you make smart decisions about every trade using a proven framework based on ROI, risk, skill requirements, and time investment.
+<CalloutBox type="info" title="What this guide gives you">
+
+A proven framework for deciding every trade based on **ROI, risk, skill requirements, and time investment** — plus trade-by-trade recommendations and a scored decision worksheet at the end.
+
+</CalloutBox>
 
 ## The Real Economics of DIY
 
-**The myth**: Doing work yourself always saves money.
+<CalloutBox type="warning" title="Myth vs. reality">
 
-**The reality**: Your time has value, mistakes cost money, and some work actually costs more to DIY.
+**The myth:** Doing work yourself always saves money.
+
+**The reality:** Your time has value, mistakes cost money, and some work actually costs *more* to DIY.
+
+</CalloutBox>
 
 ### Calculate Your Hourly Value
 
-Before deciding to DIY anything, know what your time is worth:
+Before deciding to DIY anything, know what your time is worth.
 
 **If you're taking time off work**:
 - Your hourly value = your salary / work hours
@@ -33,27 +41,26 @@ Before deciding to DIY anything, know what your time is worth:
 - Consider opportunity cost of other income
 - Minimum value: what you'd pay someone to do other tasks
 
-**Example calculation**:
-- Framing your house: 320 hours
-- Your effective hourly rate: $45/hour
-- Your time cost: $14,400
-- Professional framer cost: $40,000
-- Your savings: $25,600
-- **ROI: Makes sense to DIY**
+Run the numbers before you commit. The same hourly rate produces very different answers depending on the trade:
 
-**Counter-example**:
-- Rough plumbing: 60 hours for inexperienced DIYer
-- Your effective hourly rate: $45/hour
-- Your time cost: $2,700
-- Professional plumber cost: $4,500
-- Your savings: $1,800
-- Failed inspection adds: 20 hours + $400 in fixes
-- **New calculation**: Saved $1,400 but added stress and delay
-- **ROI: Marginal, hire-out may be better**
+<DataTable
+  caption="Two worked examples at a $45/hour effective rate"
+  headers={["Factor", "Framing (good DIY)", "Rough plumbing (marginal DIY)"]}
+  rows={[
+    ["Time required", "320 hours", "60 hours (inexperienced DIYer)"],
+    ["Your effective hourly rate", "$45/hour", "$45/hour"],
+    ["Your time cost", "$14,400", "$2,700"],
+    ["Professional cost", "$40,000 (framer)", "$4,500 (plumber)"],
+    ["Your savings", "$25,600", "$1,800"],
+    ["If inspection fails", "—", "Adds 20 hours + $400 in fixes"],
+    ["Net result", "Clear win", "Saved ~$1,400 but added stress and delay"],
+    ["ROI verdict", "Makes sense to DIY", "Marginal — hire-out may be better"]
+  ]}
+/>
 
 ## The Decision Framework
 
-Use these four factors to evaluate every trade:
+Use these four factors to evaluate every trade.
 
 ### 1. Skill Level Required
 **Low skill**: Basic tools, simple techniques, hard to mess up
@@ -106,7 +113,11 @@ Use these four factors to evaluate every trade:
 ### 4. Time Investment
 **How long will it take you vs. a pro?**
 
-**Rule of thumb**: First-time DIYers take 3-5x longer than professionals
+<CalloutBox type="tip" title="Rule of thumb">
+
+First-time DIYers take **3-5x longer** than professionals. Plan your schedule and budget around that multiplier, not the pro's timeline.
+
+</CalloutBox>
 
 **Examples**:
 - Pro frames house in 2 weeks → You'll take 6-10 weeks
@@ -121,13 +132,29 @@ Use these four factors to evaluate every trade:
 
 ## Trade-by-Trade Recommendations
 
-Here's my guidance on every major trade, based on building custom homes and working with several owner-builders:
+Here's my guidance on every major trade, based on building custom homes and working with several owner-builders.
 
 ### DEFINITELY Hire Out
 
-These trades have high risk, require specialized licenses, or are genuinely cheaper to hire:
+These trades have high risk, require specialized licenses, or are genuinely cheaper to hire.
 
-> **A note on "licensed pro required":** Whether you can legally do your own electrical or plumbing varies by state — many states let you pull a homeowner permit and do your own electrical and plumbing on your owner-occupied home, provided you do the work personally and it passes inspection. Some jurisdictions restrict gas and HVAC work for life-safety reasons. This guide recommends hiring these trades because of the skill, code, and safety stakes — not because DIY is always illegal. Always check with your local building department before assuming either way, and never do work you're not competent to do safely.
+<CalloutBox type="critical" title='A note on "licensed pro required"'>
+
+Whether you can legally do your own electrical or plumbing varies by state — many states let you pull a homeowner permit and do your own electrical and plumbing on your owner-occupied home, provided you do the work personally and it passes inspection. Some jurisdictions restrict gas and HVAC work for life-safety reasons. This guide recommends hiring these trades because of the skill, code, and safety stakes — not because DIY is always illegal. Always check with your local building department before assuming either way, and never do work you're not competent to do safely.
+
+</CalloutBox>
+
+<DataTable
+  caption='"Definitely hire out" trades — cost and DIY savings at a glance'
+  headers={["Trade", "DIY risk", "Cost to hire", "Realistic DIY savings"]}
+  rows={[
+    ["Foundation work (2,000 sq ft)", "Very high", "$25,000-35,000", "10-15% (not worth the risk)"],
+    ["Electrical (rough & finish)", "Very high", "$12,000-18,000", "$6,000-9,000"],
+    ["HVAC installation", "Very high", "$12,000-18,000", "$4,000-6,000"],
+    ["Roofing", "High", "$8,000-12,000", "$4,000-6,000"],
+    ["Spray foam insulation", "Very high", "$8,000-12,000", "None (rental cost = labor savings)"]
+  ]}
+/>
 
 #### 1. Foundation Work
 **Why hire**:
@@ -137,11 +164,11 @@ These trades have high risk, require specialized licenses, or are genuinely chea
 - Speed matters (concrete curing, weather)
 - Heavy physical work requiring crew
 
-**DIY risk**: Very high
-**Cost to hire**: $25,000-35,000 (2,000 sq ft)
-**Realistic DIY savings**: 10-15% (not worth the risk)
+<CalloutBox type="warning" title="My recommendation">
 
-**My recommendation**: Always hire. Foundation is too critical to compromise.
+Always hire. Foundation is too critical to compromise.
+
+</CalloutBox>
 
 #### 2. Electrical (Rough and Finish)
 **Why hire**:
@@ -151,13 +178,11 @@ These trades have high risk, require specialized licenses, or are genuinely chea
 - Inspectors scrutinize DIY electrical heavily
 - Insurance may not cover DIY electrical issues
 
-**DIY risk**: Very high
-**Cost to hire**: $12,000-18,000
-**Realistic DIY savings**: $6,000-9,000
+<CalloutBox type="warning" title="My recommendation">
 
-**My recommendation**: Hire it out. Not worth the safety and code compliance risk.
+Hire it out. Not worth the safety and code compliance risk. **Exception:** running wire under direct supervision of a licensed electrician (they do connections and take responsibility).
 
-**Exception**: Running wire under direct supervision of licensed electrician (they do connections and take responsibility).
+</CalloutBox>
 
 #### 3. HVAC Installation
 **Why hire**:
@@ -168,13 +193,11 @@ These trades have high risk, require specialized licenses, or are genuinely chea
 - Warranty requires professional installation
 - Energy code compliance is complex
 
-**DIY risk**: Very high
-**Cost to hire**: $12,000-18,000
-**Realistic DIY savings**: $4,000-6,000
+<CalloutBox type="warning" title="My recommendation">
 
-**My recommendation**: Always hire licensed HVAC contractor.
+Always hire a licensed HVAC contractor. **Possible DIY:** duct insulation, register installation (under the HVAC contractor's direction).
 
-**Possible DIY**: Duct insulation, register installation (under HVAC contractor's direction).
+</CalloutBox>
 
 #### 4. Roofing
 **Why hire**:
@@ -185,13 +208,11 @@ These trades have high risk, require specialized licenses, or are genuinely chea
 - Physical demand requires crew
 - Mistakes cause major water damage
 
-**DIY risk**: High
-**Cost to hire**: $8,000-12,000
-**Realistic DIY savings**: $4,000-6,000
+<CalloutBox type="warning" title="My recommendation">
 
-**My recommendation**: Hire it out unless you have roofing experience.
+Hire it out unless you have roofing experience. **Possible DIY:** tear-off of old roof, cleanup, basic shingling on a simple roof.
 
-**Possible DIY**: Tear-off of old roof, cleanup, basic shingling on simple roof.
+</CalloutBox>
 
 #### 5. Spray Foam Insulation
 **Why hire**:
@@ -202,17 +223,25 @@ These trades have high risk, require specialized licenses, or are genuinely chea
 - Code requires specific R-values and installation
 - Mistakes are expensive to fix (must remove and redo)
 
-**DIY risk**: Very high
-**Cost to hire**: $8,000-12,000
-**Realistic DIY savings**: None (equipment rental costs = labor savings)
+<CalloutBox type="warning" title="My recommendation">
 
-**My recommendation**: Always hire for spray foam.
+Always hire for spray foam. **DIY alternative:** use batt or blown insulation instead (much easier DIY).
 
-**DIY alternative**: Use batt or blown insulation instead (much easier DIY).
+</CalloutBox>
 
 ### Probably Hire Out
 
-These trades are DIYable but most owner-builders are better off hiring:
+These trades are DIYable but most owner-builders are better off hiring.
+
+<DataTable
+  caption='"Probably hire out" trades — cost and DIY savings at a glance'
+  headers={["Trade", "DIY risk", "Cost to hire", "Realistic DIY savings"]}
+  rows={[
+    ["Plumbing (rough & finish)", "Medium-high", "$15,000-22,000", "$8,000-12,000"],
+    ["Drywall hanging & finishing", "Low (mistakes don't fail inspections)", "$12,000-18,000", "$8,000-12,000"],
+    ["Exterior siding", "Medium", "$12,000-20,000", "$6,000-10,000"]
+  ]}
+/>
 
 #### 6. Plumbing (Rough and Finish)
 **Why hire**:
@@ -222,13 +251,13 @@ These trades are DIYable but most owner-builders are better off hiring:
 - Proper venting is complex
 - Inspectors are strict on plumbing
 
-**DIY risk**: Medium-high
-**Cost to hire**: $15,000-22,000
-**Realistic DIY savings**: $8,000-12,000
-
-**My recommendation**: Hire rough plumbing, consider DIY finish plumbing (fixture installation).
-
 **DIY-able if you**: Have plumbing experience, study code carefully, get inspector guidance.
+
+<CalloutBox type="tip" title="My recommendation">
+
+Hire rough plumbing; consider DIY finish plumbing (fixture installation).
+
+</CalloutBox>
 
 #### 7. Drywall Hanging and Finishing
 **Why hire**:
@@ -237,13 +266,13 @@ These trades are DIYable but most owner-builders are better off hiring:
 - Professional results are hard to achieve
 - Pros are MUCH faster (3 days vs. your 2-3 weeks)
 
-**DIY risk**: Low (mistakes don't fail inspections)
-**Cost to hire**: $12,000-18,000
-**Realistic DIY savings**: $8,000-12,000
-
-**My recommendation**: Hire the finishing, consider DIY hanging if you have help.
-
 **DIY-able if you**: Have help for lifting, accept less-than-perfect results, have time.
+
+<CalloutBox type="tip" title="My recommendation">
+
+Hire the finishing; consider DIY hanging if you have help.
+
+</CalloutBox>
 
 #### 8. Exterior Siding
 **Why hire**:
@@ -252,17 +281,30 @@ These trades are DIYable but most owner-builders are better off hiring:
 - Working at heights
 - Some materials require specialized tools
 
-**DIY risk**: Medium
-**Cost to hire**: $12,000-20,000
-**Realistic DIY savings**: $6,000-10,000
-
-**My recommendation**: Hire for complex siding (fiber cement, stucco). Consider DIY for simpler materials (vinyl, board and batten).
-
 **DIY-able if you**: Patient, detail-oriented, comfortable at heights, have help.
+
+<CalloutBox type="tip" title="My recommendation">
+
+Hire for complex siding (fiber cement, stucco). Consider DIY for simpler materials (vinyl, board and batten).
+
+</CalloutBox>
 
 ### Good DIY Candidates
 
-These trades are commonly DIYed successfully by owner-builders:
+These trades are commonly DIYed successfully by owner-builders.
+
+<DataTable
+  caption='"Good DIY candidate" trades — cost, savings, and time'
+  headers={["Trade", "DIY risk", "Cost to hire", "Realistic DIY savings", "Time investment"]}
+  rows={[
+    ["Framing", "Medium (time & learning curve)", "$35,000-50,000", "$25,000-35,000", "320-480 hrs (2,000 sq ft)"],
+    ["Insulation (batt/blown)", "Low", "$6,000-9,000", "$3,000-5,000", "40-80 hrs"],
+    ["Interior painting", "Very low (time & quality)", "$8,000-15,000", "$7,000-13,000", "120-200 hrs (full interior)"],
+    ["Trim & interior doors", "Low (quality & time)", "$8,000-15,000", "$5,000-10,000", "80-160 hrs"],
+    ["Tile work (basic)", "Medium (quality & time)", "$6,000-12,000", "$4,000-8,000", "60-120 hrs"],
+    ["Flooring (laminate/vinyl/engineered)", "Low-medium", "$8,000-15,000", "$5,000-10,000", "60-100 hrs"]
+  ]}
+/>
 
 #### 9. Framing
 **Why DIY works**:
@@ -273,15 +315,11 @@ These trades are commonly DIYed successfully by owner-builders:
 - Good learning experience
 - Requires mostly basic tools
 
-**DIY risk**: Medium (time and learning curve)
-**Cost to hire**: $35,000-50,000
-**Realistic DIY savings**: $25,000-35,000
+<CalloutBox type="tip" title="My recommendation">
 
-**My recommendation**: Good DIY candidate if you have time, some carpentry experience, and help.
+Good DIY candidate if you have time, some carpentry experience, and help. **Critical:** study code requirements, work slowly and carefully, build to plans.
 
-**Critical**: Study code requirements, work slowly and carefully, build to plans.
-
-**Time investment**: 320-480 hours for 2,000 sq ft house.
+</CalloutBox>
 
 #### 10. Insulation (Batt/Blown)
 **Why DIY works**:
@@ -291,15 +329,11 @@ These trades are commonly DIYed successfully by owner-builders:
 - Saves money ($3,000-5,000)
 - No specialized tools needed
 
-**DIY risk**: Low
-**Cost to hire**: $6,000-9,000
-**Realistic DIY savings**: $3,000-5,000
+<CalloutBox type="tip" title="My recommendation">
 
-**My recommendation**: Great DIY project for most owner-builders.
+Great DIY project for most owner-builders. **Critical:** fill all gaps, maintain proper R-value, install vapor barriers correctly.
 
-**Critical**: Fill all gaps, maintain proper R-value, install vapor barriers correctly.
-
-**Time investment**: 40-80 hours.
+</CalloutBox>
 
 #### 11. Interior Painting
 **Why DIY works**:
@@ -309,13 +343,11 @@ These trades are commonly DIYed successfully by owner-builders:
 - Anyone can learn
 - Minimal tools required
 
-**DIY risk**: Very low (just time and quality)
-**Cost to hire**: $8,000-15,000
-**Realistic DIY savings**: $7,000-13,000
+<CalloutBox type="tip" title="My recommendation">
 
-**My recommendation**: Excellent DIY project.
+Excellent DIY project.
 
-**Time investment**: 120-200 hours for full interior.
+</CalloutBox>
 
 #### 12. Trim and Interior Doors
 **Why DIY works**:
@@ -325,13 +357,11 @@ These trades are commonly DIYed successfully by owner-builders:
 - No code issues
 - Mistakes are fixable
 
-**DIY risk**: Low (just quality and time)
-**Cost to hire**: $8,000-15,000
-**Realistic DIY savings**: $5,000-10,000
+<CalloutBox type="tip" title="My recommendation">
 
-**My recommendation**: Good DIY project if you're patient and detail-oriented.
+Good DIY project if you're patient and detail-oriented.
 
-**Time investment**: 80-160 hours.
+</CalloutBox>
 
 #### 13. Tile Work (Basic)
 **Why DIY works**:
@@ -340,13 +370,11 @@ These trades are commonly DIYed successfully by owner-builders:
 - Saves good money
 - Floor tile easier than wall tile
 
-**DIY risk**: Medium (quality and time)
-**Cost to hire**: $6,000-12,000
-**Realistic DIY savings**: $4,000-8,000
+<CalloutBox type="tip" title="My recommendation">
 
-**My recommendation**: DIY floors, hire for complex wall installations (showers, backsplashes).
+DIY floors; hire for complex wall installations (showers, backsplashes).
 
-**Time investment**: 60-120 hours.
+</CalloutBox>
 
 #### 14. Flooring (Laminate, Vinyl, Engineered)
 **Why DIY works**:
@@ -355,69 +383,46 @@ These trades are commonly DIYed successfully by owner-builders:
 - Saves significant money
 - Mistakes are manageable
 
-**DIY risk**: Low-medium
-**Cost to hire**: $8,000-15,000
-**Realistic DIY savings**: $5,000-10,000
+<CalloutBox type="tip" title="My recommendation">
 
-**My recommendation**: Great DIY project for patient people.
+Great DIY project for patient people. **Exception:** hire for hardwood (difficult) and tile (see above).
 
-**Exception**: Hire for hardwood (difficult) and tile (see above).
-
-**Time investment**: 60-100 hours.
+</CalloutBox>
 
 ### Definitely DIY
 
-These tasks save money and teach you valuable skills:
+These tasks save money and teach you valuable skills.
 
-#### 15. Demolition and Site Cleanup
-**Why DIY**: Requires no skill, saves money, good workout.
-**Savings**: $2,000-5,000
-**Time**: 40-80 hours
-
-#### 16. Painting Prep
-**Why DIY**: Tedious but simple, saves significant money.
-**Savings**: $2,000-4,000
-**Time**: 60-100 hours
-
-#### 17. Landscaping (Basic)
-**Why DIY**: Simple, saves big money, improves over time.
-**Savings**: $5,000-15,000
-**Time**: 80-200 hours
-
-#### 18. Interior Cleaning
-**Why DIY**: Zero skill required, saves money.
-**Savings**: $1,000-2,000
-**Time**: 40-60 hours
+<DataTable
+  caption='"Definitely DIY" tasks — why, savings, and time'
+  headers={["Task", "Why DIY", "Savings", "Time"]}
+  rows={[
+    ["Demolition & site cleanup", "Requires no skill, saves money, good workout", "$2,000-5,000", "40-80 hrs"],
+    ["Painting prep", "Tedious but simple, saves significant money", "$2,000-4,000", "60-100 hrs"],
+    ["Landscaping (basic)", "Simple, saves big money, improves over time", "$5,000-15,000", "80-200 hrs"],
+    ["Interior cleaning", "Zero skill required, saves money", "$1,000-2,000", "40-60 hrs"]
+  ]}
+/>
 
 ## The Hybrid Approach
 
-Often the best strategy is hiring for the hard parts and DIYing the easy parts:
+<CalloutBox type="tip" title="Often the best strategy">
 
-### Framing
-- **Hire**: Floor system, roof trusses, complex roof framing
-- **DIY**: Wall framing, sheathing, simple interior walls
+Hire for the hard parts and DIY the easy parts. This maximizes savings where you can make a difference, minimizes risk by hiring out specialized work, speeds the timeline by hiring for slow tasks, and lets you learn skills on easier projects.
 
-### Plumbing
-- **Hire**: Rough plumbing (in walls/floors)
-- **DIY**: Fixture installation, water heater connections
+</CalloutBox>
 
-### Electrical
-- **Hire**: Panel installation, rough wiring, complex circuits
-- **DIY**: Running wire in unfinished areas (under electrician supervision)
-
-### Drywall
-- **Hire**: Finishing (taping, mudding, sanding)
-- **DIY**: Hanging, cleanup
-
-### Painting
-- **Hire**: Exterior, high ceilings, complex areas
-- **DIY**: Interior walls, touch-up
-
-**This approach**:
-- Maximizes savings where you can make a difference
-- Minimizes risk by hiring for specialized work
-- Speeds up timeline by hiring for slow tasks
-- Teaches you skills on easier projects
+<DataTable
+  caption="Hybrid approach: hire the hard parts, DIY the rest"
+  headers={["Trade", "Hire", "DIY"]}
+  rows={[
+    ["Framing", "Floor system, roof trusses, complex roof framing", "Wall framing, sheathing, simple interior walls"],
+    ["Plumbing", "Rough plumbing (in walls/floors)", "Fixture installation, water heater connections"],
+    ["Electrical", "Panel installation, rough wiring, complex circuits", "Running wire in unfinished areas (under electrician supervision)"],
+    ["Drywall", "Finishing (taping, mudding, sanding)", "Hanging, cleanup"],
+    ["Painting", "Exterior, high ceilings, complex areas", "Interior walls, touch-up"]
+  ]}
+/>
 
 ## Making Your Decision
 
@@ -449,11 +454,16 @@ For each trade, ask yourself:
 - [ ] What is my time worth?
 - [ ] What is the risk cost of mistakes?
 
-**Decision matrix**:
-- **5 yes answers**: Strong DIY candidate
-- **3-4 yes answers**: Consider DIY with caution
-- **1-2 yes answers**: Probably hire out
-- **0 yes answers**: Definitely hire
+<DataTable
+  caption="Decision matrix — count your yes answers"
+  headers={["Yes answers", "Decision"]}
+  rows={[
+    ["5 yes answers", "Strong DIY candidate"],
+    ["3-4 yes answers", "Consider DIY with caution"],
+    ["1-2 yes answers", "Probably hire out"],
+    ["0 yes answers", "Definitely hire"]
+  ]}
+/>
 
 ## Common DIY Mistakes
 
@@ -464,7 +474,11 @@ For each trade, ask yourself:
 
 **Impact**: Delayed schedule, cost overruns, frustrated subs waiting on you.
 
-**Fix**: Double or triple your time estimates, plan conservatively.
+<CalloutBox type="warning" title="Fix">
+
+Double or triple your time estimates, and plan conservatively.
+
+</CalloutBox>
 
 ### 2. Overestimating Your Skills
 **Reality**: Watching YouTube doesn't equal experience.
@@ -473,7 +487,11 @@ For each trade, ask yourself:
 
 **Impact**: Poor quality, frustration, potential rework costs.
 
-**Fix**: Practice on small projects first, be honest about your skill level.
+<CalloutBox type="warning" title="Fix">
+
+Practice on small projects first, and be honest about your skill level.
+
+</CalloutBox>
 
 ### 3. Not Factoring in Learning Curve
 **Reality**: Learning while building is expensive.
@@ -482,7 +500,11 @@ For each trade, ask yourself:
 
 **Impact**: Your average time is still high, project delayed.
 
-**Fix**: Account for learning time in your schedule and budget.
+<CalloutBox type="warning" title="Fix">
+
+Account for learning time in your schedule and budget.
+
+</CalloutBox>
 
 ### 4. Ignoring Opportunity Cost
 **Reality**: Time spent on low-ROI tasks costs you money.
@@ -491,7 +513,11 @@ For each trade, ask yourself:
 
 **Impact**: False economy, money lost.
 
-**Fix**: Focus DIY efforts on high-ROI tasks.
+<CalloutBox type="warning" title="Fix">
+
+Focus DIY efforts on high-ROI tasks.
+
+</CalloutBox>
 
 ### 5. DIYing Licensed Trades
 **Reality**: Some work legally requires licensed contractors — but the rules vary by state, and many states let homeowners do their own electrical and plumbing on an owner-occupied home under a homeowner permit.
@@ -500,30 +526,30 @@ For each trade, ask yourself:
 
 **Impact**: Failed inspections, additional costs, project delays.
 
-**Fix**: Verify your local licensing and permit rules before starting — call your building department. Where homeowner DIY is allowed, you must still pull the permit, do the work personally, and pass inspection.
+<CalloutBox type="critical" title="Fix">
+
+Verify your local licensing and permit rules before starting — call your building department. Where homeowner DIY is allowed, you must still pull the permit, do the work personally, and pass inspection.
+
+</CalloutBox>
 
 ## The Balanced Approach
 
-Most successful owner-builders follow this pattern:
+Most successful owner-builders follow this pattern.
 
-### Hire Out (60-70% of costs):
-- All licensed trades (electrical, plumbing, HVAC)
-- Specialized work (foundation, roofing)
-- High-risk work
-- Work requiring expensive equipment
-- Time-sensitive work
+<DataTable
+  caption="The balanced approach: where the money goes"
+  headers={["Strategy", "Share of costs", "What it covers"]}
+  rows={[
+    ["Hire out", "60-70% of costs", "All licensed trades (electrical, plumbing, HVAC); specialized work (foundation, roofing); high-risk work; work requiring expensive equipment; time-sensitive work"],
+    ["DIY", "30-40% of costs", "Framing (if experienced and have help); insulation (batts/blown); drywall hanging (hire finishing); interior painting; trim and doors; flooring (laminate/vinyl); cleanup and demolition; basic landscaping"]
+  ]}
+/>
 
-### DIY (30-40% of costs):
-- Framing (if experienced and have help)
-- Insulation (batts/blown)
-- Drywall hanging (hire finishing)
-- Interior painting
-- Trim and doors
-- Flooring (laminate/vinyl)
-- Cleanup and demolition
-- Basic landscaping
+<CalloutBox type="success" title="The payoff">
 
-**Result**: Save $45,000-75,000 on a $300,000 build while managing risk and timeline.
+Save **$45,000-75,000** on a **$300,000** build while managing risk and timeline.
+
+</CalloutBox>
 
 ## Your DIY Decision Worksheet
 
@@ -546,11 +572,16 @@ For each trade, rate 1-5 (5 = best case for DIY):
   ]}
 />
 
-**Scoring guide**:
-- 20-25: Strong DIY candidate
-- 15-19: Consider DIY
-- 10-14: Probably hire
-- 5-9: Definitely hire
+<DataTable
+  caption="Scoring guide"
+  headers={["Total score", "Verdict"]}
+  rows={[
+    ["20-25", "Strong DIY candidate"],
+    ["15-19", "Consider DIY"],
+    ["10-14", "Probably hire"],
+    ["5-9", "Definitely hire"]
+  ]}
+/>
 
 ## Questions to Ask Yourself
 
@@ -567,7 +598,11 @@ Before committing to DIY any trade:
 9. **Do I have realistic expectations for quality?**
 10. **Am I DIYing for the right reasons?** (savings, not ego)
 
-**If you answered "no" to more than 3 questions**: Seriously consider hiring out.
+<CalloutBox type="warning" title="Gut check">
+
+If you answered "no" to more than 3 questions, seriously consider hiring out.
+
+</CalloutBox>
 
 ## Next Steps
 

@@ -7,13 +7,16 @@ export const metadata = {
 
 The final inspection is the last hurdle before you get your Certificate of Occupancy (CO) and can legally move in.
 
+<CalloutBox type="info" title="The last hurdle before move-in">
 This is where the inspector verifies everything is complete, safe, and functional. Pass on first try and you're moving in within days. Fail and you're looking at another week minimum of delays.
+</CalloutBox>
 
 ## When to Schedule
 
-**Timing**: After ALL work is 100% complete and house is ready for occupancy
+- **Timing**: After ALL work is 100% complete and house is ready for occupancy
+- **Notice required**: 48-72 hours typically (longer during busy spring/summer seasons)
 
-<CalloutBox type="warning">
+<CalloutBox type="critical" title="Do not call until 100% complete">
 Do not call for final inspection if anything on this list is incomplete. Inspectors will fail you immediately:
 
 - All previous inspections passed (foundation, framing, rough-in, insulation)
@@ -28,9 +31,7 @@ Do not call for final inspection if anything on this list is incomplete. Inspect
 "Substantially complete" is not good enough. Inspector wants 100% done.
 </CalloutBox>
 
-**Notice required**: 48-72 hours typically (longer during busy spring/summer seasons)
-
-<CalloutBox type="tip">
+<CalloutBox type="tip" title="An extra week beats a re-inspection">
 Failing final inspection is uniquely frustrating because you're so close to done.
 
 Better to take an extra week making sure every detail is complete than to fail and delay your CO another 1-2 weeks.
@@ -38,7 +39,9 @@ Better to take an extra week making sure every detail is complete than to fail a
 I've seen owner-builders call final 3-4 times before passing. Each failure delays move-in and costs $1,000+ in holding costs per week.
 </CalloutBox>
 
-**Weather**: Exterior items must be complete, so weather can delay final. Don't schedule final if forecasting heavy rain or snow that would prevent exterior work completion.
+<CalloutBox type="warning" title="Weather can delay final">
+Exterior items must be complete, so weather can delay final. Don't schedule final if forecasting heavy rain or snow that would prevent exterior work completion.
+</CalloutBox>
 
 ## What the Inspector Checks
 
@@ -50,205 +53,91 @@ The final inspection is comprehensive. The inspector verifies:
 
 ### Exterior Items
 
-**Siding and weather protection**:
-- Siding completely installed
-- Properly flashed at penetrations
-- Sealed around windows and doors
-- Trim installed
-- No gaps or openings
-
-**Roof**:
-- Shingles or roofing completely installed
-- Flashing properly installed
-- No visible defects
-- Valleys properly sealed
-
-**Gutters and downspouts**:
-- Installed and functional
-- Directed away from foundation
-- Splash blocks or extensions installed
-
-**Grading and drainage**:
-- Final grade slopes away from foundation (6" drop in 10')
-- No ponding near foundation
-- Drainage functional
-
-**Decks and porches** (if applicable):
-- Guards installed where required (30"+ drop)
-- Handrails installed on stairs (4+ risers)
-- Proper height and spacing (4" sphere test)
-- Structurally complete
-
-**Site safety**:
-- No open excavations
-- Temporary construction items removed
-- Safe access to house
+<DataTable
+  caption="Exterior Final Inspection Items"
+  headers={["Area", "What the Inspector Checks"]}
+  rows={[
+    ["Siding and weather protection", "Completely installed; properly flashed at penetrations; sealed around windows and doors; trim installed; no gaps or openings"],
+    ["Roof", "Shingles or roofing completely installed; flashing properly installed; no visible defects; valleys properly sealed"],
+    ["Gutters and downspouts", "Installed and functional; directed away from foundation; splash blocks or extensions installed"],
+    ["Grading and drainage", "Final grade slopes away from foundation (6\" drop in 10'); no ponding near foundation; drainage functional"],
+    ["Decks and porches (if applicable)", "Guards installed where required (30\"+ drop); handrails on stairs (4+ risers); proper height and spacing (4\" sphere test); structurally complete"],
+    ["Site safety", "No open excavations; temporary construction items removed; safe access to house"]
+  ]}
+/>
 
 ### Interior Finish
 
-**Walls and ceilings**:
-- Drywall complete and finished
-- Painted or finished
-- No unfinished areas
-- Penetrations and boxes finished
-
-**Flooring**:
-- Installed in all areas
-- Transitions complete
-- No tripping hazards
-
-**Doors**:
-- All interior doors installed
-- Operating properly
-- Locksets installed
-- Self-closing/latching where required (garage to house)
-
-**Trim and millwork**:
-- Baseboards installed
-- Door and window casings complete
-- Ceiling trim if applicable
-
-**Stairs**:
-- Handrail installed (34-38" height)
-- Graspable profile
-- Continuous for length of stairs
-- Returns to wall or post at ends
-- Guards where required (30"+ drop)
-- No missing or damaged treads
+<DataTable
+  caption="Interior Finish Final Inspection Items"
+  headers={["Area", "What the Inspector Checks"]}
+  rows={[
+    ["Walls and ceilings", "Drywall complete and finished; painted or finished; no unfinished areas; penetrations and boxes finished"],
+    ["Flooring", "Installed in all areas; transitions complete; no tripping hazards"],
+    ["Doors", "All interior doors installed; operating properly; locksets installed; self-closing/latching where required (garage to house)"],
+    ["Trim and millwork", "Baseboards installed; door and window casings complete; ceiling trim if applicable"],
+    ["Stairs", "Handrail installed (34-38\" height); graspable profile; continuous for length of stairs; returns to wall or post at ends; guards where required (30\"+ drop); no missing or damaged treads"]
+  ]}
+/>
 
 ### Plumbing Fixtures
 
-**Bathrooms**:
-- Toilet installed and functional
-- Sink/vanity installed
-- Faucet operational
-- Drain working (no leaks)
-- Shower/tub complete
-- Shower door or enclosure installed
-- Anti-scald protection functional
-
-**Kitchen**:
-- Sink installed and functional
-- Faucet operational
-- Dishwasher installed if applicable
-- Garbage disposal if applicable
-- Ice maker connection if applicable
-
-**Water heater**:
-- Installed and operational
-- TPR valve discharge pipe properly installed
-- Proper clearances maintained
-- Venting complete and proper (if fuel-fired)
-- Drain pan and drain if required
-
-**Fixtures properly finished**:
-- All fixtures connected
-- All supply stops installed
-- No leaks visible
-- All trim plates installed
+<DataTable
+  caption="Plumbing Fixtures Final Inspection Items"
+  headers={["Area", "What the Inspector Checks"]}
+  rows={[
+    ["Bathrooms", "Toilet installed and functional; sink/vanity installed; faucet operational; drain working (no leaks); shower/tub complete; shower door or enclosure installed; anti-scald protection functional"],
+    ["Kitchen", "Sink installed and functional; faucet operational; dishwasher installed if applicable; garbage disposal if applicable; ice maker connection if applicable"],
+    ["Water heater", "Installed and operational; TPR valve discharge pipe properly installed; proper clearances maintained; venting complete and proper (if fuel-fired); drain pan and drain if required"],
+    ["Fixtures properly finished", "All fixtures connected; all supply stops installed; no leaks visible; all trim plates installed"]
+  ]}
+/>
 
 ### Electrical Fixtures
 
-**Service panel**:
-- Cover installed
-- All breakers labeled (what they control)
-- Main disconnect labeled
-- Warning labels installed
-- Directory complete
-
-**Receptacles and switches**:
-- All cover plates installed
-- All outlets functioning
-- GFCI outlets tested and working
-- Switches controlling correct lights
-- No missing plates
-
-**Lighting**:
-- All light fixtures installed
-- All working
-- Proper bulbs installed
-- Required lighting in all rooms
-
-**Appliance connections**:
-- Range/cooktop connected
-- Hood connected if applicable
-- Dishwasher connected
-- Disposal connected if applicable
-- All operational
-
-**Exterior outlets and lights**:
-- Installed and functioning
-- GFCI protected
-- Weatherproof covers installed (in-use type if outlet)
-- Exterior lights at entries functional
+<DataTable
+  caption="Electrical Fixtures Final Inspection Items"
+  headers={["Area", "What the Inspector Checks"]}
+  rows={[
+    ["Service panel", "Cover installed; all breakers labeled (what they control); main disconnect labeled; warning labels installed; directory complete"],
+    ["Receptacles and switches", "All cover plates installed; all outlets functioning; GFCI outlets tested and working; switches controlling correct lights; no missing plates"],
+    ["Lighting", "All light fixtures installed; all working; proper bulbs installed; required lighting in all rooms"],
+    ["Appliance connections", "Range/cooktop connected; hood connected if applicable; dishwasher connected; disposal connected if applicable; all operational"],
+    ["Exterior outlets and lights", "Installed and functioning; GFCI protected; weatherproof covers installed (in-use type if outlet); exterior lights at entries functional"]
+  ]}
+/>
 
 ### HVAC and Mechanical
 
-**Heating system**:
-- Installed and operational
-- Thermostat installed and functioning
-- Adequate heat throughout house
-- Venting complete (if fuel-fired)
-- Filter installed
-
-**Air conditioning** (if applicable):
-- Installed and operational
-- Thermostat functioning
-- Adequate cooling
-- Condensate drain working
-- Disconnect installed at outdoor unit
-
-**Ventilation**:
-- Bathroom exhaust fans installed and working
-- Kitchen exhaust installed and working (if required)
-- Dryer vent complete and proper
-- All venting to exterior
-
-**Return air**:
-- Grilles installed
-- Filter access
-- Filter installed
+<DataTable
+  caption="HVAC and Mechanical Final Inspection Items"
+  headers={["System", "What the Inspector Checks"]}
+  rows={[
+    ["Heating system", "Installed and operational; thermostat installed and functioning; adequate heat throughout house; venting complete (if fuel-fired); filter installed"],
+    ["Air conditioning (if applicable)", "Installed and operational; thermostat functioning; adequate cooling; condensate drain working; disconnect installed at outdoor unit"],
+    ["Ventilation", "Bathroom exhaust fans installed and working; kitchen exhaust installed and working (if required); dryer vent complete and proper; all venting to exterior"],
+    ["Return air", "Grilles installed; filter access; filter installed"]
+  ]}
+/>
 
 ### Life Safety Items (Critical!)
 
-**Smoke detectors** (IRC R314):
-- One in each bedroom
-- One outside each sleeping area
-- One on each level (including basement)
-- Hard-wired with battery backup
-- Interconnected (test that all sound together)
-- Properly installed per manufacturer specs
+<CalloutBox type="critical" title="These items are non-negotiable">
+Life safety items are where most finals fail. Every dimension and code reference below is checked directly, and the inspector tests smoke/CO detector interconnection in person.
+</CalloutBox>
 
-**Carbon monoxide detectors** (IRC R315):
-- One outside each sleeping area
-- One on each level
-- Hard-wired with battery backup
-- Interconnected
-- Proper type for location
-
-**Handrails** (IRC R311.7.8):
-- Installed on stairs with 4+ risers
-- Height 34-38" measured above stair nosing
-- Graspable (typically 1-1/4" to 2" diameter)
-- Continuous for length of stairs
-- Capable of supporting 200 lbs
-
-**Guards/guardrails** (IRC R312):
-- Installed at all drops 30" or greater
-- Minimum 36" height (42" some jurisdictions)
-- Balusters spaced so 4" sphere can't pass through
-- Structurally adequate (50 lbs concentrated load)
-
-**Tempered glass** (IRC R308.4):
-- Installed where required
-- Labeled in corner
-- No regular glass in hazardous locations
-
-**Egress windows** (IRC R310):
-- Operational
-- Open fully
-- Minimum opening maintained
-- Window wells with ladder if required
+<DataTable
+  caption="Life Safety Final Inspection Items"
+  headers={["Item", "Code", "What the Inspector Checks"]}
+  rows={[
+    ["Smoke detectors", "IRC R314", "One in each bedroom; one outside each sleeping area; one on each level (including basement); hard-wired with battery backup; interconnected (test that all sound together); properly installed per manufacturer specs"],
+    ["Carbon monoxide detectors", "IRC R315", "One outside each sleeping area; one on each level; hard-wired with battery backup; interconnected; proper type for location"],
+    ["Handrails", "IRC R311.7.8", "Installed on stairs with 4+ risers; height 34-38\" measured above stair nosing; graspable (typically 1-1/4\" to 2\" diameter); continuous for length of stairs; capable of supporting 200 lbs"],
+    ["Guards/guardrails", "IRC R312", "Installed at all drops 30\" or greater; minimum 36\" height (42\" some jurisdictions); balusters spaced so 4\" sphere can't pass through; structurally adequate (50 lbs concentrated load)"],
+    ["Tempered glass", "IRC R308.4", "Installed where required; labeled in corner; no regular glass in hazardous locations"],
+    ["Egress windows", "IRC R310", "Operational; open fully; minimum opening maintained; window wells with ladder if required"]
+  ]}
+/>
 
 **Garage separation assemblies** (IRC R302.5.1 — verify your jurisdiction's adopted edition):
 - Garage separation from house (if attached)
@@ -258,60 +147,37 @@ The final inspection is comprehensive. The inspector verifies:
 
 ### Windows and Doors
 
-**Exterior doors**:
-- Installed and operational
-- Locksets installed and working
-- Weatherstripping installed
-- Thresholds complete
-- Self-closing garage door if required
-
-**Windows**:
-- All installed
-- All operational
-- Screens installed (if provided)
-- Locks functioning
-- No broken glass
-
-**Garage door**:
-- Installed and operational
-- Auto-reverse functioning — many inspectors check this where required (UL 325)
-- Photo eye sensors working
-- Manual release working
+<DataTable
+  caption="Windows and Doors Final Inspection Items"
+  headers={["Item", "What the Inspector Checks"]}
+  rows={[
+    ["Exterior doors", "Installed and operational; locksets installed and working; weatherstripping installed; thresholds complete; self-closing garage door if required"],
+    ["Windows", "All installed; all operational; screens installed (if provided); locks functioning; no broken glass"],
+    ["Garage door", "Installed and operational; auto-reverse functioning — many inspectors check this where required (UL 325); photo eye sensors working; manual release working"]
+  ]}
+/>
 
 ### Final Details
 
-**Address numbers**:
-- Installed and visible from street
-- Minimum size (often 4" high)
-- Contrasting color
-
-**Stair identification** (if more than 2 stories):
-- Floor numbers marked in stairwell
-- Exit signage if required
-
-**Attic access**:
-- Accessible
-- Minimum size (22" x 30" typical)
-- Insulated and weatherstripped
-
-**Crawlspace access**:
-- Accessible
-- Minimum size (18" x 24" typical)
-
-**Electrical panel access**:
-- Clear working space (30" x 36" x 6'6")
-- No storage blocking access
-
-**Water heater access**:
-- Clear working space
-- Accessible for service
-
-**Furnace/HVAC access**:
-- Clear working space
-- Service access adequate
-- Filter accessible
+<DataTable
+  caption="Final Details Inspection Items"
+  headers={["Item", "What the Inspector Checks"]}
+  rows={[
+    ["Address numbers", "Installed and visible from street; minimum size (often 4\" high); contrasting color"],
+    ["Stair identification (if more than 2 stories)", "Floor numbers marked in stairwell; exit signage if required"],
+    ["Attic access", "Accessible; minimum size (22\" x 30\" typical); insulated and weatherstripped"],
+    ["Crawlspace access", "Accessible; minimum size (18\" x 24\" typical)"],
+    ["Electrical panel access", "Clear working space (30\" x 36\" x 6'6\"); no storage blocking access"],
+    ["Water heater access", "Clear working space; accessible for service"],
+    ["Furnace/HVAC access", "Clear working space; service access adequate; filter accessible"]
+  ]}
+/>
 
 ## Before the Inspector Arrives
+
+<CalloutBox type="tip" title="Run your own inspection first">
+Work backward from the inspection date: a full walk-through one week out, a deep clean and systems test 48 hours out, and a final safety sweep the morning of.
+</CalloutBox>
 
 ### One Week Before
 
@@ -411,11 +277,12 @@ The final inspection is comprehensive. The inspector verifies:
 - Don't argue or explain away deficiencies
 - Thank inspector at end
 
-**Be prepared to demonstrate**:
+<CalloutBox type="tip" title="Be prepared to demonstrate">
 - Smoke detector interconnection (push test button on one, verify all sound)
 - CO detector functioning
 - Garage door auto-reverse (lay 2x4 under door, should reverse on contact)
 - All HVAC systems working (heat and cool)
+</CalloutBox>
 
 ## Top 15 Final Inspection Failures
 
@@ -571,11 +438,9 @@ Request from the inspector:
 - Homeowner's insurance takes effect
 - Can move in
 
-**Keep your CO**:
-- Permanent record
-- May need for refinancing
-- May need for resale
-- May need for insurance
+<CalloutBox type="success" title="Keep your CO permanently">
+Your CO is a permanent record. You may need it for refinancing, resale, or insurance.
+</CalloutBox>
 
 ### Temporary CO (TCO)
 
@@ -590,20 +455,30 @@ Request from the inspector:
 - Requires completion of punch list items
 - Converts to permanent CO when complete
 
-**Not all jurisdictions** offer TCO. Ask beforehand.
+<CalloutBox type="info" title="Not all jurisdictions offer TCO">
+Not all jurisdictions offer TCO. Ask beforehand.
+</CalloutBox>
 
 ## Cost of Delay
 
 Each week final inspection is delayed:
 
-- **Can't move in**: Rent/mortgage double payment ($1,500-$3,000/month)
-- **Construction loan interest**: $100-$200/week
-- **Utilities without occupancy**: Some jurisdictions restrict this
-- **Insurance**: Builder's risk vs. homeowner's
+<DataTable
+  caption="Weekly Cost of Final Inspection Delay"
+  headers={["Factor", "Impact"]}
+  rows={[
+    ["Can't move in", "Rent/mortgage double payment ($1,500-$3,000/month)"],
+    ["Construction loan interest", "$100-$200/week"],
+    ["Utilities without occupancy", "Some jurisdictions restrict this"],
+    ["Insurance", "Builder's risk vs. homeowner's"]
+  ]}
+/>
 
 **One month delay** = $2,000-$4,000 in double housing costs
 
-**However**: Don't rush. Better to delay and pass than fail repeatedly.
+<CalloutBox type="warning" title="Don't rush, though">
+Don't rush. Better to delay and pass than fail repeatedly.
+</CalloutBox>
 
 ## Final Inspection Ready Checklist
 
@@ -730,11 +605,12 @@ Inspectors appreciate homes that are truly ready. A well-prepared final inspecti
 
 ### Don't Rush Final
 
-**Common mistake**: Calling final when house is 95% done, thinking "close enough."
+- **Common mistake**: Calling final when house is 95% done, thinking "close enough."
+- **Better approach**: Finish that last 5%, then call. One week of extra prep work beats failing and waiting another 1-2 weeks for re-inspection.
 
-**Better approach**: Finish that last 5%, then call. One week of extra prep work beats failing and waiting another 1-2 weeks for re-inspection.
-
+<CalloutBox type="warning" title="Delay costs far exceed finishing costs">
 The cost of delay from failure ($1,000-2,500/week) far exceeds the cost of taking time to finish properly.
+</CalloutBox>
 
 ## After You Pass
 
@@ -744,4 +620,8 @@ The cost of delay from failure ($1,000-2,500/week) far exceeds the cost of takin
 2. **Contact insurance company** to convert builder's risk to homeowner's policy
 3. **Notify utility companies** if needed
 4. **Notify lender** that CO issued
-5. **Keep CO in safe place**Congratulations on building your house!** Getting to final inspection is a massive achievement.
+5. **Keep CO in safe place**
+
+<CalloutBox type="success" title="Congratulations on building your house!">
+Getting to final inspection is a massive achievement.
+</CalloutBox>

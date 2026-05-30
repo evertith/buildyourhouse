@@ -9,25 +9,51 @@ In all of the custom home builds, I've seen these failures repeatedly.
 
 Learn from others' expensive mistakes and pass your inspections on the first try.
 
-<CalloutBox type="warning">
-Every failed inspection costs you:
+<CalloutBox type="warning" title="Every failed inspection costs you">
+
 - **Time**: 3-7 days minimum (corrections + re-inspection scheduling)
 - **Money**: Re-inspection fees ($50-150) + contractor callbacks + your time
 - **Cascade delays**: Each phase delay pushes everything back
 - **Stress and frustration**: Significant
 
 **One failed framing inspection** can delay your entire project by a week and cost $500-$1,000 in holding costs alone.
+
 </CalloutBox>
 
 ## Top 20 Inspection Failures
 
+<DataTable
+  caption="The 20 failures at a glance — code reference and cost to fix"
+  headers={["#", "Failure", "Code reference", "Cost to fix"]}
+  rows={[
+    ["1", "Missing or Incorrect Joist Hangers", "IRC R502.6, R802.3", "$200-500"],
+    ["2", "Improper Bearing for Beams", "IRC R502.6 (1.5\" sawn lumber, 3\" beams)", "$300-800"],
+    ["3", "Missing Fire Blocking", "IRC R302.11", "$200-400"],
+    ["4", "Incorrect Stair Dimensions", "IRC R311.7.5", "$800-2,000"],
+    ["5", "Missing AFCI or GFCI Protection", "NEC 210.12 (AFCI), 210.8 (GFCI)", "$150-400"],
+    ["6", "Improper Plumbing Venting", "IRC P3104-P3111", "$500-1,500"],
+    ["7", "Wrong Wire Size for Circuit", "NEC 240.4", "$200-1,000"],
+    ["8", "Inadequate Egress Windows", "IRC R310 (R310.2.1 for opening area)", "$800-3,000"],
+    ["9", "Missing Lateral Bracing on Beams", "IRC R502.8, R802.8", "$200-500"],
+    ["10", "Improper Notching of Structural Members", "IRC R502.8, R602.6, R802.7", "$300-1,000"],
+    ["11", "Electrical Boxes Not Flush", "NEC 314.20", "$100-300"],
+    ["12", "Missing Handrail or Guards", "IRC R311.7.8 (handrails), R312 (guards)", "$500-2,000"],
+    ["13", "Inadequate Ventilation", "IRC R806 (attic), R408 (crawl space)", "$500-1,500"],
+    ["14", "Shower Pan Flood Test Failure", "IRC P2709", "$500-3,000"],
+    ["15", "Tempered Glass Not Installed Where Required", "IRC R308.4", "$400-2,000"],
+    ["16", "Insulation Gaps and Voids", "IRC N1102 (energy code)", "$200-800"],
+    ["17", "Drain Lines with Improper Slope", "IRC P3005.3", "$300-1,000"],
+    ["18", "Smoke and CO Detectors Missing", "IRC R314, R315", "$200-500"],
+    ["19", "Wood-to-Concrete Contact", "IRC R317", "$500-2,000"],
+    ["20", "Service Disconnect Missing", "NEC 440.14", "$150-400"]
+  ]}
+/>
+
 ### 1. Missing or Incorrect Joist Hangers
 
-**What it is**: Joist hangers missing, wrong size, or improperly nailed
-
-**Why it fails**: Structural connection critical for load transfer
-
-**Code reference**: IRC R502.6, R802.3
+- **What it is**: Joist hangers missing, wrong size, or improperly nailed
+- **Why it fails**: Structural connection critical for load transfer
+- **Code reference**: IRC R502.6, R802.3
 
 **How I see it happen**:
 - Framers use wrong size hanger for joist dimension
@@ -43,15 +69,17 @@ Every failed inspection costs you:
 
 **Cost to fix**: $200-500 (carpenter callback to replace hangers)
 
+<CalloutBox type="critical" title="The single most common failure">
+
 **This fails inspections** more than almost anything else.
+
+</CalloutBox>
 
 ### 2. Improper Bearing for Beams
 
-**What it is**: Beams don't have adequate bearing on posts or walls
-
-**Why it fails**: Beam could slip off bearing surface under load
-
-**Code reference**: IRC R502.6 - minimum 1.5" bearing for sawn lumber, 3" for beams
+- **What it is**: Beams don't have adequate bearing on posts or walls
+- **Why it fails**: Beam could slip off bearing surface under load
+- **Code reference**: IRC R502.6 - minimum 1.5" bearing for sawn lumber, 3" for beams
 
 **How I see it happen**:
 - Beam sits on less than required bearing
@@ -69,11 +97,9 @@ Every failed inspection costs you:
 
 ### 3. Missing Fire Blocking
 
-**What it is**: Required fire blocking not installed in walls or floor/ceiling assemblies
-
-**Why it fails**: Fire code requirement to slow vertical fire spread
-
-**Code reference**: IRC R302.11
+- **What it is**: Required fire blocking not installed in walls or floor/ceiling assemblies
+- **Why it fails**: Fire code requirement to slow vertical fire spread
+- **Code reference**: IRC R302.11
 
 **How I see it happen**:
 - Forgotten entirely
@@ -94,22 +120,29 @@ Every failed inspection costs you:
 
 **Cost to fix**: $200-400 (cutting drywall to access, installing, repairing)
 
+<CalloutBox type="warning" title="Often caught too late">
+
 **This is especially annoying** because it's often caught after drywall is up.
+
+</CalloutBox>
 
 ### 4. Incorrect Stair Dimensions
 
-**What it is**: Rise or run outside code requirements
+- **What it is**: Rise or run outside code requirements
+- **Why it fails**: Safety - inconsistent stairs cause falls
+- **Code reference**: IRC R311.7.5
 
-**Why it fails**: Safety - inconsistent stairs cause falls
-
-**Code reference**: IRC R311.7.5
-
-**Requirements**:
-- Maximum riser height: 7-3/4"
-- Minimum tread depth: 10"
-- Maximum variation between risers: 3/8"
-- Minimum headroom: 6'8"
-- Minimum width: 36"
+<DataTable
+  caption="Stair dimension requirements (IRC R311.7.5)"
+  headers={["Dimension", "Requirement"]}
+  rows={[
+    ["Maximum riser height", "7-3/4\""],
+    ["Minimum tread depth", "10\""],
+    ["Maximum variation between risers", "3/8\""],
+    ["Minimum headroom", "6'8\""],
+    ["Minimum width", "36\""]
+  ]}
+/>
 
 **How I see it happen**:
 - Last riser different height than others
@@ -126,19 +159,26 @@ Every failed inspection costs you:
 
 **Cost to fix**: $800-2,000 (rebuild stairs)
 
+<CalloutBox type="warning" title="Expensive when it fails">
+
 **This is expensive** when it fails because stairs often need to be rebuilt entirely.
+
+</CalloutBox>
 
 ### 5. Missing AFCI or GFCI Protection
 
-**What it is**: Required Arc Fault or Ground Fault protection not installed
+- **What it is**: Required Arc Fault or Ground Fault protection not installed
+- **Why it fails**: Electrical safety code requirement
+- **Code reference**: NEC 210.12 (AFCI), 210.8 (GFCI)
 
-**Why it fails**: Electrical safety code requirement
-
-**Code reference**: NEC 210.12 (AFCI), 210.8 (GFCI)
-
-**Where required**:
-- **AFCI**: Almost all 15/20amp branch circuits (bedrooms, living areas, hallways, closets, etc.)
-- **GFCI**: Bathrooms, kitchens, outdoors, crawl spaces, unfinished basements, garages, within 6' of sinks
+<DataTable
+  caption="Where AFCI and GFCI protection is required"
+  headers={["Protection", "Where required"]}
+  rows={[
+    ["AFCI", "Almost all 15/20amp branch circuits (bedrooms, living areas, hallways, closets, etc.)"],
+    ["GFCI", "Bathrooms, kitchens, outdoors, crawl spaces, unfinished basements, garages, within 6' of sinks"]
+  ]}
+/>
 
 **How I see it happen**:
 - Using standard breakers instead of AFCI
@@ -155,11 +195,9 @@ Every failed inspection costs you:
 
 ### 6. Improper Plumbing Venting
 
-**What it is**: Drain/waste/vent system doesn't meet code
-
-**Why it fails**: Prevents proper drainage, allows sewer gas entry
-
-**Code reference**: IRC P3104-P3111
+- **What it is**: Drain/waste/vent system doesn't meet code
+- **Why it fails**: Prevents proper drainage, allows sewer gas entry
+- **Code reference**: IRC P3104-P3111
 
 **How I see it happen**:
 - Fixtures not properly vented
@@ -176,21 +214,28 @@ Every failed inspection costs you:
 
 **Cost to fix**: $500-1,500 (cutting walls, re-piping)
 
+<CalloutBox type="warning" title="Costly once walls are closed">
+
 **This is expensive** to fix because walls are often closed.
+
+</CalloutBox>
 
 ### 7. Wrong Wire Size for Circuit
 
-**What it is**: Wire gauge doesn't match circuit breaker size
+- **What it is**: Wire gauge doesn't match circuit breaker size
+- **Why it fails**: Fire hazard - wire overheats
+- **Code reference**: NEC 240.4
 
-**Why it fails**: Fire hazard - wire overheats
-
-**Code reference**: NEC 240.4
-
-**Requirements**:
-- 15 amp breaker = 14 AWG minimum
-- 20 amp breaker = 12 AWG minimum
-- 30 amp breaker = 10 AWG minimum
-- 40 amp breaker = 8 AWG minimum
+<DataTable
+  caption="Minimum wire gauge by breaker size (NEC 240.4)"
+  headers={["Breaker size", "Minimum wire gauge"]}
+  rows={[
+    ["15 amp breaker", "14 AWG minimum"],
+    ["20 amp breaker", "12 AWG minimum"],
+    ["30 amp breaker", "10 AWG minimum"],
+    ["40 amp breaker", "8 AWG minimum"]
+  ]}
+/>
 
 **How I see it happen**:
 - 14 AWG wire on 20 amp breaker
@@ -207,17 +252,20 @@ Every failed inspection costs you:
 
 ### 8. Inadequate Egress Windows
 
-**What it is**: Bedroom windows don't meet egress requirements
+- **What it is**: Bedroom windows don't meet egress requirements
+- **Why it fails**: Life safety - need escape route in fire
+- **Code reference**: IRC R310 (R310.2.1 for opening area) — verify your jurisdiction's adopted edition
 
-**Why it fails**: Life safety - need escape route in fire
-
-**Code reference**: IRC R310 (R310.2.1 for opening area) — verify your jurisdiction's adopted edition
-
-**Requirements**:
-- Minimum 5.7 sq ft opening area (R310.2.1 allows 5.0 sq ft for grade-floor or below-grade openings)
-- Minimum 24" height
-- Minimum 20" width
-- Maximum 44" sill height from floor
+<DataTable
+  caption="Egress window requirements (IRC R310)"
+  headers={["Requirement", "Minimum / maximum"]}
+  rows={[
+    ["Opening area", "5.7 sq ft (R310.2.1 allows 5.0 sq ft for grade-floor or below-grade openings)"],
+    ["Height", "24\" minimum"],
+    ["Width", "20\" minimum"],
+    ["Sill height from floor", "44\" maximum"]
+  ]}
+/>
 
 **How I see it happen**:
 - Windows too small
@@ -233,15 +281,17 @@ Every failed inspection costs you:
 
 **Cost to fix**: $800-3,000 (new window, framing changes)
 
+<CalloutBox type="tip" title="Plan this early">
+
 **Plan this early** - fixing after framing is expensive.
+
+</CalloutBox>
 
 ### 9. Missing Lateral Bracing on Beams
 
-**What it is**: Beams not properly braced to prevent rotation/buckling
-
-**Why it fails**: Structural stability requirement
-
-**Code reference**: IRC R502.8, R802.8
+- **What it is**: Beams not properly braced to prevent rotation/buckling
+- **Why it fails**: Structural stability requirement
+- **Code reference**: IRC R502.8, R802.8
 
 **How I see it happen**:
 - Long-span beams with no mid-span bracing
@@ -262,16 +312,19 @@ Every failed inspection costs you:
 
 ### 10. Improper Notching of Structural Members
 
-**What it is**: Joists, rafters, or studs notched beyond code limits
+- **What it is**: Joists, rafters, or studs notched beyond code limits
+- **Why it fails**: Reduces structural capacity
+- **Code reference**: IRC R502.8 (floors), R602.6 (walls), R802.7 (roofs)
 
-**Why it fails**: Reduces structural capacity
-
-**Code reference**: IRC R502.8 (floors), R602.6 (walls), R802.7 (roofs)
-
-**Limits**:
-- **Joists**: Maximum 1/6 depth in top or bottom third of span, 1/3 depth in middle third
-- **Studs**: Maximum 1/4 depth when load-bearing
-- **No notching**: Top or bottom of I-joists, engineered lumber
+<DataTable
+  caption="Notching limits for structural members"
+  headers={["Member", "Limit"]}
+  rows={[
+    ["Joists", "Maximum 1/6 depth in top or bottom third of span, 1/3 depth in middle third"],
+    ["Studs", "Maximum 1/4 depth when load-bearing"],
+    ["No notching", "Top or bottom of I-joists, engineered lumber"]
+  ]}
+/>
 
 **How I see it happen**:
 - Plumber cuts too-large notch for pipe
@@ -289,16 +342,19 @@ Every failed inspection costs you:
 
 ### 11. Electrical Boxes Not Flush
 
-**What it is**: Outlet/switch boxes recessed or protruding from wall surface
+- **What it is**: Outlet/switch boxes recessed or protruding from wall surface
+- **Why it fails**: Code requirement for proper device installation
+- **Code reference**: NEC 314.20
 
-**Why it fails**: Code requirement for proper device installation
-
-**Code reference**: NEC 314.20
-
-**Requirements**:
-- Box must be flush with finished wall surface
-- Maximum 1/4" recess in non-combustible surfaces
-- No recess allowed in combustible surfaces
+<DataTable
+  caption="Box flush requirements (NEC 314.20)"
+  headers={["Condition", "Requirement"]}
+  rows={[
+    ["Box position", "Must be flush with finished wall surface"],
+    ["Non-combustible surfaces", "Maximum 1/4\" recess"],
+    ["Combustible surfaces", "No recess allowed"]
+  ]}
+/>
 
 **How I see it happen**:
 - Drywall thickness not considered when mounting boxes
@@ -314,18 +370,21 @@ Every failed inspection costs you:
 
 ### 12. Missing Handrail or Guards
 
-**What it is**: Required handrails or guardrails not installed
+- **What it is**: Required handrails or guardrails not installed
+- **Why it fails**: Fall protection safety requirement
+- **Code reference**: IRC R311.7.8 (handrails), R312 (guards)
 
-**Why it fails**: Fall protection safety requirement
-
-**Code reference**: IRC R311.7.8 (handrails), R312 (guards)
-
-**Requirements**:
-- Handrail required: 4+ risers
-- Handrail height: 34"-38" above stair nosing
-- Guards required: 30"+ drop
-- Guard height: 36" minimum (42" for some jurisdictions)
-- Maximum 4" sphere pass-through
+<DataTable
+  caption="Handrail and guard requirements"
+  headers={["Requirement", "Specification"]}
+  rows={[
+    ["Handrail required", "4+ risers"],
+    ["Handrail height", "34\"-38\" above stair nosing"],
+    ["Guards required", "30\"+ drop"],
+    ["Guard height", "36\" minimum (42\" for some jurisdictions)"],
+    ["Sphere pass-through", "Maximum 4\""]
+  ]}
+/>
 
 **How I see it happen**:
 - Deck without guards
@@ -343,11 +402,9 @@ Every failed inspection costs you:
 
 ### 13. Inadequate Ventilation
 
-**What it is**: Attic or crawl space ventilation insufficient
-
-**Why it fails**: Moisture control, energy code requirement
-
-**Code reference**: IRC R806 (attic), R408 (crawl space) — verify your jurisdiction's adopted edition
+- **What it is**: Attic or crawl space ventilation insufficient
+- **Why it fails**: Moisture control, energy code requirement
+- **Code reference**: IRC R806 (attic), R408 (crawl space) — verify your jurisdiction's adopted edition
 
 **Requirements**:
 - Attic: 1/150 of attic floor area (or 1/300 with proper ventilation balance)
@@ -370,11 +427,9 @@ Every failed inspection costs you:
 
 ### 14. Shower Pan Flood Test Failure
 
-**What it is**: Shower pan doesn't hold water during flood test
-
-**Why it fails**: Leak will damage structure
-
-**Code reference**: IRC P2709
+- **What it is**: Shower pan doesn't hold water during flood test
+- **Why it fails**: Leak will damage structure
+- **Code reference**: IRC P2709
 
 **Test requirements**:
 - Plug drain
@@ -396,15 +451,17 @@ Every failed inspection costs you:
 
 **Cost to fix**: $500-3,000 (depends if tile is installed yet)
 
+<CalloutBox type="tip" title="Test early">
+
 **Test early** - fix is much cheaper before tile.
+
+</CalloutBox>
 
 ### 15. Tempered Glass Not Installed Where Required
 
-**What it is**: Regular glass used where safety glass required
-
-**Why it fails**: Life safety requirement
-
-**Code reference**: IRC R308.4
+- **What it is**: Regular glass used where safety glass required
+- **Why it fails**: Life safety requirement
+- **Code reference**: IRC R308.4
 
 **Where tempered glass required**:
 - Within 24" of door
@@ -426,11 +483,9 @@ Every failed inspection costs you:
 
 ### 16. Insulation Gaps and Voids
 
-**What it is**: Insulation not completely filling cavities
-
-**Why it fails**: Energy code requirement
-
-**Code reference**: IRC N1102 (energy code)
+- **What it is**: Insulation not completely filling cavities
+- **Why it fails**: Energy code requirement
+- **Code reference**: IRC N1102 (energy code)
 
 **How I see it happen**:
 - Insulation compressed
@@ -447,15 +502,17 @@ Every failed inspection costs you:
 
 **Cost to fix**: $200-800 (adding insulation)
 
+<CalloutBox type="warning" title="Gaps show on thermal cameras">
+
 **Inspectors use thermal cameras** - gaps show clearly.
+
+</CalloutBox>
 
 ### 17. Drain Lines with Improper Slope
 
-**What it is**: Horizontal drain pipes don't slope correctly
-
-**Why it fails**: Won't drain properly
-
-**Code reference**: IRC P3005.3
+- **What it is**: Horizontal drain pipes don't slope correctly
+- **Why it fails**: Won't drain properly
+- **Code reference**: IRC P3005.3
 
 **Requirements**:
 - Minimum 1/4" per foot slope
@@ -476,11 +533,9 @@ Every failed inspection costs you:
 
 ### 18. Smoke and CO Detectors Missing
 
-**What it is**: Required detectors not installed
-
-**Why it fails**: Life safety requirement
-
-**Code reference**: IRC R314, R315
+- **What it is**: Required detectors not installed
+- **Why it fails**: Life safety requirement
+- **Code reference**: IRC R314, R315
 
 **Requirements**:
 - Smoke detector in each bedroom
@@ -503,11 +558,9 @@ Every failed inspection costs you:
 
 ### 19. Wood-to-Concrete Contact
 
-**What it is**: Wood members in direct contact with concrete without protection
-
-**Why it fails**: Moisture will rot wood
-
-**Code reference**: IRC R317
+- **What it is**: Wood members in direct contact with concrete without protection
+- **Why it fails**: Moisture will rot wood
+- **Code reference**: IRC R317
 
 **Requirements**:
 - Pressure-treated wood, or
@@ -528,11 +581,9 @@ Every failed inspection costs you:
 
 ### 20. Service Disconnect Missing
 
-**What it is**: No accessible disconnect for AC or heat pump
-
-**Why it fails**: Safety requirement for servicing
-
-**Code reference**: NEC 440.14
+- **What it is**: No accessible disconnect for AC or heat pump
+- **Why it fails**: Safety requirement for servicing
+- **Code reference**: NEC 440.14
 
 **Requirements**:
 - Disconnect within sight of equipment, or
@@ -623,6 +674,8 @@ Reality: This happens
 
 ## The Bottom Line
 
+<CalloutBox type="success" title="90% of failures are preventable">
+
 **90% of inspection failures are preventable** by:
 1. Knowing the code
 2. Building carefully
@@ -630,6 +683,8 @@ Reality: This happens
 4. Being prepared
 
 The other 10% you'll learn from and fix quickly.
+
+</CalloutBox>
 
 **Every failed inspection is a lesson**. Don't repeat the same mistake twice.
 

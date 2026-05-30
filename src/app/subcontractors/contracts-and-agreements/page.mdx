@@ -5,29 +5,33 @@ export const metadata = {
 
 # Subcontractor Contracts and Agreements
 
-A proper written contract is your most important protection as an owner-builder. It clarifies expectations, prevents disputes, provides legal recourse when things go wrong, and protects you financially and legally.
+<CalloutBox type="critical" title="Never Start Work Without a Signed Contract">
 
-Never start work without a signed contract. Never. This guide will show you exactly what every subcontractor contract needs to include, common mistakes to avoid, and how to protect yourself while being fair to contractors.
+A proper written contract is your single most important protection as an owner-builder. It clarifies expectations, prevents disputes, gives you legal recourse when things go wrong, and protects you financially and legally.
+
+Never start work without a signed contract. **Never.**
+
+</CalloutBox>
+
+This guide shows you exactly what every subcontractor contract needs to include, the common mistakes to avoid, and how to protect yourself while staying fair to contractors.
 
 ## Why Contracts Are Critical
 
-**What contracts prevent**:
-- Scope disputes ("I didn't think that was included")
-- Payment disagreements ("You didn't pay me enough")
-- Timeline conflicts ("I never agreed to that date")
-- Quality issues ("It meets code, that's good enough")
-- Abandonment ("I got a better job")
-- Liability problems ("That worker who got hurt is suing you")
-- Lien issues ("I'm filing a lien on your property")
+A contract is cheap insurance against expensive problems. Here is the trade-off in plain numbers.
 
-**Real costs without proper contracts**:
-- $15,000 to remove mechanic's lien
-- $25,000+ to finish work abandoned contractor started
-- $50,000-500,000 liability for uninsured worker injury
-- Months of delays resolving disputes
-- Legal fees of $5,000-20,000 to enforce verbal agreements
+<DataTable
+  caption="What a proper contract prevents — and what it costs to skip one"
+  headers={["Risk a contract prevents", "Typical cost without a contract"]}
+  rows={[
+    ["Mechanic's lien on your property", "$15,000 to remove"],
+    ["Abandoned work another contractor started", "$25,000+ to finish"],
+    ["Uninsured worker injury liability", "$50,000-500,000"],
+    ["Disputes (scope, payment, timeline, quality)", "Months of delays"],
+    ["Enforcing a verbal agreement", "$5,000-20,000 in legal fees"]
+  ]}
+/>
 
-**With a proper contract**:
+**What a contract gives you instead**:
 - Clear expectations from day one
 - Legal protection if things go wrong
 - Payment leverage to ensure completion
@@ -41,7 +45,7 @@ Never start work without a signed contract. Never. This guide will show you exac
 
 ## Essential Contract Elements
 
-Every subcontractor contract must include these elements:
+Every subcontractor contract must include these elements.
 
 ### 1. Parties and Property Information
 
@@ -72,7 +76,11 @@ PERMIT NUMBER: [If applicable]
 - Links contract to specific property
 - Necessary for legal enforcement
 
-**Red flag**: Contractor won't provide full legal business name or address
+<CalloutBox type="warning" title="Red Flag">
+
+A contractor who won't provide a full legal business name or address is a red flag — walk away.
+
+</CalloutBox>
 
 ### 2. Scope of Work (Most Critical Section)
 
@@ -134,7 +142,11 @@ installation including:
 - Makes contract enforceable
 - Provides inspection checklist
 
-**Pro tip**: Attach plans, specifications, and fixture schedules as exhibits
+<CalloutBox type="tip" title="Attach Everything as Exhibits">
+
+Attach plans, specifications, and fixture schedules as exhibits. The scope section should reference them, not retype them.
+
+</CalloutBox>
 
 ### 3. Project Timeline
 
@@ -185,7 +197,12 @@ subsequent trades, and other damages difficult to quantify.
 - Makes enforcement easier (no need to prove actual damages)
 - $100-300/day is typical for residential
 - Must be a **genuine, reasonable pre-estimate** of actual damages at the time of signing
-- This matters legally: if the amount looks like a **penalty rather than a real estimate of likely harm, a court can strike the clause as an unenforceable penalty** — and some states scrutinize these closely. Tie the figure to real costs (e.g., extra loan interest, delayed trades) and keep it reasonable
+
+<CalloutBox type="warning" title="A Penalty Clause Can Be Thrown Out">
+
+This matters legally: if the amount looks like a **penalty rather than a real estimate of likely harm, a court can strike the clause as an unenforceable penalty** — and some states scrutinize these closely. Tie the figure to real costs (e.g., extra loan interest, delayed trades) and keep it reasonable.
+
+</CalloutBox>
 
 **When to use**: Long-lead or critical-path work where delays cascade
 
@@ -270,11 +287,14 @@ So treat the deposit as **subject to your state's statutory cap, which may be mu
 - So tie any hold period to **your state's actual mechanic's-lien deadline**, not a blanket 30-60 days
 - Also protects against immediate defects; released if no issues
 
-**Never**:
+<CalloutBox type="critical" title="Payment Red Lines — Never Do These">
+
 - Pay 50%+ upfront (major red flag)
 - Pay for work not complete
 - Pay final payment before lien release
-- Pay cash (always check for documentation)
+- Pay cash (always keep documentation)
+
+</CalloutBox>
 
 ### 5. Materials and Specifications
 
@@ -359,7 +379,11 @@ inspections but is not required to be present.
 - Protects you from code violations
 - Ensures proper work
 
-**Key provision**: "Failed inspections corrected at contractor expense"
+<CalloutBox type="tip" title="The One Clause to Insist On">
+
+"Failed inspections corrected at contractor expense." This single line shifts the cost of rework to where it belongs.
+
+</CalloutBox>
 
 ### 7. Insurance and Licensing Requirements
 
@@ -401,6 +425,16 @@ Contractor warrants:
 Contractor shall immediately notify owner if license is suspended,
 revoked, or otherwise invalid.
 ```
+
+<DataTable
+  caption="Insurance coverage to require before work begins"
+  headers={["Coverage", "Minimum to require", "Why"]}
+  rows={[
+    ["General Liability", "$1,000,000 per occurrence / $2,000,000 aggregate", "Covers property damage and third-party injury from the work"],
+    ["Workers' Compensation", "As required by state law for all employees", "Covers the sub's injured workers — see the statutory-employer warning below"],
+    ["Automobile", "For all vehicles used on the project", "Covers vehicles operating on and around your site"]
+  ]}
+/>
 
 **Why this matters**:
 - Protects you from liability for injuries
@@ -464,11 +498,16 @@ The "in addition to, not in place of" language above reflects a common goal, but
 Most states also recognize an **implied warranty of habitability / good workmanship that exists independently of your contract and can run longer than the express 1-2 year term** below. Don't assume a short express warranty cuts off those rights — check your state's rule (and have an attorney confirm before relying on any waiver).
 </CalloutBox>
 
-**Typical express warranty periods** (your state's implied/statutory warranties may run longer and apply regardless):
-- Workmanship: 1-2 years (express); implied warranties may extend further
-- Structural framing: 2-5 years (sometimes)
-- Roofing: Often comes with manufacturer warranty (10-30 years)
-- HVAC: Equipment warranty (5-10 years) + installation (1-2 years)
+<DataTable
+  caption="Typical express warranty periods (your state's implied/statutory warranties may run longer and apply regardless)"
+  headers={["Component", "Typical express warranty"]}
+  rows={[
+    ["Workmanship", "1-2 years (express); implied warranties may extend further"],
+    ["Structural framing", "2-5 years (sometimes)"],
+    ["Roofing", "Often comes with manufacturer warranty (10-30 years)"],
+    ["HVAC", "Equipment warranty (5-10 years) + installation (1-2 years)"]
+  ]}
+/>
 
 **Why this matters**:
 - Holds contractor accountable after payment
@@ -524,7 +563,11 @@ Change Order Form: All change orders shall include:
 - Documents all changes
 - Prevents "he said, she said"
 
-**Key protection**: "Nothing is approved unless signed by both parties"
+<CalloutBox type="tip" title="The Rule That Controls Costs">
+
+"Nothing is approved unless signed by both parties." Verbal change approvals are how budgets quietly blow up.
+
+</CalloutBox>
 
 ### 10. Termination Provisions
 
@@ -568,7 +611,11 @@ exceeds 30 days, contractor may terminate and be paid for work complete.
 - Protects you from abandonment
 - Clarifies each party's rights
 
-**Key provision**: You can fire them for cause, but they still don't get paid for incomplete/defective work
+<CalloutBox type="tip" title="Your Leverage on a Bad Contractor">
+
+You can fire them for cause, but they still don't get paid for incomplete or defective work.
+
+</CalloutBox>
 
 ### 11. Lien Releases
 
@@ -600,6 +647,15 @@ If any lien is filed against property for this work:
 - Owner may pay lien claimant directly and deduct from contractor payment
 - Contractor liable for all legal fees to remove lien
 ```
+
+<DataTable
+  caption="Lien-release types and when to collect them"
+  headers={["Lien release", "When to collect", "What it covers"]}
+  rows={[
+    ["Conditional release", "With each payment request", "Work through that payment period; becomes effective once payment clears"],
+    ["Final unconditional release", "Before final payment", "All work performed, plus releases from all subs and suppliers and an affidavit they've been paid"]
+  ]}
+/>
 
 **Why this matters**:
 - Protects your property from liens
@@ -718,6 +774,19 @@ EXHIBITS ATTACHED:
 
 ## Contract Formats and Templates
 
+You have four realistic ways to paper a deal. Here's how they compare.
+
+<DataTable
+  caption="Contract format options compared"
+  headers={["Option", "Best for", "Cost", "Trade-off"]}
+  rows={[
+    ["AIA contract (A101/A102 + A201)", "Large projects", "$50-150 per template", "Professional and legally vetted, but complex and may need an attorney to customize"],
+    ["Simple custom contract", "Smaller projects", "$200-500 (attorney review)", "Tailored and readable, but may miss legal protections without review"],
+    ["Contractor's standard contract", "Established contractors who have one", "Varies", "Familiar to the contractor, but often favors them and missing owner protections"],
+    ["State association template", "Members of a home builders association", "$0-50 for members", "Inexpensive starting point; still review for completeness"]
+  ]}
+/>
+
 ### Option 1: Use AIA Contract (Recommended for Large Projects)
 **American Institute of Architects** standard contracts:
 - For an owner-to-general-contractor agreement, use **AIA A101 or A102** (Owner-Contractor Agreement), paired with **A201 General Conditions**. (AIA A401 is the standard form between a contractor and a *subcontractor*, not the owner-contractor form.)
@@ -749,7 +818,11 @@ EXHIBITS ATTACHED:
 **Pros**: Contractor is used to their contract
 **Cons**: Often favors contractor, may be missing owner protections
 
-**My recommendation**: Start with contractor's contract, add missing owner protections, have attorney review
+<CalloutBox type="tip" title="My Recommendation">
+
+Start with the contractor's contract, add the missing owner protections, and have an attorney review it.
+
+</CalloutBox>
 
 ### Option 4: State Association Templates
 **Home builder associations often provide templates**:
@@ -760,6 +833,23 @@ EXHIBITS ATTACHED:
 **Cost**: $0-50 for members
 
 ## Common Contract Mistakes
+
+Most owner-builder contract pain traces back to the same handful of avoidable mistakes.
+
+<DataTable
+  caption="The eight most common contract mistakes — and the fix"
+  headers={["Mistake", "What it costs", "Fix"]}
+  rows={[
+    ["No written contract (handshake or verbal deal)", "No legal protection; disputes inevitable", "Always use a written contract, even with friends or family"],
+    ["Vague scope of work (\"frame house per plans\")", "Disputes over what's included", "Detailed scope with inclusions AND exclusions"],
+    ["Large upfront deposit (50%+)", "No leverage; high risk if they disappear", "Keep the deposit modest and within your state's statutory cap; tie the rest to completion"],
+    ["No timeline (\"finish when done\")", "Endless delays; can't plan other trades", "Specific start and completion dates with consequences"],
+    ["Paying before inspections pass", "No leverage to fix failed inspections", "Payment only after inspection passes"],
+    ["No lien-release requirement", "Liens filed against your property", "Conditional release with each payment, unconditional at end"],
+    ["Missing insurance requirements", "Liable for injuries and damage", "Require certificates before starting; verify with insurer"],
+    ["No change-order process (verbal approvals)", "Disputes over what was approved and the price", "All changes in writing, signed before starting"]
+  ]}
+/>
 
 ### 1. No Written Contract
 **The mistake**: Handshake deal or verbal agreement
@@ -869,10 +959,15 @@ Retainage only exists if it's written into your contract — it is **a negotiate
 - Leverages quality work
 - Common (but state-regulated) contract practice
 
-**How much to retain**:
-- 10% is standard
-- 15-20% for problematic contractors
-- 5% if excellent relationship
+<DataTable
+  caption="How much to retain (subject to your state's rules — see the note above)"
+  headers={["Situation", "Retainage"]}
+  rows={[
+    ["Standard", "10%"],
+    ["Problematic contractor", "15-20%"],
+    ["Excellent relationship", "5%"]
+  ]}
+/>
 
 **When to retain**:
 - From each progress payment, OR
@@ -936,7 +1031,22 @@ Before signing:
 
 ## Red Flags in Contractor's Contract
 
-Watch for these in contractor-provided contracts:
+When the contractor supplies the contract, scan for these clauses before you sign.
+
+<DataTable
+  caption="Red-flag clauses in a contractor-provided contract"
+  headers={["Clause", "Why it's a problem", "Fix"]}
+  rows={[
+    ["Pay-when-paid (\"Owner pays when owner receives funding\")", "Puts financing risk on contractor; creates disputes", "Remove or clarify exact payment dates"],
+    ["Binding arbitration (\"All disputes must be arbitrated\")", "May limit your legal options", "Consider mediation first, then a court option"],
+    ["Limitation of liability (\"Liability limited to contract price\")", "May not cover all damages caused", "Remove or adjust to a reasonable amount"],
+    ["Vague warranty (\"Standard industry warranty\")", "What's standard? Unenforceable", "Specific warranty period and terms"],
+    ["Auto-renewal (\"Contract automatically renews unless...\")", "Never applicable for construction", "Remove completely"],
+    ["Contractor-favorable payment (50% / 40% / 10%)", "Leaves you with no leverage at the end", "Back-loaded schedule (e.g., 15/35/35/15) with final payment after lien release; confirm deposit is within your state's cap"],
+    ["No termination rights", "Stuck with a bad contractor", "Add termination provisions"],
+    ["Waiver of lien rights (\"Owner waives all rights to lien releases\")", "Leaves you exposed to liens", "Remove; add lien-release requirements"]
+  ]}
+/>
 
 ### 1. Pay-When-Paid Clauses
 **Language**: "Owner pays contractor when owner receives funding"
@@ -1014,7 +1124,11 @@ Key sections:
 
 **Total**: 11-13 pages + exhibits
 
-**This length is normal**. Anything shorter probably missing protections.
+<CalloutBox type="tip" title="Length Is Normal">
+
+This length is normal. Anything shorter is probably missing protections.
+
+</CalloutBox>
 
 ## Next Steps
 

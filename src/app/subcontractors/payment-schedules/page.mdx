@@ -11,45 +11,53 @@ This guide will teach you industry-standard payment practices, how to protect yo
 
 ## Why Payment Strategy Matters
 
-**The leverage principle**: Whoever holds the money has the power.
+<CalloutBox type="info" title="The leverage principle: whoever holds the money has the power">
 
-**Pay too much upfront**: Contractor has your money, you have no leverage
-**Pay too little**: Contractor can't afford materials, may abandon job
-**Pay correctly**: Contractor is motivated to complete quality work, you're protected
+- **Pay too much upfront**: Contractor has your money, you have no leverage
+- **Pay too little**: Contractor can't afford materials, may abandon job
+- **Pay correctly**: Contractor is motivated to complete quality work, you're protected
 
-**Real examples**:
+</CalloutBox>
 
-**Bad payment**: Paid 60% upfront ($18,000 of $30,000 contract)
-- Contractor worked 2 weeks, disappeared
-- Work was 40% complete
-- Owner out $18,000 with half-finished work
-- Cost $15,000 to hire new contractor to complete
-- **Total loss**: $33,000 to complete $30,000 job
+The same $30,000 job can go two very different ways depending entirely on payment structure:
 
-**Good payment**: Paid 15% deposit, then progress-based payments
-- Contractor worked steadily
-- Owner inspected before each payment
-- Quality maintained throughout
-- Final 15% held until truly complete
-- Work finished on time, on budget
+<DataTable
+  caption="Two real examples — same job, different payment structure"
+  headers={["", "Bad payment", "Good payment"]}
+  rows={[
+    ["Structure", "60% upfront ($18,000 of $30,000)", "15% deposit, then progress-based"],
+    ["What happened", "Contractor worked 2 weeks, disappeared; work 40% complete", "Contractor worked steadily; owner inspected before each payment"],
+    ["Quality", "Half-finished", "Maintained throughout; final 15% held until truly complete"],
+    ["Outcome", "Cost $15,000 to hire a new contractor to finish", "Work finished on time, on budget"],
+    ["Result", "Total loss: $33,000 to complete a $30,000 job", "On time, on budget"]
+  ]}
+/>
 
-**The difference**: Payment structure
+The difference was payment structure.
 
 ## Standard Payment Structures
 
 ### Industry Standard (Recommended)
 
-**Four-payment structure**:
+<CalloutBox type="tip" title="Four-payment structure">
+
 1. **Deposit**: 10-20% at contract signing
 2. **Progress 1**: 30-35% at defined milestone
 3. **Progress 2**: 30-35% at next milestone
 4. **Final**: 15-20% at completion + lien release
 
-**Example for $20,000 contract**:
-- Deposit: $3,000 (15%) - At signing
-- Progress 1: $7,000 (35%) - At 50% completion milestone
-- Progress 2: $7,000 (35%) - At substantial completion
-- Final: $3,000 (15%) - After lien release + punch list
+</CalloutBox>
+
+<DataTable
+  caption="Example: four-payment structure for a $20,000 contract"
+  headers={["Payment", "Amount", "When"]}
+  rows={[
+    ["Deposit", "$3,000 (15%)", "At signing"],
+    ["Progress 1", "$7,000 (35%)", "At 50% completion milestone"],
+    ["Progress 2", "$7,000 (35%)", "At substantial completion"],
+    ["Final", "$3,000 (15%)", "After lien release + punch list"]
+  ]}
+/>
 
 **Why this works**:
 - Small deposit shows commitment without high risk
@@ -60,76 +68,114 @@ This guide will teach you industry-standard payment practices, how to protect yo
 
 ### Three-Payment Structure (Simpler)
 
-**For smaller projects** (under $10,000):
-1. **Deposit**: 10-20%
-2. **Mid-point**: 40-50%
-3. **Final**: 30-40%
+For smaller projects (under $10,000):
 
-**Example for $8,000 contract**:
-- Deposit: $1,200 (15%)
-- Mid-point: $4,000 (50%)
-- Final: $2,800 (35%)
+<DataTable
+  caption="Three-payment structure, including a $8,000 example"
+  headers={["Payment", "Share", "$8,000 example"]}
+  rows={[
+    ["Deposit", "10-20%", "$1,200 (15%)"],
+    ["Mid-point", "40-50%", "$4,000 (50%)"],
+    ["Final", "30-40%", "$2,800 (35%)"]
+  ]}
+/>
 
 ### Trade-Specific Payment Schedules
 
-Different trades have different natural payment breakpoints:
+Different trades have different natural payment breakpoints.
 
 #### Foundation/Concrete
-```
-Deposit: 15% - At contract signing
-Payment 1: 35% - After footings poured and inspected
-Payment 2: 35% - After walls poured and inspected
-Final: 15% - After backfill complete and final inspection
-```
+
+<DataTable
+  caption="Foundation/concrete payment schedule"
+  headers={["Stage", "Share", "Trigger"]}
+  rows={[
+    ["Deposit", "15%", "At contract signing"],
+    ["Payment 1", "35%", "After footings poured and inspected"],
+    ["Payment 2", "35%", "After walls poured and inspected"],
+    ["Final", "15%", "After backfill complete and final inspection"]
+  ]}
+/>
 
 #### Framing
-```
-Deposit: 15% - At contract signing
-Payment 1: 30% - First floor framed and sheathed
-Payment 2: 30% - Second floor and roof framed
-Payment 3: 10% - Sheathing and house wrap complete
-Final: 15% - After inspection passed and punch list complete
-```
+
+<DataTable
+  caption="Framing payment schedule"
+  headers={["Stage", "Share", "Trigger"]}
+  rows={[
+    ["Deposit", "15%", "At contract signing"],
+    ["Payment 1", "30%", "First floor framed and sheathed"],
+    ["Payment 2", "30%", "Second floor and roof framed"],
+    ["Payment 3", "10%", "Sheathing and house wrap complete"],
+    ["Final", "15%", "After inspection passed and punch list complete"]
+  ]}
+/>
 
 #### Roofing
-```
-Deposit: 15% - At contract signing (if materials included)
-Payment 1: 50% - Underlayment and shingles installed
-Final: 35% - Ridge cap, flashing complete, cleanup done
-```
+
+<DataTable
+  caption="Roofing payment schedule"
+  headers={["Stage", "Share", "Trigger"]}
+  rows={[
+    ["Deposit", "15%", "At contract signing (if materials included)"],
+    ["Payment 1", "50%", "Underlayment and shingles installed"],
+    ["Final", "35%", "Ridge cap, flashing complete, cleanup done"]
+  ]}
+/>
 
 #### Plumbing/Electrical/HVAC
-```
-Deposit: 10% - At contract signing
-Rough-in: 45% - After rough-in complete and inspected
-Finish: 30% - After fixtures/devices installed
-Final: 15% - After final inspection and punch list
-```
+
+<DataTable
+  caption="Plumbing/electrical/HVAC payment schedule"
+  headers={["Stage", "Share", "Trigger"]}
+  rows={[
+    ["Deposit", "10%", "At contract signing"],
+    ["Rough-in", "45%", "After rough-in complete and inspected"],
+    ["Finish", "30%", "After fixtures/devices installed"],
+    ["Final", "15%", "After final inspection and punch list"]
+  ]}
+/>
 
 #### Drywall
-```
-Deposit: 10% - At contract signing
-Hanging: 25% - After all drywall hung
-Taping/First coat: 25% - After first coat of mud
-Finish: 25% - After sanding and priming
-Final: 15% - After touch-ups and cleanup
-```
+
+<DataTable
+  caption="Drywall payment schedule"
+  headers={["Stage", "Share", "Trigger"]}
+  rows={[
+    ["Deposit", "10%", "At contract signing"],
+    ["Hanging", "25%", "After all drywall hung"],
+    ["Taping/First coat", "25%", "After first coat of mud"],
+    ["Finish", "25%", "After sanding and priming"],
+    ["Final", "15%", "After touch-ups and cleanup"]
+  ]}
+/>
 
 ## Payment Milestones
 
-**Key principle**: Payments tied to measurable completion, not time elapsed.
+<CalloutBox type="tip" title="Key principle">
+
+Tie payments to measurable completion, not time elapsed.
+
+</CalloutBox>
 
 ### Good Milestones (Measurable)
-- "Footings poured and inspected"
-- "Rough plumbing complete and inspection passed"
-- "All drywall hung"
-- "Substantial completion per contract scope"
+
+Anchor every payment to something you can verify on site.
 
 ### Bad Milestones (Vague)
-- "After 2 weeks"
-- "When about half done"
-- "When contractor requests payment"
-- "Mid-project"
+
+Never tie a payment to the calendar or to a feeling that work is "about done."
+
+<DataTable
+  caption="Good vs. bad payment milestones"
+  headers={["Good milestones (measurable)", "Bad milestones (vague)"]}
+  rows={[
+    ["\"Footings poured and inspected\"", "\"After 2 weeks\""],
+    ["\"Rough plumbing complete and inspection passed\"", "\"When about half done\""],
+    ["\"All drywall hung\"", "\"When contractor requests payment\""],
+    ["\"Substantial completion per contract scope\"", "\"Mid-project\""]
+  ]}
+/>
 
 ### How to Define Milestones
 
@@ -154,24 +200,38 @@ Owner shall inspect within 3 business days and payment due within
 
 ## Deposit Guidelines
 
-**Deposits serve one purpose**: Secure contractor's commitment and cover initial material costs
+<CalloutBox type="info" title="Deposits serve one purpose">
+
+Secure the contractor's commitment and cover initial material costs.
+
+</CalloutBox>
 
 **Standard deposit amounts**:
 - Materials-intensive trades: 15-20% (roofing, foundation)
 - Labor-intensive trades: 10-15% (framing, drywall)
 - Generally don't go above 25% — and your state may cap deposits far lower, so check before agreeing to any deposit
 
-**Deposit caps vary by state — and some are strict.** Many states limit residential deposits well below the 10-20% rule of thumb:
+<CalloutBox type="critical" title="Deposit caps vary by state — and some are strict">
+
+Many states limit residential deposits well below the 10-20% rule of thumb:
+
 - **California and Nevada**: the lesser of 10% of the contract or $1,000 (in CA, demanding more is a misdemeanor and can draw CSLB fines and license discipline — see Business & Professions Code §7159.5)
 - **Maryland, Massachusetts, Pennsylvania**: capped at one-third of the contract price (with limited exceptions for special-order materials)
 
 Look up your own state's home-improvement deposit limit before you sign. Where a statutory cap exists, it overrides any "industry standard" percentage — and a contractor who pushes past your state's legal limit is showing you something.
 
-**Red flags**:
-- 30%+ deposit request: Warning sign
-- 50%+ deposit request: Major red flag, likely scam or cash-flow problems
-- "Need money for materials before starting": Should be in quote, not extra deposit
-- "Need to buy truck/tools/equipment": Not your problem
+</CalloutBox>
+
+<DataTable
+  caption="Deposit request red flags"
+  headers={["Request", "What it means"]}
+  rows={[
+    ["30%+ deposit", "Warning sign"],
+    ["50%+ deposit", "Major red flag, likely scam or cash-flow problems"],
+    ["\"Need money for materials before starting\"", "Should be in quote, not extra deposit"],
+    ["\"Need to buy truck/tools/equipment\"", "Not your problem"]
+  ]}
+/>
 
 **When contractor asks for large deposit**:
 
@@ -185,6 +245,12 @@ Look up your own state's home-improvement deposit limit before you sign. Where a
 ## Progress Payment Best Practices
 
 ### Before Making Any Progress Payment
+
+<CalloutBox type="warning" title="Only issue payment after every one of these steps">
+
+Skipping any of them is how owner-builders end up paying twice or paying for work that isn't really done.
+
+</CalloutBox>
 
 **Required steps**:
 
@@ -221,47 +287,40 @@ Look up your own state's home-improvement deposit limit before you sign. Where a
 
 ### The Verification Process
 
-**Step-by-step**:
+<DataTable
+  caption="Verification process, step by step (3-5 business days from verification to payment)"
+  headers={["Step", "What you do", "Detail"]}
+  rows={[
+    ["1", "Contractor notifies you milestone reached", "Text/email: \"Rough plumbing complete, ready for inspection\""],
+    ["2", "You schedule inspection (if required)", "Call building department; coordinate with contractor; be present"],
+    ["3", "Inspection occurs and passes", "Get copy of inspection card/approval; photo the card; note inspector comments"],
+    ["4", "You inspect personally", "Walk through with contractor; check against scope; verify criteria; photograph; create punch list if minor items"],
+    ["5", "Request lien release", "Provide conditional lien release form; contractor signs; you keep original"],
+    ["6", "Process payment", "Issue check or transfer; include payment number and milestone covered; keep records"]
+  ]}
+/>
 
-**1. Contractor notifies you milestone reached**
-   - Text/email: "Rough plumbing complete, ready for inspection"
+<CalloutBox type="tip" title="This protects you and is fair to the contractor">
 
-**2. You schedule inspection** (if required)
-   - Call building department
-   - Coordinate with contractor
-   - Be present for inspection
+A 3-5 business day timeline from verification to payment keeps the job moving while giving you time to confirm the work.
 
-**3. Inspection occurs and passes**
-   - Get copy of inspection card/approval
-   - Photo the card
-   - Note any comments from inspector
-
-**4. You inspect personally**
-   - Walk through with contractor
-   - Check against contract scope
-   - Verify milestone criteria met
-   - Take comprehensive photos
-   - Create punch list if minor items
-
-**5. Request lien release**
-   - Provide conditional lien release form
-   - Contractor signs
-   - You keep original
-
-**6. Process payment**
-   - Issue check or transfer
-   - Include payment number and milestone covered
-   - Keep records
-
-**Timeline**: 3-5 business days from verification to payment
-
-**This protects you and is fair to contractor**
+</CalloutBox>
 
 ## Final Payment Procedures
 
-**Final payment is different**: Most critical for your protection
+<CalloutBox type="warning" title="Final payment is different — it's the most critical for your protection">
+
+Never make final payment until you have every item below in hand.
+
+</CalloutBox>
 
 ### Before Final Payment
+
+<CalloutBox type="critical" title="The lien-waiver order is what protects you at closeout">
+
+Item 3 below is the one most owner-builders get wrong: exchange the *conditional* final waiver at payment, and collect the *unconditional* waiver only **after** the funds clear the bank — never the other way around.
+
+</CalloutBox>
 
 **Must have**:
 
@@ -308,11 +367,23 @@ Look up your own state's home-improvement deposit limit before you sign. Where a
 
 ### The Retention Hold
 
-**Additional protection**: Hold back the final ~10% for a defined period after completion so liens can surface and early defects appear.
+<CalloutBox type="info" title="Additional protection">
 
-**Important — don't anchor this to "30 days."** A 30-day hold creates false security, because mechanics lien deadlines are almost always longer than that. **Lien filing deadlines vary by state** and generally run from about **60 days to one year** after completion or last furnishing — most commonly in the **90-120 day** range, and up to roughly **six months** in some states (for example, California direct contractors generally have 90 days after completion, or 60 days after a recorded Notice of Completion). Look up your own state's deadline and tie your hold period to it; if your state's window is 90 days, a 30-day hold can expire before a sub even has to file.
+Hold back the final ~10% for a defined period after completion so liens can surface and early defects appear.
 
-**The real protection isn't the calendar — it's the waivers.** Simply waiting out a holdback period does not, by itself, stop a sub or supplier from filing. What actually clears your title is collecting valid lien **waivers** from the contractor and from every sub and supplier (conditional at each payment, unconditional once funds clear). Treat the retention hold as a backstop, not the main defense.
+</CalloutBox>
+
+<CalloutBox type="critical" title="Don't anchor this to '30 days'">
+
+A 30-day hold creates false security, because mechanics lien deadlines are almost always longer than that. **Lien filing deadlines vary by state** and generally run from about **60 days to one year** after completion or last furnishing — most commonly in the **90-120 day** range, and up to roughly **six months** in some states (for example, California direct contractors generally have 90 days after completion, or 60 days after a recorded Notice of Completion). Look up your own state's deadline and tie your hold period to it; if your state's window is 90 days, a 30-day hold can expire before a sub even has to file.
+
+</CalloutBox>
+
+<CalloutBox type="warning" title="The real protection isn't the calendar — it's the waivers">
+
+Simply waiting out a holdback period does not, by itself, stop a sub or supplier from filing. What actually clears your title is collecting valid lien **waivers** from the contractor and from every sub and supplier (conditional at each payment, unconditional once funds clear). Treat the retention hold as a backstop, not the main defense.
+
+</CalloutBox>
 
 **How it works**:
 ```
@@ -334,7 +405,11 @@ If lien filed or defect found: Hold until resolved
 
 ## Lien Releases
 
-**Critical protection**: Prevents mechanics liens on your property
+<CalloutBox type="critical" title="Critical protection">
+
+Lien releases prevent mechanics liens on your property. Without them, you can pay the contractor and still get hit with a lien from a sub or supplier the contractor never paid — meaning you pay twice.
+
+</CalloutBox>
 
 ### What is a Mechanic's Lien?
 
@@ -352,12 +427,18 @@ If lien filed or defect found: Hold until resolved
 
 ### Types of Lien Releases
 
-#### Conditional Lien Release
-**Used for**: Progress payments
-**Means**: "I release lien rights when payment clears"
+<DataTable
+  caption="Conditional vs. unconditional lien releases"
+  headers={["", "Conditional release", "Unconditional release"]}
+  rows={[
+    ["Used for", "Progress payments", "Final payment only"],
+    ["Means", "\"I release lien rights when payment clears\"", "\"I release all lien rights, period\""],
+    ["When to get", "With every progress payment", "Only AFTER final payment has cleared the bank — never before"],
+    ["Becomes effective", "When the check clears or transfer completes", "Immediately upon signing"]
+  ]}
+/>
 
-**When to get**: With every progress payment
-**Becomes effective**: When check clears or transfer completes
+#### Conditional Lien Release
 
 **Example form**:
 ```
@@ -374,10 +455,12 @@ Signature: _________________ Date: _______
 ```
 
 #### Unconditional Lien Release
-**Used for**: Final payment only
-**Means**: "I release all lien rights, period"
 
-**When to get**: **Only AFTER final payment has cleared the bank** — never before. An unconditional release takes effect the instant it's signed, whether or not the money has actually arrived, so collecting it ahead of cleared funds would strip away your contractor's (or sub's) protection. The correct sequence at closeout is: hand over the final payment in exchange for a *conditional* final waiver, wait for the funds to clear, then collect the *unconditional* final waiver. That order protects both parties.
+<CalloutBox type="critical" title="Get this only AFTER final payment has cleared the bank — never before">
+
+An unconditional release takes effect the instant it's signed, whether or not the money has actually arrived, so collecting it ahead of cleared funds would strip away your contractor's (or sub's) protection. The correct sequence at closeout is: hand over the final payment in exchange for a *conditional* final waiver, wait for the funds to clear, then collect the *unconditional* final waiver. That order protects both parties.
+
+</CalloutBox>
 
 **Becomes effective**: Immediately upon signing (which is exactly why you don't sign or accept it until the funds have settled)
 
@@ -414,7 +497,11 @@ Signature: _________________ Date: _______
 - Don't make final payment
 - Consider a joint check rather than paying subs directly
 
-> **Warning — don't just cut the sub a separate check.** If you've already paid (or still owe) the GC for that same work, paying the sub directly on the side can leave you paying twice for one job, and it can put you in breach of your contract with the GC. The safer mechanism is a **joint check**: a single check made payable to *both* the GC and the sub (or supplier) together, so both must endorse it. Back it with a short written **joint-check agreement** spelling out which invoice it covers and that it offsets what you owe the GC. That gets the sub paid and a waiver in hand without the double-payment risk.
+<CalloutBox type="warning" title="Don't just cut the sub a separate check">
+
+If you've already paid (or still owe) the GC for that same work, paying the sub directly on the side can leave you paying twice for one job, and it can put you in breach of your contract with the GC. The safer mechanism is a **joint check**: a single check made payable to *both* the GC and the sub (or supplier) together, so both must endorse it. Back it with a short written **joint-check agreement** spelling out which invoice it covers and that it offsets what you owe the GC. That gets the sub paid and a waiver in hand without the double-payment risk.
+
+</CalloutBox>
 
 ### Lien Release Forms
 
@@ -431,41 +518,34 @@ Signature: _________________ Date: _______
 
 ## When to Hold Payment
 
-**Sometimes you must withhold payment to protect yourself**:
+<CalloutBox type="warning" title="Sometimes you must withhold payment to protect yourself">
+
+But do it for a legitimate, documented contract reason — not to negotiate the price down or as punishment.
+
+</CalloutBox>
 
 ### Valid Reasons to Withhold
 
-1. **Work incomplete**
-   - Milestone not actually reached
-   - Scope items missing
-   - Punch list not done
-
-2. **Work defective**
-   - Doesn't meet code
-   - Failed inspection
-   - Poor quality not per contract
-
-3. **No lien release**
-   - Contractor won't provide
-   - Concern about unpaid subs
-
-4. **Missing documentation**
-   - No inspection approval
-   - No warranty documents
-   - No as-built information
-
-5. **Damage to property**
-   - Contractor damaged other work
-   - Damage not yet repaired
-
-6. **Breach of contract**
-   - Violated contract terms
-   - Missed deadlines with liquidated damages
-   - Used wrong materials
+<DataTable
+  caption="Valid reasons to withhold payment"
+  headers={["Reason", "Examples"]}
+  rows={[
+    ["Work incomplete", "Milestone not actually reached; scope items missing; punch list not done"],
+    ["Work defective", "Doesn't meet code; failed inspection; poor quality not per contract"],
+    ["No lien release", "Contractor won't provide; concern about unpaid subs"],
+    ["Missing documentation", "No inspection approval; no warranty documents; no as-built information"],
+    ["Damage to property", "Contractor damaged other work; damage not yet repaired"],
+    ["Breach of contract", "Violated contract terms; missed deadlines with liquidated damages; used wrong materials"]
+  ]}
+/>
 
 ### How to Withhold Payment Properly
 
-**Do it right or you're in breach**:
+<CalloutBox type="warning" title="Do it right or you're in breach">
+
+Document the issue, notify in writing, give time to cure, then re-inspect and pay.
+
+</CalloutBox>
 
 **Step 1: Document the issue**
 - Photos
@@ -504,88 +584,93 @@ I'm happy to discuss these issues and work toward resolution.
 - Process payment promptly
 - Document resolution
 
-**What NOT to do**:
+<CalloutBox type="critical" title="What NOT to do">
+
 - Withhold without specific reason
 - Refuse payment to negotiate price down
 - Hold payment for non-contract items
 - Use payment as punishment
 
-**The line**: You can withhold for legitimate contract breaches, not to be difficult
+**The line**: You can withhold for legitimate contract breaches, not to be difficult.
+
+</CalloutBox>
 
 ## Payment Timing
 
-**How quickly should you pay after verification?**
+<DataTable
+  caption="How quickly to pay after verification"
+  headers={["Speed", "Timeline", "Assessment"]}
+  rows={[
+    ["Best practice", "Within 5 business days", "Professional"],
+    ["Standard", "5-7 business days from verification", "Expected"],
+    ["Reasonable", "10 business days", "Acceptable"],
+    ["Slow", "14+ business days", "Will frustrate contractors"],
+    ["Unreasonable", "30+ days", "Breach of contract typically"]
+  ]}
+/>
 
-**Standard**: 5-7 business days from verification
+<CalloutBox type="tip" title="Pay within 5 business days when you can">
 
-**Reasonable**: 10 business days
-
-**Slow**: 14+ business days (will frustrate contractors)
-
-**Unreasonable**: 30+ days (breach of contract typically)
-
-**Best practice**: Pay within 5 business days
 - Shows professionalism
 - Builds goodwill
 - Encourages continued quality
 - Prevents cash flow issues for contractor
 
-**Exceptions**: Legitimate issues that require withholding (see above)
+**Exceptions**: Legitimate issues that require withholding (see above).
+
+</CalloutBox>
 
 ## Payment Methods
 
+<DataTable
+  caption="Payment methods compared"
+  headers={["Method", "Recommendation", "Pros", "Cons"]}
+  rows={[
+    ["Check", "Recommended", "Clear paper trail; memo line; takes 3-5 days to clear (protection); professional; legal documentation", "—"],
+    ["ACH/Bank transfer", "Also good", "Fast, efficient; digital record; no check writing", "Immediate (less protection window); requires sharing bank info"],
+    ["Credit card", "Acceptable (rarely used)", "Chargeback protection; rewards points; clear record", "Contractor pays 2-3% fee; may refuse or add fee to price"],
+    ["Cash", "Never", "—", "No documentation; can't prove payment; tax issues; no protection; no lien release leverage; unprofessional"]
+  ]}
+/>
+
 ### Recommended: Check
 
-**Pros**:
-- Clear paper trail
-- Memo line for documentation
-- Takes 3-5 days to clear (gives you protection)
-- Professional
-- Legal documentation
+Best paper trail and a built-in 3-5 day clearing window.
 
-**Best practice**:
+<CalloutBox type="tip" title="Check best practices">
+
 - Mail or hand-deliver
 - Memo line: "Payment 2 of 4 - Rough Plumbing per contract dated X"
 - Photograph check before sending
 - Get signature if hand-delivering
 
+</CalloutBox>
+
 ### Also Good: ACH/Bank Transfer
 
-**Pros**:
-- Fast, efficient
-- Digital record
-- No check writing
-
-**Cons**:
-- Immediate (less protection window)
-- Requires sharing bank info
+Fast and well-documented, but immediate — you lose the clearing-window protection a check gives you, and you'll need to share bank info.
 
 ### Acceptable: Credit Card (Rarely Used)
 
-**Pros**:
-- Chargeback protection
-- Rewards points
-- Clear record
-
-**Cons**:
-- Contractor pays 2-3% fee
-- May refuse or add fee to price
+Adds chargeback protection and rewards, but the contractor eats a 2-3% fee and may refuse it or pass the fee back to you.
 
 ### Never: Cash
 
-**Why not**:
-- No documentation
-- Can't prove payment
-- Tax issues
-- No protection
-- No lien release leverage
-- Unprofessional
+<CalloutBox type="critical" title="Never pay subcontractors in cash">
 
-**If contractor insists on cash**: Major red flag, find different contractor
+No documentation, can't prove payment, tax issues, no protection, no lien release leverage, and unprofessional.
+
+</CalloutBox>
+
+<CalloutBox type="warning" title="If contractor insists on cash">
+
+Major red flag — find a different contractor.
+
+</CalloutBox>
 
 ## Late Payment Penalties (If You're Late)
 
-**Some contractors include late payment terms**:
+Some contractors include late payment terms:
 - 1-1.5% per month interest on late payments
 - $50-100 flat fee after X days
 
@@ -597,17 +682,16 @@ I'm happy to discuss these issues and work toward resolution.
 - Negotiate payment plan if cash-flow issues
 - Don't just ignore payment deadlines
 
-**Legitimate delays**:
-- Waiting for inspection (if contractor controls timing)
-- Resolving defects
-- Missing lien releases
-- Contract disputes
-
-**Not legitimate**:
-- "I forgot"
-- "I'm out of town"
-- "I don't feel like paying yet"
-- "I'm waiting for my construction loan" (arrange financing before committing)
+<DataTable
+  caption="Legitimate vs. not-legitimate reasons for a late payment"
+  headers={["Legitimate delays", "Not legitimate"]}
+  rows={[
+    ["Waiting for inspection (if contractor controls timing)", "\"I forgot\""],
+    ["Resolving defects", "\"I'm out of town\""],
+    ["Missing lien releases", "\"I don't feel like paying yet\""],
+    ["Contract disputes", "\"I'm waiting for my construction loan\" (arrange financing before committing)"]
+  ]}
+/>
 
 ## Payment Disputes
 
@@ -623,35 +707,17 @@ I'm happy to discuss these issues and work toward resolution.
 
 ### Resolution Process
 
-**Step 1: Review contract**
-- What does contract say about this?
-- Who's right according to contract?
-- What's the dispute resolution process?
-
-**Step 2: Document your position**
-- Photos
-- Contract references
-- Inspector comments
-- Cost to remedy
-- Written summary
-
-**Step 3: Meet and discuss**
-- Professional, calm
-- Focus on facts and contract
-- Listen to their position
-- Look for compromise
-
-**Step 4: Written resolution**
-- Document what you agree to
-- Both sign
-- Follow through
-
-**Step 5: Formal dispute resolution** (if can't resolve)
-- Mediation (neutral third party helps negotiate)
-- Arbitration (neutral third party decides)
-- Litigation (court, last resort)
-
-**Most disputes resolve at Step 3**
+<DataTable
+  caption="Payment dispute resolution process (most disputes resolve at Step 3)"
+  headers={["Step", "Action", "Detail"]}
+  rows={[
+    ["1", "Review contract", "What does it say? Who's right per contract? What's the dispute resolution process?"],
+    ["2", "Document your position", "Photos; contract references; inspector comments; cost to remedy; written summary"],
+    ["3", "Meet and discuss", "Professional, calm; focus on facts and contract; listen; look for compromise"],
+    ["4", "Written resolution", "Document what you agree to; both sign; follow through"],
+    ["5", "Formal dispute resolution (if can't resolve)", "Mediation (neutral helps negotiate); arbitration (neutral decides); litigation (court, last resort)"]
+  ]}
+/>
 
 ### Example Dispute Resolution
 
@@ -671,7 +737,11 @@ I'm happy to discuss these issues and work toward resolution.
 
 ## Payment Records to Keep
 
-**For taxes, insurance, resale, legal protection**:
+<CalloutBox type="info" title="Why keep records">
+
+For taxes, insurance, resale, and legal protection.
+
+</CalloutBox>
 
 ### Required Documentation
 - All contracts
@@ -683,9 +753,16 @@ I'm happy to discuss these issues and work toward resolution.
 - Change orders
 
 ### How Long to Keep
-- **Forever**: Contracts, lien releases, major receipts
-- **7 years minimum**: For tax purposes
-- **Until you sell**: To document improvements for capital gains
+
+<DataTable
+  caption="How long to keep payment records"
+  headers={["Retention", "What"]}
+  rows={[
+    ["Forever", "Contracts, lien releases, major receipts"],
+    ["7 years minimum", "For tax purposes"],
+    ["Until you sell", "To document improvements for capital gains"]
+  ]}
+/>
 
 ### Organization System
 ```
