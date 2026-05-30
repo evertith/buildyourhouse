@@ -444,26 +444,26 @@ article {
 }
 
 .resource-card {
-  background-color: var(--bg-secondary);
-  border: 2px solid var(--bg-tertiary);
-  border-radius: 12px;
-  padding: var(--space-8);
+  background-color: var(--bg-primary);
+  border: 1px solid var(--hairline);
+  border-radius: 6px;
+  padding: var(--space-5);
   text-decoration: none;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
   display: flex;
   flex-direction: column;
 }
 
 .resource-card:hover {
   border-color: var(--accent-primary);
-  transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  background-color: var(--bg-secondary);
   text-decoration: none;
 }
 
 .resource-icon {
-  font-size: 3rem;
-  margin-bottom: var(--space-4);
+  display: inline-flex;
+  color: var(--accent-primary);
+  margin-bottom: var(--space-3);
   line-height: 1;
 }
 

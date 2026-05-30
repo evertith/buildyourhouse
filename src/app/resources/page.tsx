@@ -1,5 +1,6 @@
 import Section from '@/components/Section';
 import CalloutBox from '@/components/CalloutBox';
+import Icon from '@/components/Icon';
 import Link from 'next/link';
 import type { Metadata } from "next";
 
@@ -23,7 +24,7 @@ export default function ResourcesPage() {
         <div className="resource-grid">
           {/* Checklists Card */}
           <Link href="/resources/checklists" className="resource-card">
-            <div className="resource-icon">📋</div>
+            <div className="resource-icon"><Icon name="check" size={32} /></div>
             <h3>Checklists</h3>
             <p>
               Comprehensive checklists for every phase from permitting
@@ -34,7 +35,7 @@ export default function ResourcesPage() {
 
           {/* Templates Card */}
           <Link href="/resources/templates" className="resource-card">
-            <div className="resource-icon">📄</div>
+            <div className="resource-icon"><Icon name="doc" size={32} /></div>
             <h3>Templates</h3>
             <p>
               Contractor agreements, change orders, payment schedules,
@@ -45,7 +46,7 @@ export default function ResourcesPage() {
 
           {/* Glossary Card */}
           <Link href="/resources/glossary" className="resource-card">
-            <div className="resource-icon">📖</div>
+            <div className="resource-icon"><Icon name="compass" size={32} /></div>
             <h3>Construction Glossary</h3>
             <p>
               Understand construction terminology. Know what contractors
@@ -65,28 +66,28 @@ export default function ResourcesPage() {
         <div className="resource-grid">
           {/* Calculator cards */}
           <Link href="/calculators/material-estimator" className="resource-card">
-            <div className="resource-icon">🧮</div>
+            <div className="resource-icon"><Icon name="ruler" size={32} /></div>
             <h3>Material Estimator</h3>
             <p>Calculate quantities and costs for major materials</p>
             <div className="resource-link">Use Calculator →</div>
           </Link>
 
           <Link href="/feasibility/cost-savings-calculator" className="resource-card">
-            <div className="resource-icon">💰</div>
+            <div className="resource-icon"><Icon name="calculator" size={32} /></div>
             <h3>Cost Savings Calculator</h3>
             <p>See how much you can save as an owner-builder</p>
             <div className="resource-link">Calculate Savings →</div>
           </Link>
 
           <Link href="/calculators/timeline-estimator" className="resource-card">
-            <div className="resource-icon">📅</div>
+            <div className="resource-icon"><Icon name="schedule" size={32} /></div>
             <h3>Timeline Estimator</h3>
             <p>Plan your build schedule and time commitment</p>
             <div className="resource-link">Estimate Timeline →</div>
           </Link>
 
           <Link href="/calculators/budget-tracker" className="resource-card">
-            <div className="resource-icon">📊</div>
+            <div className="resource-icon"><Icon name="tools" size={32} /></div>
             <h3>Budget Tracker</h3>
             <p>Track expenses and stay on budget</p>
             <div className="resource-link">Track Budget →</div>
