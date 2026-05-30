@@ -14,7 +14,11 @@ export const metadata = {
 
 South Carolina is one of the fastest-growing states in the Southeast, and the state's regulatory framework is surprisingly accessible to owner-builders. The South Carolina Residential Builders Commission (RBC) licenses contractors, but a clear statutory exemption lets homeowners build their own primary residence without a license.
 
-The big catch in South Carolina is the **coast**. Hurricane and flood requirements in coastal counties dramatically change costs and design. Inland counties — especially the Upstate around Greenville and Spartanburg — are far easier and cheaper.
+<CalloutBox type="warning" title="The big catch is the coast">
+
+Hurricane and flood requirements in coastal counties dramatically change costs and design. Inland counties — especially the Upstate around Greenville and Spartanburg — are far easier and cheaper.
+
+</CalloutBox>
 
 <CalloutBox type="info" title="Quick Answer: Can You Build Your Own House in South Carolina?">
 
@@ -39,18 +43,28 @@ The big catch in South Carolina is the **coast**. Hurricane and flood requiremen
 
 ## South Carolina Building Code Overview
 
+<CalloutBox type="info" title="Statewide code, county enforcement">
+
 South Carolina operates under a **statewide modified code with county enforcement** model. The SC Building Codes Council (BCC) adopts state codes; counties and cities enforce through their own building departments.
+
+</CalloutBox>
 
 ### Current Code Adoption
 
 The current statewide codes are the **2021 South Carolina Building Codes**, adopted by the Building Codes Council and effective **January 1, 2023**. The suite is based on the 2021 International Codes, with two notable holdovers (electrical and energy):
 
-- **2021 International Residential Code (IRC)** with SC modifications
-- **2021 International Building Code (IBC)** for non-residential
-- **2009 IECC** (with SC amendments — one of the weakest state energy codes in the country; SC's energy code requires a statutory amendment to update, which is why it has lagged)
-- **2020 National Electrical Code (NEC)**
-- **2018 International Plumbing Code (IPC)**
-- **2021 International Mechanical Code (IMC)** and **2021 International Fuel Gas Code (IFGC)**
+<DataTable
+  caption="South Carolina adopted code editions (2021 suite)"
+  headers={["Discipline", "Adopted edition"]}
+  rows={[
+    ["Residential (IRC)", "2021 International Residential Code with SC modifications"],
+    ["Building (IBC)", "2021 International Building Code (non-residential)"],
+    ["Energy (IECC)", "2009 IECC with SC amendments — one of the weakest state energy codes in the country; SC's energy code requires a statutory amendment to update, which is why it has lagged"],
+    ["Electrical (NEC)", "2020 National Electrical Code"],
+    ["Plumbing (IPC)", "2018 International Plumbing Code"],
+    ["Mechanical / Fuel Gas", "2021 International Mechanical Code (IMC) and 2021 International Fuel Gas Code (IFGC)"],
+  ]}
+/>
 
 The Building Codes Council updates the code on a 3-year cycle. The 2024 code suite is in the adoption pipeline (the Notice of Intent was published in early 2025), but **as of mid-2026 the 2021 codes remain in effect** — confirm the current edition with your local building department before designing.
 
@@ -66,10 +80,20 @@ Every county and city in SC enforces the state-adopted code. Variations:
 
 SC's most significant code amendments apply along the coast. Unlike Florida, South Carolina does **not** designate a formal "High-Velocity Hurricane Zone." Instead, the IRC/ASCE 7 ultimate design wind speeds and Wind-Borne Debris Regions (WBDR) drive the stricter coastal requirements:
 
-- **Coastal counties** (Horry, Georgetown, Charleston, Berkeley, Colleton, Beaufort, Jasper): roughly 130–160 mph ultimate design wind speeds, much of it inside the WBDR
-- **Inland**: wind design typically drops to about 105–125 mph
+<DataTable
+  caption="Ultimate design wind speeds: coastal vs. inland SC"
+  headers={["Area", "Ultimate design wind speed"]}
+  rows={[
+    ["Coastal counties (Horry, Georgetown, Charleston, Berkeley, Colleton, Beaufort, Jasper)", "Roughly 130–160 mph, much of it inside the WBDR"],
+    ["Inland", "Typically drops to about 105–125 mph"],
+  ]}
+/>
+
+<CalloutBox type="warning" title="Wind speed varies block by block near the coast">
 
 Verify the exact design wind speed and WBDR status for your parcel with the local building department — they vary block by block near the coast.
+
+</CalloutBox>
 
 What hurricane code adds to construction cost:
 
@@ -99,17 +123,29 @@ The exemption explicitly removes the need for an SC Residential Builders Commiss
 
 ### Critical Restrictions and Requirements
 
-**You Must Personally Sign the Permit**: To claim the exemption, the owner **must personally appear and sign the building permit application** ([§ 40-59-260](https://www.scstatehouse.gov/code/t40c059.php)). You cannot have a non-licensed person handle this for you.
+<CalloutBox type="critical" title="You must personally sign the permit">
 
-**The Two-Year Sale/Rent Rule**: Under [§ 40-59-260](https://www.scstatehouse.gov/code/t40c059.php), proof that you sold or rented the home within **two years** after completion is *prima facie* (presumed) evidence that you built it for sale or rent — which violates the exemption and exposes you to enforcement. You can petition the Residential Builders Commission in writing for a release from this restriction if you have a legitimate reason to sell early.
+To claim the exemption, the owner **must personally appear and sign the building permit application** ([§ 40-59-260](https://www.scstatehouse.gov/code/t40c059.php)). You cannot have a non-licensed person handle this for you.
 
-**Register of Deeds Notice (Easy to Miss)**: The owner **must promptly file a notice with the register of deeds**, indexed under the owner's name, stating that the residential building was constructed by the owner as an unlicensed builder ([§ 40-59-260](https://www.scstatehouse.gov/code/t40c059.php)). **Failure to file this notice revokes the statutory exemption** — so don't skip it.
+</CalloutBox>
 
-**Statutory Disclosure Statement**: The local permitting agency must provide you with a statutory disclosure statement explaining the exemption's limits before issuing the permit. Many counties combine this with their owner-builder affidavit, which confirms you own the property, will not build for sale/rent, and take responsibility for the work (not the building department).
+<CalloutBox type="warning" title="The two-year sale/rent rule">
 
-**You Are Responsible for Your Contractors' Licenses**: You may not hire an unlicensed person as your residential builder or specialty contractor. It is your responsibility to confirm that anyone you employ holds the licenses required by state law and by your county or municipal ordinance.
+Under [§ 40-59-260](https://www.scstatehouse.gov/code/t40c059.php), proof that you sold or rented the home within **two years** after completion is *prima facie* (presumed) evidence that you built it for sale or rent — which violates the exemption and exposes you to enforcement. You can petition the Residential Builders Commission in writing for a release from this restriction if you have a legitimate reason to sell early.
 
-**Disclosure to Buyers**: If you do sell, state law and the disclosure statement require buyers to be informed that the home was owner-built without a licensed residential builder.
+</CalloutBox>
+
+<CalloutBox type="critical" title="Register of deeds notice (easy to miss)">
+
+The owner **must promptly file a notice with the register of deeds**, indexed under the owner's name, stating that the residential building was constructed by the owner as an unlicensed builder ([§ 40-59-260](https://www.scstatehouse.gov/code/t40c059.php)). **Failure to file this notice revokes the statutory exemption** — so don't skip it.
+
+</CalloutBox>
+
+The remaining requirements are more routine but still apply:
+
+- **Statutory disclosure statement**: The local permitting agency must provide you with a statutory disclosure statement explaining the exemption's limits before issuing the permit. Many counties combine this with their owner-builder affidavit, which confirms you own the property, will not build for sale/rent, and take responsibility for the work (not the building department).
+- **You are responsible for your contractors' licenses**: You may not hire an unlicensed person as your residential builder or specialty contractor. It is your responsibility to confirm that anyone you employ holds the licenses required by state law and by your county or municipal ordinance.
+- **Disclosure to buyers**: If you do sell, state law and the disclosure statement require buyers to be informed that the home was owner-built without a licensed residential builder.
 
 **Licensed Trades Required for Hired Help**: The owner-builder exemption removes the RBC builder-license requirement; it does NOT remove trade licensing for people you hire.
 
@@ -127,6 +163,8 @@ The exemption explicitly removes the need for an SC Residential Builders Commiss
 
 ### Liability and Insurance
 
+<CalloutBox type="warning" title="You carry the liability as owner-builder">
+
 As an SC owner-builder:
 
 - Workers' comp generally isn't required if you have no employees (SC requires coverage at 4 or more employees), but get it if you hire labor directly
@@ -134,107 +172,88 @@ As an SC owner-builder:
 - Some lenders require specific owner-builder insurance during construction
 - You can be liable for construction defects for up to **8 years** after substantial completion — SC's statute of repose ([S.C. Code § 15-3-640](https://www.scstatehouse.gov/code/t15c003.php))
 
+</CalloutBox>
+
 ### Seller Disclosure
 
 SC Code § 27-50-10 et seq. (Residential Property Condition Disclosure Act) requires sellers to disclose known material defects. Owner-built homes don't have to be labeled as such on the standard disclosure, but any defects, unpermitted work, or code violations must be disclosed.
 
 ## Permit Costs in South Carolina
 
-> **Note:** The figures below are planning estimates compiled from public fee schedules. Actual costs change often and vary by site — confirm exact fees with your local building department before budgeting.
+<CalloutBox type="warning" title="These figures are planning estimates only">
+
+The figures below are planning estimates compiled from public fee schedules. Actual costs change often and vary by site — confirm exact fees with your local building department before budgeting.
+
+</CalloutBox>
 
 SC permit costs are moderate. Coastal permits run higher due to additional review and inspection complexity.
 
 ### Major Metro Areas
 
-**Charleston (Charleston County)**:
-- Building permit: $460 for first $100K of valuation + $3 per additional $1,000 of valuation (up to $500K)
-- 2,000 sq ft home (~$350K valuation): ~$1,210 building permit
-- Plan review: ~$605 (50% of building permit fee)
-- Trade permits: $650–$950
-- Sewer/water tap: $4,500–$8,500
-- Coastal/WBDR review fees: $300–$700
-- **Total**: $7,500–$13,500
-- Note: 100% fee waiver available for new single-family Affordable Housing
+Estimates below are for a 2,000 sq ft home; valuation noted per city where applicable.
 
-**Mt. Pleasant (Charleston County)**:
-- Building permit: ~0.55% of value
-- 2,000 sq ft home: ~$1,925
-- Plan review: ~$900
-- Trade permits: $700–$1,000
-- Tap fees: $4,800–$9,000
-- **Total**: $9,000–$15,500
+<DataTable
+  caption="Major metro permit costs for a 2,000 sq ft home"
+  headers={["City (County)", "Building permit basis", "Building permit", "Plan review", "Trade permits", "Tap / sewer-water", "Coastal fees", "Total"]}
+  rows={[
+    ["Charleston (Charleston County)", "$460 for first $100K of valuation + $3 per additional $1,000 (up to $500K)", "~$1,210 (~$350K valuation)", "~$605 (50% of building permit fee)", "$650–$950", "Sewer/water tap: $4,500–$8,500", "Coastal/WBDR review: $300–$700", "$7,500–$13,500"],
+    ["Mt. Pleasant (Charleston County)", "~0.55% of value", "~$1,925", "~$900", "$700–$1,000", "$4,800–$9,000", "—", "$9,000–$15,500"],
+    ["Columbia (Richland County)", "~0.45% of value", "~$1,260 (~$280K valuation)", "~$630", "$500–$800", "$3,500–$7,000", "—", "$6,000–$10,500"],
+    ["Greenville (Greenville County)", "~$0.36/sq ft + base fees (county raised fees 20% effective July 2025)", "~$780", "~$500", "$475–$700", "$3,500–$6,500", "—", "$5,500–$9,400"],
+    ["Myrtle Beach (Horry County)", "~0.50% of value", "~$1,600 (~$320K valuation)", "~$800", "$600–$900", "$4,200–$8,000", "Coastal wind/flood: $300–$700", "$8,000–$13,500"],
+    ["Hilton Head (Beaufort County)", "~0.55% of value", "~$2,200 (~$400K valuation)", "~$1,100", "$700–$1,000", "$5,500–$10,000", "Coastal/HVHZ-adjacent: $400–$900", "$10,500–$17,500"],
+  ]}
+/>
 
-**Columbia (Richland County)**:
-- Building permit: ~0.45% of value
-- 2,000 sq ft home (~$280K valuation): ~$1,260
-- Plan review: ~$630
-- Trade permits: $500–$800
-- Tap fees: $3,500–$7,000
-- **Total**: $6,000–$10,500
+City-specific notes:
 
-**Greenville (Greenville County)**:
-- Building permit: ~$0.36/sq ft + base fees (Greenville County raised permit fees 20% effective July 2025)
-- 2,000 sq ft home: ~$780 building permit
-- Plan review: ~$500
-- Trade permits: $475–$700
-- Tap fees: $3,500–$6,500
-- 2.65% service fee on debit/credit card transactions
-- **Total**: $5,500–$9,400
-
-**Myrtle Beach (Horry County)**:
-- Building permit: ~0.50% of value
-- 2,000 sq ft home (~$320K valuation): ~$1,600
-- Plan review: ~$800
-- Trade permits: $600–$900
-- Tap fees: $4,200–$8,000
-- Coastal wind/flood fees: $300–$700
-- **Total**: $8,000–$13,500
-
-**Hilton Head (Beaufort County)**:
-- Building permit: ~0.55% of value
-- 2,000 sq ft home (~$400K valuation): ~$2,200
-- Plan review: ~$1,100
-- Trade permits: $700–$1,000
-- Tap fees: $5,500–$10,000
-- Coastal/HVHZ-adjacent fees: $400–$900
-- **Total**: $10,500–$17,500
+- **Charleston**: 100% fee waiver available for new single-family Affordable Housing
+- **Greenville**: 2.65% service fee on debit/credit card transactions
 
 ### Suburban Counties
 
-**Lexington County (Columbia suburbs)**: ~0.40% of value. **Total**: $5,500–$9,000.
-
-**Berkeley County (Charleston suburbs)**: ~0.45% of value. **Total**: $6,500–$11,000.
-
-**Greenville County rural**: $0.25/sq ft. **Total**: $4,800–$7,800.
-
-**Anderson County**: $0.25/sq ft. **Total**: $4,200–$7,200.
-
-**Spartanburg County**: $0.25–$0.30/sq ft. **Total**: $4,800–$8,000.
+<DataTable
+  caption="Suburban county permit costs for a 2,000 sq ft home"
+  headers={["County", "Building permit basis", "Total"]}
+  rows={[
+    ["Lexington County (Columbia suburbs)", "~0.40% of value", "$5,500–$9,000"],
+    ["Berkeley County (Charleston suburbs)", "~0.45% of value", "$6,500–$11,000"],
+    ["Greenville County rural", "$0.25/sq ft", "$4,800–$7,800"],
+    ["Anderson County", "$0.25/sq ft", "$4,200–$7,200"],
+    ["Spartanburg County", "$0.25–$0.30/sq ft", "$4,800–$8,000"],
+  ]}
+/>
 
 ### Rural Counties
 
-**Oconee County**: $0.20/sq ft. **Total**: $3,200–$6,000.
-
-**Pickens County**: $0.20/sq ft. **Total**: $3,500–$6,500.
-
-**Newberry County**: $0.20/sq ft. **Total**: $3,000–$5,800.
-
-**Saluda County**: $0.20/sq ft. **Total**: $3,000–$5,500.
-
-**Aiken County rural**: $0.25/sq ft. **Total**: $4,000–$6,800.
+<DataTable
+  caption="Rural county permit costs for a 2,000 sq ft home"
+  headers={["County", "Building permit basis", "Total"]}
+  rows={[
+    ["Oconee County", "$0.20/sq ft", "$3,200–$6,000"],
+    ["Pickens County", "$0.20/sq ft", "$3,500–$6,500"],
+    ["Newberry County", "$0.20/sq ft", "$3,000–$5,800"],
+    ["Saluda County", "$0.20/sq ft", "$3,000–$5,500"],
+    ["Aiken County rural", "$0.25/sq ft", "$4,000–$6,800"],
+  ]}
+/>
 
 ### Hidden Fees
 
-Watch for:
-
-- **Stormwater fees**: $200–$700
-- **Driveway permit**: $150–$400
-- **DHEC septic permit**: site evaluation $400–$700, system $7,000–$22,000
-- **DHEC well permit and construction**: $5,000–$15,000
-- **NPDES stormwater** (1+ acre disturbance): $700+
-- **Floodplain elevation certificate**: $400–$800
-- **Wind-Borne Debris Region (WBDR) plan review surcharge**: $200–$600
-- **Impact fees** (some growth jurisdictions): $1,500–$5,000
+<DataTable
+  caption="Hidden fees SC owner-builders should budget for"
+  headers={["Fee", "Typical amount"]}
+  rows={[
+    ["Stormwater fees", "$200–$700"],
+    ["Driveway permit", "$150–$400"],
+    ["DHEC septic permit", "Site evaluation $400–$700; system $7,000–$22,000"],
+    ["DHEC well permit and construction", "$5,000–$15,000"],
+    ["NPDES stormwater (1+ acre disturbance)", "$700+"],
+    ["Floodplain elevation certificate", "$400–$800"],
+    ["Wind-Borne Debris Region (WBDR) plan review surcharge", "$200–$600"],
+    ["Impact fees (some growth jurisdictions)", "$1,500–$5,000"],
+  ]}
+/>
 
 ## Processing Timelines
 
@@ -242,11 +261,17 @@ SC processing is generally faster than the West Coast but variable by jurisdicti
 
 ### Major Cities
 
-- **Charleston**: 8–14 weeks (longer if you need OCRM review for coastal sites)
-- **Columbia**: 5–9 weeks
-- **Greenville**: 4–8 weeks
-- **Myrtle Beach**: 6–10 weeks
-- **Hilton Head**: 8–14 weeks (coastal/architectural review adds time)
+<DataTable
+  caption="Plan review / permit timelines by jurisdiction"
+  headers={["Jurisdiction", "Timeline", "Notes"]}
+  rows={[
+    ["Charleston", "8–14 weeks", "Longer if you need OCRM review for coastal sites"],
+    ["Columbia", "5–9 weeks", "—"],
+    ["Greenville", "4–8 weeks", "—"],
+    ["Myrtle Beach", "6–10 weeks", "—"],
+    ["Hilton Head", "8–14 weeks", "Coastal/architectural review adds time"],
+  ]}
+/>
 
 ### Suburban Counties
 
@@ -262,42 +287,64 @@ SC has one of the weaker state energy codes — based on 2009 IECC with SC amend
 
 ### Climate Zone 3A (Most of SC — Upstate, Midlands)
 
-- **Ceiling insulation**: R-38
-- **Wood-framed wall**: R-13 cavity (some assemblies require R-15)
-- **Slab edge**: Not required in most of SC (mild climate)
-- **Windows**: U-0.40 max
-- **Air leakage**: No specific test required under 2009 IECC (more recent codes require it)
+<DataTable
+  caption="2009 IECC requirements — Climate Zone 3A (Upstate, Midlands)"
+  headers={["Requirement", "Spec"]}
+  rows={[
+    ["Ceiling insulation", "R-38"],
+    ["Wood-framed wall", "R-13 cavity (some assemblies require R-15)"],
+    ["Slab edge", "Not required in most of SC (mild climate)"],
+    ["Windows", "U-0.40 max"],
+    ["Air leakage", "No specific test required under 2009 IECC (more recent codes require it)"],
+  ]}
+/>
 
 ### Climate Zone 2A (Coastal SC)
 
-- **Ceiling insulation**: R-38
-- **Wood-framed wall**: R-13 cavity
-- **Slab edge**: Not required
-- **Windows**: U-0.40 max
-- **Air leakage**: Recommended but not strictly enforced under 2009 IECC
+<DataTable
+  caption="2009 IECC requirements — Climate Zone 2A (Coastal SC)"
+  headers={["Requirement", "Spec"]}
+  rows={[
+    ["Ceiling insulation", "R-38"],
+    ["Wood-framed wall", "R-13 cavity"],
+    ["Slab edge", "Not required"],
+    ["Windows", "U-0.40 max"],
+    ["Air leakage", "Recommended but not strictly enforced under 2009 IECC"],
+  ]}
+/>
 
 ### Foundation and Frost Depth
 
-- **Upstate (Greenville, Spartanburg)**: 12" frost depth
-- **Midlands (Columbia, Aiken)**: 12"
-- **Coast**: Minimum 12" (frost is rarely the issue; flood and wind dominate design)
+<DataTable
+  caption="Frost depth by region"
+  headers={["Region", "Frost depth"]}
+  rows={[
+    ["Upstate (Greenville, Spartanburg)", "12\" frost depth"],
+    ["Midlands (Columbia, Aiken)", "12\""],
+    ["Coast", "Minimum 12\" (frost is rarely the issue; flood and wind dominate design)"],
+  ]}
+/>
 
 ## Inspection Requirements
 
-Standard SC inspection schedule:
-
-1. **Footing**
-2. **Foundation/slab pre-pour**
-3. **Underground plumbing**
-4. **Framing/sheathing**
-5. **Electrical rough-in**
-6. **Plumbing rough-in**
-7. **Mechanical rough-in**
-8. **Insulation**
-9. **Final electrical**
-10. **Final plumbing**
-11. **Final mechanical**
-12. **Final building / CO**
+<DataTable
+  caption="Standard SC inspection schedule"
+  headers={["#", "Inspection"]}
+  rows={[
+    ["1", "Footing"],
+    ["2", "Foundation/slab pre-pour"],
+    ["3", "Underground plumbing"],
+    ["4", "Framing/sheathing"],
+    ["5", "Electrical rough-in"],
+    ["6", "Plumbing rough-in"],
+    ["7", "Mechanical rough-in"],
+    ["8", "Insulation"],
+    ["9", "Final electrical"],
+    ["10", "Final plumbing"],
+    ["11", "Final mechanical"],
+    ["12", "Final building / CO"],
+  ]}
+/>
 
 Coastal SC adds:
 - **Wind mitigation inspection**: At dry-in, verifying hurricane ties, sheathing nailing patterns, and continuous load path
@@ -309,12 +356,22 @@ Typically 10–14 inspections inland; 12–15 coastal.
 
 ### Hurricanes and Wind (Coastal)
 
-The single biggest factor for coastal SC builds. Design wind speeds:
+<CalloutBox type="critical" title="Wind is the single biggest factor for coastal SC builds">
 
-- **Outer coast (barrier islands)**: 150–160 mph
-- **Inner coast**: 130–140 mph
-- **Coastal plain (inland from coast)**: 115–125 mph
-- **Upstate**: 105–115 mph
+Design wind speeds rise sharply toward the coast, driving engineering, materials, and review costs.
+
+</CalloutBox>
+
+<DataTable
+  caption="Design wind speeds by region"
+  headers={["Region", "Design wind speed"]}
+  rows={[
+    ["Outer coast (barrier islands)", "150–160 mph"],
+    ["Inner coast", "130–140 mph"],
+    ["Coastal plain (inland from coast)", "115–125 mph"],
+    ["Upstate", "105–115 mph"],
+  ]}
+/>
 
 What this means for construction:
 
@@ -329,7 +386,13 @@ What this means for construction:
 
 ### Termites
 
-SC is in the "very heavy" termite probability zone — Formosan termites (worst kind) are established in many areas. Required practices:
+<CalloutBox type="warning" title="SC is a very heavy termite zone">
+
+SC is in the "very heavy" termite probability zone — Formosan termites (worst kind) are established in many areas.
+
+</CalloutBox>
+
+Required practices:
 
 - Pre-construction soil-applied termiticide (~$400–$900)
 - Treated lumber for any wood within 6" of soil
@@ -368,16 +431,26 @@ The Sandhills (Columbia, Aiken, Camden area) and Coastal Plain (most of eastern 
 
 DHEC (SC Department of Health and Environmental Control) regulates septic and wells statewide.
 
-**Septic**:
-- Site evaluation/perc test: $300–$700
-- Conventional gravity: $7,000–$13,000
-- Aerobic system (required on tight soils): $13,000–$23,000
-- Mound systems: $15,000–$28,000
+<DataTable
+  caption="Septic system costs"
+  headers={["System / item", "Cost"]}
+  rows={[
+    ["Site evaluation/perc test", "$300–$700"],
+    ["Conventional gravity", "$7,000–$13,000"],
+    ["Aerobic system (required on tight soils)", "$13,000–$23,000"],
+    ["Mound systems", "$15,000–$28,000"],
+  ]}
+/>
 
-**Wells**:
-- Drilling: $20–$40/foot
-- Typical 150–300 ft well: $3,500–$10,000
-- Pump and tank: $1,500–$3,000
+<DataTable
+  caption="Well costs"
+  headers={["Item", "Cost"]}
+  rows={[
+    ["Drilling", "$20–$40/foot"],
+    ["Typical 150–300 ft well", "$3,500–$10,000"],
+    ["Pump and tank", "$1,500–$3,000"],
+  ]}
+/>
 
 ## Top Counties for Owner-Builders
 
@@ -407,6 +480,12 @@ DHEC (SC Department of Health and Environmental Control) regulates septic and we
 - **Best for**: Owner-builders wanting Augusta proximity at SC prices
 
 ### Most Expensive / Challenging Areas
+
+<CalloutBox type="warning" title="These areas mean higher fees and tougher site conditions">
+
+The jurisdictions below carry the highest fees, most complex coastal review, or toughest building constraints in the state.
+
+</CalloutBox>
 
 - **Charleston County**: Highest fees in SC, complex coastal review, slow plan review, sea-level rise concerns
 - **Beaufort County (Hilton Head)**: Architectural review boards, complex coastal regulations, high tap fees
@@ -438,43 +517,29 @@ DHEC (SC Department of Health and Environmental Control) regulates septic and we
 
 ## Typical Owner-Builder Timeline
 
-**Months 1–2: Pre-permit**
-- Site evaluation, perc test
-- Architectural plans
-- Coastal/OCRM review (if applicable)
-- Floodplain elevation certificate (if applicable)
-- Owner-builder affidavit prep
-
-**Months 2–3: Plan review**
-- Submittal
-- Review comments
-- Resubmittal
-- Permit issuance
-
-**Months 3–5: Foundation and shell**
-- Excavation
-- Footings (or piles for V-zones)
-- Foundation
-- Framing, sheathing, hurricane ties (coastal)
-- Dry-in inspection
-
-**Months 5–7: Rough-ins**
-- MEP rough-ins
-- Wind mitigation inspection (coastal)
-- Insulation
-- Drywall
-
-**Months 7–9: Finishes**
-- Cabinets, flooring, trim
-- Final inspections
-- Floodplain elevation certificate (coastal)
-- Certificate of Occupancy
+<DataTable
+  caption="Phased owner-builder timeline for an SC home"
+  headers={["Phase", "Tasks"]}
+  rows={[
+    ["Months 1–2: Pre-permit", "Site evaluation, perc test; architectural plans; coastal/OCRM review (if applicable); floodplain elevation certificate (if applicable); owner-builder affidavit prep"],
+    ["Months 2–3: Plan review", "Submittal; review comments; resubmittal; permit issuance"],
+    ["Months 3–5: Foundation and shell", "Excavation; footings (or piles for V-zones); foundation; framing, sheathing, hurricane ties (coastal); dry-in inspection"],
+    ["Months 5–7: Rough-ins", "MEP rough-ins; wind mitigation inspection (coastal); insulation; drywall"],
+    ["Months 7–9: Finishes", "Cabinets, flooring, trim; final inspections; floodplain elevation certificate (coastal); Certificate of Occupancy"],
+  ]}
+/>
 
 **Total: 9–11 months** (part-time). Full-time: 6–9 months inland, 8–11 coastal.
 
 ## Final Thoughts for South Carolina Owner-Builders
 
 South Carolina is a strong choice for owner-builders willing to make one big decision up front: coast or inland.
+
+<CalloutBox type="tip" title="Settle coast vs. inland first">
+
+It is the one decision that changes every other choice — cost, code, engineering, and timeline all hinge on it.
+
+</CalloutBox>
 
 **Inland (Upstate, Midlands)**: Cheap, fast, lightly regulated. The Upstate around Greenville is one of the best owner-builder markets in the Southeast. Strong appreciation, no hurricane burden, low energy code, friendly building officials.
 

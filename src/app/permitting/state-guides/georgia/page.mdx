@@ -37,18 +37,28 @@ Georgia offers a friendly environment for owner-builders, combining a statewide 
 
 ## Georgia Building Code Overview
 
+<CalloutBox type="info" title="The Big Picture">
+
 Georgia has a **mandatory statewide minimum building code**, with local jurisdictions allowed to adopt more stringent requirements.
+
+</CalloutBox>
 
 ### Current Code Adoption (effective January 1, 2026)
 
 Georgia's Department of Community Affairs (DCA) adopted a new set of mandatory state minimum standard codes that took effect **January 1, 2026**:
 
-- **2024 International Residential Code** (with 2026 Georgia amendments)
-- **2024 International Plumbing Code** (with Georgia amendments)
-- **2024 International Mechanical Code** (with Georgia amendments)
-- **2024 International Fuel Gas Code** (with Georgia amendments)
-- **2023 National Electrical Code** (with 2026 Georgia amendments)
-- **2015 International Energy Conservation Code** (with Georgia amendments) — Georgia deliberately stays on the older 2015 IECC while newer editions are reviewed
+<DataTable
+  caption="Georgia state minimum standard codes effective January 1, 2026"
+  headers={["Code", "Edition", "Georgia amendments"]}
+  rows={[
+    ["International Residential Code", "2024 IRC", "2026 Georgia amendments"],
+    ["International Plumbing Code", "2024 IPC", "Georgia amendments"],
+    ["International Mechanical Code", "2024 IMC", "Georgia amendments"],
+    ["International Fuel Gas Code", "2024 IFGC", "Georgia amendments"],
+    ["National Electrical Code", "2023 NEC", "2026 Georgia amendments"],
+    ["International Energy Conservation Code", "2015 IECC", "Georgia amendments — state deliberately stays on the older 2015 IECC while newer editions are reviewed"]
+  ]}
+/>
 
 Source: [Georgia DCA — New Codes effective January 1, 2026](https://dca.georgia.gov/announcement/2025-12-09/new-codes-jan-2026). Georgia updates its building codes on roughly a 3-year cycle; note the energy code lags the structural codes by several editions. Always confirm the edition your county is enforcing, since local jurisdictions may adopt more stringent requirements.
 
@@ -62,19 +72,26 @@ Source: [Georgia DCA — New Codes effective January 1, 2026](https://dca.georgi
 
 ### Regional Variations
 
-**Climate Zones**:
-- Zone 3A: Most of Georgia (moderate climate)
-- Zone 2A: Southern coastal areas (warmer, more humid)
+Most of Georgia sits in **Climate Zone 3A** (moderate climate); southern coastal areas fall in **Zone 2A** (warmer, more humid).
 
-**Special Considerations by Region**:
-- **North Georgia Mountains**: Frost depth requirements (12-18 inches), potential for seismic considerations in extreme north
-- **Metro Atlanta**: Expansive clay soils require engineered foundations in many areas
-- **Coastal Georgia**: Higher wind loads (110-130 mph), flood zone considerations
-- **South Georgia**: High termite pressure, humidity control critical
+<DataTable
+  caption="Special building considerations by Georgia region"
+  headers={["Region", "Key considerations"]}
+  rows={[
+    ["North Georgia Mountains", "Frost depth requirements (12-18 inches); potential for seismic considerations in extreme north"],
+    ["Metro Atlanta", "Expansive clay soils require engineered foundations in many areas"],
+    ["Coastal Georgia", "Higher wind loads (110-130 mph); flood zone considerations"],
+    ["South Georgia", "High termite pressure; humidity control critical"]
+  ]}
+/>
 
 ## Georgia Owner-Builder Laws
 
+<CalloutBox type="info" title="Where the freedom comes from">
+
 Georgia licenses residential and general contractors at the state level through the **State Licensing Board for Residential and Commercial General Contractors** (housed under the Secretary of State). The good news for owner-builders is that state law carves out a clear exemption for owners building on their own property.
+
+</CalloutBox>
 
 ### The Owner Exemption ([O.C.G.A. § 43-41-17(h)](https://law.justia.com/codes/georgia/title-43/chapter-41/section-43-41-17/))
 
@@ -87,10 +104,11 @@ In short, property owners may:
 
 ### Critical Restrictions
 
-**Owner-Occupancy / No-Sale Rule**:
-- The home must be for your own use or occupancy — you cannot build it to sell or lease
-- If you **sell, transfer, or rent the building within 24 months** of completion (measured from the certificate of occupancy), the law presumes you built it for sale or lease, which violates the exemption ([O.C.G.A. § 43-41-17(h)](https://law.justia.com/codes/georgia/title-43/chapter-41/section-43-41-17/))
-- Most counties require you to sign an **owner-builder / exemption affidavit** acknowledging this before issuing the permit
+<CalloutBox type="warning" title="Owner-occupancy / no-sale rule">
+
+The home must be for your own use or occupancy — you cannot build it to sell or lease. If you **sell, transfer, or rent the building within 24 months** of completion (measured from the certificate of occupancy), the law presumes you built it for sale or lease, which violates the exemption ([O.C.G.A. § 43-41-17(h)](https://law.justia.com/codes/georgia/title-43/chapter-41/section-43-41-17/)). Most counties require you to sign an **owner-builder / exemption affidavit** acknowledging this before issuing the permit.
+
+</CalloutBox>
 
 **No Quick Flips**:
 - Because of the 24-month rule above, you also can't use the owner exemption again for a new build if you sold or transferred an exemption-built home within the prior 24 months. (There is no separate "one home per year" statute — the real limit is the 24-month resale presumption.)
@@ -99,16 +117,23 @@ In short, property owners may:
 
 Georgia licenses electrical, plumbing, and conditioned-air (HVAC) contractors at the state level. But unlike many states, Georgia explicitly lets a homeowner do this work themselves. Section 43-14-13 provides that the chapter does **not** prohibit an individual from installing, altering, or repairing **plumbing, air-conditioning and heating (conditioned air), electrical, or low-voltage wiring** in a **residential dwelling owned or occupied by that individual** — provided all such work is done in conformity with the applicable codes, board rules, and any county or municipal ordinances and inspection requirements.
 
-**Owner can legally do (on a home they own & occupy)**:
-- All structural work (framing, roofing, foundation)
-- Concrete, masonry, drywall, painting, flooring
-- Finish carpentry, cabinetry, general construction labor
-- **Your own electrical, plumbing, and HVAC work** — subject to permits and passing inspection
+<DataTable
+  caption="What a Georgia owner-builder can DIY vs. must license out"
+  headers={["Work", "Owner can DIY (home they own & occupy)?", "Note"]}
+  rows={[
+    ["Structural work (framing, roofing, foundation)", "Yes", "No state trade license required"],
+    ["Concrete, masonry, drywall, painting, flooring", "Yes", "No state trade license required"],
+    ["Finish carpentry, cabinetry, general construction labor", "Yes", "No state trade license required"],
+    ["Your own electrical, plumbing, and HVAC work", "Yes", "Subject to permits and passing inspection (O.C.G.A. 43-14-13)"],
+    ["Electrical, plumbing, or HVAC work you hire someone else to perform", "No", "That contractor must hold the relevant state license; the homeowner exemption covers only work the owner-occupant does themselves"]
+  ]}
+/>
 
-**Must be licensed**:
-- Any electrical, plumbing, or HVAC work you **hire someone else** to perform — that contractor must hold the relevant state license. The homeowner exemption covers only work the owner-occupant does themselves.
+<CalloutBox type="tip" title="DIY trade work still needs permits and inspections">
 
-> Practical note: even though the state allows DIY trade work, you still must pull the relevant permits and pass rough-in and final inspections. A few local jurisdictions impose stricter rules or ask homeowners to demonstrate competency before issuing a trade permit — confirm with your county.
+Even though the state allows DIY trade work, you still must pull the relevant permits and pass rough-in and final inspections. A few local jurisdictions impose stricter rules or ask homeowners to demonstrate competency before issuing a trade permit — confirm with your county.
+
+</CalloutBox>
 
 **License Verification**: Verify any contractor you hire at the Georgia Secretary of State licensing portal — [verify.sos.ga.gov](https://verify.sos.ga.gov). Electricians, plumbers, and HVAC/conditioned-air contractors are licensed through the **Construction Industry Licensing Board**; general contractors through the **State Licensing Board for Residential and Commercial General Contractors**.
 
@@ -120,84 +145,70 @@ Georgia licenses electrical, plumbing, and conditioned-air (HVAC) contractors at
 
 ## Permit Costs in Georgia
 
+<CalloutBox type="info" title="Bottom line on cost">
+
 Georgia permit costs are moderate compared to other states.
+
+</CalloutBox>
 
 ### Typical Fee Structure
 
 Fees based on construction valuation:
 
-**Building Permit**: $2-$6 per $1,000 of construction value
-**Plan Review**: Usually 50-65% of permit fee
+- **Building Permit**: $2-$6 per $1,000 of construction value
+- **Plan Review**: Usually 50-65% of permit fee
 
 ### County/City Examples (2,000 sq ft home, ~$300K value)
 
-**Fulton County** (Atlanta):
-- Building permit: ~$1,800
-- Plan review: ~$1,200
-- Electrical/plumbing/mechanical (separate): ~$450
-- Total: ~$3,450
-
-**Gwinnett County**:
-- Building permit: ~$1,500
-- Plan review: ~$900
-- Trade permits included
-- Total: ~$2,400
-
-**Forsyth County**:
-- Building permit: ~$1,600
-- Plan review: ~$1,000
-- Trade permits: ~$300
-- Total: ~$2,900
-
-**Cobb County** (Marietta area):
-- Building permit: ~$1,700
-- Plan review: ~$1,100
-- Total: ~$2,800
-
-**Cherokee County**:
-- Building permit: ~$1,400
-- Plan review: ~$900
-- Total: ~$2,300
-
-**Chatham County** (Savannah):
-- Building permit: ~$1,500
-- Plan review: ~$950
-- Coastal wind considerations
-- Total: ~$2,450
-
-**Rural Counties** (example: Pike, Paulding, Barrow):
-- Building permit: ~$800-$1,200
-- Plan review: ~$500-$800
-- Total: ~$1,300-$2,000
+<DataTable
+  caption="County/city permit costs for a 2,000 sq ft home (~$300K value)"
+  headers={["County / city", "Building permit", "Plan review", "Trade permits", "Total"]}
+  rows={[
+    ["Fulton County (Atlanta)", "~$1,800", "~$1,200", "Electrical/plumbing/mechanical separate: ~$450", "~$3,450"],
+    ["Gwinnett County", "~$1,500", "~$900", "Included", "~$2,400"],
+    ["Forsyth County", "~$1,600", "~$1,000", "~$300", "~$2,900"],
+    ["Cobb County (Marietta area)", "~$1,700", "~$1,100", "—", "~$2,800"],
+    ["Cherokee County", "~$1,400", "~$900", "—", "~$2,300"],
+    ["Chatham County (Savannah)", "~$1,500", "~$950", "Coastal wind considerations", "~$2,450"],
+    ["Rural counties (e.g. Pike, Paulding, Barrow)", "~$800-$1,200", "~$500-$800", "—", "~$1,300-$2,000"]
+  ]}
+/>
 
 ### Additional Fees
 
-- **Impact fees**: $2,000-$10,000 (varies dramatically by jurisdiction)
-- **Water/sewer tap fees**: $2,000-$8,000 (if municipal utilities)
-- **Septic permit**: $400-$800 (county health department)
-- **Well permit**: $200-$500
-- **Grading/land disturbance**: $300-$1,500 (if significant)
-- **Driveway permit**: $50-$200
-- **Re-inspection fees**: $75-$125 (after 2nd failure in some counties)
+<DataTable
+  caption="Additional Georgia fees to budget for"
+  headers={["Fee", "Typical amount", "Notes"]}
+  rows={[
+    ["Impact fees", "$2,000-$10,000", "Varies dramatically by jurisdiction"],
+    ["Water/sewer tap fees", "$2,000-$8,000", "If municipal utilities"],
+    ["Septic permit", "$400-$800", "County health department"],
+    ["Well permit", "$200-$500", "—"],
+    ["Grading/land disturbance", "$300-$1,500", "If significant"],
+    ["Driveway permit", "$50-$200", "—"],
+    ["Re-inspection fees", "$75-$125", "After 2nd failure in some counties"]
+  ]}
+/>
 
 ## Processing Timelines
 
+<CalloutBox type="info" title="Timelines are generally reasonable">
+
 Georgia timelines are generally reasonable and improving with online systems.
+
+</CalloutBox>
 
 ### Plan Review
 
-**Metro Atlanta Counties** (Fulton, Gwinnett, Cobb, DeKalb):
-- First review: 15-25 business days
-- Resubmittal: 7-15 business days
-- Total to approval: 4-8 weeks
-
-**Other Urban/Suburban Counties**:
-- First review: 10-20 business days
-- Total to approval: 3-6 weeks
-
-**Rural Counties**:
-- First review: 5-15 business days
-- Total to approval: 2-4 weeks
+<DataTable
+  caption="Plan review timelines by county type"
+  headers={["County type", "First review", "Resubmittal", "Total to approval"]}
+  rows={[
+    ["Metro Atlanta (Fulton, Gwinnett, Cobb, DeKalb)", "15-25 business days", "7-15 business days", "4-8 weeks"],
+    ["Other urban/suburban counties", "10-20 business days", "—", "3-6 weeks"],
+    ["Rural counties", "5-15 business days", "—", "2-4 weeks"]
+  ]}
+/>
 
 ### Permit Issuance
 
@@ -211,27 +222,30 @@ Once approved: 1-3 business days in most counties
 
 ## Energy Code Requirements
 
+<CalloutBox type="info" title="Moderate, and on the older 2015 IECC">
+
 Georgia's energy code is moderate, reflecting Climate Zone 3A for most of the state. Georgia enforces the **2015 IECC with Georgia amendments** (the state has not yet moved to a newer edition), so the requirements below are based on that edition and Georgia's amendments. Confirm specifics with your local building department.
+
+</CalloutBox>
 
 ### 2015 IECC Requirements (Zone 3A - most of Georgia)
 
-**Insulation Minimums**:
-- Wall: R-20 or R-13+5 continuous insulation
-- Ceiling: R-49
-- Floor (over unconditioned space): R-19
-- Basement walls: R-10 continuous or R-13 cavity
-
-**Windows**:
-- U-Factor: 0.40 or less
-- SHGC: No requirement (or any in Zone 3A)
-
-**Air Sealing**:
-- 5 ACH or less (blower door test may be required)
-
-**HVAC**:
-- Minimum efficiency standards apply
-- Duct testing required in most jurisdictions
-- Duct leakage: 8 CFM/100 sq ft or less
+<DataTable
+  caption="2015 IECC requirements for Georgia Zone 3A (most of the state)"
+  headers={["Requirement", "Minimum / standard"]}
+  rows={[
+    ["Wall insulation", "R-20 or R-13+5 continuous insulation"],
+    ["Ceiling insulation", "R-49"],
+    ["Floor (over unconditioned space)", "R-19"],
+    ["Basement walls", "R-10 continuous or R-13 cavity"],
+    ["Windows — U-Factor", "0.40 or less"],
+    ["Windows — SHGC", "No requirement (or any in Zone 3A)"],
+    ["Air sealing", "5 ACH or less (blower door test may be required)"],
+    ["HVAC efficiency", "Minimum efficiency standards apply"],
+    ["Duct testing", "Required in most jurisdictions"],
+    ["Duct leakage", "8 CFM/100 sq ft or less"]
+  ]}
+/>
 
 ### Coastal Georgia (Zone 2A)
 
@@ -239,8 +253,8 @@ Slightly less stringent insulation but similar windows and air sealing.
 
 ### Compliance Methods
 
-**Prescriptive**: Meet all minimum requirements (easiest for owner-builders)
-**Performance**: Use REScheck or similar software for trade-offs
+- **Prescriptive**: Meet all minimum requirements (easiest for owner-builders)
+- **Performance**: Use REScheck or similar software for trade-offs
 
 ### Blower Door Testing
 
@@ -251,23 +265,33 @@ Required in many jurisdictions:
 
 ## Inspection Requirements
 
+<CalloutBox type="info" title="Consistent statewide">
+
 Georgia has standard inspection requirements consistent across most jurisdictions.
+
+</CalloutBox>
 
 ### Minimum Required Inspections
 
-1. **Footing/Foundation**: Before pouring concrete
-2. **Underslab Plumbing**: Before pouring slab
-3. **Foundation/Slab**: After pour, before framing
-4. **Rough Framing**: After framing complete, before insulation
-5. **Rough Electrical**: Before covering walls
-6. **Rough Plumbing**: Before covering (must pressure test)
-7. **Rough Mechanical**: Before covering
-8. **Insulation**: After installation, before drywall
-9. **Gas Line Test**: If gas service installed
-10. **Final Building**: All work complete
-11. **Final Electrical**: All devices installed and operational
-12. **Final Plumbing**: All fixtures installed and tested
-13. **Final Mechanical**: HVAC operational and tested
+<DataTable
+  caption="Minimum required inspections in Georgia, in sequence"
+  headers={["#", "Inspection", "When / what"]}
+  rows={[
+    ["1", "Footing/Foundation", "Before pouring concrete"],
+    ["2", "Underslab Plumbing", "Before pouring slab"],
+    ["3", "Foundation/Slab", "After pour, before framing"],
+    ["4", "Rough Framing", "After framing complete, before insulation"],
+    ["5", "Rough Electrical", "Before covering walls"],
+    ["6", "Rough Plumbing", "Before covering (must pressure test)"],
+    ["7", "Rough Mechanical", "Before covering"],
+    ["8", "Insulation", "After installation, before drywall"],
+    ["9", "Gas Line Test", "If gas service installed"],
+    ["10", "Final Building", "All work complete"],
+    ["11", "Final Electrical", "All devices installed and operational"],
+    ["12", "Final Plumbing", "All fixtures installed and tested"],
+    ["13", "Final Mechanical", "HVAC operational and tested"]
+  ]}
+/>
 
 ### Additional Inspections (as needed)
 
@@ -283,7 +307,7 @@ Georgia has standard inspection requirements consistent across most jurisdiction
 - Inspection windows: Usually AM (8-12) or PM (12-4)
 - Be present or have knowledgeable person present
 
-### Common Inspection Failures
+<CalloutBox type="warning" title="Common inspection failures">
 
 - Missing hurricane/seismic straps in required areas
 - Improper header sizing
@@ -293,13 +317,17 @@ Georgia has standard inspection requirements consistent across most jurisdiction
 - Improper insulation installation (gaps, compression)
 - Missing smoke/CO detectors
 
+</CalloutBox>
+
 ## Special Georgia Considerations
 
 ### Expansive Clay Soils (Metro Atlanta)
 
-Metro Atlanta sits on expansive clay that causes foundation issues.
+<CalloutBox type="warning" title="Metro Atlanta clay causes foundation issues">
 
-**Affected Areas**: Most of metro Atlanta, parts of North Georgia
+Metro Atlanta sits on expansive clay that causes foundation issues. **Affected areas**: most of metro Atlanta, parts of North Georgia. Budget **$8,000-$20,000 additional** for an engineered foundation.
+
+</CalloutBox>
 
 **Requirements**:
 - Soils report recommended (sometimes required): $800-$2,000
@@ -307,23 +335,25 @@ Metro Atlanta sits on expansive clay that causes foundation issues.
 - Post-tension slab common: $8-$12/sq ft
 - Proper drainage critical
 
-**Cost Impact**: $8,000-$20,000 additional for engineered foundation
-
 ### Termite Protection
 
-Georgia is 100% termite zone - take seriously.
+<CalloutBox type="warning" title="Georgia is 100% termite zone — take it seriously">
 
-**Pre-Treatment Required** (most jurisdictions):
-- Chemical soil treatment before slab pour
-- Licensed pest control operator
-- Cost: $500-$1,000
-- Or use pressure-treated lumber within 18" of grade
+Termite protection is required statewide. Pre-treatment is required in most jurisdictions: chemical soil treatment before slab pour by a licensed pest control operator ($500-$1,000) — or use pressure-treated lumber within 18" of grade.
+
+</CalloutBox>
 
 **Post-Treatment Recommended**:
 - Annual inspections: $75-$125
 - Bait stations: $500-$1,000 initial, $300-$500 annually
 
 ### Coastal Considerations (Savannah, Brunswick, St. Simons area)
+
+<CalloutBox type="warning" title="Coastal wind and flood compliance adds cost">
+
+Plan for **+$10,000-$30,000** for wind/flood compliance in coastal Georgia.
+
+</CalloutBox>
 
 **Wind Requirements**:
 - Design wind speeds: 110-130 mph
@@ -334,8 +364,6 @@ Georgia is 100% termite zone - take seriously.
 - Check FEMA maps before purchasing
 - Elevated construction required in many areas
 - Flood insurance can be expensive
-
-**Cost Impact**: +$10,000-$30,000 for wind/flood compliance
 
 ### Mountain Considerations (North Georgia)
 
@@ -354,18 +382,19 @@ Georgia is 100% termite zone - take seriously.
 
 ### Septic Systems
 
-Many Georgia properties use septic.
+Many Georgia properties use septic. The **county health department** regulates the process; installation by a licensed installer is required, with a timeline of 4-8 weeks from evaluation to approval.
 
-**County Health Department** regulates:
-- Soil evaluation required first: $400-$600
-- Conventional system permit: $400-$800
-- Advanced system permit: $800-$1,500
-- Installation by licensed installer required
-- Timeline: 4-8 weeks from evaluation to approval
-
-**System Costs**:
-- Conventional: $4,000-$8,000
-- Advanced: $10,000-$18,000
+<DataTable
+  caption="Georgia septic permitting and system costs"
+  headers={["Item", "Cost"]}
+  rows={[
+    ["Soil evaluation (required first)", "$400-$600"],
+    ["Conventional system permit", "$400-$800"],
+    ["Advanced system permit", "$800-$1,500"],
+    ["Conventional system (installed)", "$4,000-$8,000"],
+    ["Advanced system (installed)", "$10,000-$18,000"]
+  ]}
+/>
 
 ### Wells
 
@@ -416,6 +445,8 @@ Many Georgia properties use septic.
 
 ### Counties to Approach with Caution
 
+<CalloutBox type="warning" title="These counties mean more complexity, higher fees, and longer timelines">
+
 **Fulton County** (Atlanta proper):
 - Most complex permitting in Georgia
 - Highest fees
@@ -426,6 +457,8 @@ Many Georgia properties use septic.
 - Complex bureaucracy
 - Longer timelines
 - Higher fees
+
+</CalloutBox>
 
 ## Key Resources for Georgia Owner-Builders
 
@@ -479,43 +512,27 @@ A: Yes — Georgia's homeowner exemption ([O.C.G.A. § 43-14-13](https://law.jus
 
 ## Georgia Owner-Builder Timeline
 
-Typical timeline for 2,000 sq ft home in Georgia:
+<CalloutBox type="info" title="Sample timeline">
 
-**Months 1-2: Planning & Permitting**
-- Land purchase: 2-8 weeks
-- Plans: 2-4 weeks
-- Permit review: 4-8 weeks
+Typical timeline for a 2,000 sq ft home in Georgia.
 
-**Month 2-3: Site Work**
-- Clear and grade: 1 week
-- Septic: 1-2 weeks
-- Well: 1-3 weeks
-- Utilities: 1-2 weeks
+</CalloutBox>
 
-**Month 3-4: Foundation**
-- Layout and footings: 1 week
-- Foundation pour: 1-2 weeks
-
-**Month 4-6: Framing**
-- Frame walls and roof: 4-6 weeks
-- Windows/doors: 1 week
-
-**Month 6-7: Exterior**
-- Roofing: 1-2 weeks
-- Siding: 2-3 weeks
-
-**Month 7-8: Mechanicals**
-- Rough electrical, plumbing, HVAC: 3-4 weeks
-
-**Month 8-10: Interior**
-- Insulation and drywall: 4-5 weeks
-- Paint: 2-3 weeks
-
-**Month 10-12: Finishes**
-- Cabinets, flooring, trim: 6-8 weeks
-
-**Month 12-13: Final**
-- Final inspections and punch list: 2-4 weeks
+<DataTable
+  caption="Phased build timeline: 2,000 sq ft Georgia home"
+  headers={["Phase", "Tasks and durations"]}
+  rows={[
+    ["Months 1-2: Planning & Permitting", "Land purchase: 2-8 weeks; plans: 2-4 weeks; permit review: 4-8 weeks"],
+    ["Month 2-3: Site Work", "Clear and grade: 1 week; septic: 1-2 weeks; well: 1-3 weeks; utilities: 1-2 weeks"],
+    ["Month 3-4: Foundation", "Layout and footings: 1 week; foundation pour: 1-2 weeks"],
+    ["Month 4-6: Framing", "Frame walls and roof: 4-6 weeks; windows/doors: 1 week"],
+    ["Month 6-7: Exterior", "Roofing: 1-2 weeks; siding: 2-3 weeks"],
+    ["Month 7-8: Mechanicals", "Rough electrical, plumbing, HVAC: 3-4 weeks"],
+    ["Month 8-10: Interior", "Insulation and drywall: 4-5 weeks; paint: 2-3 weeks"],
+    ["Month 10-12: Finishes", "Cabinets, flooring, trim: 6-8 weeks"],
+    ["Month 12-13: Final", "Final inspections and punch list: 2-4 weeks"]
+  ]}
+/>
 
 **Total: 12-13 months** (part-time owner-builder)
 
