@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import Icon, { type IconName } from '@/components/Icon';
 import styles from './start-here.module.css';
 
 export const metadata: Metadata = {
@@ -7,193 +8,245 @@ export const metadata: Metadata = {
   description: 'The complete owner-builder roadmap. Where to start, what order to tackle things, and the step-by-step path from idea to moving into your new home.',
 };
 
+type PhaseLink = { href: string; label: string; note?: string };
+type Phase = { no: string; sheet: string; icon: IconName; title: string; when: string; blurb: string; links: PhaseLink[] };
+
+const PHASES: Phase[] = [
+  {
+    no: '01', sheet: 'PH-01', icon: 'compass', title: 'Feasibility Assessment', when: 'Week 1–2',
+    blurb: 'Before you commit, determine if owner-building is right for you.',
+    links: [
+      { href: '/feasibility/is-it-right-for-you', label: 'Take the self-assessment quiz' },
+      { href: '/feasibility/cost-savings-calculator', label: 'Calculate your potential savings' },
+      { href: '/feasibility/time-commitment', label: 'Understand the time commitment' },
+      { href: '/feasibility/state-by-state-rules', label: "Check your state's requirements" },
+    ],
+  },
+  {
+    no: '02', sheet: 'PH-02', icon: 'ruler', title: 'Planning Phase', when: 'Month 1–3',
+    blurb: 'Set yourself up for success with proper planning.',
+    links: [
+      { href: '/planning/secure-land', label: 'Secure land', note: "if you don't have it" },
+      { href: '/planning/financing', label: 'Get financing / construction loan approved' },
+      { href: '/planning/house-plans', label: 'Choose or design your house plans' },
+      { href: '/planning/budget', label: 'Create detailed budget' },
+      { href: '/planning/timeline', label: 'Develop project timeline' },
+    ],
+  },
+  {
+    no: '03', sheet: 'PH-03', icon: 'permit', title: 'Permitting', when: 'Month 2–4',
+    blurb: 'Navigate the building department and get permits approved.',
+    links: [
+      { href: '/permitting/understanding-building-codes', label: 'Learn building codes basics' },
+      { href: '/permitting/permit-application-process', label: 'Submit permit application' },
+      { href: '/permitting/working-with-building-department', label: 'Build relationships with inspectors' },
+      { href: '/permitting/common-permit-mistakes', label: 'Avoid common mistakes' },
+    ],
+  },
+  {
+    no: '04', sheet: 'PH-04', icon: 'subs', title: 'Find & Vet Subcontractors', when: 'Month 2–4',
+    blurb: 'Line up quality subs before breaking ground.',
+    links: [
+      { href: '/subcontractors/when-to-hire-vs-diy', label: 'Decide what to DIY vs hire' },
+      { href: '/subcontractors/finding-quality-subs', label: 'Find quality subcontractors' },
+      { href: '/subcontractors/vetting-and-interviewing', label: 'Vet and interview candidates' },
+      { href: '/subcontractors/contracts-and-agreements', label: 'Create contracts' },
+    ],
+  },
+  {
+    no: '05', sheet: 'PH-05', icon: 'phases', title: 'Construction', when: 'Month 4–16',
+    blurb: 'The actual building process, phase by phase.',
+    links: [
+      { href: '/build-phases/site-preparation', label: 'Site Preparation', note: '1–2 weeks' },
+      { href: '/build-phases/foundation', label: 'Foundation', note: '2–4 weeks' },
+      { href: '/build-phases/framing', label: 'Framing', note: '4–8 weeks' },
+      { href: '/build-phases/roofing', label: 'Roofing', note: '1–2 weeks' },
+      { href: '/build-phases/rough-in', label: 'Rough-in (Plumbing, Electrical, HVAC)', note: '3–6 weeks' },
+      { href: '/build-phases/insulation', label: 'Insulation', note: '1–2 weeks' },
+      { href: '/build-phases/drywall', label: 'Drywall', note: '2–4 weeks' },
+      { href: '/build-phases/finish', label: 'Finish Work', note: '6–12 weeks' },
+    ],
+  },
+  {
+    no: '06', sheet: 'PH-06', icon: 'check', title: 'Inspections', when: 'Throughout',
+    blurb: 'Pass inspections at every critical phase.',
+    links: [
+      { href: '/inspections/foundation-inspection', label: 'Foundation Inspection' },
+      { href: '/inspections/framing-inspection', label: 'Framing Inspection' },
+      { href: '/inspections/rough-in-inspections', label: 'Rough-in Inspections' },
+      { href: '/inspections/final-inspection', label: 'Final Inspection' },
+    ],
+  },
+  {
+    no: '07', sheet: 'PH-07', icon: 'doc', title: 'Move In & Celebrate', when: 'Move-in',
+    blurb: 'Final walkthrough, certificate of occupancy, and enjoy your new home.',
+    links: [
+      { href: '/move-in/punch-list', label: 'Complete punch list items' },
+      { href: '/move-in/certificate-of-occupancy', label: 'Get certificate of occupancy' },
+      { href: '/move-in/loan-conversion', label: 'Convert construction loan to mortgage' },
+      { href: '/move-in/moving-in', label: 'Move in and enjoy the fruits of your labor' },
+    ],
+  },
+];
+
+const SAVINGS: { label: string; amount: string; accent?: boolean; note: string }[] = [
+  { label: 'General Contractor Fee', amount: '$30,000–$100,000+', note: 'Typical GC fees are 15–20% of construction cost.' },
+  { label: 'Your Labor Value', amount: '$20,000–$50,000', note: 'Value of work you do yourself vs. hiring out.' },
+  { label: 'Total Potential Savings', amount: '~10–25%', accent: true, note: 'Of project cost, best case, on a $300,000–$500,000 home.' },
+];
+
+const RESOURCES: { href: string; icon: IconName; title: string; desc: string }[] = [
+  { href: '/calculators', icon: 'calculator', title: 'Calculators', desc: 'Estimate costs, materials, and timeline.' },
+  { href: '/resources/checklists', icon: 'check', title: 'Checklists', desc: 'Never forget a critical step.' },
+  { href: '/resources/templates', icon: 'doc', title: 'Templates', desc: 'Contracts, budgets, schedules.' },
+  { href: '/resources', icon: 'tools', title: 'Resources', desc: 'Guides, tools, and downloads.' },
+];
+
 export default function StartHere() {
   return (
-    <div className={styles.container}>
-      <article className={styles.article}>
-        <header className={styles.header}>
-          <h1>Start Here: Your Owner-Builder Roadmap</h1>
-          <p className={styles.intro}>
-            Building your own home is one of the most rewarding projects you'll ever undertake.
-            This guide will walk you through every phase, from initial planning to moving in.
-          </p>
-        </header>
-
-        <section className={styles.section}>
-          <h2>The Complete Owner-Builder Process</h2>
-          <p>
-            Most owner-builders take 12-18 months to complete their home. Here's the roadmap:
-          </p>
-
-          <div className={styles.roadmap}>
-            <div className={styles.phase}>
-              <div className={styles.phaseNumber}>1</div>
-              <div className={styles.phaseContent}>
-                <h3>Feasibility Assessment (Week 1-2)</h3>
-                <p>Before you commit, determine if owner-building is right for you.</p>
-                <ul>
-                  <li><Link href="/feasibility/is-it-right-for-you">Take the self-assessment quiz</Link></li>
-                  <li><Link href="/feasibility/cost-savings-calculator">Calculate your potential savings</Link></li>
-                  <li><Link href="/feasibility/time-commitment">Understand the time commitment</Link></li>
-                  <li><Link href="/feasibility/state-by-state-rules">Check your state's requirements</Link></li>
-                </ul>
+    <div className={styles.page}>
+      {/* HERO */}
+      <section className={styles.hero}>
+        <span className={`${styles.crop} ${styles.tl}`} />
+        <span className={`${styles.crop} ${styles.tr}`} />
+        <span className={`${styles.crop} ${styles.bl}`} />
+        <span className={`${styles.crop} ${styles.br}`} />
+        <div className={styles.heroInner}>
+          <div className={styles.heroGrid}>
+            <div>
+              <div className={styles.eyebrow}>Owner-Builder Roadmap</div>
+              <h1 className={styles.heroTitle}>Your roadmap, <em>day one to move-in.</em></h1>
+              <p className={styles.heroSub}>
+                Building your own home is one of the most rewarding projects you&rsquo;ll ever undertake.
+                This guide walks you through every phase &mdash; from the first feasibility check to the day you turn the key.
+              </p>
+              <div className={styles.heroCtas}>
+                <Link href="/feasibility/is-it-right-for-you" className={styles.btnPrimary}>Take the Assessment →</Link>
+                <Link href="/feasibility/cost-savings-calculator" className={styles.btnGhost}>Calculate Your Savings</Link>
               </div>
             </div>
-
-            <div className={styles.phase}>
-              <div className={styles.phaseNumber}>2</div>
-              <div className={styles.phaseContent}>
-                <h3>Planning Phase (Month 1-3)</h3>
-                <p>Set yourself up for success with proper planning.</p>
-                <ul>
-                  <li><Link href="/planning/secure-land">Secure land</Link> (if you don't have it)</li>
-                  <li><Link href="/planning/financing">Get financing/construction loan approved</Link></li>
-                  <li><Link href="/planning/house-plans">Choose or design your house plans</Link></li>
-                  <li><Link href="/planning/budget">Create detailed budget</Link></li>
-                  <li><Link href="/planning/timeline">Develop project timeline</Link></li>
-                </ul>
-              </div>
-            </div>
-
-            <div className={styles.phase}>
-              <div className={styles.phaseNumber}>3</div>
-              <div className={styles.phaseContent}>
-                <h3>Permitting (Month 2-4)</h3>
-                <p>Navigate the building department and get permits approved.</p>
-                <ul>
-                  <li><Link href="/permitting/understanding-building-codes">Learn building codes basics</Link></li>
-                  <li><Link href="/permitting/permit-application-process">Submit permit application</Link></li>
-                  <li><Link href="/permitting/working-with-building-department">Build relationships with inspectors</Link></li>
-                  <li><Link href="/permitting/common-permit-mistakes">Avoid common mistakes</Link></li>
-                </ul>
-              </div>
-            </div>
-
-            <div className={styles.phase}>
-              <div className={styles.phaseNumber}>4</div>
-              <div className={styles.phaseContent}>
-                <h3>Find & Vet Subcontractors (Month 2-4)</h3>
-                <p>Line up quality subs before breaking ground.</p>
-                <ul>
-                  <li><Link href="/subcontractors/when-to-hire-vs-diy">Decide what to DIY vs hire</Link></li>
-                  <li><Link href="/subcontractors/finding-quality-subs">Find quality subcontractors</Link></li>
-                  <li><Link href="/subcontractors/vetting-and-interviewing">Vet and interview candidates</Link></li>
-                  <li><Link href="/subcontractors/contracts-and-agreements">Create contracts</Link></li>
-                </ul>
-              </div>
-            </div>
-
-            <div className={styles.phase}>
-              <div className={styles.phaseNumber}>5</div>
-              <div className={styles.phaseContent}>
-                <h3>Construction (Month 4-16)</h3>
-                <p>The actual building process, phase by phase.</p>
-                <ul>
-                  <li><Link href="/build-phases/site-preparation">Site Preparation</Link> (1-2 weeks)</li>
-                  <li><Link href="/build-phases/foundation">Foundation</Link> (2-4 weeks)</li>
-                  <li><Link href="/build-phases/framing">Framing</Link> (4-8 weeks)</li>
-                  <li><Link href="/build-phases/roofing">Roofing</Link> (1-2 weeks)</li>
-                  <li><Link href="/build-phases/rough-in">Rough-in (Plumbing, Electrical, HVAC)</Link> (3-6 weeks)</li>
-                  <li><Link href="/build-phases/insulation">Insulation</Link> (1-2 weeks)</li>
-                  <li><Link href="/build-phases/drywall">Drywall</Link> (2-4 weeks)</li>
-                  <li><Link href="/build-phases/finish">Finish Work</Link> (6-12 weeks)</li>
-                </ul>
-              </div>
-            </div>
-
-            <div className={styles.phase}>
-              <div className={styles.phaseNumber}>6</div>
-              <div className={styles.phaseContent}>
-                <h3>Inspections Throughout</h3>
-                <p>Pass inspections at every critical phase.</p>
-                <ul>
-                  <li><Link href="/inspections/foundation-inspection">Foundation Inspection</Link></li>
-                  <li><Link href="/inspections/framing-inspection">Framing Inspection</Link></li>
-                  <li><Link href="/inspections/rough-in-inspections">Rough-in Inspections</Link></li>
-                  <li><Link href="/inspections/final-inspection">Final Inspection</Link></li>
-                </ul>
-              </div>
-            </div>
-
-            <div className={styles.phase}>
-              <div className={styles.phaseNumber}>7</div>
-              <div className={styles.phaseContent}>
-                <h3>Move In & Celebrate!</h3>
-                <p>Final walkthrough, certificate of occupancy, and enjoy your new home.</p>
-                <ul>
-                  <li><Link href="/move-in/punch-list">Complete punch list items</Link></li>
-                  <li><Link href="/move-in/certificate-of-occupancy">Get certificate of occupancy</Link></li>
-                  <li><Link href="/move-in/loan-conversion">Convert construction loan to mortgage</Link></li>
-                  <li><Link href="/move-in/moving-in">Move in and enjoy the fruits of your labor</Link></li>
-                </ul>
-              </div>
-            </div>
+            <aside className={styles.specsheet}>
+              <div className={styles.sheetNo}><span>Project Specs</span><span>Rev. 2026</span></div>
+              <div className={styles.dimrow}><span className={styles.k}>Timeline</span><span className={styles.v}>12–18<small>mo</small></span></div>
+              <div className={styles.dimrow}><span className={styles.k}>Roadmap Phases</span><span className={styles.v}>07</span></div>
+              <div className={styles.dimrow}><span className={styles.k}>Build Phases</span><span className={styles.v}>08</span></div>
+              <div className={styles.dimrow}><span className={styles.k}>Typical Savings</span><span className={styles.v}><em>10–25%</em></span></div>
+            </aside>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section className={styles.section}>
-          <h2>What You'll Save</h2>
+      {/* ROADMAP */}
+      <section className={styles.block}>
+        <div className={styles.wrap}>
+          <div className={styles.secHead}>
+            <div>
+              <div className={styles.num}>01 / Roadmap</div>
+              <h2 className={styles.secTitle}>The complete owner-builder process</h2>
+            </div>
+            <div className={styles.secMeta}>12–18 months<br />7 phases</div>
+          </div>
+          <p className={styles.lead}>Most owner-builders take 12&ndash;18 months to complete their home. Here&rsquo;s the path, in order:</p>
+
+          <ol className={styles.roadmap}>
+            {PHASES.map((p) => (
+              <li key={p.no} className={styles.phase}>
+                <div className={styles.phaseMarker}>
+                  <span className={styles.phaseNo}>{p.no}</span>
+                  <span className={styles.phaseSheet}>{p.sheet}</span>
+                </div>
+                <div className={styles.phaseBody}>
+                  <div className={styles.phaseHead}>
+                    <Icon name={p.icon} size={26} className={styles.phaseIco} />
+                    <h3 className={styles.phaseTitle}>{p.title}</h3>
+                    <span className={styles.when}>{p.when}</span>
+                  </div>
+                  <p className={styles.phaseBlurb}>{p.blurb}</p>
+                  <ul className={styles.phaseLinks}>
+                    {p.links.map((l) => (
+                      <li key={l.href}>
+                        <Link href={l.href} className={styles.phaseLink}>
+                          <span className={styles.tick} aria-hidden="true" />
+                          <span>{l.label}</span>
+                        </Link>
+                        {l.note && <span className={styles.linkNote}>{l.note}</span>}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* SAVINGS */}
+      <div className={styles.savingsWrap}>
+        <div className={styles.wrap}>
+          <div className={styles.secHead}>
+            <div>
+              <div className={styles.num}>02 / Economics</div>
+              <h2 className={styles.secTitle}>What you&rsquo;ll save</h2>
+            </div>
+            <div className={styles.secMeta}>Estimate only<br />Net of overruns</div>
+          </div>
           <div className={styles.savings}>
-            <div className={styles.savingsCard}>
-              <h3>General Contractor Fee</h3>
-              <div className={styles.amount}>$30,000 - $100,000+</div>
-              <p>Typical GC fees are 15-20% of construction cost</p>
-            </div>
-            <div className={styles.savingsCard}>
-              <h3>Your Labor Value</h3>
-              <div className={styles.amount}>$20,000 - $50,000</div>
-              <p>Value of work you do yourself vs hiring out</p>
-            </div>
-            <div className={styles.savingsCard}>
-              <h3>Total Potential Savings</h3>
-              <div className={styles.amount}>~10–25% of project cost</div>
-              <p>Best case, on a $300,000-$500,000 home</p>
-            </div>
+            {SAVINGS.map((s) => (
+              <div key={s.label} className={styles.savingsCard}>
+                <span className={styles.savingsLabel}>{s.label}</span>
+                <span className={`${styles.amount} ${s.accent ? styles.amountAccent : ''}`}>{s.amount}</span>
+                <p className={styles.savingsNote}>{s.note}</p>
+              </div>
+            ))}
           </div>
           <p className={styles.savingsCaveat}>
-            A reality check: those two figures overlap, so don&apos;t simply stack them. Owner-builders also tend to give
-            some savings back—through the bulk-buying and trade discounts a GC gets, plus the cost overruns that come
-            with learning on the job. Plan for a realistic net of roughly 10–25% of project cost, not a guaranteed windfall.
+            <strong>A reality check:</strong> those two figures overlap, so don&rsquo;t simply stack them. Owner-builders also tend to give
+            some savings back&mdash;through the bulk-buying and trade discounts a GC gets, plus the cost overruns that come
+            with learning on the job. Plan for a realistic net of roughly 10&ndash;25% of project cost, not a guaranteed windfall.
           </p>
           <div className={styles.cta}>
-            <Link href="/feasibility/cost-savings-calculator" className={styles.button}>
-              Calculate Your Potential Savings
-            </Link>
+            <Link href="/feasibility/cost-savings-calculator" className={styles.btnPrimaryDark}>Calculate Your Potential Savings →</Link>
           </div>
-        </section>
+        </div>
+      </div>
 
-        <section className={styles.section}>
-          <h2>Essential Resources</h2>
+      {/* RESOURCES */}
+      <section className={styles.block}>
+        <div className={styles.wrap}>
+          <div className={styles.secHead}>
+            <div>
+              <div className={styles.num}>03 / Toolkit</div>
+              <h2 className={styles.secTitle}>Essential resources</h2>
+            </div>
+            <div className={styles.secMeta}>Free downloads<br />Updated 2026</div>
+          </div>
           <div className={styles.resources}>
-            <Link href="/calculators" className={styles.resourceCard}>
-              <h3>Calculators</h3>
-              <p>Estimate costs, materials, and timeline</p>
-            </Link>
-            <Link href="/resources/checklists" className={styles.resourceCard}>
-              <h3>Checklists</h3>
-              <p>Never forget a critical step</p>
-            </Link>
-            <Link href="/resources/templates" className={styles.resourceCard}>
-              <h3>Templates</h3>
-              <p>Contracts, budgets, schedules</p>
-            </Link>
-            <Link href="/resources" className={styles.resourceCard}>
-              <h3>Resources</h3>
-              <p>Guides, tools, and downloads</p>
-            </Link>
+            {RESOURCES.map((r) => (
+              <Link key={r.href} href={r.href} className={styles.resourceCard}>
+                <Icon name={r.icon} size={30} className={styles.resIco} />
+                <h3 className={styles.resTitle}>{r.title}</h3>
+                <p className={styles.resDesc}>{r.desc}</p>
+                <span className={styles.go}>Open <span className={styles.arr}>→</span></span>
+              </Link>
+            ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section className={styles.callout}>
-          <h2>Ready to Begin?</h2>
-          <p>
+      {/* CTA BAND */}
+      <section className={styles.ctaBand}>
+        <div className={styles.ctaInner}>
+          <div className={styles.eyebrow}>Sheet 00 — Break Ground</div>
+          <h2 className={styles.ctaTitle}>Ready to begin?</h2>
+          <p className={styles.ctaSub}>
             Start with the feasibility assessment to make sure owner-building is the right choice for you.
           </p>
-          <Link href="/feasibility/is-it-right-for-you" className={styles.button}>
-            Take the Assessment
-          </Link>
-        </section>
-      </article>
+          <div className={styles.heroCtas}>
+            <Link href="/feasibility/is-it-right-for-you" className={styles.btnPrimary}>Take the Assessment →</Link>
+            <Link href="/permitting/state-guides" className={styles.btnGhost}>Browse State Guides</Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
