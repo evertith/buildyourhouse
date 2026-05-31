@@ -1,0 +1,580 @@
+export const metadata = {
+  title: 'Nevada Owner-Builder Permits 2026: Costs, Codes & Counties',
+  description: 'Nevada owner-builder permit guide 2026: NRS 624.031 owner-builder exemption, county IRC editions, permit costs, seismic and desert hazards. Plain-English breakdown for Las Vegas, Henderson, Reno and Carson City.',
+  keywords: 'Nevada owner builder permit, NV building permit, NRS 624.031, Nevada owner builder exemption, Las Vegas building permit, Henderson owner builder, Reno building permit, Carson City building permit, Nevada State Contractors Board',
+  openGraph: {
+    title: 'Nevada Owner-Builder Permits 2026: Costs, Codes & Counties',
+    description: 'Nevada owner-builder permit guide 2026: NRS 624.031 exemption, county IRC editions, permit costs, seismic and desert hazards for Las Vegas, Henderson, Reno and Carson City.',
+  },
+}
+
+# Nevada Owner-Builder Permit Guide
+
+*By a retired general contractor with 15+ years building custom homes — [about the author](/about). Last updated: May 2026.*
+
+<CalloutBox type="info" title="Quick Answer: Can You Build Your Own House in Nevada?">
+
+**Yes — but Nevada is stricter than most states about your help.** Under the owner-builder exemption in [NRS 624.031(5)](https://www.leg.state.nv.us/nrs/nrs-624.html), an owner building or improving a residential structure on their own property for their own occupancy — and not intended for sale or lease — is exempt from the contractor-license requirement enforced by the [Nevada State Contractors Board (NSCB)](https://www.nvcontractorsboard.com/resources/owner-builder-information/). You can act as your own general contractor and do the work yourself. The catch: any **subcontractor you hire must hold an active NSCB license**, and you may not hire an unlicensed person to act as your contractor, agent, or construction manager. Anyone unlicensed who works for you must be your direct W-2 employee under your supervision (with payroll taxes and industrial insurance). Building permits and the locally adopted International Residential Code are enforced by your county or city — Clark County/Las Vegas and Washoe County/Reno run full building departments, while a few rural areas have minimal enforcement. Confirm specifics with your local building department before you start.
+
+</CalloutBox>
+
+<DataTable
+  caption="Nevada owner-builder at a glance — verify specifics with your local building department and the NSCB"
+  headers={["Requirement", "Owner-builder in Nevada"]}
+  rows={[
+    ["State license to build your own home", "Exempt under NRS 624.031(5) — owner building for own occupancy, not for sale/lease; file an Owner-Builder Affidavit of Exemption with your permit"],
+    ["Who enforces residential permits/code", "County or city building department; homes follow the locally adopted IRC (2024 IRC in Clark County and Washoe County/Reno as of 2026)"],
+    ["Can a homeowner pull their own permit", "Yes for an owner-occupied home, with the signed owner-builder affidavit and proof of ownership"],
+    ["DIY electrical & plumbing", "You may do your own work, but if you hire help, subcontractors must hold an NSCB license (C-1 plumbing, C-2 electrical, C-21 HVAC) — unlicensed helpers must be your direct employees"],
+    ["Licensed trades (if you hire out)", "Plumbing, electrical, and HVAC contractors must be NSCB-licensed; contracting/bidding $500+ without a license is a crime (NRS 624.700)"],
+    ["Current code editions", "2024 IRC/IBC/IECC + 2023 NEC in Clark County (eff. Jan 11, 2026) and Washoe County/Reno (eff. July 1, 2025); some jurisdictions still on 2018; no statewide residential code"]
+  ]}
+/>
+
+Nevada is a genuinely workable owner-builder state, but it is not the wide-open frontier some people expect. The freedom to act as your own general contractor is real and statutory — but Nevada pairs that freedom with one of the strictest "your subcontractors must be licensed" rules in the country, plus some of the most demanding building science in the West: high desert seismic risk, concrete-hard caliche soils, flash-flood drainage, and brutal summer heat.
+
+There is no single statewide residential building code in Nevada. Each county and city adopts its own edition of the International Residential Code, so the rules in Las Vegas, Reno, Pahrump, and rural Lyon County are not identical. The two big metros — Clark County (Las Vegas) and Washoe County (Reno) — both moved to the 2024 I-Codes for 2026 and enforce them rigorously.
+
+## Nevada Building Code Overview
+
+<CalloutBox type="info" title="The Big Picture">
+
+Nevada uses a **local-adoption** model: there is no mandatory statewide residential building code. Each county and incorporated city adopts and enforces its own edition of the International Residential Code, often through coordinated regional amendment packages (the **Southern Nevada Amendments** in the Las Vegas valley and the **Northern Nevada Amendments** around Reno/Carson City).
+
+</CalloutBox>
+
+### Current Code Adoption
+
+<DataTable
+  caption="Current Nevada code editions by major jurisdiction — verify before designing"
+  headers={["Jurisdiction", "Residential code (IRC) & effective date", "Energy / electrical"]}
+  rows={[
+    ["Clark County (unincorporated Las Vegas valley)", "2024 IRC with Southern Nevada Amendments; effective Jan 11, 2026 (was 2018 IRC)", "2024 IECC; 2023 NEC"],
+    ["City of Las Vegas / Henderson / North Las Vegas", "Transitioning to the 2024 IRC with Southern Nevada Amendments; Henderson adopted the 2024 IRC amendments eff. March 10, 2025; some city departments were still on the 2018 IRC into 2025-2026", "2018-2024 IECC; 2017-2023 NEC — confirm with the specific city"],
+    ["Washoe County / City of Reno / City of Sparks", "2024 IRC with Northern Nevada Amendments; effective July 1, 2025, mandatory Jan 1, 2026 (was 2018 IRC)", "2024 IECC; 2023 NEC; 2024 Uniform Plumbing Code"],
+    ["Carson City", "2018 IRC with Northern Nevada Amendments (full building department; reviewing newer editions)", "2018 IECC; 2018 UPC; Wildland-Urban Interface Code"],
+    ["Douglas County / Lyon County", "Older editions in some areas (2012-2018 range) — confirm directly", "Varies"],
+    ["Nye County (Pahrump Regional Planning District)", "Adopted codes enforced inside the PRPD; lighter enforcement in outlying areas, but Title 17 still applies", "Varies"]
+  ]}
+/>
+
+Note one northern-Nevada quirk: Washoe County and the Reno/Carson City corridor use the **Uniform Plumbing Code (UPC)** rather than the International Plumbing Code, while the IRC's own plumbing provisions also apply to one- and two-family dwellings. Southern Nevada follows the Southern Nevada Amendments to the I-Codes. Always design to the edition your specific jurisdiction has adopted.
+
+### Local Enforcement Patchwork
+
+Because there is no statewide residential code, enforcement ranges from rigorous to minimal depending on where you build.
+
+<DataTable
+  caption="How code enforcement varies across Nevada"
+  headers={["Jurisdiction type", "Enforcement"]}
+  rows={[
+    ["Las Vegas valley (Clark County, Las Vegas, Henderson, North Las Vegas)", "Full, rigorous plan review and inspection under the 2024 I-Codes with Southern Nevada Amendments"],
+    ["Reno-Sparks-Carson City corridor (Washoe, Carson City, parts of Douglas/Lyon)", "Full enforcement; high-seismic structural review and wildland-urban interface rules add scrutiny"],
+    ["Pahrump (Nye County PRPD)", "Permits and inspections required inside the planning district"],
+    ["Remote rural parcels", "Lighter or minimal enforcement in some areas — but state contractor-licensing law (NSCB) still applies to anyone you hire"]
+  ]}
+/>
+
+<CalloutBox type="warning" title="Confirm enforcement before assuming you're unregulated">
+
+Even where a county's building enforcement is light, the Nevada State Contractors Board's licensing law is **statewide** and does not relax in rural areas. You can do your own work anywhere, but hiring an unlicensed contractor is illegal everywhere in Nevada. Always confirm both the permit rules and the licensing rules for your parcel before you start.
+
+</CalloutBox>
+
+### Nevada-Specific Amendments
+
+The Southern and Northern Nevada amendment packages modify the base IRC in several areas:
+
+1. **Seismic design**: The Reno/Carson City corridor sits in Seismic Design Category D2 (high) — among the most demanding in the country; the Las Vegas valley is generally SDC C (moderate), varying with soil
+2. **Climate zones split by altitude**: Areas of Clark County below 4,000 ft are Climate Zone 3B (hot-dry); areas above 4,000 ft are 5B. Northern Nevada is Zone 5B
+3. **Wildland-Urban Interface (WUI)**: Washoe County, Reno, and the Tahoe basin enforce the International Wildland-Urban Interface Code with defensible-space and ignition-resistant construction requirements
+4. **Energy/cooling emphasis**: Southern Nevada amendments emphasize cooling-load performance and duct sealing given the extreme heat
+5. **Caliche and expansive-soil provisions**: Geotechnical investigation is routinely required because of caliche hardpan and collapsible desert soils
+
+<CalloutBox type="tip" title="Two different building-science worlds in one state">
+
+Southern Nevada (Las Vegas) is a hot-dry, moderate-seismic, caliche-soil environment. Northern Nevada (Reno/Tahoe) is a cold-winter, high-seismic, wildfire-exposed mountain-desert environment. A plan set engineered for one will not pass in the other — design for your specific region.
+
+</CalloutBox>
+
+## Nevada Owner-Builder Laws
+
+<CalloutBox type="info" title="Where the freedom comes from">
+
+Nevada's owner-builder freedom is statutory. [NRS 624.031(5)](https://www.leg.state.nv.us/nrs/nrs-624.html) exempts an owner who builds or improves a residential structure on their own property, for their own occupancy and not intended for sale or lease, from the contractor-license requirement. But the exemption comes with hard conditions the way no-license states like Ohio do not have.
+
+</CalloutBox>
+
+The [Nevada State Contractors Board (NSCB)](https://www.nvcontractorsboard.com/resources/owner-builder-information/) licenses general and specialty contractors statewide. Unlike states with no contractor-licensing law, Nevada requires a license for essentially all paid construction — so the owner-builder exemption is your specific legal pathway to building your own home without one.
+
+### Legal Rights
+
+Under the NRS 624.031(5) exemption you may, on property you own:
+
+- Act as your own general contractor on a home you will occupy
+- Perform the work yourself (no license needed for your own labor on your own home)
+- Pull your own building permit as owner-builder
+- Hire **licensed** subcontractors for any trade
+
+### Critical Restrictions and Requirements
+
+This is where Nevada is materially stricter than the average owner-builder state. The [Owner-Builder Affidavit of Exemption](https://www.nvcontractorsboard.com/resources/owner-builder-information/) you sign and file commits you to several conditions:
+
+<DataTable
+  caption="Owner-builder conditions under NRS 624.031(5) and the NSCB affidavit"
+  headers={["Condition", "What it means"]}
+  rows={[
+    ["Own occupancy, not for sale or lease", "The home must be for you to live in, not built to sell or rent"],
+    ["One-year presumption", "Selling, leasing, or offering to sell/lease within 1 year of completion creates a rebuttable presumption you built it to sell — i.e., that you were acting as an unlicensed contractor"],
+    ["Subcontractors must be licensed", "Every subcontractor on the project must hold an active NSCB license in the proper classification"],
+    ["No unlicensed contractor/agent/manager", "You may not hire an unlicensed person to act as your contractor, agent, or construction manager"],
+    ["Unlicensed help must be your employee", "Anyone unlicensed who works on the project must be your direct W-2 employee under your supervision — with FICA/withholding, industrial insurance (workers comp), and unemployment"],
+    ["File the affidavit", "Submit the original signed Owner-Builder Affidavit of Exemption to your building department with the permit application"]
+  ]}
+/>
+
+<CalloutBox type="warning" title="The one-year rule is the trap most owner-builders miss">
+
+If you sell or even *offer* to sell or lease the home within one year of completion, NRS 624.031 creates a rebuttable presumption that you built it with intent to sell — which means you were acting as an unlicensed contractor. Plan to actually live in the home. If your circumstances change, document the change and talk to the NSCB before listing.
+
+</CalloutBox>
+
+**Licensed Trade Contractors**: If you hire out a trade, that contractor must be NSCB-licensed in the right classification:
+
+<DataTable
+  caption="NSCB specialty classifications for residential trades (your hired subs must hold these)"
+  headers={["Trade", "NSCB classification (NAC reference)"]}
+  rows={[
+    ["General building / residential", "Classification B; Subclassification B-2 Residential (NAC 624.160 / 624.170)"],
+    ["Plumbing & heating", "Classification C-1 (NAC 624.190)"],
+    ["Electrical", "Classification C-2 (NAC 624.200)"],
+    ["Refrigeration & air-conditioning (HVAC)", "Classification C-21 (NAC 624.380)"]
+  ]}
+/>
+
+<CalloutBox type="warning" title="Contracting without a license is a crime in Nevada">
+
+By law, anyone who contracts for or bids on a construction job valued at $500 or more (labor plus materials) must hold an NSCB license. Unlicensed contracting under [NRS 624.700](https://www.leg.state.nv.us/nrs/nrs-624.html) is a misdemeanor on the first offense, a gross misdemeanor on the second, and a Category E felony on the third or later — and a contract with an unlicensed contractor is void. Verify every sub's license at the NSCB before they touch your job.
+
+</CalloutBox>
+
+**Homeowner Doing Their Own Trade Work**: You are allowed to do your own electrical, plumbing, and mechanical work on the home you own and will occupy — the work is inspected to the same code as a licensed contractor's. The restriction is about *hiring*: you can't bring in unlicensed labor as a sub, and you can't hire an unlicensed person to run the job for you. A few jurisdictions ask owner-builders doing their own trade work to demonstrate basic competency or take a short quiz before issuing a homeowner trade permit — check locally.
+
+<CalloutBox type="tip" title="The Nevada rule in one sentence">
+
+You may build it yourself, but everyone you *pay* to help must either be NSCB-licensed (as a subcontractor) or be your own direct employee. There is no third category.
+
+</CalloutBox>
+
+### Liability and Insurance
+
+<CalloutBox type="warning" title="As owner-builder, the liability is yours">
+
+As an owner-builder in Nevada:
+
+- You're personally liable for injuries on-site, and if you hire any unlicensed helper as an employee you must carry Nevada industrial insurance (workers' comp) and handle payroll taxes
+- Builder's risk insurance is available but priced higher than for licensed contractors
+- Some lenders require owner-builders to carry liability coverage during construction, and many lenders limit owner-builder construction loans
+- Nevada has seller disclosure requirements that apply when you eventually sell
+
+</CalloutBox>
+
+### Seller Disclosure
+
+Nevada's [Seller Real Property Disclosure law (NRS 113.130)](https://www.leg.state.nv.us/nrs/nrs-113.html) requires sellers of residential property to complete a disclosure form covering known defects and conditions. An owner-built home doesn't have to be labeled as such, but any known defects, unpermitted work, or code issues must be disclosed. Combined with the one-year owner-builder presumption, this is a strong reason to permit and inspect everything properly.
+
+## Permit Costs in Nevada
+
+<CalloutBox type="warning" title="These are planning estimates — verify before budgeting">
+
+The figures below are planning estimates compiled from public fee schedules and fee estimators. Nevada's two big metros calculate building permits from **construction valuation** (using ICC building-valuation tables), so your fee scales with the size and finish of the home. Sewer/utility connection charges change yearly. Confirm exact fees with your building department before budgeting.
+
+</CalloutBox>
+
+Nevada permit costs sit in the middle of the national range — well below California, above no-fee rural states. The building permit itself is usually modest; the connection and impact fees are where the real money is.
+
+### Major Metro Areas
+
+Estimates below are for a 2,000 sq ft home.
+
+<DataTable
+  caption="City of Las Vegas / Clark County permit costs for a 2,000 sq ft home"
+  headers={["Cost item", "Amount"]}
+  rows={[
+    ["Building permit (valuation-based)", "~$3,000 (City of Las Vegas example for a 2,000 sq ft custom home)"],
+    ["Plan check / plan review", "~$1,180 (City of Las Vegas example)"],
+    ["Residential construction (park) tax", "1% of valuation or $1,000 per dwelling unit, whichever is less"],
+    ["Clark County transportation tax", "~$1,000 per single-family dwelling"],
+    ["Traffic impact / Desert Conservation Program", "~$195 traffic; Desert Conservation ~$550/acre + admin"],
+    ["Sewer connection (ERU)", "~$3,200+ per equivalent residential unit (rises annually)"],
+    ["Total typical cost", "$9,000–$15,000+"]
+  ]}
+/>
+
+<DataTable
+  caption="Washoe County / City of Reno permit costs for a 2,000 sq ft home"
+  headers={["Cost item", "Amount"]}
+  rows={[
+    ["Building permit (valuation-based)", "~$1,700 on a ~$200K valuation (base $1,097.62 + $5.93 per additional $1,000 over $100K)"],
+    ["Plan review", "Percentage of permit fee (commonly ~65%)"],
+    ["Park tax", "1% of valuation or $1,000 per dwelling unit, whichever is less"],
+    ["Regional Road Impact Fee (RRIF)", "Variable; set by RTC Washoe — often several thousand dollars"],
+    ["Sewer/water connection", "$5,000–$12,000 depending on utility and district"],
+    ["Total typical cost", "$9,000–$18,000+"]
+  ]}
+/>
+
+<DataTable
+  caption="Carson City / Douglas / Lyon permit costs for a 2,000 sq ft home"
+  headers={["Cost item", "Amount"]}
+  rows={[
+    ["Building permit (valuation-based)", "~$1,400–$2,000"],
+    ["Plan review", "Percentage of permit fee"],
+    ["Connection / impact fees", "$4,000–$10,000 depending on water/sewer district"],
+    ["WUI / wildfire review (where applicable)", "Adds plan-review time and defensible-space requirements"],
+    ["Total typical cost", "$7,000–$14,000"]
+  ]}
+/>
+
+### Rural Counties
+
+<DataTable
+  caption="Rural Nevada permit costs (total for a typical build)"
+  headers={["Area", "Notes", "Typical total"]}
+  rows={[
+    ["Nye County (Pahrump PRPD)", "Permits and inspections required inside the planning district", "$4,000–$9,000"],
+    ["Outlying Lyon / Churchill / Elko", "Lower fees; septic and well usually required", "$3,000–$8,000"],
+    ["Remote unincorporated parcels", "Light building enforcement in some areas, but NSCB licensing still applies to hired subs", "$2,000–$6,000 (plus septic/well)"]
+  ]}
+/>
+
+### Hidden Fees
+
+<DataTable
+  caption="Hidden fees Nevada owner-builders should budget for"
+  headers={["Fee", "Typical amount / note"]}
+  rows={[
+    ["Sewer/water connection (ERU)", "Often the largest single charge in metro Nevada — thousands per dwelling"],
+    ["Caliche excavation / removal", "$3,000–$15,000 where hardpan must be broken through for footings or utilities"],
+    ["Geotechnical / soils report", "$1,500–$5,000 — routinely required for caliche and collapsible soils"],
+    ["Regional Road / traffic impact fees", "Hundreds to several thousand depending on jurisdiction"],
+    ["Drainage / grading & flood-control review", "$300–$1,500 — significant in flash-flood-prone valleys"],
+    ["Defensible-space / WUI review (Reno/Tahoe)", "Added plan-review time and landscaping/clearance requirements"],
+    ["Septic permit and design (rural)", "$500–$1,500"],
+    ["Well permit (rural, via Nevada Division of Water Resources)", "$200–$500 plus drilling"]
+  ]}
+/>
+
+## Processing Timelines
+
+<CalloutBox type="info" title="Metro review is thorough">
+
+Nevada's big-metro building departments do careful structural, energy, and drainage review, so plan-check times run longer than in light-touch rural states.
+
+</CalloutBox>
+
+<DataTable
+  caption="Permit processing timelines by jurisdiction"
+  headers={["Jurisdiction", "Time to permit"]}
+  rows={[
+    ["City of Las Vegas / Clark County", "6–12 weeks for a custom home (faster for standard plans)"],
+    ["Henderson / North Las Vegas", "6–10 weeks"],
+    ["Washoe County / Reno / Sparks", "6–12 weeks (seismic and WUI review add time)"],
+    ["Carson City / Douglas", "4–8 weeks"],
+    ["Nye County (Pahrump)", "3–6 weeks"],
+    ["Outlying rural parcels", "1–4 weeks (small staff, small volume)"]
+  ]}
+/>
+
+## Energy Code Requirements
+
+<CalloutBox type="info" title="Climate splits by altitude, not just latitude">
+
+Nevada's energy code is the IECC as adopted locally. The defining feature is the **4,000-foot altitude line**: below it (most of the Las Vegas valley) is hot-dry Zone 3B; above it — including all of northern Nevada — is cold Zone 5B. Two homes 30 miles apart can have very different envelope requirements.
+
+</CalloutBox>
+
+<DataTable
+  caption="Nevada energy requirements by climate zone (IECC as locally adopted; verify the exact edition with your jurisdiction)"
+  headers={["Requirement", "Zone 3B (Las Vegas valley, lower Nye County, below 4,000 ft)", "Zone 5B (Reno, Carson City, Douglas, higher Clark/Nye, above 4,000 ft)"]}
+  rows={[
+    ["Ceiling insulation", "R-38 to R-49", "R-49 to R-60"],
+    ["Wood-framed wall", "R-13 to R-20 (cooling-driven; mass walls common)", "R-20 cavity or R-13 + R-5 continuous"],
+    ["Slab edge", "Generally not required in 3B", "R-10 continuous to 24\" below grade"],
+    ["Windows (U-factor)", "U-0.30 to U-0.40; low SHGC emphasized for cooling", "U-0.30 max"],
+    ["Air leakage", "≤3.0–5.0 ACH50 (edition-dependent)", "≤3.0–5.0 ACH50 (edition-dependent)"],
+    ["Cooling focus", "High-SHGC control, duct sealing, shading critical", "Heating and cooling both matter"]
+  ]}
+/>
+
+### Foundation and Frost Depth
+
+<DataTable
+  caption="Minimum frost depth by region (verify with your jurisdiction)"
+  headers={["Region", "Minimum frost depth / footing depth"]}
+  rows={[
+    ["Las Vegas valley (Zone 3B)", "Shallow — frost is minimal; footing depth driven by caliche and bearing, not frost"],
+    ["Reno / Washoe valley floor", "24\" (per Washoe County design criteria)"],
+    ["Carson City / Douglas / higher elevations", "24\"+ — deeper at altitude; confirm locally"]
+  ]}
+/>
+
+<CalloutBox type="warning" title="In the desert, the soil sets the foundation — not the frost line">
+
+In southern Nevada, frost depth is rarely the controlling factor. Caliche hardpan, collapsible (hydro-compactible) soils, and bearing capacity drive your foundation design. A geotechnical report is effectively mandatory — budget for it.
+
+</CalloutBox>
+
+## Inspection Requirements
+
+<DataTable
+  caption="Standard Nevada inspection schedule (slab-on-grade typical in southern Nevada)"
+  headers={["#", "Inspection", "When"]}
+  rows={[
+    ["1", "Footing / setback", "After excavation (often through caliche), before pour"],
+    ["2", "Foundation / under-slab", "After rebar and forms, before slab pour"],
+    ["3", "Underground plumbing", "Before slab pour"],
+    ["4", "Underground electrical", "If applicable, before slab"],
+    ["5", "Framing / sheathing / shear", "Includes seismic shear-wall nailing in Reno area"],
+    ["6", "Electrical rough-in", "—"],
+    ["7", "Plumbing rough-in", "—"],
+    ["8", "Mechanical / HVAC rough-in", "—"],
+    ["9", "Insulation", "Before drywall"],
+    ["10", "Drywall / lath", "Stucco lath common in desert exteriors"],
+    ["11", "Final electrical", "—"],
+    ["12", "Final plumbing", "—"],
+    ["13", "Final mechanical", "—"],
+    ["14", "Final building / Certificate of Occupancy", "Includes defensible-space sign-off in WUI areas"]
+  ]}
+/>
+
+<CalloutBox type="tip" title="Scheduling inspections">
+
+Typically 10–14 inspections. Metro departments (Clark, Washoe) usually want 1–3 business days' notice and offer online scheduling; rural counties are often next-day. Shear-wall and hold-down inspections in the Reno area are taken seriously — don't cover them up.
+
+</CalloutBox>
+
+## Seismic and Desert Hazards (Nevada's Special Section)
+
+<CalloutBox type="warning" title="Nevada is the third-most seismically active state — and the desert fights your foundation">
+
+This is the section that separates a Nevada build from a build anywhere green and flat. Nevada ranks in the **top three states** (with California and Alaska) for large earthquakes over the past 150 years. Layer on caliche hardpan, flash flooding, and 110°F summers, and the site conditions — not the paperwork — are your real adversary.
+
+</CalloutBox>
+
+### Earthquakes and the Walker Lane
+
+Nevada sits in the Basin and Range Province, threaded by hundreds of active faults. The hazard is highest in the west:
+
+- **Reno / Carson City corridor**: Seismic Design Category **D2** — high, comparable to much of coastal California. The Mount Rose and related fault systems can produce magnitude 7 to 7.5 earthquakes near the urban core
+- **Las Vegas valley**: generally **SDC C** (moderate), varying with soil; still subject to Walker Lane influence and requires ASCE 7 seismic design
+- **Design implications**: engineered shear walls, hold-downs and anchor bolts, continuous load paths, and braced cripple walls. In the Reno area, expect detailed structural review
+
+<CalloutBox type="warning" title="Engineer the lateral system in northern Nevada">
+
+In Washoe County, Carson City, and the Tahoe basin, the seismic detailing is not optional box-checking — it's the difference between a house that rides out a major quake and one that doesn't. Have a Nevada-licensed structural engineer design and stamp the lateral system, and let the inspector see every hold-down and shear-nailing pattern.
+
+</CalloutBox>
+
+### Caliche and Collapsible Desert Soils
+
+<CalloutBox type="warning" title="Caliche is concrete you didn't pour">
+
+Caliche is a calcium-carbonate hardpan, often as hard as concrete, lying 12–36 inches below the surface across much of the Las Vegas valley. It has unpredictable thickness and extent, and breaking through it for footings and utility trenches can add $3,000–$15,000 to your sitework. A geotechnical investigation to map caliche depth and find collapsible soils is effectively required.
+
+</CalloutBox>
+
+Foundation considerations in southern Nevada:
+
+- **Geotechnical report**: maps caliche, collapsible/hydro-compactible soils, and bearing capacity — budget $1,500–$5,000
+- **Caliche excavation**: may require rippers, rock breakers, or saw-cutting; this is why Las Vegas homes almost never have basements
+- **Collapsible soils**: some desert soils settle dramatically when first wetted — proper compaction and moisture conditioning are critical
+- **Post-tension or stiffened slabs**: common on marginal soils
+
+### Flash Flooding
+
+Despite roughly four inches of annual rainfall, the Las Vegas valley floods. Summer monsoon storms can drop 1–2 inches in an hour onto impermeable desert ground and caliche, producing dangerous flash floods.
+
+- Build above the **base flood elevation**; check FEMA flood maps and the Clark County Regional Flood Control District
+- Grade the lot to move water away from the foundation
+- Expect drainage and grading review in flood-prone basins
+- Even a "dry" desert lot can sit in a wash — verify before you buy
+
+### Extreme Heat
+
+Summer temperatures exceed 100°F for months in southern Nevada, and cooling can consume a large share of operating cost.
+
+- Oversize and shade the building envelope; prioritize low-SHGC glazing and tight, well-sealed ducts in conditioned space
+- Right-size (don't oversize) the air conditioning, and protect outdoor equipment from sun
+- Reflective roofing, deep overhangs, and mass walls all pay off
+- Construction scheduling matters: concrete pours and roofing in July are brutal and quality-sensitive
+
+### Wildfire (Northern Nevada / Tahoe)
+
+The Reno foothills and Tahoe basin are wildland-urban interface. Washoe County, Reno, and the Tahoe-Douglas district enforce the International Wildland-Urban Interface Code, with the Tahoe-Douglas Fire Protection District adopting the 2024 IWUIC effective January 1, 2026.
+
+- **Defensible space**: roughly 30 ft (moderate hazard), 50 ft (high), or 100 ft (extreme) of managed vegetation around the home
+- **Ignition-resistant construction**: noncombustible or rated roofing, ember-resistant vents, and rated exterior doors
+- Expect a WUI plan review and a defensible-space inspection before your Certificate of Occupancy in mapped areas
+
+## Top Counties for Owner-Builders
+
+### 1. **Clark County** (Las Vegas, Henderson, North Las Vegas)
+- **Pros**: Largest market and strongest resale, no state income tax, abundant licensed trades, mild winters, moderate seismic
+- **Cons**: Caliche soils and flash-flood drainage add cost; extreme summer heat; higher connection/impact fees; rigorous review
+- **Best for**: Owner-builders who want metro convenience and resale and are ready to engineer for desert soils
+
+### 2. **Washoe County** (Reno, Sparks)
+- **Pros**: Strong economy and job growth, four-season climate, proximity to Tahoe, good resale
+- **Cons**: High seismic design (SDC D2), wildfire/WUI requirements, snow loads at elevation, higher build cost
+- **Best for**: Owner-builders comfortable with serious structural engineering who want a mountain-desert lifestyle
+
+### 3. **Carson City / Douglas County**
+- **Pros**: Smaller, friendlier building departments; scenic; close to Reno and Tahoe; no state income tax
+- **Cons**: Seismic and WUI considerations; limited lot inventory in some areas
+- **Best for**: Owner-builders wanting a capital-area or Tahoe-adjacent build with a less crowded permit office
+
+### 4. **Lyon County** (Dayton, Fernley, Yerington)
+- **Pros**: Lower land costs, growing bedroom communities near Reno, generally lighter fees
+- **Cons**: Septic/well often required; commute to Reno-area jobs; verify the adopted code edition
+- **Best for**: Owner-builders wanting acreage and lower costs within reach of the Reno economy
+
+### 5. **Nye County** (Pahrump)
+- **Pros**: Lower land costs, large lots, within ~an hour of Las Vegas, permits handled through the Pahrump planning district
+- **Cons**: Desert soils and water/septic issues; resale thinner than the metros; outlying areas have limited services
+- **Best for**: Owner-builders prioritizing space and affordability near (but not in) Las Vegas
+
+### Most Expensive / Challenging Areas
+
+<CalloutBox type="warning" title="These areas mean stricter rules, higher costs, or tougher sites">
+
+The jurisdictions below carry the highest fees, strictest review, or toughest site conditions in the state — go in with eyes open.
+
+</CalloutBox>
+
+- **Reno foothills & Tahoe basin**: high seismic (D2), WUI defensible-space and ignition-resistant requirements, snow loads, steep lots
+- **Older Las Vegas valley infill**: deep caliche, expensive utility connections, tight lots
+- **Flood-control-mapped washes (Clark County)**: drainage and base-flood-elevation requirements can add significant cost
+- **Lake Tahoe (TRPA jurisdiction)**: Tahoe Regional Planning Agency land-coverage and environmental rules layer on top of building code — among the most restrictive in the West
+
+## Key Resources
+
+- **Nevada State Contractors Board (NSCB)**: owner-builder affidavit, license classifications, license verification — [nvcontractorsboard.com](https://www.nvcontractorsboard.com/resources/owner-builder-information/)
+- **Clark County Building & Fire Prevention**: Las Vegas valley plan review, permits, inspections, fee estimator — [clarkcountynv.gov](https://www.clarkcountynv.gov/government/departments/building___fire_prevention/codes/)
+- **City of Las Vegas Building & Safety**: city permits and fee estimator — [lasvegasnevada.gov](https://www.lasvegasnevada.gov/Business/Permits-Licenses/Building-Permits/Permit-Fee-Estimator)
+- **Washoe County Building & Safety**: Reno-area permits, adopted codes, design criteria — [washoecounty.gov](https://www.washoecounty.gov/building/getting_started/building_codes.php)
+- **Carson City Building Division**: capital-area permits and adopted codes — [carson.org](https://www.carson.org/government/departments-a-f/community-development/building-division)
+- **Nye County Building & Safety**: Pahrump-area permits — [nyecountynv.gov](https://www.nyecountynv.gov/322/Building-Department)
+- **Nevada Division of Water Resources**: well drilling permits
+- **Clark County Regional Flood Control District**: flood maps and drainage requirements
+
+## Common Questions
+
+**Do I need a license to build my own house in Nevada?** No. Under NRS 624.031(5) you're exempt from the contractor-license requirement when you build a home for your own occupancy that isn't intended for sale or lease. You file an Owner-Builder Affidavit of Exemption with your permit. But any subcontractor you hire must hold an NSCB license, and you can't hire an unlicensed person to run the job.
+
+**Can you build your own house without a permit in Nevada?** Not in the metros. Clark County, Washoe County, the cities, and the Pahrump planning district all require permits and inspections. Some remote rural parcels have light building enforcement, but the state's contractor-licensing law still applies to anyone you pay.
+
+**What is the Nevada owner-builder exemption?** It's the NRS 624.031(5) exemption from contractor licensing for an owner building or improving a residence on their own property for their own occupancy. The conditions: not for sale or lease (one-year presumption), all subs must be licensed, and unlicensed helpers must be your direct employees.
+
+**Can I sell my owner-built home right away?** Risky. Selling, leasing, or offering to sell or lease within one year of completion creates a rebuttable presumption that you built it to sell — meaning you were acting as an unlicensed contractor. Plan to live in it; if circumstances change, talk to the NSCB first.
+
+**How much does a Nevada owner-builder permit cost?** The building permit itself is typically $1,400–$3,000 in the metros (valuation-based). With plan review, park/transportation taxes, impact fees, and sewer connection, total permit-related costs usually run $9,000–$18,000 in Las Vegas or Reno, and $3,000–$9,000 in rural counties — before caliche excavation, septic, or well.
+
+**Which Nevada counties are best for owner-builders?** Clark County for the biggest market and trade availability, Washoe for a four-season Reno/Tahoe lifestyle (if you're ready for D2 seismic and WUI rules), Carson City/Douglas for friendlier offices, and Lyon or Nye for lower-cost acreage.
+
+## Typical Owner-Builder Timeline
+
+<CalloutBox type="info" title="Sample timeline">
+
+Typical phased timeline for a part-time owner-builder in Nevada.
+
+</CalloutBox>
+
+<DataTable
+  caption="Phased Nevada owner-builder timeline"
+  headers={["Phase", "Tasks"]}
+  rows={[
+    ["Months 1–2: Pre-permit", "Geotechnical/soils report (caliche & collapsible soils); flood/drainage check; structural engineering (seismic); energy compliance; WUI/defensible-space plan (Reno/Tahoe); septic perc test if rural; owner-builder affidavit"],
+    ["Months 2–4: Plan review", "Submittal; structural, energy, and drainage review comments; resubmittal; permit issuance"],
+    ["Months 4–6: Foundation and shell", "Excavation through caliche; footings and slab; framing, shear walls and hold-downs; roof; framing/shear inspection"],
+    ["Months 6–8: Rough-ins", "Mechanical, electrical, plumbing rough-ins; insulation; drywall/lath"],
+    ["Months 8–11: Finishes", "Stucco, cabinets, flooring, trim, paint; defensible-space completion (WUI); final inspections; Certificate of Occupancy"]
+  ]}
+/>
+
+**Total: 10–12 months** (part-time owner-builder). Full-time, 8–10 months.
+
+## Final Thoughts for Nevada Owner-Builders
+
+Nevada is a solid owner-builder state with a clear statutory path, no state income tax, and a deep pool of licensed trades — but it demands respect for two things the average DIY guide glosses over: the **subcontractor-licensing rule** and the **site conditions**.
+
+The big decisions:
+
+1. **Understand the licensing rule before you hire anyone**: you can build it yourself, but every paid helper must be NSCB-licensed or your direct employee. This is the most common way Nevada owner-builders get into legal trouble.
+2. **Spend money on the soils report**: caliche and collapsible soils are real and expensive. Knowing what's under your pad before you dig saves five figures of surprises.
+3. **Engineer the seismic system honestly (northern Nevada)**: Reno and Carson City are SDC D2. Get a Nevada structural engineer's stamp and build the lateral system exactly as drawn.
+4. **Design for the climate you're actually in**: hot-dry Zone 3B in Las Vegas, cold Zone 5B in Reno — and check the 4,000-foot altitude line if you're near it.
+5. **Honor the one-year rule**: build the home to live in it. If you might sell within a year, talk to the NSCB before you list.
+
+Nevada rewards the owner-builder who plans carefully, hires legally, and engineers for the desert. Get those right and it's one of the better Western states to build your own home — affordable land, no income tax, and building departments that, while thorough, are used to working with owner-builders.
+
+<FAQSection
+  title="Nevada Owner-Builder FAQs"
+  faqs={[
+    {
+      question: "Can you build your own house in Nevada without a license?",
+      answer: "Yes. Under NRS 624.031(5), an owner building or improving a residential structure on their own property for their own occupancy — and not intended for sale or lease — is exempt from the Nevada State Contractors Board license requirement. You file an Owner-Builder Affidavit of Exemption with your building permit and can act as your own general contractor and do the work yourself. The key limit: any subcontractor you hire must hold an active NSCB license, and you may not hire an unlicensed person to act as your contractor, agent, or construction manager."
+    },
+    {
+      question: "Do you need a contractor's license to build your own home in Nevada?",
+      answer: "No license is needed for you to build your own home for your own occupancy — that's the NRS 624.031(5) owner-builder exemption. But Nevada licenses essentially all paid construction statewide, so anyone you pay to help must either be NSCB-licensed (as a subcontractor in the right classification) or be your own direct W-2 employee under your supervision. Contracting or bidding $500 or more without a license is a crime under NRS 624.700."
+    },
+    {
+      question: "Can a homeowner do their own electrical and plumbing in Nevada?",
+      answer: "Yes — you can do your own electrical, plumbing, and mechanical work on the home you own and will occupy, inspected to the same code as a licensed contractor's work. The restriction is on hiring: you can't bring in unlicensed labor as a subcontractor (subs must hold the C-1 plumbing, C-2 electrical, or C-21 HVAC classification), and you can't hire an unlicensed person to manage the job. Some jurisdictions ask owner-builders to show basic competency before issuing a homeowner trade permit — check locally."
+    },
+    {
+      question: "What is the Nevada owner-builder exemption?",
+      answer: "It's the exemption in NRS 624.031(5) from the contractor-license requirement for an owner who builds or improves a residence on their own property for their own occupancy, not intended for sale or lease. Conditions include: file the Owner-Builder Affidavit of Exemption with your permit; don't sell or lease within one year (a sale or offer within a year creates a rebuttable presumption you built it to sell); all subcontractors must be NSCB-licensed; and any unlicensed helper must be your direct employee."
+    },
+    {
+      question: "Can I sell my owner-built Nevada home within a year?",
+      answer: "It's risky. Under NRS 624.031, selling, leasing, or even offering to sell or lease the newly built structure within one year of completion creates a rebuttable presumption that you built it with intent to sell — which would mean you acted as an unlicensed contractor. Plan to actually live in the home. If your circumstances genuinely change, document the change and contact the Nevada State Contractors Board before listing."
+    },
+    {
+      question: "Can you build your own house without a permit in Nevada?",
+      answer: "Not in the populated areas. Clark County and the Las Vegas-valley cities, Washoe County and Reno/Sparks, Carson City, and the Pahrump Regional Planning District all require building permits and inspections. A few remote rural parcels have minimal building enforcement, but the Nevada State Contractors Board's licensing law still applies to anyone you hire, and unpermitted work hurts financing, insurance, and resale."
+    },
+    {
+      question: "How much does a Nevada owner-builder permit cost?",
+      answer: "Nevada's metros calculate the building permit from construction valuation. A City of Las Vegas 2,000 sq ft custom home runs roughly $3,000 in permit fees plus about $1,180 in plan check; Reno/Washoe runs around $1,700 on a $200K valuation. Add park and transportation taxes, impact/road fees, and sewer connection (often $3,000-$12,000) and total permit-related costs typically reach $9,000-$18,000 in the metros and $3,000-$9,000 in rural counties — before caliche excavation, septic, or well."
+    },
+    {
+      question: "Which Nevada counties are best for owner-builders?",
+      answer: "Clark County offers the largest market, strongest resale, and the deepest pool of licensed trades. Washoe County (Reno/Sparks) suits owner-builders who want a four-season Tahoe-adjacent lifestyle and are ready for high seismic design and wildfire rules. Carson City and Douglas County have friendlier, smaller building departments. Lyon and Nye counties offer lower-cost acreage with lighter fees, though usually with septic and well requirements."
+    },
+    {
+      question: "Do I have to engineer my Nevada home for earthquakes?",
+      answer: "In northern Nevada, absolutely. The Reno-Carson City corridor is Seismic Design Category D2 — among the highest in the country, comparable to coastal California — because of the Walker Lane and faults like the Mount Rose system, which can produce magnitude 7-plus earthquakes. Plan on a Nevada-licensed structural engineer designing the lateral system (shear walls, hold-downs, continuous load paths). The Las Vegas valley is generally SDC C (moderate) and still requires ASCE 7 seismic design."
+    },
+    {
+      question: "What is caliche and why does it matter when building in Las Vegas?",
+      answer: "Caliche is a calcium-carbonate hardpan, often as hard as concrete, that lies 12-36 inches below the surface across much of the Las Vegas valley. Its unpredictable thickness and hardness can require rock breakers or saw-cutting for footings and utility trenches, adding roughly $3,000-$15,000 to sitework — and it's the main reason Las Vegas homes rarely have basements. A geotechnical report to map caliche depth and identify collapsible desert soils is effectively required before you design the foundation."
+    }
+  ]}
+/>
+
+## Related State Guides
+
+Building in a nearby Western state? Check the requirements for:
+
+- [Arizona Owner-Builder Permit Guide](/permitting/state-guides/arizona)
+- [California Owner-Builder Permit Guide](/permitting/state-guides/california)
+- [Idaho Owner-Builder Permit Guide](/permitting/state-guides/idaho)
+- [Colorado Owner-Builder Permit Guide](/permitting/state-guides/colorado)
+
+[See all state owner-builder guides →](/permitting/state-guides)
+
+---
+
+*Last updated: May 2026. Verified this update: Nevada has no statewide residential building code — counties and cities adopt their own IRC editions, and Clark County (eff. Jan 11, 2026) and Washoe County/Reno (eff. July 1, 2025, mandatory Jan 1, 2026) both moved to the 2024 I-Codes with the 2023 NEC, per [Clark County](https://www.clarkcountynv.gov/government/departments/building___fire_prevention/codes/) and [Washoe County](https://www.washoecounty.gov/building/getting_started/building_codes.php). The owner-builder exemption is [NRS 624.031(5)](https://www.leg.state.nv.us/nrs/nrs-624.html); it requires own occupancy, carries a one-year sale/lease rebuttable presumption, requires that all subcontractors hold a Nevada State Contractors Board license, and requires unlicensed helpers to be the owner's direct employees — per the [NSCB Owner-Builder Information](https://www.nvcontractorsboard.com/resources/owner-builder-information/). Trade classifications are C-1 plumbing (NAC 624.190), C-2 electrical (NAC 624.200), and C-21 refrigeration/air-conditioning (NAC 624.380); contracting $500+ without a license is an offense under [NRS 624.700](https://www.leg.state.nv.us/nrs/nrs-624.html). Energy climate zones split at 4,000 ft (Zone 3B below, 5B above) per the Southern Nevada Energy Conservation Code. The Reno-Carson City corridor is Seismic Design Category D2; Nevada ranks among the top three states for large earthquakes. Permit fees, connection charges, exact code editions, WUI rules, and processing times all vary by jurisdiction — verify with your specific county or city building department before relying on any figure here.*
