@@ -1,0 +1,641 @@
+export const metadata = {
+  title: 'Massachusetts Owner-Builder Permits 2026: Costs, Codes & Towns',
+  description: 'Massachusetts owner-builder permit guide 2026: 780 CMR 10th Edition building code, the CSL homeowner exemption, Stretch and Specialized energy codes, town permit costs, coastal wind and snow rules. Plain-English breakdown.',
+  keywords: 'Massachusetts owner builder permit, MA building permit, 780 CMR, Massachusetts construction supervisor license homeowner exemption, Massachusetts owner builder laws, Boston building permit, Worcester building permit, Springfield owner builder, Cambridge building permit, Massachusetts stretch energy code',
+  openGraph: {
+    title: 'Massachusetts Owner-Builder Permits 2026: Costs, Codes & Towns',
+    description: 'Massachusetts owner-builder permit guide 2026: 780 CMR 10th Edition code, the CSL homeowner exemption, Stretch and Specialized energy codes, town permit costs, coastal wind and snow rules.',
+  },
+}
+
+# Massachusetts Owner-Builder Permit Guide
+
+*By a retired general contractor with 15+ years building custom homes — [about the author](/about). Last updated: May 2026.*
+
+<CalloutBox type="info" title="Quick Answer: Can You Build Your Own House in Massachusetts?">
+
+**Yes — and Massachusetts spells it out in writing.** The state requires a licensed Construction Supervisor (CSL) to supervise most building work, but there is a formal **homeowner exemption** in the [Massachusetts State Building Code (780 CMR)](https://www.mass.gov/massachusetts-state-building-code-780-cmr): the owner of a one- or two-family home they live in (or intend to live in) may pull the building permit and act as their own supervisor without a CSL. You sign a homeowner-exemption affidavit, and you become the general contractor in the eyes of the law. One important catch unique to Massachusetts: the **electrical** trade lets a resident owner do their own wiring (with the wiring inspector's prior approval and a permit), but **plumbing and gas permits must be pulled by a licensed plumber or gas fitter** — there is no homeowner DIY path for plumbing. Homes are built to the 780 CMR 10th Edition (2021 IRC base), and many towns add the stricter Stretch or Specialized energy code. Verify every detail with your specific city or town building department.
+
+</CalloutBox>
+
+<DataTable
+  caption="Massachusetts owner-builder at a glance — verify specifics with your local building department"
+  headers={["Requirement", "Owner-builder in Massachusetts"]}
+  rows={[
+    ["Construction Supervisor License to build your own home", "Not required if you qualify for the 780 CMR homeowner exemption (own/occupy a 1-2 family home; no more than one home built per 2-year period)"],
+    ["Who enforces residential permits/code", "Local municipal building department; 1-2 family homes follow the 780 CMR 10th Edition (2021 IRC base), statewide"],
+    ["Can a homeowner pull their own building permit", "Yes for an owner-occupied 1-2 family home — you sign a homeowner-exemption affidavit and act as supervisor"],
+    ["DIY electrical", "Allowed on your own owner-occupied home with a permit and the wiring inspector's prior approval (MA Electrical Code, 527 CMR 12)"],
+    ["DIY plumbing & gas", "Not allowed — a licensed master plumber / gas fitter must pull the permit and do the work (MGL c.142, 248 CMR); only minor repairs are exempt"],
+    ["Home Improvement Contractor (HIC) registration", "Applies to people doing work for others, NOT to an owner building on their own property; taking the permit as a homeowner waives Guaranty Fund access"],
+    ["Current code editions", "780 CMR 10th Edition (2021 IRC/IBC/IECC) effective Oct 11, 2024; base energy code IECC 2021, with optional Stretch (225 CMR 22) and Specialized opt-in codes"]
+  ]}
+/>
+
+Massachusetts is one of the more regulated owner-builder states in the country — but it is also one of the clearest. Unlike states that leave owner-builder status to local custom, Massachusetts writes the homeowner exemption directly into 780 CMR and even publishes a standard affidavit you sign at the counter. If you own and live in a one- or two-family home, you have a real, codified right to be your own general contractor.
+
+The trade-off is density of rules: a unified statewide code with frequent updates, state-licensed electricians and plumbers, a layered energy code that many towns make stricter, and genuine coastal and snow-load hazards. This guide walks through all of it.
+
+## Massachusetts Building Code Overview
+
+<CalloutBox type="info" title="The Big Picture">
+
+Massachusetts runs a **single statewide building code with local enforcement**. The state (through the Board of Building Regulations and Standards) writes 780 CMR; your city or town building department enforces it. There is no "no-code" rural Massachusetts — the code applies everywhere.
+
+</CalloutBox>
+
+### Current Code Adoption
+
+<CalloutBox type="warning" title="The 10th Edition is now the only code in force">
+
+The 9th Edition is gone. The **10th Edition** of the Massachusetts State Building Code took effect **October 11, 2024**, with a concurrency period that let projects file under the 9th Edition only through **June 30, 2025**. Any permit filed on or after July 1, 2025 must comply with the 10th Edition. If a website or older guide tells you Massachusetts is on the 9th Edition (2015 IRC), it is out of date.
+
+</CalloutBox>
+
+<DataTable
+  caption="Current Massachusetts code editions and what they cover"
+  headers={["Code", "Basis & effective date", "Applies to"]}
+  rows={[
+    ["780 CMR 10th Edition — Residential (Ch. 51)", "2021 International Residential Code with Massachusetts amendments; effective Oct 11, 2024; sole code in force after July 1, 2025", "One- and two-family dwellings and townhouses"],
+    ["780 CMR 10th Edition — Base (IBC)", "2021 International Building Code with MA amendments", "Most other buildings, including 3+ family and mixed-use"],
+    ["Base energy code", "IECC 2021 as amended (780 CMR Ch. 11 / Appendix); climate zones 5A and 6A", "Residential and commercial energy in towns on the base code"],
+    ["Stretch Energy Code (225 CMR 22)", "IECC 2021 amendments administered by the Dept. of Energy Resources (DOER); adopted town-by-town", "Towns that have voted to adopt the Stretch Code (most of the state)"],
+    ["Specialized (Municipal Opt-in) Code", "Stretch Code plus a net-zero-oriented appendix; adopted town-by-town", "Towns that have voted for the Specialized Code (Boston, Cambridge, and ~50+ others)"],
+    ["Electrical: MA Electrical Code (527 CMR 12)", "Based on the National Electrical Code (NFPA 70) with Massachusetts amendments; the Board of Fire Prevention Regulations updates it on the NEC cycle", "All electrical work — confirm the current NEC edition your wiring inspector enforces before you wire"]
+  ]}
+/>
+
+The 10th Edition aligns Massachusetts with the 2021 family of International Codes — the IBC, IRC, International Existing Building Code, and IECC — plus the referenced ASCE 7 standard for structural loads. For one- and two-family homes, the operative document is Chapter 51 (the Massachusetts Residential Code), which is the 2021 IRC with state amendments.
+
+### What Changed in the 10th Edition
+
+The 10th Edition is not a cosmetic update. A few changes matter to owner-builders:
+
+1. **Energy code moved to IECC 2021** as the base, a meaningful step up in insulation and air-sealing from the prior 2015-based code
+2. **Wind loads** were generally reduced (roughly 5–15% lower design wind loads in many areas), with new guidance for rooftop solar uplift
+3. **Seismic** design demands increased for much of the state — parts of the North Shore moved from Seismic Design Category B to C, which can trigger extra structural detailing
+4. **Snow** provisions were clarified for higher elevations and drift conditions
+
+<CalloutBox type="tip" title="Build to the current code, not last year's plans">
+
+If you have older plans drawn to the 9th Edition, have your designer confirm they meet the 10th Edition — especially the energy and structural provisions — before you submit. The concurrency window closed June 30, 2025.
+
+</CalloutBox>
+
+## Massachusetts Owner-Builder Laws
+
+<CalloutBox type="info" title="Where the freedom comes from">
+
+Massachusetts requires a Construction Supervisor License to supervise building work — but 780 CMR carves out a **homeowner exemption** so you can supervise your own home. That exemption is the entire basis of owner-building in Massachusetts.
+
+</CalloutBox>
+
+The Construction Supervisor License (CSL) is issued by the [Board of Building Regulations and Standards (BBRS)](https://www.mass.gov/orgs/board-of-building-regulations-and-standards). A CSL is generally required to supervise construction, reconstruction, alteration, repair, or demolition of buildings, and is tied to the building's size (the licensing framework keys off a 35,000-cubic-foot threshold of enclosed space, among other limits). A one- or two-family home normally falls in CSL territory — which is exactly why the homeowner exemption matters.
+
+### The Homeowner Exemption (Your Legal Right)
+
+Under 780 CMR's licensing provisions, **a homeowner performing work for which a building permit is required is exempt from the CSL licensing requirement.** Two definitions control whether you qualify:
+
+<DataTable
+  caption="Who counts as a 'homeowner' under the 780 CMR exemption"
+  headers={["Condition", "Requirement"]}
+  rows={[
+    ["Ownership", "You own the parcel of land"],
+    ["Occupancy", "You reside there, or intend to reside there"],
+    ["Building type", "There is, or will be, a one- or two-family dwelling (plus accessory or farm structures)"],
+    ["Frequency limit", "A person who builds more than one home in a 2-year period is NOT considered a homeowner"],
+    ["Hired help", "If you hire anyone for the work, YOU must act as their supervisor"],
+    ["Manufactured buildings", "The exemption does not apply to field erection of manufactured buildings"]
+  ]}
+/>
+
+When you use the exemption, you sign an **Affidavit of a Homeowner for Construction Supervisor License Exemption** and a homeowner warning notice at the building department. By signing, you certify that you are a homeowner as defined, that you will supervise all work, and that you take full responsibility for code compliance.
+
+### The Home Improvement Contractor (HIC) Side
+
+Massachusetts separately regulates Home Improvement Contractors under [MGL c.142A](https://malegislature.gov/Laws/GeneralLaws/PartI/TitleXX/Chapter142A). HIC registration covers people who do residential remodeling and construction **for others** on owner-occupied 1–4 unit buildings. As an owner building on your own property, you are **exempt from HIC registration** — but there is a cost to that exemption.
+
+<CalloutBox type="warning" title="Pulling the permit yourself waives Guaranty Fund protection">
+
+Massachusetts runs a **Guaranty Fund** under MGL c.142A that can reimburse a homeowner up to **$10,000** for losses from a registered contractor who goes bad. When you take out the building permit **as a homeowner**, you sign away your right to arbitration and access to that Guaranty Fund — the affidavit says so explicitly. You also lose that protection if you hire an unregistered contractor. If you want Guaranty Fund coverage, a registered HIC has to pull the permit instead of you.
+
+</CalloutBox>
+
+### Critical Restrictions and Requirements
+
+**Owner-occupied, 1–2 family only**: The homeowner exemption is for your own home, not investment property and not multi-family buildings beyond two units.
+
+**You supervise everyone you hire**: The exemption requires you to act as supervisor for any hired labor. In a lawsuit, a court will treat you as the general contractor.
+
+**One home per two years**: Build more than one home in a two-year window and you no longer meet the "homeowner" definition.
+
+**Permits and inspections still apply**: The exemption only waives the CSL requirement — you still pull permits, submit plans, and pass every inspection under 780 CMR.
+
+### Doing Your Own Trade Work
+
+This is where Massachusetts surprises people in both directions — more permissive than expected on electrical, stricter than expected on plumbing.
+
+<DataTable
+  caption="Homeowner trade-work rights in Massachusetts"
+  headers={["Trade", "Can the homeowner do it?"]}
+  rows={[
+    ["Electrical", "Yes — on your own owner-occupied home, with a permit and the wiring inspector's prior approval (residential only; you must own and reside at the property)"],
+    ["Plumbing", "No — a licensed master plumber must pull the permit and perform the work; only minor repairs (e.g., a faucet washer, clearing a clog) are exempt"],
+    ["Gas fitting", "No — a licensed gas fitter must pull the permit and perform the work"],
+    ["HVAC / mechanical / sheet metal", "Varies — sheet metal work is state-licensed; mechanical permitting and homeowner allowances vary by town, so confirm locally"]
+  ]}
+/>
+
+<CalloutBox type="warning" title="Plumbing and gas are licensed-only — plan your budget around it">
+
+Massachusetts is strict here. [MGL c.142](https://malegislature.gov/Laws/GeneralLaws/PartI/TitleXX/Chapter142) and the plumbing/gas regulations (248 CMR) give the [Board of State Examiners of Plumbers and Gas Fitters](https://www.mass.gov/orgs/board-of-state-examiners-of-plumbers-and-gas-fitters) the whole field. A homeowner cannot pull a plumbing or gas permit on a new home. Budget for a licensed plumber and gas fitter from day one — there is no DIY workaround.
+
+</CalloutBox>
+
+<CalloutBox type="tip" title="If you do your own electrical, get the inspector on board first">
+
+The MA Electrical Code lets a resident owner wire their own home, but the wiring inspector's **prior approval** is part of the rule, and the work is inspected to the same NEC-based standard as a licensed electrician's. Talk to the wiring inspector before you start, and expect a separate electrical permit.
+
+</CalloutBox>
+
+### Liability and Insurance
+
+<CalloutBox type="warning" title="As owner-builder, the liability is yours">
+
+As an owner-builder in Massachusetts:
+
+- You're personally liable for injuries on-site, and any worker injured on your project may sue you if their employer doesn't carry workers' comp
+- Failure to carry workers' compensation for paid labor can bring criminal penalties under [MGL c.152 §25](https://malegislature.gov/Laws/GeneralLaws/PartI/TitleXXI/Chapter152/Section25C)
+- Subcontractors and suppliers can place a mechanic's lien on your property
+- Builder's risk insurance is available, but rates run higher than for licensed contractors
+- You have waived Guaranty Fund access by pulling the permit yourself
+
+</CalloutBox>
+
+### Seller Disclosure
+
+Massachusetts is a relatively light **disclosure** state — it largely follows *caveat emptor* for private home sales, with the major exception of the lead-paint and (for older systems) Title 5 septic requirements. There is no broad statutory residential property condition disclosure form like many states use. That said, you cannot affirmatively misrepresent a known defect, and unpermitted or non-code work can surface during a buyer's inspection or a lender's appraisal. Keep your permit and inspection records.
+
+## Permit Costs in Massachusetts
+
+<CalloutBox type="warning" title="These are planning estimates — verify before budgeting">
+
+The figures below are planning estimates compiled from public municipal fee schedules. Massachusetts building permit fees are almost always **valuation-based** (a rate per $1,000 of construction value), so your fee scales with the cost of your project. Actual costs change often and vary by town — confirm exact fees with your local building department before budgeting.
+
+</CalloutBox>
+
+Unlike states that charge a flat per-square-foot rate, most Massachusetts towns charge a building permit fee as a rate per $1,000 of estimated construction value, typically **$10 to $15 per $1,000**. A handful of towns use a per-square-foot method instead. For a 2,000 sq ft home, "construction value" is commonly in the $350,000–$500,000+ range, which drives the permit fee.
+
+### Boston-Metro Example
+
+Estimates below are for a 2,000 sq ft home.
+
+<DataTable
+  caption="Boston (Suffolk County) permit costs for a 2,000 sq ft home"
+  headers={["Cost item", "Amount"]}
+  rows={[
+    ["Building permit (long-form)", "$50 base + $10 per $1,000 of estimated cost (~$3,500–$5,000 on a $350K–$500K build)"],
+    ["Electrical permit", "$20 + $0.25/amp for service, plus $10 per $1,000 for general work"],
+    ["Plumbing permit", "$20 + $5 per fixture"],
+    ["Gas permit", "$20 + $5 per appliance/meter (plus a BTU charge for boilers/furnaces)"],
+    ["Water/sewer connection (Boston Water & Sewer)", "$4,000–$12,000+ depending on service size and street work"],
+    ["Total typical permit + connection cost", "$9,000–$18,000"]
+  ]}
+/>
+
+<CalloutBox type="warning" title="Start work without a permit in Boston and the fee doubles">
+
+Boston (like many Massachusetts cities) charges a **double permit fee** as a penalty if you begin work before the permit issues. Pull the permit first.
+
+</CalloutBox>
+
+### South Shore / Suburban Example
+
+<DataTable
+  caption="Hingham (Plymouth County) permit costs for a 2,000 sq ft home"
+  headers={["Cost item", "Amount"]}
+  rows={[
+    ["Building permit", "$10 per $1,000 of estimated cost ($50 minimum) — ~$3,500–$5,000 on a typical build"],
+    ["Certificate of occupancy", "$35 per dwelling unit"],
+    ["Trade permits (electrical, plumbing, gas)", "$400–$900 combined, per the separate trade fee schedules"],
+    ["Water/sewer connection", "$3,000–$10,000 depending on district"],
+    ["Total typical permit + connection cost", "$7,000–$15,000"]
+  ]}
+/>
+
+### Smaller / Western Town Example
+
+<DataTable
+  caption="Amherst (Hampshire County) permit costs for a 2,000 sq ft home"
+  headers={["Cost item", "Amount"]}
+  rows={[
+    ["Building permit", "$0.55 per sq ft of living space (first unit, incl. lower level); $0.35/sq ft for unfinished basement, garage, porches, decks — ~$1,100–$1,500 for a 2,000 sq ft home"],
+    ["Mechanical permit", "$30 + $10 per $1,000 of construction cost"],
+    ["Trade permits (electrical, plumbing, gas)", "$300–$700 combined, per separate schedules"],
+    ["Water/sewer or well/septic", "$2,500–$9,000 depending on whether you connect or go on-site"],
+    ["Total typical permit cost", "$4,500–$11,000"]
+  ]}
+/>
+
+<DataTable
+  caption="Typical Massachusetts building permit rates by town type"
+  headers={["Town type", "Common building permit basis"]}
+  rows={[
+    ["Boston-metro and many suburbs", "$10–$12 per $1,000 of construction value"],
+    ["Smaller / outer suburbs", "$12–$15 per $1,000 of construction value"],
+    ["Some western / rural towns", "Per-square-foot (e.g., ~$0.35–$0.55/sq ft of living space)"]
+  ]}
+/>
+
+### Hidden Fees
+
+<DataTable
+  caption="Hidden fees Massachusetts owner-builders should budget for"
+  headers={["Fee", "Typical amount / note"]}
+  rows={[
+    ["Water/sewer connection (tap) fees", "Often the largest single charge in metro areas: $3,000–$12,000+"],
+    ["Septic (Title 5) design + permit", "$1,500–$4,000 for design and board of health permit (rural / unsewered)"],
+    ["Well permit", "$200–$500 (rural areas)"],
+    ["Stormwater / wetlands (Conservation Commission)", "$100–$2,000+ if near wetlands or in a flood zone — common in eastern MA"],
+    ["Energy code HERS rating + blower-door test", "$800–$2,500 (required under the Stretch and Specialized codes)"],
+    ["Plan review / zoning review", "Often bundled into the permit; some towns charge separately"],
+    ["Double fee penalty", "Starting work before the permit issues commonly doubles the building permit fee"]
+  ]}
+/>
+
+## Processing Timelines
+
+<CalloutBox type="info" title="Slower than the low-regulation states">
+
+Massachusetts review is moderate to slow — busy eastern towns and Boston take longer than rural western towns. Plan ahead, especially if your design needs zoning relief.
+
+</CalloutBox>
+
+<DataTable
+  caption="Permit processing timelines by jurisdiction type"
+  headers={["Jurisdiction", "Time to permit"]}
+  rows={[
+    ["Boston (Inspectional Services)", "6–12+ weeks for new construction; longer with zoning review"],
+    ["Cambridge, Somerville, Newton (dense inner suburbs)", "6–10 weeks"],
+    ["Worcester, Springfield (Gateway cities)", "4–8 weeks"],
+    ["South Shore / MetroWest suburbs", "3–6 weeks"],
+    ["Smaller western / rural towns (Berkshires, Franklin County)", "2–4 weeks (small staff, lower volume)"]
+  ]}
+/>
+
+<CalloutBox type="tip" title="Zoning is often the long pole">
+
+In Massachusetts, the building permit itself may not be the slow part — **zoning** is. Setback variances, special permits, and (near water) Conservation Commission review under the Wetlands Protection Act can add months. Sort out zoning before you bank on a build-start date.
+
+</CalloutBox>
+
+## Energy Code Requirements
+
+<CalloutBox type="warning" title="Massachusetts has THREE energy codes — and your town picks which one">
+
+This is the single most important thing to understand about building in Massachusetts. There is a **base energy code** (IECC 2021), a stricter **Stretch Energy Code** (225 CMR 22), and an even stricter **Specialized (Municipal Opt-in) Code** with a net-zero orientation. Which one applies depends entirely on **which one your town has adopted** — and most of the state is on the Stretch Code or beyond. This materially changes what you must build.
+
+</CalloutBox>
+
+### The Three-Tier Energy Code
+
+<DataTable
+  caption="Massachusetts energy code tiers — check which your town has adopted"
+  headers={["Tier", "What it requires", "Roughly who's on it"]}
+  rows={[
+    ["Base energy code (IECC 2021)", "Prescriptive insulation/air-sealing per the 2021 IECC", "A minority of towns — roughly 50 of the 351 municipalities"],
+    ["Stretch Energy Code (225 CMR 22)", "Performance-based: a HERS rating target plus mechanical ventilation, EV-ready and solar-ready provisions", "The majority — on the order of 240+ municipalities"],
+    ["Specialized (Opt-in) Code", "Stretch Code PLUS electrification pre-wiring, on-site solar where feasible, and a net-zero / all-electric orientation", "~50+ municipalities, including Boston, Cambridge, Brookline, Somerville, Newton, Worcester"]
+  ]}
+/>
+
+<CalloutBox type="info" title="How to find your town's tier">
+
+The Department of Energy Resources (DOER) maintains a map and list of which municipalities are on the base, Stretch, or Specialized code. Start at the [Massachusetts Building Energy Code page](https://www.mass.gov/info-details/building-energy-code) and confirm with your building department, because towns adopt and switch tiers by local vote.
+
+</CalloutBox>
+
+### What the Stretch and Specialized Codes Demand
+
+The Stretch Code is **performance-based** rather than a simple checklist. New homes must hit a **HERS (Home Energy Rating System) index target** verified by a third-party rater, generally:
+
+<DataTable
+  caption="Stretch Code HERS targets for new homes (verify current values with your rater)"
+  headers={["Home type", "Approximate HERS target"]}
+  rows={[
+    ["Mixed-fuel (any fossil fuel appliances)", "HERS 42 or lower"],
+    ["All-electric", "HERS 45 or lower"],
+    ["With on-site solar", "Counts toward the target; specific crediting applies"]
+  ]}
+/>
+
+In practice, hitting those targets requires a tight, well-insulated envelope plus balanced mechanical ventilation (an HRV or ERV), and the Stretch Code also layers in **EV-ready** wiring and **solar-ready** roof provisions. The Specialized Code goes further: electrification pre-wiring, on-site solar where there's suitable unshaded roof, and a clear push toward all-electric, net-zero-ready homes.
+
+<CalloutBox type="warning" title="Budget for a HERS rater and a blower-door test">
+
+Under the Stretch and Specialized codes you'll need a **HERS rater** involved from design through completion, including a **blower-door** air-leakage test and (where there are ducts) duct leakage testing. Budget roughly $800–$2,500. This is not optional in Stretch/Specialized towns.
+
+</CalloutBox>
+
+### Climate Zones and Prescriptive Values
+
+Massachusetts spans two IECC climate zones: **Zone 5A** covers most of the state, and **Zone 6A** covers the colder Berkshire highlands of western Massachusetts. The base IECC 2021 prescriptive values for these zones are demanding:
+
+<DataTable
+  caption="IECC 2021 base prescriptive values for Massachusetts climate zones (confirm against your town's adopted code)"
+  headers={["Requirement", "Zone 5A (most of MA)", "Zone 6A (Berkshire highlands)"]}
+  rows={[
+    ["Ceiling / attic insulation", "R-49 (R-60 for unvented roof assemblies)", "R-49 (R-60 for unvented roof assemblies)"],
+    ["Wood-framed wall", "R-20 + R-5 continuous, or R-13 + R-10 continuous", "R-20 + R-5 continuous, or R-13 + R-10 continuous"],
+    ["Floor", "R-30", "R-30"],
+    ["Basement wall", "R-15 continuous or R-19 cavity", "R-15 continuous or R-19 cavity"],
+    ["Slab edge", "R-10 to 2 ft (24\")", "R-10 to 4 ft (48\")"],
+    ["Windows", "U-0.30 max", "U-0.30 max"],
+    ["Air leakage (prescriptive)", "≤3.0 ACH50", "≤3.0 ACH50"]
+  ]}
+/>
+
+<CalloutBox type="tip" title="The Stretch Code usually exceeds these numbers">
+
+The table above is the **base** IECC 2021. If your town is on the Stretch or Specialized code (most are), you'll meet a HERS target instead — which in practice means equal or better insulation and tighter air-sealing than the prescriptive numbers shown. Design to the tier your town actually enforces.
+
+</CalloutBox>
+
+### Foundation and Frost Depth
+
+<DataTable
+  caption="Minimum frost-protection depth by region (verify with your town)"
+  headers={["Region", "Typical minimum frost depth"]}
+  rows={[
+    ["Coastal southeastern MA (Cape, South Shore)", "Generally ~36\""],
+    ["Greater Boston / central MA", "Generally ~48\""],
+    ["Western MA / Berkshires (colder, higher)", "Often 48\" or deeper per local amendment"]
+  ]}
+/>
+
+<CalloutBox type="warning" title="Frost depth varies by town">
+
+Massachusetts frost-protection depths are set locally within the code's framework — check your specific town. Footings must bear below the local frost line on undisturbed soil.
+
+</CalloutBox>
+
+## Inspection Requirements
+
+<DataTable
+  caption="Standard Massachusetts inspection schedule"
+  headers={["#", "Inspection", "When"]}
+  rows={[
+    ["1", "Footing", "After excavation, before pour"],
+    ["2", "Foundation / form", "After forms and rebar, before pour"],
+    ["3", "Foundation waterproofing / damp-proofing", "Before backfill (many towns)"],
+    ["4", "Under-slab plumbing (by licensed plumber)", "Before slab pour"],
+    ["5", "Rough framing", "After roof, windows, and dry-in"],
+    ["6", "Rough electrical (wiring inspector)", "—"],
+    ["7", "Rough plumbing (plumbing inspector)", "—"],
+    ["8", "Rough gas (gas inspector)", "—"],
+    ["9", "Mechanical rough-in", "—"],
+    ["10", "Insulation / air-barrier", "Before drywall"],
+    ["11", "Blower-door / HERS testing", "Per Stretch / Specialized code"],
+    ["12", "Final electrical, plumbing, gas, mechanical", "Each by its inspector"],
+    ["13", "Final building / Certificate of Occupancy", "—"]
+  ]}
+/>
+
+<CalloutBox type="tip" title="Separate inspectors for separate trades">
+
+Massachusetts towns typically use **separate inspectors** for building, wiring (electrical), plumbing, and gas — and the wiring/plumbing/gas inspections are tied to the licensed trade permits. Schedule each through the right office, usually a few days to a week ahead.
+
+</CalloutBox>
+
+## Special Massachusetts Considerations
+
+### Coastal Flood and Hurricane Exposure
+
+<CalloutBox type="warning" title="The coast, the Cape, and the Islands carry serious wind and flood rules">
+
+If you build near the water — the South Coast, Cape Cod, Martha's Vineyard, or Nantucket — you're in some of the most demanding territory in the Northeast for wind and flood design. Plan for it from the start; it drives structure, foundation, and cost.
+
+</CalloutBox>
+
+Key coastal requirements:
+
+- **Higher design wind speeds**: Interior Massachusetts sees relatively modest design wind speeds, but Cape Cod and the Islands climb toward the highest in the state (ultimate design wind speeds up into the ~140 mph range in the most exposed spots)
+- **Wind-borne debris region**: Within roughly **1 mile of the coastal mean high-water line** where the design wind speed is high enough, homes must use **impact-resistant glazing or shutters** — this is a real, enforced 780 CMR requirement on the Cape and Islands
+- **Flood zones (V and Coastal A)**: In FEMA V-zones (wave action) and Coastal A-zones, homes must be **elevated on open foundations** (pilings/columns) with breakaway walls below the design flood elevation, and the foundation typically requires engineering
+- **Conservation Commission review**: Building near a coastal bank, dune, or wetland triggers the Wetlands Protection Act and local conservation review — often the longest part of a coastal project
+
+<CalloutBox type="tip" title="On the coast, hire an engineer early">
+
+V-zone and Coastal A-zone foundations, wind-borne-debris glazing, and uplift connections are engineering problems, not rules of thumb. On the Cape, the Islands, or any exposed shoreline, get a structural engineer and a flood-zone-savvy designer involved before you finalize plans.
+
+</CalloutBox>
+
+### Heavy Snow Loads
+
+<CalloutBox type="warning" title="Engineer roofs for real snow — especially in the west and at elevation">
+
+Massachusetts ground snow loads run from roughly **25 psf** on the southeastern coast to **50–55+ psf** in the Berkshire highlands. Higher elevations in the west carry substantially more snow than the Boston baseline — engineer your roof accordingly.
+
+</CalloutBox>
+
+Roof structural calculations (per ASCE 7) must account for:
+
+- **Ground snow load**: ~25 psf coastal southeast, ~30–40 psf central/eastern, ~50–55+ psf Berkshire highlands
+- **Drift loads**: Critical where roofs change pitch, at dormers, and against walls — a frequent cause of roof failures
+- **Ice dams**: Adequate insulation and ventilation (and ice-and-water shield at eaves) to limit dam formation in this freeze-thaw climate
+- **Rain-on-snow surcharge**: Relevant for low-slope roofs
+
+### Seismic (North Shore and Beyond)
+
+The 10th Edition raised seismic demands across much of Massachusetts. Parts of the **North Shore** moved from Seismic Design Category B to C, which can require additional structural detailing — anchorage, bracing, and connection requirements your designer needs to check against the current maps.
+
+### Septic Systems (Title 5)
+
+In unsewered areas, the [Title 5 state environmental code (310 CMR 15)](https://www.mass.gov/info-details/learn-about-septic-systems-title-5) governs on-site septic, administered by your local **Board of Health**.
+
+<DataTable
+  caption="Massachusetts on-site septic (Title 5) costs"
+  headers={["Item", "Cost"]}
+  rows={[
+    ["Soil evaluation + percolation test (perc)", "$500–$1,500"],
+    ["System design + Board of Health permit", "$1,500–$4,000"],
+    ["Standard Title 5 system (install)", "$15,000–$30,000"],
+    ["Innovative/Alternative (I/A) system for nitrogen-sensitive areas (common on the Cape)", "$25,000–$45,000+"]
+  ]}
+/>
+
+<CalloutBox type="warning" title="On the Cape, expect nitrogen rules">
+
+Cape Cod and other nitrogen-sensitive watersheds increasingly require enhanced (I/A) septic systems to limit nitrogen loading. These cost significantly more than a standard Title 5 system — confirm watershed requirements with the local Board of Health before you budget.
+
+</CalloutBox>
+
+### Wells
+
+Private wells are permitted through the local Board of Health (with state well-construction standards).
+
+<DataTable
+  caption="Massachusetts well costs"
+  headers={["Item", "Cost"]}
+  rows={[
+    ["Drilled well construction", "$25–$45/foot"],
+    ["Typical 200–500 ft well", "$6,000–$18,000"],
+    ["Pump + pressure tank installation", "$2,000–$4,000"]
+  ]}
+/>
+
+## Top Areas for Owner-Builders
+
+### 1. **MetroWest & I-495 towns** (Middlesex / Worcester County edge)
+- **Pros**: Strong resale, good schools, land still available beyond the inner suburbs
+- **Cons**: Many are on the Stretch or Specialized energy code; zoning can be strict
+- **Best for**: Owner-builders wanting commuter access with room to build
+
+### 2. **South Shore** (Plymouth County — Hingham, Duxbury, Marshfield)
+- **Pros**: Desirable coastal-adjacent market, established building departments
+- **Cons**: Coastal flood/wind rules near the water; higher land costs
+- **Best for**: Owner-builders comfortable with coastal design requirements
+
+### 3. **Worcester County (central MA)**
+- **Pros**: Lower land costs than eastern MA, the state's second city for amenities, reasonable processing
+- **Cons**: Worcester itself is on the Specialized code; winters bring real snow loads
+- **Best for**: Owner-builders prioritizing value within reach of a city
+
+### 4. **Pioneer Valley** (Hampshire / Hampden — Amherst, Northampton area)
+- **Pros**: Some per-square-foot (lower) permit towns, college-town amenities, slower-paced review
+- **Cons**: Smaller job market; energy-progressive towns add cost
+- **Best for**: Owner-builders wanting western MA culture without the Berkshires' isolation
+
+### 5. **The Berkshires** (Berkshire County)
+- **Pros**: Lowest land costs in the state, fast small-town permitting, rural lifestyle
+- **Cons**: Zone 6A energy requirements, heaviest snow loads, limited employment and financing options
+- **Best for**: Owner-builders prioritizing rural life and affordability over commute
+
+### Most Expensive / Challenging Areas
+
+<CalloutBox type="warning" title="These areas mean stricter rules, higher costs, or tougher sites">
+
+The places below carry the highest fees, strictest review, energy-code stringency, or toughest site conditions in the state — go in with eyes open.
+
+</CalloutBox>
+
+- **City of Boston**: Long review timelines, double-fee penalties, Specialized energy code, complex zoning
+- **Cambridge, Somerville, Newton, Brookline**: Specialized code, dense-infill challenges, demanding review
+- **Cape Cod, Martha's Vineyard, Nantucket**: Wind-borne-debris glazing, V-zone/Coastal A foundations, nitrogen-sensitive septic, conservation review
+- **Coastal South Coast and North Shore**: Flood-zone elevation, wind design, wetlands review
+
+## Key Resources
+
+- **Board of Building Regulations and Standards (BBRS)**: 780 CMR adoption, the Construction Supervisor License, the homeowner exemption — [mass.gov BBRS](https://www.mass.gov/orgs/board-of-building-regulations-and-standards)
+- **Board of State Examiners of Plumbers and Gas Fitters**: plumbing and gas licensing (248 CMR) — [mass.gov plumbers & gas fitters board](https://www.mass.gov/orgs/board-of-state-examiners-of-plumbers-and-gas-fitters)
+- **Board of State Examiners of Electricians**: electrician licensing and the MA Electrical Code (527 CMR 12) — [mass.gov electricians board](https://www.mass.gov/board-of-state-examiners-of-electricians-licensing)
+- **Department of Energy Resources (DOER)**: base, Stretch, and Specialized energy codes — [mass.gov building energy code](https://www.mass.gov/info-details/building-energy-code)
+- **MGL c.142A — Home Improvement Contractor law & Guaranty Fund**: [malegislature.gov c.142A](https://malegislature.gov/Laws/GeneralLaws/PartI/TitleXX/Chapter142A)
+- **Your city or town building department + Board of Health**: permits, inspections, Title 5 septic, wells
+
+## Common Questions
+
+**Do I need a license to build my own house in Massachusetts?** Not if you qualify for the homeowner exemption. Massachusetts normally requires a Construction Supervisor License to supervise building work, but 780 CMR exempts an owner who builds and lives in their own one- or two-family home. You sign a homeowner-exemption affidavit and act as your own supervisor. You still must hire a licensed plumber and gas fitter for those trades.
+
+**Can you build your own house without a permit in Massachusetts?** No. Massachusetts enforces 780 CMR statewide through local building departments — there is no "no-code" area. New homes always require permits and inspections.
+
+**What is the Massachusetts owner-builder (homeowner) exemption?** It's a provision in 780 CMR that lets the owner of a one- or two-family home they own and occupy pull the building permit and supervise construction without a Construction Supervisor License. You must not build more than one home per two-year period, you must supervise anyone you hire, and by pulling the permit yourself you waive Guaranty Fund protection.
+
+**Can a homeowner do their own electrical and plumbing in Massachusetts?** Electrical: yes — on your own owner-occupied home, with a permit and the wiring inspector's prior approval. Plumbing and gas: no — a licensed plumber or gas fitter must pull the permit and do the work; only minor repairs are exempt.
+
+**How much does a Massachusetts owner-builder permit cost?** Most towns charge $10–$15 per $1,000 of construction value, so a typical 2,000 sq ft home runs roughly $3,500–$6,000 for the building permit alone, plus trade permits and water/sewer connection fees that can add several thousand more. Some western towns use a lower per-square-foot method.
+
+**Which Massachusetts areas are best for owner-builders?** MetroWest/I-495 and the South Shore balance resale with available land; Worcester County and the Pioneer Valley offer better value; the Berkshires are cheapest but carry Zone 6A energy and snow demands. Boston and the inner suburbs are the most expensive and rule-heavy.
+
+## Typical Owner-Builder Timeline
+
+<CalloutBox type="info" title="Sample timeline">
+
+Typical phased timeline for a part-time owner-builder in Massachusetts.
+
+</CalloutBox>
+
+<DataTable
+  caption="Phased Massachusetts owner-builder timeline"
+  headers={["Phase", "Tasks"]}
+  rows={[
+    ["Months 1–3: Pre-permit", "Site/soil work; Title 5 perc test (if rural); zoning and (if near water) conservation review; energy-code design + HERS rater engaged; plans to the 10th Edition"],
+    ["Months 3–4: Plan review", "Building permit submittal; zoning sign-off; review comments; permit issuance"],
+    ["Months 4–6: Foundation and shell", "Excavation and footings; foundation; framing, sheathing, roof; windows/doors; framing inspection"],
+    ["Months 6–9: Rough-ins", "Licensed electrical/plumbing/gas rough-ins; mechanical; insulation and air-barrier; blower-door prep"],
+    ["Months 9–12: Finishes", "Drywall, cabinets, flooring, trim, paint; HERS verification; final inspections; Certificate of Occupancy"]
+  ]}
+/>
+
+**Total: 10–13 months** (part-time owner-builder). Full-time, 8–10 months. Coastal or zoning-heavy projects run longer.
+
+## Final Thoughts for Massachusetts Owner-Builders
+
+Massachusetts is a *structured* owner-builder state, not a free-for-all — and that's not necessarily bad. The homeowner exemption is written into the code, the affidavit is standardized, and building officials are used to owner-builders. You know exactly where you stand. What you trade for that clarity is a demanding, frequently-updated code, mandatory licensed trades for plumbing and gas, and an energy code that most towns have made stricter than the national baseline.
+
+The big decisions:
+
+1. **Confirm your town's energy tier first**: Base vs. Stretch vs. Specialized changes your whole design and budget. Get a HERS rater early in Stretch/Specialized towns.
+2. **Budget plumbing and gas as licensed-only**: There's no homeowner workaround. Line up a master plumber and gas fitter before you break ground.
+3. **Decide on electrical honestly**: You *can* wire your own home — but only if you'll do it to NEC standard and the wiring inspector approves. If in doubt, hire it out.
+4. **Respect the coast**: V-zone foundations, wind-borne-debris glazing, and nitrogen septic on the Cape are engineering-and-money problems. Plan for them up front.
+5. **Sort zoning and conservation early**: In eastern Massachusetts these reviews, not the building permit, are usually what set your timeline.
+
+Massachusetts rewards the organized, detail-oriented owner-builder who reads the rules and works with their inspectors. The bar is higher than in the low-regulation states, but the path is clearly marked — and a well-built, code-compliant home in this market holds its value.
+
+<FAQSection
+  title="Massachusetts Owner-Builder FAQs"
+  faqs={[
+    {
+      question: "Can you build your own house in Massachusetts without a license?",
+      answer: "Yes, if you qualify for the homeowner exemption in the Massachusetts State Building Code (780 CMR). Massachusetts normally requires a Construction Supervisor License (CSL) to supervise building work, but an owner who builds and lives in their own one- or two-family home is exempt — you sign a homeowner-exemption affidavit and act as your own supervisor. You cannot build more than one home in a two-year period and still qualify, and you must supervise anyone you hire. Plumbing and gas work still must be done by licensed tradespeople."
+    },
+    {
+      question: "What is the Massachusetts Construction Supervisor License homeowner exemption?",
+      answer: "It's a provision in 780 CMR that exempts a 'homeowner' from the CSL requirement when pulling a building permit. A homeowner is defined as a person who owns a parcel where they reside or intend to reside, on which there is or will be a one- or two-family dwelling. A person who builds more than one home in a two-year period is not a homeowner under this rule. If you hire help, you must act as their supervisor. You sign a homeowner-exemption affidavit acknowledging full responsibility for code compliance."
+    },
+    {
+      question: "Does pulling a permit as a homeowner affect the Guaranty Fund?",
+      answer: "Yes. Massachusetts runs a Guaranty Fund under MGL c.142A that can reimburse a homeowner up to $10,000 for losses caused by a registered Home Improvement Contractor. When you take out the building permit yourself as a homeowner — or if you hire an unregistered contractor — you waive your right to arbitration and to that Guaranty Fund. The homeowner affidavit states this explicitly. If you want Guaranty Fund protection, a registered contractor must pull the permit instead of you."
+    },
+    {
+      question: "Can a homeowner do their own electrical work in Massachusetts?",
+      answer: "Yes, on your own owner-occupied home. Under the Massachusetts Electrical Code (527 CMR 12), a homeowner may perform their own electrical work provided the work is residential, the person doing it owns and resides at the property, and the wiring inspector gives prior approval. A separate electrical permit is still required, and the work is inspected to the same NEC-based standard as a licensed electrician's. A few details vary by town, so confirm with your wiring inspector first."
+    },
+    {
+      question: "Can a homeowner do their own plumbing or gas work in Massachusetts?",
+      answer: "Generally no. Under MGL c.142 and the plumbing/gas regulations (248 CMR), a licensed master plumber or gas fitter must pull the permit and perform plumbing and gas work — there is no homeowner DIY permit for new-home plumbing or gas. Only minor repairs (such as replacing a faucet washer or clearing a clog) are exempt. Budget for licensed tradespeople for these trades from the start."
+    },
+    {
+      question: "What building code does Massachusetts use in 2026?",
+      answer: "The Massachusetts State Building Code, 780 CMR, 10th Edition, which is based on the 2021 International Codes (IRC, IBC, IECC). It took effect October 11, 2024, and became the only code in force after the concurrency period ended June 30, 2025. One- and two-family homes follow Chapter 51 (the Massachusetts Residential Code, the 2021 IRC with state amendments). Any source saying Massachusetts is on the 9th Edition (2015 IRC) is out of date."
+    },
+    {
+      question: "How much does a Massachusetts owner-builder permit cost?",
+      answer: "Most Massachusetts towns charge a valuation-based building permit fee of $10–$15 per $1,000 of construction value, so a typical 2,000 sq ft home runs roughly $3,500–$6,000 for the building permit alone. Some western towns use a per-square-foot method (around $0.35–$0.55/sq ft of living space). Add trade permits and water/sewer connection (tap) fees, which can add several thousand dollars more — and starting work before the permit issues often doubles the building permit fee."
+    },
+    {
+      question: "What is the Massachusetts Stretch Energy Code, and does it apply to me?",
+      answer: "The Stretch Energy Code (225 CMR 22) is a stricter, performance-based energy code that most Massachusetts towns have adopted in place of the base IECC 2021 code. It requires new homes to meet a HERS rating target (roughly HERS 42 for mixed-fuel, 45 for all-electric), plus mechanical ventilation, EV-ready, and solar-ready provisions, verified by a third-party HERS rater with a blower-door test. Over 50 municipalities, including Boston and Cambridge, have gone further and adopted the Specialized (opt-in) Code, which pushes toward all-electric, net-zero-ready homes. Confirm your town's tier with the Department of Energy Resources or your building department before you design."
+    },
+    {
+      question: "Do I need special construction for building near the Massachusetts coast?",
+      answer: "Often yes. On Cape Cod, the Islands, and exposed shorelines, homes within about a mile of the coast may need impact-resistant (wind-borne-debris) glazing or shutters, and homes in FEMA V-zones or Coastal A-zones must be elevated on engineered open foundations with breakaway walls below the design flood elevation. Building near coastal banks, dunes, or wetlands also triggers Conservation Commission review under the Wetlands Protection Act, and many Cape watersheds now require enhanced (nitrogen-reducing) septic systems. Get a structural engineer and flood-zone-savvy designer involved early."
+    }
+  ]}
+/>
+
+## Related State Guides
+
+Building in another state, or comparing the Northeast? Check the requirements for:
+
+- [Connecticut Owner-Builder Permit Guide](/permitting/state-guides/connecticut)
+- [Pennsylvania Owner-Builder Permit Guide](/permitting/state-guides/pennsylvania)
+- [Virginia Owner-Builder Permit Guide](/permitting/state-guides/virginia)
+- [Washington Owner-Builder Permit Guide](/permitting/state-guides/washington)
+
+[See all state owner-builder guides →](/permitting/state-guides)
+
+---
+
+*Last updated: May 2026. Verified this update: Massachusetts requires a Construction Supervisor License to supervise building work, but 780 CMR exempts a homeowner who builds and occupies their own one- or two-family home (no more than one home per two-year period) — confirmed via the standard homeowner-exemption affidavit and the [Board of Building Regulations and Standards](https://www.mass.gov/orgs/board-of-building-regulations-and-standards). Homes follow the [780 CMR 10th Edition](https://www.mass.gov/massachusetts-state-building-code-780-cmr) (2021 IRC base), effective Oct 11, 2024, with the 9th Edition concurrency ending June 30, 2025. Electrical work may be done by a resident owner with the wiring inspector's approval (527 CMR 12); plumbing and gas must be performed by licensed tradespeople (248 CMR, MGL c.142). The Home Improvement Contractor law and $10,000 Guaranty Fund are governed by [MGL c.142A](https://malegislature.gov/Laws/GeneralLaws/PartI/TitleXX/Chapter142A); taking the permit as a homeowner waives that fund. Energy code is IECC 2021 base, with most towns on the Stretch Code (225 CMR 22) and 50+ on the Specialized opt-in code — see the [Massachusetts Building Energy Code page](https://www.mass.gov/info-details/building-energy-code). Massachusetts spans climate zones 5A (most of the state) and 6A (Berkshire highlands). Permit fees, frost depth, coastal/flood requirements, septic (Title 5) rules, and processing times all vary by municipality — verify with your specific city or town building department and Board of Health before relying on any figure here.*

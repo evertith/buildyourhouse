@@ -1,0 +1,610 @@
+export const metadata = {
+  title: 'Montana Owner-Builder Permits 2026: Costs, Codes & Counties',
+  description: 'Montana owner-builder permit guide 2026: statewide IRC code, split state/local enforcement, no-permit rural areas, homeowner electrical and plumbing exemptions, snow and seismic loads, and county fees for Billings, Bozeman, Missoula, and Kalispell.',
+  keywords: 'Montana owner builder permit, MT building permit, Montana building code, Montana owner builder laws, Billings building permit, Bozeman building permit, Missoula owner builder, Kalispell building permit, Montana homeowner electrical permit, Montana snow load',
+  openGraph: {
+    title: 'Montana Owner-Builder Permits 2026: Costs, Codes & Counties',
+    description: 'Montana owner-builder permit guide 2026: statewide IRC code with split state/local enforcement, no-permit rural areas, homeowner trade exemptions, snow and seismic loads, and county fees for Billings, Bozeman, Missoula, and Kalispell.',
+  },
+}
+
+# Montana Owner-Builder Permit Guide
+
+*By a retired general contractor with 15+ years building custom homes — [about the author](/about). Last updated: May 2026.*
+
+<CalloutBox type="info" title="Quick Answer: Can You Build Your Own House in Montana?">
+
+**Yes — and in much of rural Montana you may not even need a building permit.** Montana has no statewide general contractor license, so you can act as your own general contractor on a home you own. The state adopts the 2021 IRC and IBC statewide through the [Montana Department of Labor & Industry Building Codes Bureau](https://bsd.dli.mt.gov/building-codes-permits/), but enforcement is split: certified cities and counties run their own programs (Billings, Bozeman, Missoula, Kalispell, and others), while everywhere else the state Bureau is the authority — **and state law exempts a residential building with fewer than five dwelling units from the state building permit requirement**. That means an owner building a single-family home in an unincorporated, non-certified area often pulls no building permit at all. Electricians and plumbers are licensed by the state, but Montana has explicit **homeowner exemptions** that let you do your own electrical and plumbing on the home you live in. Always confirm with your specific city or county — local rules override the state default.
+
+</CalloutBox>
+
+<DataTable
+  caption="Montana owner-builder at a glance — verify specifics with your local building department"
+  headers={["Requirement", "Owner-builder in Montana"]}
+  rows={[
+    ["State GC license to build your own home", "Not required — Montana has no residential general contractor license; only a workers'-comp Construction Contractor Registration that owner-builders without employees are exempt from"],
+    ["Who enforces residential permits/code", "Split: certified city/county programs in covered areas; the state DLI Building Codes Bureau elsewhere — but residential under 5 units is exempt from the STATE permit"],
+    ["Building permit needed for your own home", "Yes inside certified cities/counties; often NO state permit in unincorporated non-certified areas (residential under 5 units is exempt under 50-60-104, MCA)"],
+    ["DIY electrical on your own home", "Allowed without a license under 37-68-103(3), MCA, on property you maintain for your own use (grid-tied generator work is the exception); state homeowner electrical permit used in state-enforced areas"],
+    ["DIY plumbing on your own home", "Allowed without a permit/license under 50-60-506(4), MCA, if you do the work yourself on a single-family home for your own use — not for resale, speculation, or rental"],
+    ["Current code editions", "2021 IRC/IBC/IECC and 2020 NEC, effective June 11, 2022; 2021 Uniform Plumbing Code and 2021 IMC"]
+  ]}
+/>
+
+Montana is one of the more unusual owner-builder states in the country. It writes a real statewide building code — the 2021 IRC — but then declines to enforce it across most of its land area, and it carves out an explicit exemption for single-family homes from the state permit requirement. The result is a sharp divide: build inside Bozeman or Missoula and you'll go through a full plan review and inspection process much like any Mountain West city; build on acreage in an unincorporated county with no certified program and you may legally pour a foundation without a single building inspector ever visiting the site.
+
+That freedom is real, but it comes with real responsibility. The state code still technically applies (you are supposed to build to the 2021 IRC even where no one inspects), and Montana's hazards — extreme snow loads, active seismic faults in the western third of the state, brutal cold, and expanding wildfire risk — are unforgiving of shortcuts. This guide walks through both sides.
+
+## Montana Building Code Overview
+
+<CalloutBox type="info" title="The Big Picture">
+
+Montana operates a **statewide code with split state-or-local enforcement** model. The state writes and adopts the code; certified cities and counties enforce it locally; everywhere else the state Building Codes Bureau is the authority — but a broad residential exemption means many single-family homes need no state building permit at all.
+
+</CalloutBox>
+
+### Current Code Adoption
+
+<DataTable
+  caption="Current Montana code editions and effective dates (per the DLI Building Codes Bureau)"
+  headers={["Code", "Edition & effective date", "Applies to"]}
+  rows={[
+    ["Montana adopts the International Residential Code", "2021 IRC with Montana amendments; effective June 11, 2022", "One- and two-family dwellings and townhouses"],
+    ["International Building Code (IBC)", "2021 IBC; effective June 11, 2022", "Commercial and multifamily (5+ units)"],
+    ["International Energy Conservation Code (IECC)", "2021 IECC with Montana amendments; effective June 11, 2022", "Residential and commercial energy"],
+    ["National Electrical Code (NEC)", "2020 NEC; effective June 11, 2022", "All electrical work"],
+    ["Uniform Plumbing Code (UPC)", "2021 UPC with Montana amendments; effective June 11, 2022", "Plumbing (Montana uses the UPC, not the IPC)"],
+    ["International Mechanical Code (IMC)", "2021 IMC; effective June 11, 2022", "Mechanical / HVAC"]
+  ]}
+/>
+
+The codes are adopted and amended under the Administrative Rules of Montana, Title 24, Chapter 301, and you can confirm the current editions on the Bureau's page at [bsd.dli.mt.gov/building-codes-permits/current-codes](https://bsd.dli.mt.gov/building-codes-permits/current-codes). Montana is on a multi-year update cycle and has signaled a move toward the 2024 I-Codes in the future, so confirm the current edition before you design — the 2021 family is current as of 2026.
+
+<CalloutBox type="warning" title="Montana uses the Uniform Plumbing Code, not the IPC">
+
+Unlike many IRC states that use the International Plumbing Code, Montana adopts the **Uniform Plumbing Code (2021 UPC)** for plumbing. The differences matter for venting, materials, and fixture rules — make sure your plans and any plumber are working from the UPC.
+
+</CalloutBox>
+
+### Split State-or-Local Enforcement
+
+This is the single most important thing to understand about building in Montana. Under [50-60-106, MCA](https://mca.legmt.gov/bills/mca/title_0500/chapter_0600/part_0010/section_0060/0500-0600-0010-0060.html), counties, cities, and towns may adopt and enforce the building, electrical, plumbing, and mechanical codes — in whole or in part — but a local program must be certified by the state under [50-60-302, MCA](https://archive.legmt.gov/bills/mca/title_0500/chapter_0600/part_0030/section_0020/0500-0600-0030-0020.html). Wherever a local government has **not** certified a program, the state DLI Building Codes Bureau in Helena is the authority having jurisdiction, with field inspectors assigned to regions who travel to job sites. You can see the official list of certified local programs at [bsd.dli.mt.gov/building-codes-permits/certified-government](https://bsd.dli.mt.gov/building-codes-permits/certified-government).
+
+<DataTable
+  caption="How code enforcement varies across Montana"
+  headers={["Jurisdiction type", "Enforcement"]}
+  rows={[
+    ["Certified cities (Billings, Bozeman, Missoula, Kalispell, Great Falls, Helena, Whitefish, Columbia Falls, and others)", "Full local program — building permit, plan review, and inspections required for a new home"],
+    ["Certified counties (Gallatin, Missoula, Lewis & Clark, Yellowstone urban areas and others, where adopted)", "Local program enforces residential code in the areas it covers — verify the exact boundary"],
+    ["Unincorporated / non-certified areas (much of rural Montana, including unincorporated Flathead County)", "State Bureau is the authority, BUT residential under 5 units is exempt from the state permit — often no building permit and no inspection"]
+  ]}
+/>
+
+A concrete example: **Flathead County does not run a county building permit program at all.** Only the incorporated cities within it — Kalispell, Whitefish, Columbia Falls — require building permits. Build a single-family home on unincorporated land in Flathead County and you typically pull no building permit (though you will still need state electrical permits unless you qualify for the homeowner exemption, plus septic, well, and floodplain approvals). This pattern repeats across many Montana counties.
+
+### The Residential Permit Exemption
+
+Montana's state building permit law contains an exemption list at [50-60-104, MCA](https://archive.legmt.gov/bills/mca/title_0500/chapter_0600/parts_index.html). The Bureau summarizes it on its [state building permit page](https://bsd.dli.mt.gov/building-codes-permits/permit-applications/building-permits/state-building-permit). Structures exempt from the **state** building permit include:
+
+1. **Residential buildings containing fewer than five dwelling units** (except when serving transient guests) — this covers ordinary single-family homes, duplexes, triplexes, and fourplexes
+2. **Farm and ranch buildings** of any size
+3. **Private garages and private storage buildings** used only for the owner's own use
+4. **Mining buildings** on mining property, and certain refinery/mill structures (except office and shop buildings)
+
+<CalloutBox type="warning" title="Exempt from the STATE permit is not the same as unregulated">
+
+The under-5-unit exemption applies to the **state** building permit only. A certified city or county can — and most do — require a local permit for your single-family home by ordinance under 50-60-104, MCA. The exemption also does not waive zoning, subdivision sanitation (septic/well) review, floodplain rules, or the requirement that the home actually be built to the 2021 IRC. Confirm your jurisdiction's status before you assume you're permit-free.
+
+</CalloutBox>
+
+### Agricultural and Rural Buildings
+
+Montana treats agricultural structures generously. Farm and ranch buildings are exempt from the state building permit under the list above, and structures used exclusively for agricultural purposes and not for human habitation are broadly outside the IBC's scope. The catch is the human-habitation line: the moment a "barn" includes living quarters, a shop apartment, or short-term-rental use, the exemption is in jeopardy and the residential or commercial code applies to the habitable portion. If you're building a barndominium or shouse, get a written determination from your AHJ before you frame.
+
+## Montana Owner-Builder Laws
+
+<CalloutBox type="info" title="Where the freedom comes from">
+
+Montana has no residential general contractor license. There is nothing to be "exempt" from — anyone, including an owner, can act as their own general contractor.
+
+</CalloutBox>
+
+Montana does not license general contractors. What it has instead is **Construction Contractor Registration (CR)** under [Title 39, Chapter 9, MCA](https://erd.dli.mt.gov/work-comp-regulations/montana-contractor/construction-contractor-registration), administered by the DLI Employment Relations Division. The state is explicit that "the CR certificate is not a license and does not ensure quality of work" — it is a **workers' compensation compliance credential**. It applies to construction businesses with employees, not to a homeowner building their own house.
+
+### Legal Rights
+
+You may act as your own general contractor on your own property because:
+
+- Montana issues no general contractor license, residential or otherwise
+- The Construction Contractor Registration requirement applies to contractors **with employees** — an owner-builder working on their own home, or an independent contractor with no employees, is exempt (independents without employees may instead hold an Independent Contractor Exemption Certificate)
+- Hiring labor is permitted; the registration and workers'-comp obligations attach to whoever is the employer of any paid workers
+
+<CalloutBox type="tip" title="If you hire any paid labor, mind workers' comp">
+
+The moment you bring on paid workers, Montana's Workers' Compensation Act applies. Either your workers carry valid Independent Contractor Exemption Certificates, or you must provide workers' comp coverage. This is the real teeth behind the Construction Contractor Registration program — not licensing, but insurance. Budget for it if you're hiring crews.
+
+</CalloutBox>
+
+### Critical Restrictions and Requirements
+
+**Local permit requirements (in certified areas):** Inside a city or county with a certified program, expect to provide proof of ownership, signed plans, energy compliance documentation, and a site-specific geotechnical report in some jurisdictions (Bozeman requires one at application). You pull the permit as the owner.
+
+**State homeowner permits (in state-enforced areas):** Where the state Bureau is the AHJ and your project isn't otherwise exempt, you submit construction documents to Helena and the Bureau assigns a regional inspector.
+
+**Licensed trades if you hire out:** Electrical and plumbing contractors are state-licensed in Montana through the DLI's Building Standards Division licensing boards. If you hire those trades, the contractor must be licensed — but you have a homeowner alternative (below).
+
+### Homeowner Electrical and Plumbing — Montana's Friendly Exemptions
+
+This is where Montana, despite licensing the trades at the state level, stays genuinely owner-builder friendly.
+
+<DataTable
+  caption="Homeowner trade exemptions in Montana"
+  headers={["Trade", "Homeowner rule", "Statute"]}
+  rows={[
+    ["Electrical", "No license required to perform electrical work on property or a residence you maintain for your own use; in state-enforced areas a homeowner pulls a state homeowner's electrical permit to wire their own home, garage, and premises", "37-68-103(3)(a), MCA"],
+    ["Electrical — exception", "The exemption does NOT cover work on a grid-tied generator (e.g., grid-tied solar/PV interconnection) at your own property — that work is not exempt", "37-68-103(3)(b), MCA"],
+    ["Plumbing", "No plumbing permit or license required if you personally do the work on a single-family dwelling you will reside in — not built on speculation of resale and not intended as a rental", "50-60-506(4), MCA"]
+  ]}
+/>
+
+The electrical exemption is codified at [37-68-103(3), MCA](https://mca.legmt.gov/bills/mca/title_0370/chapter_0680/part_0010/section_0030/0370-0680-0010-0030.html), which provides that "this chapter does not require an individual to hold a license to perform electrical work on the individual's own property or residence if the property or residence is maintained for the individual's own use," with the carve-out that this does **not** include grid-tied generator work. The Bureau's [electrical permits page](https://bsd.dli.mt.gov/building-codes-permits/permit-applications/electrical-permits/) explains the state homeowner's electrical permit used in state-enforced areas.
+
+The plumbing exemption appears in the building construction statutes at 50-60-506(4), MCA, and the Bureau's [plumbing permits page](https://bsd.dli.mt.gov/building-codes-permits/permit-applications/plumbing-permits/) states it plainly: "Homeowners do not need to obtain a plumbing permit provided he/she is doing the plumbing installation themselves and the residence is for the owner's personal use and not built on speculation of resale or intended as a rental property."
+
+<CalloutBox type="tip" title="Three conditions on doing your own trade work">
+
+For both electrical and plumbing the logic is the same: it must be **your own home that you'll use** (not a flip or rental), **you** must do the work, and the work still has to meet the 2020 NEC / 2021 UPC. In certified cities, also confirm the local building department honors the homeowner exemption — most do, but the permit mechanics differ from the state process. The grid-tied solar exception trips people up, so hire a licensed electrician for any utility interconnection.
+
+</CalloutBox>
+
+### Liability and Insurance
+
+<CalloutBox type="warning" title="As owner-builder, the liability is yours">
+
+As an owner-builder in Montana:
+
+- You're personally liable for injuries on your job site — carry workers' comp for any paid labor (it's effectively mandatory under Montana law)
+- Builder's risk insurance is available but priced higher for owner-builders than for established contractors
+- Some lenders require liability coverage during construction, and construction loans for owner-builders are harder to obtain — line up financing early
+- Even where no inspection occurs, you are still legally expected to build to the 2021 IRC, and defects can surface in future sale disclosures
+
+</CalloutBox>
+
+## Permit Costs in Montana
+
+<CalloutBox type="warning" title="These are planning estimates — verify before budgeting">
+
+The figures below are planning estimates compiled from public fee schedules and adopted ICC building-valuation tables. Montana cities calculate building permit fees from project **valuation** (square footage times an ICC cost-per-square-foot figure), so the actual fee depends on your home's finish level and the table edition in force. Confirm exact fees with your jurisdiction before budgeting. Costs are far lower — often zero for the building permit itself — in unincorporated areas without a certified program.
+
+</CalloutBox>
+
+Montana building permit fees in the certified cities are moderate by Mountain West standards. The biggest budget items are usually impact fees (in the fast-growing cities), and water/sewer connection fees or, in rural areas, septic and well costs. Estimates below are for a roughly 2,000 sq ft home.
+
+### Major Cities
+
+<DataTable
+  caption="Bozeman (Gallatin County) permit cost estimate for a 2,000 sq ft home"
+  headers={["Cost item", "Amount"]}
+  rows={[
+    ["Building permit (valuation-based, ICC table)", "Roughly $2,000–$3,500 on a typical 2,000 sq ft valuation"],
+    ["Plan review", "Percentage of permit fee (set by Bozeman fee schedule)"],
+    ["Impact fees (transportation, water, sewer, fire)", "$15,000–$25,000+ — Bozeman's impact fees are among the highest in the state and adjust annually"],
+    ["Water/sewer connection", "Varies; included with or in addition to impact fees"],
+    ["Trade permits (electrical, plumbing, mechanical)", "$500–$1,200 combined"],
+    ["Geotechnical report (required at application)", "$1,500–$4,000"],
+    ["Total typical cost (incl. impact fees)", "$20,000–$35,000+"]
+  ]}
+/>
+
+<DataTable
+  caption="Missoula (City of Missoula) permit cost estimate for a 2,000 sq ft home"
+  headers={["Cost item", "Amount"]}
+  rows={[
+    ["Building permit (ICC valuation-based)", "Roughly $2,000–$3,500 for a typical 2,000 sq ft home"],
+    ["Plan review", "20% of the building permit fee"],
+    ["Impact fees / connection fees", "$5,000–$15,000+ depending on water and sewer"],
+    ["Trade permits (electrical, plumbing, mechanical)", "$500–$1,200 combined"],
+    ["Total typical cost", "$8,000–$20,000"]
+  ]}
+/>
+
+<DataTable
+  caption="Billings (Yellowstone County) permit cost estimate for a 2,000 sq ft home"
+  headers={["Cost item", "Amount"]}
+  rows={[
+    ["Building permit (valuation-based; city reduced fees ~25% in recent years)", "Roughly $1,100–$1,400 on about a $350,000 valuation"],
+    ["Plan review", "Percentage of permit fee per Billings schedule"],
+    ["Water/sewer connection", "$3,000–$8,000"],
+    ["Trade permits (electrical, plumbing, mechanical)", "$450–$1,000 combined"],
+    ["Total typical cost", "$5,000–$11,000"]
+  ]}
+/>
+
+<DataTable
+  caption="Kalispell & Whitefish (Flathead County cities) permit cost estimate for a 2,000 sq ft home"
+  headers={["Cost item", "Kalispell", "Whitefish"]}
+  rows={[
+    ["Building permit", "Valuation-based ICC schedule (~$1,800–$3,200)", "Percentage of estimated project cost; deposit at submittal"],
+    ["Plan review", "Percentage of permit fee", "Included in valuation-based fee"],
+    ["Connection / impact fees", "$4,000–$10,000", "$5,000–$12,000 (impact fees limited by recent state law)"],
+    ["Trades", "$500–$1,100", "$500–$1,100"],
+    ["Total typical cost", "$7,000–$15,000", "$8,000–$18,000"]
+  ]}
+/>
+
+<CalloutBox type="info" title="Flathead County itself charges no building permit">
+
+In **unincorporated Flathead County** there is no county building permit program — your only construction permits are state electrical (unless you take the homeowner exemption) plus septic, well, and floodplain approvals. The fee tables above apply only inside the cities of Kalispell, Whitefish, and Columbia Falls. This dramatically lowers the permit cost of building on unincorporated acreage in the Flathead.
+
+</CalloutBox>
+
+### Rural and Non-Certified Areas
+
+<DataTable
+  caption="Rural / unincorporated permit cost estimate (no certified building program)"
+  headers={["Cost item", "Amount"]}
+  rows={[
+    ["State building permit", "$0 — single-family homes (under 5 units) are exempt under 50-60-104, MCA"],
+    ["State electrical permit", "Homeowner electrical permit fee (modest) — or $0 if you DIY under the homeowner exemption and your area doesn't require the permit"],
+    ["Septic permit + design (DEQ / county health)", "$500–$2,000 (system install is separate and much larger)"],
+    ["Well drilling", "$10,000–$30,000 for a complete private well system"],
+    ["Subdivision sanitation review (DEQ COSA, if dividing land)", "Review fees apply; water-right Notice of Intent $400"],
+    ["Total permit-related cost", "Often under $3,000 in true no-program areas (excluding well and septic install)"]
+  ]}
+/>
+
+### Hidden Fees
+
+<DataTable
+  caption="Hidden fees Montana owner-builders should budget for"
+  headers={["Fee", "Typical amount / note"]}
+  rows={[
+    ["Impact fees (Bozeman, Kalispell, Whitefish, Missoula)", "Often the single largest charge — $5,000 to $25,000+ in the growth cities"],
+    ["Geotechnical / soils report", "$1,500–$4,000; required at application in Bozeman and recommended on seismic-prone or expansive sites"],
+    ["Septic permit and system", "Permit $500–$2,000; conventional system install $8,000–$20,000+; advanced systems much more"],
+    ["Well drilling and pump", "$10,000–$30,000 complete; deep mountain wells run higher"],
+    ["DEQ subdivision sanitation (COSA)", "Required when dividing parcels under 20 acres; DNRC water-right NOI $400, completion $250"],
+    ["Floodplain permit", "Required near rivers and lakes (the Flathead, Clark Fork, Yellowstone, and Bitterroot corridors)"],
+    ["Snow-load engineering / structural review", "$1,000–$5,000+ in high-snow mountain areas where the 30 psf minimum is far exceeded"]
+  ]}
+/>
+
+## Processing Timelines
+
+<CalloutBox type="info" title="Highly variable by jurisdiction">
+
+The state Bureau says plan review can take "anywhere from a few hours to several weeks" depending on workload and project size. Certified cities are slower; no-program areas are instant for the building permit because there isn't one.
+
+</CalloutBox>
+
+<DataTable
+  caption="Permit processing time estimates by jurisdiction"
+  headers={["Jurisdiction", "Time to permit"]}
+  rows={[
+    ["Bozeman (Gallatin)", "6–12 weeks (high volume, geotech and impact-fee review)"],
+    ["Missoula (city)", "4–10 weeks"],
+    ["Billings (Yellowstone)", "3–8 weeks"],
+    ["Kalispell / Whitefish (Flathead cities)", "3–8 weeks"],
+    ["State Bureau (state-enforced areas)", "A few hours to several weeks, per the Bureau"],
+    ["Unincorporated non-certified areas", "No building permit to wait on — septic/well/floodplain reviews still take 2–8 weeks"]
+  ]}
+/>
+
+## Energy Code Requirements
+
+<CalloutBox type="info" title="Cold-climate energy code">
+
+Montana enforces the **2021 IECC with state amendments** (the Montana Energy Code), administered with help from the [Montana DEQ energy program](https://deq.mt.gov/energy/Programs/code). Most of the populated state is IECC Climate Zone 6B (cold-dry); valleys in the far south and southeast are 5B; the high mountains are Zone 7 (very cold). One notable Montana amendment relaxes the air-tightness target somewhat and allows building cavities to serve as return ductwork.
+
+</CalloutBox>
+
+<DataTable
+  caption="Montana residential energy requirements by climate zone (2021 IECC with MT amendments)"
+  headers={["Requirement", "Zone 5B (warmer valleys: parts of south-central / southeast MT)", "Zone 6B (most of populated MT: Bozeman, Missoula, Kalispell, Helena, Great Falls)", "Zone 7 (high mountains: Big Sky, West Yellowstone, high passes)"]}
+  rows={[
+    ["Ceiling insulation", "R-49", "R-49", "R-49 (R-60 increasingly specified)"],
+    ["Wood-framed wall", "R-20 cavity or R-13 + R-5 continuous", "R-20 cavity or R-13 + R-5 continuous", "R-20 cavity or R-13 + R-5 continuous (more in practice)"],
+    ["Floor", "R-30", "R-30", "R-38"],
+    ["Basement wall", "R-15 continuous / R-19 cavity", "R-15 continuous / R-19 cavity", "R-15 continuous / R-19 cavity or better"],
+    ["Slab edge", "R-10, 4 ft", "R-10, 4 ft", "R-10, 4 ft"],
+    ["Windows (U-factor)", "U-0.30", "U-0.30", "U-0.30 or lower"]
+  ]}
+/>
+
+<CalloutBox type="warning" title="Confirm the exact prescriptive table">
+
+Insulation values come from IECC Table R402.1.2 as amended for Montana. The figures above are the prescriptive path; a blower-door air-leakage test is part of compliance. Verify the current amended values with your building department or the DEQ energy program before ordering insulation — and remember Climate Zone 7 mountain builds routinely exceed the minimums for comfort and frozen-pipe protection.
+
+</CalloutBox>
+
+### Foundation and Frost Depth
+
+Frost depth is set locally and runs deep across Montana's cold climate. Bozeman, for example, requires footings at **36 inches** for one-story and **48 inches** for two-story structures. Expect 36–48 inches in most of the populated state, deeper at high elevation. Frost-protected shallow foundations (per IRC Appendix) are an option but must be engineered.
+
+<DataTable
+  caption="Representative minimum frost depths in Montana (verify locally)"
+  headers={["Area", "Typical minimum footing depth"]}
+  rows={[
+    ["Bozeman / Gallatin Valley", "36\" (one story) to 48\" (two story)"],
+    ["Missoula, Helena, lower valleys", "36–42\""],
+    ["Flathead Valley (Kalispell, Whitefish)", "42–48\""],
+    ["High mountain communities (Big Sky, West Yellowstone)", "48\"+ — verify with the AHJ or engineer"]
+  ]}
+/>
+
+## Inspection Requirements
+
+In certified cities and state-enforced areas, expect a standard inspection sequence. In no-program areas there is no building inspection — only state electrical (where applicable) and septic/well sign-offs.
+
+<DataTable
+  caption="Standard Montana inspection schedule (certified / state-enforced areas)"
+  headers={["#", "Inspection", "When"]}
+  rows={[
+    ["1", "Footing", "After excavation, before pour (geotech/soils sign-off first in some cities)"],
+    ["2", "Foundation / stem wall", "After forms and rebar, before pour"],
+    ["3", "Underground plumbing", "Before slab pour"],
+    ["4", "Under-slab / underground electrical", "If applicable, before slab"],
+    ["5", "Framing / sheathing", "After rough structure, before cover"],
+    ["6", "Electrical rough-in", "—"],
+    ["7", "Plumbing rough-in", "—"],
+    ["8", "Mechanical rough-in", "—"],
+    ["9", "Insulation / air barrier", "Before drywall; blower-door test for energy compliance"],
+    ["10", "Final electrical", "—"],
+    ["11", "Final plumbing", "—"],
+    ["12", "Final mechanical", "—"],
+    ["13", "Final building / Certificate of Occupancy", "—"]
+  ]}
+/>
+
+<CalloutBox type="tip" title="Scheduling inspections in a big state">
+
+State Bureau inspectors cover large regions and travel to sites, so build in lead time — schedule a week or more ahead in state-enforced areas, and coordinate footing inspections around weather. Certified cities generally offer faster turnaround.
+
+</CalloutBox>
+
+## Special Montana Considerations: Snow, Seismic, Cold & Wildfire
+
+This is the section that matters most in Montana. The state's permit freedom can lull an owner-builder into underbuilding — and Montana's natural hazards punish that harder than almost anywhere in the Lower 48.
+
+### Heavy Snow Loads — The Defining Structural Hazard
+
+<CalloutBox type="warning" title="Snow load is the number-one structural design issue in Montana">
+
+Ground snow loads in Montana range from about 20 psf on the eastern plains to **300–440+ psf** at high mountain stations. Roof collapse from snow — and especially from drift loading — is a recurring cause of building failure here. Get the right number for your exact site and elevation, and engineer the roof to it.
+
+</CalloutBox>
+
+Montana sets a **statewide minimum design roof snow load of 30 psf** (after allowed reductions), per the Administrative Rules of Montana — but that is a floor, not a target. The authoritative source for site-specific ground snow loads is the Montana State University study *Snow Loads for Structural Design in Montana* and its companion finder tool at [snowload.montana.edu](https://snowload.montana.edu/), which the IBC/IRC reference for Montana locations. The DLI also maintains a [snow load information page](https://bsd.dli.mt.gov/building-codes-permits/snow-load-information). Snow load increases sharply with elevation — it can double or triple over a few miles — so a number for the valley floor is useless for a bench lot a thousand feet higher.
+
+<DataTable
+  caption="Representative 50-year ground snow loads from the MSU study (psf) — verify your exact site with the finder tool"
+  headers={["Location", "Approx. elevation", "Ground snow load"]}
+  rows={[
+    ["Billings / eastern plains", "Low", "About 20–30 psf"],
+    ["Bozeman (MSU station)", "~4,900 ft", "About 42 psf (valley); benches and foothills much higher"],
+    ["Belgrade Airport (Gallatin Valley)", "~4,400 ft", "About 33 psf"],
+    ["Missoula (Int'l Airport)", "~3,200 ft", "About 34 psf"],
+    ["Kalispell (Glacier Park AP)", "~3,200 ft", "About 61 psf"],
+    ["Whitefish", "~3,100 ft", "About 68 psf"],
+    ["West Yellowstone", "~6,700 ft", "About 89–135 psf"],
+    ["Big Sky / Lone Mountain area", "High", "200+ psf"],
+    ["High SNOTEL mountain sites (e.g., Hoodoo Basin, Badger Pass)", "Very high", "320–440+ psf"]
+  ]}
+/>
+
+Beyond the flat-roof number, design for **drift and sliding loads** where roofs change pitch, behind parapets, and against taller walls — drifts are where most Montana snow failures occur. Steep, simple cold-roof geometries shed better; complex rooflines with valleys collect snow and ice. Account for ice dams with generous insulation and ventilation. For anything above roughly 50–60 psf ground snow, get a Montana-licensed engineer's roof design — and note the building official can require it.
+
+### Seismic — Western Montana Is Earthquake Country
+
+<CalloutBox type="warning" title="Western Montana sits in the Intermountain Seismic Belt — design for SDC D">
+
+The western third of Montana is one of the most seismically active regions in the interior U.S. Cities like Bozeman fall in **Seismic Design Category D**. Detail your foundation, anchorage, and shear walls accordingly — this is not optional even where no inspector will check.
+
+</CalloutBox>
+
+The [Intermountain Seismic Belt](https://www.mbmg.mtech.edu/MontanaGeology/geohazards/earthquakes/seismicity.asp) runs through western Montana from the Flathead Lake region to Yellowstone, with at least 45 potentially active faults and an average of 7–10 small earthquakes per day. Montana has produced some of the largest historic quakes in the Rocky Mountains:
+
+- **1959 Hebgen Lake (M7.3)** near West Yellowstone — triggered the massive Madison Slide that created Quake Lake and killed 28 people; peak ground accelerations near 0.4g
+- **1935 Helena (M6.0–6.3 sequence)** — damaged roughly 65% of Helena's buildings and killed four; a defining event for Montana seismic awareness
+- **1925 Clarkston Valley (M6.6)** northwest of Bozeman — wrecked unreinforced masonry in Three Forks, Manhattan, and Logan and triggered landslides along the Missouri
+
+Gallatin County (Bozeman) is mapped predominantly **Seismic Design Category D** (D0 for typical residential per IRC R301.2.2.1), and much of western Montana is SDC C–D. Practical implications for an owner-builder:
+
+- Continuous, well-reinforced foundations with proper anchor bolting and hold-downs
+- Engineered shear walls / braced wall lines per IRC Section R602.10 for your SDC
+- Avoid or carefully engineer unreinforced masonry, tall slender chimneys, and soft-story garage fronts
+- Brace water heaters and heavy mechanicals; secure cripple walls in crawlspaces
+
+### Extreme Cold
+
+Montana sees some of the coldest temperatures in the Lower 48 (the national record low, −70°F, was set at Rogers Pass). Cold drives several design choices: deep frost footings (above), generous insulation that often exceeds the energy-code minimum, freeze protection for plumbing on exterior walls and in crawlspaces, ice-dam-resistant roof assemblies, and combustion-air and venting design that works at altitude in deep cold. Don't value-engineer the building envelope in a Montana mountain build — the heating bills and frozen-pipe risk will find you.
+
+### Wildfire and the Wildland-Urban Interface (WUI)
+
+<CalloutBox type="warning" title="Wildfire risk is rising and largely unregulated in Montana">
+
+More than 120,000 Montana homes sit in the wildland-urban interface, yet Montana has **no mandatory statewide WUI building code**. Missoula County and a few cities have adopted WUI provisions; most areas leave ignition-resistant construction and defensible space entirely up to the owner. If you're building in the trees, build to WUI standards voluntarily — it's cheap insurance.
+
+</CalloutBox>
+
+Per [Headwaters Economics](https://headwaterseconomics.org/natural-hazards/montana-wildfire-safety-standards/), Montana allows local jurisdictions to adopt a limited, pre-approved statewide wildfire building standard, but adoption is voluntary and enforcement is limited — only Missoula County and a handful of cities have done so. If your site is forested or grassland-interface, voluntarily follow IWUIC-style measures:
+
+- Class-A non-combustible roof kept clear of needles and debris
+- Ember-resistant vents, enclosed eaves, and 1/8-inch metal mesh screening
+- Ignition-resistant or non-combustible siding and decking
+- Tempered or dual-pane windows
+- **Defensible space**: clear and manage vegetation 30–100 ft around the home; keep woodpiles and propane tanks away from the structure
+
+Studies cited by Headwaters find that building new to wildfire standards costs about the same as conventional construction and saves roughly $4 for every $1 spent at the community level.
+
+### Septic, Wells & Subdivision Sanitation
+
+Rural Montana builds almost always mean a private well and septic system, reviewed through the [Montana DEQ subdivision/engineering program](https://deq.mt.gov/water/Programs/eng) and county health departments. Dividing a parcel under 20 acres triggers a DEQ Certificate of Subdivision Approval (COSA) covering water source and wastewater. Wells and water rights run through the [Montana DNRC](https://dnrc.mt.gov/Water-Resources/Water-Rights/Understanding-Water-Rights/Exempt-Well-Updates), and the state's exempt-well rules tightened effective January 1, 2026 — confirm current requirements before relying on a permit-exception well.
+
+<DataTable
+  caption="Montana rural water and septic cost estimates"
+  headers={["Item", "Cost"]}
+  rows={[
+    ["DEQ / county septic permit", "$500–$2,000"],
+    ["Conventional septic system install", "$8,000–$20,000"],
+    ["Advanced / engineered system (poor soils, high water table)", "$20,000–$40,000+"],
+    ["Complete private well system", "$10,000–$30,000"],
+    ["DNRC water-right Notice of Intent / completion", "$400 / $250"]
+  ]}
+/>
+
+## Top Counties for Owner-Builders
+
+### 1. **Gallatin County** (Bozeman, Big Sky, Belgrade)
+- **Pros**: Strongest economy and resale in the state; clear, professional building department
+- **Cons**: Highest fees and impact fees in Montana; SDC D seismic; geotech required; high snow loads on benches and at Big Sky; expensive land
+- **Best for**: Owner-builders who want resale value and amenities and can absorb the highest cost and most regulation
+
+### 2. **Flathead County** (Kalispell, Whitefish, Columbia Falls)
+- **Pros**: **No county building permit** in unincorporated areas — major freedom and savings on acreage; beautiful Flathead Valley
+- **Cons**: Cities (especially Whitefish) are pricey and growth-pressured; heavy snow loads (60–100+ psf); seismic and wildfire exposure
+- **Best for**: Owner-builders who want minimal building bureaucracy on rural land near Glacier and Flathead Lake
+
+### 3. **Missoula County** (Missoula, Bitterroot gateway)
+- **Pros**: Established city building department; one of the few jurisdictions with WUI fire standards (a plus for safety-minded builders)
+- **Cons**: City fees and connection costs; seismic exposure; limited buildable land near the city
+- **Best for**: Owner-builders wanting a university-town setting with competent, predictable review
+
+### 4. **Yellowstone County** (Billings)
+- **Pros**: Lowest big-city permit fees in the state (Billings cut fees ~25%); lower snow loads on the plains; lower seismic risk than western MT; affordable land
+- **Cons**: Less of the iconic mountain setting; eastern-Montana wind and cold
+- **Best for**: Budget-focused owner-builders who want a real city with the lowest permit costs
+
+### 5. **Ravalli County** (Bitterroot Valley — Hamilton, Stevensville)
+- **Pros**: Scenic valley south of Missoula; rural character; generally lighter enforcement outside the towns
+- **Cons**: Significant wildfire exposure in the Bitterroot; seismic; verify the exact permit posture with the county planning department
+- **Best for**: Owner-builders prioritizing a rural valley lifestyle with relatively low building bureaucracy
+
+### Most Expensive / Challenging Areas
+
+<CalloutBox type="warning" title="These areas mean higher costs, tougher sites, or more review">
+
+The places below carry the highest fees or the toughest site conditions in Montana — go in with eyes open.
+
+</CalloutBox>
+
+- **City of Bozeman**: Highest fees and impact fees in the state; mandatory geotech; SDC D detailing; high benches carry heavy snow
+- **Big Sky (Gallatin/Madison)**: Extreme snow loads (200+ psf), steep sites, resort-area costs, and engineering required
+- **Whitefish**: Resort pricing, design review, and high snow loads
+- **River and lake corridors (Flathead, Clark Fork, Yellowstone, Bitterroot)**: Floodplain permitting and restrictions
+
+## Key Resources
+
+- **Montana DLI Building Codes Bureau** — code adoption, state permits, certified-program list, snow/wind load info: [bsd.dli.mt.gov/building-codes-permits](https://bsd.dli.mt.gov/building-codes-permits/)
+- **DLI Construction Contractor Registration** — workers'-comp contractor credential and exemptions: [erd.dli.mt.gov](https://erd.dli.mt.gov/work-comp-regulations/montana-contractor/construction-contractor-registration)
+- **Montana DEQ — Energy Code** and **Subdivision/Engineering (septic, sanitation)**: [deq.mt.gov/energy/Programs/code](https://deq.mt.gov/energy/Programs/code) and [deq.mt.gov/water/Programs/eng](https://deq.mt.gov/water/Programs/eng)
+- **Montana DNRC — water rights and exempt wells**: [dnrc.mt.gov](https://dnrc.mt.gov/Water-Resources/Water-Rights/Understanding-Water-Rights/Exempt-Well-Updates)
+- **Montana State University snow load finder**: [snowload.montana.edu](https://snowload.montana.edu/)
+- **Your county or city building / planning department**: the only authority on whether a permit is required at your specific site
+
+## Common Questions
+
+**Do I need a license to build my own house in Montana?** No. Montana issues no general contractor license, so building your own home as owner-builder is straightforward. The only contractor credential — Construction Contractor Registration — is a workers'-comp requirement for businesses with employees, and an owner-builder working on their own home is exempt.
+
+**Can you build your own house without a permit in Montana?** Often yes, in the right place. State law exempts a residential building with fewer than five dwelling units from the **state** building permit, so in unincorporated areas without a certified local program you may pull no building permit at all. Inside certified cities and counties (Bozeman, Missoula, Billings, Kalispell, and others), a building permit is required. You still need septic, well, floodplain, and electrical approvals as applicable everywhere.
+
+**Can a homeowner do their own electrical and plumbing in Montana?** Yes. Under 37-68-103(3), MCA, you don't need a license to do electrical work on a residence you maintain for your own use (except grid-tied generator work), and in state-enforced areas you pull a state homeowner's electrical permit. Under 50-60-506(4), MCA, you can do your own plumbing without a permit on a single-family home you'll live in — provided it isn't built for resale, speculation, or rental.
+
+**What is the Montana owner-builder exemption?** Montana has no state GC license to be exempt from, so "owner-builder exemption" really refers to two things: the residential-under-5-units exemption from the state building permit (50-60-104, MCA), and the homeowner electrical and plumbing exemptions (37-68-103 and 50-60-506, MCA) that let you do your own trade work on your own home.
+
+**How much does a Montana owner-builder permit cost?** In the certified cities, building permits run roughly $1,100–$3,500 for a 2,000 sq ft home (valuation-based), with Bozeman the highest. Impact fees in the growth cities are the real cost — $5,000 to $25,000+. In unincorporated no-program areas the building permit is often $0, and your main costs become septic and well.
+
+**Which Montana counties are best for owner-builders?** Flathead (no county building permit on unincorporated land) and Yellowstone/Billings (lowest big-city fees) are the most owner-builder-friendly on cost and bureaucracy; Gallatin/Bozeman offers the best resale but the highest fees and most regulation.
+
+## Typical Owner-Builder Timeline
+
+<CalloutBox type="info" title="Sample timeline">
+
+Typical phased timeline for a part-time owner-builder in Montana. No-program rural builds skip the plan-review wait but add septic/well lead time.
+
+</CalloutBox>
+
+<DataTable
+  caption="Phased Montana owner-builder timeline"
+  headers={["Phase", "Tasks"]}
+  rows={[
+    ["Months 1–3: Pre-permit", "Site evaluation; geotech/soils report; septic and well design + DEQ/county review; snow-load determination; architectural/structural plans; energy compliance docs; floodplain check"],
+    ["Months 2–4: Permitting", "Submittal to city/county or state Bureau (or confirm exemption in no-program areas); impact-fee payment; permit issuance"],
+    ["Months 4–7: Foundation and shell", "Excavation and frost-depth footings; foundation pour; framing, sheathing, roof engineered for snow; window/door install; framing inspection"],
+    ["Months 7–10: Rough-ins", "Mechanical, electrical (homeowner permit), plumbing rough-ins; insulation and air-barrier; blower-door test; drywall"],
+    ["Months 10–14: Finishes", "Cabinets, flooring, trim, paint; final inspections; Certificate of Occupancy"]
+  ]}
+/>
+
+**Total: 10–14 months** (part-time owner-builder), longer at high elevation where the building season is short. Full-time and weather-cooperating, 8–11 months.
+
+## Final Thoughts for Montana Owner-Builders
+
+Montana gives the owner-builder something rare: a genuine choice between a clean, professional permitting process in the cities and near-total building freedom on rural land. With no GC license, a broad single-family exemption from the state permit, and explicit homeowner electrical and plumbing rights, the legal path is about as open as it gets in the Mountain West.
+
+The catch is that Montana's freedom is matched by Montana's hazards. The big decisions:
+
+1. **Pick the right county for your goals**: Flathead or Yellowstone for low cost and light bureaucracy; Gallatin/Bozeman for resale (at the highest cost and most regulation).
+2. **Get the right snow-load number — then engineer to it.** Use the MSU finder for your exact site and elevation, design for drift, and don't trust the 30 psf minimum to cover a mountain lot.
+3. **Detail for seismic in western Montana.** SDC D is real; foundations, anchorage, and shear walls deserve an engineer's attention even where no one inspects.
+4. **Build the envelope for extreme cold** — deep footings, generous insulation, freeze protection — and **build to WUI standards voluntarily** if you're in the trees.
+5. **Carry workers' comp for any paid labor** and line up owner-builder financing early; both are stumbling blocks in Montana.
+
+Build to the 2021 IRC even where no inspector will check, and Montana rewards the careful, self-reliant owner-builder with a home, and a setting, that's hard to match anywhere.
+
+<FAQSection
+  title="Montana Owner-Builder FAQs"
+  faqs={[
+    {
+      question: "Can you build your own house in Montana without a license?",
+      answer: "Yes. Montana has no general contractor license, so you can legally act as your own general contractor on a home you own. The only contractor credential in Montana is Construction Contractor Registration, which is a workers' compensation compliance requirement for businesses with employees — a homeowner building their own home is exempt. You must still meet the 2021 International Residential Code, which Montana adopts statewide."
+    },
+    {
+      question: "Can you build a house in Montana without a permit?",
+      answer: "Often, yes. Montana state law (50-60-104, MCA) exempts residential buildings with fewer than five dwelling units from the state building permit requirement. In unincorporated areas without a certified local building program — which is much of rural Montana, including unincorporated Flathead County — you may pull no building permit at all. But inside certified cities and counties such as Bozeman, Missoula, Billings, and Kalispell, a local building permit is required. You still need septic, well, floodplain, and (often) electrical approvals everywhere."
+    },
+    {
+      question: "Does Montana have a statewide building code?",
+      answer: "Yes. Montana adopts the 2021 International Residential Code, 2021 IBC, 2021 IECC, 2020 NEC, 2021 Uniform Plumbing Code, and 2021 IMC statewide (effective June 11, 2022) through the DLI Building Codes Bureau. Enforcement is split: certified cities and counties enforce the code locally, while the state Bureau is the authority elsewhere. The catch is that the under-5-unit residential exemption means many single-family homes are never inspected even though the code technically still applies."
+    },
+    {
+      question: "Can a homeowner do their own electrical work in Montana?",
+      answer: "Yes. Under 37-68-103(3)(a), MCA, an individual does not need an electrical license to perform electrical work on their own property or residence maintained for their own use, and in state-enforced areas a homeowner pulls a state homeowner's electrical permit to wire their home, garage, and premises. The one exception, under 37-68-103(3)(b), is grid-tied generator work — such as a grid-tied solar interconnection — which is not exempt and should be done by a licensed electrician."
+    },
+    {
+      question: "Can a homeowner do their own plumbing in Montana?",
+      answer: "Yes. Under 50-60-506(4), MCA, a homeowner does not need a plumbing permit or license if they personally do the plumbing work on a single-family dwelling they will reside in — provided the home is for their own use and not built on speculation of resale or intended as a rental property. The work must still meet the 2021 Uniform Plumbing Code that Montana has adopted."
+    },
+    {
+      question: "Do I need a contractor's license to be an owner-builder in Montana?",
+      answer: "No. Montana issues no general contractor license, so there is no GC license to obtain. There is a Construction Contractor Registration, but it is a workers'-comp credential for construction businesses with employees, not a competency license — an owner-builder working on their own home with no employees is exempt. If you hire paid labor, however, you must address workers' compensation: workers either hold valid Independent Contractor Exemption Certificates or you must carry coverage."
+    },
+    {
+      question: "How much does a Montana owner-builder permit cost?",
+      answer: "In the certified cities, building permits run roughly $1,100–$3,500 for a typical 2,000 sq ft home (calculated from project valuation), with Billings the lowest and Bozeman the highest. Impact fees in the growth cities (Bozeman, Whitefish, Kalispell, Missoula) are the larger cost, ranging from about $5,000 to $25,000 or more. In unincorporated areas without a certified building program, the building permit is often $0 because single-family homes are exempt, and your main costs shift to septic ($500–$2,000 permit plus install) and a private well ($10,000–$30,000)."
+    },
+    {
+      question: "Which Montana counties are best for owner-builders?",
+      answer: "Flathead County is among the friendliest because it runs no county building permit program in unincorporated areas — only its cities (Kalispell, Whitefish, Columbia Falls) require permits. Yellowstone County (Billings) has the lowest big-city fees and lower snow and seismic exposure. Gallatin County (Bozeman) offers the strongest resale value but the highest fees, impact fees, and regulation in the state. Match the county to whether you prioritize low cost and freedom or resale and amenities."
+    },
+    {
+      question: "How serious are snow loads and earthquakes for building in Montana?",
+      answer: "Both are major design factors. Ground snow loads range from about 20 psf on the eastern plains to 300–440+ psf at high mountain stations; Montana sets a 30 psf minimum roof load but that is a floor, and drift loading causes most snow-related failures, so use the Montana State University snow load finder for your exact site and engineer the roof to it. Western Montana lies in the Intermountain Seismic Belt — home to the 1959 Hebgen Lake M7.3, 1935 Helena, and 1925 Clarkston quakes — and cities like Bozeman are Seismic Design Category D, requiring proper foundation reinforcement, anchorage, and braced/shear walls even where no inspector will check the work."
+    }
+  ]}
+/>
+
+## Related State Guides
+
+Building in a nearby Western state? Check the requirements for:
+
+- [Idaho Owner-Builder Permit Guide](/permitting/state-guides/idaho)
+- [Colorado Owner-Builder Permit Guide](/permitting/state-guides/colorado)
+- [Washington Owner-Builder Permit Guide](/permitting/state-guides/washington)
+- [Oregon Owner-Builder Permit Guide](/permitting/state-guides/oregon)
+
+[See all state owner-builder guides →](/permitting/state-guides)
+
+---
+
+*Last updated: May 2026. Verified this update: Montana has no residential general contractor license — only a workers'-comp Construction Contractor Registration that owner-builders without employees are exempt from (per the [Montana DLI](https://erd.dli.mt.gov/work-comp-regulations/montana-contractor/construction-contractor-registration), Title 39, Ch. 9, MCA). The state adopts the 2021 IRC/IBC/IECC, 2020 NEC, and 2021 UPC/IMC statewide effective June 11, 2022 (per the [DLI Building Codes Bureau](https://bsd.dli.mt.gov/building-codes-permits/current-codes)). Enforcement is split between certified local programs and the state Bureau, and residential buildings with fewer than five dwelling units are exempt from the state building permit under 50-60-104, MCA. Homeowner electrical and plumbing exemptions are codified at [37-68-103(3), MCA](https://mca.legmt.gov/bills/mca/title_0370/chapter_0680/part_0010/section_0030/0370-0680-0010-0030.html) (grid-tied generator work excepted) and 50-60-506(4), MCA. Site-specific ground snow loads come from the [Montana State University study and finder tool](https://snowload.montana.edu/) (30 psf statewide minimum roof load). Permit fees, processing times, frost depths, impact fees, WUI requirements, and whether any building permit is required at all vary by jurisdiction — verify with your specific county or city building department before relying on any figure here.*
