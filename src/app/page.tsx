@@ -51,7 +51,7 @@ export default function Home() {
             <aside className={styles.specsheet}>
               <div className={styles.sheetNo}><span>Project Specs</span><span>Rev. 2026</span></div>
               <div className={styles.dimrow}><span className={styles.k}>Typical Savings</span><span className={styles.v}><em>10–25%</em></span></div>
-              <div className={styles.dimrow}><span className={styles.k}>State Guides</span><span className={styles.v}>15</span></div>
+              <div className={styles.dimrow}><span className={styles.k}>State Guides</span><span className={styles.v}>50</span></div>
               <div className={styles.dimrow}><span className={styles.k}>Build Phases</span><span className={styles.v}>16</span></div>
               <div className={styles.dimrow}><span className={styles.k}>GC Experience</span><span className={styles.v}>15<small>yr</small></span></div>
             </aside>

@@ -1,6 +1,6 @@
 export const metadata = {
   title: 'Owner-Builder Permits by State 2026: Laws, Costs & Codes',
-  description: 'Owner-builder permit guides by state for 2026. Building codes, permit costs, exemption laws, and county process for the top 10 owner-builder states.',
+  description: 'Owner-builder permit guides by state for 2026. Building codes, permit costs, exemption laws, and county process for all 50 states.',
   keywords: 'owner builder permits by state, state building codes, building permit costs by state, owner builder laws',
 }
 
@@ -16,220 +16,133 @@ Start with the at-a-glance table below to shortlist states by permit cost, proce
 
 ## Featured State Guides
 
-We've created detailed guides for the top owner-builder states, covering everything from permit costs to code requirements to licensing laws.
+We've created in-depth guides for all 50 states, covering permit costs, building codes, owner-builder exemption laws, and licensing rules. Compare them at a glance below, then open your state's guide for the full detail.
 
-<DataTable caption="Owner-builder permitting by state — at a glance" headers={["State", "Building code", "Typical permit cost (2,000 sq ft)", "Processing time", "Owner-builder notes"]} rows={[
-  ["North Carolina", "2018 NC Residential Code", "$2,400-$4,300", "4-8 weeks", "Clear exemptions; can build own home"],
-  ["Texas", "2021 IRC in cities; none in many rural areas", "$2,250-$4,300 city / $0-$1,200 rural", "6-12 weeks city; immediate (no-code)", "Very strong; can hire unlicensed labor for most work"],
-  ["Florida", "2023 Florida Building Code", "$3,600-$10,150", "6-16 weeks", "Clear exemptions; must occupy 1 year"],
-  ["California", "2022 CA Residential Code", "$9,000-$16,400 + impact fees", "12-30 weeks", "Clear exemptions; 1-year occupancy"],
-  ["Georgia", "2018 IRC", "$2,000-$3,450", "3-8 weeks", "Strong; one home per year"],
-  ["Arizona", "2018 IRC (statewide minimum; varies)", "$2,300-$3,900 city / $500-$2,000 rural", "3-10 weeks", "Strong, clear exemptions"],
-  ["Colorado", "2021 IRC (major cities; varies)", "$3,900-$5,200 city / $0-$3,000 rural", "6-16 weeks city", "Clear exemptions"],
-  ["Tennessee", "2018 IRC", "$2,000-$3,900", "3-8 weeks", "Strong protections"],
-  ["Virginia", "2021 Virginia Residential Code", "$2,400-$6,200", "3-10 weeks", "Clear exemptions; 1-year limitation"],
-  ["Washington", "2021 WA State Residential Code", "$3,800-$8,700", "6-16 weeks", "Strong; cannot sell within 12 months"],
-  ["Oregon", "2021 Oregon Residential Specialty Code", "$3,000-$48,000 (SDCs dominate metro)", "2-28 weeks", "ORS 701.010 CCB exemption; 24-month occupancy"],
-  ["Ohio", "2024 Residential Code of Ohio", "$2,500-$11,500", "1-10 weeks", "No state GC license; most counties allow homeowner permits"],
-  ["Pennsylvania", "2015 IRC with PA amendments (UCC)", "$500-$22,000", "1-24 weeks", "No state GC license; UCC opt-out townships"],
-  ["South Carolina", "2021 IRC with SC amendments", "$3,000-$17,500", "2-14 weeks", "SC Code § 40-59-30 exemption; 2-year occupancy"],
-  ["Indiana", "2020 Indiana Residential Code", "$2,500-$10,500", "1-6 weeks", "No state GC license; broad exemptions except plumbing"]
+<DataTable caption="Owner-builder permitting by state — at a glance (open each guide for full detail; cost framing varies by state)" headers={["State", "Building code", "Typical permit cost (2,000 sq ft)", "Owner-builder notes"]} rows={[
+  ["Alabama", "2015 IRC (statewide, local enforcement)", "$165-$1,500 city / $0 no-dept county", "Homeowner exempt; gas fitting must be licensed"],
+  ["Alaska", "No statewide code (local; Anchorage etc.)", "$6,000-$10,000 Anchorage / $0 most areas", "Owner exempt from contractor registration; vast no-code areas"],
+  ["Arizona", "No statewide code (locally adopted IRC)", "$2,700 metro / $500-$2,000 rural", "No GC license on home you own and occupy"],
+  ["Arkansas", "2021 IRC (AFPC, local enforcement)", "$4,500-$8,500 city / $0 no-permit county", "Owner exempt; one home per calendar year"],
+  ["California", "Statewide CA Building Code (2022, amended)", "$16,000+ all-in (LA County)", "B&P 7044 exemption; impact fees often exceed permit"],
+  ["Colorado", "No statewide code (county-adopted)", "$5,200 Denver / $0 no-code county", "No state GC license; DIY electrical/plumbing on own home"],
+  ["Connecticut", "2022 CT Code (2021 IRC, statewide)", "$8,000-$19,000 all-in", "No GC license; DIY electrical/plumbing/heating allowed"],
+  ["Delaware", "County-adopted IRC (2018/2021/2024)", "$9,000-$22,000 all-in", "No state GC license; three counties, different IRC editions"],
+  ["Florida", "2023 FL Building Code (8th Ed, statewide)", "~$10,150 all-in (Miami-Dade)", "489.103(7) exemption; no unlicensed help; 1-year no-sale"],
+  ["Georgia", "2024 IRC (statewide minimum)", "$1,300-$2,000 rural permit", "Owner exemption; DIY electrical/plumbing/HVAC on own home"],
+  ["Hawaii", "2018 IRC (State Code, county-adopted)", "$1,500-$9,000 by county", "Owner-builder registration; no DIY electrical/plumbing; 1-year no-sale"],
+  ["Idaho", "2018 IRC (statewide)", "$4,800-$13,000 all-in", "Owner exempt; DIY trades via state homeowner permit"],
+  ["Illinois", "IRC statewide minimum (local enforce)", "$1,800 permit + tap fees", "No state GC license; DIY plumbing on new home you'll occupy"],
+  ["Indiana", "2020 IRC (2018 IRC base, statewide)", "$2,500-$10,500 all-in by area", "No state GC license; DIY plumbing (homeowner exam in cities)"],
+  ["Iowa", "2024 IRC (Iowa State Building Code)", "$5,000-$11,500 all-in", "No GC license; trades licensed — no DIY on NEW homes"],
+  ["Kansas", "No statewide code (local IRC)", "$4,200-$9,800 metro / $0 rural", "No state GC license; no statewide trade licensing"],
+  ["Kentucky", "2015 IRC (mandatory uniform KRC)", "$4,000-$10,000 all-in", "No GC license; DIY electrical/plumbing/HVAC by statute"],
+  ["Louisiana", "2021 IRC (mandatory statewide LSUCC)", "$4,000-$9,500 all-in", "Own-residence exemption; one home/year; no no-code parish"],
+  ["Maine", "2021 IRC (MUBEC; towns over 4,000)", "$4,000-$15,000 / $0 no-code town", "No GC license; DIY trades; code optional in small towns"],
+  ["Maryland", "2021 IRC (MBPS, statewide)", "$2,500-$9,000 all-in", "No GC license; builder registration targets building for others"],
+  ["Massachusetts", "780 CMR 10th Ed (2021 IRC, statewide)", "$4,500-$18,000 all-in", "CSL homeowner exemption; DIY electrical only, not plumbing/gas"],
+  ["Michigan", "2015 IRC (Michigan Residential Code)", "$5,800-$18,000 all-in", "Homeowner exemption (MCL 339.2403); DIY trades on own home"],
+  ["Minnesota", "2018 IRC (Minnesota Residential Code)", "$6,500-$15,000 all-in", "Owner-occupant exempt; DIY electrical/plumbing; not for resale"],
+  ["Mississippi", "2021 IRC (discretionary statewide min)", "$2,000-$5,000 / $0 no-permit county", "Own-residence exempt; coast counties mandatory; many no-code counties"],
+  ["Missouri", "No statewide code (local IRC)", "$6,000-$12,000 metro / $0 rural", "No state GC license; freest state; many no-code counties"],
+  ["Montana", "2021 IRC (statewide, split enforce)", "$5,000-$35,000 metro / under $3,000 no-program", "No GC license; single-family exempt from state permit; DIY trades"],
+  ["Nebraska", "2018 IRC (State Building Code)", "$3,500-$11,000 all-in / $0 rural", "No GC license; state electrical program with homeowner self-wire"],
+  ["Nevada", "No statewide code (county IRC, 2024 metros)", "$9,000-$18,000 metro / $3,000-$9,000 rural", "NRS 624.031 exemption; hired subs must be NSCB-licensed"],
+  ["New Hampshire", "2021 IRC (statewide, local-only enforce)", "$5,000-$12,000 / $0 no-permit town", "No GC license; DIY electrical/plumbing; many no-inspector towns"],
+  ["New Jersey", "2021 IRC (statewide UCC)", "$1,400-$3,600 building + trade permits", "No GC license; DIY electrical/plumbing under NJAC 5:23-2.15"],
+  ["New Mexico", "2021 IRC (statewide CID code)", "$6,500-$15,000 all-in", "Owner exempt; homeowner permit; DIY electrical/plumbing, not HVAC/gas"],
+  ["New York", "2024 IRC (2025 RCNYS); NYC separate", "~$450 upstate permit / far more NYC", "No GC license; DIY trades vary by locality; NYC much harder"],
+  ["North Carolina", "Statewide NC Residential Code (mandatory)", "$2,400-$3,400 permit", "Owner exempt even over $40k; DIY trades; 12-month no-sale"],
+  ["North Dakota", "2021 IRC (locally adopted)", "$7,000-$18,000 metro / $0 rural", "Owner exempt under $4,000; state electrical/plumbing homeowner permits"],
+  ["Ohio", "2019 RCO (2018 IRC base, statewide)", "$4,800-$12,000 all-in", "No state GC license; DIY electrical/plumbing in most jurisdictions"],
+  ["Oklahoma", "2018 IRC (statewide min, local enforce)", "$700-$1,800 permit / $0 no-permit rural", "No GC license; DIY electrical/plumbing; HVAC limited"],
+  ["Oregon", "Statewide ORSC (no no-code areas)", "$16,000-$56,000 all-in (SDCs dominate)", "CCB exemption; DIY electrical/plumbing; no building to sell"],
+  ["Pennsylvania", "2021 IRC (statewide UCC)", "$4,800-$22,000 all-in", "No GC license; opt-out towns use third-party inspectors"],
+  ["Rhode Island", "2018 IRC (RISBC-2, statewide)", "$8,500-$22,000 all-in", "Owner-occupant exempt; DIY electrical by statute"],
+  ["South Carolina", "2021 IRC (statewide, no no-code areas)", "$3,000-$6,500 rural / $8,000-$17,500 coastal", "RBC exemption; deed notice; 2-year no-sale; DIY trades"],
+  ["South Dakota", "No statewide code (local IRC)", "$6,000-$15,000 metro / $0 rural", "No GC license; state electrical/plumbing homeowner self-permits"],
+  ["Tennessee", "2018 IRC (statewide, counties opt out)", "$2,000-$2,800 rural / $0 opt-out county", "Owner exempt; DIY electrical/plumbing; one home per 2 years"],
+  ["Texas", "No statewide code (local patchwork)", "$2,250-$4,300 metro / $0 no-code county", "No state GC license; homestead DIY electrical/plumbing; HVAC licensed"],
+  ["Utah", "2021 IRC (statewide Utah State Code)", "$9,000-$30,000 all-in", "Owner-builder exemption; strict — licensed electrical/plumbing/HVAC"],
+  ["Vermont", "No residential structural code (RBES energy only)", "$1,900-$15,000 (zoning + wastewater)", "No GC license; no structural code; DIY trades; state septic permit"],
+  ["Virginia", "Statewide USBC (2021 IRC base)", "$2,400-$3,500 rural permit", "Owner exempt; no DIY trades — licensed electrical/plumbing/HVAC/gas"],
+  ["Washington", "Statewide WA Residential Code (mandatory)", "$3,800-$7,400 all-in", "L&I registration exemption; DIY electrical/plumbing on own home"],
+  ["West Virginia", "2018 IRC (opt-in State Code)", "$4,000-$15,000 / $0 no-code county", "Owner/occupant exempt; DIY trades; many no-code counties"],
+  ["Wisconsin", "Statewide Uniform Dwelling Code (mandatory)", "$900-$2,000 permit + connection", "No GC license; no DIY plumbing/electrical on NEW homes"],
+  ["Wyoming", "No statewide code (local IRC, 2024 baseline)", "$3,500-$11,000 city / under $300 no-code", "No GC license; DIY electrical statewide; most rural land no-permit"]
 ]} />
 
-### [North Carolina Owner-Builder Guide](/permitting/state-guides/north-carolina)
+### Browse All 50 State Guides
 
-**Why Build in NC**: Strong owner-builder protections, reasonable costs, consistent statewide code
-- **Building Code**: 2018 NC Residential Code
-- **Typical Permit Costs**: $2,400-$4,300 for 2,000 sq ft home
-- **Processing Time**: 4-8 weeks
-- **Owner-Builder Rights**: Clear exemptions, can build own home
-- **Key Requirements**: Licensed trades for electrical/plumbing/HVAC, termite protection
-- **Climate Zones**: 3A (most) and 4A (mountains)
-- **Special Considerations**: Expansive soils (metro areas), coastal wind, mountain frost depth
+Every state below has its own in-depth guide — building code, owner-builder exemption, permit costs, climate/energy requirements, top hazards, and best counties. Pick yours:
 
-**Best Counties**: Wake, Henderson, Chatham, Alamance, Iredell
+#### Northeast
 
-### [Texas Owner-Builder Guide](/permitting/state-guides/texas)
+- [Connecticut Owner-Builder Guide](/permitting/state-guides/connecticut)
+- [Maine Owner-Builder Guide](/permitting/state-guides/maine)
+- [Massachusetts Owner-Builder Guide](/permitting/state-guides/massachusetts)
+- [New Hampshire Owner-Builder Guide](/permitting/state-guides/new-hampshire)
+- [New Jersey Owner-Builder Guide](/permitting/state-guides/new-jersey)
+- [New York Owner-Builder Guide](/permitting/state-guides/new-york)
+- [Pennsylvania Owner-Builder Guide](/permitting/state-guides/pennsylvania)
+- [Rhode Island Owner-Builder Guide](/permitting/state-guides/rhode-island)
+- [Vermont Owner-Builder Guide](/permitting/state-guides/vermont)
 
-**Why Build in TX**: Most owner-builder-friendly laws, patchwork regulations (some areas no codes), year-round building
-- **Building Code**: Varies by jurisdiction (2021 IRC in major cities, none in many rural areas)
-- **Typical Permit Costs**: $2,250-$4,300 (cities); $0-$1,200 (rural)
-- **Processing Time**: 6-12 weeks (cities); immediate (no code areas)
-- **Owner-Builder Rights**: Very strong, can hire unlicensed labor for most work
-- **Key Requirements**: Licensed electrical/plumbing required
-- **Climate Zones**: 2A (south), 3A (north/central), 3B (west)
-- **Special Considerations**: Expansive clay soils (I-35 corridor), coastal hurricane requirements, extreme heat
+#### Mid-Atlantic & Southeast
 
-**Best Counties**: Bastrop, Comal, Williamson, Parker, Hays
+- [Alabama Owner-Builder Guide](/permitting/state-guides/alabama)
+- [Delaware Owner-Builder Guide](/permitting/state-guides/delaware)
+- [Florida Owner-Builder Guide](/permitting/state-guides/florida)
+- [Georgia Owner-Builder Guide](/permitting/state-guides/georgia)
+- [Kentucky Owner-Builder Guide](/permitting/state-guides/kentucky)
+- [Maryland Owner-Builder Guide](/permitting/state-guides/maryland)
+- [Mississippi Owner-Builder Guide](/permitting/state-guides/mississippi)
+- [North Carolina Owner-Builder Guide](/permitting/state-guides/north-carolina)
+- [South Carolina Owner-Builder Guide](/permitting/state-guides/south-carolina)
+- [Tennessee Owner-Builder Guide](/permitting/state-guides/tennessee)
+- [Virginia Owner-Builder Guide](/permitting/state-guides/virginia)
+- [West Virginia Owner-Builder Guide](/permitting/state-guides/west-virginia)
 
-### [Florida Owner-Builder Guide](/permitting/state-guides/florida)
+#### Midwest
 
-**Why Build in FL**: Year-round building, strong owner-builder exemptions
-- **Building Code**: 2023 Florida Building Code (strict hurricane requirements)
-- **Typical Permit Costs**: $3,600-$10,150 (HVHZ highest)
-- **Processing Time**: 6-16 weeks (HVHZ longest)
-- **Owner-Builder Rights**: Clear exemptions, must occupy 1 year
-- **Key Requirements**: Licensed contractors for electrical/plumbing/HVAC/roofing
-- **Climate Zone**: 1A (hot-humid)
-- **Special Considerations**: Hurricane codes (expensive), flood zones, high permit fees
+- [Illinois Owner-Builder Guide](/permitting/state-guides/illinois)
+- [Indiana Owner-Builder Guide](/permitting/state-guides/indiana)
+- [Iowa Owner-Builder Guide](/permitting/state-guides/iowa)
+- [Kansas Owner-Builder Guide](/permitting/state-guides/kansas)
+- [Michigan Owner-Builder Guide](/permitting/state-guides/michigan)
+- [Minnesota Owner-Builder Guide](/permitting/state-guides/minnesota)
+- [Missouri Owner-Builder Guide](/permitting/state-guides/missouri)
+- [Nebraska Owner-Builder Guide](/permitting/state-guides/nebraska)
+- [North Dakota Owner-Builder Guide](/permitting/state-guides/north-dakota)
+- [Ohio Owner-Builder Guide](/permitting/state-guides/ohio)
+- [South Dakota Owner-Builder Guide](/permitting/state-guides/south-dakota)
+- [Wisconsin Owner-Builder Guide](/permitting/state-guides/wisconsin)
 
-**Best Counties**: Polk, Lake, Citrus, Marion, St. Johns
+#### South Central
 
-### [California Owner-Builder Guide](/permitting/state-guides/california)
+- [Arkansas Owner-Builder Guide](/permitting/state-guides/arkansas)
+- [Louisiana Owner-Builder Guide](/permitting/state-guides/louisiana)
+- [Oklahoma Owner-Builder Guide](/permitting/state-guides/oklahoma)
+- [Texas Owner-Builder Guide](/permitting/state-guides/texas)
 
-**Why Build in CA**: High home values mean good ROI despite challenges
-- **Building Code**: 2022 California Residential Code (most stringent in nation)
-- **Typical Permit Costs**: $9,000-$16,400 plus impact fees
-- **Processing Time**: 12-30 weeks
-- **Owner-Builder Rights**: Clear exemptions, 1-year occupancy required
-- **Key Requirements**: Licensed electrical/plumbing required, Title 24 energy code, solar panels mandatory
-- **Climate Zones**: Multiple (2A to 4C)
-- **Special Considerations**: Seismic requirements, Title 24 energy code, wildfire protection, environmental review (CEQA)
+#### Mountain West
 
-**Best Counties**: El Dorado, Placer, San Luis Obispo, Shasta, Tuolumne
+- [Arizona Owner-Builder Guide](/permitting/state-guides/arizona)
+- [Colorado Owner-Builder Guide](/permitting/state-guides/colorado)
+- [Idaho Owner-Builder Guide](/permitting/state-guides/idaho)
+- [Montana Owner-Builder Guide](/permitting/state-guides/montana)
+- [Nevada Owner-Builder Guide](/permitting/state-guides/nevada)
+- [New Mexico Owner-Builder Guide](/permitting/state-guides/new-mexico)
+- [Utah Owner-Builder Guide](/permitting/state-guides/utah)
+- [Wyoming Owner-Builder Guide](/permitting/state-guides/wyoming)
 
-### [Georgia Owner-Builder Guide](/permitting/state-guides/georgia)
+#### Pacific & Noncontiguous
 
-**Why Build in GA**: Reasonable costs, growing economy, moderate climate
-- **Building Code**: 2018 International Residential Code
-- **Typical Permit Costs**: $2,000-$3,450
-- **Processing Time**: 3-8 weeks
-- **Owner-Builder Rights**: Strong protections, one home per year
-- **Key Requirements**: Licensed electrical/plumbing/HVAC
-- **Climate Zones**: 3A (most) and 2A (coastal)
-- **Special Considerations**: Expansive clay (metro Atlanta), termites, coastal wind/flood
+- [Alaska Owner-Builder Guide](/permitting/state-guides/alaska)
+- [California Owner-Builder Guide](/permitting/state-guides/california)
+- [Hawaii Owner-Builder Guide](/permitting/state-guides/hawaii)
+- [Oregon Owner-Builder Guide](/permitting/state-guides/oregon)
+- [Washington Owner-Builder Guide](/permitting/state-guides/washington)
 
-**Best Counties**: Cherokee, Forsyth, Hall, Oconee, Pickens
-
-### [Arizona Owner-Builder Guide](/permitting/state-guides/arizona)
-
-**Why Build in AZ**: Year-round building, reasonable costs, some no-code areas
-- **Building Code**: 2018 IRC (statewide minimum), varies by jurisdiction
-- **Typical Permit Costs**: $2,300-$3,900 (cities); $500-$2,000 (rural)
-- **Processing Time**: 3-10 weeks
-- **Owner-Builder Rights**: Strong, clear exemptions
-- **Key Requirements**: Licensed electrical/plumbing/HVAC
-- **Climate Zones**: 2B (most), 5B/6B (mountains)
-- **Special Considerations**: Expansive soils (Phoenix), monsoon drainage, wildfire (WUI), desert heat
-
-**Best Counties**: Yavapai, Pinal, Cochise, Mohave, Coconino
-
-### [Colorado Owner-Builder Guide](/permitting/state-guides/colorado)
-
-**Why Build in CO**: Beautiful setting, strong owner-builder culture
-- **Building Code**: 2021 IRC (major cities), varies by jurisdiction
-- **Typical Permit Costs**: $3,900-$5,200 (cities); $0-$3,000 (rural)
-- **Processing Time**: 6-16 weeks (cities)
-- **Owner-Builder Rights**: Clear exemptions
-- **Key Requirements**: Licensed electrical/plumbing
-- **Climate Zones**: 5B, 6B, 7 (varies by elevation)
-- **Special Considerations**: Extreme snow loads (mountains), short building season (high altitude), wildfire protection, water rights
-
-**Best Counties**: Fremont, Park, Chaffee, Larimer, Weld
-
-### [Tennessee Owner-Builder Guide](/permitting/state-guides/tennessee)
-
-**Why Build in TN**: Strong owner-builder laws, reasonable costs, no state income tax
-- **Building Code**: 2018 International Residential Code
-- **Typical Permit Costs**: $2,000-$3,900
-- **Processing Time**: 3-8 weeks
-- **Owner-Builder Rights**: Strong protections
-- **Key Requirements**: Licensed electrical/plumbing/HVAC
-- **Climate Zones**: 4A (most), 3A (Memphis area)
-- **Special Considerations**: Seismic (west TN), termites, tornadoes
-
-**Best Counties**: Rutherford, Sumner, Sevier, Blount, Wilson
-
-### [Virginia Owner-Builder Guide](/permitting/state-guides/virginia)
-
-**Why Build in VA**: Well-organized permitting, strong economy, four seasons
-- **Building Code**: 2021 Virginia Residential Code
-- **Typical Permit Costs**: $2,400-$6,200 (Northern VA highest)
-- **Processing Time**: 3-10 weeks
-- **Owner-Builder Rights**: Clear exemptions, 1-year limitation
-- **Key Requirements**: Licensed electrical/plumbing/HVAC
-- **Climate Zones**: 4A (most), 4C (mountains)
-- **Special Considerations**: Radon mitigation, coastal wind/flood, Chesapeake Bay Act
-
-**Best Counties**: Augusta, Rockingham, Bedford, Stafford, Hanover
-
-### [Washington Owner-Builder Guide](/permitting/state-guides/washington)
-
-**Why Build in WA**: High home values, strong legal protections
-- **Building Code**: 2021 Washington State Residential Code (strict energy code)
-- **Typical Permit Costs**: $3,800-$8,700
-- **Processing Time**: 6-16 weeks
-- **Owner-Builder Rights**: Strong but cannot sell within 12 months
-- **Key Requirements**: Licensed electrical/plumbing, extensive seismic, strict energy code
-- **Climate Zones**: 4C (west), 5B/6B (east)
-- **Special Considerations**: Seismic engineering required, strict energy code, environmental regulations, landslide/steep slopes
-
-**Best Counties**: Thurston, Whatcom, Skagit, Kitsap, Clark
-
-### [Oregon Owner-Builder Guide](/permitting/state-guides/oregon)
-
-**Why Build in OR**: Clear statutory exemption, statewide code consistency, strong building tradition
-- **Building Code**: 2021 Oregon Residential Specialty Code (ORSC)
-- **Typical Permit Costs**: $3,000-$48,000 (SDCs dominate metro costs)
-- **Processing Time**: 2-28 weeks (rural fastest, Portland/Bend slowest)
-- **Owner-Builder Rights**: ORS 701.010 CCB exemption; 24-month occupancy rule
-- **Key Requirements**: Strict energy code, seismic engineering (western OR), WUI compliance, homeowner electrical/plumbing tests
-- **Climate Zones**: 4C (most), 5B (Central/Eastern), 6B (mountains)
-- **Special Considerations**: Cascadia Subduction Zone seismic, wildfire WUI code, high metro SDCs, strict OEESC energy code
-
-**Best Counties**: Douglas, Linn, Polk, Jackson, Wallowa
-
-### [Ohio Owner-Builder Guide](/permitting/state-guides/ohio)
-
-**Why Build in OH**: No state GC license, low permit costs, fast processing, stable code environment
-- **Building Code**: 2024 Residential Code of Ohio (RCO)
-- **Typical Permit Costs**: $2,500-$11,500
-- **Processing Time**: 1-10 weeks
-- **Owner-Builder Rights**: No state GC license needed; most counties allow homeowner permits
-- **Key Requirements**: OCILB-licensed electrical/plumbing/HVAC, passive radon mitigation in designated counties
-- **Climate Zones**: 4A (southern), 5A (most of state)
-- **Special Considerations**: Lake-effect snow loads (northeast), expansive clay (west), tornado activity, radon (most counties)
-
-**Best Counties**: Delaware, Warren, Medina, Holmes, Wayne
-
-### [Pennsylvania Owner-Builder Guide](/permitting/state-guides/pennsylvania)
-
-**Why Build in PA**: No state contractor license, UCC opt-out townships, wide range of options
-- **Building Code**: 2015 IRC with PA amendments (statewide UCC)
-- **Typical Permit Costs**: $500-$22,000 (huge range due to opt-out system)
-- **Processing Time**: 1-24 weeks
-- **Owner-Builder Rights**: No state GC license; HICRA doesn't apply to new builds or owners
-- **Key Requirements**: Vary by municipality; some require local trade licensing (Philly, Pittsburgh)
-- **Climate Zones**: 4A (southeast), 5A (most), 6A (mountains)
-- **Special Considerations**: Municipal opt-out system, mine subsidence in anthracite/bituminous regions, snow loads in mountains, floodplains along major rivers
-
-**Best Townships**: Centre, Lancaster, York, Westmoreland, Tioga/Bradford
-
-### [South Carolina Owner-Builder Guide](/permitting/state-guides/south-carolina)
-
-**Why Build in SC**: Clear RBC exemption, low-cost Upstate, high-growth Southeast
-- **Building Code**: 2021 IRC with SC amendments
-- **Typical Permit Costs**: $3,000-$17,500 (coastal highest)
-- **Processing Time**: 2-14 weeks
-- **Owner-Builder Rights**: SC Code § 40-59-30 exemption; 2-year occupancy rule
-- **Key Requirements**: State-licensed electrical/plumbing/HVAC; coastal hurricane code; termite treatment required
-- **Climate Zones**: 3A (most), 2A (coastal)
-- **Special Considerations**: Hurricane and floodplain code (coast), Formosan termites, OCRM beachfront setbacks, expansive clay (Upstate)
-
-**Best Counties**: Greenville, Spartanburg, Lexington, Oconee, Aiken
-
-### [Indiana Owner-Builder Guide](/permitting/state-guides/indiana)
-
-**Why Build in IN**: No state GC license, lowest permit costs in Midwest, fast processing
-- **Building Code**: 2020 Indiana Residential Code (based on 2018 IRC)
-- **Typical Permit Costs**: $2,500-$10,500
-- **Processing Time**: 1-6 weeks
-- **Owner-Builder Rights**: No state GC license; broad homeowner exemptions for trades except plumbing
-- **Key Requirements**: State-licensed plumber required; electrical/HVAC not licensed at state level
-- **Climate Zones**: 4A (southern), 5A (central/northern)
-- **Special Considerations**: Karst topography (southern IN sinkholes), tornado activity, radon in designated counties, 30" frost depth statewide
-
-**Best Counties**: Hamilton, Hendricks, Monroe, Brown, Decatur
 
 ## Choosing Your State
 
