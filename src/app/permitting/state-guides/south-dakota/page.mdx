@@ -14,7 +14,7 @@ export const metadata = {
 
 <CalloutBox type="info" title="Quick Answer: Can You Build Your Own House in South Dakota?">
 
-**Yes — and in much of rural South Dakota there may be no building permit or inspection at all.** South Dakota has **no statewide building code** and **no state general contractor license** for residential work, so you can act as your own general contractor on a home you own. Building codes are adopted and enforced entirely at the local level: the metros enforce IRC editions (Sioux Falls and Rapid City use the 2021 IRC; Brookings the 2018 IRC), while many rural counties have no building department and no permits. Two trades are different — they are licensed and inspected **statewide**: electrical by the [South Dakota Electrical Commission](https://dlr.sd.gov/electrical/default.aspx) and plumbing by the [South Dakota Plumbing Commission](https://dlr.sd.gov/plumbing/default.aspx). Both have **homeowner exemptions** for the home you own and occupy ([SDCL 36-16-15](https://sdlegislature.gov/Statutes/36-16-15) for electrical, [SDCL 36-25-17](https://sdlegislature.gov/Statutes/36-25-17) for plumbing). Confirm permit and trade rules with your specific city or county before you start.
+**Yes — and in much of rural South Dakota there may be no building permit or inspection at all.** South Dakota has **no statewide building code** and **no state general contractor license** for residential work, so you can act as your own general contractor on a home you own. Building codes are adopted and enforced entirely at the local level: the metros enforce IRC editions (Sioux Falls, Rapid City, and Brookings all use the 2021 IRC), while many rural counties have no building department and no permits. Two trades are different — they are licensed and inspected **statewide**: electrical by the [South Dakota Electrical Commission](https://dlr.sd.gov/electrical/default.aspx) and plumbing by the [South Dakota Plumbing Commission](https://dlr.sd.gov/plumbing/default.aspx). Both have **homeowner exemptions** for the home you own and occupy ([SDCL 36-16-15](https://sdlegislature.gov/Statutes/36-16-15) for electrical, [SDCL 36-25-17](https://sdlegislature.gov/Statutes/36-25-17) for plumbing). Confirm permit and trade rules with your specific city or county before you start.
 
 </CalloutBox>
 
@@ -23,7 +23,7 @@ export const metadata = {
   headers={["Requirement", "Owner-builder in South Dakota"]}
   rows={[
     ["State GC license to build your own home", "Not required — South Dakota has no statewide residential general contractor license at all"],
-    ["Who enforces residential permits/code", "Local jurisdictions only; South Dakota has no statewide building code. Where adopted, 1-2 family homes follow the IRC (2021 in Sioux Falls and Rapid City; 2018 in Brookings)"],
+    ["Who enforces residential permits/code", "Local jurisdictions only; South Dakota has no statewide building code. Where adopted, 1-2 family homes follow the IRC (2021 in Sioux Falls, Rapid City, and Brookings)"],
     ["Can a homeowner pull their own permit", "Yes where a building department exists; many rural counties require no building permit at all"],
     ["DIY electrical", "Allowed on a home you own AND reside in under SDCL 36-16-15 via a state Electrical Commission homeowner wiring permit; permit + inspection still required (own residence/farmstead only, no rentals/commercial)"],
     ["DIY plumbing", "Allowed on a single-family dwelling you own and reside in (or will) under SDCL 36-25-17 via a state homeowner plumbing certificate; permit + inspection required"],
@@ -54,13 +54,13 @@ South Dakota has no statewide building code for one- and two-family dwellings. S
     ["Sioux Falls (Minnehaha/Lincoln)", "2021 IRC (effective Jan 1, 2022)", "2021 IECC"],
     ["Rapid City (Pennington)", "2021 IRC", "2021 IECC"],
     ["Aberdeen (Brown)", "IRC adopted locally; verify edition", "2018 IECC"],
-    ["Brookings (city)", "2018 IRC", "Verify with city"],
+    ["Brookings (city)", "2021 IRC", "2021 IECC"],
     ["Watertown (Codington)", "IRC adopted locally", "2018 IECC"],
     ["Many rural counties", "No building code / no permits for 1-2 family homes", "None"]
   ]}
 />
 
-Because adoption is local, code editions are not uniform across the state — Sioux Falls and Rapid City are on the 2021 I-Codes, Brookings is still on the 2018 IRC, and a rural county may have nothing at all. Always confirm the exact edition with the jurisdiction where you are building.
+Because adoption is local, code editions are not uniform across the state — Sioux Falls, Rapid City, and Brookings are on the 2021 I-Codes, mid-size cities like Aberdeen and Watertown are on 2018 editions, and a rural county may have nothing at all. Always confirm the exact edition with the jurisdiction where you are building.
 
 ### Local Enforcement Patchwork
 
@@ -87,7 +87,7 @@ Even where there is no local building code, the statewide electrical and plumbin
 
 Because there is no statewide code, the "amendments" that matter are local. A few patterns hold across the state:
 
-1. **Frost depth**: Deep. Sioux Falls amends the IRC to a **42-inch** footing depth; Rapid City to roughly **30 inches**; colder northern jurisdictions may go deeper — verify with your jurisdiction
+1. **Frost depth**: Deep. Sioux Falls and Rapid City both amend the IRC to a **42-inch** footing depth; colder northern jurisdictions may go deeper (the state runs roughly 42-48 inches) — verify with your jurisdiction
 2. **Energy efficiency**: No statewide mandate; where adopted it is the 2021 IECC (Sioux Falls, Rapid City) or the 2018 IECC (Aberdeen, Watertown)
 3. **Radon**: South Dakota is a very-high-radon state, but radon-resistant construction (IRC Appendix AF) is **adopted locally**, not statewide — confirm with your building department
 4. **Sprinklers**: Not required in one- and two-family dwellings — the IRC fire-sprinkler mandate was not adopted as a statewide requirement
@@ -288,11 +288,11 @@ South Dakota has **no mandatory statewide energy code**. Where a city adopts one
 
 <DataTable
   caption="Typical South Dakota energy requirements where the IECC is adopted (2018/2021 IECC; verify locally)"
-  headers={["Requirement", "Zone 5A (southeast SD: Sioux Falls, Yankton)", "Zone 6A (central/west/north SD: Rapid City, Pierre, Aberdeen)"]}
+  headers={["Requirement", "Zone 6A (nearly all of SD: Sioux Falls, Rapid City, Pierre, Aberdeen, Yankton)", "Zone 5A (far southern edge only)"]}
   rows={[
-    ["Ceiling insulation", "R-49", "R-49 to R-60"],
-    ["Wood-framed wall", "R-20 cavity or R-13 + R-5 continuous", "R-20+5 or R-13+10 continuous"],
-    ["Slab edge", "R-10 to 24\" below grade", "R-10 to 48\" (Zone 6 slab perimeter)"],
+    ["Ceiling insulation", "R-49 to R-60", "R-49"],
+    ["Wood-framed wall", "R-20+5 or R-13+10 continuous", "R-20 cavity or R-13 + R-5 continuous"],
+    ["Slab edge", "R-10 to 48\" (Zone 6 slab perimeter)", "R-10 to 24\" below grade"],
     ["Windows", "U-0.30 max", "U-0.30 max"],
     ["Air leakage", "≤3.0-5.0 ACH50 (edition-dependent)", "≤3.0-5.0 ACH50 (edition-dependent)"]
   ]}
@@ -305,7 +305,7 @@ South Dakota has **no mandatory statewide energy code**. Where a city adopts one
   headers={["Region", "Minimum footing depth"]}
   rows={[
     ["Sioux Falls (southeast)", "42\" (local amendment)"],
-    ["Rapid City (Black Hills foothills)", "~30\""],
+    ["Rapid City (Pennington County)", "42\" (local amendment)"],
     ["Aberdeen / northern SD", "Deeper — verify locally"],
     ["No-code rural areas", "No mandate; build to frost-protected depth regardless"]
   ]}
@@ -376,7 +376,7 @@ South Dakota winters are severe. Sioux Falls designs to a -11°F outdoor winter 
 Cold-climate priorities:
 
 - **Frost-depth footings** (or an engineered frost-protected shallow foundation per ASCE 32)
-- **Continuous insulation and air sealing** — Zone 5A/6A envelopes, even where no IECC is enforced
+- **Continuous insulation and air sealing** — Zone 6A envelopes statewide (a 5A sliver on the far southern edge), even where no IECC is enforced
 - **Slab-edge insulation** to limit heat loss and frost at the perimeter
 - **Freeze protection** for water lines in unheated spaces and at the well
 
@@ -535,7 +535,7 @@ South Dakota rewards the self-reliant, methodical owner-builder. The rules are l
     },
     {
       question: "Does South Dakota have a statewide building code?",
-      answer: "No. South Dakota has no statewide building code for one- and two-family dwellings. Adoption and enforcement are entirely local. State law (SDCL chapter 11-10) only requires that IF a jurisdiction adopts standards for new construction, those standards comply with the referenced International Building Code edition (2021 IBC). The metros enforce an IRC (2021 in Sioux Falls and Rapid City, 2018 in Brookings); many rural counties enforce nothing for residential."
+      answer: "No. South Dakota has no statewide building code for one- and two-family dwellings. Adoption and enforcement are entirely local. State law (SDCL chapter 11-10) only requires that IF a jurisdiction adopts standards for new construction, those standards comply with the referenced International Building Code edition (2021 IBC). The metros enforce an IRC (2021 in Sioux Falls, Rapid City, and Brookings); many rural counties enforce nothing for residential."
     },
     {
       question: "Can a homeowner do their own electrical and plumbing in South Dakota?",
@@ -581,4 +581,4 @@ Building in a nearby northern plains state? Check the requirements for:
 
 ---
 
-*Last updated: May 2026. Verified this update: South Dakota has no statewide general contractor license for residential work and no statewide building code — adoption and enforcement are local under [SDCL chapter 11-10](https://sdlegislature.gov/Statutes/11-10) (which only requires that locally adopted standards comply with the referenced 2021 IBC edition). Sioux Falls and Rapid City enforce the 2021 IRC (Sioux Falls effective January 1, 2022) and the 2021 IECC; Brookings uses the 2018 IRC; Aberdeen and Watertown use the 2018 IECC; many rural counties require no building permit for one- and two-family dwellings. Electrical is licensed and inspected statewide by the [South Dakota Electrical Commission](https://dlr.sd.gov/electrical/default.aspx) (2023 NEC) with a homeowner self-wire exemption under [SDCL 36-16-15](https://sdlegislature.gov/Statutes/36-16-15); plumbing is licensed and inspected statewide by the [South Dakota Plumbing Commission](https://dlr.sd.gov/plumbing/default.aspx) (state plumbing code, ARSD 20:54) with a homeowner exemption under [SDCL 36-25-17](https://sdlegislature.gov/Statutes/36-25-17). Sioux Falls amends the IRC to a 42-inch footing depth, 40 psf ground snow load, 112 mph ultimate wind speed, and -11°F winter design temperature; climate zones are 5A (southeast) and 6A (rest of state); and the eastern half of the state is EPA Radon Zone 1 with the Black Hills/west in Zone 2 (no Zone 3). Exact code editions, permit fees, frost-depth amendments, and homeowner trade rules vary by jurisdiction — verify with your specific city or county and the state commissions before relying on any figure here.*
+*Last updated: May 2026. Verified this update: South Dakota has no statewide general contractor license for residential work and no statewide building code — adoption and enforcement are local under [SDCL chapter 11-10](https://sdlegislature.gov/Statutes/11-10) (which only requires that locally adopted standards comply with the referenced 2021 IBC edition). Sioux Falls and Rapid City enforce the 2021 IRC (Sioux Falls effective January 1, 2022) and the 2021 IECC; Brookings adopted the 2021 IRC and 2021 IECC (Ordinance 23-008); Aberdeen and Watertown use the 2018 IECC; many rural counties require no building permit for one- and two-family dwellings. Electrical is licensed and inspected statewide by the [South Dakota Electrical Commission](https://dlr.sd.gov/electrical/default.aspx) (2023 NEC) with a homeowner self-wire exemption under [SDCL 36-16-15](https://sdlegislature.gov/Statutes/36-16-15); plumbing is licensed and inspected statewide by the [South Dakota Plumbing Commission](https://dlr.sd.gov/plumbing/default.aspx) (state plumbing code, ARSD 20:54) with a homeowner exemption under [SDCL 36-25-17](https://sdlegislature.gov/Statutes/36-25-17). Sioux Falls amends the IRC to a 42-inch footing depth, 40 psf ground snow load, 112 mph ultimate wind speed, and -11°F winter design temperature; the IECC climate zone is 6A across nearly all of the state (including Sioux Falls), with only a thin 5A strip on the far southern edge; and the eastern half of the state is EPA Radon Zone 1 with the Black Hills/west in Zone 2 (no Zone 3). Exact code editions, permit fees, frost-depth amendments, and homeowner trade rules vary by jurisdiction — verify with your specific city or county and the state commissions before relying on any figure here.*
