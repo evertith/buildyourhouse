@@ -14,7 +14,7 @@ export const metadata = {
 
 <CalloutBox type="info" title="Quick Answer: Can You Build Your Own House in Delaware?">
 
-**Yes.** Delaware has no statewide general contractor competency license for residential work, so you can act as your own general contractor on a home you own and occupy. The catch unique to Delaware: there is **no statewide residential building code** — each of the three counties adopts and enforces its own edition of the International Residential Code, so the rules in [New Castle County](https://www.newcastlede.gov/229/County-Laws-Code) (2024 IRC, effective Jan 1, 2026), [Sussex County](https://sussexcountyde.gov/building-code) (2021 IRC, Chapters 1–10), and [Kent County](https://www.kentcountyde.gov/Residents/Permits-Licenses/Building-Permits/Permitting-Requirements-Adopted-Codes) (2018 IRC) are not identical. The state does set a uniform energy code (2018 IECC) and licenses the specialty trades through the [Division of Professional Regulation](https://dpr.delaware.gov/). Confirm permit and trade rules with your specific county or municipal building department before you start.
+**Yes.** Delaware has no statewide general contractor competency license for residential work, so you can act as your own general contractor on a home you own and occupy. The catch unique to Delaware: there is **no statewide residential building code** — each of the three counties adopts and enforces its own edition of the International Residential Code, so the rules in [New Castle County](https://www.newcastlede.gov/229/County-Laws-Code) (2024 IRC, effective Jan 1, 2026), [Sussex County](https://sussexcountyde.gov/building-code) (2021 IRC, Chapters 1–10), and [Kent County](https://www.kentcountyde.gov/Residents/Permits-Licenses/Building-Permits/Permitting-Requirements-Adopted-Codes) (2018 IRC) are not identical. The state does set a uniform energy code (2024 IECC, effective April 11, 2026) and licenses the specialty trades through the [Division of Professional Regulation](https://dpr.delaware.gov/). Confirm permit and trade rules with your specific county or municipal building department before you start.
 
 </CalloutBox>
 
@@ -28,7 +28,7 @@ export const metadata = {
     ["Can a homeowner pull their own permit", "Yes in all three counties for an owner-occupied home (proof of ownership / affidavit typical)"],
     ["DIY electrical", "Allowed on your own primary residence with a state Homeowner Permit; plans must first be approved by a licensed Delaware electrical inspection agency"],
     ["DIY plumbing & HVAC", "Generally allowed on your own home if not for sale or rent — confirm with the county and the state Plumbing/HVACR board"],
-    ["Energy code (statewide)", "2018 IECC, effective Dec 11, 2020; Delaware is entirely Climate Zone 4A"]
+    ["Energy code (statewide)", "2024 IECC, effective April 11, 2026 (replaced 2018 IECC); counties have 12 months to enforce; Delaware is entirely Climate Zone 4A"]
   ]}
 />
 
@@ -66,7 +66,7 @@ This is the defining quirk of building in Delaware. As of 2026, New Castle Count
 
 A few codes are set at the state level and apply regardless of county:
 
-1. **Energy**: The [2018 IECC](https://dnrec.delaware.gov/climate-coastal-energy/efficiency/building-energy-codes/) is the statewide residential energy code, effective December 11, 2020. DNREC's State Energy Office administers it.
+1. **Energy**: The [2024 IECC](https://dnrec.delaware.gov/climate-coastal-energy/efficiency/building-energy-codes/) is the statewide residential energy code, effective April 11, 2026 (it replaced the 2018 IECC). DNREC's State Energy Office administers it. Note that Delaware law gives counties and municipalities 12 months from promulgation to implement and enforce the new edition, so during 2026 some jurisdictions may still be reviewing plans under the 2018 IECC — confirm which edition your building department is enforcing.
 2. **Electrical inspection**: Electrical work statewide is inspected by **licensed third-party inspection agencies** (not the county), under the [Delaware Board of Electrical Examiners](https://dpr.delaware.gov/boards/electrician/).
 3. **Fire protection**: The [Office of the State Fire Marshal](https://statefiremarshal.delaware.gov/) reviews construction plans for life-safety and access in much of the state and must sign off before some permits issue.
 4. **On-site wastewater and wells**: [DNREC](https://dnrec.delaware.gov/water/residential/septic-systems/) regulates septic systems and water wells statewide.
@@ -285,26 +285,26 @@ Delaware's building-permit clock is often driven less by the county's own plan r
 
 <CalloutBox type="info" title="One statewide energy code — a rare bit of uniformity">
 
-Unlike the building code, Delaware's energy code *is* statewide: the [2018 IECC](https://dnrec.delaware.gov/climate-coastal-energy/efficiency/building-energy-codes/), effective December 11, 2020. The entire state is Climate Zone 4A, so the envelope numbers below apply everywhere.
+Unlike the building code, Delaware's energy code *is* statewide: the [2024 IECC](https://dnrec.delaware.gov/climate-coastal-energy/efficiency/building-energy-codes/), effective April 11, 2026 (it replaced the 2018 IECC). The entire state is Climate Zone 4A, so the envelope numbers below apply everywhere. Counties and municipalities have up to 12 months to begin enforcing the 2024 edition, so during the transition some jurisdictions may still apply the 2018 IECC — confirm with your building department.
 
 </CalloutBox>
 
 <DataTable
-  caption="Delaware residential energy requirements (2018 IECC, Climate Zone 4A, prescriptive path)"
-  headers={["Component", "Requirement (Zone 4A)"]}
+  caption="Delaware residential energy requirements (2024 IECC, Climate Zone 4A, prescriptive R-value path). 2018 IECC values still apply in jurisdictions that have not yet adopted the 2024 edition."
+  headers={["Component", "Requirement (Zone 4A, 2024 IECC)"]}
   rows={[
-    ["Ceiling insulation", "R-49"],
-    ["Wood-framed wall", "R-20 cavity or R-13 + R-5 continuous"],
-    ["Basement wall", "R-13 cavity or R-10 continuous"],
-    ["Crawl space wall", "R-13 cavity or R-10 continuous"],
-    ["Windows (fenestration)", "U-0.32 max"],
-    ["Air leakage", "≤3.0 ACH50 (2018 IECC residential)"]
+    ["Ceiling insulation", "R-49 (unchanged from 2018 IECC)"],
+    ["Wood-framed wall", "R-30 cavity, or R-20 + R-5 continuous, or R-13 + R-10 continuous (was R-20 / R-13+5 under 2018 IECC)"],
+    ["Basement wall", "R-15 continuous, or R-19 cavity, or R-13 + R-5 continuous (was R-13 / R-10ci under 2018 IECC)"],
+    ["Crawl space wall", "R-15 continuous, or R-19 cavity, or R-13 + R-5 continuous (was R-13 / R-10ci under 2018 IECC)"],
+    ["Windows (fenestration)", "U-0.30 max (was U-0.32 under 2018 IECC)"],
+    ["Air leakage", "≤3.0 ACH50, blower-door verified (unchanged from 2018 IECC)"]
   ]}
 />
 
 <CalloutBox type="tip" title="Blower-door test is part of the package">
 
-The 2018 IECC sets a 3.0 ACH50 air-leakage limit and requires a blower-door test to verify it on new homes. Plan and detail your air barrier from the start — sealing it after drywall is far harder and more expensive.
+Both the 2024 IECC (Delaware's current statewide code) and the older 2018 IECC set a 3.0 ACH50 air-leakage limit for Climate Zone 4 and require a blower-door test to verify it on new homes. Plan and detail your air barrier from the start — sealing it after drywall is far harder and more expensive.
 
 </CalloutBox>
 
@@ -484,9 +484,9 @@ The places below carry the highest fees, strictest review, or toughest site cond
 
 ## Common Questions
 
-**Do I need a license to build my own house in Delaware?** No state general contractor competency license exists in Delaware, so building your own home as owner-builder is allowed. You still need a building permit from your county or city, and your home must meet that jurisdiction's adopted IRC edition plus the statewide 2018 IECC energy code. If you hire out the trades, the electrical, plumbing, and HVAC contractors are state-licensed.
+**Do I need a license to build my own house in Delaware?** No state general contractor competency license exists in Delaware, so building your own home as owner-builder is allowed. You still need a building permit from your county or city, and your home must meet that jurisdiction's adopted IRC edition plus the statewide IECC energy code (the 2024 IECC, effective April 11, 2026, phasing in over 12 months as counties adopt it). If you hire out the trades, the electrical, plumbing, and HVAC contractors are state-licensed.
 
-**Is there a statewide building code in Delaware?** No. Building codes are adopted and enforced at the county and municipal level. New Castle County is on the 2024 IRC (effective Jan 1, 2026), Sussex County on the 2021 IRC, and Kent County on the 2018 IRC. The energy code (2018 IECC) is the main code set statewide.
+**Is there a statewide building code in Delaware?** No. Building codes are adopted and enforced at the county and municipal level. New Castle County is on the 2024 IRC (effective Jan 1, 2026), Sussex County on the 2021 IRC, and Kent County on the 2018 IRC. The energy code (2024 IECC, effective April 11, 2026, replacing the 2018 IECC) is the main code set statewide.
 
 **Can a homeowner do their own electrical in Delaware?** Yes, on your own primary residence (not for sale or rent) through the state's Homeowner Permit from the Board of Electrical Examiners. Your plans must first be approved by a licensed Delaware electrical inspection agency, the permit is good for one year, and pools and hot tubs are excluded.
 
@@ -506,7 +506,7 @@ Typical phased timeline for a part-time owner-builder in Delaware. The front end
   caption="Phased Delaware owner-builder timeline"
   headers={["Phase", "Tasks"]}
   rows={[
-    ["Months 1–2: Pre-permit", "Confirm jurisdiction and code edition; DNREC septic site evaluation (rural); well planning; architectural plans; 2018 IECC energy docs; flood-zone determination (coastal)"],
+    ["Months 1–2: Pre-permit", "Confirm jurisdiction and code edition; DNREC septic site evaluation (rural); well planning; architectural plans; IECC energy compliance docs (2024 IECC where adopted); flood-zone determination (coastal)"],
     ["Months 2–4: Approvals", "Sediment & stormwater (Conservation District); State Fire Marshal plan review; electrical inspection-agency plan approval; county/city permit issuance"],
     ["Months 4–6: Foundation and shell", "Site fill/grading (high-water-table lots); footings and foundation; framing, sheathing, dry-in; window/door install; framing inspection"],
     ["Months 6–8: Rough-ins", "Electrical (third-party inspection), plumbing, mechanical rough-ins; insulation; blower-door prep; drywall"],
@@ -535,11 +535,11 @@ Delaware rewards the owner-builder who reads the parcel and plans the approvals.
   faqs={[
     {
       question: "Can you build your own house in Delaware without a license?",
-      answer: "Yes. Delaware has no statewide general contractor competency license, so you can legally act as your own general contractor on a home you own and occupy. You still need a building permit from your county or city building department, and your home must meet that jurisdiction's adopted edition of the IRC plus the statewide 2018 IECC energy code. If you hire out the electrical, plumbing, or HVAC, those contractors are licensed by the state's Division of Professional Regulation."
+      answer: "Yes. Delaware has no statewide general contractor competency license, so you can legally act as your own general contractor on a home you own and occupy. You still need a building permit from your county or city building department, and your home must meet that jurisdiction's adopted edition of the IRC plus the statewide IECC energy code. The energy code became the 2024 IECC effective April 11, 2026, replacing the 2018 IECC, with counties given 12 months to begin enforcing it. If you hire out the electrical, plumbing, or HVAC, those contractors are licensed by the state's Division of Professional Regulation."
     },
     {
       question: "Is there a statewide building code in Delaware?",
-      answer: "No. Delaware does not have a statewide residential building code. Each county adopts and enforces its own edition of the International Residential Code for unincorporated areas: New Castle County is on the 2024 IRC (effective January 1, 2026), Sussex County on the 2021 IRC (Chapters 1-10), and Kent County on the 2018 IRC. Incorporated towns and cities like Wilmington and Dover adopt their own codes. The 2018 IECC energy code is the main code set at the state level and applies everywhere."
+      answer: "No. Delaware does not have a statewide residential building code. Each county adopts and enforces its own edition of the International Residential Code for unincorporated areas: New Castle County is on the 2024 IRC (effective January 1, 2026), Sussex County on the 2021 IRC (Chapters 1-10), and Kent County on the 2018 IRC. Incorporated towns and cities like Wilmington and Dover adopt their own codes. The IECC energy code is the main code set at the state level and applies everywhere; Delaware moved to the 2024 IECC effective April 11, 2026 (replacing the 2018 IECC), with a 12-month window for counties and municipalities to begin enforcing it."
     },
     {
       question: "Can a homeowner do their own electrical work in Delaware?",
@@ -585,4 +585,4 @@ Building in a nearby Mid-Atlantic or East Coast state? Check the requirements fo
 
 ---
 
-*Last updated: May 2026. Verified this update: Delaware has no statewide residential building code — building codes are adopted and enforced at the county and municipal level. [New Castle County](https://www.newcastlede.gov/229/County-Laws-Code) adopted the 2024 IRC effective January 1, 2026; [Sussex County](https://sussexcountyde.gov/building-code) enforces the 2021 IRC (Chapters 1–10, effective January 1, 2023); [Kent County](https://www.kentcountyde.gov/Residents/Permits-Licenses/Building-Permits/Permitting-Requirements-Adopted-Codes) is on the 2018 IRC. The statewide energy code is the [2018 IECC](https://dnrec.delaware.gov/climate-coastal-energy/efficiency/building-energy-codes/) (effective December 11, 2020; Climate Zone 4A). Delaware has no state general contractor competency license; contractors register a business with the [Division of Revenue](https://revenue.delaware.gov/business-tax-forms/contractors-resident-and-non-resident/) and under the [Delaware Contractor Registration Act, 19 Del.C. Chapter 36](https://delcode.delaware.gov/title19/c036/index.html). Homeowners may do their own electrical on their primary residence via a [Homeowner Permit](https://dpr.delaware.gov/boards/electrician/homeowner-permit/) (Title 24, Chapter 14), with electrical inspection performed by licensed third-party agencies. Seller disclosure is governed by the [Buyer Property Protection Act, 6 Del.C. Chapter 25](https://delcode.delaware.gov/title6/c025/sc07/index.html), including radon disclosure under § 2572A. Code editions, permit fees, processing times, frost depth, and homeowner trade rules vary by county and municipality — verify with your specific building department before relying on any figure here.*
+*Last updated: May 2026. Verified this update: Delaware has no statewide residential building code — building codes are adopted and enforced at the county and municipal level. [New Castle County](https://www.newcastlede.gov/229/County-Laws-Code) adopted the 2024 IRC effective January 1, 2026; [Sussex County](https://sussexcountyde.gov/building-code) enforces the 2021 IRC (Chapters 1–10, effective January 1, 2023); [Kent County](https://www.kentcountyde.gov/Residents/Permits-Licenses/Building-Permits/Permitting-Requirements-Adopted-Codes) is on the 2018 IRC. The statewide residential energy code is the [2024 IECC](https://dnrec.delaware.gov/climate-coastal-energy/efficiency/building-energy-codes/) (effective April 11, 2026, replacing the 2018 IECC; Delaware law gives counties and municipalities 12 months from promulgation to enforce it; Climate Zone 4A). Delaware has no state general contractor competency license; contractors register a business with the [Division of Revenue](https://revenue.delaware.gov/business-tax-forms/contractors-resident-and-non-resident/) and under the [Delaware Contractor Registration Act, 19 Del.C. Chapter 36](https://delcode.delaware.gov/title19/c036/index.html). Homeowners may do their own electrical on their primary residence via a [Homeowner Permit](https://dpr.delaware.gov/boards/electrician/homeowner-permit/) (Title 24, Chapter 14), with electrical inspection performed by licensed third-party agencies. Seller disclosure is governed by the [Buyer Property Protection Act, 6 Del.C. Chapter 25](https://delcode.delaware.gov/title6/c025/sc07/index.html), including radon disclosure under § 2572A. Code editions, permit fees, processing times, frost depth, and homeowner trade rules vary by county and municipality — verify with your specific building department before relying on any figure here.*
