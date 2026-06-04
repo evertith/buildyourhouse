@@ -55,6 +55,9 @@ export default function Header() {
           <Link href="/resources" className={styles.navLink} onClick={closeMobileMenu}>
             Resources
           </Link>
+          <Link href="/tools-and-equipment" className={styles.navLink} onClick={closeMobileMenu}>
+            Tools
+          </Link>
           <Link href="/blog" className={styles.navLink} onClick={closeMobileMenu}>
             Blog
           </Link>
