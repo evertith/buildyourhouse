@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import styles from '@/styles/Footer.module.css';
+import { AMAZON_DISCLOSURE } from '@/lib/affiliate';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -59,6 +60,7 @@ export default function Footer() {
             regulations, and requirements vary by location. Always consult with licensed professionals
             and verify with your local building department before starting any construction project.
           </p>
+          <p className={styles.disclaimer}>{AMAZON_DISCLOSURE}</p>
           <p className={styles.copyright}>
             © {currentYear} Build-Your-House.com. All rights reserved.
           </p>

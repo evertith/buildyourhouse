@@ -5,6 +5,8 @@ import StepGuide from '@/components/StepGuide';
 import DataTable from '@/components/DataTable';
 import Section from '@/components/Section';
 import FAQSection from '@/components/FAQSection';
+import ProductPick from '@/components/ProductPick';
+import AmazonLink from '@/components/AmazonLink';
 import styles from '@/styles/article.module.css';
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
@@ -21,5 +23,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     DataTable,
     Section,
     FAQSection,
+    ProductPick,
+    AmazonLink,
   };
 }
