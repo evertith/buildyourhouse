@@ -505,13 +505,19 @@ Before each trade arrives, they need:
 - **Prior work complete**: Is prerequisite work done?
 
 **Example checklist for electrician rough-in**:
-- [ ] Framing complete
-- [ ] HVAC rough-in complete
-- [ ] Plumbing rough-in complete
-- [ ] Power available on-site
-- [ ] Electrical materials delivered
-- [ ] Plans on-site
-- [ ] Access to building arranged
+
+<Checklist
+  storageKey="coordinating-trades-checklist"
+  items={[
+    'Framing complete',
+    'HVAC rough-in complete',
+    'Plumbing rough-in complete',
+    'Power available on-site',
+    'Electrical materials delivered',
+    'Plans on-site',
+    'Access to building arranged',
+  ]}
+/>
 
 ### 4. Communicate Changes Immediately
 
@@ -641,16 +647,21 @@ When booking the first trip, lock the return too: "I need you for rough-in in 4 
 
 Before each trade starts:
 
-- [ ] All prerequisite work complete
-- [ ] Previous inspections passed (if applicable)
-- [ ] Materials on-site
-- [ ] Access arranged
-- [ ] Power available
-- [ ] Work area clear
-- [ ] Scope confirmed with trade
-- [ ] Next trade scheduled (prevents gaps)
-- [ ] Weather appropriate (if exterior work)
-- [ ] I'll be available (for questions, decisions)
+<Checklist
+  storageKey="coordinating-trades-checklist-2"
+  items={[
+    'All prerequisite work complete',
+    'Previous inspections passed (if applicable)',
+    'Materials on-site',
+    'Access arranged',
+    'Power available',
+    'Work area clear',
+    'Scope confirmed with trade',
+    'Next trade scheduled (prevents gaps)',
+    'Weather appropriate (if exterior work)',
+    'I\'ll be available (for questions, decisions)',
+  ]}
+/>
 
 ## Timeline Impact of Poor Coordination
 
