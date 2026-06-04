@@ -2,6 +2,7 @@ import Section from '@/components/Section';
 import CalloutBox from '@/components/CalloutBox';
 
 export const metadata = {
+  alternates: { canonical: '/shop' },
   title: 'Owner-Builder Job Site Binder — 229 Pages of Templates & Checklists',
   description: 'The complete owner-builder toolkit: 229 pages of contracts, checklists, inspection forms, and budget trackers. Print it, take it to the job site. $97 instant download.',
   keywords: 'owner builder templates, construction checklists, job site binder, building contracts, owner builder tools',

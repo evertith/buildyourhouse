@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import styles from './calculator-page.module.css';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/feasibility/cost-savings-calculator' },
   title: 'Owner-Builder Savings Calculator — How Much Will You Save?',
   description: 'Calculate your real savings from owner-building. Factor in GC markups, your labor value, and material costs to see if building yourself is worth it.',
 };

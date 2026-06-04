@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import styles from './contact.module.css';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/contact' },
   title: 'Contact Us — Questions About Building Your Own Home?',
   description: 'Have questions about your owner-builder project? Reach out for guidance on permits, inspections, subcontractors, or any part of the build process.',
 };

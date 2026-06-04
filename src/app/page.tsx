@@ -4,6 +4,7 @@ import Icon, { type IconName } from '@/components/Icon';
 import styles from './page.module.css';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/' },
   title: 'Build Your Own House — Step-by-Step Owner-Builder Guide',
   description: 'A retired general contractor with 15+ years of experience shows you exactly how to build your own home. Free calculators, checklists, permit guides, and phase-by-phase instructions.',
 };

@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import styles from '../../feasibility/cost-savings-calculator/calculator-page.module.css';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/calculators/timeline-estimator' },
   title: 'Free Build Timeline Calculator — How Long Will Your House Take?',
   description: 'Estimate your owner-builder timeline based on house size, experience level, and DIY percentage. Phase-by-phase schedule with realistic durations.',
 };

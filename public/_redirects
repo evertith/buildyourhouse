@@ -1,0 +1,7 @@
+# 301s for routes removed in the Blueprint redesign (static export = no Next redirects).
+# Clears GSC "Not found (404)" and recaptures any residual link equity.
+/advisor       /start-here  301
+/advisor/*     /start-here  301
+/chat          /start-here  301
+/consulting    /contact     301
+/pricing       /            301

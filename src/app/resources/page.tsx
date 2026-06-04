@@ -5,6 +5,7 @@ import Link from 'next/link';
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/resources' },
   title: 'Free Owner-Builder Resources — Checklists, Templates & Glossary',
   description: 'Free construction checklists, contract templates, budget forms, and a glossary of building terms. Based on 15+ years of general contracting experience.',
 };

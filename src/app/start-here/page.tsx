@@ -4,6 +4,7 @@ import Icon, { type IconName } from '@/components/Icon';
 import styles from './start-here.module.css';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/start-here' },
   title: 'Start Here — Your Owner-Builder Roadmap From Day 1 to Move-In',
   description: 'The complete owner-builder roadmap. Where to start, what order to tackle things, and the step-by-step path from idea to moving into your new home.',
 };

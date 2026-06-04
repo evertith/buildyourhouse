@@ -5,6 +5,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/calculators' },
   title: 'Free Owner-Builder Calculators — Cost, Materials, Timeline & Budget',
   description: 'Free calculators for owner-builders: estimate material quantities and costs, your potential savings, a realistic build timeline, and track your budget.',
 };
