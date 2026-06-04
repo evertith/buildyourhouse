@@ -91,6 +91,11 @@ For a rectangular, relatively level lot and standard construction, a stock plan 
 - Drummond House Plans
 - Local plan services
 
+{/* AFFILIATE SLOT (house plans): once a plan-marketplace affiliate program is approved,
+    convert the "Where to buy" entries above to tagged affiliate links (or drop a
+    <ProductPick>-style "Recommended plan source" card here). Many plan marketplaces run
+    programs via ShareASale / Impact / CJ. Remember to broaden the footer disclosure beyond Amazon. */}
+
 **What to look for:**
 - Complete construction drawings (not just floor plans)
 - Multiple views (floor plans, elevations, sections, details)
@@ -189,6 +194,40 @@ For a rectangular, relatively level lot and standard construction, a stock plan 
 - Sweet Home 3D (free, basic)
 - Floorplanner (online, affordable)
 
+## Do You Need an Architect or Stamped Plans?
+
+Short answer for most owner-builders: **no architect, and often no stamp at all** — but it depends on your state, your jurisdiction, and the complexity of the build. Getting this right saves thousands, because paying for a seal you never needed is one of the most common owner-builder money leaks.
+
+<CalloutBox type="info" title="The general rule (always verify locally)">
+
+Most states **exempt a typical detached one- or two-family home** from the requirement that a licensed architect or engineer seal the plans — the "residential exemption" written into many state licensing acts. North Carolina, for example, doesn't require a stamped/sealed set for a standard single-family house, and plenty of owner-builders permit a stock or DIY-drawn set with no professional seal. But exemptions have limits, and even an unsealed set can still need engineered pieces. **Confirm with your building department (AHJ) before you finalize.**
+
+</CalloutBox>
+
+**When you likely DON'T need a stamp:**
+- A standard one- or two-story single-family home that stays within the prescriptive limits of the residential code (IRC)
+- Stock plans already engineered for your local code edition
+- Conventional wood framing on a simple, relatively level lot
+
+**When a stamp or engineered calcs ARE commonly required:**
+- Anything outside the prescriptive IRC tables — long spans, tall walls, unusual beams, complex rooflines
+- High-wind (coastal), seismic, or heavy-snow regions where lateral and load calculations are demanded
+- Flood-zone construction (elevation certificates, flood-resistant design)
+- Specific engineered components even on an otherwise-unsealed set: **roof trusses** (stamped by the truss maker's engineer), some **foundations** on poor or sloping soils, and certain **beams/headers**
+- Some jurisdictions simply require a local engineer's stamp on any submitted set — local policy, no logic beyond it
+
+<DataTable
+  caption="Architect vs. engineer vs. neither"
+  headers={["Option", "What you get", "Typical cost", "Best for"]}
+  rows={[
+    ["No professional (stock or DIY set)", "A buildable set you permit yourself", "$0-3,000 (plan purchase)", "Standard homes in exemption states/jurisdictions"],
+    ["Structural engineer (as needed)", "Stamped calcs for specific elements — beams, foundation, lateral bracing", "$500-2,500", "One tricky element, or a stamp the AHJ demands"],
+    ["Architect (full design)", "Custom design plus a coordinated, often-sealed set", "$8,000-15,000+ (or a % of build cost)", "Complex or custom homes, difficult lots, design-driven builds"]
+  ]}
+/>
+
+Cost ranges are general planning figures — confirm what your jurisdiction actually requires before you spend.
+
 ## What Must Be Included in Plans
 
 ### Minimum Requirements for Permits
@@ -280,6 +319,78 @@ The set below covers what most jurisdictions require. Mechanical and plumbing pl
 - HVAC efficiency ratings
 - Air sealing details
 - Energy calculations (if required)
+
+## Site Plan Requirements: The Sheet Reviewers Scrutinize Most
+
+Your site plan (or "plot plan") places the house on the actual dirt — and it's where permit applications get rejected most often. The architectural set proves the *house* is code-compliant; the site plan proves it's legal *on this lot*. They're frequently reviewed by different people (building vs. planning/zoning vs. the health department), so a perfect house design can still stall on a bad plot plan.
+
+<CalloutBox type="warning" title="Every distance here is set locally — verify with your county">
+
+Setbacks, separation distances, and well/septic rules are set by your zoning ordinance and your county or state health department, and they vary widely. The figures below are common ranges to orient you — not code. Get the exact numbers from your jurisdiction before you draw.
+
+</CalloutBox>
+
+<DataTable
+  caption="Site plan components and what reviewers check"
+  headers={["Element", "What it shows", "What reviewers check"]}
+  rows={[
+    ["Property lines & dimensions", "Surveyed boundaries, bearings, total acreage", "Matches the deed/survey and is drawn to scale"],
+    ["Setbacks", "Required front, side, and rear distances from each line", "The structure stays outside every setback line"],
+    ["Structure footprint", "House, garage, decks, porches, outbuildings with dimensions", "Distance from each structure to property lines and to each other"],
+    ["Driveway & access", "Driveway location, width, culvert, road frontage", "Sight distance, slope, a permitted access point, fire-apparatus access"],
+    ["Well", "Location of the water well", "Separation from septic, structures, and property lines"],
+    ["Septic / drainfield", "Tank, drainfield, and the reserve (repair) area", "Perc/soil results, separation distances, reserve area kept clear"],
+    ["Utility lines", "Water, sewer, gas, electric and where they enter the house", "Easements respected; call-before-you-dig locates"],
+    ["Easements & rights-of-way", "Utility, access, and drainage easements", "No structures built within an easement"],
+    ["Grading & drainage", "Existing and finished grade, drainage flow, retention", "Water drains away from the house and doesn't dump on neighbors"],
+    ["Flood / wetlands", "FEMA flood zone, wetlands, and buffers if applicable", "Elevation and flood-resistant design where required"],
+    ["North arrow & scale", "Orientation and the drawing scale", "A standard engineering scale; legible at the printed size"]
+  ]}
+/>
+
+**The separations that trip people up (confirm exact figures locally):**
+- **Well to septic tank / drainfield** — commonly **50–100 ft**, set by the health department. This one distance dictates a lot of the lot layout.
+- **Structure to property line** — your zoning setbacks; front setbacks are often larger than side and rear.
+- **Septic drainfield to wells, structures, property lines, and water bodies** — each has its own minimum.
+- **Reserve drainfield area** — many counties require space set aside for a *future* replacement field, kept clear of structures and traffic.
+
+<CalloutBox type="critical" title="On a rural lot, the septic and well drive the whole layout">
+
+If you're on well and septic, lay those out *first*. The perc test, the drainfield location, the reserve area, and the well-to-septic separation often dictate where the house can physically sit — more than your floor plan does. Owner-builders who pick the house spot first and figure out the septic second frequently end up having to move the house. See [securing your land](/planning/secure-land) and [site preparation](/build-phases/site-preparation) for how this ties into the rest of the build.
+
+</CalloutBox>
+
+**Who draws it:** a simple site plan you can often draw yourself from a current boundary survey; many jurisdictions require a **surveyor-prepared** plot plan, and anything with septic usually needs the health department to sign off on the system layout. Start from a real survey — guessing at property lines is how structures end up over the line and how permits get denied.
+
+## How to Read and Work With Your Plan Set
+
+A permit-ready plan set is organized by discipline, and every sheet carries a letter prefix. Knowing the system makes you faster in plan review and on the job site — and your plans, not your memory, are what the inspector checks against.
+
+<DataTable
+  caption="Plan-sheet prefixes (roughly the order they're bound)"
+  headers={["Prefix", "Sheets", "What's on them"]}
+  rows={[
+    ["G / T", "General / Title", "Cover, sheet index, code data, general notes"],
+    ["C", "Civil", "Site plan, grading, utilities, drainage"],
+    ["A", "Architectural", "Floor plans, elevations, sections, schedules, details"],
+    ["S", "Structural", "Foundation, framing, beams, connections, load notes"],
+    ["M", "Mechanical", "HVAC layout and equipment"],
+    ["E", "Electrical", "Service, circuits, devices, fixtures"],
+    ["P", "Plumbing", "Supply, waste and vent, fixtures"]
+  ]}
+/>
+
+**Reading basics that prevent expensive mistakes:**
+- **Scale:** floor plans are usually 1/4" = 1'-0"; site plans use an engineering scale (e.g., 1" = 20'). Use the *written* dimension, never a ruler on the page — scaling is for rough checks only.
+- **Schedules:** doors, windows, and finishes are keyed by number or letter to a schedule table. The plan shows *where*; the schedule shows *what*.
+- **Detail callouts:** a bubble pointing at a line (e.g., "5/A4") means "see detail 5 on sheet A4" for the enlarged view.
+- **Revisions:** each revision gets a cloud, a numbered triangle (delta), and a date in the title block. **Build only from the latest revision** — superseded sheets cause rework and failed inspections.
+
+<CalloutBox type="tip" title="Make the plan set the single source of truth on site">
+
+Keep one controlled, current set on the job and the untouched stamped permit set in the office. When something changes, change it on the plans and date it — verbal changes get forgotten and fail inspection. The plan set is the reference for materials, layout, inspections, and every trade; treat it as the spine of the build.
+
+</CalloutBox>
 
 ## The Plan Development Process
 
@@ -537,10 +648,11 @@ Typical gap between final plans and permit approval: 2-8 weeks.
 
 </CalloutBox>
 
-[Link to: Permit Application](/permitting)
+Once your plans are final, [submit them for your building permit](/permitting).
 
 ## Related Resources
 
-Ready to budget your project? Use your plans with our [detailed budgeting guide](/planning/budget).
-
-Need to submit for permits? Our [permitting guide](/permitting) walks you through the application process.
+- **Lay out the lot first:** [securing your land](/planning/secure-land) and [site preparation](/build-phases/site-preparation) — the septic, well, and setbacks that shape where the house can go.
+- **Know your local rules:** the [state-by-state owner-builder guides](/permitting/state-guides) cover code editions and what each state requires (including where stamped plans are and aren't needed).
+- **Price it out:** use your finished plans with the [detailed budgeting guide](/planning/budget) and the [construction financing guide](/planning/financing).
+- **Submit for approval:** the [permitting guide](/permitting) walks through the application process.
