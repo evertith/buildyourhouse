@@ -35,7 +35,7 @@ const siteDescription = "Step-by-step guidance from a retired general contractor
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Build Your Own House - Save $50k-150k+ | Owner-Builder Guide",
+    default: "Build Your Own House — Save 10–25% as Your Own GC | Owner-Builder Guide",
     template: "%s | Build Your House",
   },
   description: siteDescription,
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: siteUrl,
     siteName: siteName,
-    title: "Build Your Own House - Save $50k-150k+ | Owner-Builder Guide",
+    title: "Build Your Own House — Save 10–25% as Your Own GC | Owner-Builder Guide",
     description: siteDescription,
     images: [
       {
@@ -77,7 +77,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Build Your Own House - Save $50k-150k+ | Owner-Builder Guide",
+    title: "Build Your Own House — Save 10–25% as Your Own GC | Owner-Builder Guide",
     description: siteDescription,
     images: [`${siteUrl}/og-image.jpg`],
     creator: "@buildyourhouse",
