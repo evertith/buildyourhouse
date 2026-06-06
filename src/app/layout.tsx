@@ -30,7 +30,7 @@ const jetBrainsMono = JetBrains_Mono({
 
 const siteUrl = "https://build-your-house.com";
 const siteName = "Build Your House";
-const siteDescription = "Step-by-step guidance from a retired general contractor to build your dream home yourself and save a fortune. Expert advice on permits, inspections, and managing subcontractors.";
+const siteDescription = "Step-by-step guidance from a retired general contractor to build your own home and save 10–25% by skipping the GC markup. Expert advice on permits, inspections, and managing subcontractors.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
