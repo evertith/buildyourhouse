@@ -32,6 +32,7 @@ const PHASES: Phase[] = [
       { href: '/planning/house-plans', label: 'Choose or design your house plans' },
       { href: '/planning/budget', label: 'Create detailed budget' },
       { href: '/planning/timeline', label: 'Develop project timeline' },
+      { href: '/timing-and-scheduling/material-lead-times', label: 'Plan material lead times', note: 'order 2–4 months ahead' },
     ],
   },
   {
@@ -65,6 +66,7 @@ const PHASES: Phase[] = [
       { href: '/build-phases/rough-in', label: 'Rough-in (Plumbing, Electrical, HVAC)', note: '3–6 weeks' },
       { href: '/build-phases/insulation', label: 'Insulation', note: '1–2 weeks' },
       { href: '/build-phases/drywall', label: 'Drywall', note: '2–4 weeks' },
+      { href: '/build-phases/interior-trim', label: 'Interior Trim', note: '2–3 weeks' },
       { href: '/build-phases/finish', label: 'Finish Work', note: '6–12 weeks' },
     ],
   },
