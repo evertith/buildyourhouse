@@ -2,6 +2,7 @@
 
 import { useState, FormEvent } from 'react';
 import styles from '@/styles/EmailCapture.module.css';
+import { trackEvent } from '@/lib/analytics';
 
 interface EmailCaptureProps {
   title?: string;
@@ -60,6 +61,9 @@ export default function EmailCapture({
       setStatus('success');
       setMessage('Thank you for subscribing!');
       setEmail('');
+
+      // GA4 recommended lead-gen event; mark as a key event in GA4 admin.
+      trackEvent('generate_lead', { method: 'newsletter_form' });
 
       // Reset success message after 5 seconds
       setTimeout(() => {

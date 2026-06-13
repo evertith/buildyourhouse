@@ -1,5 +1,6 @@
 import Section from '@/components/Section';
 import CalloutBox from '@/components/CalloutBox';
+import TrackedLink from '@/components/TrackedLink';
 
 export const metadata = {
   alternates: { canonical: '/shop' },
@@ -473,8 +474,10 @@ export default function JobSiteBinder() {
 
             {/* Stripe Payment Link */}
             <div className="purchase-button-container">
-              <a
+              <TrackedLink
                 href="https://buy.stripe.com/5kQ28racn54z0ReeZ5fAc00"
+                eventName="begin_checkout"
+                eventParams={{ currency: 'USD', value: 97, item_name: 'job_site_binder' }}
                 className="button button-large"
                 style={{
                   fontSize: 'var(--text-xl)',
@@ -485,7 +488,7 @@ export default function JobSiteBinder() {
                 }}
               >
                 Get Instant Access — $97
-              </a>
+              </TrackedLink>
             </div>
 
             <div className="purchase-guarantees">
