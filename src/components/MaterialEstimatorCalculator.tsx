@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { calculateMaterialEstimate, MaterialEstimatorInputs, MaterialEstimatorResults } from '@/lib/calculators';
 import CalculatorCard from '@/components/CalculatorCard';
 import styles from '@/styles/Calculator.module.css';
+import { trackEvent } from '@/lib/analytics';
 
 export default function MaterialEstimatorCalculator() {
   const [inputs, setInputs] = useState<MaterialEstimatorInputs>({
@@ -22,6 +23,7 @@ export default function MaterialEstimatorCalculator() {
 
   const calculate = () => {
     const calculatedResults = calculateMaterialEstimate(inputs);
+    trackEvent('calculator_use', { calculator: 'material_estimator' });
     setResults(calculatedResults);
   };
 

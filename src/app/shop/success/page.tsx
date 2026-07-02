@@ -1,8 +1,9 @@
 'use client';
 
-import { Suspense } from 'react';
+import { Suspense, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Section from '@/components/Section';
+import { trackEvent } from '@/lib/analytics';
 
 const WORKER_BASE_URL = 'https://buildyourhouse-downloads.azerothcorner.workers.dev';
 
@@ -13,6 +14,25 @@ function downloadUrl(sessionId: string) {
 function SuccessContent() {
   const searchParams = useSearchParams();
   const sessionId = searchParams.get('session_id');
+
+  // GA4 purchase, deduped per Stripe session so reloads/back-navigation
+  // don't double-count the sale.
+  useEffect(() => {
+    if (!sessionId) return;
+    const dedupeKey = `purchase_tracked_${sessionId}`;
+    try {
+      if (sessionStorage.getItem(dedupeKey)) return;
+      sessionStorage.setItem(dedupeKey, '1');
+    } catch {
+      // Storage unavailable (private mode) — still track; worst case is a rare double-count.
+    }
+    trackEvent('purchase', {
+      transaction_id: sessionId,
+      currency: 'USD',
+      value: 97,
+      item_name: 'job_site_binder',
+    });
+  }, [sessionId]);
 
   if (!sessionId) {
     return (
@@ -78,6 +98,7 @@ function SuccessContent() {
               fontSize: 'var(--text-xl)',
               padding: 'var(--space-6) var(--space-12)',
             }}
+            onClick={() => trackEvent('binder_download', { item_name: 'job_site_binder' })}
           >
             Download Your Binder System (ZIP)
           </a>

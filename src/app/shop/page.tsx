@@ -56,12 +56,18 @@ export default function JobSiteBinder() {
             </div>
           </div>
 
-          <a href="#purchase" className="button button-large" style={{
-            fontSize: 'var(--text-xl)',
-            padding: 'var(--space-6) var(--space-12)'
-          }}>
+          <TrackedLink
+            eventName="shop_cta_click"
+            eventParams={{ location: 'hero' }}
+            href="#purchase"
+            className="button button-large"
+            style={{
+              fontSize: 'var(--text-xl)',
+              padding: 'var(--space-6) var(--space-12)'
+            }}
+          >
             Get the Complete System — $97
-          </a>
+          </TrackedLink>
 
           <p style={{
             marginTop: 'var(--space-4)',
@@ -614,7 +620,9 @@ export default function JobSiteBinder() {
           </p>
 
           <div style={{ marginTop: 'var(--space-8)' }}>
-            <a
+            <TrackedLink
+              eventName="shop_cta_click"
+              eventParams={{ location: 'final' }}
               href="#purchase"
               className="button button-large"
               style={{
@@ -623,7 +631,7 @@ export default function JobSiteBinder() {
               }}
             >
               Get the Complete System — $97
-            </a>
+            </TrackedLink>
           </div>
 
           <p style={{

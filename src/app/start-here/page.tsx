@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import Icon, { type IconName } from '@/components/Icon';
+import BinderCTA from '@/components/BinderCTA';
 import styles from './start-here.module.css';
 
 export const metadata: Metadata = {
@@ -233,6 +234,16 @@ export default function StartHere() {
               </Link>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* BINDER CROSS-SELL */}
+      <section className={styles.block}>
+        <div className={styles.wrap}>
+          <BinderCTA
+            context="start-here"
+            lead="Prefer everything in one place from day one? The Job Site Binder collects the checklists, contracts, and tracking sheets for every phase on this roadmap — 229 print-ready pages, organized the way a GC organizes a job."
+          />
         </div>
       </section>
 

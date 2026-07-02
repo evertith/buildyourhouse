@@ -1,0 +1,12 @@
+{
+  "name": "buildyourhouse-newsletter",
+  "main": "src/index.js",
+  "compatibility_date": "2026-06-01",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "buildyourhouse-newsletter",
+      "database_id": "6e09eebe-be9d-46d9-a1be-2c2e6e2f6ecd"
+    }
+  ]
+}

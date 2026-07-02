@@ -7,6 +7,9 @@ import Section from '@/components/Section';
 import FAQSection from '@/components/FAQSection';
 import ProductPick from '@/components/ProductPick';
 import AmazonLink from '@/components/AmazonLink';
+import ArticleSchema from '@/components/ArticleSchema';
+import BinderCTA from '@/components/BinderCTA';
+import PlanningTools from '@/components/PlanningTools';
 import styles from '@/styles/article.module.css';
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
@@ -25,5 +28,8 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     FAQSection,
     ProductPick,
     AmazonLink,
+    ArticleSchema,
+    BinderCTA,
+    PlanningTools,
   };
 }

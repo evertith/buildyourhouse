@@ -1,4 +1,4 @@
-# robots.txt for buildyourhouse.com
+# robots.txt for build-your-house.com
 
 # Allow all search engines to crawl all content
 User-agent: *

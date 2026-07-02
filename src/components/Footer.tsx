@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import styles from '@/styles/Footer.module.css';
 import { AMAZON_DISCLOSURE } from '@/lib/affiliate';
+import EmailCapture from '@/components/EmailCapture';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -8,6 +9,11 @@ export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
+        <EmailCapture
+          title="Owner-Builder Field Notes"
+          description="One practical email at a time — permits, budgets, scheduling, and the mistakes that cost other owner-builders real money."
+          buttonText="Subscribe"
+        />
         <div className={styles.columns}>
           <div className={styles.column}>
             <h3>Get Started</h3>
@@ -24,9 +30,11 @@ export default function Footer() {
             <ul className={styles.links}>
               <li><Link href="/permitting">Permitting Guide</Link></li>
               <li><Link href="/permitting/state-guides">State Permit Guides</Link></li>
+              <li><Link href="/build-phases">Build Phases</Link></li>
               <li><Link href="/inspections">Inspections</Link></li>
               <li><Link href="/subcontractors">Finding Subs</Link></li>
               <li><Link href="/timing-and-scheduling">Scheduling</Link></li>
+              <li><Link href="/move-in/punch-list">Move-In &amp; Punch List</Link></li>
             </ul>
           </div>
 
@@ -45,9 +53,10 @@ export default function Footer() {
             <h3>Connect</h3>
             <ul className={styles.links}>
               <li><Link href="/blog">Blog</Link></li>
-              {/* <li><Link href="/consulting">Consulting</Link></li> */}
+              <li><Link href="/newsletter">Newsletter</Link></li>
               <li><Link href="/about">About</Link></li>
               <li><Link href="/contact">Contact</Link></li>
+              <li><Link href="/site-map">Site Map</Link></li>
             </ul>
           </div>
         </div>

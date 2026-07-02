@@ -4,6 +4,8 @@ import { Fraunces, Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AdSenseRouteHandler from "@/components/AdSenseRouteHandler";
+import AnalyticsRouteHandler from "@/components/AnalyticsRouteHandler";
+import BreadcrumbSchema from "@/components/BreadcrumbSchema";
 import "@/styles/globals.css";
 import { generateOrganizationSchema, generateWebSiteSchema, schemaToScriptTag } from "@/lib/schema";
 
@@ -59,13 +61,14 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
+  // No og/twitter title or description here: leaving them unset lets Next.js
+  // fall back to each page's own resolved title/description, so shares of
+  // interior pages stop showing the homepage headline.
   openGraph: {
     type: "website",
     locale: "en_US",
     url: siteUrl,
     siteName: siteName,
-    title: "Build Your Own House — Save 10–25% as Your Own GC | Owner-Builder Guide",
-    description: siteDescription,
     images: [
       {
         url: `${siteUrl}/og-image.jpg`,
@@ -77,10 +80,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Build Your Own House — Save 10–25% as Your Own GC | Owner-Builder Guide",
-    description: siteDescription,
     images: [`${siteUrl}/og-image.jpg`],
-    creator: "@buildyourhouse",
   },
   robots: {
     index: true,
@@ -132,6 +132,12 @@ export default function RootLayout({
     <html lang="en" className={`${fraunces.variable} ${hankenGrotesk.variable} ${jetBrainsMono.variable}`}>
       <head>
         <meta name="google-adsense-account" content="ca-pub-2899164454337185" />
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="Build Your House — Blog"
+          href={`${siteUrl}/feed.xml`}
+        />
 
         {/* Structured Data - Organization and Website Schema */}
         <script
@@ -168,6 +174,8 @@ export default function RootLayout({
         </Script>
 
         <AdSenseRouteHandler />
+        <AnalyticsRouteHandler />
+        <BreadcrumbSchema />
         <Header />
         <main>{children}</main>
         <Footer />

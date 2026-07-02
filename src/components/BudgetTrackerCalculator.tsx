@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { calculateBudgetTracker, BudgetTrackerInputs, BudgetTrackerResults, BudgetPhase } from '@/lib/calculators';
 import CalculatorCard from '@/components/CalculatorCard';
 import styles from '@/styles/Calculator.module.css';
+import { trackEvent } from '@/lib/analytics';
 
 export default function BudgetTrackerCalculator() {
   const [contingency, setContingency] = useState(15);
@@ -47,6 +48,7 @@ export default function BudgetTrackerCalculator() {
       contingency
     };
     const calculatedResults = calculateBudgetTracker(inputs);
+    trackEvent('calculator_use', { calculator: 'budget_tracker' });
     setResults(calculatedResults);
   };
 

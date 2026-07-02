@@ -1,0 +1,574 @@
+{
+  "/": {
+    "published": "2025-11-14T08:21:35-05:00",
+    "modified": "2026-06-04T12:06:14-04:00"
+  },
+  "/about": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/blog": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-06-04T12:06:14-04:00"
+  },
+  "/blog/biggest-mistakes-owner-builders-make": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/blog/first-30-days-as-owner-builder": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/blog/how-to-choose-land-for-building": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/blog/is-owner-building-right-recession": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/blog/managing-construction-loan-as-owner-builder": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/blog/tools-i-wish-i-bought-sooner": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/build-phases": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/build-phases/drywall": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/build-phases/electrical-rough-in": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/build-phases/final-finishes": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/build-phases/finish": {
+    "published": "2025-11-18T12:57:43-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/build-phases/flooring": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/build-phases/foundation": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/build-phases/framing": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/build-phases/hvac-installation": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/build-phases/insulation": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/build-phases/interior-trim": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/build-phases/kitchen-and-bath": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/build-phases/landscaping": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/build-phases/painting": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/build-phases/plumbing-rough-in": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/build-phases/roofing": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/build-phases/rough-in": {
+    "published": "2025-11-18T12:57:43-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/build-phases/site-preparation": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/build-phases/windows-and-doors": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/calculators": {
+    "published": "2026-05-30T17:42:13-04:00",
+    "modified": "2026-06-04T12:06:14-04:00"
+  },
+  "/calculators/budget-tracker": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-06-04T12:06:14-04:00"
+  },
+  "/calculators/material-estimator": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-06-04T12:06:14-04:00"
+  },
+  "/calculators/timeline-estimator": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-06-04T12:06:14-04:00"
+  },
+  "/contact": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-06-04T12:06:14-04:00"
+  },
+  "/feasibility/cost-savings-calculator": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-06-04T12:06:14-04:00"
+  },
+  "/feasibility/is-it-right-for-you": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/feasibility/state-by-state-rules": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-06-04T12:06:14-04:00"
+  },
+  "/feasibility/time-commitment": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-06-04T12:06:14-04:00"
+  },
+  "/inspections": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/inspections/common-inspection-failures": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-06-04T12:06:14-04:00"
+  },
+  "/inspections/final-inspection": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-06-04T13:29:08-04:00"
+  },
+  "/inspections/foundation-inspection": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-06-04T12:06:14-04:00"
+  },
+  "/inspections/framing-inspection": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-06-04T12:06:14-04:00"
+  },
+  "/inspections/insulation-inspection": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-06-04T12:06:14-04:00"
+  },
+  "/inspections/rough-in-inspections": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-06-04T12:06:14-04:00"
+  },
+  "/move-in/certificate-of-occupancy": {
+    "published": "2025-11-18T12:57:43-05:00",
+    "modified": "2026-06-04T13:29:08-04:00"
+  },
+  "/move-in/loan-conversion": {
+    "published": "2025-11-18T12:57:43-05:00",
+    "modified": "2026-06-04T13:29:08-04:00"
+  },
+  "/move-in/moving-in": {
+    "published": "2025-11-18T12:57:43-05:00",
+    "modified": "2026-06-04T13:29:08-04:00"
+  },
+  "/move-in/punch-list": {
+    "published": "2025-11-18T12:57:43-05:00",
+    "modified": "2026-06-04T12:06:14-04:00"
+  },
+  "/newsletter": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/common-permit-mistakes": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-06-04T12:06:14-04:00"
+  },
+  "/permitting/permit-application-process": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-06-04T12:06:14-04:00"
+  },
+  "/permitting/state-guides": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-06-04T12:06:14-04:00"
+  },
+  "/permitting/state-guides/alabama": {
+    "published": "2026-05-30T20:56:19-04:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/alaska": {
+    "published": "2026-05-30T20:56:19-04:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/arizona": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/arkansas": {
+    "published": "2026-05-30T20:56:19-04:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/california": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/colorado": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/connecticut": {
+    "published": "2026-05-30T20:56:19-04:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/delaware": {
+    "published": "2026-05-30T20:56:19-04:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/florida": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/georgia": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/hawaii": {
+    "published": "2026-05-30T20:56:19-04:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/idaho": {
+    "published": "2026-05-30T20:56:19-04:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/illinois": {
+    "published": "2026-05-30T21:08:21-04:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/indiana": {
+    "published": "2026-05-26T23:03:39-04:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/iowa": {
+    "published": "2026-05-30T21:08:21-04:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/kansas": {
+    "published": "2026-05-30T21:08:21-04:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/kentucky": {
+    "published": "2026-05-30T21:08:21-04:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/louisiana": {
+    "published": "2026-05-30T21:08:21-04:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/maine": {
+    "published": "2026-05-30T21:08:21-04:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/maryland": {
+    "published": "2026-05-30T21:08:21-04:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/massachusetts": {
+    "published": "2026-05-30T21:21:00-04:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/michigan": {
+    "published": "2026-05-30T21:21:00-04:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/minnesota": {
+    "published": "2026-05-30T21:21:00-04:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/mississippi": {
+    "published": "2026-05-30T21:21:00-04:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/missouri": {
+    "published": "2026-05-30T21:21:00-04:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/montana": {
+    "published": "2026-05-30T21:21:00-04:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/nebraska": {
+    "published": "2026-05-30T21:21:00-04:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/nevada": {
+    "published": "2026-05-30T21:34:24-04:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/new-hampshire": {
+    "published": "2026-05-30T21:34:24-04:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/new-jersey": {
+    "published": "2026-05-30T21:34:24-04:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/new-mexico": {
+    "published": "2026-05-30T21:34:24-04:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/new-york": {
+    "published": "2026-05-30T21:34:24-04:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/north-carolina": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/north-dakota": {
+    "published": "2026-05-30T21:34:24-04:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/ohio": {
+    "published": "2026-05-26T23:03:39-04:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/oklahoma": {
+    "published": "2026-05-30T21:34:24-04:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/oregon": {
+    "published": "2026-05-26T23:03:39-04:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/pennsylvania": {
+    "published": "2026-05-26T23:03:39-04:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/rhode-island": {
+    "published": "2026-05-30T21:47:27-04:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/south-carolina": {
+    "published": "2026-05-26T23:03:39-04:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/south-dakota": {
+    "published": "2026-05-30T21:47:27-04:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/tennessee": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/texas": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/utah": {
+    "published": "2026-05-30T21:47:27-04:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/vermont": {
+    "published": "2026-05-30T21:47:27-04:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/virginia": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/washington": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/west-virginia": {
+    "published": "2026-05-30T21:47:27-04:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/wisconsin": {
+    "published": "2026-05-30T21:47:27-04:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/state-guides/wyoming": {
+    "published": "2026-05-30T21:47:27-04:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/permitting/understanding-building-codes": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-06-04T12:06:14-04:00"
+  },
+  "/permitting/working-with-building-department": {
+    "published": "2025-11-17T07:59:49-05:00",
+    "modified": "2026-06-04T12:06:14-04:00"
+  },
+  "/planning/budget": {
+    "published": "2025-11-18T12:57:43-05:00",
+    "modified": "2026-06-04T13:29:08-04:00"
+  },
+  "/planning/financing": {
+    "published": "2025-11-18T12:57:43-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/planning/house-plans": {
+    "published": "2025-11-18T12:57:43-05:00",
+    "modified": "2026-06-04T13:03:53-04:00"
+  },
+  "/planning/secure-land": {
+    "published": "2025-11-18T12:57:43-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/planning/timeline": {
+    "published": "2025-11-18T12:57:43-05:00",
+    "modified": "2026-06-09T21:25:12-04:00"
+  },
+  "/privacy": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/resources": {
+    "published": "2025-11-18T12:57:43-05:00",
+    "modified": "2026-06-04T12:06:14-04:00"
+  },
+  "/resources/checklists": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/resources/glossary": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/resources/recommended-tools": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/resources/templates": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/shop": {
+    "published": "2025-11-18T12:57:43-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/shop/success": {
+    "published": "2026-02-18T13:58:30-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/site-map": {
+    "published": "2026-07-01T21:40:43-04:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/start-here": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/subcontractors": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/subcontractors/contracts-and-agreements": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-06-04T13:29:08-04:00"
+  },
+  "/subcontractors/dealing-with-problems": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-06-04T13:29:08-04:00"
+  },
+  "/subcontractors/finding-quality-subs": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-06-04T13:29:08-04:00"
+  },
+  "/subcontractors/getting-quotes": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-06-04T13:29:08-04:00"
+  },
+  "/subcontractors/managing-subs": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-06-04T13:29:08-04:00"
+  },
+  "/subcontractors/payment-schedules": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-06-04T13:29:08-04:00"
+  },
+  "/subcontractors/vetting-and-interviewing": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-06-04T13:29:08-04:00"
+  },
+  "/subcontractors/when-to-hire-vs-diy": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-06-04T13:29:08-04:00"
+  },
+  "/terms": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-06-04T12:06:14-04:00"
+  },
+  "/timing-and-scheduling": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/timing-and-scheduling/common-delays": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-06-04T13:29:08-04:00"
+  },
+  "/timing-and-scheduling/coordinating-trades": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-06-04T13:29:08-04:00"
+  },
+  "/timing-and-scheduling/critical-path-method": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-06-04T13:29:08-04:00"
+  },
+  "/timing-and-scheduling/material-lead-times": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-06-04T13:29:08-04:00"
+  },
+  "/timing-and-scheduling/realistic-timeline": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-06-04T13:29:08-04:00"
+  },
+  "/timing-and-scheduling/schedule-template": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-06-04T13:29:08-04:00"
+  },
+  "/timing-and-scheduling/weather-considerations": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-06-04T13:29:08-04:00"
+  },
+  "/tools-and-equipment": {
+    "published": "2026-06-04T12:32:59-04:00",
+    "modified": "2026-06-09T21:25:12-04:00"
+  },
+  "/tools-and-equipment/buy-vs-rent": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/tools-and-equipment/essential-tools": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/tools-and-equipment/safety-equipment": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/tools-and-equipment/tool-reviews": {
+    "published": "2025-11-17T08:11:01-05:00",
+    "modified": "2026-07-01T21:40:43-04:00"
+  }
+}

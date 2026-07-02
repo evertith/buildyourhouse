@@ -34,6 +34,7 @@ export interface ArticleSchemaProps {
   author: {
     name: string;
     url?: string;
+    type?: 'Person' | 'Organization';
   };
   publisher: {
     name: string;
@@ -125,7 +126,7 @@ export function generateArticleSchema(props: ArticleSchemaProps) {
     datePublished: props.datePublished,
     dateModified: props.dateModified || props.datePublished,
     author: {
-      "@type": "Person",
+      "@type": props.author.type ?? "Person",
       name: props.author.name,
       url: props.author.url,
     },

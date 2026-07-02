@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { calculateCostSavings, CostSavingsInputs, CostSavingsResults } from '@/lib/calculators';
 import CalculatorCard from '@/components/CalculatorCard';
 import styles from '@/styles/Calculator.module.css';
+import { trackEvent } from '@/lib/analytics';
 
 export default function CostSavingsCalculator() {
   const [inputs, setInputs] = useState<CostSavingsInputs>({
@@ -22,6 +23,7 @@ export default function CostSavingsCalculator() {
 
   const calculate = () => {
     const calculatedResults = calculateCostSavings(inputs);
+    trackEvent('calculator_use', { calculator: 'cost_savings' });
     setResults(calculatedResults);
   };
 

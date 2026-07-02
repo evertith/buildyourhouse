@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { calculateTimelineEstimate, TimelineEstimatorInputs, TimelineEstimatorResults } from '@/lib/calculators';
 import CalculatorCard from '@/components/CalculatorCard';
 import styles from '@/styles/Calculator.module.css';
+import { trackEvent } from '@/lib/analytics';
 
 export default function TimelineEstimatorCalculator() {
   const [inputs, setInputs] = useState<TimelineEstimatorInputs>({
@@ -22,6 +23,7 @@ export default function TimelineEstimatorCalculator() {
 
   const calculate = () => {
     const calculatedResults = calculateTimelineEstimate(inputs);
+    trackEvent('calculator_use', { calculator: 'timeline_estimator' });
     setResults(calculatedResults);
   };
 

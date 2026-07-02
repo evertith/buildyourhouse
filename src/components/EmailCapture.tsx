@@ -4,6 +4,12 @@ import { useState, FormEvent } from 'react';
 import styles from '@/styles/EmailCapture.module.css';
 import { trackEvent } from '@/lib/analytics';
 
+// Cloudflare Worker (workers/newsletter) backed by D1. Export the list with:
+// wrangler d1 execute buildyourhouse-newsletter --remote --command "SELECT * FROM subscribers"
+const NEWSLETTER_ENDPOINT =
+  process.env.NEXT_PUBLIC_NEWSLETTER_ENDPOINT ??
+  'https://buildyourhouse-newsletter.azerothcorner.workers.dev/subscribe';
+
 interface EmailCaptureProps {
   title?: string;
   description?: string;
@@ -20,6 +26,7 @@ export default function EmailCapture({
   onSubmit
 }: EmailCaptureProps) {
   const [email, setEmail] = useState('');
+  const [honeypot, setHoneypot] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState('');
 
@@ -50,12 +57,18 @@ export default function EmailCapture({
       if (onSubmit) {
         await onSubmit(email);
       } else {
-        // Placeholder for email service integration
-        // TODO: Integrate with Mailchimp, ConvertKit, or other email service
-        await new Promise(resolve => setTimeout(resolve, 1000));
-
-        // For now, just log to console
-        console.log('Email submitted:', email);
+        const response = await fetch(NEWSLETTER_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email,
+            source: window.location.pathname,
+            website: honeypot,
+          }),
+        });
+        if (!response.ok) {
+          throw new Error(`subscribe failed: ${response.status}`);
+        }
       }
 
       setStatus('success');
@@ -84,6 +97,17 @@ export default function EmailCapture({
         <p className={styles.description}>{description}</p>
 
         <form onSubmit={handleSubmit} className={styles.form}>
+          {/* Honeypot — hidden from real users, bots auto-fill it */}
+          <input
+            type="text"
+            name="website"
+            value={honeypot}
+            onChange={(e) => setHoneypot(e.target.value)}
+            style={{ position: 'absolute', left: '-9999px', height: 0, width: 0, opacity: 0 }}
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+          />
           <div className={styles.inputWrapper}>
             <input
               type="email"
