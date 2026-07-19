@@ -600,9 +600,11 @@ export default function JobSiteBinder() {
           <div className="faq-item">
             <h3>How soon can I download this?</h3>
             <p>
-              Immediately after purchase. You&apos;ll receive an email with download
-              links within minutes. No waiting, no shipping — instant access to
-              all files.
+              Immediately. As soon as your payment goes through, you&apos;re taken
+              straight to your download page — no waiting, no shipping. Lose the
+              page later? Recover your download anytime at{' '}
+              <a href="/shop/recover">build-your-house.com/shop/recover</a> using
+              your purchase email.
             </p>
           </div>
         </div>

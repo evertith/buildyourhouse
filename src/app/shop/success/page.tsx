@@ -110,6 +110,17 @@ function SuccessContent() {
           }}>
             3.4 MB &bull; ZIP file containing PDFs, Word docs, and Excel spreadsheets
           </p>
+
+          <p style={{
+            marginTop: 'var(--space-2)',
+            fontSize: 'var(--text-sm)',
+            color: 'var(--text-secondary)',
+          }}>
+            Save the file somewhere safe. If you ever lose it, you can recover
+            your download at{' '}
+            <a href="/shop/recover">build-your-house.com/shop/recover</a> with
+            your purchase email.
+          </p>
         </div>
       </Section>
 
