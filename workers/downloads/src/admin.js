@@ -143,7 +143,7 @@ export const ADMIN_HTML = `<!doctype html>
   }
 
   function renderOrders(orders) {
-    var paid = orders.filter(function (o) { return o.payment_status === 'paid'; });
+    var paid = orders.filter(function (o) { return o.payment_status === 'paid' || o.payment_status === 'no_payment_required'; });
     var revenue = 0, downloads = 0, refunded = 0, disputed = 0;
     paid.forEach(function (o) {
       revenue += (o.amount_total || 0) - (o.amount_refunded || 0);
@@ -168,7 +168,9 @@ export const ADMIN_HTML = `<!doctype html>
       if (o.refunded) badges.push('<span class="badge b-refunded">refunded</span>');
       badges.push(o.payment_status === 'paid'
         ? '<span class="badge b-paid">paid</span>'
-        : '<span class="badge b-unpaid">' + esc(o.payment_status) + '</span>');
+        : o.payment_status === 'no_payment_required'
+          ? '<span class="badge b-paid">free (promo)</span>'
+          : '<span class="badge b-unpaid">' + esc(o.payment_status) + '</span>');
       if (o.discount > 0) badges.push('<span class="badge b-discount">-' + money(o.discount, o.currency) + ' promo</span>');
 
       var tr = document.createElement('tr');
@@ -183,7 +185,7 @@ export const ADMIN_HTML = `<!doctype html>
         '<td class="actions"></td>';
 
       var actions = tr.querySelector('.actions');
-      if (o.payment_status === 'paid') {
+      if (o.payment_status === 'paid' || o.payment_status === 'no_payment_required') {
         var b1 = document.createElement('button');
         b1.textContent = 'Copy download page link';
         b1.className = 'ghost';

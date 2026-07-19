@@ -42,6 +42,14 @@ const verifiedSessions = new Map();
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
+/**
+ * A session is fulfillable when Stripe collected payment OR nothing was owed —
+ * a 100%-off promotion code produces payment_status 'no_payment_required'.
+ */
+function isPaidStatus(status) {
+  return status === 'paid' || status === 'no_payment_required';
+}
+
 function successUrl(sessionId) {
   return `${SITE_ORIGIN}${SUCCESS_PATH}?session_id=${encodeURIComponent(sessionId)}`;
 }
@@ -110,7 +118,7 @@ async function verifyStripeSession(sessionId, env) {
   } catch {
     return { paid: false, email: null };
   }
-  const paid = session.payment_status === 'paid';
+  const paid = isPaidStatus(session.payment_status);
   const email = session.customer_details?.email || null;
   if (paid) {
     verifiedSessions.set(sessionId, { at: Date.now(), email });
@@ -209,7 +217,7 @@ async function handleRecover(request, env, ctx, origin) {
     params.set('customer_details[email]', email);
     const res = await stripe(env, `/checkout/sessions?${params}`);
     found = res.data.find(
-      (s) => s.payment_status === 'paid' && s.customer_details?.email?.toLowerCase() === email
+      (s) => isPaidStatus(s.payment_status) && s.customer_details?.email?.toLowerCase() === email
     );
   } catch (err) {
     console.error('recovery Stripe lookup failed:', err);
@@ -340,7 +348,7 @@ async function handleStripeWebhook(request, env) {
   }
 
   const session = event.data.object;
-  if (session.payment_status !== 'paid') {
+  if (!isPaidStatus(session.payment_status)) {
     // Async payment methods complete later; the async_payment_succeeded event covers those.
     return new Response('not paid yet', { status: 200 });
   }
