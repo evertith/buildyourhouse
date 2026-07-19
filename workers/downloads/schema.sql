@@ -10,6 +10,16 @@ CREATE TABLE IF NOT EXISTS downloads (
 );
 CREATE INDEX IF NOT EXISTS idx_downloads_session ON downloads(session_id);
 
+-- Fulfillment emails sent via Resend on checkout.session.completed.
+-- UNIQUE(session_id) is the dedupe guard against Stripe webhook retries.
+CREATE TABLE IF NOT EXISTS fulfillment_emails (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  session_id TEXT NOT NULL UNIQUE,
+  email TEXT NOT NULL,
+  resend_id TEXT,
+  created_at TEXT NOT NULL
+);
+
 -- Self-service link-recovery attempts (rate-limited per IP).
 CREATE TABLE IF NOT EXISTS recovery_requests (
   id INTEGER PRIMARY KEY AUTOINCREMENT,

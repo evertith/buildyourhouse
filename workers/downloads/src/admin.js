@@ -67,7 +67,7 @@ export const ADMIN_HTML = `<!doctype html>
   <div class="tablewrap"><table id="tbl" hidden>
     <thead><tr>
       <th>Date</th><th>Customer</th><th>Amount</th><th>Status</th>
-      <th>Downloads</th><th>Last download</th><th>Actions</th>
+      <th>Emailed</th><th>Downloads</th><th>Last download</th><th>Actions</th>
     </tr></thead>
     <tbody id="rows"></tbody>
   </table></div>
@@ -177,6 +177,7 @@ export const ADMIN_HTML = `<!doctype html>
         '<td>' + esc(o.email || '—') + (o.name ? '<br><span class="mono">' + esc(o.name) + '</span>' : '') + '</td>' +
         '<td>' + money(o.amount_total || 0, o.currency) + '</td>' +
         '<td>' + badges.join(' ') + '</td>' +
+        '<td>' + (o.emailed_at ? '<span title="' + esc(fmtDate(o.emailed_at)) + '">&#10003;</span>' : '—') + '</td>' +
         '<td>' + o.downloads + '</td>' +
         '<td>' + (o.last_download ? fmtDate(o.last_download) : '—') + '</td>' +
         '<td class="actions"></td>';

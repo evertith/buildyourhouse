@@ -8,6 +8,11 @@
  *                                     purchase email and return the success-page URL.
  *                                     Rate-limited per IP; `website` is a honeypot.
  *
+ * Webhook:
+ *   POST /stripe-webhook              Stripe checkout.session.completed → send the buyer
+ *                                     their download link via Resend (dedupe on session_id).
+ *                                     Non-2xx responses make Stripe retry for up to 3 days.
+ *
  * Admin routes (Authorization: Bearer <ADMIN_KEY>):
  *   GET  /admin                       Dashboard UI (static HTML; data calls need the key).
  *   GET  /admin/api/orders            All checkout sessions + refund/dispute status +
@@ -17,7 +22,8 @@
  *   POST /admin/api/fix-payment-link  Enable promotion codes and ensure the payment link
  *                                     redirects to /shop/success?session_id={CHECKOUT_SESSION_ID}.
  *
- * Secrets: STRIPE_SECRET_KEY, ADMIN_KEY (set via `wrangler secret put`).
+ * Secrets: STRIPE_SECRET_KEY, ADMIN_KEY, RESEND_API_KEY, STRIPE_WEBHOOK_SECRET
+ * (set via `wrangler secret put`).
  * Bindings: DOWNLOADS_BUCKET (R2), DB (D1 — see schema.sql).
  */
 
@@ -225,6 +231,147 @@ async function handleRecover(request, env, ctx, origin) {
   return json({ found: true, url: successUrl(found.id) }, 200, origin);
 }
 
+function timingSafeEqualStr(a, b) {
+  if (a.length !== b.length) return false;
+  let diff = 0;
+  for (let i = 0; i < a.length; i++) diff |= a.charCodeAt(i) ^ b.charCodeAt(i);
+  return diff === 0;
+}
+
+/** Verify a Stripe-Signature header against the raw request body. */
+async function verifyStripeSignature(header, body, secret, toleranceSec = 300) {
+  const parsed = { t: null, v1: [] };
+  for (const part of (header || '').split(',')) {
+    const eq = part.indexOf('=');
+    if (eq === -1) continue;
+    const k = part.slice(0, eq).trim();
+    const v = part.slice(eq + 1).trim();
+    if (k === 't') parsed.t = v;
+    else if (k === 'v1') parsed.v1.push(v);
+  }
+  if (!parsed.t || parsed.v1.length === 0) return false;
+  const age = Math.abs(Date.now() / 1000 - Number(parsed.t));
+  if (!Number.isFinite(age) || age > toleranceSec) return false;
+
+  const enc = new TextEncoder();
+  const key = await crypto.subtle.importKey(
+    'raw',
+    enc.encode(secret),
+    { name: 'HMAC', hash: 'SHA-256' },
+    false,
+    ['sign']
+  );
+  const mac = await crypto.subtle.sign('HMAC', key, enc.encode(`${parsed.t}.${body}`));
+  const expected = [...new Uint8Array(mac)].map((b) => b.toString(16).padStart(2, '0')).join('');
+  return parsed.v1.some((sig) => timingSafeEqualStr(sig, expected));
+}
+
+/** Send the product-delivery email via Resend. Returns the Resend message id. */
+async function sendFulfillmentEmail(env, { email, name, sessionId }) {
+  const link = successUrl(sessionId);
+  const first = (name || '').trim().split(/\s+/)[0] || '';
+  const greeting = first ? `Hi ${first},` : 'Hi,';
+
+  const text = `${greeting}
+
+Thanks for buying the Owner-Builder Job Site Binder! This email is your product delivery — keep it so you can always get back to your files.
+
+Your download page:
+${link}
+
+The ZIP (3.4 MB) contains all 229 pages: printable PDFs, editable Word contracts, and Excel budget spreadsheets. Open the "START HERE" guide first — it walks you through printing and assembling the binder.
+
+Lose this email later? Recover your download anytime at https://build-your-house.com/shop/recover using this email address.
+
+Any trouble at all, just reply and I'll help directly.
+
+Seth
+Build Your House
+https://build-your-house.com
+`;
+
+  const html = `<p>${greeting}</p>
+<p>Thanks for buying the Owner-Builder Job Site Binder! This email is your product delivery — keep it so you can always get back to your files.</p>
+<p><a href="${link}"><strong>Open your download page</strong></a></p>
+<p>The ZIP (3.4&nbsp;MB) contains all 229 pages: printable PDFs, editable Word contracts, and Excel budget spreadsheets. Open the &ldquo;START HERE&rdquo; guide first — it walks you through printing and assembling the binder.</p>
+<p>Lose this email later? Recover your download anytime at <a href="https://build-your-house.com/shop/recover">build-your-house.com/shop/recover</a> using this email address.</p>
+<p>Any trouble at all, just reply and I&rsquo;ll help directly.</p>
+<p>Seth<br>Build Your House<br><a href="https://build-your-house.com">build-your-house.com</a></p>`;
+
+  const res = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${env.RESEND_API_KEY}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      from: 'Seth at Build Your House <seth@build-your-house.com>',
+      to: [email],
+      reply_to: 'seth@build-your-house.com',
+      subject: 'Your Owner-Builder Job Site Binder — download inside',
+      text,
+      html,
+    }),
+  });
+  const data = await res.json();
+  if (!res.ok) {
+    throw new Error(data?.message || `Resend error ${res.status}`);
+  }
+  return data.id || null;
+}
+
+async function handleStripeWebhook(request, env) {
+  const body = await request.text();
+  const ok = await verifyStripeSignature(
+    request.headers.get('Stripe-Signature'),
+    body,
+    env.STRIPE_WEBHOOK_SECRET
+  );
+  if (!ok) {
+    return new Response('invalid signature', { status: 400 });
+  }
+
+  const event = JSON.parse(body);
+  if (
+    event.type !== 'checkout.session.completed' &&
+    event.type !== 'checkout.session.async_payment_succeeded'
+  ) {
+    return new Response('ignored', { status: 200 });
+  }
+
+  const session = event.data.object;
+  if (session.payment_status !== 'paid') {
+    // Async payment methods complete later; the async_payment_succeeded event covers those.
+    return new Response('not paid yet', { status: 200 });
+  }
+  const email = session.customer_details?.email;
+  if (!email) {
+    return new Response('no email on session', { status: 200 });
+  }
+
+  const existing = await env.DB.prepare('SELECT id FROM fulfillment_emails WHERE session_id = ?1')
+    .bind(session.id)
+    .first();
+  if (existing) {
+    return new Response('already sent', { status: 200 });
+  }
+
+  // Throwing here → 500 → Stripe retries the webhook, so a transient Resend
+  // outage still results in the customer getting their email.
+  const resendId = await sendFulfillmentEmail(env, {
+    email,
+    name: session.customer_details?.name,
+    sessionId: session.id,
+  });
+  await env.DB.prepare(
+    'INSERT INTO fulfillment_emails (session_id, email, resend_id, created_at) VALUES (?1, ?2, ?3, ?4)'
+  )
+    .bind(session.id, email, resendId, new Date().toISOString())
+    .run();
+
+  return new Response('sent', { status: 200 });
+}
+
 async function findPaymentLink(env) {
   const res = await stripe(env, '/payment_links?limit=100');
   return res.data.find((l) => l.url === PAYMENT_LINK_URL) || null;
@@ -322,13 +469,18 @@ async function handleOrders(env) {
     startingAfter = res.data[res.data.length - 1].id;
   }
 
-  // Per-session download stats from D1.
+  // Per-session download + fulfillment-email stats from D1.
   const stats = new Map();
+  const emails = new Map();
   try {
     const { results } = await env.DB.prepare(
       'SELECT session_id, COUNT(*) AS n, MAX(created_at) AS last FROM downloads GROUP BY session_id'
     ).all();
     for (const row of results) stats.set(row.session_id, row);
+    const sent = await env.DB.prepare(
+      'SELECT session_id, created_at FROM fulfillment_emails'
+    ).all();
+    for (const row of sent.results) emails.set(row.session_id, row.created_at);
   } catch (err) {
     console.error('download stats query failed:', err);
   }
@@ -354,6 +506,7 @@ async function handleOrders(env) {
       receipt_url: charge?.receipt_url || null,
       downloads: dl ? dl.n : 0,
       last_download: dl ? dl.last : null,
+      emailed_at: emails.get(s.id) || null,
       success_url: successUrl(s.id),
       download_url: `https://buildyourhouse-downloads.azerothcorner.workers.dev/download?session_id=${encodeURIComponent(s.id)}`,
     };
@@ -378,6 +531,10 @@ export default {
 
       if (request.method === 'POST' && url.pathname === '/recover') {
         return await handleRecover(request, env, ctx, origin);
+      }
+
+      if (request.method === 'POST' && url.pathname === '/stripe-webhook') {
+        return await handleStripeWebhook(request, env);
       }
 
       if (request.method === 'GET' && url.pathname === '/admin') {
