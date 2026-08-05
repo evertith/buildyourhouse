@@ -11,7 +11,9 @@ export type IconName =
   | 'arrow'
   | 'compass'
   | 'ruler'
-  | 'doc';
+  | 'doc'
+  | 'lock'
+  | 'bolt';
 
 const PATHS: Record<IconName, React.ReactNode> = {
   // Permitting & inspections — shield + check
@@ -89,6 +91,16 @@ const PATHS: Record<IconName, React.ReactNode> = {
       <path d="M14 3v6h6M8 13h8M8 17h6" />
     </>
   ),
+  // Secure checkout — padlock
+  lock: (
+    <>
+      <rect x="4" y="10" width="16" height="11" rx="1.5" />
+      <path d="M8 10V7a4 4 0 0 1 8 0v3" />
+      <path d="M12 14v3" />
+    </>
+  ),
+  // Instant access — lightning bolt
+  bolt: <path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z" />,
 };
 
 interface IconProps {

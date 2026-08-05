@@ -60,6 +60,18 @@ export interface HowToStep {
   url?: string;
 }
 
+export interface ProductSchemaProps {
+  name: string;
+  description: string;
+  image: string; // Absolute URL
+  url: string;   // Absolute URL of the product page
+  price: number;
+  priceCurrency: string;
+  availability?: 'InStock' | 'OutOfStock' | 'PreOrder';
+  brand?: string;
+  sku?: string;
+}
+
 export interface HowToSchemaProps {
   name: string;
   description: string;
@@ -182,6 +194,33 @@ export function generateFAQSchema(faqs: FAQItem[]) {
         text: faq.answer,
       },
     })),
+  };
+}
+
+/**
+ * Generate Product schema markup.
+ *
+ * Deliberately omits aggregateRating and review: the binder has no verified
+ * customer reviews yet, and inventing them would be both false and a Google
+ * structured-data violation. Add them only when real reviews exist.
+ */
+export function generateProductSchema(props: ProductSchemaProps) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: props.name,
+    description: props.description,
+    image: props.image,
+    url: props.url,
+    ...(props.brand ? { brand: { "@type": "Brand", name: props.brand } } : {}),
+    ...(props.sku ? { sku: props.sku } : {}),
+    offers: {
+      "@type": "Offer",
+      price: props.price,
+      priceCurrency: props.priceCurrency,
+      availability: `https://schema.org/${props.availability ?? "InStock"}`,
+      url: props.url,
+    },
   };
 }
 

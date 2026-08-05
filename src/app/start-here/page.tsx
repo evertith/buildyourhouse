@@ -242,7 +242,7 @@ export default function StartHere() {
         <div className={styles.wrap}>
           <BinderCTA
             context="start-here"
-            lead="Prefer everything in one place from day one? The Job Site Binder collects the checklists, contracts, and tracking sheets for every phase on this roadmap — 229 print-ready pages, organized the way a GC organizes a job."
+            lead="Prefer everything in one place from day one? The Job Site Binder collects the checklists, contracts, and tracking sheets for every phase on this roadmap — 367 print-ready pages, organized the way a GC organizes a job."
           />
         </div>
       </section>

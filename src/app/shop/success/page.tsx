@@ -108,7 +108,7 @@ function SuccessContent() {
             fontSize: 'var(--text-sm)',
             color: 'var(--text-secondary)',
           }}>
-            3.4 MB &bull; ZIP file containing PDFs, Word docs, and Excel spreadsheets
+            3.3 MB &bull; ZIP file containing print-ready PDFs, Word docs, and Excel spreadsheets
           </p>
 
           <p style={{
@@ -137,10 +137,10 @@ function SuccessContent() {
 
           <div className="step-card">
             <div className="step-number">2</div>
-            <h3>Read the START HERE Guide</h3>
+            <h3>Read the How-to-Use Guide</h3>
             <p>
-              Open the &ldquo;START HERE&rdquo; PDF first. It walks you through
-              how to assemble your binder step by step.
+              Open &ldquo;HOW TO USE THIS BINDER&rdquo; first. It walks you
+              through how to assemble your binder step by step.
             </p>
           </div>
 

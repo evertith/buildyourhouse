@@ -1,0 +1,111 @@
+/* ============================================
+   SAMPLE CAPTURE — email gate on the free
+   19-page binder sample (/shop trust section).
+   Matches the drafting language: square corners,
+   hairline borders, mono labels.
+   ============================================ */
+.form {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: stretch;
+  margin-top: var(--space-3);
+  max-width: 540px;
+}
+
+/* Honeypot — hidden from real users, bots auto-fill it. */
+.hp {
+  position: absolute;
+  left: -9999px;
+  height: 0;
+  width: 0;
+  opacity: 0;
+}
+
+.input {
+  flex: 1 1 240px;
+  min-width: 0;
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  border: 1px solid var(--hairline-strong);
+  border-radius: 0;
+  padding: 14px 15px;
+}
+.input::placeholder { color: var(--text-secondary); }
+.input:disabled { opacity: 0.6; }
+
+.button {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 14px 24px;
+  border: 1px solid var(--accent-primary);
+  border-radius: 0;
+  background: var(--accent-primary);
+  color: var(--cream);
+  cursor: pointer;
+  transition: background 0.18s ease, border-color 0.18s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+.button:hover {
+  background: var(--button-primary-hover);
+  border-color: var(--button-primary-hover);
+  color: var(--cream);
+  text-decoration: none;
+}
+.button:disabled { opacity: 0.6; cursor: default; }
+
+.message {
+  margin: 10px 0 0;
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: var(--accent-critical);
+  max-width: 540px;
+}
+
+.done {
+  margin-top: var(--space-3);
+  max-width: 540px;
+  border: 1px solid var(--accent-primary);
+  background: var(--bg-secondary);
+  padding: var(--space-3);
+}
+.doneLabel {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-primary);
+  margin: 0 0 10px;
+}
+.doneCopy {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  margin: 0 0 var(--space-3);
+  max-width: none;
+}
+.privacy {
+  margin: 10px 0 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  max-width: 540px;
+}
+
+@media (max-width: 480px) {
+  .form { flex-direction: column; }
+  .button { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button { transition: none; }
+}

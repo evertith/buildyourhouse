@@ -20,7 +20,7 @@ export default function BinderCTA({ context, lead }: BinderCTAProps) {
       <h3 className={styles.title}>The Owner-Builder Job Site Binder System</h3>
       <p className={styles.copy}>
         {lead ??
-          'Every checklist, contract, inspection form, and tracking sheet for your build — 229 pages of print-ready templates, organized the way a GC organizes a job.'}
+          'Every checklist, contract, inspection form, and tracking sheet for your build — 367 pages of print-ready templates, organized the way a GC organizes a job.'}
       </p>
       <TrackedLink
         eventName="shop_cta_click"

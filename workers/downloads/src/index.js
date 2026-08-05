@@ -287,7 +287,7 @@ Thanks for buying the Owner-Builder Job Site Binder! This email is your product 
 Your download page:
 ${link}
 
-The ZIP (3.4 MB) contains all 229 pages: printable PDFs, editable Word contracts, and Excel budget spreadsheets. Open the "START HERE" guide first — it walks you through printing and assembling the binder.
+The ZIP contains 367 pages of printable PDFs, plus editable Word contracts and Excel budget spreadsheets. Open the "HOW TO USE THIS BINDER" guide first — it walks you through printing and assembling the binder.
 
 Lose this email later? Recover your download anytime at https://build-your-house.com/shop/recover using this email address.
 
@@ -301,7 +301,7 @@ https://build-your-house.com
   const html = `<p>${greeting}</p>
 <p>Thanks for buying the Owner-Builder Job Site Binder! This email is your product delivery — keep it so you can always get back to your files.</p>
 <p><a href="${link}"><strong>Open your download page</strong></a></p>
-<p>The ZIP (3.4&nbsp;MB) contains all 229 pages: printable PDFs, editable Word contracts, and Excel budget spreadsheets. Open the &ldquo;START HERE&rdquo; guide first — it walks you through printing and assembling the binder.</p>
+<p>The ZIP contains 367 pages of printable PDFs, plus editable Word contracts and Excel budget spreadsheets. Open the &ldquo;HOW TO USE THIS BINDER&rdquo; guide first — it walks you through printing and assembling the binder.</p>
 <p>Lose this email later? Recover your download anytime at <a href="https://build-your-house.com/shop/recover">build-your-house.com/shop/recover</a> using this email address.</p>
 <p>Any trouble at all, just reply and I&rsquo;ll help directly.</p>
 <p>Seth<br>Build Your House<br><a href="https://build-your-house.com">build-your-house.com</a></p>`;
