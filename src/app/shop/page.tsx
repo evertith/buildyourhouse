@@ -212,7 +212,7 @@ const INCLUDES: string[] = [
 const GUARANTEES: { icon: IconName; label: string; copy: string }[] = [
   { icon: 'lock', label: 'Secure checkout', copy: 'Powered by Stripe — your payment details never touch this site.' },
   { icon: 'bolt', label: 'Instant access', copy: 'Download the moment your payment goes through.' },
-  { icon: 'check', label: '30-day guarantee', copy: 'Not right for you? Reply to your receipt within 30 days for a full refund.' },
+  { icon: 'check', label: 'Lifetime access', copy: 'Your files don’t expire — recover your download anytime with your purchase email.' },
 ];
 
 // `answer` feeds the FAQPage schema, so it stays plain text. `node` is the
@@ -355,7 +355,7 @@ export default function JobSiteBinder() {
                 </TrackedLink>
               </div>
               <p className={styles.heroFine}>
-                One-time payment · Instant download · 30-day refund
+                One-time payment · Instant download
               </p>
             </div>
 
@@ -624,17 +624,6 @@ export default function JobSiteBinder() {
               </div>
             </div>
 
-            <div className={styles.trustItem}>
-              <Icon name="check" size={26} className={styles.trustIco} />
-              <div>
-                <p className={styles.trustLabel}>30 days, one email</p>
-                <p className={styles.trustCopy}>
-                  Reply to your receipt email within 30 days and ask for a refund. The money goes
-                  back to the card you paid with, and you keep the files — there is nothing to ship
-                  back and no form to fill out.
-                </p>
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -707,7 +696,7 @@ export default function JobSiteBinder() {
               <span className={styles.priceVal}>$97</span>
             </div>
             <div className={`${styles.orderDim} bp-dimline`}>
-              One-time · Instant download · 30-day refund
+              One-time · Instant download
             </div>
 
             <TrackedLink
@@ -785,7 +774,7 @@ export default function JobSiteBinder() {
             </TrackedLink>
           </div>
           <p className={styles.heroFine}>
-            One-time payment · Instant download · 30-day refund
+            One-time payment · Instant download
           </p>
         </div>
       </section>

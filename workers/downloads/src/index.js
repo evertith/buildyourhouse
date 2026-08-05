@@ -442,6 +442,33 @@ async function handleDiagnostics(env) {
   );
 }
 
+// Checkout-page description for the Stripe Product behind the payment link.
+// POST /admin/api/sync-product pushes it; edit here, redeploy, re-run.
+const PRODUCT_DESCRIPTION =
+  '367 pages of owner-builder contracts, checklists, forms, and trackers across ' +
+  '8 sections — 57 print-ready PDFs plus editable Word contracts and Excel ' +
+  'budget workbooks. Second Edition, revised 2026. Instant download.';
+
+async function handleSyncProduct(env) {
+  const link = await findPaymentLink(env);
+  if (!link) {
+    return json({ error: `no payment link matching ${PAYMENT_LINK_URL}` }, 404);
+  }
+  const items = await stripe(env, `/payment_links/${link.id}/line_items`);
+  const productId = items?.data?.[0]?.price?.product;
+  if (!productId) {
+    return json({ error: 'no product on payment link line items' }, 404);
+  }
+  const before = await stripe(env, `/products/${productId}`);
+  const body = new URLSearchParams();
+  body.set('description', PRODUCT_DESCRIPTION);
+  const after = await stripe(env, `/products/${productId}`, { method: 'POST', body });
+  return json(
+    { id: productId, name: after.name, before: before.description, after: after.description },
+    200
+  );
+}
+
 async function handleFixPaymentLink(env) {
   const link = await findPaymentLink(env);
   if (!link) {
@@ -563,6 +590,9 @@ export default {
         }
         if (request.method === 'POST' && url.pathname === '/admin/api/fix-payment-link') {
           return await handleFixPaymentLink(env);
+        }
+        if (request.method === 'POST' && url.pathname === '/admin/api/sync-product') {
+          return await handleSyncProduct(env);
         }
       }
 
