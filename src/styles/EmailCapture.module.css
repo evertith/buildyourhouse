@@ -11,6 +11,7 @@
   background: var(--accent-primary);
   border-radius: 0;
   padding: var(--space-10) var(--space-6);
+  margin-bottom: var(--space-8);
 }
 
 .content {
