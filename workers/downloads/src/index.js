@@ -1,11 +1,14 @@
 /**
  * Protected downloads + order admin for build-your-house.com.
  *
- * Public routes:
+ * Public routes (multi-SKU: see PRODUCTS registry below):
  *   GET  /download?session_id=cs_...  Verify the Stripe Checkout session is paid,
- *                                     stream the binder ZIP from R2, log delivery to D1.
- *   POST /recover { email, website }  Self-service recovery: look up a paid session by
- *                                     purchase email and return the success-page URL.
+ *                                     resolve its SKU, stream that product's ZIP
+ *                                     from R2, log delivery to D1.
+ *   GET  /order-info?session_id=...   Session-gated product name/kind for the
+ *                                     success page.
+ *   POST /recover { email, website }  Self-service recovery: all paid sessions for
+ *                                     an email, each with its product + URL.
  *                                     Rate-limited per IP; `website` is a honeypot.
  *
  * Webhook:
@@ -29,12 +32,106 @@
 
 import { ADMIN_HTML } from './admin.js';
 
-const R2_OBJECT_KEY = 'owner-builder-job-site-binder.zip';
 const SITE_ORIGIN = 'https://build-your-house.com';
 const SUCCESS_PATH = '/shop/success';
-const PAYMENT_LINK_URL = 'https://buy.stripe.com/5kQ28racn54z0ReeZ5fAc00';
 const SESSION_TTL_MS = 24 * 60 * 60 * 1000;
 const RECOVERY_MAX_PER_HOUR = 5;
+
+/**
+ * Product registry — one entry per SKU. `kind: 'download'` streams r2Key on
+ * /download; `kind: 'ship'` is a physical product (printed binder) that ALSO
+ * grants the digital download (r2Key) and triggers an owner notification with
+ * the shipping address on purchase. Stripe objects are provisioned/aligned by
+ * POST /admin/api/provision-products, which stamps metadata.sku on the
+ * Product and Payment Link so sessions resolve back to a SKU.
+ */
+const PRODUCTS = {
+  'job-site-binder': {
+    sku: 'job-site-binder',
+    kind: 'download',
+    name: 'Owner-Builder Job Site Binder System',
+    amount: 9700,
+    r2Key: 'owner-builder-job-site-binder.zip',
+    // Pre-registry Stripe objects — seeded so legacy sessions resolve.
+    stripeProductId: 'prod_U0FsQiF5sLoIJ9',
+    paymentLinkUrl: 'https://buy.stripe.com/5kQ28racn54z0ReeZ5fAc00',
+    description:
+      '367 pages of owner-builder contracts, checklists, forms, and trackers across ' +
+      '8 sections — 57 print-ready PDFs plus editable Word contracts and Excel ' +
+      'budget workbooks. Second Edition, revised 2026. Instant download.',
+    emailSubject: 'Your Owner-Builder Job Site Binder — download inside',
+    emailBlurb:
+      'The ZIP contains 367 pages of printable PDFs, plus editable Word contracts and ' +
+      'Excel budget spreadsheets. Open the "HOW TO USE THIS BINDER" guide first — it ' +
+      'walks you through printing and assembling the binder.',
+  },
+  'nc-permit-kit': {
+    sku: 'nc-permit-kit',
+    kind: 'download',
+    name: 'North Carolina Owner-Builder Permit Kit',
+    amount: 3400,
+    r2Key: 'nc-permit-kit.zip',
+    description:
+      'North Carolina owner-builder permitting, start to finish: the GC-license ' +
+      'exemption walkthrough, NC permit application checklist, inspection sequence, ' +
+      'where-to-file directory, and forms index. Print-ready PDFs, instant download.',
+    emailSubject: 'Your North Carolina Permit Kit — download inside',
+    emailBlurb:
+      'The ZIP contains the NC owner-builder exemption walkthrough, permit application ' +
+      'checklist, inspection sequence, where-to-file directory, and forms index — ' +
+      'print-ready PDFs with the statute citations on the page.',
+  },
+  'sub-hiring-pack': {
+    sku: 'sub-hiring-pack',
+    kind: 'download',
+    name: 'Subcontractor Hiring Pack',
+    amount: 2900,
+    r2Key: 'sub-hiring-pack.zip',
+    description:
+      'Hire subs like a GC: interview scorecard, reference check script, the hiring ' +
+      'walkthrough, plus the subcontractor agreement, change order form, lien waivers, ' +
+      'and payment draw schedule — print-ready PDFs and editable Word versions.',
+    emailSubject: 'Your Subcontractor Hiring Pack — download inside',
+    emailBlurb:
+      'The ZIP contains the interview scorecard, reference check script, and hiring ' +
+      'walkthrough, plus the subcontractor agreement, change order form, lien waivers, ' +
+      'and draw schedule — with editable Word versions of the contract documents.',
+  },
+  'printed-binder': {
+    sku: 'printed-binder',
+    kind: 'ship',
+    name: 'Owner-Builder Job Site Binder — Printed & Shipped',
+    amount: 19700,
+    r2Key: 'owner-builder-job-site-binder.zip', // printed buyers get digital too
+    description:
+      'The complete 367-page Second Edition binder, printed double-sided with section ' +
+      'tabs in a heavy-duty 3-ring binder and shipped to your door — plus immediate ' +
+      'access to the full digital download while it ships. US shipping included.',
+    emailSubject: 'Order confirmed — your printed Job Site Binder',
+    emailBlurb: null,
+  },
+};
+
+const DEFAULT_SKU = 'job-site-binder';
+
+function productForSku(sku) {
+  return PRODUCTS[sku] || PRODUCTS[DEFAULT_SKU];
+}
+
+/** Map a (possibly expanded) Stripe product reference to a SKU. */
+function skuFromStripeProduct(productRef) {
+  if (!productRef) return null;
+  if (typeof productRef === 'object') {
+    if (productRef.metadata?.sku && PRODUCTS[productRef.metadata.sku]) {
+      return productRef.metadata.sku;
+    }
+    productRef = productRef.id;
+  }
+  for (const def of Object.values(PRODUCTS)) {
+    if (def.stripeProductId && def.stripeProductId === productRef) return def.sku;
+  }
+  return null;
+}
 
 // Per-isolate cache of sessions already verified as paid (avoids a Stripe
 // round-trip on repeat downloads). Value: { at, email }.
@@ -106,37 +203,43 @@ async function isAuthorized(request, env) {
   return diff === 0;
 }
 
-/** Returns { paid, email } for a checkout session, caching paid results. */
+/** Returns { paid, email, sku, session } for a checkout session, caching paid results. */
 async function verifyStripeSession(sessionId, env) {
   const cached = verifiedSessions.get(sessionId);
   if (cached && Date.now() - cached.at < SESSION_TTL_MS) {
-    return { paid: true, email: cached.email };
+    return { paid: true, email: cached.email, sku: cached.sku, session: null };
   }
   let session;
   try {
-    session = await stripe(env, `/checkout/sessions/${encodeURIComponent(sessionId)}`);
+    session = await stripe(
+      env,
+      `/checkout/sessions/${encodeURIComponent(sessionId)}?expand[]=line_items.data.price.product`
+    );
   } catch {
-    return { paid: false, email: null };
+    return { paid: false, email: null, sku: null, session: null };
   }
   const paid = isPaidStatus(session.payment_status);
   const email = session.customer_details?.email || null;
+  const sku =
+    skuFromStripeProduct(session.line_items?.data?.[0]?.price?.product) || DEFAULT_SKU;
   if (paid) {
-    verifiedSessions.set(sessionId, { at: Date.now(), email });
+    verifiedSessions.set(sessionId, { at: Date.now(), email, sku });
   }
-  return { paid, email };
+  return { paid, email, sku, session };
 }
 
-async function logDownload(env, { sessionId, email, request }) {
+async function logDownload(env, { sessionId, email, sku, request }) {
   try {
     await env.DB.prepare(
-      'INSERT INTO downloads (session_id, email, ip, user_agent, created_at) VALUES (?1, ?2, ?3, ?4, ?5)'
+      'INSERT INTO downloads (session_id, email, ip, user_agent, created_at, sku) VALUES (?1, ?2, ?3, ?4, ?5, ?6)'
     )
       .bind(
         sessionId,
         email,
         request.headers.get('CF-Connecting-IP'),
         (request.headers.get('User-Agent') || '').slice(0, 500),
-        new Date().toISOString()
+        new Date().toISOString(),
+        sku
       )
       .run();
   } catch (err) {
@@ -151,31 +254,53 @@ async function handleDownload(request, env, ctx, origin) {
     return new Response('Missing or invalid session_id', { status: 400 });
   }
 
-  const { paid, email } = await verifyStripeSession(sessionId, env);
+  const { paid, email, sku } = await verifyStripeSession(sessionId, env);
   if (!paid) {
     return new Response('Payment not verified. Please complete your purchase first.', { status: 403 });
   }
 
-  const object = await env.DOWNLOADS_BUCKET.get(R2_OBJECT_KEY);
+  const product = productForSku(sku);
+  const object = await env.DOWNLOADS_BUCKET.get(product.r2Key);
   if (!object) {
-    console.error(`R2 object missing: ${R2_OBJECT_KEY}`);
+    console.error(`R2 object missing: ${product.r2Key} (sku ${product.sku})`);
     return new Response(
       'Download temporarily unavailable — please email us with your receipt and we will send the file directly.',
       { status: 500 }
     );
   }
 
-  ctx.waitUntil(logDownload(env, { sessionId, email, request }));
+  ctx.waitUntil(logDownload(env, { sessionId, email, sku: product.sku, request }));
 
   return new Response(object.body, {
     headers: {
       ...corsHeaders(origin),
       'Content-Type': 'application/zip',
-      'Content-Disposition': `attachment; filename="${R2_OBJECT_KEY}"`,
+      'Content-Disposition': `attachment; filename="${product.r2Key}"`,
       'Content-Length': object.size.toString(),
       'Cache-Control': 'no-store',
     },
   });
+}
+
+/** Public, session-gated order info for the success page (name/kind per SKU). */
+async function handleOrderInfo(request, env, origin) {
+  const sessionId = new URL(request.url).searchParams.get('session_id');
+  if (!sessionId || !sessionId.startsWith('cs_')) {
+    return json({ error: 'missing or invalid session_id' }, 400, origin);
+  }
+  const { paid, sku } = await verifyStripeSession(sessionId, env);
+  if (!paid) {
+    return json({ paid: false }, 200, origin);
+  }
+  const product = productForSku(sku);
+  return json(
+    {
+      paid: true,
+      product: { sku: product.sku, name: product.name, kind: product.kind },
+    },
+    200,
+    origin
+  );
 }
 
 async function handleRecover(request, env, ctx, origin) {
@@ -211,12 +336,12 @@ async function handleRecover(request, env, ctx, origin) {
     console.error('recovery rate-limit query failed:', err);
   }
 
-  let found = null;
+  let paidSessions = [];
   try {
     const params = new URLSearchParams({ limit: '100' });
     params.set('customer_details[email]', email);
     const res = await stripe(env, `/checkout/sessions?${params}`);
-    found = res.data.find(
+    paidSessions = res.data.filter(
       (s) => isPaidStatus(s.payment_status) && s.customer_details?.email?.toLowerCase() === email
     );
   } catch (err) {
@@ -228,15 +353,41 @@ async function handleRecover(request, env, ctx, origin) {
     env.DB.prepare(
       'INSERT INTO recovery_requests (email, ip, found, created_at) VALUES (?1, ?2, ?3, ?4)'
     )
-      .bind(email, ip, found ? 1 : 0, new Date().toISOString())
+      .bind(email, ip, paidSessions.length ? 1 : 0, new Date().toISOString())
       .run()
       .catch((err) => console.error('recovery log insert failed:', err))
   );
 
-  if (!found) {
+  if (paidSessions.length === 0) {
     return json({ found: false }, 200, origin);
   }
-  return json({ found: true, url: successUrl(found.id) }, 200, origin);
+
+  // Resolve each paid session to its product (one line-items call per session,
+  // capped — a customer with several purchases gets one entry per product).
+  const orders = [];
+  for (const s of paidSessions.slice(0, 5)) {
+    let sku = DEFAULT_SKU;
+    try {
+      const items = await stripe(
+        env,
+        `/checkout/sessions/${encodeURIComponent(s.id)}/line_items?expand[]=data.price.product`
+      );
+      sku = skuFromStripeProduct(items?.data?.[0]?.price?.product) || DEFAULT_SKU;
+    } catch (err) {
+      console.error('recovery line-items lookup failed:', err);
+    }
+    const product = productForSku(sku);
+    orders.push({
+      product: product.name,
+      sku: product.sku,
+      kind: product.kind,
+      url: successUrl(s.id),
+      purchased: new Date(s.created * 1000).toISOString().slice(0, 10),
+    });
+  }
+
+  // `url` kept for backward compatibility with the current recover page.
+  return json({ found: true, url: orders[0].url, orders }, 200, origin);
 }
 
 function timingSafeEqualStr(a, b) {
@@ -274,20 +425,69 @@ async function verifyStripeSignature(header, body, secret, toleranceSec = 300) {
   return parsed.v1.some((sig) => timingSafeEqualStr(sig, expected));
 }
 
+async function sendResendEmail(env, { to, subject, text, html }) {
+  const res = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${env.RESEND_API_KEY}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      from: 'Seth at Build Your House <seth@build-your-house.com>',
+      to: [to],
+      reply_to: 'seth@build-your-house.com',
+      subject,
+      text,
+      html,
+    }),
+  });
+  const data = await res.json();
+  if (!res.ok) {
+    throw new Error(data?.message || `Resend error ${res.status}`);
+  }
+  return data.id || null;
+}
+
 /** Send the product-delivery email via Resend. Returns the Resend message id. */
-async function sendFulfillmentEmail(env, { email, name, sessionId }) {
+async function sendFulfillmentEmail(env, { email, name, sessionId, product }) {
   const link = successUrl(sessionId);
   const first = (name || '').trim().split(/\s+/)[0] || '';
   const greeting = first ? `Hi ${first},` : 'Hi,';
 
+  if (product.kind === 'ship') {
+    const text = `${greeting}
+
+Thanks for ordering the printed Owner-Builder Job Site Binder! Your order is confirmed and heads to the printer next — expect it at your door in about 7-10 business days.
+
+While it ships, the complete digital version is yours right now:
+${link}
+
+Lose this email later? Recover your download anytime at https://build-your-house.com/shop/recover using this email address.
+
+Any trouble at all, just reply and I'll help directly.
+
+Seth
+Build Your House
+https://build-your-house.com
+`;
+    const html = `<p>${greeting}</p>
+<p>Thanks for ordering the printed Owner-Builder Job Site Binder! Your order is confirmed and heads to the printer next — expect it at your door in about 7&ndash;10 business days.</p>
+<p>While it ships, the complete digital version is yours right now:</p>
+<p><a href="${link}"><strong>Open your download page</strong></a></p>
+<p>Lose this email later? Recover your download anytime at <a href="https://build-your-house.com/shop/recover">build-your-house.com/shop/recover</a> using this email address.</p>
+<p>Any trouble at all, just reply and I&rsquo;ll help directly.</p>
+<p>Seth<br>Build Your House<br><a href="https://build-your-house.com">build-your-house.com</a></p>`;
+    return sendResendEmail(env, { to: email, subject: product.emailSubject, text, html });
+  }
+
   const text = `${greeting}
 
-Thanks for buying the Owner-Builder Job Site Binder! This email is your product delivery — keep it so you can always get back to your files.
+Thanks for buying the ${product.name}! This email is your product delivery — keep it so you can always get back to your files.
 
 Your download page:
 ${link}
 
-The ZIP contains 367 pages of printable PDFs, plus editable Word contracts and Excel budget spreadsheets. Open the "HOW TO USE THIS BINDER" guide first — it walks you through printing and assembling the binder.
+${product.emailBlurb}
 
 Lose this email later? Recover your download anytime at https://build-your-house.com/shop/recover using this email address.
 
@@ -299,33 +499,51 @@ https://build-your-house.com
 `;
 
   const html = `<p>${greeting}</p>
-<p>Thanks for buying the Owner-Builder Job Site Binder! This email is your product delivery — keep it so you can always get back to your files.</p>
+<p>Thanks for buying the ${product.name}! This email is your product delivery — keep it so you can always get back to your files.</p>
 <p><a href="${link}"><strong>Open your download page</strong></a></p>
-<p>The ZIP contains 367 pages of printable PDFs, plus editable Word contracts and Excel budget spreadsheets. Open the &ldquo;HOW TO USE THIS BINDER&rdquo; guide first — it walks you through printing and assembling the binder.</p>
+<p>${product.emailBlurb}</p>
 <p>Lose this email later? Recover your download anytime at <a href="https://build-your-house.com/shop/recover">build-your-house.com/shop/recover</a> using this email address.</p>
 <p>Any trouble at all, just reply and I&rsquo;ll help directly.</p>
 <p>Seth<br>Build Your House<br><a href="https://build-your-house.com">build-your-house.com</a></p>`;
 
-  const res = await fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${env.RESEND_API_KEY}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      from: 'Seth at Build Your House <seth@build-your-house.com>',
-      to: [email],
-      reply_to: 'seth@build-your-house.com',
-      subject: 'Your Owner-Builder Job Site Binder — download inside',
-      text,
-      html,
-    }),
+  return sendResendEmail(env, { to: email, subject: product.emailSubject, text, html });
+}
+
+/** Notify Seth that a printed binder needs to be produced and shipped. */
+async function sendShipNotification(env, { session, product }) {
+  const ship =
+    session.shipping_details || session.collected_information?.shipping_details || null;
+  const addr = ship?.address || {};
+  const lines = [
+    ship?.name || session.customer_details?.name || '(no name)',
+    addr.line1,
+    addr.line2,
+    `${addr.city || ''}, ${addr.state || ''} ${addr.postal_code || ''}`,
+    addr.country,
+  ].filter(Boolean);
+
+  const text = `Printed binder order — action needed.
+
+Product: ${product.name} ($${(session.amount_total / 100).toFixed(2)})
+Customer: ${session.customer_details?.email || '(no email)'}
+Session: ${session.id}
+
+SHIP TO:
+${lines.join('\n')}
+
+RUNBOOK:
+1. Print the current Second Edition (repo: owner-builder-job-site-binder/, print double-sided) or order via your POD account (Lulu) with section tabs + heavy-duty 3-ring binder.
+2. Ship to the address above; keep the tracking number.
+3. Reply to the customer's fulfillment email thread with tracking.
+Customer already has digital access via their download page.
+`;
+
+  await sendResendEmail(env, {
+    to: 'seth@build-your-house.com',
+    subject: `ACTION: print & ship binder — ${ship?.name || session.customer_details?.email}`,
+    text,
+    html: `<pre style="font-family:monospace">${text.replace(/</g, '&lt;')}</pre>`,
   });
-  const data = await res.json();
-  if (!res.ok) {
-    throw new Error(data?.message || `Resend error ${res.status}`);
-  }
-  return data.id || null;
 }
 
 async function handleStripeWebhook(request, env) {
@@ -364,13 +582,30 @@ async function handleStripeWebhook(request, env) {
     return new Response('already sent', { status: 200 });
   }
 
+  // The webhook payload has no line items — resolve the SKU with one retrieve.
+  const { sku } = await verifyStripeSession(session.id, env);
+  const product = productForSku(sku);
+
   // Throwing here → 500 → Stripe retries the webhook, so a transient Resend
   // outage still results in the customer getting their email.
   const resendId = await sendFulfillmentEmail(env, {
     email,
     name: session.customer_details?.name,
     sessionId: session.id,
+    product,
   });
+
+  if (product.kind === 'ship') {
+    try {
+      await sendShipNotification(env, { session, product });
+    } catch (err) {
+      // The customer email is the critical path; the owner notification also
+      // lands via the admin orders view, so log rather than force a retry
+      // (which would re-send the customer email).
+      console.error('ship notification failed:', err);
+    }
+  }
+
   await env.DB.prepare(
     'INSERT INTO fulfillment_emails (session_id, email, resend_id, created_at) VALUES (?1, ?2, ?3, ?4)'
   )
@@ -382,7 +617,7 @@ async function handleStripeWebhook(request, env) {
 
 async function findPaymentLink(env) {
   const res = await stripe(env, '/payment_links?limit=100');
-  return res.data.find((l) => l.url === PAYMENT_LINK_URL) || null;
+  return res.data.find((l) => l.url === PRODUCTS[DEFAULT_SKU].paymentLinkUrl) || null;
 }
 
 function paymentLinkReport(link) {
@@ -405,8 +640,8 @@ function paymentLinkReport(link) {
 async function handleDiagnostics(env) {
   let linksError = null;
   let accountError = null;
-  const [r2Head, d1Check, links, account] = await Promise.all([
-    env.DOWNLOADS_BUCKET.head(R2_OBJECT_KEY).catch(() => null),
+  const uniqueKeys = [...new Set(Object.values(PRODUCTS).map((p) => p.r2Key).filter(Boolean))];
+  const [d1Check, links, account, ...r2Heads] = await Promise.all([
     env.DB.prepare('SELECT COUNT(*) AS count FROM downloads').first().catch(() => null),
     stripe(env, '/payment_links?limit=100').catch((err) => {
       linksError = err.message;
@@ -416,15 +651,28 @@ async function handleDiagnostics(env) {
       accountError = err.message;
       return null;
     }),
+    ...uniqueKeys.map((k) => env.DOWNLOADS_BUCKET.head(k).catch(() => null)),
   ]);
 
-  const link = links?.data?.find((l) => l.url === PAYMENT_LINK_URL) || null;
+  const r2 = uniqueKeys.map((key, i) => {
+    const head = r2Heads[i];
+    return head
+      ? { ok: true, key, size: head.size, uploaded: head.uploaded }
+      : { ok: false, key, error: 'object missing from bucket' };
+  });
+
+  const link = links?.data?.find((l) => l.url === PRODUCTS[DEFAULT_SKU].paymentLinkUrl) || null;
   const report = paymentLinkReport(link);
   if (linksError) report.error = linksError;
-  if (!report.found && links) {
-    // Surface what the key CAN see so an account/link mismatch is obvious.
-    report.expected_url = PAYMENT_LINK_URL;
-    report.available = links.data.map((l) => ({ id: l.id, url: l.url, active: l.active }));
+
+  // Per-SKU payment-link overview via metadata stamped by provision-products.
+  const skuLinks = {};
+  if (links) {
+    for (const l of links.data) {
+      if (l.metadata?.sku && PRODUCTS[l.metadata.sku]) {
+        skuLinks[l.metadata.sku] = { id: l.id, url: l.url, active: l.active };
+      }
+    }
   }
 
   return json(
@@ -432,27 +680,31 @@ async function handleDiagnostics(env) {
       stripe_account: account
         ? { id: account.id, name: account.settings?.dashboard?.display_name || null }
         : { error: accountError || 'account lookup failed' },
-      r2: r2Head
-        ? { ok: true, key: R2_OBJECT_KEY, size: r2Head.size, uploaded: r2Head.uploaded }
-        : { ok: false, key: R2_OBJECT_KEY, error: 'object missing from bucket' },
+      r2,
       d1: d1Check ? { ok: true, total_downloads: d1Check.count } : { ok: false },
       payment_link: report,
+      products: Object.fromEntries(
+        Object.values(PRODUCTS).map((p) => [
+          p.sku,
+          {
+            kind: p.kind,
+            amount: p.amount,
+            r2_ok: p.r2Key ? r2.find((x) => x.key === p.r2Key)?.ok || false : null,
+            payment_link: skuLinks[p.sku] || (p.paymentLinkUrl ? { url: p.paymentLinkUrl } : null),
+          },
+        ])
+      ),
     },
     200
   );
 }
 
-// Checkout-page description for the Stripe Product behind the payment link.
-// POST /admin/api/sync-product pushes it; edit here, redeploy, re-run.
-const PRODUCT_DESCRIPTION =
-  '367 pages of owner-builder contracts, checklists, forms, and trackers across ' +
-  '8 sections — 57 print-ready PDFs plus editable Word contracts and Excel ' +
-  'budget workbooks. Second Edition, revised 2026. Instant download.';
-
+/** Sync the flagship binder Product's checkout description from the registry. */
 async function handleSyncProduct(env) {
+  const def = PRODUCTS[DEFAULT_SKU];
   const link = await findPaymentLink(env);
   if (!link) {
-    return json({ error: `no payment link matching ${PAYMENT_LINK_URL}` }, 404);
+    return json({ error: `no payment link matching ${def.paymentLinkUrl}` }, 404);
   }
   const items = await stripe(env, `/payment_links/${link.id}/line_items`);
   const productId = items?.data?.[0]?.price?.product;
@@ -461,12 +713,100 @@ async function handleSyncProduct(env) {
   }
   const before = await stripe(env, `/products/${productId}`);
   const body = new URLSearchParams();
-  body.set('description', PRODUCT_DESCRIPTION);
+  body.set('description', def.description);
   const after = await stripe(env, `/products/${productId}`, { method: 'POST', body });
   return json(
     { id: productId, name: after.name, before: before.description, after: after.description },
     200
   );
+}
+
+/**
+ * Idempotently create/align Stripe objects for every SKU in the registry:
+ * Product (metadata.sku + description), Price (unit amount), Payment Link
+ * (metadata.sku, promo codes allowed, success redirect, shipping collection
+ * for ship SKUs). Safe to re-run; reports what exists vs. what was created.
+ */
+async function handleProvisionProducts(env) {
+  const [linksRes, productsRes] = await Promise.all([
+    stripe(env, '/payment_links?limit=100'),
+    stripe(env, '/products?limit=100&active=true'),
+  ]);
+  const results = {};
+
+  for (const def of Object.values(PRODUCTS)) {
+    const out = { actions: [] };
+
+    // ---- Product: by metadata.sku, seeded id, or create.
+    let product =
+      productsRes.data.find((p) => p.metadata?.sku === def.sku) ||
+      (def.stripeProductId ? productsRes.data.find((p) => p.id === def.stripeProductId) : null);
+    if (!product && def.stripeProductId) {
+      product = await stripe(env, `/products/${def.stripeProductId}`).catch(() => null);
+    }
+    if (!product) {
+      const body = new URLSearchParams();
+      body.set('name', def.name);
+      body.set('description', def.description);
+      body.set('metadata[sku]', def.sku);
+      product = await stripe(env, '/products', { method: 'POST', body });
+      out.actions.push('created product');
+    } else if (product.metadata?.sku !== def.sku) {
+      const body = new URLSearchParams();
+      body.set('metadata[sku]', def.sku);
+      product = await stripe(env, `/products/${product.id}`, { method: 'POST', body });
+      out.actions.push('stamped metadata.sku');
+    }
+    out.product_id = product.id;
+
+    // ---- Price: an active recurring-free price at the right amount.
+    const pricesRes = await stripe(env, `/prices?product=${product.id}&active=true&limit=100`);
+    let price = pricesRes.data.find(
+      (p) => p.unit_amount === def.amount && p.currency === 'usd' && !p.recurring
+    );
+    if (!price) {
+      const body = new URLSearchParams();
+      body.set('product', product.id);
+      body.set('currency', 'usd');
+      body.set('unit_amount', String(def.amount));
+      price = await stripe(env, '/prices', { method: 'POST', body });
+      out.actions.push('created price');
+    }
+    out.price_id = price.id;
+
+    // ---- Payment link: by metadata.sku or the seeded URL, else create.
+    let link =
+      linksRes.data.find((l) => l.metadata?.sku === def.sku) ||
+      (def.paymentLinkUrl ? linksRes.data.find((l) => l.url === def.paymentLinkUrl) : null);
+    if (!link) {
+      const body = new URLSearchParams();
+      body.set('line_items[0][price]', price.id);
+      body.set('line_items[0][quantity]', '1');
+      body.set('allow_promotion_codes', 'true');
+      body.set('metadata[sku]', def.sku);
+      body.set('after_completion[type]', 'redirect');
+      body.set(
+        'after_completion[redirect][url]',
+        `${SITE_ORIGIN}${SUCCESS_PATH}?session_id={CHECKOUT_SESSION_ID}`
+      );
+      if (def.kind === 'ship') {
+        body.set('shipping_address_collection[allowed_countries][0]', 'US');
+      }
+      link = await stripe(env, '/payment_links', { method: 'POST', body });
+      out.actions.push('created payment link');
+    } else if (link.metadata?.sku !== def.sku) {
+      const body = new URLSearchParams();
+      body.set('metadata[sku]', def.sku);
+      link = await stripe(env, `/payment_links/${link.id}`, { method: 'POST', body });
+      out.actions.push('stamped link metadata.sku');
+    }
+    out.payment_link = link.url;
+    out.link_active = link.active;
+    if (out.actions.length === 0) out.actions.push('already provisioned');
+    results[def.sku] = out;
+  }
+
+  return json({ results }, 200);
 }
 
 async function handleFixPaymentLink(env) {
@@ -564,6 +904,10 @@ export default {
         return await handleDownload(request, env, ctx, origin);
       }
 
+      if (request.method === 'GET' && url.pathname === '/order-info') {
+        return await handleOrderInfo(request, env, origin);
+      }
+
       if (request.method === 'POST' && url.pathname === '/recover') {
         return await handleRecover(request, env, ctx, origin);
       }
@@ -593,6 +937,9 @@ export default {
         }
         if (request.method === 'POST' && url.pathname === '/admin/api/sync-product') {
           return await handleSyncProduct(env);
+        }
+        if (request.method === 'POST' && url.pathname === '/admin/api/provision-products') {
+          return await handleProvisionProducts(env);
         }
       }
 
