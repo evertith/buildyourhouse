@@ -136,6 +136,13 @@
     flex-direction: column;
   }
 
+  /* In the stacked column, the row layout's flex-basis (240px) would
+     become the input's HEIGHT — reset it so the input stays input-sized. */
+  .input {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+
   .button {
     width: 100%;
   }
