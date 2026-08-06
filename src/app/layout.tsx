@@ -3,7 +3,6 @@ import Script from "next/script";
 import { Fraunces, Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import AdSenseRouteHandler from "@/components/AdSenseRouteHandler";
 import AnalyticsRouteHandler from "@/components/AnalyticsRouteHandler";
 import BreadcrumbSchema from "@/components/BreadcrumbSchema";
 import "@/styles/globals.css";
@@ -149,14 +148,6 @@ export default function RootLayout({
             }),
           }}
         />
-
-        {/* Google AdSense */}
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2899164454337185"
-          crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
       </head>
       <body>
         {/* Google Analytics */}
@@ -173,7 +164,6 @@ export default function RootLayout({
           `}
         </Script>
 
-        <AdSenseRouteHandler />
         <AnalyticsRouteHandler />
         <BreadcrumbSchema />
         <Header />
