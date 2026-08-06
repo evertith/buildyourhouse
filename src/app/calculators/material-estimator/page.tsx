@@ -1,3 +1,4 @@
+import BinderCTA from '@/components/BinderCTA';
 import MaterialEstimatorCalculator from '@/components/MaterialEstimatorCalculator';
 import type { Metadata } from 'next';
 import styles from '../../feasibility/cost-savings-calculator/calculator-page.module.css';
@@ -214,6 +215,11 @@ export default function MaterialEstimatorPage() {
             </div>
           </div>
         </section>
+
+        <BinderCTA
+          context="material-estimator"
+          lead="Estimating materials is planning-phase work — and it's exactly what the Job Site Binder's Excel calculators do with live formulas: concrete, drywall, paint, and roofing, plus 367 print-ready pages of checklists and logs for when the build starts."
+        />
 
         <section className={styles.nextSteps}>
           <h2>Next Steps</h2>

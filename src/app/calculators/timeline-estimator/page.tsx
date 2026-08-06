@@ -1,3 +1,4 @@
+import BinderCTA from '@/components/BinderCTA';
 import TimelineEstimatorCalculator from '@/components/TimelineEstimatorCalculator';
 import type { Metadata } from 'next';
 import styles from '../../feasibility/cost-savings-calculator/calculator-page.module.css';
@@ -236,6 +237,11 @@ export default function TimelineEstimatorPage() {
             </div>
           </div>
         </section>
+
+        <BinderCTA
+          context="timeline-estimator"
+          lead="Turn your estimate into a working schedule — the Job Site Binder's Master Project Timeline tracks every phase from permits to punch list, alongside 367 print-ready pages of checklists and logs."
+        />
 
         <section className={styles.nextSteps}>
           <h2>Next Steps</h2>

@@ -1,3 +1,4 @@
+import BinderCTA from '@/components/BinderCTA';
 import BudgetTrackerCalculator from '@/components/BudgetTrackerCalculator';
 import type { Metadata } from 'next';
 import styles from '../../feasibility/cost-savings-calculator/calculator-page.module.css';
@@ -308,6 +309,11 @@ export default function BudgetTrackerPage() {
             </div>
           </div>
         </section>
+
+        <BinderCTA
+          context="budget-tracker"
+          lead="Ready to track a real budget? The Job Site Binder includes an auto-calculating Excel budget workbook — 21 cost categories with live variance and subtotal formulas — plus the printed tracking sheets for the job site."
+        />
 
         <section className={styles.nextSteps}>
           <h2>Next Steps</h2>

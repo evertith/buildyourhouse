@@ -1,3 +1,4 @@
+import BinderCTA from '@/components/BinderCTA';
 import CostSavingsCalculator from '@/components/CostSavingsCalculator';
 import type { Metadata } from 'next';
 import styles from './calculator-page.module.css';
@@ -111,6 +112,11 @@ export default function CostSavingsCalculatorPage() {
             </div>
           </div>
         </section>
+
+        <BinderCTA
+          context="cost-savings-calculator"
+          lead="Owner-builders keep those savings by staying organized — the Job Site Binder is the management system that makes it stick: contracts, checklists, inspection forms, and budget trackers across 367 print-ready pages."
+        />
 
         <section className={styles.nextSteps}>
           <h2>Next Steps</h2>
