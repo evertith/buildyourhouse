@@ -20,6 +20,16 @@ CREATE TABLE IF NOT EXISTS fulfillment_emails (
   created_at TEXT NOT NULL
 );
 
+-- Lulu print-on-demand jobs for the printed-binder SKU, one row per paid
+-- session. session_id is the PRIMARY KEY on purpose: it is the idempotency
+-- guard that stops a Stripe webhook retry from ordering a second book.
+CREATE TABLE IF NOT EXISTS print_jobs (
+  session_id TEXT PRIMARY KEY,
+  lulu_job_id TEXT NOT NULL,
+  status TEXT,
+  created_at TEXT NOT NULL
+);
+
 -- Self-service link-recovery attempts (rate-limited per IP).
 CREATE TABLE IF NOT EXISTS recovery_requests (
   id INTEGER PRIMARY KEY AUTOINCREMENT,

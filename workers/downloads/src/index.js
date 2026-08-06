@@ -10,32 +10,74 @@
  *   POST /recover { email, website }  Self-service recovery: all paid sessions for
  *                                     an email, each with its product + URL.
  *                                     Rate-limited per IP; `website` is a honeypot.
+ *   GET  /print-assets/<token>/interior.pdf
+ *   GET  /print-assets/<token>/cover.pdf
+ *                                     Token-gated print-ready PDFs. Lulu fetches the
+ *                                     source files by URL when normalising a print job.
  *
  * Webhook:
  *   POST /stripe-webhook              Stripe checkout.session.completed → send the buyer
  *                                     their download link via Resend (dedupe on session_id).
+ *                                     For the printed binder it also places the Lulu print
+ *                                     job (dedupe on print_jobs.session_id).
  *                                     Non-2xx responses make Stripe retry for up to 3 days.
  *
  * Admin routes (Authorization: Bearer <ADMIN_KEY>):
  *   GET  /admin                       Dashboard UI (static HTML; data calls need the key).
  *   GET  /admin/api/orders            All checkout sessions + refund/dispute status +
  *                                     per-order download counts from D1.
- *   GET  /admin/api/diagnostics       Health: R2 object present, D1 reachable,
+ *   GET  /admin/api/diagnostics       Health: R2 objects present, D1 reachable,
  *                                     payment-link redirect + promo-code config.
+ *   GET  /admin/api/print-jobs        D1 print jobs joined with live Lulu status/tracking.
+ *   POST /admin/api/test-lulu-job     Print-pipeline pre-flight: Lulu auth + pod package +
+ *                                     page count + source-file reachability, priced via
+ *                                     cost calculation. Never creates a print job.
  *   POST /admin/api/fix-payment-link  Enable promotion codes and ensure the payment link
  *                                     redirects to /shop/success?session_id={CHECKOUT_SESSION_ID}.
  *
- * Secrets: STRIPE_SECRET_KEY, ADMIN_KEY, RESEND_API_KEY, STRIPE_WEBHOOK_SECRET
- * (set via `wrangler secret put`).
+ * Secrets: STRIPE_SECRET_KEY, ADMIN_KEY, RESEND_API_KEY, STRIPE_WEBHOOK_SECRET,
+ * PRINT_ASSET_TOKEN, LULU_CLIENT_KEY, LULU_CLIENT_SECRET (set via `wrangler secret put`).
  * Bindings: DOWNLOADS_BUCKET (R2), DB (D1 — see schema.sql).
  */
 
 import { ADMIN_HTML } from './admin.js';
 
 const SITE_ORIGIN = 'https://build-your-house.com';
+const WORKER_ORIGIN = 'https://buildyourhouse-downloads.azerothcorner.workers.dev';
 const SUCCESS_PATH = '/shop/success';
 const SESSION_TTL_MS = 24 * 60 * 60 * 1000;
 const RECOVERY_MAX_PER_HOUR = 5;
+
+// ---------------------------------------------------------------- print-on-demand
+
+const LULU_API = 'https://api.lulu.com';
+const LULU_TOKEN_URL =
+  'https://api.lulu.com/auth/realms/glasstree/protocol/openid-connect/token';
+
+/** Letter, B&W standard, coil bound, 60# white stock, matte cover. */
+const POD_PACKAGE_ID = '0850X1100BWSTDCO060UW444MXX';
+
+/**
+ * The print-ready artifacts in R2, built by
+ * binder-pipeline/print-edition/build_print_edition.py.
+ *
+ * PRINT_PAGE_COUNT and the md5 sums describe the objects currently at these
+ * keys. Rebuild the PDFs and all three must be updated together — Lulu verifies
+ * source_md5sum and rejects the job on a mismatch. That failure is deliberate:
+ * it is loud, it happens at job creation, and it beats printing stale bytes.
+ */
+const PRINT_ASSETS = {
+  interior: { r2Key: 'print/interior.pdf', md5: '179f61220210fae5da4ad56dd994e889' },
+  cover: { r2Key: 'print/cover.pdf', md5: '3757650d0b1f456a6729161b723d0330' },
+};
+const PRINT_PAGE_COUNT = 396;
+// GROUND_HD: tracked home-delivery ground, $8.64 over MAIL at Aug 2026 rates —
+// keeps the customer email's 7-10 business day promise honest and adds tracking.
+const PRINT_SHIPPING_LEVEL = 'GROUND_HD';
+const PRINT_CONTACT_EMAIL = 'seth@build-your-house.com';
+// Lulu requires a phone number on every address; Stripe only collects one if the
+// payment link asks for it, so fall back to a number carriers will accept.
+const PRINT_PHONE_FALLBACK = '9999999999';
 
 /**
  * Product registry — one entry per SKU. `kind: 'download'` streams r2Key on
@@ -101,12 +143,12 @@ const PRODUCTS = {
     sku: 'printed-binder',
     kind: 'ship',
     name: 'Owner-Builder Job Site Binder — Printed & Shipped',
-    amount: 19700,
+    amount: 14900,
     r2Key: 'owner-builder-job-site-binder.zip', // printed buyers get digital too
     description:
-      'The complete 367-page Second Edition binder, printed double-sided with section ' +
-      'tabs in a heavy-duty 3-ring binder and shipped to your door — plus immediate ' +
-      'access to the full digital download while it ships. US shipping included.',
+      'The complete 367-page Second Edition binder, professionally printed and ' +
+      'coil-bound so it lies flat on the job site, shipped to your door — plus the ' +
+      'full digital download immediately while it ships. US shipping included.',
     emailSubject: 'Order confirmed — your printed Job Site Binder',
     emailBlurb: null,
   },
@@ -182,6 +224,55 @@ async function stripe(env, path, { method = 'GET', body } = {}) {
   const data = await res.json();
   if (!res.ok) {
     throw new Error(data?.error?.message || `Stripe API error ${res.status}`);
+  }
+  return data;
+}
+
+// Per-isolate Lulu access token: { token, expires }. Client-credentials tokens
+// last an hour, so this saves an auth round-trip on every print-job call.
+let luluAuth = null;
+
+async function luluAccessToken(env) {
+  if (luluAuth && Date.now() < luluAuth.expires) return luluAuth.token;
+  const body = new URLSearchParams();
+  body.set('grant_type', 'client_credentials');
+  body.set('client_id', env.LULU_CLIENT_KEY);
+  body.set('client_secret', env.LULU_CLIENT_SECRET);
+  const res = await fetch(LULU_TOKEN_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body,
+  });
+  const data = await res.json();
+  if (!res.ok) {
+    throw new Error(data?.error_description || data?.error || `Lulu auth error ${res.status}`);
+  }
+  // Renew a minute early so a token can never expire mid-request.
+  luluAuth = { token: data.access_token, expires: Date.now() + (data.expires_in - 60) * 1000 };
+  return luluAuth.token;
+}
+
+/** Minimal Lulu Print API client (no SDK — mirrors the Stripe helper above). */
+async function lulu(env, path, { method = 'GET', body } = {}) {
+  const token = await luluAccessToken(env);
+  const res = await fetch(`${LULU_API}${path}`, {
+    method,
+    headers: {
+      Authorization: `Bearer ${token}`,
+      Accept: 'application/json',
+      ...(body ? { 'Content-Type': 'application/json' } : {}),
+    },
+    body: body ? JSON.stringify(body) : undefined,
+  });
+  const text = await res.text();
+  let data = null;
+  try {
+    data = text ? JSON.parse(text) : null;
+  } catch {
+    // Lulu fronts its API with Cloudflare, which serves HTML on some errors.
+  }
+  if (!res.ok) {
+    throw new Error(`Lulu ${method} ${path} → ${res.status}: ${text.slice(0, 600)}`);
   }
   return data;
 }
@@ -397,6 +488,135 @@ function timingSafeEqualStr(a, b) {
   return diff === 0;
 }
 
+function printAssetUrl(env, name) {
+  return `${WORKER_ORIGIN}/print-assets/${env.PRINT_ASSET_TOKEN}/${name}.pdf`;
+}
+
+/**
+ * Unguessable source files for Lulu, which fetches the interior and cover by URL
+ * while normalising a print job (so they cannot be behind the admin key). The
+ * shared secret sits in the path; anything else 404s, making the route
+ * indistinguishable from one that was never registered.
+ */
+async function handlePrintAsset(env, token, name) {
+  const asset = PRINT_ASSETS[name];
+  if (!asset || !env.PRINT_ASSET_TOKEN || !timingSafeEqualStr(token, env.PRINT_ASSET_TOKEN)) {
+    return new Response('Not Found', { status: 404 });
+  }
+  const object = await env.DOWNLOADS_BUCKET.get(asset.r2Key);
+  if (!object) {
+    console.error(`R2 print asset missing: ${asset.r2Key}`);
+    return new Response('Not Found', { status: 404 });
+  }
+  return new Response(object.body, {
+    headers: {
+      'Content-Type': 'application/pdf',
+      'Content-Length': object.size.toString(),
+      'Content-Disposition': `inline; filename="${name}.pdf"`,
+      'Cache-Control': 'no-store',
+    },
+  });
+}
+
+/** Map a Stripe Checkout session's shipping details onto Lulu's address shape. */
+function luluShippingAddress(session) {
+  const ship =
+    session.shipping_details || session.collected_information?.shipping_details || null;
+  const addr = ship?.address || {};
+  return {
+    name: ship?.name || session.customer_details?.name || '',
+    street1: addr.line1 || '',
+    ...(addr.line2 ? { street2: addr.line2 } : {}),
+    city: addr.city || '',
+    state_code: addr.state || '',
+    postcode: addr.postal_code || '',
+    country_code: addr.country || 'US',
+    phone_number: session.customer_details?.phone || PRINT_PHONE_FALLBACK,
+  };
+}
+
+/**
+ * Persist a placed print job. The book is already ordered by the time this
+ * runs, so a D1 failure must never surface as a Lulu failure — it is logged and
+ * returned as a warning rather than thrown.
+ */
+async function recordPrintJob(env, sessionId, job) {
+  try {
+    await env.DB.prepare(
+      'INSERT OR IGNORE INTO print_jobs (session_id, lulu_job_id, status, created_at) VALUES (?1, ?2, ?3, ?4)'
+    )
+      .bind(sessionId, String(job.id), job.status?.name || 'CREATED', new Date().toISOString())
+      .run();
+    return null;
+  } catch (err) {
+    console.error(`print_jobs insert failed (Lulu job ${job.id} IS placed):`, err);
+    return `print_jobs row could not be written: ${err.message}`;
+  }
+}
+
+/**
+ * Place the Lulu print job for a paid session, at most once ever. Every
+ * duplicate here is a real book on a real card, so there are two guards.
+ *
+ * print_jobs.session_id (the primary key) is written immediately after Lulu
+ * accepts the job, so a Stripe webhook retry — which happens whenever any later
+ * step in the handler throws — finds the row and returns. If that write is the
+ * thing that failed, Lulu itself is the fallback: line items carry the session
+ * id as external_id, so asking Lulu answers "have I already ordered this?"
+ * even when our own bookkeeping lost the answer.
+ */
+async function ensureLuluPrintJob(env, { session }) {
+  const row = await env.DB.prepare(
+    'SELECT lulu_job_id, status, created_at FROM print_jobs WHERE session_id = ?1'
+  )
+    .bind(session.id)
+    .first();
+  if (row) return { job: null, existing: row };
+
+  const prior = await lulu(env, `/print-jobs/?external_id=${encodeURIComponent(session.id)}`);
+  if (prior?.count > 0) {
+    const found = prior.results[0];
+    await recordPrintJob(env, session.id, found);
+    return {
+      job: null,
+      existing: { lulu_job_id: String(found.id), status: found.status?.name || null },
+    };
+  }
+
+  const job = await lulu(env, '/print-jobs/', {
+    method: 'POST',
+    body: {
+      contact_email: PRINT_CONTACT_EMAIL,
+      external_id: session.id,
+      shipping_level: PRINT_SHIPPING_LEVEL,
+      shipping_address: luluShippingAddress(session),
+      line_items: [
+        {
+          title: 'Owner-Builder Job Site Binder',
+          quantity: 1,
+          external_id: session.id,
+          // Lulu reads the page count off the interior PDF itself; the field is
+          // read-only on this endpoint (page_count is only an input to the cost
+          // calculator). PRINT_PAGE_COUNT is what the file must contain.
+          printable_normalization: {
+            pod_package_id: POD_PACKAGE_ID,
+            interior: {
+              source_url: printAssetUrl(env, 'interior'),
+              source_md5sum: PRINT_ASSETS.interior.md5,
+            },
+            cover: {
+              source_url: printAssetUrl(env, 'cover'),
+              source_md5sum: PRINT_ASSETS.cover.md5,
+            },
+          },
+        },
+      ],
+    },
+  });
+
+  return { job, existing: null, warning: await recordPrintJob(env, session.id, job) };
+}
+
 /** Verify a Stripe-Signature header against the raw request body. */
 async function verifyStripeSignature(header, body, secret, toleranceSec = 300) {
   const parsed = { t: null, v1: [] };
@@ -509,40 +729,88 @@ https://build-your-house.com
   return sendResendEmail(env, { to: email, subject: product.emailSubject, text, html });
 }
 
-/** Notify Seth that a printed binder needs to be produced and shipped. */
-async function sendShipNotification(env, { session, product }) {
+function shipToLines(session) {
   const ship =
     session.shipping_details || session.collected_information?.shipping_details || null;
   const addr = ship?.address || {};
-  const lines = [
+  return [
     ship?.name || session.customer_details?.name || '(no name)',
     addr.line1,
     addr.line2,
     `${addr.city || ''}, ${addr.state || ''} ${addr.postal_code || ''}`,
     addr.country,
   ].filter(Boolean);
+}
 
-  const text = `Printed binder order — action needed.
+function ownerEmail(env, { subject, text }) {
+  return sendResendEmail(env, {
+    to: PRINT_CONTACT_EMAIL,
+    subject,
+    text,
+    html: `<pre style="font-family:monospace">${text.replace(/</g, '&lt;')}</pre>`,
+  });
+}
+
+/** Receipt for an automated print job: Lulu has it, nothing to do. */
+async function sendPrintJobNotification(env, { session, product, job, warning }) {
+  const text = `Printed binder order — Lulu job #${job.id} created. No action needed.
+
+Product: ${product.name} ($${(session.amount_total / 100).toFixed(2)})
+Customer: ${session.customer_details?.email || '(no email)'}
+Session: ${session.id}
+Lulu status: ${job.status?.name || 'CREATED'}
+${warning ? `\nWARNING: ${warning}\nThe book IS ordered — this only affects /admin/api/print-jobs.\n` : ''}
+SHIP TO:
+${shipToLines(session).join('\n')}
+
+Lulu prints and ships this automatically. Track it at https://www.lulu.com
+(or GET /admin/api/print-jobs for live status and the tracking number once it
+leaves the printer). The customer already has digital access via their
+download page.
+`;
+  await ownerEmail(env, {
+    subject: `Lulu job #${job.id} created — printed binder for ${
+      session.customer_details?.name || session.customer_details?.email
+    }`,
+    text,
+  });
+}
+
+/**
+ * Fallback when Lulu refused the job. The order is paid and the customer has
+ * been promised a book, so this is the manual runbook.
+ */
+async function sendShipNotification(env, { session, product, error }) {
+  const ship =
+    session.shipping_details || session.collected_information?.shipping_details || null;
+
+  const text = `Printed binder order — ACTION NEEDED. The automated Lulu job failed.
 
 Product: ${product.name} ($${(session.amount_total / 100).toFixed(2)})
 Customer: ${session.customer_details?.email || '(no email)'}
 Session: ${session.id}
 
+LULU ERROR:
+${error ? String(error.message || error).slice(0, 800) : '(none recorded)'}
+
 SHIP TO:
-${lines.join('\n')}
+${shipToLines(session).join('\n')}
 
 RUNBOOK:
-1. Print the current Second Edition (repo: owner-builder-job-site-binder/, print double-sided) or order via your POD account (Lulu) with section tabs + heavy-duty 3-ring binder.
+1. Retry from the Lulu dashboard (https://www.lulu.com): ${PRINT_PAGE_COUNT}-page
+   coil-bound Letter B&W book, pod package ${POD_PACKAGE_ID}. The print-ready
+   files are in R2 at ${PRINT_ASSETS.interior.r2Key} and ${PRINT_ASSETS.cover.r2Key}
+   (rebuild with binder-pipeline/print-edition/build_print_edition.py).
 2. Ship to the address above; keep the tracking number.
 3. Reply to the customer's fulfillment email thread with tracking.
 Customer already has digital access via their download page.
 `;
 
-  await sendResendEmail(env, {
-    to: 'seth@build-your-house.com',
-    subject: `ACTION: print & ship binder — ${ship?.name || session.customer_details?.email}`,
+  await ownerEmail(env, {
+    subject: `ACTION: Lulu job failed, print & ship manually — ${
+      ship?.name || session.customer_details?.email
+    }`,
     text,
-    html: `<pre style="font-family:monospace">${text.replace(/</g, '&lt;')}</pre>`,
   });
 }
 
@@ -596,8 +864,23 @@ async function handleStripeWebhook(request, env) {
   });
 
   if (product.kind === 'ship') {
+    let job = null;
+    let warning = null;
+    let luluError = null;
     try {
-      await sendShipNotification(env, { session, product });
+      ({ job, warning } = await ensureLuluPrintJob(env, { session }));
+    } catch (err) {
+      luluError = err;
+      console.error('Lulu print job creation failed:', err);
+    }
+    try {
+      if (luluError) {
+        await sendShipNotification(env, { session, product, error: luluError });
+      } else if (job) {
+        await sendPrintJobNotification(env, { session, product, job, warning });
+      }
+      // A null job with no error means a retry found the job already placed;
+      // it was announced the first time round, so stay quiet.
     } catch (err) {
       // The customer email is the critical path; the owner notification also
       // lands via the admin orders view, so log rather than force a retry
@@ -640,7 +923,14 @@ function paymentLinkReport(link) {
 async function handleDiagnostics(env) {
   let linksError = null;
   let accountError = null;
-  const uniqueKeys = [...new Set(Object.values(PRODUCTS).map((p) => p.r2Key).filter(Boolean))];
+  // The print artifacts are not attached to a SKU but a missing one silently
+  // breaks every $149 order, so they get the same presence check.
+  const uniqueKeys = [
+    ...new Set([
+      ...Object.values(PRODUCTS).map((p) => p.r2Key).filter(Boolean),
+      ...Object.values(PRINT_ASSETS).map((a) => a.r2Key),
+    ]),
+  ];
   const [d1Check, links, account, ...r2Heads] = await Promise.all([
     env.DB.prepare('SELECT COUNT(*) AS count FROM downloads').first().catch(() => null),
     stripe(env, '/payment_links?limit=100').catch((err) => {
@@ -694,6 +984,119 @@ async function handleDiagnostics(env) {
           },
         ])
       ),
+    },
+    200
+  );
+}
+
+/** D1 print jobs, each joined with its live status and tracking from Lulu. */
+async function handlePrintJobs(env) {
+  const { results } = await env.DB.prepare(
+    'SELECT session_id, lulu_job_id, status, created_at FROM print_jobs ORDER BY created_at DESC LIMIT 50'
+  ).all();
+
+  const jobs = await Promise.all(
+    results.map(async (row) => {
+      try {
+        const live = await lulu(env, `/print-jobs/${encodeURIComponent(row.lulu_job_id)}/`);
+        const item = live.line_items?.[0] || {};
+        return {
+          ...row,
+          lulu_status: live.status?.name || null,
+          lulu_message: live.status?.message || null,
+          total_cost: live.costs?.total_cost_incl_tax || null,
+          tracking_id: item.tracking_id || null,
+          tracking_urls: item.tracking_urls || [],
+          estimated_shipping_dates: live.estimated_shipping_dates || null,
+        };
+      } catch (err) {
+        return { ...row, lulu_status: null, error: err.message };
+      }
+    })
+  );
+
+  return json({ jobs }, 200);
+}
+
+/**
+ * Pre-flight for the print pipeline. Proves, from inside the worker, that the
+ * Lulu credentials work, that the pod package and page count price correctly,
+ * and that Lulu will be able to fetch both source files from the URLs we hand
+ * it — then prices the job with a cost calculation.
+ *
+ * This endpoint has no code path that creates a print job. A real job prints a
+ * real book and charges a real card, so ordering one stays a deliberate act.
+ */
+async function handleTestLuluJob(request, env) {
+  let payload = {};
+  try {
+    payload = await request.json();
+  } catch {
+    // Body is optional.
+  }
+  if (payload.dry === false) {
+    return json(
+      { error: 'this endpoint only runs cost calculations; it cannot create a print job' },
+      400
+    );
+  }
+
+  const address = payload.shipping_address || {
+    name: 'Test Buyer',
+    street1: '123 W Martin St',
+    city: 'Raleigh',
+    state_code: 'NC',
+    postcode: '27601',
+    country_code: 'US',
+    phone_number: PRINT_PHONE_FALLBACK,
+  };
+
+  // Check the bytes Lulu will hash. Fetching our own public URL from in here is
+  // not an option — Cloudflare rejects a Worker subrequest to its own hostname
+  // with error 1042 — so verify R2's stored md5 against the sum we hand Lulu,
+  // which is the same equality Lulu enforces when it downloads the file.
+  const assets = {};
+  for (const [name, asset] of Object.entries(PRINT_ASSETS)) {
+    const head = await env.DOWNLOADS_BUCKET.head(asset.r2Key).catch(() => null);
+    const stored = head?.checksums?.md5;
+    const actual = stored
+      ? [...new Uint8Array(stored)].map((b) => b.toString(16).padStart(2, '0')).join('')
+      : null;
+    assets[name] = {
+      r2_key: asset.r2Key,
+      present: !!head,
+      size: head?.size ?? null,
+      declared_md5: asset.md5,
+      r2_md5: actual,
+      md5_ok: actual === asset.md5,
+      source_url: printAssetUrl(env, name),
+    };
+  }
+
+  const cost = await lulu(env, '/print-job-cost-calculations/', {
+    method: 'POST',
+    body: {
+      line_items: [
+        { page_count: PRINT_PAGE_COUNT, pod_package_id: POD_PACKAGE_ID, quantity: 1 },
+      ],
+      shipping_address: address,
+      shipping_option: PRINT_SHIPPING_LEVEL,
+    },
+  });
+
+  const retail = PRODUCTS['printed-binder'].amount / 100;
+  return json(
+    {
+      dry: true,
+      note: 'cost calculation only — no print job was created',
+      pod_package_id: POD_PACKAGE_ID,
+      page_count: PRINT_PAGE_COUNT,
+      shipping_level: PRINT_SHIPPING_LEVEL,
+      assets,
+      retail_price: retail,
+      landed_cost: cost.total_cost_incl_tax,
+      gross_margin: (retail - Number(cost.total_cost_incl_tax)).toFixed(2),
+      cost,
     },
     200
   );
@@ -883,7 +1286,7 @@ async function handleOrders(env) {
       last_download: dl ? dl.last : null,
       emailed_at: emails.get(s.id) || null,
       success_url: successUrl(s.id),
-      download_url: `https://buildyourhouse-downloads.azerothcorner.workers.dev/download?session_id=${encodeURIComponent(s.id)}`,
+      download_url: `${WORKER_ORIGIN}/download?session_id=${encodeURIComponent(s.id)}`,
     };
   });
 
@@ -912,6 +1315,11 @@ export default {
         return await handleRecover(request, env, ctx, origin);
       }
 
+      const printAsset = url.pathname.match(/^\/print-assets\/([^/]+)\/(interior|cover)\.pdf$/);
+      if (request.method === 'GET' && printAsset) {
+        return await handlePrintAsset(env, printAsset[1], printAsset[2]);
+      }
+
       if (request.method === 'POST' && url.pathname === '/stripe-webhook') {
         return await handleStripeWebhook(request, env);
       }
@@ -931,6 +1339,12 @@ export default {
         }
         if (request.method === 'GET' && url.pathname === '/admin/api/diagnostics') {
           return await handleDiagnostics(env);
+        }
+        if (request.method === 'GET' && url.pathname === '/admin/api/print-jobs') {
+          return await handlePrintJobs(env);
+        }
+        if (request.method === 'POST' && url.pathname === '/admin/api/test-lulu-job') {
+          return await handleTestLuluJob(request, env);
         }
         if (request.method === 'POST' && url.pathname === '/admin/api/fix-payment-link') {
           return await handleFixPaymentLink(env);
