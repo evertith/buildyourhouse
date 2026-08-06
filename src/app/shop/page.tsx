@@ -395,6 +395,47 @@ export default function JobSiteBinder() {
         </div>
       </section>
 
+      {/* ---------- PRODUCT LADDER ----------
+          The shop index in one strip: /shop doubles as the store's front
+          door, so every product routes from the first screen. */}
+      <nav className={styles.ladder} aria-label="All products">
+        <div className={styles.wrap}>
+          <div className={styles.ladderGrid}>
+            <span className={styles.ladderLabel}>The shop</span>
+            <TrackedLink
+              href="/shop/subcontractor-pack"
+              eventName="shop_cta_click"
+              eventParams={{ location: 'ladder', context: 'sub-hiring-pack' }}
+              className={styles.ladderCell}
+            >
+              <span className={styles.ladderPrice}>$29</span>
+              <span className={styles.ladderName}>Subcontractor Hiring Pack</span>
+              <span className={styles.ladderHint}>Scorecard + contracts</span>
+            </TrackedLink>
+            <TrackedLink
+              href="/shop/nc-permit-kit"
+              eventName="shop_cta_click"
+              eventParams={{ location: 'ladder', context: 'nc-permit-kit' }}
+              className={styles.ladderCell}
+            >
+              <span className={styles.ladderPrice}>$34</span>
+              <span className={styles.ladderName}>NC Permit Kit</span>
+              <span className={styles.ladderHint}>State-verified permitting</span>
+            </TrackedLink>
+            <a href="#inside" className={`${styles.ladderCell} ${styles.ladderHere}`}>
+              <span className={styles.ladderPrice}>$97</span>
+              <span className={styles.ladderName}>Job Site Binder</span>
+              <span className={styles.ladderHint}>This page — the full system</span>
+            </a>
+            <a href="#printed" className={styles.ladderCell}>
+              <span className={styles.ladderPrice}>$149</span>
+              <span className={styles.ladderName}>Printed Edition</span>
+              <span className={styles.ladderHint}>Coil-bound, shipped</span>
+            </a>
+          </div>
+        </div>
+      </nav>
+
       {/* ---------- WHY PAPER ---------- */}
       <section className={styles.block}>
         <div className={styles.wrap}>
