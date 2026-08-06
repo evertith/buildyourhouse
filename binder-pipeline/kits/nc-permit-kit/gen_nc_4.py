@@ -79,12 +79,14 @@ find_rows = [
      k.cellp("Search \"<i>[your county] NC environmental health</i>.\" On-"
              "site wastewater and private drinking water wells are handled "
              "by the local health department, not the building inspector.")],
-    [k.cellp("<b>NCDOT</b><br/>(driveway connection to a state-maintained "
-             "road)"),
-     k.cellp("Start at <b>ncdot.gov</b> and search for driveway or street "
-             "access permits. NCDOT is organized into divisions with county "
-             "district offices — confirm which division and district covers "
-             "your county, and whether your road is state-maintained at all.")],
+    [k.cellp("<b>NCDOT District Engineer</b><br/>(driveway connection to a "
+             "state-maintained road)"),
+     k.cellp("NCDOT runs <b>14 highway divisions</b> with a county lookup at "
+             "<b>ncdot.gov → Divisions → Highways</b>; your driveway is "
+             "handled by the District Engineer within that division. A "
+             "permit is normally <i>not</i> required for a single residence "
+             "— call anyway, they arrange the driveway pipe. First confirm "
+             "your road is state-maintained at all.")],
     [k.cellp("<b>Erosion &amp; sedimentation control</b>"),
      k.cellp("If you will disturb more than one acre, this is either NC DEQ's "
              "land resources program or a delegated local program. Ask your "

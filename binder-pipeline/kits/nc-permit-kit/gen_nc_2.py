@@ -198,7 +198,7 @@ flow += k.check_table("C1: Septic and well", [
     "Operation Permit obtained after installation and the pre-cover "
     "inspection — the system may not be used before it issues",
     ("Well construction permit obtained from the county health department "
-     "<b>before</b> drilling, if you will have a well",
+     "<b>before</b> drilling, if you will have a well — valid five years",
      [("Permit #:", 0.55), ("Date:", 0.45)]),
     "Grout inspection scheduled by the well contractor with the health "
     "department before grouting",
@@ -211,17 +211,24 @@ flow.append(k.body(
     "of issuing the Certificate of Completion it \"<i>shall collect water "
     "samples and submit them to a certified laboratory</i>\" — or ensure a "
     "certified lab does (15A NCAC 18A § .3802(a)). Your job is simply not to "
-    "let it be forgotten. Testing covers total coliform, with fecal coliform "
-    "or E. coli if present, plus a chemical panel including arsenic, lead, "
-    "nitrate, nitrite, fluoride, iron, manganese, sodium and pH. Bacteria "
-    "samples are drawn only after the disinfectant has been flushed out."))
+    "let it be forgotten. Bacteria testing covers total coliform, then fecal "
+    "coliform or E. coli if any is present, and is drawn only after the "
+    "disinfectant has been flushed. The chemical panel is fixed by rule "
+    "§ .3803(c): <b>arsenic, barium, cadmium, chromium, copper, fluoride, "
+    "lead, iron, magnesium, manganese, mercury, nitrate, nitrite, selenium, "
+    "silver, sodium, zinc and pH.</b> Keep the results — a lender or a buyer "
+    "will ask for them one day."))
 
 flow.append(k.cite(
-    "Septic permit names and sequence: 15A NCAC 18E (on-site wastewater "
-    "rules), administered by local health departments. Well permitting is "
-    "also a county health department function. The specific application "
-    "forms, fees, and required water tests are set locally — confirm each "
-    "with your county. Verified August 2026."))
+    "Septic permit names, sequence and the building-permit gate: 15A NCAC "
+    "18E § .0204(c), (f) and § .0205, administered by local health "
+    "departments. Well permitting, validity and the Certificate of "
+    "Completion: 15A NCAC 02C § .0304, § .0305, § .0306(c). Sampling duty "
+    "and the chemical panel: 15A NCAC 18A § .3802(a), § .3803. The rules "
+    "above are statewide; <b>application forms and fees are local</b> — "
+    "confirm those with your county. This kit prints no IP or CA validity "
+    "period, because that period is set by statute the kit has not verified. "
+    "Verified August 2026."))
 
 # ---------------------------------------------------------------- D
 flow += k.h2_tight("D. DRIVEWAY AND EROSION CONTROL")
@@ -262,15 +269,25 @@ flow += k.check_table("D1: Driveway access and erosion control", [
     "a grading phase",
 ], notes_header="Notes")
 
+flow.append(k.body(
+    "<b>Some local programs go lower than the State's acre — but most do "
+    "not.</b> Durham and Charlotte both sit at the state threshold. "
+    "Winston-Salem regulates single-family construction well below it, at "
+    "20,000 square feet, per a 2013 NC DEMLR compilation of local program "
+    "ordinances; confirm the current figure with the city, since that "
+    "compilation is a decade old. The point is not that locals are stricter "
+    "— it is that you cannot assume either way, so ask which agency has "
+    "jurisdiction over your parcel and what its threshold is."))
 flow.append(k.cite(
-    "Driveways: 19A NCAC 02B § .0601, § .0602 (application goes to the "
-    "District Engineer); NCDOT Policy on Street and Driveway Access; form "
-    "TEB 65-04. Find your division at ncdot.gov → Divisions → Highways. "
-    "One-acre threshold, 30-day filing and the 21-day ground cover rule: "
-    "N.C.G.S. § 113A-57(2), (3), (4); no building permit for land-disturbing "
-    "activity without an approved plan: § 160D-1110(e). Note the statute "
-    "says <b>more than</b> one acre — exactly one acre does not trigger it, "
-    "though a delegated local program may set a lower bar (§ 113A-60). "
+    "Driveways: 19A NCAC 02B § .0601, and § .0602(a) — the application goes "
+    "to the District Engineer, four copies, on form TEB 65-04. NCDOT Policy "
+    "on Street and Driveway Access. NCDOT runs 14 highway divisions; find "
+    "yours by county at ncdot.gov → Divisions → Highways. One-acre "
+    "threshold, 30-day filing and the 21-day ground cover rule: N.C.G.S. "
+    "§ 113A-57(2), (3), (4); no building permit for land-disturbing activity "
+    "without an approved plan: § 160D-1110(e); local programs must at least "
+    "meet and may exceed the State's rules: § 113A-60. Note the statute says "
+    "<b>more than</b> one acre — exactly one acre does not trigger it. "
     "Verified August 2026."))
 
 # ---------------------------------------------------------------- E
@@ -299,18 +316,32 @@ flow.append(k.callout(
                   "dwellings including their accessory structures.</i>\" "
                   "Detached garages, pools and PV are covered too. Buy the "
                   "right book, and say \"2017\" at the counter.", S["body"]),
+        Paragraph("<b>Confirm it with your department anyway.</b> The OSFM "
+                  "interpretation creating this carve-out reasons from a "
+                  "statutory date that has since passed, and OSFM has not "
+                  "published an update. The exclusion is still on their live "
+                  "page — but get your inspector's answer before you buy "
+                  "wire.", S["body"]),
     ]))
 flow.append(k.cite(
-    "ncosfm.gov → Codes → State Electrical Division; ncbeec.org, \"2020 NEC "
-    "Status Update.\" The 2023 State Electrical Code is on indefinite delay "
-    "(S.L. 2025-2, § 5.12). Verified August 2026."))
+    "ncosfm.gov → Codes → State Electrical Division, and the OSFM "
+    "Engineering Division interpretation of Amendments 10.1 and 10.2 dated "
+    "November 1, 2021; ncbeec.org, \"2020 NEC Status Update.\" The 2023 "
+    "State Electrical Code is on indefinite delay (S.L. 2025-2, § 5.12). "
+    "Verified August 2026."))
 
 flow.append(k.body(
-    "<b>Energy compliance has four paths</b> under the 2018 NCECC "
-    "(§ R401.2): prescriptive (R401–R404); simulated performance (R405); an "
-    "energy rating index / HERS approach (R406); or REScheck keyed to the "
-    "2018 IECC. Pick one before you draw, because they drive different "
-    "documentation."))
+    "The 2018 NC Energy Conservation Code is <b>based on the 2015 IECC</b>, "
+    "not the 2018 IECC — a detail that matters when you buy a reference or "
+    "hire an energy rater. <b>Compliance has four paths</b> (§ R401.2): "
+    "prescriptive (R401–R404); simulated performance (R405); an energy "
+    "rating index / HERS approach (R406); or a North Carolina REScheck keyed "
+    "to the 2018 IECC, where envelope requirements may not be traded off "
+    "against high-efficiency equipment. Pick one before you draw — they "
+    "drive different documentation. If you go the ERI route, ask your "
+    "department for the current maximum score; this kit does not print one, "
+    "because the figure sits in a base-code table rather than the State's "
+    "published amendments."))
 
 flow.append(k.body(
     "<b>A blower-door test is optional; a duct test is not.</b> North "
@@ -403,8 +434,8 @@ flow.append(k.sources_table([
      "15A NCAC 18E .0204(f)"),
     ("Well permit before drilling; Certificate of Completion before service",
      "15A NCAC 02C .0304, .0306(c)"),
-    ("The local health department samples a new well within 30 days",
-     "15A NCAC 18A .3802(a)"),
+    ("The local health department samples a new well within 30 days; the "
+     "chemical panel is fixed by rule", "15A NCAC 18A .3802(a), .3803"),
     ("Driveway permits normally not required for a single residence",
      "19A NCAC 02B .0601(a)"),
     ("2018 Residential / Energy / Plumbing / Mechanical Codes in effect",
@@ -412,7 +443,8 @@ flow.append(k.sources_table([
     ("One- and two-family dwellings are excluded from the 2020 State "
      "Electrical Code and governed by the 2017 edition",
      "ncosfm.gov State Electrical; ncbeec.org"),
-    ("Four energy compliance paths; 5.0 ACH50 if tested; duct test mandatory",
+    ("NCECC 2018 is based on the 2015 IECC; four compliance paths; 5.0 "
+     "ACH50 if tested; duct test mandatory",
      "2018 NCECC R401.2, R402.4.2, R403.3.3"),
 ]))
 flow.append(k.cite(k.STATUTE_NOTE))
