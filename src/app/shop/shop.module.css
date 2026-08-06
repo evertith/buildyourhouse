@@ -887,3 +887,14 @@
   }
   .btnPrimary:hover { transform: none; }
 }
+
+/* Long order-CTA labels ("Order the printed edition — $149") overflow the
+   button fill on phones — let them wrap instead of clipping. */
+@media (max-width: 520px) {
+  .orderCta {
+    white-space: normal;
+    text-align: center;
+    line-height: 1.6;
+    padding: 14px 16px;
+  }
+}
