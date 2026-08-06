@@ -9,6 +9,7 @@ import ProductPick from '@/components/ProductPick';
 import AmazonLink from '@/components/AmazonLink';
 import ArticleSchema from '@/components/ArticleSchema';
 import BinderCTA from '@/components/BinderCTA';
+import ProductCTA from '@/components/ProductCTA';
 import PlanningTools from '@/components/PlanningTools';
 import styles from '@/styles/article.module.css';
 
@@ -30,6 +31,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     AmazonLink,
     ArticleSchema,
     BinderCTA,
+    ProductCTA,
     PlanningTools,
   };
 }

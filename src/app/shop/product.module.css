@@ -1,15 +1,17 @@
 /* ============================================
-   SHOP — Job Site Binder sales page
-   Extends the "Blueprint" language from /start-here:
-   navy anchor bands, hairline rules, mono labels,
-   and printed sheets that cast a real shadow.
+   SHOP — compact product pages (NC Permit Kit,
+   Subcontractor Hiring Pack).
+
+   Same "Blueprint" language as shop.module.css:
+   navy anchor band, hairline rules, mono labels,
+   printed sheets that cast a real shadow. Shared
+   by both single-product pages so the smaller
+   SKUs read as the same shelf as the binder.
    ============================================ */
 .page { background: var(--bg-primary); }
 
 /* Full-bleed bands break out of the width-constrained <main>. */
-.hero,
-.lookBand,
-.finalCta {
+.hero {
   width: 100vw;
   margin-left: calc(-50vw + 50%);
 }
@@ -20,9 +22,7 @@
   padding: 0 var(--container-padding-mobile);
 }
 
-/* ---------- PAPER ----------
-   Every product image is a sheet of paper: square corners,
-   white stock, and a shadow that lifts it off the page. */
+/* ---------- PAPER ---------- */
 .sheet {
   display: block;
   width: 100%;
@@ -36,18 +36,11 @@
     0 1px 2px rgba(35, 32, 25, 0.1),
     0 14px 30px rgba(16, 44, 66, 0.13);
 }
-/* Sheets sitting on a navy band need a lighter edge and a deeper shadow. */
 .sheetDark {
   border-color: rgba(246, 241, 228, 0.22);
   box-shadow:
     0 2px 4px rgba(0, 0, 0, 0.28),
     0 22px 48px rgba(0, 0, 0, 0.38);
-}
-/* Crops and landscape renders keep their own proportions. */
-.sheetWide {
-  aspect-ratio: auto;
-  height: auto;
-  object-fit: fill;
 }
 .sheetCap {
   display: block;
@@ -107,7 +100,6 @@
   position: relative;
   border-bottom: 5px solid var(--accent-primary);
 }
-/* Softens the .bp-grid texture toward the edges of the band. */
 .hero::before {
   -webkit-mask-image: radial-gradient(ellipse 95% 85% at 68% 45%, #000 55%, transparent 100%);
   mask-image: radial-gradient(ellipse 95% 85% at 68% 45%, #000 55%, transparent 100%);
@@ -117,12 +109,11 @@
   z-index: 1;
   max-width: var(--width-full);
   margin: 0 auto;
-  padding: var(--space-12) var(--container-padding-mobile) var(--space-10);
+  padding: var(--space-10) var(--container-padding-mobile) var(--space-10);
 }
-/* 1.15fr (not 1.05) keeps both hero CTAs on one line at desktop widths. */
 .heroGrid {
   display: grid;
-  grid-template-columns: 1.15fr 1fr;
+  grid-template-columns: 1.2fr 1fr;
   gap: var(--space-7);
   align-items: center;
 }
@@ -141,8 +132,8 @@
 .heroTitle {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: clamp(40px, 5vw, 64px);
-  line-height: 1;
+  font-size: clamp(36px, 4.4vw, 56px);
+  line-height: 1.02;
   letter-spacing: -0.022em;
   color: var(--cream);
   margin: 0 0 var(--space-2);
@@ -151,14 +142,14 @@
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 500;
-  font-size: clamp(19px, 2vw, 23px);
-  line-height: 1.35;
+  font-size: clamp(18px, 1.9vw, 21px);
+  line-height: 1.4;
   color: rgba(246, 241, 228, 0.86);
-  max-width: 520px;
+  max-width: 560px;
   margin: 0;
 }
 
-/* Dimension strip — the binder's measurements, read like a title block. */
+/* Dimension strip — the product's measurements, read like a title block. */
 .dimstrip {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -186,11 +177,19 @@
 .v {
   display: block;
   font-family: var(--font-display);
-  font-size: clamp(26px, 3vw, 32px);
+  font-size: clamp(24px, 2.8vw, 30px);
   font-weight: 600;
   line-height: 1;
   letter-spacing: -0.01em;
   color: var(--cream);
+}
+/* The price cell reads as the answer, not another dimension. */
+.vAccent { color: var(--accent-primary); }
+/* Word values ("On-page", "Editable") set smaller so they sit on one line
+   next to the numeric cells. */
+.vText {
+  font-size: clamp(19px, 2vw, 23px);
+  letter-spacing: -0.005em;
 }
 
 .heroCtas {
@@ -204,34 +203,31 @@
   font-size: var(--text-sm);
   color: rgba(246, 241, 228, 0.7);
 }
+.familyLink {
+  color: rgba(246, 241, 228, 0.7);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.familyLink:hover { color: var(--cream); }
 
-/* Cover in front, two sample sheets stepped up and to the right. */
+/* Two sheets, front one square to the reader. */
 .stack {
   position: relative;
-  width: 330px;
+  width: 300px;
   max-width: 100%;
   margin: var(--space-6) var(--space-6) 0 auto;
 }
 .stackBack,
-.stackFront {
-  width: 100%;
-}
+.stackFront { width: 100%; }
 .stackBack {
   position: absolute;
-}
-.stackBack2 {
-  top: -44px;
-  right: -44px;
+  top: -26px;
+  right: -26px;
   z-index: 1;
-}
-.stackBack1 {
-  top: -22px;
-  right: -22px;
-  z-index: 2;
 }
 .stackFront {
   position: relative;
-  z-index: 3;
+  z-index: 2;
 }
 
 /* Crop marks — the hero is the trimmed sheet. */
@@ -247,8 +243,7 @@
 .br { bottom: 22px; right: 22px; border-bottom: 1px solid rgba(246, 241, 228, 0.45); border-right: 1px solid rgba(246, 241, 228, 0.45); }
 
 /* ---------- SECTION SCAFFOLD ---------- */
-.block { padding: var(--space-12) 0; }
-/* Clears the sticky header when jumping to #inside / #purchase. */
+.block { padding: var(--space-10) 0; }
 .anchor { scroll-margin-top: 96px; }
 .secHead {
   display: flex;
@@ -270,9 +265,9 @@
 .secTitle {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: clamp(30px, 3.4vw, 44px);
+  font-size: clamp(28px, 3.2vw, 40px);
   letter-spacing: -0.02em;
-  line-height: 1.02;
+  line-height: 1.04;
   margin: 0;
 }
 .secMeta {
@@ -289,21 +284,21 @@
   font-family: var(--font-display);
   font-weight: 500;
   font-style: italic;
-  font-size: 21px;
+  font-size: 20px;
   line-height: 1.45;
   color: var(--text-heading);
-  margin: 0;
+  margin: 0 0 var(--space-5);
   max-width: 780px;
 }
 
-/* ---------- SHEET INDEX (what's inside) ---------- */
+/* ---------- SHEET INDEX (contents) ---------- */
 .index { border-bottom: 1px solid var(--hairline); }
 .row {
   display: grid;
-  grid-template-columns: 96px 1fr 176px;
+  grid-template-columns: 104px 1fr 168px;
   gap: var(--space-4);
   align-items: start;
-  padding: var(--space-5) 0;
+  padding: var(--space-4) 0;
   border-top: 1px solid var(--hairline);
 }
 .rowNo {
@@ -328,38 +323,28 @@
   line-height: 1.2;
   letter-spacing: -0.01em;
   color: var(--text-heading);
-  margin: 0 0 var(--space-2);
+  margin: 0 0 10px;
 }
-.rowList {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  columns: 2;
-  column-gap: var(--space-5);
-}
-.rowList li {
-  position: relative;
-  padding-left: 19px;
-  margin: 0 0 8px;
+.rowCopy {
   font-size: 15.5px;
-  line-height: 1.45;
+  line-height: 1.55;
   color: var(--text-secondary);
-  break-inside: avoid;
+  margin: 0;
+  max-width: none;
 }
-.rowList li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.6em;
-  width: 6px;
-  height: 6px;
-  border: 1px solid var(--accent-primary);
-  transform: rotate(45deg);
+.rowNote {
+  display: inline-block;
+  margin-top: 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-primary);
 }
 .rowFig { margin: 0; }
 
-/* Front matter: same index grid, no title and no sheet — it closes the
-   page column at 367 without competing with the eight real sections. */
+/* Front matter: same index grid, no sheet — it closes the page column
+   without competing with the numbered documents. */
 .rowQuiet {
   align-items: baseline;
   padding: var(--space-3) 0;
@@ -372,41 +357,43 @@
   max-width: none;
 }
 
-/* ---------- SAMPLE SHEETS BAND ---------- */
-.lookBand {
-  background: var(--bg-secondary);
-  border-top: 1px solid var(--hairline);
-  border-bottom: 1px solid var(--hairline);
-  padding: var(--space-12) 0;
-}
-.samples {
+/* ---------- SPLIT (copy beside a sheet) ---------- */
+.split {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--space-6);
-}
-.sampleFig { margin: 0; }
-
-/* ---------- EDITABLE FILES ---------- */
-.editable {
-  display: grid;
-  grid-template-columns: 1.05fr 1fr;
+  grid-template-columns: 1.15fr 1fr;
   gap: var(--space-7);
   align-items: center;
 }
-.editableCopy p {
-  font-size: 16.5px;
-  line-height: 1.65;
-  color: var(--text-secondary);
-  margin: 0 0 var(--space-3);
-  max-width: none;
+.splitFig { margin: 0; }
+
+/* Walk-away list — a filled marker, deliberately not the hollow diamond
+   the "what you get" lists use. */
+.flagList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
-.editableCopy p:last-child { margin-bottom: 0; }
-.editableCopy strong { color: var(--text-heading); }
-.fileTag {
-  font-family: var(--font-mono);
-  font-size: 0.92em;
-  letter-spacing: 0.02em;
-  color: var(--accent-primary);
+.flagList li {
+  position: relative;
+  padding-left: 26px;
+  margin-bottom: 14px;
+  font-size: 16.5px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+.flagList li:last-child { margin-bottom: 0; }
+.flagList li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 8px;
+  height: 8px;
+  background: var(--accent-primary);
+}
+.flagList strong {
+  color: var(--text-heading);
+  font-weight: 600;
 }
 
 /* ---------- TRUST ---------- */
@@ -439,60 +426,16 @@
   margin: 0;
   max-width: 740px;
 }
-.trustCopy + .trustCopy { margin-top: var(--space-2); }
-.ircFig {
-  margin: var(--space-3) 0 0;
-  width: min(400px, 100%);
-}
-.trustLink {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--accent-primary);
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: var(--space-2);
-  text-decoration: none;
-}
-.trustLink:hover { color: var(--link-hover); text-decoration: underline; }
-
-/* ---------- HOW IT WORKS ---------- */
-.steps {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  border-top: 1px solid var(--hairline);
-  border-bottom: 1px solid var(--hairline);
-  margin-bottom: var(--space-5);
-}
-.step {
-  padding: var(--space-4) var(--space-3) var(--space-4) var(--space-3);
-  border-left: 1px solid var(--hairline);
-}
-.step:first-child { border-left: none; padding-left: 0; }
-.stepNo {
-  display: block;
+.trustSource {
   font-family: var(--font-mono);
   font-size: 11.5px;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--accent-primary);
-  margin-bottom: 14px;
-}
-.stepTitle {
-  font-family: var(--font-display);
-  font-size: 19px;
-  font-weight: 600;
-  line-height: 1.25;
-  color: var(--text-heading);
-  margin: 0 0 10px;
-}
-.stepCopy {
-  font-size: 15.5px;
-  line-height: 1.55;
   color: var(--text-secondary);
-  margin: 0;
+  margin: var(--space-4) 0 0;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--hairline);
+  line-height: 1.7;
   max-width: none;
 }
 
@@ -502,7 +445,7 @@
   border-radius: 0;
   background: var(--bg-secondary);
   padding: var(--space-6);
-  max-width: 880px;
+  max-width: 760px;
 }
 .orderNo {
   display: flex;
@@ -519,13 +462,12 @@
 }
 .orderTitle {
   font-family: var(--font-display);
-  font-size: clamp(26px, 3vw, 34px);
+  font-size: clamp(24px, 2.7vw, 30px);
   font-weight: 600;
-  line-height: 1.1;
+  line-height: 1.12;
   letter-spacing: -0.02em;
   margin: 0 0 var(--space-4);
 }
-/* Type comes from the global .bp-mono-label primitive. */
 .inclLabel { margin: 0 0 var(--space-2); }
 .incl {
   list-style: none;
@@ -572,7 +514,7 @@
 }
 .priceVal {
   font-family: var(--font-display);
-  font-size: clamp(42px, 6vw, 56px);
+  font-size: clamp(38px, 5vw, 50px);
   font-weight: 600;
   line-height: 1;
   letter-spacing: -0.025em;
@@ -583,178 +525,38 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  max-width: 480px;
+  max-width: 460px;
   margin-left: auto;
   margin-right: auto;
   font-size: 14px;
   padding: 20px 28px;
 }
-.guarantees {
+
+/* Small print — the four things a buyer should know before paying. */
+.smallprint {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-4);
+  grid-template-columns: repeat(4, 1fr);
   border-top: 1px solid var(--hairline);
   margin-top: var(--space-5);
   padding-top: var(--space-4);
+  gap: var(--space-4);
 }
-.guarantee {
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
+.spItem {
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin: 0;
+  max-width: none;
 }
-.guaranteeIco {
-  color: var(--accent-primary);
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-.guaranteeLabel {
+.spKey {
   display: block;
   font-family: var(--font-mono);
-  font-size: 11.5px;
+  font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-heading);
   margin-bottom: 6px;
-}
-.guarantee p {
-  margin: 0;
-  font-size: 14.5px;
-  line-height: 1.5;
-  color: var(--text-secondary);
-  max-width: none;
-}
-
-/* ---------- PRINTED EDITION ----------
-   Same spec-sheet box as .order, so the second tier reads as another
-   line on the same shelf rather than a different product. */
-.printedLink {
-  display: block;
-  margin: var(--space-3) auto 0;
-  max-width: 480px;
-  text-align: center;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--accent-primary);
-  text-decoration: none;
-}
-.printedLink:hover { color: var(--link-hover); text-decoration: underline; }
-
-.printedCopy {
-  font-size: 16.5px;
-  line-height: 1.65;
-  color: var(--text-secondary);
-  margin: 0;
-  max-width: none;
-}
-.printedSpec {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  border-top: 1px solid var(--hairline);
-  border-bottom: 1px solid var(--hairline);
-  margin: var(--space-4) 0 var(--space-5);
-}
-.psCell {
-  padding: 14px 0 14px var(--space-2);
-  border-left: 1px solid var(--hairline);
-}
-.psCell:first-child { border-left: none; padding-left: 0; }
-.psKey {
-  display: block;
-  font-family: var(--font-mono);
-  font-size: 10.5px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--text-secondary);
-  margin-bottom: 7px;
-}
-.psVal {
-  display: block;
-  font-family: var(--font-mono);
-  font-size: 12.5px;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--text-heading);
-  line-height: 1.35;
-}
-.printedNote {
-  font-size: 14.5px;
-  line-height: 1.55;
-  color: var(--text-secondary);
-  margin: var(--space-4) 0 0;
-  padding-top: var(--space-3);
-  border-top: 1px solid var(--hairline);
-  max-width: none;
-}
-
-/* ---------- MORE FROM THE SHOP ---------- */
-.more {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-4);
-}
-.moreCard {
-  display: block;
-  background: var(--bg-secondary);
-  border: 1px solid var(--hairline-strong);
-  padding: var(--space-4);
-  text-decoration: none;
-  transition: border-color 0.18s ease, transform 0.18s ease;
-}
-.moreCard:hover {
-  border-color: var(--accent-primary);
-  transform: translateY(-2px);
-  text-decoration: none;
-}
-.moreTop {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--space-2);
-  border-bottom: 1px solid var(--hairline);
-  padding-bottom: var(--space-2);
-  margin-bottom: var(--space-3);
-}
-.moreKind {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--text-secondary);
-}
-.morePrice {
-  font-family: var(--font-display);
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  color: var(--accent-primary);
-}
-.moreTitle {
-  font-family: var(--font-display);
-  font-size: 22px;
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-  color: var(--text-heading);
-  margin: 0 0 10px;
-}
-.moreCopy {
-  font-size: 15.5px;
-  line-height: 1.55;
-  color: var(--text-secondary);
-  margin: 0 0 var(--space-3);
-  max-width: none;
-}
-.moreGo {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--accent-primary);
 }
 
 /* ---------- FAQ ---------- */
@@ -782,49 +584,16 @@
   max-width: none;
 }
 
-/* ---------- FINAL CTA ---------- */
-.finalCta {
-  position: relative;
-  border-top: 5px solid var(--accent-primary);
-}
-.finalCta::before {
-  -webkit-mask-image: radial-gradient(ellipse 70% 100% at 32% 50%, #000 40%, transparent 100%);
-  mask-image: radial-gradient(ellipse 70% 100% at 32% 50%, #000 40%, transparent 100%);
-}
-.ctaInner {
-  position: relative;
-  z-index: 1;
-  max-width: var(--width-full);
-  margin: 0 auto;
-  padding: var(--space-10) var(--container-padding-mobile);
-  text-align: center;
-}
-.ctaInner .eyebrow {
-  display: inline-flex;
-  margin-bottom: var(--space-3);
-}
-.ctaTitle {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(32px, 4.4vw, 54px);
-  letter-spacing: -0.02em;
-  line-height: 1.02;
-  color: var(--cream);
-  max-width: 760px;
-  margin: 0 auto var(--space-2);
-}
-.ctaSub {
-  color: rgba(246, 241, 228, 0.8);
-  max-width: 560px;
-  margin: 0 auto var(--space-4);
-}
-.ctaInner .heroCtas { justify-content: center; }
-.ctaInner .heroFine { margin-left: auto; margin-right: auto; }
+/* ---------- CROSS-SELL ---------- */
+/* BinderCTA carries its own vertical margin; this block re-centers it in the
+   page grid and trims that margin, since the FAQ block above already pays for
+   the separation. */
+.crossSell { padding: 0 0 var(--space-10); }
+.crossSell aside { margin-top: 0; }
 
 /* ---------- RESPONSIVE ---------- */
 @media (min-width: 768px) {
   .heroInner,
-  .ctaInner,
   .wrap {
     padding-left: var(--container-padding-tablet);
     padding-right: var(--container-padding-tablet);
@@ -832,7 +601,6 @@
 }
 @media (min-width: 1024px) {
   .heroInner,
-  .ctaInner,
   .wrap {
     padding-left: var(--container-padding-desktop);
     padding-right: var(--container-padding-desktop);
@@ -841,26 +609,18 @@
 
 @media (max-width: 900px) {
   .heroGrid { grid-template-columns: 1fr; gap: var(--space-6); }
-  .stack { margin: var(--space-7) auto 0; width: 260px; }
+  .stack { margin: var(--space-7) auto 0; width: 240px; }
   .secMeta { display: none; }
 
   .row { grid-template-columns: 1fr; gap: var(--space-2); }
   .rowNo { order: -2; display: flex; align-items: baseline; gap: 14px; }
   .rowPages { order: 0; margin-top: 0; }
   .rowFig { order: -1; width: 120px; }
-  .rowList { columns: 1; }
 
-  .samples { grid-template-columns: 1fr; gap: var(--space-7); max-width: 420px; }
-  .editable { grid-template-columns: 1fr; gap: var(--space-5); }
-  .steps { grid-template-columns: repeat(2, 1fr); }
-  .step:nth-child(odd) { border-left: none; padding-left: 0; }
-  .step:nth-child(n + 3) { border-top: 1px solid var(--hairline); }
-  .guarantees { grid-template-columns: 1fr; gap: var(--space-3); }
+  .split { grid-template-columns: 1fr; gap: var(--space-5); }
+  .splitFig { max-width: 360px; }
 
-  .printedSpec { grid-template-columns: repeat(2, 1fr); }
-  .psCell:nth-child(odd) { border-left: none; padding-left: 0; }
-  .psCell:nth-child(n + 3) { border-top: 1px solid var(--hairline); }
-  .more { grid-template-columns: 1fr; }
+  .smallprint { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 600px) {
@@ -869,15 +629,9 @@
   .dimcell:nth-child(n + 3) { border-top: 1px solid rgba(246, 241, 228, 0.14); }
   .heroCtas { flex-direction: column; align-items: stretch; }
   .btnPrimary, .btnGhost { justify-content: center; }
-  .steps { grid-template-columns: 1fr; }
-  .step { border-left: none; padding-left: 0; border-top: 1px solid var(--hairline); }
-  .step:first-child { border-top: none; }
   .order { padding: var(--space-4); }
   .trustItem { grid-template-columns: 1fr; gap: var(--space-2); }
-  .printedSpec { grid-template-columns: 1fr; }
-  .psCell { border-left: none; padding-left: 0; }
-  .psCell:nth-child(n + 2) { border-top: 1px solid var(--hairline); }
-  .moreCard { padding: var(--space-3); }
+  .smallprint { grid-template-columns: 1fr; gap: var(--space-3); }
 }
 
 @media (prefers-reduced-motion: reduce) {

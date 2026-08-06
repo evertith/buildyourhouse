@@ -1,4 +1,6 @@
-.binderCta {
+/* Sibling of BinderCTA.module.css — same aside shape so the shop reads as one
+   voice inside an article, regardless of which SKU is being offered. */
+.productCta {
   margin: var(--space-10) 0;
   padding: var(--space-6) var(--space-8);
   background: var(--color-bg-light);
@@ -31,7 +33,7 @@
 /* Scoped to the wrapper on purpose: inside an MDX article, `.article a`
    (0,1,1) would otherwise win over a bare `.button` (0,1,0) and paint the
    label link-orange on the orange fill. */
-.binderCta .button {
+.productCta .button {
   display: inline-block;
   padding: var(--space-3) var(--space-6);
   background: var(--accent-primary);
@@ -41,7 +43,7 @@
   border-radius: 4px;
 }
 
-.binderCta .button:hover {
+.productCta .button:hover {
   background: var(--color-primary-dark);
   color: #fff;
   text-decoration: none;

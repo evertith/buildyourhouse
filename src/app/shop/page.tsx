@@ -8,6 +8,9 @@ import { generateProductSchema, generateFAQSchema, schemaToScriptTag } from '@/l
 import styles from './shop.module.css';
 
 const STRIPE_CHECKOUT = 'https://buy.stripe.com/5kQ28racn54z0ReeZ5fAc00';
+// Printed tier. Collects a US shipping address at checkout; the webhook places
+// the Lulu print job and still delivers the digital download immediately.
+const STRIPE_CHECKOUT_PRINTED = 'https://buy.stripe.com/aFa14n98jaoT8jG8AHfAc03';
 const SITE_URL = 'https://build-your-house.com';
 
 export const metadata: Metadata = {
@@ -224,6 +227,11 @@ const FAQS: Faq[] = [
     question: 'Do I need special equipment to print this?',
     answer:
       'No. Any standard printer works. You can print at home or take the PDF files to an office supply store (Staples, Office Depot, FedEx Office). Expect to spend $40-60 for printing and binding.',
+  },
+  {
+    question: 'Can I buy it already printed?',
+    answer:
+      'Yes. The printed edition is the complete binder professionally printed and coil-bound so it lies flat on the job site — 396 printed pages, letter size, shipped to your door with tracking. It is $149 with US shipping included, and it ships in 7-10 business days. You also get the full digital download the moment you pay, so you can start reading and printing the sheets you need immediately rather than waiting on the mail.',
   },
   {
     question: 'Can I customize the templates?',
@@ -713,6 +721,15 @@ export default function JobSiteBinder() {
               Get instant access — $97
             </TrackedLink>
 
+            <TrackedLink
+              href="#printed"
+              eventName="shop_cta_click"
+              eventParams={{ location: 'order_box_printed', item_name: 'printed-binder' }}
+              className={styles.printedLink}
+            >
+              Prefer paper? The printed coil-bound edition is $149 →
+            </TrackedLink>
+
             <div className={styles.guarantees}>
               {GUARANTEES.map((g) => (
                 <div key={g.label} className={styles.guarantee}>
@@ -724,6 +741,145 @@ export default function JobSiteBinder() {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ---------- PRINTED EDITION ---------- */}
+      <section id="printed" className={`${styles.block} ${styles.anchor}`}>
+        <div className={styles.wrap}>
+          <div className={styles.secHead}>
+            <div>
+              <div className={styles.secLabel}>Prefer it already printed?</div>
+              <h2 className={styles.secTitle}>The coil-bound edition</h2>
+            </div>
+            <div className={styles.secMeta}>
+              Shipped to you
+              <br />
+              Digital included
+            </div>
+          </div>
+
+          <div className={styles.order}>
+            <div className={styles.orderNo}>
+              <span className="bp-sheet-no">Printed Edition</span>
+              <span>Second Ed. · Rev. 2026</span>
+            </div>
+
+            <h3 className={styles.orderTitle}>
+              The Job Site Binder, printed and bound for you
+            </h3>
+
+            <p className={styles.printedCopy}>
+              The same Second Edition, professionally printed and coil-bound so it lies flat on a
+              tailgate or a sheet of plywood and stays open at the page you are working from. It
+              ships to your door with tracking, and your full digital download unlocks the moment
+              you pay — so you can print the sheets you need this week while the bound copy is on
+              its way.
+            </p>
+
+            <div className={styles.printedSpec}>
+              <div className={styles.psCell}>
+                <span className={styles.psKey}>Pages</span>
+                <span className={styles.psVal}>396 printed</span>
+              </div>
+              <div className={styles.psCell}>
+                <span className={styles.psKey}>Binding</span>
+                <span className={styles.psVal}>Coil-bound</span>
+              </div>
+              <div className={styles.psCell}>
+                <span className={styles.psKey}>Size</span>
+                <span className={styles.psVal}>Letter</span>
+              </div>
+              <div className={styles.psCell}>
+                <span className={styles.psKey}>Ships in</span>
+                <span className={styles.psVal}>7–10 business days</span>
+              </div>
+            </div>
+
+            <div className={styles.priceRow}>
+              <span className={styles.priceKey}>Price</span>
+              <span className={styles.leader} aria-hidden="true" />
+              <span className={styles.priceVal}>$149</span>
+            </div>
+            <div className={`${styles.orderDim} bp-dimline`}>
+              US shipping included · Digital download immediate
+            </div>
+
+            <TrackedLink
+              href={STRIPE_CHECKOUT_PRINTED}
+              eventName="begin_checkout"
+              eventParams={{
+                currency: 'USD',
+                value: 149,
+                item_name: 'printed-binder',
+                location: 'printed_box',
+              }}
+              className={`${styles.btnPrimary} ${styles.orderCta}`}
+            >
+              Order the printed edition — $149
+            </TrackedLink>
+
+            <p className={styles.printedNote}>
+              Printed and shipped within the United States. If you would rather print it yourself,
+              the $97 download is the same 367-page set — expect $40–60 at an office supply store
+              once you add binding.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ---------- MORE FROM THE SHOP ---------- */}
+      <section className={styles.block}>
+        <div className={styles.wrap}>
+          <div className={styles.secHead}>
+            <div>
+              <div className={styles.secLabel}>More from the shop</div>
+              <h2 className={styles.secTitle}>Smaller pieces of the same system</h2>
+            </div>
+            <div className={styles.secMeta}>
+              Instant download
+              <br />
+              Print-ready
+            </div>
+          </div>
+
+          <div className={styles.more}>
+            <TrackedLink
+              href="/shop/nc-permit-kit"
+              eventName="shop_cta_click"
+              eventParams={{ location: 'shop_more_strip', item_name: 'nc-permit-kit' }}
+              className={styles.moreCard}
+            >
+              <span className={styles.moreTop}>
+                <span className={styles.moreKind}>North Carolina · Permit Kit</span>
+                <span className={styles.morePrice}>$34</span>
+              </span>
+              <h3 className={styles.moreTitle}>NC Owner-Builder Permit Kit</h3>
+              <p className={styles.moreCopy}>
+                Every permit, form, and inspection North Carolina requires of an owner-builder — 27
+                pages with the statute citations printed on the page.
+              </p>
+              <span className={styles.moreGo}>See the kit →</span>
+            </TrackedLink>
+
+            <TrackedLink
+              href="/shop/subcontractor-pack"
+              eventName="shop_cta_click"
+              eventParams={{ location: 'shop_more_strip', item_name: 'sub-hiring-pack' }}
+              className={styles.moreCard}
+            >
+              <span className={styles.moreTop}>
+                <span className={styles.moreKind}>Contracts &amp; Vetting</span>
+                <span className={styles.morePrice}>$29</span>
+              </span>
+              <h3 className={styles.moreTitle}>Subcontractor Hiring Pack</h3>
+              <p className={styles.moreCopy}>
+                The hiring half on its own: interview scorecard, reference script, red flags, and
+                the four contracts with editable Word versions.
+              </p>
+              <span className={styles.moreGo}>See the pack →</span>
+            </TrackedLink>
           </div>
         </div>
       </section>
