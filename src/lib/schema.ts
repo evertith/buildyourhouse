@@ -70,6 +70,12 @@ export interface ProductSchemaProps {
   availability?: 'InStock' | 'OutOfStock' | 'PreOrder';
   brand?: string;
   sku?: string;
+  /**
+   * 'digital' (default): instant download — $0 shipping, 0-day delivery.
+   * 'shipped': print-on-demand physical product — US shipping included,
+   * matches the 7-10 business day promise in the fulfillment email.
+   */
+  fulfillment?: 'digital' | 'shipped';
 }
 
 export interface HowToSchemaProps {
@@ -205,6 +211,7 @@ export function generateFAQSchema(faqs: FAQItem[]) {
  * structured-data violation. Add them only when real reviews exist.
  */
 export function generateProductSchema(props: ProductSchemaProps) {
+  const shipped = props.fulfillment === 'shipped';
   return {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -220,6 +227,41 @@ export function generateProductSchema(props: ProductSchemaProps) {
       priceCurrency: props.priceCurrency,
       availability: `https://schema.org/${props.availability ?? "InStock"}`,
       url: props.url,
+      // The site states no refund policy anywhere; NotPermitted is the value
+      // that matches. If a money-back guarantee is ever published, change
+      // this to MerchantReturnFiniteReturnWindow + merchantReturnDays.
+      hasMerchantReturnPolicy: {
+        "@type": "MerchantReturnPolicy",
+        applicableCountry: "US",
+        returnPolicyCategory: "https://schema.org/MerchantReturnNotPermitted",
+      },
+      shippingDetails: {
+        "@type": "OfferShippingDetails",
+        shippingRate: {
+          "@type": "MonetaryAmount",
+          value: 0,
+          currency: props.priceCurrency,
+        },
+        shippingDestination: {
+          "@type": "DefinedRegion",
+          addressCountry: "US",
+        },
+        deliveryTime: {
+          "@type": "ShippingDeliveryTime",
+          handlingTime: {
+            "@type": "QuantitativeValue",
+            minValue: 0,
+            maxValue: shipped ? 4 : 0,
+            unitCode: "DAY",
+          },
+          transitTime: {
+            "@type": "QuantitativeValue",
+            minValue: 0,
+            maxValue: shipped ? 6 : 0,
+            unitCode: "DAY",
+          },
+        },
+      },
     },
   };
 }

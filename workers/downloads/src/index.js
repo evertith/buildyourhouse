@@ -387,7 +387,13 @@ async function handleOrderInfo(request, env, origin) {
   return json(
     {
       paid: true,
-      product: { sku: product.sku, name: product.name, kind: product.kind },
+      product: {
+        sku: product.sku,
+        name: product.name,
+        kind: product.kind,
+        // The success page's GA4 purchase event uses this as the sale value.
+        amountCents: product.amount,
+      },
     },
     200,
     origin

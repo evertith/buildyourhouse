@@ -12,7 +12,8 @@ declare global {
 
 export function trackEvent(
   name: string,
-  params?: Record<string, string | number | boolean | undefined>
+  // `unknown` (not scalars) so ecommerce events can carry an items array.
+  params?: Record<string, unknown>
 ): void {
   if (typeof window === 'undefined' || typeof window.gtag !== 'function') return;
   window.gtag('event', name, params);

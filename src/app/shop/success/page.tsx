@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, useEffect } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Section from '@/components/Section';
 import { trackEvent } from '@/lib/analytics';
@@ -11,27 +11,76 @@ function downloadUrl(sessionId: string) {
   return `${WORKER_BASE_URL}/download?session_id=${encodeURIComponent(sessionId)}`;
 }
 
+interface OrderProduct {
+  sku: string;
+  name: string;
+  kind: 'download' | 'ship';
+  amountCents?: number;
+}
+
+// Fallback prices for sessions served by a worker build that predates
+// amountCents in /order-info. Keep in sync with workers/downloads PRODUCTS.
+const SKU_PRICES: Record<string, number> = {
+  'job-site-binder': 97,
+  'nc-permit-kit': 34,
+  'sub-hiring-pack': 29,
+  'printed-binder': 149,
+};
+
 function SuccessContent() {
   const searchParams = useSearchParams();
   const sessionId = searchParams.get('session_id');
+  const [product, setProduct] = useState<OrderProduct | null>(null);
 
-  // GA4 purchase, deduped per Stripe session so reloads/back-navigation
-  // don't double-count the sale.
+  // Resolve the session to its actual SKU before tracking, so the GA4
+  // purchase carries the real product and price (not a hardcoded one) and
+  // never fires for unpaid/bogus session ids. Deduped per Stripe session so
+  // reloads/back-navigation don't double-count the sale.
   useEffect(() => {
     if (!sessionId) return;
-    const dedupeKey = `purchase_tracked_${sessionId}`;
-    try {
-      if (sessionStorage.getItem(dedupeKey)) return;
-      sessionStorage.setItem(dedupeKey, '1');
-    } catch {
-      // Storage unavailable (private mode) — still track; worst case is a rare double-count.
-    }
-    trackEvent('purchase', {
-      transaction_id: sessionId,
-      currency: 'USD',
-      value: 97,
-      item_name: 'job_site_binder',
-    });
+    let cancelled = false;
+    (async () => {
+      let info: { paid?: boolean; product?: OrderProduct };
+      try {
+        const res = await fetch(
+          `${WORKER_BASE_URL}/order-info?session_id=${encodeURIComponent(sessionId)}`
+        );
+        if (!res.ok) return;
+        info = await res.json();
+      } catch {
+        return; // Worker unreachable — skip tracking rather than fabricate a sale.
+      }
+      if (cancelled || !info.paid || !info.product) return;
+      setProduct(info.product);
+
+      const dedupeKey = `purchase_tracked_${sessionId}`;
+      try {
+        if (sessionStorage.getItem(dedupeKey)) return;
+        sessionStorage.setItem(dedupeKey, '1');
+      } catch {
+        // Storage unavailable (private mode) — still track; worst case is a rare double-count.
+      }
+      const value =
+        info.product.amountCents != null
+          ? info.product.amountCents / 100
+          : SKU_PRICES[info.product.sku] ?? 0;
+      trackEvent('purchase', {
+        transaction_id: sessionId,
+        currency: 'USD',
+        value,
+        items: [
+          {
+            item_id: info.product.sku,
+            item_name: info.product.name,
+            price: value,
+            quantity: 1,
+          },
+        ],
+      });
+    })();
+    return () => {
+      cancelled = true;
+    };
   }, [sessionId]);
 
   if (!sessionId) {
@@ -87,7 +136,9 @@ function SuccessContent() {
             marginBottom: 'var(--space-10)',
             lineHeight: 'var(--leading-relaxed)',
           }}>
-            Your Owner-Builder Job Site Binder System is ready to download.
+            {product?.kind === 'ship'
+              ? 'Your printed binder is headed to production — and your digital copy is ready to download right now.'
+              : `Your ${product?.name ?? 'purchase'} is ready to download.`}{' '}
             You&apos;ll also receive a receipt from Stripe at the email you provided.
           </p>
 
@@ -98,9 +149,13 @@ function SuccessContent() {
               fontSize: 'var(--text-xl)',
               padding: 'var(--space-6) var(--space-12)',
             }}
-            onClick={() => trackEvent('binder_download', { item_name: 'job_site_binder' })}
+            onClick={() =>
+              trackEvent('binder_download', {
+                item_name: product?.sku ?? 'unknown',
+              })
+            }
           >
-            Download Your Binder System (ZIP)
+            Download Your Files (ZIP)
           </a>
 
           <p style={{
@@ -108,7 +163,11 @@ function SuccessContent() {
             fontSize: 'var(--text-sm)',
             color: 'var(--text-secondary)',
           }}>
-            3.3 MB &bull; ZIP file containing print-ready PDFs, Word docs, and Excel spreadsheets
+            ZIP file with print-ready PDFs{product?.sku === 'sub-hiring-pack'
+              ? ' plus editable Word contract documents'
+              : product?.sku === 'job-site-binder' || product?.sku === 'printed-binder'
+                ? ', editable Word contracts, and Excel budget workbooks'
+                : ''}
           </p>
 
           <p style={{
