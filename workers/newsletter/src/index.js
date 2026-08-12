@@ -746,6 +746,91 @@ ${f.html}`;
   return { subject: 'Three permit mistakes that cost owner-builders real money', text, html };
 }
 
+/**
+ * Daily owner digest: last-24h list activity (signups, drip sends,
+ * unsubscribes, sequence exits via purchase). Sends nothing on quiet days.
+ * The 24h window tiles against the daily cron; second-level jitter at the
+ * edges is acceptable for a human FYI email.
+ */
+async function runDigest(env) {
+  const since = new Date(Date.now() - 24 * 3600 * 1000).toISOString();
+
+  const [signups, sends, unsubs, purchases] = await Promise.all([
+    env.DB.prepare(
+      'SELECT email, source, created_at FROM subscribers WHERE created_at > ?1 ORDER BY created_at'
+    ).bind(since).all(),
+    env.DB.prepare(
+      'SELECT email, step, sent_at FROM sequence_sends WHERE sent_at > ?1 ORDER BY sent_at'
+    ).bind(since).all(),
+    env.DB.prepare(
+      'SELECT email, unsubscribed_at FROM subscribers WHERE unsubscribed_at > ?1'
+    ).bind(since).all(),
+    env.DB.prepare(
+      'SELECT email, purchased_at FROM subscribers WHERE purchased_at > ?1'
+    ).bind(since).all(),
+  ]);
+
+  const nSign = signups.results.length;
+  const nSend = sends.results.length;
+  const nUnsub = unsubs.results.length;
+  const nBuy = purchases.results.length;
+  if (nSign + nSend + nUnsub + nBuy === 0) {
+    return { sent: false, reason: 'no activity in the last 24h' };
+  }
+
+  const lines = [];
+  if (nSign) {
+    lines.push(`NEW SIGNUPS (${nSign})`);
+    for (const r of signups.results) {
+      lines.push(`  ${r.email}  ·  ${r.source || '(no source)'}  ·  ${r.created_at.slice(0, 16)}Z`);
+    }
+    lines.push('');
+  }
+  if (nSend) {
+    lines.push(`DRIP EMAILS SENT (${nSend})`);
+    for (const r of sends.results) {
+      lines.push(`  ${r.email}  ·  ${r.step}  ·  ${r.sent_at.slice(0, 16)}Z`);
+    }
+    lines.push('');
+  }
+  if (nBuy) {
+    lines.push(`LEFT THE SEQUENCE AFTER PURCHASING (${nBuy})`);
+    for (const r of purchases.results) {
+      lines.push(`  ${r.email}`);
+    }
+    lines.push('');
+  }
+  if (nUnsub) {
+    lines.push(`UNSUBSCRIBED (${nUnsub})`);
+    for (const r of unsubs.results) {
+      lines.push(`  ${r.email}`);
+    }
+    lines.push('');
+  }
+  lines.push(`Full list: admin API /admin/api/subscribers · replies to drip emails land at ${REPLY_TO}`);
+
+  const summaryBits = [];
+  if (nSign) summaryBits.push(`${nSign} signup${nSign > 1 ? 's' : ''}`);
+  if (nSend) summaryBits.push(`${nSend} drip send${nSend > 1 ? 's' : ''}`);
+  if (nBuy) summaryBits.push(`${nBuy} purchase exit${nBuy > 1 ? 's' : ''}`);
+  if (nUnsub) summaryBits.push(`${nUnsub} unsubscribe${nUnsub > 1 ? 's' : ''}`);
+
+  const text = lines.join('\n');
+  await resend(env, '/emails', {
+    method: 'POST',
+    body: {
+      from: FROM,
+      to: [REPLY_TO],
+      subject: `List digest — ${summaryBits.join(', ')}`,
+      text,
+      html: `<pre style="font-family:monospace;font-size:13px">${text
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')}</pre>`,
+    },
+  });
+  return { sent: true, signups: nSign, sends: nSend, purchases: nBuy, unsubscribes: nUnsub };
+}
+
 /** One drip pass: idempotent, safe to run from cron or the admin endpoint. */
 async function runSequence(env, workerOrigin) {
   const now = Date.now();
@@ -959,6 +1044,12 @@ export default {
         const report = await runSequence(env, WORKER_ORIGIN);
         return json(report, 200, origin);
       }
+      if (request.method === 'POST' && url.pathname === '/admin/api/run-digest') {
+        if (!(await isAuthorized(request, env))) {
+          return json({ error: 'unauthorized' }, 401, origin);
+        }
+        return json(await runDigest(env), 200, origin);
+      }
       return json({ error: 'not found' }, 404, origin);
     } catch (err) {
       console.error('unhandled error:', err);
@@ -966,12 +1057,24 @@ export default {
     }
   },
 
-  /** Daily drip pass — see wrangler.jsonc triggers. */
+  /** Daily drip pass + owner digest — see wrangler.jsonc triggers. */
   async scheduled(event, env, ctx) {
     ctx.waitUntil(
-      runSequence(env, WORKER_ORIGIN)
-        .then((r) => console.log('sequence run:', JSON.stringify(r)))
-        .catch((err) => console.error('sequence run failed:', err))
+      (async () => {
+        // Sequence first so today's sends appear in today's digest.
+        try {
+          const r = await runSequence(env, WORKER_ORIGIN);
+          console.log('sequence run:', JSON.stringify(r));
+        } catch (err) {
+          console.error('sequence run failed:', err);
+        }
+        try {
+          const d = await runDigest(env);
+          console.log('digest:', JSON.stringify(d));
+        } catch (err) {
+          console.error('digest failed:', err);
+        }
+      })()
     );
   },
 };
