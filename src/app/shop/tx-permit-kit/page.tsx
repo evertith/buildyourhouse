@@ -46,6 +46,9 @@ const DOCS: KitDoc[] = [
     title: 'The Owner-Builder’s Legal Position in Texas',
     copy:
       'Texas licenses no general contractors and issues no state building permit — printed as an as-of-August-2026 fact with the proof cited. Then the part that trips people: the three licensed trades, each homeowner exemption quoted verbatim with its trap flagged, the city registration and homeowner-permit practices layered on top, and the water-well carve-out. Occupations Code Chapters 1305, 1301, and 1302 on the page.',
+    thumb: '/binder/txk-exempt.webp',
+    caption: 'TX.1 The legal position',
+    alt: 'Page TX.1, The Owner-Builder’s Legal Position in Texas: the no-state-license, no-state-permit finding with the print-date warning callout and Occupations Code citations.',
   },
   {
     no: 'TX.2',
@@ -53,6 +56,9 @@ const DOCS: KitDoc[] = [
     title: 'Permit Application Checklist',
     copy:
       'Two tracks. Inside a city: the IRC-based municipal code, the plan set, registrations, and the 45-day action clock the city owes you (Local Gov’t Code § 214.904). Unincorporated: no building permit exists — the checklist covers the septic permit, floodplain permit, energy-code compliance, windstorm notice, and driveway permit that do, plus the homestead lien rules for every sub you hire: written contract before work, both spouses, filed with the county clerk.',
+    thumb: '/binder/txk-checklist.webp',
+    caption: 'TX.2 Application checklist',
+    alt: 'Page TX.2, the Permit Application Checklist: the two-track checklist with checkboxes for city and unincorporated-county builds.',
   },
   {
     no: 'TX.3',
@@ -60,6 +66,9 @@ const DOCS: KitDoc[] = [
     title: 'Inspection Sequence',
     copy:
       'Inside a city: the inspection ladder from temporary power through the Certificate of Occupancy, keyed to published city lists. Outside one: there is no ladder — five separate inspectors, from the septic inspection to the utility’s meter release, and the gaps where nobody inspects at all.',
+    thumb: '/binder/txk-inspect.webp',
+    caption: 'TX.3 Inspection sequence',
+    alt: 'Page TX.3, the Inspection Sequence: the municipal inspection ladder and the county-track inspection points, with what each inspector looks at.',
   },
   {
     no: 'TX.4',
@@ -248,6 +257,23 @@ export default function TXPermitKit() {
                   Job Site Binder family
                 </TrackedLink>
               </p>
+            </div>
+
+            <div className={styles.stack}>
+              <img
+                src="/binder/txk-checklist.webp"
+                alt="A page of the Texas two-track permit checklist stacked behind the legal-position walkthrough."
+                width={700}
+                height={906}
+                className={`${styles.sheet} ${styles.sheetDark} ${styles.stackBack}`}
+              />
+              <img
+                src="/binder/txk-exempt.webp"
+                alt="The Texas owner-builder legal-position document, page TX.1 of the permit kit."
+                width={700}
+                height={906}
+                className={`${styles.sheet} ${styles.sheetDark} ${styles.stackFront}`}
+              />
             </div>
           </div>
         </div>

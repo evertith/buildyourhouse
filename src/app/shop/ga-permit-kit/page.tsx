@@ -46,6 +46,9 @@ const DOCS: KitDoc[] = [
     title: 'Owner-Builder Exemption Walkthrough',
     copy:
       'The exemption, plain: your own land, your own occupancy, not for sale or lease — O.C.G.A. § 43-41-17(h) quoted on the page. The 24-month one-sale rule that poisons the exemption, measured from the sold structure’s certificate of occupancy. The no-delegation rule, the carve-outs for hiring licensed subs, and § 43-14-13(d), which lets you self-perform the trades in your own dwelling.',
+    thumb: '/binder/gak-exempt.webp',
+    caption: 'GA.1 Exemption walkthrough',
+    alt: 'Page GA.1, the Owner-Builder Exemption Walkthrough: the O.C.G.A. § 43-41-17(h) exemption conditions and the 24-month one-sale rule, with the statute text quoted on the page.',
   },
   {
     no: 'GA.2',
@@ -53,6 +56,9 @@ const DOCS: KitDoc[] = [
     title: 'Permit Application Checklist',
     copy:
       'Everything the county or city wants in the packet, in the order they ask for it: site plan, plans, the septic construction permit that gates all site work on an unsewered lot, the land-disturbance question, the Notice of Commencement, and the GDOT driveway permit on a state route. Check the boxes and you have a complete application.',
+    thumb: '/binder/gak-checklist.webp',
+    caption: 'GA.2 Application checklist',
+    alt: 'Page GA.2, the Permit Application Checklist: ruled checklist rows with checkboxes and a date column for each application document.',
   },
   {
     no: 'GA.3',
@@ -60,6 +66,9 @@ const DOCS: KitDoc[] = [
     title: 'Inspection Sequence',
     copy:
       'Georgia deletes the IRC’s administration chapter, so no statewide inspection list exists. The kit prints the model ladder — footing through final, with the two energy-test gates and the septic final — plus blanks for your county’s actual required list, and what changes in a county that inspects nothing.',
+    thumb: '/binder/gak-inspect.webp',
+    caption: 'GA.3 Inspection sequence',
+    alt: 'Page GA.3, the Inspection Sequence: the Georgia inspection ladder in call order with prerequisites and write-in rows for the county’s own list.',
   },
   {
     no: 'GA.4',
@@ -248,6 +257,23 @@ export default function GAPermitKit() {
                   Job Site Binder family
                 </TrackedLink>
               </p>
+            </div>
+
+            <div className={styles.stack}>
+              <img
+                src="/binder/gak-checklist.webp"
+                alt="A page of the Georgia permit application checklist stacked behind the exemption walkthrough."
+                width={700}
+                height={906}
+                className={`${styles.sheet} ${styles.sheetDark} ${styles.stackBack}`}
+              />
+              <img
+                src="/binder/gak-exempt.webp"
+                alt="The Georgia owner-builder exemption walkthrough, page GA.1 of the permit kit."
+                width={700}
+                height={906}
+                className={`${styles.sheet} ${styles.sheetDark} ${styles.stackFront}`}
+              />
             </div>
           </div>
         </div>

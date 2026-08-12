@@ -46,6 +46,9 @@ const DOCS: KitDoc[] = [
     title: 'Owner-Builder Exemption Walkthrough',
     copy:
       'The license exemption, plain: one primary residence, owned by you, for your own use, in any 24-month period — § 54.1-1101(A)(7) cited on the page. What you sign at the permit counter instead of a license number — the written statement supported by an affidavit that § 54.1-1111 requires — and the certificate-of-occupancy duty that follows you to closing.',
+    thumb: '/binder/vak-exempt.webp',
+    caption: 'VA.1 Exemption walkthrough',
+    alt: 'Page VA.1, the Owner-Builder Exemption Walkthrough: the § 54.1-1101 exemption conditions with the Code of Virginia citations printed beside each one.',
   },
   {
     no: 'VA.2',
@@ -53,6 +56,9 @@ const DOCS: KitDoc[] = [
     title: 'Permit Application Checklist',
     copy:
       'Everything the locality wants in the packet, in the order they ask for it: site plan, plans (no architect seal required up to three stories), septic or sewer proof, the erosion agreement in lieu of a plan, the VDOT entrance permit, and the lien agent line. Check the boxes and you have a complete application.',
+    thumb: '/binder/vak-checklist.webp',
+    caption: 'VA.2 Application checklist',
+    alt: 'Page VA.2, the Permit Application Checklist: ruled checklist rows with checkboxes, including the lien-agent line and the VDOT entrance permit.',
   },
   {
     no: 'VA.3',
@@ -60,6 +66,9 @@ const DOCS: KitDoc[] = [
     title: 'Inspection Sequence',
     copy:
       'The seven statewide minimum inspections USBC § 113.3 calls for, quoted verbatim, in the order they are called — footing through final — with what has to be finished before you schedule each one, and where the blower-door and duct-test reports land.',
+    thumb: '/binder/vak-inspect.webp',
+    caption: 'VA.3 Inspection sequence',
+    alt: 'Page VA.3, the Inspection Sequence: the seven USBC § 113.3 minimum inspections quoted verbatim in call order.',
   },
   {
     no: 'VA.4',
@@ -247,6 +256,23 @@ export default function VAPermitKit() {
                   Job Site Binder family
                 </TrackedLink>
               </p>
+            </div>
+
+            <div className={styles.stack}>
+              <img
+                src="/binder/vak-checklist.webp"
+                alt="A page of the Virginia permit application checklist stacked behind the exemption walkthrough."
+                width={700}
+                height={906}
+                className={`${styles.sheet} ${styles.sheetDark} ${styles.stackBack}`}
+              />
+              <img
+                src="/binder/vak-exempt.webp"
+                alt="The Virginia owner-builder exemption walkthrough, page VA.1 of the permit kit."
+                width={700}
+                height={906}
+                className={`${styles.sheet} ${styles.sheetDark} ${styles.stackFront}`}
+              />
             </div>
           </div>
         </div>
