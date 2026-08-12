@@ -44,3 +44,8 @@ next-env.d.ts
 .wrangler/
 /binder-pipeline/out/
 /binder-pipeline/print-edition/out/
+
+# kit build tooling (never ship the venv or bytecode)
+binder-pipeline/.venv/
+__pycache__/
+*.pyc

@@ -23,6 +23,9 @@ interface OrderProduct {
 const SKU_PRICES: Record<string, number> = {
   'job-site-binder': 97,
   'nc-permit-kit': 34,
+  'ga-permit-kit': 34,
+  'va-permit-kit': 34,
+  'tx-permit-kit': 34,
   'sub-hiring-pack': 29,
   'printed-binder': 149,
 };

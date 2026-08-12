@@ -413,14 +413,14 @@ export default function JobSiteBinder() {
               <span className={styles.ladderHint}>Scorecard + contracts</span>
             </TrackedLink>
             <TrackedLink
-              href="/shop/nc-permit-kit"
+              href="/shop/permit-kits"
               eventName="shop_cta_click"
-              eventParams={{ location: 'ladder', context: 'nc-permit-kit' }}
+              eventParams={{ location: 'ladder', context: 'permit-kits' }}
               className={styles.ladderCell}
             >
               <span className={styles.ladderPrice}>$34</span>
-              <span className={styles.ladderName}>NC Permit Kit</span>
-              <span className={styles.ladderHint}>State-verified permitting</span>
+              <span className={styles.ladderName}>State Permit Kits</span>
+              <span className={styles.ladderHint}>NC · GA · TX · VA</span>
             </TrackedLink>
             <a href="#inside" className={`${styles.ladderCell} ${styles.ladderHere}`}>
               <span className={styles.ladderPrice}>$97</span>

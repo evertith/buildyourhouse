@@ -38,11 +38,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/shop/nc-permit-kit`,
+      url: `${baseUrl}/shop/permit-kits`,
       lastModified: currentDate,
       changeFrequency: 'monthly' as const,
       priority: 0.8,
     },
+    ...['nc', 'ga', 'tx', 'va'].map((st) => ({
+      url: `${baseUrl}/shop/${st}-permit-kit`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    })),
     {
       url: `${baseUrl}/shop/subcontractor-pack`,
       lastModified: currentDate,

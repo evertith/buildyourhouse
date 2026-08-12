@@ -123,6 +123,59 @@ const PRODUCTS = {
       'checklist, inspection sequence, where-to-file directory, and forms index — ' +
       'print-ready PDFs with the statute citations on the page.',
   },
+  'ga-permit-kit': {
+    sku: 'ga-permit-kit',
+    kind: 'download',
+    name: 'Georgia Owner-Builder Permit Kit',
+    amount: 3400,
+    r2Key: 'ga-permit-kit.zip',
+    description:
+      'Georgia owner-builder permitting, start to finish: the O.C.G.A. § 43-41-17 ' +
+      'exemption walkthrough (including the 24-month one-sale rule), permit application ' +
+      'checklist, inspection sequence, where-to-file directory, and forms index. ' +
+      '32 print-ready pages with the citations on the page. Instant download.',
+    emailSubject: 'Your Georgia Permit Kit — download inside',
+    emailBlurb:
+      'The ZIP contains the Georgia owner-builder exemption walkthrough (with the ' +
+      '24-month rule explained), permit application checklist, inspection sequence, ' +
+      'where-to-file directory, and forms index — print-ready PDFs with the statute ' +
+      'citations on the page.',
+  },
+  'va-permit-kit': {
+    sku: 'va-permit-kit',
+    kind: 'download',
+    name: 'Virginia Owner-Builder Permit Kit',
+    amount: 3400,
+    r2Key: 'va-permit-kit.zip',
+    description:
+      'Virginia owner-builder permitting, start to finish: the § 54.1-1101 exemption ' +
+      'walkthrough, USBC permit application checklist (with the lien-agent line that ' +
+      'protects you), inspection sequence, where-to-file directory, and forms index. ' +
+      '31 print-ready pages with the citations on the page. Instant download.',
+    emailSubject: 'Your Virginia Permit Kit — download inside',
+    emailBlurb:
+      'The ZIP contains the Virginia owner-builder exemption walkthrough, USBC permit ' +
+      'application checklist, inspection sequence, where-to-file directory, and forms ' +
+      'index — print-ready PDFs with the statute citations on the page.',
+  },
+  'tx-permit-kit': {
+    sku: 'tx-permit-kit',
+    kind: 'download',
+    name: 'Texas Owner-Builder Permit Kit',
+    amount: 3400,
+    r2Key: 'tx-permit-kit.zip',
+    description:
+      'Texas owner-builder building rules, start to finish: the no-license-but ' +
+      'walkthrough, both permit tracks (city and unincorporated county), inspection ' +
+      'sequences for each, where-to-file directory, and forms index. 33 print-ready ' +
+      'pages with the citations on the page. Instant download.',
+    emailSubject: 'Your Texas Permit Kit — download inside',
+    emailBlurb:
+      'The ZIP contains the Texas owner-builder legal-position walkthrough, the ' +
+      'two-track permit checklists (city and unincorporated county), inspection ' +
+      'sequences, where-to-file directory, and forms index — print-ready PDFs with ' +
+      'the statute citations on the page.',
+  },
   'sub-hiring-pack': {
     sku: 'sub-hiring-pack',
     kind: 'download',
