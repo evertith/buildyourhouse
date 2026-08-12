@@ -10,6 +10,14 @@
  *       anything else         → short welcome note
  *     Idempotent on email; a resubscribe clears unsubscribed_at and
  *     reactivates the Resend contact, but never re-sends the welcome.
+ *   POST /estimate     { email, website?, calculator, calculatorName, hero,
+ *                        cost, inputs[], lines[], sourcePath? }
+ *     The calculator tear-off: subscribes like /subscribe (welcome email
+ *     suppressed — the takeoff email IS the transactional email) and sends
+ *     the visitor their takeoff. Every string is length-capped, URL-stripped,
+ *     and HTML-escaped so the endpoint can't be used to relay attacker
+ *     content; calculator slug must match the known-slug pattern.
+ *     Rate-limited per IP (per-isolate).
  *   GET  /unsubscribe?e=<email>&t=<hmac>
  *     HMAC-signed one-click unsubscribe (link included in every email we
  *     send from here). Marks D1 + Resend contact unsubscribed and shows a
@@ -201,6 +209,200 @@ async function sendOnboardEmail(env, requestUrl, email, source) {
   });
 }
 
+// ---------------------------------------------------------------- estimate
+
+const CALC_SLUG_RE = /^[a-z0-9-]{2,40}$/;
+const ESTIMATE_MAX_PER_HOUR = 5;
+// Per-isolate rate limit — resets on isolate recycle, which is fine: the
+// goal is stopping dumb loops, not determined adversaries (the payload is
+// fully sanitized regardless).
+const estimateHits = new Map(); // ip -> [timestamps]
+
+function estimateRateLimited(ip) {
+  const now = Date.now();
+  const hourAgo = now - 60 * 60 * 1000;
+  const hits = (estimateHits.get(ip) || []).filter((t) => t > hourAgo);
+  if (hits.length >= ESTIMATE_MAX_PER_HOUR) return true;
+  hits.push(now);
+  estimateHits.set(ip, hits);
+  return false;
+}
+
+function escapeHtml(s) {
+  return s
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+/** Cap length, collapse whitespace, and strip anything URL-shaped. */
+function cleanText(value, max) {
+  if (typeof value !== 'string') return '';
+  return value
+    .replace(/https?:\/\/\S+/gi, '')
+    .replace(/www\.\S+/gi, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, max);
+}
+
+function cleanRows(raw, maxRows) {
+  if (!Array.isArray(raw)) return [];
+  return raw.slice(0, maxRows).map((r) => ({
+    label: cleanText(r?.label, 60),
+    value: cleanText(r?.value, 140),
+  })).filter((r) => r.label && r.value);
+}
+
+function estimateEmail(unsubUrl, d) {
+  const f = emailFooter(unsubUrl);
+  const calcUrl = `${SITE}/calculators/${d.calculator}`;
+  const inputsText = d.inputs.map((r) => `  ${r.label}: ${r.value}`).join('\n');
+  const linesText = d.lines.map((r) => `  ${r.label}: ${r.value}`).join('\n');
+  const rowsHtml = (rows) =>
+    rows
+      .map(
+        (r) =>
+          `<tr><td style="padding:4px 16px 4px 0;color:#56503f;white-space:nowrap">${escapeHtml(r.label)}</td><td style="padding:4px 0;color:#232019"><strong>${escapeHtml(r.value)}</strong></td></tr>`
+      )
+      .join('');
+  return {
+    subject: `Your ${d.calculatorName.toLowerCase()} takeoff — ${d.hero}`,
+    text: `Hi,
+
+Here's the takeoff you ran at build-your-house.com — your numbers, kept where you can find them.
+
+${d.calculatorName}: ${d.hero}
+
+Your inputs:
+${inputsText}
+
+Materials:
+${linesText}
+
+Estimated material cost: ${d.cost}
+
+Estimate only — quantities come from the assumptions shown on the calculator page. Order after a takeoff from your actual plans, and get local prices.
+
+Re-run it any time: ${calcUrl}
+
+When you start ordering, the Job Site Binder's materials section is built for exactly this — takeoffs, quotes, and delivery logs on paper that survives the truck: ${SITE}/shop
+
+Questions about your build? Just reply — I read these.
+
+Seth
+Build Your House
+${SITE}
+${f.text}`,
+    html: `<p>Hi,</p>
+<p>Here's the takeoff you ran at <a href="${calcUrl}">build-your-house.com</a> — your numbers, kept where you can find them.</p>
+<p style="font-size:18px"><strong>${escapeHtml(d.calculatorName)}: ${escapeHtml(d.hero)}</strong></p>
+<p style="margin-bottom:4px;color:#56503f;font-size:13px;text-transform:uppercase;letter-spacing:0.08em">Your inputs</p>
+<table style="border-collapse:collapse;font-size:14px">${rowsHtml(d.inputs)}</table>
+<p style="margin:16px 0 4px;color:#56503f;font-size:13px;text-transform:uppercase;letter-spacing:0.08em">Materials</p>
+<table style="border-collapse:collapse;font-size:14px">${rowsHtml(d.lines)}</table>
+<p style="margin-top:16px"><strong>Estimated material cost: ${escapeHtml(d.cost)}</strong></p>
+<p style="color:#56503f;font-size:13px">Estimate only — quantities come from the assumptions shown on the calculator page. Order after a takeoff from your actual plans, and get local prices.</p>
+<p><a href="${calcUrl}">Re-run it any time</a>.</p>
+<p>When you start ordering, the <a href="${SITE}/shop">Job Site Binder</a>'s materials section is built for exactly this — takeoffs, quotes, and delivery logs on paper that survives the truck.</p>
+<p>Questions about your build? Just reply — I read these.</p>
+<p>Seth<br>Build Your House<br><a href="${SITE}">build-your-house.com</a></p>
+${f.html}`,
+  };
+}
+
+async function handleEstimate(request, env, ctx, origin) {
+  let payload;
+  try {
+    payload = await request.json();
+  } catch {
+    return json({ error: 'invalid JSON' }, 400, origin);
+  }
+
+  // Honeypot filled → bot. Pretend success, store and send nothing.
+  if (typeof payload.website === 'string' && payload.website.trim() !== '') {
+    return json({ ok: true }, 200, origin);
+  }
+
+  const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
+  if (estimateRateLimited(ip)) {
+    return json({ error: 'too many requests' }, 429, origin);
+  }
+
+  const email = typeof payload.email === 'string' ? payload.email.trim().toLowerCase() : '';
+  if (!email || email.length > MAX_EMAIL_LENGTH || !EMAIL_RE.test(email)) {
+    return json({ error: 'invalid email' }, 400, origin);
+  }
+
+  const calculator = typeof payload.calculator === 'string' ? payload.calculator : '';
+  if (!CALC_SLUG_RE.test(calculator)) {
+    return json({ error: 'invalid calculator' }, 400, origin);
+  }
+
+  const data = {
+    calculator,
+    calculatorName: cleanText(payload.calculatorName, 60) || 'Calculator',
+    hero: cleanText(payload.hero, 60),
+    cost: cleanText(payload.cost, 60),
+    inputs: cleanRows(payload.inputs, 12),
+    lines: cleanRows(payload.lines, 12),
+  };
+  if (!data.hero || !data.lines.length) {
+    return json({ error: 'invalid takeoff' }, 400, origin);
+  }
+
+  const source = cleanText(payload.sourcePath, 200) || `/calculators/${calculator}`;
+  const now = new Date().toISOString();
+
+  // Same storage semantics as /subscribe; the takeoff email replaces the
+  // welcome for new signups (one email, not two).
+  try {
+    const existing = await env.DB.prepare(
+      'SELECT unsubscribed_at FROM subscribers WHERE email = ?1'
+    ).bind(email).first();
+    if (!existing) {
+      await env.DB.prepare(
+        'INSERT INTO subscribers (email, source, created_at) VALUES (?1, ?2, ?3)'
+      ).bind(email, source, now).run();
+    } else if (existing.unsubscribed_at) {
+      await env.DB.prepare(
+        'UPDATE subscribers SET unsubscribed_at = NULL WHERE email = ?1'
+      ).bind(email).run();
+    }
+  } catch (err) {
+    console.error('estimate upsert failed:', err);
+    return json({ error: 'storage error' }, 500, origin);
+  }
+
+  ctx.waitUntil((async () => {
+    try {
+      await upsertContact(env, email, false);
+    } catch (err) {
+      console.error('resend contact sync failed:', err);
+    }
+    try {
+      const unsubUrl = await unsubscribeUrl(env, request.url, email);
+      const msg = estimateEmail(unsubUrl, data);
+      await resend(env, '/emails', {
+        method: 'POST',
+        body: {
+          from: FROM,
+          to: [email],
+          reply_to: REPLY_TO,
+          subject: msg.subject,
+          text: msg.text,
+          html: msg.html,
+        },
+      });
+    } catch (err) {
+      console.error('estimate email failed:', err);
+    }
+  })());
+
+  return json({ ok: true }, 200, origin);
+}
+
 // ---------------------------------------------------------------- handlers
 
 async function handleSubscribe(request, env, ctx, origin) {
@@ -353,6 +555,9 @@ export default {
       }
       if (request.method === 'POST' && url.pathname === '/subscribe') {
         return await handleSubscribe(request, env, ctx, origin);
+      }
+      if (request.method === 'POST' && url.pathname === '/estimate') {
+        return await handleEstimate(request, env, ctx, origin);
       }
       if (request.method === 'GET' && url.pathname === '/unsubscribe') {
         return await handleUnsubscribe(request, env);

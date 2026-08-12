@@ -157,6 +157,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly' as const,
       priority: 0.9,
     },
+    // Trade takeoff calculators (TO-01 … TO-07)
+    ...[
+      'framing-lumber',
+      'drywall',
+      'concrete-slab',
+      'roofing',
+      'paint',
+      'flooring',
+      'insulation',
+    ].map((slug) => ({
+      url: `${baseUrl}/calculators/${slug}`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.9,
+    })),
   ];
 
   // Permitting section

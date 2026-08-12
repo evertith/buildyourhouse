@@ -653,3 +653,11 @@ article {
   border-top: 1px solid var(--hairline);
   margin: var(--space-6) 0;
 }
+
+/* ============================================
+   PRINT (calculator takeoff sheets print clean)
+   ============================================ */
+@media print {
+  header, footer, nav { display: none !important; }
+  .no-print { display: none !important; }
+}

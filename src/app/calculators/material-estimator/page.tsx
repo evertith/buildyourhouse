@@ -5,8 +5,9 @@ import styles from '../../feasibility/cost-savings-calculator/calculator-page.mo
 
 export const metadata: Metadata = {
   alternates: { canonical: '/calculators/material-estimator' },
-  title: 'Free Material Estimator — Calculate Lumber, Concrete & More',
-  description: 'Estimate exactly how much lumber, concrete, drywall, roofing, and other materials your build needs. Free calculator with real-time cost estimates.',
+  title: 'Building Material Cost Calculator — Whole-House Estimator',
+  description:
+    'How much do materials cost to build a house? Estimate lumber, concrete, drywall, roofing, flooring, and insulation quantities and costs from your square footage — free, no signup.',
 };
 
 export default function MaterialEstimatorPage() {
