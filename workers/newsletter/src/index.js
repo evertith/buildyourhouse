@@ -30,9 +30,26 @@
  *     send from here). Marks D1 + Resend contact unsubscribed and shows a
  *     small confirmation page.
  *
+ * POST /subscribe also accepts (used by the downloads worker on purchases):
+ *   quiet: true      — store/sync only, send no onboarding email
+ *   purchased: true  — stamp purchased_at (exits the drip sequence)
+ *   insert: false    — only update an existing row, never create one
+ *                      (buyers who didn't tick the consent box are marked
+ *                      purchased if already subscribed, but never added)
+ *
+ * DRIP SEQUENCE: a daily cron (see wrangler.jsonc triggers) sends one
+ * follow-up per branch at day 3 — '/shop-sample' signups get the sample
+ * follow-up; everyone else gets the permit-mistakes email (with an NC kit
+ * variant when the source is the NC state guide). Suppressed for
+ * unsubscribed or purchased subscribers; sends are recorded in
+ * sequence_sends so each step fires at most once per address.
+ *
  * Admin (Authorization: Bearer <ADMIN_KEY> — same key as the downloads worker):
- *   GET /admin/api/subscribers            JSON: counts by source + all rows
- *   GET /admin/api/subscribers?format=csv CSV download
+ *   GET  /admin/api/subscribers            JSON: counts by source + sequence
+ *                                          sends + all rows
+ *   GET  /admin/api/subscribers?format=csv CSV download
+ *   POST /admin/api/run-sequence           Run the drip pass now (same code
+ *                                          path as the cron; idempotent)
  *
  * SENDING A NEWSLETTER: compose a Broadcast in the Resend dashboard against
  * the "Build Your House Newsletter" audience and include
@@ -49,6 +66,7 @@ const ALLOWED_ORIGINS = new Set([
 ]);
 
 const SITE = 'https://build-your-house.com';
+const WORKER_ORIGIN = 'https://buildyourhouse-newsletter.azerothcorner.workers.dev/';
 const FROM = 'Seth at Build Your House <seth@build-your-house.com>';
 const REPLY_TO = 'seth@build-your-house.com';
 const SAMPLE_URL = `${SITE}/binder-sample.pdf`;
@@ -182,7 +200,10 @@ function welcomeEmail(unsubUrl) {
 
 Thanks for subscribing to Build Your House. Here's what to expect: an occasional email when there's something genuinely useful for an owner-builder — new guides, tools, or hard-won lessons. No filler, no daily drip.
 
-If you're just getting started, this is the page I'd read first:
+Start with these: 19 real sample pages from the Owner-Builder Job Site Binder — the full foundation checklist and the complete span tables, free:
+${SITE}/binder-sample.pdf
+
+And if you're just getting started, this is the page I'd read first:
 ${SITE}/start-here
 
 Questions about your build? Just reply — I read these.
@@ -193,7 +214,8 @@ ${SITE}
 ${f.text}`,
     html: `<p>Hi,</p>
 <p>Thanks for subscribing to Build Your House. Here's what to expect: an occasional email when there's something genuinely useful for an owner-builder — new guides, tools, or hard-won lessons. No filler, no daily drip.</p>
-<p>If you're just getting started, this is the page I'd read first: <a href="${SITE}/start-here">the owner-builder roadmap</a>.</p>
+<p>Start with these: <a href="${SITE}/binder-sample.pdf"><strong>19 real sample pages from the Owner-Builder Job Site Binder</strong></a> — the full foundation checklist and the complete span tables, free.</p>
+<p>And if you're just getting started, this is the page I'd read first: <a href="${SITE}/start-here">the owner-builder roadmap</a>.</p>
 <p>Questions about your build? Just reply — I read these.</p>
 <p>Seth<br>Build Your House<br><a href="${SITE}">build-your-house.com</a></p>
 ${f.html}`,
@@ -575,6 +597,9 @@ async function handleSubscribe(request, env, ctx, origin) {
   }
 
   const source = typeof payload.source === 'string' ? payload.source.slice(0, 200) : null;
+  const quiet = payload.quiet === true;
+  const purchased = payload.purchased === true;
+  const allowInsert = payload.insert !== false;
   const now = new Date().toISOString();
 
   let isNew = false;
@@ -584,15 +609,26 @@ async function handleSubscribe(request, env, ctx, origin) {
       'SELECT unsubscribed_at FROM subscribers WHERE email = ?1'
     ).bind(email).first();
     if (!existing) {
+      if (!allowInsert) {
+        // Purchase without list consent from a non-subscriber: nothing to do.
+        return json({ ok: true }, 200, origin);
+      }
       isNew = true;
       await env.DB.prepare(
-        'INSERT INTO subscribers (email, source, created_at) VALUES (?1, ?2, ?3)'
-      ).bind(email, source, now).run();
-    } else if (existing.unsubscribed_at) {
-      wasUnsubscribed = true;
-      await env.DB.prepare(
-        'UPDATE subscribers SET unsubscribed_at = NULL WHERE email = ?1'
-      ).bind(email).run();
+        'INSERT INTO subscribers (email, source, created_at, purchased_at) VALUES (?1, ?2, ?3, ?4)'
+      ).bind(email, source, now, purchased ? now : null).run();
+    } else {
+      if (existing.unsubscribed_at && allowInsert) {
+        wasUnsubscribed = true;
+        await env.DB.prepare(
+          'UPDATE subscribers SET unsubscribed_at = NULL WHERE email = ?1'
+        ).bind(email).run();
+      }
+      if (purchased) {
+        await env.DB.prepare(
+          'UPDATE subscribers SET purchased_at = COALESCE(purchased_at, ?1) WHERE email = ?2'
+        ).bind(now, email).run();
+      }
     }
   } catch (err) {
     console.error('subscribe upsert failed:', err);
@@ -601,14 +637,18 @@ async function handleSubscribe(request, env, ctx, origin) {
 
   // Post-storage work never blocks the response (or the user's success state).
   ctx.waitUntil((async () => {
-    try {
-      await upsertContact(env, email, false);
-    } catch (err) {
-      console.error('resend contact sync failed:', err);
+    if (allowInsert) {
+      try {
+        await upsertContact(env, email, false);
+      } catch (err) {
+        console.error('resend contact sync failed:', err);
+      }
     }
     // Sample requests always deliver the PDF (even to an existing subscriber —
     // they asked for it). The welcome goes only to genuinely new signups.
-    if (source === '/shop-sample' || isNew || wasUnsubscribed) {
+    // `quiet` (purchase-driven syncs) sends nothing: the buyer already has a
+    // fulfillment email in their inbox.
+    if (!quiet && (source === '/shop-sample' || isNew || wasUnsubscribed)) {
       try {
         await sendOnboardEmail(env, request.url, email, source);
       } catch (err) {
@@ -618,6 +658,146 @@ async function handleSubscribe(request, env, ctx, origin) {
   })());
 
   return json({ ok: true }, 200, origin);
+}
+
+// ---------------------------------------------------------------- drip sequence
+
+const SEQUENCE_MIN_AGE_DAYS = 3;
+// Never mail signups older than this on a step's first rollout — protects
+// against blasting a backlog if a new step ships months from now.
+const SEQUENCE_MAX_AGE_DAYS = 21;
+
+function sequenceStepFor(sub) {
+  const source = sub.source || '';
+  if (source.startsWith('/purchase')) return null;
+  if (source === '/shop-sample') return 'sample-d3';
+  return 'planning-d3';
+}
+
+function sampleD3Email(unsubUrl) {
+  const f = emailFooter(unsubUrl);
+  const text = `Hi,
+
+A few days ago you grabbed 19 sample pages from the Owner-Builder Job Site Binder. Honest question: did they earn a spot in your truck?
+
+If they did, the full binder is the other 348 pages — every phase from foundation to punch list as working checklists and logs, plus editable Word contracts and auto-calculating Excel budget workbooks. $97, instant download:
+${SITE}/shop
+
+Rather skip the office-store printing run? The coil-bound printed edition ships to your door for $149, digital included:
+${SITE}/shop
+
+Either way — what are you building, and where are you in it? Reply and tell me. I read every one of these, and it shapes what I build next.
+
+Seth
+Build Your House
+${SITE}
+${f.text}`;
+  const html = `<p>Hi,</p>
+<p>A few days ago you grabbed 19 sample pages from the Owner-Builder Job Site Binder. Honest question: <strong>did they earn a spot in your truck?</strong></p>
+<p>If they did, the full binder is the other 348 pages — every phase from foundation to punch list as working checklists and logs, plus editable Word contracts and auto-calculating Excel budget workbooks. $97, instant download: <a href="${SITE}/shop">build-your-house.com/shop</a>.</p>
+<p>Rather skip the office-store printing run? The <a href="${SITE}/shop#printed">coil-bound printed edition</a> ships to your door for $149, digital included.</p>
+<p>Either way — what are you building, and where are you in it? Reply and tell me. I read every one of these, and it shapes what I build next.</p>
+<p>Seth<br>Build Your House<br><a href="${SITE}">build-your-house.com</a></p>
+${f.html}`;
+  return { subject: 'Did the sample pages earn a spot in your truck?', text, html };
+}
+
+function planningD3Email(unsubUrl, source) {
+  const f = emailFooter(unsubUrl);
+  const nc = (source || '').includes('north-carolina');
+  const ncText = nc
+    ? `
+
+Since you found us through the North Carolina guide: the NC Permit Kit is those rules as working checklists — the owner exemption walkthrough, the application checklist, and the inspection sequence, with the statute citations printed on each page. $34:
+${SITE}/shop/nc-permit-kit`
+    : `
+
+Your state's specifics are in the free state guides:
+${SITE}/permitting/state-guides`;
+  const ncHtml = nc
+    ? `<p>Since you found us through the North Carolina guide: the <a href="${SITE}/shop/nc-permit-kit"><strong>NC Permit Kit</strong></a> is those rules as working checklists — the owner exemption walkthrough, the application checklist, and the inspection sequence, with the statute citations printed on each page. $34.</p>`
+    : `<p>Your state's specifics are in the free <a href="${SITE}/permitting/state-guides">state guides</a>.</p>`;
+
+  const text = `Hi,
+
+Three permit mistakes that cost owner-builders real money — all three avoidable for the price of doing things in the right order:
+
+1. Applying for the building permit before the approvals that gate it. Septic and well sign-offs often have to exist BEFORE the building department will issue — in some states that's statute, not county habit. Find out what your permit is waiting on before you file.
+
+2. Treating pre-permit designations as afterthoughts. Some states require things like a designated lien agent before you first contract with anyone — the fee is small, but fixing a missed designation mid-build is not.
+
+3. Scheduling inspections by the calendar instead of the sequence. One failed inspection cascades: trades idle, reinspection queues, concrete trucks rescheduled. Walk each checklist with a pen before you call the inspector.${ncText}
+
+Which county are you building in? Permitting is local, and the quirks are where the money hides — reply and tell me yours, and I'll point you at what I know.
+
+Seth
+Build Your House
+${SITE}
+${f.text}`;
+  const html = `<p>Hi,</p>
+<p>Three permit mistakes that cost owner-builders real money — all three avoidable for the price of doing things in the right order:</p>
+<p><strong>1. Applying for the building permit before the approvals that gate it.</strong> Septic and well sign-offs often have to exist <em>before</em> the building department will issue — in some states that's statute, not county habit. Find out what your permit is waiting on before you file.</p>
+<p><strong>2. Treating pre-permit designations as afterthoughts.</strong> Some states require things like a designated lien agent before you first contract with anyone — the fee is small, but fixing a missed designation mid-build is not.</p>
+<p><strong>3. Scheduling inspections by the calendar instead of the sequence.</strong> One failed inspection cascades: trades idle, reinspection queues, concrete trucks rescheduled. Walk each checklist with a pen before you call the inspector.</p>
+${ncHtml}
+<p>Which county are you building in? Permitting is local, and the quirks are where the money hides — reply and tell me yours, and I'll point you at what I know.</p>
+<p>Seth<br>Build Your House<br><a href="${SITE}">build-your-house.com</a></p>
+${f.html}`;
+  return { subject: 'Three permit mistakes that cost owner-builders real money', text, html };
+}
+
+/** One drip pass: idempotent, safe to run from cron or the admin endpoint. */
+async function runSequence(env, workerOrigin) {
+  const now = Date.now();
+  const minCutoff = new Date(now - SEQUENCE_MIN_AGE_DAYS * 86400 * 1000).toISOString();
+  const maxCutoff = new Date(now - SEQUENCE_MAX_AGE_DAYS * 86400 * 1000).toISOString();
+
+  const { results } = await env.DB.prepare(
+    `SELECT email, source FROM subscribers
+     WHERE unsubscribed_at IS NULL AND purchased_at IS NULL
+       AND created_at <= ?1 AND created_at > ?2`
+  ).bind(minCutoff, maxCutoff).all();
+
+  const report = { eligible: results.length, sent: [], skipped: 0, errors: [] };
+  for (const sub of results) {
+    const step = sequenceStepFor(sub);
+    if (!step) {
+      report.skipped++;
+      continue;
+    }
+    const already = await env.DB.prepare(
+      'SELECT 1 AS x FROM sequence_sends WHERE email = ?1 AND step = ?2'
+    ).bind(sub.email, step).first();
+    if (already) {
+      report.skipped++;
+      continue;
+    }
+    try {
+      const unsubUrl = await unsubscribeUrl(env, workerOrigin, sub.email);
+      const msg = step === 'sample-d3'
+        ? sampleD3Email(unsubUrl)
+        : planningD3Email(unsubUrl, sub.source);
+      await resend(env, '/emails', {
+        method: 'POST',
+        body: {
+          from: FROM,
+          to: [sub.email],
+          reply_to: REPLY_TO,
+          subject: msg.subject,
+          text: msg.text,
+          html: msg.html,
+        },
+      });
+      await env.DB.prepare(
+        'INSERT INTO sequence_sends (email, step, sent_at) VALUES (?1, ?2, ?3)'
+      ).bind(sub.email, step, new Date().toISOString()).run();
+      report.sent.push({ email: sub.email, step });
+    } catch (err) {
+      console.error(`sequence send failed (${sub.email}, ${step}):`, err);
+      report.errors.push({ email: sub.email, step, error: String(err.message || err) });
+    }
+  }
+  return report;
 }
 
 async function handleUnsubscribe(request, env) {
@@ -664,13 +844,13 @@ async function isAuthorized(request, env) {
 async function handleAdminSubscribers(request, env, origin) {
   const url = new URL(request.url);
   const { results } = await env.DB.prepare(
-    'SELECT email, source, created_at, unsubscribed_at FROM subscribers ORDER BY created_at DESC'
+    'SELECT email, source, created_at, unsubscribed_at, purchased_at FROM subscribers ORDER BY created_at DESC'
   ).all();
 
   if (url.searchParams.get('format') === 'csv') {
     const esc = (v) => (v == null ? '' : `"${String(v).replace(/"/g, '""')}"`);
-    const csv = ['email,source,created_at,unsubscribed_at']
-      .concat(results.map((r) => [r.email, r.source, r.created_at, r.unsubscribed_at].map(esc).join(',')))
+    const csv = ['email,source,created_at,unsubscribed_at,purchased_at']
+      .concat(results.map((r) => [r.email, r.source, r.created_at, r.unsubscribed_at, r.purchased_at].map(esc).join(',')))
       .join('\n');
     return new Response(csv, {
       headers: {
@@ -688,8 +868,26 @@ async function handleAdminSubscribers(request, env, origin) {
     bySource[s] = (bySource[s] || 0) + 1;
     if (!r.unsubscribed_at) active++;
   }
+
+  const sequence = {};
+  try {
+    const sends = await env.DB.prepare(
+      'SELECT step, COUNT(*) AS n FROM sequence_sends GROUP BY step'
+    ).all();
+    for (const row of sends.results) sequence[row.step] = row.n;
+  } catch (err) {
+    console.error('sequence summary failed:', err);
+  }
+
   return json(
-    { total: results.length, active, unsubscribed: results.length - active, bySource, subscribers: results },
+    {
+      total: results.length,
+      active,
+      unsubscribed: results.length - active,
+      bySource,
+      sequence,
+      subscribers: results,
+    },
     200,
     origin
   );
@@ -754,10 +952,26 @@ export default {
         }
         return await handleAdminFinancingLeads(request, env, origin);
       }
+      if (request.method === 'POST' && url.pathname === '/admin/api/run-sequence') {
+        if (!(await isAuthorized(request, env))) {
+          return json({ error: 'unauthorized' }, 401, origin);
+        }
+        const report = await runSequence(env, WORKER_ORIGIN);
+        return json(report, 200, origin);
+      }
       return json({ error: 'not found' }, 404, origin);
     } catch (err) {
       console.error('unhandled error:', err);
       return json({ error: 'internal error' }, 500, origin);
     }
+  },
+
+  /** Daily drip pass — see wrangler.jsonc triggers. */
+  async scheduled(event, env, ctx) {
+    ctx.waitUntil(
+      runSequence(env, WORKER_ORIGIN)
+        .then((r) => console.log('sequence run:', JSON.stringify(r)))
+        .catch((err) => console.error('sequence run failed:', err))
+    );
   },
 };

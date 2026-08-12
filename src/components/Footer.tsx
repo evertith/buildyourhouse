@@ -11,7 +11,7 @@ export default function Footer() {
       <div className={styles.container}>
         <EmailCapture
           title="Owner-Builder Field Notes"
-          description="One practical email at a time — permits, budgets, scheduling, and the mistakes that cost other owner-builders real money."
+          description="Subscribe and get 19 free sample pages from the Job Site Binder — then one practical email at a time: permits, budgets, and the mistakes that cost other owner-builders real money."
           buttonText="Subscribe"
         />
         <div className={styles.columns}>

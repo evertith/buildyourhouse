@@ -2,7 +2,15 @@ CREATE TABLE IF NOT EXISTS subscribers (
   email TEXT PRIMARY KEY,
   source TEXT,
   created_at TEXT NOT NULL,
-  unsubscribed_at TEXT
+  unsubscribed_at TEXT,
+  purchased_at TEXT
+);
+
+CREATE TABLE IF NOT EXISTS sequence_sends (
+  email TEXT NOT NULL,
+  step TEXT NOT NULL,
+  sent_at TEXT NOT NULL,
+  PRIMARY KEY (email, step)
 );
 
 -- Owner-builder financing leads (the qualified-lead product from
