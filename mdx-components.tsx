@@ -11,6 +11,8 @@ import ArticleSchema from '@/components/ArticleSchema';
 import BinderCTA from '@/components/BinderCTA';
 import ProductCTA from '@/components/ProductCTA';
 import PlanningTools from '@/components/PlanningTools';
+import LenderDirectory, { FeaturedLenderSlot } from '@/components/financing/LenderDirectory';
+import LenderMatchForm from '@/components/financing/LenderMatchForm';
 import styles from '@/styles/article.module.css';
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
@@ -33,5 +35,8 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     BinderCTA,
     ProductCTA,
     PlanningTools,
+    LenderDirectory,
+    FeaturedLenderSlot,
+    LenderMatchForm,
   };
 }

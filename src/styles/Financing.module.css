@@ -1,0 +1,221 @@
+/* Financing components: lender directory, sponsored slot, lender-match
+   form. Same drafting idiom as the rest of the site — hairlines, mono
+   labels, square corners, warm paper. */
+
+/* ---------- LENDER DIRECTORY ---------- */
+.directory {
+  border: 1px solid var(--hairline-strong);
+  background: var(--bg-primary);
+  margin: var(--space-4) 0;
+}
+.dirHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: 12px var(--space-3);
+  border-bottom: 1px solid var(--hairline);
+}
+.dirTitle {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent-primary);
+  margin: 0;
+}
+.dirVerified {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin: 0;
+}
+.lenderRow {
+  display: grid;
+  grid-template-columns: minmax(180px, 240px) 1fr;
+  gap: var(--space-2) var(--space-4);
+  padding: var(--space-3);
+  border-top: 1px solid var(--hairline);
+}
+.lenderRow:first-of-type { border-top: none; }
+.lenderName {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--text-heading);
+  margin: 0 0 4px;
+}
+.lenderName a { color: inherit; }
+.lenderKind {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-primary);
+  margin-bottom: 6px;
+}
+.lenderStates {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+}
+.lenderNotes {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0;
+  max-width: none;
+}
+.dirFoot {
+  padding: 12px var(--space-3);
+  border-top: 1px solid var(--hairline);
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin: 0;
+  max-width: none;
+}
+@media (max-width: 700px) {
+  .lenderRow { grid-template-columns: 1fr; }
+}
+
+/* ---------- SPONSORED SLOT ---------- */
+.sponsored {
+  border: 1px solid var(--accent-primary);
+  background: var(--bg-secondary);
+  padding: var(--space-3);
+  margin: var(--space-4) 0;
+}
+.sponsoredTag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  border: 1px solid var(--hairline-strong);
+  padding: 2px 8px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+/* ---------- LENDER-MATCH FORM ---------- */
+.form {
+  border: 1px solid var(--hairline-strong);
+  background: var(--bg-secondary);
+  padding: var(--space-4);
+  margin: var(--space-4) 0;
+  scroll-margin-top: 96px;
+}
+.formHead {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text-heading);
+  margin: 0 0 8px;
+}
+.formSub {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  margin: 0 0 var(--space-3);
+  max-width: none;
+}
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2) var(--space-3);
+}
+.field { display: flex; flex-direction: column; }
+.fieldWide { grid-column: 1 / -1; }
+.label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-heading);
+  margin-bottom: 6px;
+}
+.input, .select, .textarea {
+  background: #fff;
+  border: 1px solid var(--hairline-strong);
+  border-radius: 0;
+  padding: 11px 12px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--text-heading);
+  min-height: 44px;
+  width: 100%;
+}
+.textarea { min-height: 76px; resize: vertical; }
+.input:focus, .select:focus, .textarea:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+}
+.select { appearance: none; cursor: pointer; }
+.selectWrap { position: relative; }
+.selectWrap::after {
+  content: "";
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  border-right: 1.5px solid var(--text-secondary);
+  border-bottom: 1.5px solid var(--text-secondary);
+  transform: translateY(-70%) rotate(45deg);
+  pointer-events: none;
+}
+.submit {
+  grid-column: 1 / -1;
+  justify-self: start;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  background: var(--accent-primary);
+  color: var(--cream);
+  border: 1px solid var(--accent-primary);
+  border-radius: 0;
+  padding: 14px 26px;
+  cursor: pointer;
+  transition: background 0.18s ease;
+}
+.submit:hover { background: var(--button-primary-hover); }
+.submit:disabled { opacity: 0.6; cursor: default; }
+.fine {
+  grid-column: 1 / -1;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  margin: 0;
+  max-width: none;
+}
+.error {
+  grid-column: 1 / -1;
+  font-size: 14px;
+  color: var(--accent-critical);
+  margin: 0;
+  max-width: none;
+}
+.done {
+  border-left: 3px solid var(--accent-secondary);
+  padding: var(--space-2) var(--space-3);
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: var(--text-heading);
+  margin: 0;
+  max-width: none;
+}
+@media (max-width: 700px) {
+  .grid { grid-template-columns: 1fr; }
+  .form { padding: var(--space-3); }
+}

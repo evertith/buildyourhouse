@@ -18,6 +18,13 @@
  *     and HTML-escaped so the endpoint can't be used to relay attacker
  *     content; calculator slug must match the known-slug pattern.
  *     Rate-limited per IP (per-isolate).
+ *   POST /financing-lead  { name, email, phone, state, timeline, creditBand,
+ *                           landStatus, budgetBand?, notes?, website?, sourcePath? }
+ *     Owner-builder lender-match intake (the qualified-lead product).
+ *     All enum fields validated against whitelists; free text is capped and
+ *     URL-stripped. Stores into financing_leads (D1), emails Seth the lead,
+ *     and subscribes the address (disclosed on the form). Honeypot +
+ *     per-IP rate limit.
  *   GET  /unsubscribe?e=<email>&t=<hmac>
  *     HMAC-signed one-click unsubscribe (link included in every email we
  *     send from here). Marks D1 + Resend contact unsubscribed and shows a
@@ -403,6 +410,150 @@ async function handleEstimate(request, env, ctx, origin) {
   return json({ ok: true }, 200, origin);
 }
 
+// ---------------------------------------------------------------- financing leads
+
+const LEAD_NOTIFY_TO = 'seth@build-your-house.com';
+const LEAD_MAX_PER_HOUR = 3;
+const leadHits = new Map(); // ip -> [timestamps]
+
+function leadRateLimited(ip) {
+  const now = Date.now();
+  const hourAgo = now - 60 * 60 * 1000;
+  const hits = (leadHits.get(ip) || []).filter((t) => t > hourAgo);
+  if (hits.length >= LEAD_MAX_PER_HOUR) return true;
+  hits.push(now);
+  leadHits.set(ip, hits);
+  return false;
+}
+
+const US_STATES = new Set([
+  'AL','AK','AZ','AR','CA','CO','CT','DE','DC','FL','GA','HI','ID','IL','IN',
+  'IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH',
+  'NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT',
+  'VT','VA','WA','WV','WI','WY',
+]);
+const LEAD_TIMELINES = new Set(['0-6', '6-12', '12-18', '18plus']);
+const LEAD_CREDIT_BANDS = new Set(['740plus', '700-739', '660-699', 'below-660', 'unsure']);
+const LEAD_LAND_STATUS = new Set(['own', 'under-contract', 'looking']);
+const LEAD_BUDGET_BANDS = new Set(['under-200k', '200-400k', '400-700k', 'over-700k', '']);
+
+const LEAD_LABELS = {
+  timeline: { '0-6': '0–6 months', '6-12': '6–12 months', '12-18': '12–18 months', '18plus': '18+ months' },
+  credit: { '740plus': '740+', '700-739': '700–739', '660-699': '660–699', 'below-660': 'Below 660', unsure: 'Not sure' },
+  land: { own: 'Owns land', 'under-contract': 'Land under contract', looking: 'Still looking for land' },
+  budget: { 'under-200k': 'Under $200K', '200-400k': '$200–400K', '400-700k': '$400–700K', 'over-700k': '$700K+' },
+};
+
+async function handleFinancingLead(request, env, ctx, origin) {
+  let p;
+  try {
+    p = await request.json();
+  } catch {
+    return json({ error: 'invalid JSON' }, 400, origin);
+  }
+
+  // Honeypot filled → bot. Pretend success, store nothing.
+  if (typeof p.website === 'string' && p.website.trim() !== '') {
+    return json({ ok: true }, 200, origin);
+  }
+
+  const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
+  if (leadRateLimited(ip)) {
+    return json({ error: 'too many requests' }, 429, origin);
+  }
+
+  const email = typeof p.email === 'string' ? p.email.trim().toLowerCase() : '';
+  const name = cleanText(p.name, 80);
+  const phoneDigits = typeof p.phone === 'string' ? p.phone.replace(/[^\d]/g, '') : '';
+  const state = typeof p.state === 'string' ? p.state.trim().toUpperCase() : '';
+  const timeline = typeof p.timeline === 'string' ? p.timeline : '';
+  const creditBand = typeof p.creditBand === 'string' ? p.creditBand : '';
+  const landStatus = typeof p.landStatus === 'string' ? p.landStatus : '';
+  const budgetBand = typeof p.budgetBand === 'string' ? p.budgetBand : '';
+  const notes = cleanText(p.notes, 500);
+  const source = cleanText(p.sourcePath, 200) || '/planning/financing';
+
+  if (!email || email.length > MAX_EMAIL_LENGTH || !EMAIL_RE.test(email)) {
+    return json({ error: 'invalid email' }, 400, origin);
+  }
+  if (!name) return json({ error: 'invalid name' }, 400, origin);
+  if (phoneDigits.length < 10 || phoneDigits.length > 15) {
+    return json({ error: 'invalid phone' }, 400, origin);
+  }
+  if (!US_STATES.has(state)) return json({ error: 'invalid state' }, 400, origin);
+  if (!LEAD_TIMELINES.has(timeline)) return json({ error: 'invalid timeline' }, 400, origin);
+  if (!LEAD_CREDIT_BANDS.has(creditBand)) return json({ error: 'invalid credit band' }, 400, origin);
+  if (!LEAD_LAND_STATUS.has(landStatus)) return json({ error: 'invalid land status' }, 400, origin);
+  if (!LEAD_BUDGET_BANDS.has(budgetBand)) return json({ error: 'invalid budget band' }, 400, origin);
+
+  const now = new Date().toISOString();
+  try {
+    await env.DB.prepare(
+      `INSERT INTO financing_leads
+         (created_at, name, email, phone, state, timeline, credit_band, land_status, budget_band, notes, source)
+       VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11)`
+    ).bind(now, name, email, phoneDigits, state, timeline, creditBand, landStatus, budgetBand || null, notes || null, source).run();
+  } catch (err) {
+    console.error('financing lead insert failed:', err);
+    return json({ error: 'storage error' }, 500, origin);
+  }
+
+  ctx.waitUntil((async () => {
+    // Notify Seth — leads are actionable immediately, deal or no deal.
+    try {
+      const rows = [
+        ['Name', name],
+        ['Email', email],
+        ['Phone', phoneDigits],
+        ['State', state],
+        ['Timeline', LEAD_LABELS.timeline[timeline]],
+        ['Credit', LEAD_LABELS.credit[creditBand]],
+        ['Land', LEAD_LABELS.land[landStatus]],
+        ['Budget', budgetBand ? LEAD_LABELS.budget[budgetBand] : '—'],
+        ['Notes', notes || '—'],
+        ['Source', source],
+      ];
+      await resend(env, '/emails', {
+        method: 'POST',
+        body: {
+          from: FROM,
+          to: [LEAD_NOTIFY_TO],
+          reply_to: email,
+          subject: `Financing lead: ${state} · ${LEAD_LABELS.timeline[timeline]} · ${LEAD_LABELS.credit[creditBand]}`,
+          text: rows.map(([k, v]) => `${k}: ${v}`).join('\n'),
+          html: `<table style="border-collapse:collapse;font-size:14px">${rows
+            .map(([k, v]) => `<tr><td style="padding:4px 16px 4px 0;color:#56503f">${escapeHtml(k)}</td><td style="padding:4px 0"><strong>${escapeHtml(String(v))}</strong></td></tr>`)
+            .join('')}</table>
+            <p style="color:#56503f;font-size:12px">Reply-to is the lead. financing_leads row created ${now}.</p>`,
+        },
+      });
+    } catch (err) {
+      console.error('lead notify failed:', err);
+    }
+    // Newsletter add (disclosed on the form). No welcome email — the form's
+    // confirmation copy is the acknowledgment; first touch should be Seth's.
+    try {
+      const existing = await env.DB.prepare(
+        'SELECT unsubscribed_at FROM subscribers WHERE email = ?1'
+      ).bind(email).first();
+      if (!existing) {
+        await env.DB.prepare(
+          'INSERT INTO subscribers (email, source, created_at) VALUES (?1, ?2, ?3)'
+        ).bind(email, source, now).run();
+      } else if (existing.unsubscribed_at) {
+        await env.DB.prepare(
+          'UPDATE subscribers SET unsubscribed_at = NULL WHERE email = ?1'
+        ).bind(email).run();
+      }
+      await upsertContact(env, email, false);
+    } catch (err) {
+      console.error('lead subscriber sync failed:', err);
+    }
+  })());
+
+  return json({ ok: true }, 200, origin);
+}
+
 // ---------------------------------------------------------------- handlers
 
 async function handleSubscribe(request, env, ctx, origin) {
@@ -544,6 +695,32 @@ async function handleAdminSubscribers(request, env, origin) {
   );
 }
 
+async function handleAdminFinancingLeads(request, env, origin) {
+  const url = new URL(request.url);
+  const { results } = await env.DB.prepare(
+    'SELECT * FROM financing_leads ORDER BY created_at DESC'
+  ).all();
+
+  if (url.searchParams.get('format') === 'csv') {
+    const cols = ['id', 'created_at', 'name', 'email', 'phone', 'state', 'timeline', 'credit_band', 'land_status', 'budget_band', 'notes', 'source', 'status', 'sent_to'];
+    const esc = (v) => (v == null ? '' : `"${String(v).replace(/"/g, '""')}"`);
+    const csv = [cols.join(',')]
+      .concat(results.map((r) => cols.map((c) => esc(r[c])).join(',')))
+      .join('\n');
+    return new Response(csv, {
+      headers: {
+        'Content-Type': 'text/csv',
+        'Content-Disposition': 'attachment; filename="financing-leads.csv"',
+        ...corsHeaders(origin),
+      },
+    });
+  }
+
+  const byState = {};
+  for (const r of results) byState[r.state] = (byState[r.state] || 0) + 1;
+  return json({ total: results.length, byState, leads: results }, 200, origin);
+}
+
 export default {
   async fetch(request, env, ctx) {
     const origin = request.headers.get('Origin');
@@ -559,6 +736,9 @@ export default {
       if (request.method === 'POST' && url.pathname === '/estimate') {
         return await handleEstimate(request, env, ctx, origin);
       }
+      if (request.method === 'POST' && url.pathname === '/financing-lead') {
+        return await handleFinancingLead(request, env, ctx, origin);
+      }
       if (request.method === 'GET' && url.pathname === '/unsubscribe') {
         return await handleUnsubscribe(request, env);
       }
@@ -567,6 +747,12 @@ export default {
           return json({ error: 'unauthorized' }, 401, origin);
         }
         return await handleAdminSubscribers(request, env, origin);
+      }
+      if (url.pathname === '/admin/api/financing-leads') {
+        if (!(await isAuthorized(request, env))) {
+          return json({ error: 'unauthorized' }, 401, origin);
+        }
+        return await handleAdminFinancingLeads(request, env, origin);
       }
       return json({ error: 'not found' }, 404, origin);
     } catch (err) {
