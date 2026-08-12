@@ -6,7 +6,7 @@ import { generateProductSchema, generateFAQSchema, schemaToScriptTag } from '@/l
 import styles from '../product.module.css';
 
 // filled in after /admin/api/provision-products creates the payment link
-const STRIPE_CHECKOUT = 'TODO_PAYMENT_LINK';
+const STRIPE_CHECKOUT = 'https://buy.stripe.com/aFaeVd4S3dB5dE004bfAc06';
 const SITE_URL = 'https://build-your-house.com';
 const PRICE = 34;
 
