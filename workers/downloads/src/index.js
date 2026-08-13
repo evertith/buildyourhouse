@@ -50,6 +50,9 @@ const RECOVERY_MAX_PER_HOUR = 5;
 
 // ---------------------------------------------------------------- print-on-demand
 
+const NEWSLETTER_SUBSCRIBE_URL =
+  'https://buildyourhouse-newsletter.azerothcorner.workers.dev/subscribe';
+
 const LULU_API = 'https://api.lulu.com';
 const LULU_TOKEN_URL =
   'https://api.lulu.com/auth/realms/glasstree/protocol/openid-connect/token';
@@ -954,6 +957,27 @@ async function handleStripeWebhook(request, env) {
     .bind(session.id, email, resendId, new Date().toISOString())
     .run();
 
+  // List sync: buyers who ticked Stripe's promotions-consent box join the
+  // newsletter (quiet — the fulfillment email is enough for today); everyone
+  // else is only marked purchased IF they were already a subscriber, so the
+  // drip sequence never tries to sell them what they just bought.
+  try {
+    const optedIn = session.consent?.promotions === 'opt_in';
+    await fetch(NEWSLETTER_SUBSCRIBE_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email,
+        source: '/purchase',
+        quiet: true,
+        purchased: true,
+        ...(optedIn ? {} : { insert: false }),
+      }),
+    });
+  } catch (err) {
+    console.error('newsletter purchase sync failed:', err);
+  }
+
   return new Response('sent', { status: 200 });
 }
 
@@ -1245,6 +1269,7 @@ async function handleProvisionProducts(env) {
       body.set('line_items[0][price]', price.id);
       body.set('line_items[0][quantity]', '1');
       body.set('allow_promotion_codes', 'true');
+      body.set('consent_collection[promotions]', 'auto');
       body.set('metadata[sku]', def.sku);
       body.set('after_completion[type]', 'redirect');
       body.set(
@@ -1256,12 +1281,24 @@ async function handleProvisionProducts(env) {
       }
       link = await stripe(env, '/payment_links', { method: 'POST', body });
       out.actions.push('created payment link');
-    } else if (link.metadata?.sku !== def.sku) {
-      const body = new URLSearchParams();
-      body.set('metadata[sku]', def.sku);
-      link = await stripe(env, `/payment_links/${link.id}`, { method: 'POST', body });
-      out.actions.push('stamped link metadata.sku');
+    } else {
+      const patch = new URLSearchParams();
+      if (link.metadata?.sku !== def.sku) patch.set('metadata[sku]', def.sku);
+      if (link.consent_collection?.promotions !== 'auto') {
+        patch.set('consent_collection[promotions]', 'auto');
+      }
+      if ([...patch.keys()].length) {
+        try {
+          link = await stripe(env, `/payment_links/${link.id}`, { method: 'POST', body: patch });
+          out.actions.push('aligned link (metadata/consent)');
+        } catch (err) {
+          // consent_collection may not be updatable on existing links —
+          // report loudly rather than fail the whole provisioning pass.
+          out.actions.push(`link align failed: ${err.message}`);
+        }
+      }
     }
+    out.consent_promotions = link.consent_collection?.promotions || null;
     out.payment_link = link.url;
     out.link_active = link.active;
     if (out.actions.length === 0) out.actions.push('already provisioned');

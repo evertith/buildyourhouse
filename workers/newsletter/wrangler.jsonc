@@ -5,6 +5,9 @@
     "RESEND_AUDIENCE_ID": "c767f3a7-0e17-4731-82b5-940d796f0c92"
   },
   "compatibility_date": "2026-06-01",
+  "triggers": {
+    "crons": ["0 15 * * *"]
+  },
   "d1_databases": [
     {
       "binding": "DB",
