@@ -43,7 +43,10 @@ export default function PromoBanner() {
       >
         <span className={styles.lead}>
           <Wheel className={styles.wheel} />
-          <span className={styles.headline}>You built the house. Now&nbsp;keep&nbsp;it.</span>
+          <span className={styles.titles}>
+            <span className={styles.kicker}>The House Year</span>
+            <span className={styles.headline}>You built the house. Now&nbsp;keep&nbsp;it.</span>
+          </span>
         </span>
         <span className={styles.offer}>
           <span className={styles.ticket}>

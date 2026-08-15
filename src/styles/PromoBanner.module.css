@@ -18,23 +18,31 @@
   gap: 20px;
   width: 100%;
   max-width: 970px;
+  min-height: 90px;
   background: #2e5d4f;
   box-shadow: inset 0 0 0 1px #1b1712;
-  padding: 13px 26px;
+  padding: 15px 22px;
   font-family: var(--font-display);
   text-decoration: none;
 }
 .banner:hover { text-decoration: none; }
 .banner:hover .headline { text-decoration: underline; text-underline-offset: 4px; }
 
-.lead { display: flex; align-items: center; gap: 16px; min-width: 0; }
-.wheel { width: 46px; height: 46px; flex-shrink: 0; }
+.lead { display: flex; align-items: center; gap: 20px; min-width: 0; }
+.wheel { width: 56px; height: 56px; flex-shrink: 0; }
+.titles { display: flex; flex-direction: column; gap: 3px; }
+.kicker {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #c9a25e;
+}
 .headline {
   font-weight: 600;
-  font-size: 21px;
-  line-height: 1.2;
+  font-size: 22px;
+  line-height: 25px;
   color: #fdfbf6;
-  letter-spacing: -0.01em;
 }
 
 .offer {
@@ -62,27 +70,27 @@
   pointer-events: none;
 }
 .ticketHeader {
-  font-size: 9.5px;
+  font-size: 7.5px;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: #6a6151;
 }
 .ticketCode {
-  font-size: 15px;
+  font-size: 12px;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.125em;
   color: #2a241a;
-  line-height: 1.2;
+  line-height: 1.3;
 }
-.then { font-size: 10.5px; color: #dfe9e2; }
+.then { font-size: 9px; color: #dfe9e2; }
 
 .button {
   flex-shrink: 0;
   background: #fdfbf6;
   border-radius: 10px;
-  padding: 9px 18px;
-  font-size: 13px;
+  padding: 8px 20px;
+  font-size: 11px;
   font-weight: 600;
   color: #2e5d4f;
 }
@@ -96,9 +104,12 @@
     align-items: center;
     gap: 10px;
     padding: 12px 16px;
+    min-height: 0;
     text-align: center;
   }
-  .wheel { width: 34px; height: 34px; }
-  .headline { font-size: 17px; }
+  .wheel { width: 36px; height: 36px; }
+  .titles { align-items: center; gap: 2px; }
+  .kicker { font-size: 9px; }
+  .headline { font-size: 17px; line-height: 1.25; }
   .lead { gap: 12px; }
 }
