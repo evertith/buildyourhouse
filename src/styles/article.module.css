@@ -5,22 +5,54 @@
   max-width: var(--width-prose);
   margin: 0 auto;
   padding: var(--space-7) var(--container-padding-mobile);
-  counter-reset: section;
+  /* band-inset: aligns full-bleed h1 band text with the prose column */
+  --band-inset: calc(max((100vw - var(--width-prose)) / 2, 0px) + var(--container-padding-mobile));
 }
 
 /* ---------- Typography ---------- */
+/* h1 = drawing title band: full-bleed navy with the blueprint grid,
+   flush under the header, orange base rule — same anchor move as the
+   home/shop/calculator heroes. Safe as pure CSS because every MDX page
+   opens with its h1. */
 .article h1 {
+  position: relative;
+  width: 100vw;
+  margin: calc(-1 * var(--space-7)) 0 var(--space-6) calc(-50vw + 50%);
+  padding: calc(var(--space-6) + 30px) var(--band-inset) var(--space-6);
+  background: var(--navy);
+  border-bottom: 5px solid var(--accent-primary);
   font-size: var(--text-3xl);
   font-weight: var(--weight-semibold);
-  color: var(--text-heading);
+  color: var(--cream);
   line-height: 1.04;
   letter-spacing: -0.025em;
-  margin: 0 0 var(--space-4);
-  padding-bottom: var(--space-3);
-  border-bottom: 2px solid var(--accent-primary);
+}
+.article h1::before {
+  /* blueprint grid texture (mirrors .bp-grid) */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(246, 241, 228, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(246, 241, 228, 0.08) 1px, transparent 1px),
+    linear-gradient(rgba(246, 241, 228, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(246, 241, 228, 0.12) 1px, transparent 1px);
+  background-size: 30px 30px, 30px 30px, 150px 150px, 150px 150px;
+  pointer-events: none;
+}
+.article h1::after {
+  content: "Owner-Builder Field Guide";
+  position: absolute;
+  top: var(--space-6);
+  left: var(--band-inset);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent-primary);
 }
 .article h2 {
-  counter-increment: section;
   font-size: var(--text-2xl);
   font-weight: var(--weight-semibold);
   color: var(--text-heading);
@@ -31,13 +63,12 @@
   border-top: 1px solid var(--hairline);
 }
 .article h2::before {
-  content: counter(section, decimal-leading-zero);
+  /* short orange tick — section marker without fake sequence numbers */
+  content: "";
   display: block;
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  color: var(--accent-primary);
+  width: 36px;
+  height: 2px;
+  background: var(--accent-primary);
   margin-bottom: var(--space-2);
 }
 .article h3 {
@@ -270,11 +301,22 @@
     padding-left: var(--container-padding-tablet);
     padding-right: var(--container-padding-tablet);
     padding-top: var(--space-8);
+    --band-inset: calc(max((100vw - var(--width-prose)) / 2, 0px) + var(--container-padding-tablet));
   }
-  .article h1 { font-size: var(--text-5xl); }
+  .article h1 {
+    font-size: var(--text-5xl);
+    margin-top: calc(-1 * var(--space-8));
+    padding-top: calc(var(--space-7) + 32px);
+    padding-bottom: var(--space-7);
+  }
+  .article h1::after { top: var(--space-7); }
 }
 @media (min-width: 1024px) {
-  .article { padding-top: var(--space-10); }
+  .article {
+    padding-top: var(--space-10);
+    --band-inset: calc(max((100vw - var(--width-prose)) / 2, 0px) + var(--container-padding-desktop));
+  }
+  .article h1 { margin-top: calc(-1 * var(--space-10)); }
 }
 @media (max-width: 640px) {
   .article h1 { font-size: var(--text-2xl); }

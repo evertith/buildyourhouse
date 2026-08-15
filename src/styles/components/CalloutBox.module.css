@@ -13,19 +13,20 @@
 
 .title {
   display: flex;
-  align-items: center;
-  gap: 10px;
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: var(--text-lg);
-  line-height: 1.25;
-  letter-spacing: -0.01em;
+  align-items: flex-start;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.3;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   margin-bottom: var(--space-2);
 }
 
 .icon {
-  width: 22px;
-  height: 22px;
+  width: 16px;
+  height: 16px;
   flex-shrink: 0;
 }
 
@@ -42,20 +43,21 @@
 .content a { color: var(--link-color); }
 .content code { font-family: var(--font-mono); font-size: 0.88em; }
 
-/* Type variants — left rule + marker color + warm tint */
-.info { border-left-color: var(--accent-info); background: var(--info-bg); }
+/* Type variants — the colored left rule (and matching pen color on the
+   label) is the only differentiator; every note sits on the same paper */
+.info { border-left-color: var(--accent-info); }
 .info .title, .info .icon { color: var(--accent-info); }
 
-.tip { border-left-color: var(--accent-secondary); background: var(--success-bg); }
+.tip { border-left-color: var(--accent-secondary); }
 .tip .title, .tip .icon { color: #3f6b50; }
 
-.success { border-left-color: var(--accent-secondary); background: var(--success-bg); }
+.success { border-left-color: var(--accent-secondary); }
 .success .title, .success .icon { color: #3f6b50; }
 
-.warning { border-left-color: var(--accent-warning); background: #f6ecd8; }
+.warning { border-left-color: var(--accent-warning); }
 .warning .title, .warning .icon { color: #95580f; }
 
-.critical { border-left-color: var(--accent-critical); background: var(--critical-bg); }
+.critical { border-left-color: var(--accent-critical); }
 .critical .title, .critical .icon { color: var(--accent-critical); }
 
 @media (max-width: 640px) {
