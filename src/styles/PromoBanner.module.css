@@ -1,45 +1,104 @@
 /* ============================================
-   PROMO BANNER — The House Year announcement bar
-   Navy strip above the header; blueprint-mono voice.
+   PROMO BANNER — The House Year ad slot
+   Under the header, above content. Brand tokens from
+   the creative: green #2E5D4F · warm white #FDFBF6 ·
+   cream #F6F1E7 · gold #C9A25E / #A9834B · ink #1B1712
    ============================================ */
+.slot {
+  background: var(--bg-primary);
+  padding: 12px var(--container-padding-mobile);
+  display: flex;
+  justify-content: center;
+}
+
 .banner {
-  display: block;
-  background: var(--navy);
-  padding: 9px var(--container-padding-mobile);
-  text-align: center;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  line-height: 1.5;
-  letter-spacing: 0.06em;
-  color: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+  max-width: 970px;
+  background: #2e5d4f;
+  box-shadow: inset 0 0 0 1px #1b1712;
+  padding: 13px 26px;
+  font-family: var(--font-display);
   text-decoration: none;
 }
-.banner:hover { color: var(--cream); text-decoration: none; }
-.banner:hover .name { text-decoration: underline; text-underline-offset: 3px; }
+.banner:hover { text-decoration: none; }
+.banner:hover .headline { text-decoration: underline; text-underline-offset: 4px; }
 
-.chip {
-  display: inline-block;
-  margin-right: 10px;
-  padding: 1px 7px;
-  border: 1px solid var(--accent-primary);
-  color: var(--accent-primary);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  vertical-align: 1px;
+.lead { display: flex; align-items: center; gap: 16px; min-width: 0; }
+.wheel { width: 46px; height: 46px; flex-shrink: 0; }
+.headline {
+  font-weight: 600;
+  font-size: 21px;
+  line-height: 1.2;
+  color: #fdfbf6;
+  letter-spacing: -0.01em;
 }
 
-.name {
-  font-weight: 700;
-  letter-spacing: 0.12em;
+.offer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  flex-shrink: 0;
+}
+.ticket {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f6f1e7;
+  border-radius: 6px;
+  padding: 6px 18px 7px;
+}
+.ticket::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border: 1px solid #a9834b;
+  border-radius: 3px;
+  pointer-events: none;
+}
+.ticketHeader {
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
+  color: #6a6151;
+}
+.ticketCode {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #2a241a;
+  line-height: 1.2;
+}
+.then { font-size: 10.5px; color: #dfe9e2; }
+
+.button {
+  flex-shrink: 0;
+  background: #fdfbf6;
+  border-radius: 10px;
+  padding: 9px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #2e5d4f;
 }
 
-.tag { color: rgba(246, 241, 228, 0.78); }
-
-.arrow { color: var(--accent-primary); font-weight: 700; }
-
-@media (max-width: 720px) {
-  .tag { display: none; }
+@media (max-width: 900px) {
+  .button { display: none; }
+}
+@media (max-width: 640px) {
+  .banner {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    text-align: center;
+  }
+  .wheel { width: 34px; height: 34px; }
+  .headline { font-size: 17px; }
+  .lead { gap: 12px; }
 }

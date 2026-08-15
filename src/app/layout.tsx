@@ -167,8 +167,8 @@ export default function RootLayout({
 
         <AnalyticsRouteHandler />
         <BreadcrumbSchema />
-        <PromoBanner />
         <Header />
+        <PromoBanner />
         <main>{children}</main>
         <Footer />
       </body>
