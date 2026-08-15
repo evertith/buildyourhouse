@@ -1,0 +1,45 @@
+/* ============================================
+   PROMO BANNER — The House Year announcement bar
+   Navy strip above the header; blueprint-mono voice.
+   ============================================ */
+.banner {
+  display: block;
+  background: var(--navy);
+  padding: 9px var(--container-padding-mobile);
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+  color: var(--cream);
+  text-decoration: none;
+}
+.banner:hover { color: var(--cream); text-decoration: none; }
+.banner:hover .name { text-decoration: underline; text-underline-offset: 3px; }
+
+.chip {
+  display: inline-block;
+  margin-right: 10px;
+  padding: 1px 7px;
+  border: 1px solid var(--accent-primary);
+  color: var(--accent-primary);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  vertical-align: 1px;
+}
+
+.name {
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.tag { color: rgba(246, 241, 228, 0.78); }
+
+.arrow { color: var(--accent-primary); font-weight: 700; }
+
+@media (max-width: 720px) {
+  .tag { display: none; }
+}

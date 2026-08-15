@@ -3,6 +3,7 @@ import Script from "next/script";
 import { Fraunces, Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import PromoBanner from "@/components/PromoBanner";
 import AnalyticsRouteHandler from "@/components/AnalyticsRouteHandler";
 import BreadcrumbSchema from "@/components/BreadcrumbSchema";
 import "@/styles/globals.css";
@@ -166,6 +167,7 @@ export default function RootLayout({
 
         <AnalyticsRouteHandler />
         <BreadcrumbSchema />
+        <PromoBanner />
         <Header />
         <main>{children}</main>
         <Footer />
