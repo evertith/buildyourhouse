@@ -11,15 +11,20 @@ export const metadata: Metadata = {
 export default function Contact() {
   return (
     <div className={styles.page}>
-      <div className={styles.container}>
-        <header className={styles.header}>
+      <header className={`${styles.header} bp-band bp-grid`}>
+        <span className={`${styles.crop} ${styles.tl}`} />
+        <span className={`${styles.crop} ${styles.tr}`} />
+        <div className={styles.headerInner}>
+          <p className={`bp-eyebrow ${styles.eyebrow}`}>Contact</p>
           <h1>Get In Touch</h1>
           <p className={styles.subtitle}>
             Questions about building your own home? Need to point out something on the site?
             We're here to help.
           </p>
-        </header>
+        </div>
+      </header>
 
+      <div className={styles.container}>
         <div className={styles.content}>
           <section className={styles.mainSection}>
             <h2>How Can We Help?</h2>

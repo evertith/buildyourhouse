@@ -15,6 +15,15 @@ export interface CalcMeta {
   heroUnit: string;
   relatedGuide: { href: string; label: string };
   relatedCalcs: string[];
+  /** Trade takeoff (TO-*) or planning worksheet (W-*). Default 'takeoff'. */
+  kind?: 'takeoff' | 'worksheet';
+  /** Route override for entries outside /calculators/<slug>. */
+  href?: string;
+}
+
+/** Canonical route for a calculator. */
+export function calcHref(meta: CalcMeta): string {
+  return meta.href ?? `/calculators/${meta.slug}`;
 }
 
 export const CALCULATORS: CalcMeta[] = [
@@ -80,6 +89,48 @@ export const CALCULATORS: CalcMeta[] = [
     heroUnit: 'bags',
     relatedGuide: { href: '/build-phases/insulation', label: 'Insulation phase guide' },
     relatedCalcs: ['drywall', 'framing-lumber', 'roofing'],
+  },
+  // Planning worksheets (W-01 … W-04) — whole-build numbers, same chassis.
+  {
+    slug: 'cost-savings-calculator',
+    sheetNo: 'W-01',
+    name: 'Cost Savings Calculator',
+    blurb: 'Gut-check whether owner-building pencils out: the GC fee you avoid, honestly separated from the value of your own hours.',
+    heroUnit: 'saved',
+    kind: 'worksheet',
+    href: '/feasibility/cost-savings-calculator',
+    relatedGuide: { href: '/start-here', label: 'Start-here roadmap' },
+    relatedCalcs: ['material-estimator', 'budget-tracker', 'timeline-estimator'],
+  },
+  {
+    slug: 'material-estimator',
+    sheetNo: 'W-02',
+    name: 'Whole-House Material Estimator',
+    blurb: 'Planning-level quantities for the entire build — concrete through insulation — from square footage and finish level.',
+    heroUnit: 'estimate',
+    kind: 'worksheet',
+    relatedGuide: { href: '/planning/creating-budget', label: 'Budget planning guide' },
+    relatedCalcs: ['framing-lumber', 'concrete-slab', 'cost-savings-calculator'],
+  },
+  {
+    slug: 'timeline-estimator',
+    sheetNo: 'W-03',
+    name: 'Timeline Estimator',
+    blurb: 'A realistic build schedule from your hours per week, DIY share, and experience — phase by phase.',
+    heroUnit: 'months',
+    kind: 'worksheet',
+    relatedGuide: { href: '/timing-and-scheduling/realistic-timeline', label: 'Realistic timeline guide' },
+    relatedCalcs: ['budget-tracker', 'cost-savings-calculator', 'material-estimator'],
+  },
+  {
+    slug: 'budget-tracker',
+    sheetNo: 'W-04',
+    name: 'Budget Tracker',
+    blurb: 'Budget vs. actual by phase, with contingency burn — so overruns surface early instead of at the end.',
+    heroUnit: 'variance',
+    kind: 'worksheet',
+    relatedGuide: { href: '/planning/creating-budget', label: 'Budget planning guide' },
+    relatedCalcs: ['material-estimator', 'timeline-estimator', 'cost-savings-calculator'],
   },
 ];
 

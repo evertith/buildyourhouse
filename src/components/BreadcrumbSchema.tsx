@@ -6,8 +6,9 @@ import { labelForSegment } from "@/lib/route-labels";
 
 const BASE_URL = "https://build-your-house.com";
 
-// Sections with no index page — including them as linked crumbs would point at 404s.
-const NON_LINKABLE_SEGMENTS = new Set(["planning", "move-in", "feasibility"]);
+// Sections with no index page — including them as linked crumbs would point at
+// 404s. Empty since Aug 2026: /planning, /move-in, and /feasibility hubs exist.
+const NON_LINKABLE_SEGMENTS = new Set<string>();
 
 /**
  * Emits BreadcrumbList JSON-LD derived from the current path. Rendered from the

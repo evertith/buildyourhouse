@@ -6,7 +6,7 @@
 import Link from 'next/link';
 import { ReactNode } from 'react';
 import s from '@/styles/CalcSheet.module.css';
-import { relatedCalcsFor } from '@/lib/calc/registry';
+import { calcHref, relatedCalcsFor } from '@/lib/calc/registry';
 
 interface CalcHeroProps {
   title: string;
@@ -106,7 +106,7 @@ export function RelatedCalcs({ slug }: { slug: string }) {
       <span className={s.relatedLabel}>Related sheets</span>
       <div className={s.relatedGrid}>
         {related.map((c) => (
-          <Link key={c.slug} href={`/calculators/${c.slug}`} className={s.relatedCell}>
+          <Link key={c.slug} href={calcHref(c)} className={s.relatedCell}>
             <span className={s.relatedNo}>{c.sheetNo}</span>
             <span className={s.relatedName}>{c.name}</span>
           </Link>

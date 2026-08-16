@@ -2,8 +2,8 @@
 
 import { Suspense, useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
-import Section from '@/components/Section';
 import { trackEvent } from '@/lib/analytics';
+import styles from '../transaction.module.css';
 
 const WORKER_BASE_URL = 'https://buildyourhouse-downloads.azerothcorner.workers.dev';
 
@@ -29,6 +29,42 @@ const SKU_PRICES: Record<string, number> = {
   'sub-hiring-pack': 29,
   'printed-binder': 149,
 };
+
+// Worded to hold for every SKU in the shop, not just the binder — the same
+// page confirms a $29 pack and a $149 printed edition.
+const STEPS: { no: string; title: string; copy: string }[] = [
+  {
+    no: 'Step 01',
+    title: 'Download & unzip',
+    copy: 'Save the ZIP file to your computer and extract it. You’ll find the documents organized into folders.',
+  },
+  {
+    no: 'Step 02',
+    title: 'Read the how-to-use guide',
+    copy: 'Open the how-to-use document first. It walks you through what’s in the download and the order to work through it.',
+  },
+  {
+    no: 'Step 03',
+    title: 'Print & assemble',
+    copy: 'Print at home or take the PDFs to an office supply store. A 3-ring binder with tab dividers keeps each section findable.',
+  },
+  {
+    no: 'Step 04',
+    title: 'Build with confidence',
+    copy: 'Take the paper to the job site. Everything you need is organized and ready — no phone required.',
+  },
+];
+
+function CropMarks() {
+  return (
+    <>
+      <span className={`${styles.crop} ${styles.tl}`} />
+      <span className={`${styles.crop} ${styles.tr}`} />
+      <span className={`${styles.crop} ${styles.bl}`} />
+      <span className={`${styles.crop} ${styles.br}`} />
+    </>
+  );
+}
 
 function SuccessContent() {
   const searchParams = useSearchParams();
@@ -88,160 +124,167 @@ function SuccessContent() {
 
   if (!sessionId) {
     return (
-      <div className="content-container">
-        <Section spacing="large">
-          <div style={{ textAlign: 'center', maxWidth: '600px', margin: '0 auto' }}>
-            <h1 style={{ fontSize: 'var(--text-3xl)', marginBottom: 'var(--space-6)' }}>
-              Looking for Your Download?
-            </h1>
-            <p style={{
-              fontSize: 'var(--text-lg)',
-              color: 'var(--text-secondary)',
-              marginBottom: 'var(--space-8)',
-              lineHeight: 'var(--leading-relaxed)',
-            }}>
-              If you already purchased the Job Site Binder System, check your email for
-              the receipt from Stripe — it contains your order confirmation.
-            </p>
-            <a
-              href="/shop"
-              className="button button-large"
-              style={{
-                fontSize: 'var(--text-lg)',
-                padding: 'var(--space-4) var(--space-10)',
-              }}
-            >
-              Go to Shop
-            </a>
+      <div className={styles.page}>
+        <section className={`${styles.hero} bp-band bp-grid`}>
+          <CropMarks />
+          <div className={styles.heroInner}>
+            <div className={styles.heroBody}>
+              <div className={`${styles.eyebrow} bp-eyebrow`}>No order on this link</div>
+              <h1 className={styles.heroTitle}>Looking for your download?</h1>
+              <p className={styles.heroSub}>
+                This page needs an order attached to it, and there isn’t one.
+              </p>
+              <p className={styles.heroCopy}>
+                If you already bought from the shop, check your email for the receipt from
+                Stripe — it confirms your order. To get your files again, look the order up
+                with the email address you paid with.
+              </p>
+              <div className={styles.heroCtas}>
+                <a href="/shop/recover" className={styles.btnPrimary}>
+                  Recover my download
+                </a>
+                <a href="/shop" className={styles.btnGhost}>
+                  Go to the shop
+                </a>
+              </div>
+            </div>
           </div>
-        </Section>
+        </section>
       </div>
     );
   }
 
   return (
-    <div className="content-container">
-      <Section spacing="large">
-        <div style={{ textAlign: 'center', maxWidth: '700px', margin: '0 auto' }}>
-          <div style={{ fontSize: 'var(--text-4xl)', marginBottom: 'var(--space-4)' }}>
-            &#10003;
-          </div>
-          <h1 style={{
-            fontSize: 'var(--text-3xl)',
-            marginBottom: 'var(--space-4)',
-            lineHeight: 'var(--leading-tight)',
-          }}>
-            Thank You for Your Purchase!
-          </h1>
-          <p style={{
-            fontSize: 'var(--text-lg)',
-            color: 'var(--text-secondary)',
-            marginBottom: 'var(--space-10)',
-            lineHeight: 'var(--leading-relaxed)',
-          }}>
-            {product?.kind === 'ship'
-              ? 'Your printed binder is headed to production — and your digital copy is ready to download right now.'
-              : `Your ${product?.name ?? 'purchase'} is ready to download.`}{' '}
-            You&apos;ll also receive a receipt from Stripe at the email you provided.
-          </p>
-
-          <a
-            href={downloadUrl(sessionId)}
-            className="button button-large"
-            style={{
-              fontSize: 'var(--text-xl)',
-              padding: 'var(--space-6) var(--space-12)',
-            }}
-            onClick={() =>
-              trackEvent('binder_download', {
-                item_name: product?.sku ?? 'unknown',
-              })
-            }
-          >
-            Download Your Files (ZIP)
-          </a>
-
-          <p style={{
-            marginTop: 'var(--space-3)',
-            fontSize: 'var(--text-sm)',
-            color: 'var(--text-secondary)',
-          }}>
-            ZIP file with print-ready PDFs{product?.sku === 'sub-hiring-pack'
-              ? ' plus editable Word contract documents'
-              : product?.sku === 'job-site-binder' || product?.sku === 'printed-binder'
-                ? ', editable Word contracts, and Excel budget workbooks'
-                : ''}
-          </p>
-
-          <p style={{
-            marginTop: 'var(--space-2)',
-            fontSize: 'var(--text-sm)',
-            color: 'var(--text-secondary)',
-          }}>
-            Save the file somewhere safe. If you ever lose it, you can recover
-            your download at{' '}
-            <a href="/shop/recover">build-your-house.com/shop/recover</a> with
-            your purchase email.
-          </p>
-        </div>
-      </Section>
-
-      <Section title="What to Do Next" spacing="large" background="warm">
-        <div className="how-it-works-grid">
-          <div className="step-card">
-            <div className="step-number">1</div>
-            <h3>Download & Unzip</h3>
-            <p>
-              Save the ZIP file to your computer and extract it.
-              You&apos;ll find organized folders for each binder section.
+    <div className={styles.page}>
+      {/* ---------- CONFIRMATION + DOWNLOAD ---------- */}
+      <section className={`${styles.hero} bp-band bp-grid`}>
+        <CropMarks />
+        <div className={styles.heroInner}>
+          <div className={styles.heroBody}>
+            <div className={`${styles.eyebrow} bp-eyebrow`}>Payment received</div>
+            <h1 className={styles.heroTitle}>Thank you for your purchase.</h1>
+            <p className={styles.heroSub}>
+              {product?.kind === 'ship'
+                ? 'Your printed binder is headed to production — and your digital copy is ready to download right now.'
+                : `Your ${product?.name ?? 'purchase'} is ready to download.`}
             </p>
-          </div>
-
-          <div className="step-card">
-            <div className="step-number">2</div>
-            <h3>Read the How-to-Use Guide</h3>
-            <p>
-              Open &ldquo;HOW TO USE THIS BINDER&rdquo; first. It walks you
-              through how to assemble your binder step by step.
+            <p className={styles.heroCopy}>
+              You’ll also receive a receipt from Stripe at the email you provided.
             </p>
-          </div>
 
-          <div className="step-card">
-            <div className="step-number">3</div>
-            <h3>Print & Assemble</h3>
-            <p>
-              Print at home or take to an office supply store.
-              Use a 3-ring binder with tab dividers for each section.
-            </p>
-          </div>
+            <div className={styles.receipt}>
+              <div className={styles.rcell}>
+                <span className={styles.k}>Product</span>
+                <span className={`${styles.v} ${styles.vName}`}>
+                  {product?.name ?? 'Your purchase'}
+                </span>
+              </div>
+              <div className={styles.rcell}>
+                <span className={styles.k}>Access</span>
+                <span className={styles.v}>Lifetime</span>
+              </div>
+              <div className={styles.rcell}>
+                <span className={styles.k}>Order ref</span>
+                <span className={`${styles.v} ${styles.vMono}`}>
+                  {sessionId.slice(-8).toUpperCase()}
+                </span>
+              </div>
+            </div>
 
-          <div className="step-card">
-            <div className="step-number">4</div>
-            <h3>Build With Confidence</h3>
-            <p>
-              Take your binder to the job site. Everything you need
-              is organized and ready — no phone required.
+            <div className={styles.heroCtas}>
+              <a
+                href={downloadUrl(sessionId)}
+                className={`${styles.btnPrimary} ${styles.btnBig}`}
+                onClick={() =>
+                  trackEvent('binder_download', {
+                    item_name: product?.sku ?? 'unknown',
+                  })
+                }
+              >
+                Download your files (ZIP)
+              </a>
+            </div>
+
+            <p className={styles.heroFine}>
+              ZIP file with print-ready PDFs{product?.sku === 'sub-hiring-pack'
+                ? ' plus editable Word contract documents'
+                : product?.sku === 'job-site-binder' || product?.sku === 'printed-binder'
+                  ? ', editable Word contracts, and Excel budget workbooks'
+                  : ''}
             </p>
           </div>
         </div>
-      </Section>
+      </section>
+
+      {/* ---------- WHAT TO DO NEXT ---------- */}
+      <section className={styles.block}>
+        <div className={styles.wrap}>
+          <div className={styles.secHead}>
+            <div>
+              <div className={styles.secLabel}>What to do next</div>
+              <h2 className={styles.secTitle}>From download to job site</h2>
+            </div>
+            <div className={styles.secMeta}>
+              Print at home
+              <br />
+              or at a copy shop
+            </div>
+          </div>
+
+          <div className={styles.steps}>
+            {STEPS.map((s) => (
+              <div key={s.no} className={styles.step}>
+                <span className={styles.stepNo}>{s.no}</span>
+                <h3 className={styles.stepTitle}>{s.title}</h3>
+                <p className={styles.stepCopy}>{s.copy}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ---------- KEEP THE FILE ---------- */}
+      <section className={styles.block}>
+        <div className={styles.wrap}>
+          <div className={styles.panel}>
+            <div className={styles.panelNo}>
+              <span>Keep this</span>
+              <span>Lifetime access</span>
+            </div>
+            <h2 className={styles.panelTitle}>Save the file somewhere safe</h2>
+            <p className={styles.panelCopy}>
+              Your download doesn’t expire. If you ever lose the ZIP — new computer, wiped
+              downloads folder, deleted email — you can recover it any time with the email
+              address you used at checkout.
+            </p>
+            <a className={styles.panelLink} href="/shop/recover">
+              Recover a download <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
 
 export default function SuccessPage() {
   return (
-    <Suspense fallback={
-      <div className="content-container">
-        <Section spacing="large">
-          <div style={{ textAlign: 'center' }}>
-            <p style={{ fontSize: 'var(--text-lg)', color: 'var(--text-secondary)' }}>
-              Loading...
-            </p>
-          </div>
-        </Section>
-      </div>
-    }>
+    <Suspense
+      fallback={
+        <div className={styles.page}>
+          <section className={`${styles.hero} bp-band bp-grid`}>
+            <CropMarks />
+            <div className={styles.heroInner}>
+              <div className={styles.heroBody}>
+                <div className={`${styles.eyebrow} bp-eyebrow`}>Payment received</div>
+                <h1 className={styles.heroTitle}>Thank you for your purchase.</h1>
+                <p className={styles.loading}>Loading your order…</p>
+              </div>
+            </div>
+          </section>
+        </div>
+      }
+    >
       <SuccessContent />
     </Suspense>
   );

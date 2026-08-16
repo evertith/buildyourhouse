@@ -14,6 +14,7 @@
 import { ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 import s from '@/styles/CalcSheet.module.css';
 import { CalcResult } from '@/lib/calc/types';
+import { calcBySlug, calcHref } from '@/lib/calc/registry';
 import { formatCostRange, formatCurrency, formatQty } from '@/lib/calc/format';
 import { trackEvent } from '@/lib/analytics';
 import EstimateCapture from './EstimateCapture';
@@ -38,6 +39,8 @@ interface CalcSheetProps {
   barsLabel?: string;
   /** One-line basis for the fine print: "quantities assume …" */
   finePrintBasis: string;
+  /** Inputs-column header — override for worksheets ("Build profile"). */
+  inputsLabel?: string;
   children: ReactNode; // input fields
 }
 
@@ -53,6 +56,7 @@ export default function CalcSheet({
   bars,
   barsLabel,
   finePrintBasis,
+  inputsLabel = 'Field measurements',
   children,
 }: CalcSheetProps) {
   const [copied, setCopied] = useState(false);
@@ -63,6 +67,13 @@ export default function CalcSheet({
   const useTracked = useRef(false);
 
   const resultKey = useMemo(() => JSON.stringify(result), [result]);
+
+  const hasCost = typeof result.costLow === 'number' && typeof result.costHigh === 'number';
+  // Registry href, not /calculators/<slug> — W-01 lives under /feasibility.
+  const meta = calcBySlug(slug);
+  const sheetPath = meta ? calcHref(meta) : `/calculators/${slug}`;
+  const heroValue =
+    result.hero.kind === 'currency' ? formatCurrency(result.hero.qty) : formatQty(result.hero.qty);
 
   // Debounced SR announcement + one-shot calculator_use (spec §5.3–5.4):
   // never on initial load, never per keystroke.
@@ -76,9 +87,11 @@ export default function CalcSheet({
         .slice(0, 3)
         .map((l) => `${formatQty(l.qty)} ${l.unit} ${l.label.toLowerCase()}`)
         .join(', ');
-      setAnnouncement(
-        `Takeoff updated: ${topLines}, cost ${formatCurrency(result.costLow)} to ${formatCurrency(result.costHigh)}.`
-      );
+      const costPhrase =
+        typeof result.costLow === 'number' && typeof result.costHigh === 'number'
+          ? `, cost ${formatCurrency(result.costLow)} to ${formatCurrency(result.costHigh)}`
+          : '';
+      setAnnouncement(`Takeoff updated: ${topLines}${costPhrase}.`);
       if (!useTracked.current) {
         useTracked.current = true;
         trackEvent('calculator_use', { calculator: slug });
@@ -106,7 +119,7 @@ export default function CalcSheet({
   const copyTakeoff = async () => {
     const text = [
       `${calculatorName} — takeoff (${sheetNo})`,
-      `build-your-house.com/calculators/${slug}`,
+      `build-your-house.com${sheetPath}`,
       '',
       'Inputs:',
       ...inputsSummary.map((i) => `  ${i.label}: ${i.value}`),
@@ -114,7 +127,9 @@ export default function CalcSheet({
       'Materials:',
       ...result.lines.map((l) => `  ${l.label}: ${formatQty(l.qty)} ${l.unit}`),
       '',
-      `Estimated material cost: ${formatCostRange(result.costLow, result.costHigh)}`,
+      ...(hasCost
+        ? [`Estimated material cost: ${formatCostRange(result.costLow!, result.costHigh!)}`]
+        : []),
       'Estimate only — verify against your plans and local prices.',
     ].join('\n');
     try {
@@ -134,13 +149,13 @@ export default function CalcSheet({
   const estimatePayload = {
     calculator: slug,
     calculatorName,
-    hero: `${formatQty(result.hero.qty)} ${result.hero.unit}`,
+    hero: result.hero.kind === 'currency' ? heroValue : `${heroValue} ${result.hero.unit}`,
     inputs: inputsSummary,
     lines: result.lines.map((l) => ({
       label: l.label,
       value: `${formatQty(l.qty)} ${l.unit}${l.detail ? ` — ${l.detail}` : ''}`,
     })),
-    cost: formatCostRange(result.costLow, result.costHigh),
+    cost: hasCost ? formatCostRange(result.costLow!, result.costHigh!) : '',
   };
 
   return (
@@ -159,7 +174,7 @@ export default function CalcSheet({
 
       <div className={s.sheetBody}>
         <div className={s.inputsCol}>
-          <p className={s.colLabel}>Field measurements</p>
+          <p className={s.colLabel}>{inputsLabel}</p>
           {children}
         </div>
 
@@ -167,7 +182,7 @@ export default function CalcSheet({
           <div aria-hidden="true">
             <p className={s.colLabel}>Materials schedule</p>
             <div className={s.heroQty}>
-              <span className={s.heroQtyVal}>{formatQty(result.hero.qty)}</span>
+              <span className={s.heroQtyVal}>{heroValue}</span>
               <span className={s.heroQtyUnit}>
                 {/* Skip the unit when the label already carries it ("Total studs"). */}
                 {result.hero.label.toLowerCase().includes(result.hero.unit.toLowerCase())
@@ -187,21 +202,23 @@ export default function CalcSheet({
               ))}
             </ul>
 
-            <div className={s.costDim}>
-              <p className={s.costDimLabel}>
-                Estimated material cost
-                <span className={s.costDimNote}>national range</span>
-              </p>
-              <div
-                className={s.costDimBar}
-                role="img"
-                aria-label={`Estimated material cost between ${formatCurrency(result.costLow)} and ${formatCurrency(result.costHigh)}`}
-              >
-                <span className={s.costLow}>{formatCurrency(result.costLow)}</span>
-                <span className={s.costTrack}><span className={s.costSpan} /></span>
-                <span className={s.costHigh}>{formatCurrency(result.costHigh)}</span>
+            {hasCost && (
+              <div className={s.costDim}>
+                <p className={s.costDimLabel}>
+                  Estimated material cost
+                  <span className={s.costDimNote}>national range</span>
+                </p>
+                <div
+                  className={s.costDimBar}
+                  role="img"
+                  aria-label={`Estimated material cost between ${formatCurrency(result.costLow!)} and ${formatCurrency(result.costHigh!)}`}
+                >
+                  <span className={s.costLow}>{formatCurrency(result.costLow!)}</span>
+                  <span className={s.costTrack}><span className={s.costSpan} /></span>
+                  <span className={s.costHigh}>{formatCurrency(result.costHigh!)}</span>
+                </div>
               </div>
-            </div>
+            )}
 
             {bars && bars.length > 1 && (
               <div className={s.bars}>
@@ -222,9 +239,15 @@ export default function CalcSheet({
             )}
 
             <p className={s.finePrint}>
-              Estimate only. Quantities assume {finePrintBasis}; order after a
-              takeoff from your actual plans. Prices are national ranges,
-              August 2026 — get local quotes.
+              {hasCost ? (
+                <>
+                  Estimate only. Assumes {finePrintBasis}; order after a takeoff
+                  from your actual plans. Prices are national ranges, August
+                  2026 — get local quotes.
+                </>
+              ) : (
+                <>Estimate only. Assumes {finePrintBasis}.</>
+              )}
             </p>
           </div>
 
@@ -238,7 +261,7 @@ export default function CalcSheet({
       <EstimateCapture payload={estimatePayload} />
 
       <p className={s.printMeta}>
-        Printed from build-your-house.com/calculators/{slug} — estimate only.
+        Printed from build-your-house.com{sheetPath} — estimate only.
       </p>
 
       <div
@@ -246,7 +269,8 @@ export default function CalcSheet({
         aria-hidden="true"
       >
         <span className={s.stickyBarQty}>
-          {formatQty(result.hero.qty)} {result.hero.unit}
+          {/* unit carries the direction word for currency heroes ("saved", "unspent") */}
+          {heroValue} {result.hero.unit}
         </span>
         <a href="#takeoff" className={s.stickyBarLink}>View takeoff →</a>
       </div>

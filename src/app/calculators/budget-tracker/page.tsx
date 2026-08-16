@@ -1,332 +1,296 @@
-import BinderCTA from '@/components/BinderCTA';
-import BudgetTrackerCalculator from '@/components/BudgetTrackerCalculator';
 import type { Metadata } from 'next';
-import styles from '../../feasibility/cost-savings-calculator/calculator-page.module.css';
+import s from '@/styles/CalcSheet.module.css';
+import BudgetTrackerCalc from '@/components/calc/BudgetTrackerCalc';
+import { CalcHero, CalcSection, AssumptionsTable, CalcFAQ, RelatedCalcs } from '@/components/calc/sections';
+import BinderCTA from '@/components/BinderCTA';
+import { generateFAQSchema, schemaToScriptTag } from '@/lib/schema';
 
 export const metadata: Metadata = {
   alternates: { canonical: '/calculators/budget-tracker' },
   title: 'Free Construction Budget Tracker — Budgeted vs. Actual Costs',
-  description: 'Track your owner-builder budget in real time. Compare budgeted vs. actual costs by phase, spot overruns early, and stay on track.',
+  description:
+    'Track your owner-builder budget in real time. Compare budgeted vs. actual costs by phase, spot overruns early, and stay on track.',
 };
+
+const FAQS = [
+  {
+    question: 'How much contingency should an owner-builder budget?',
+    answer:
+      'Ten to twenty percent of the planned total, and 15% is the usual starting point on this sheet. Below 10% you are betting that nothing goes wrong on a project with hundreds of ways to go wrong. Above 20% and you are probably padding a budget you do not trust — tighten the estimate instead, because a fat contingency tends to get spent.',
+  },
+  {
+    question: 'What is budget variance, and when should I worry?',
+    answer:
+      'Variance is planned minus actual for each phase: positive means the phase came in under, negative means it ran over. This sheet counts a phase as on track while it is within 5% of plan. Worry when the overruns cluster early — a 10% overrun on foundation, framing, and rough-ins puts you 30% over before you have bought a single cabinet.',
+  },
+  {
+    question: 'When have I used too much contingency?',
+    answer:
+      'Compare the reserve you have burned to the share of the project still ahead of you. If you have spent more than half the contingency by the halfway mark, you are on track for budget trouble and it is time to make cuts. This worksheet draws overruns out of the reserve automatically so you can see the burn as it happens instead of at the end.',
+  },
+  {
+    question: 'What do I do if I am already over budget?',
+    answer:
+      'In order: use the contingency reserve, downgrade finishes you have not bought yet, increase your DIY share on the phases ahead, reduce scope, defer non-essential work until after move-in, and only then look for more funding. The cheapest cuts are always the ones on work that has not started.',
+  },
+  {
+    question: 'What costs do owner-builders forget to budget?',
+    answer:
+      'Soft costs — permits, impact fees, utility connections, temporary power, dumpsters, tool rental, and builder’s risk insurance — run 8–15% of hard costs and are missing from most first budgets. Site work and landscaping are the other two categories that routinely appear only after the money is spoken for.',
+  },
+  {
+    question: 'Are the numbers I type here saved anywhere?',
+    answer:
+      'They stay in your own browser so the sheet still has your figures when you come back to it next week. Nothing is sent to a server unless you choose to email yourself a copy. Clearing your browser data or switching devices clears the entries, so keep the real record in a spreadsheet or the binder workbook — this is a check gauge, not your books.',
+  },
+];
+
+const faqSchema = generateFAQSchema(FAQS);
 
 export default function BudgetTrackerPage() {
   return (
-    <div className={styles.page}>
-      <div className={styles.container}>
-        <header className={styles.header}>
-          <h1>Build Budget Tracker</h1>
-          <p className={styles.subtitle}>
-            Stay on top of your construction costs with real-time budget tracking. Compare your
-            budgeted amounts to actual spending by phase, monitor your contingency reserve, and get
-            actionable recommendations when variances occur. Knowledge is power when managing a six-figure project.
-          </p>
-        </header>
+    <div className={s.calcPage}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: schemaToScriptTag(faqSchema) }}
+      />
 
-        <BudgetTrackerCalculator />
+      <CalcHero
+        title="Build Budget Tracker"
+        sub="Planned against actual, phase by phase, with the contingency burn in plain sight — so an overrun shows up while you can still do something about it."
+        cells={[
+          { k: 'Sheet', v: 'W-04' },
+          { k: 'Returns', v: 'Variance' },
+          { k: 'Scope', v: 'Whole build' },
+          { k: 'Basis', v: 'Your figures' },
+        ]}
+      />
 
-        <section className={styles.info}>
-          <h2>Why Budget Tracking Matters</h2>
+      <div className={s.sheetWrap}>
+        <BudgetTrackerCalc />
+      </div>
 
-          <div className={styles.infoGrid}>
-            <div className={styles.infoCard}>
-              <h3>Early Warning System</h3>
-              <p>
-                The worst thing that can happen is discovering you're over budget when you're 80% done.
-                Tracking budget vs. actual costs by phase gives you early warning when costs are trending
-                high, allowing you to adjust before it's too late.
-              </p>
-              <p>
-                <strong>Real example:</strong> If your foundation came in 15% over budget, you know
-                immediately to cut costs on finishes or increase your loan amount - not at the end when
-                you can't afford cabinets.
-              </p>
-            </div>
-
-            <div className={styles.infoCard}>
-              <h3>Variance Analysis</h3>
-              <p>
-                Understanding where and why you're over or under budget helps you make better decisions
-                going forward. Was framing over budget because of lumber price increases? Poor estimating?
-                Scope creep? Each cause requires a different response.
-              </p>
-              <p>
-                <strong>Key insight:</strong> Small overruns on early phases compound. A 10% overrun
-                on foundation, framing, and rough-ins leaves you 30% over budget before you reach finishes.
-              </p>
-            </div>
-
-            <div className={styles.infoCard}>
-              <h3>Contingency Management</h3>
-              <p>
-                Your contingency reserve (typically 10-20% of budget) is your safety net. Tracking how
-                much contingency you've used versus how much project remains helps you gauge risk and
-                make strategic decisions.
-              </p>
-              <p>
-                <strong>Rule of thumb:</strong> If you've used more than 50% of contingency by the
-                50% completion mark, you're likely headed for budget trouble. Time to make cuts.
-              </p>
-            </div>
-
-            <div className={styles.infoCard}>
-              <h3>Scope Control</h3>
-              <p>
-                Budget tracking forces discipline around scope changes. When you see real numbers,
-                it's easier to say no to that expensive upgrade. Every "small" change shows up as
-                variance, making the cumulative impact visible.
-              </p>
-              <p>
-                <strong>Owner-builder trap:</strong> DIY builders often add features mid-build
-                ("while we're at it"). These "small" upgrades can blow your budget without tracking.
-              </p>
-            </div>
-
-            <div className={styles.infoCard}>
-              <h3>Cash Flow Planning</h3>
-              <p>
-                Knowing your actual vs. budgeted spend helps you plan when you'll need cash. If you're
-                consistently under budget, you can delay draws. If over budget, you need to arrange
-                additional funding before you run out.
-              </p>
-              <p>
-                <strong>Critical timing:</strong> Running out of cash mid-project is catastrophic.
-                Track spending to ensure you have funds when needed for each phase.
-              </p>
-            </div>
-
-            <div className={styles.infoCard}>
-              <h3>Post-Project Learning</h3>
-              <p>
-                Detailed budget tracking creates a record of what your home actually cost to build.
-                This is valuable for insurance, future sales, additions, or helping other owner-builders
-                plan their projects.
-              </p>
-              <p>
-                <strong>Tax benefit:</strong> Detailed cost records help establish your cost basis
-                for capital gains calculations if you ever sell.
-              </p>
-            </div>
+      <div className={s.content}>
+        <CalcSection label="Methodology" title="How the variance is figured" meta="SHEET W-04">
+          <div className={s.prose}>
+            <p>
+              <strong>Variance.</strong> Planned minus actual, per phase and for the build as a
+              whole. Positive is money still in the plan; negative is an overrun. The sheet shows
+              the magnitude with the direction spelled out rather than a signed number, because a
+              minus sign in front of a dollar figure is read wrong about half the time.
+            </p>
+            <p>
+              <strong>The 5% band.</strong> A phase counts as on track while it lands within 5% of
+              its planned number, over or under. Construction estimates are not precise instruments,
+              and treating a 2% miss as a problem trains you to ignore the flags. Past 5% the phase
+              is called over or under and the flags fire.
+            </p>
+            <p>
+              <strong>Contingency.</strong> The reserve is a percentage of the planned total, not of
+              what you have spent. Only an overrun draws it down — running under budget does not
+              build it back above the original reserve, because the money you did not spend on
+              framing is not extra insurance, it is just money you have not spent yet.
+            </p>
+            <p>
+              <strong>What the sheet does not do.</strong> It does not estimate anything for you.
+              Every number here is one you typed, which is the point: the value is in the comparison
+              and the flags, not in the arithmetic. For planning-level numbers to start from, use the{' '}
+              <a href="/calculators/material-estimator">whole-house material estimator</a> and price
+              the phases you are about to start with real quotes.
+            </p>
           </div>
-        </section>
+        </CalcSection>
 
-        <section className={styles.reality}>
-          <h2>Common Budget Challenges</h2>
-          <p>
-            Based on 15+ years of managing construction budgets, here are the issues that derail
-            owner-builder budgets:
-          </p>
+        <CalcSection label="Assumptions" title="Bands, reserves, and defaults" meta="ADJUST ABOVE">
+          <AssumptionsTable
+            rows={[
+              { label: 'Variance', value: 'planned − actual' },
+              { label: 'On-track band', value: '± 5% of plan' },
+              { label: 'Contingency base', value: '% of planned total' },
+              { label: 'Contingency draw', value: 'overruns only' },
+              { label: 'Low-reserve flag', value: 'under 30% left' },
+              { label: 'High-variance flag', value: 'over 15% off plan' },
+              { label: 'Sample plan', value: '$250,000 across 6 phases' },
+              { label: 'Entries', value: 'stored in your browser' },
+            ]}
+          />
+        </CalcSection>
 
-          <div className={styles.considerations}>
-            <div className={styles.consideration}>
-              <h4>Optimistic Initial Budgets</h4>
-              <p>
-                Most owner-builders start with unrealistic budgets. They use best-case pricing, forget
-                entire categories (site work, permits, landscaping), and underestimate finish costs.
-                Build contingency and pad estimates by 10-15%.
-              </p>
-            </div>
-
-            <div className={styles.consideration}>
-              <h4>Scope Creep</h4>
-              <p>
-                "While we're at it" is the most expensive phrase in construction. Adding a window here,
-                upgrading a fixture there - these add up to thousands. Track every change as variance
-                to see the cumulative impact.
-              </p>
-            </div>
-
-            <div className={styles.consideration}>
-              <h4>Material Price Volatility</h4>
-              <p>
-                Lumber, concrete, and steel prices swing 30-100% in a year. Your budget from six months
-                ago may be worthless. Update material estimates based on current quotes before each phase.
-              </p>
-            </div>
-
-            <div className={styles.consideration}>
-              <h4>Forgotten Costs</h4>
-              <p>
-                Permits, impact fees, utility connections, temporary power, dumpsters, tool rental,
-                insurance - the "soft costs" add up to 8-15% of hard costs but are often forgotten in
-                initial budgets.
-              </p>
-            </div>
-
-            <div className={styles.consideration}>
-              <h4>Rework & Mistakes</h4>
-              <p>
-                First-time builders make mistakes. Failed inspections require rework. Changed minds
-                require demolition and reinstallation. Budget 5-10% for learning curve costs.
-              </p>
-            </div>
-
-            <div className={styles.consideration}>
-              <h4>Finish Fever</h4>
-              <p>
-                As the house takes shape, people get excited and upgrade finishes. Premium countertops,
-                better tile, upgraded fixtures - finish costs often exceed budget by 20-40%. Set limits
-                early and stick to them.
-              </p>
-            </div>
+        <CalcSection label="Context" title="Why budget tracking matters">
+          <div className={s.prose}>
+            <p>
+              <strong>Early warning.</strong> The worst thing that can happen is discovering you are
+              over budget when you are 80% done. Tracking budgeted against actual by phase gives you
+              warning while costs are only trending high. If the foundation came in 15% over, you
+              know immediately to cut finishes or increase the loan — not at the end, when you
+              cannot afford cabinets.
+            </p>
+            <p>
+              <strong>Variance analysis.</strong> Understanding where and why you are over or under
+              helps you make better decisions on the phases still ahead. Was framing over because
+              lumber moved, because the estimate was optimistic, or because the scope grew? Each
+              cause calls for a different response. Small early overruns compound: 10% over on
+              foundation, framing, and rough-ins leaves you 30% over before finishes.
+            </p>
+            <p>
+              <strong>Contingency management.</strong> Your reserve — typically 10–20% of budget —
+              is the safety net. Tracking how much you have used against how much project remains is
+              how you gauge risk. Rule of thumb: if you have used more than half the contingency by
+              the halfway mark, you are headed for trouble and it is time to cut.
+            </p>
+            <p>
+              <strong>Scope control.</strong> Tracking forces discipline around changes. When you see
+              real numbers it is easier to say no to the upgrade. Every small change shows up as
+              variance, which makes the cumulative impact visible — and owner-builders are
+              particularly prone to adding features mid-build because they are standing right there.
+            </p>
+            <p>
+              <strong>Cash flow.</strong> Knowing actual against budgeted tells you when you will
+              need money. Consistently under budget means you can delay draws; over budget means you
+              need to arrange funding before you run out. Running out of cash mid-project is
+              catastrophic in a way that being over budget on paper is not.
+            </p>
+            <p>
+              <strong>The record afterwards.</strong> Detailed tracking creates a record of what your
+              house actually cost, which is worth having for insurance, a future sale, an addition,
+              or helping the next owner-builder. It also establishes your cost basis for capital
+              gains if you ever sell.
+            </p>
           </div>
-        </section>
+        </CalcSection>
 
-        <section className={styles.reality} style={{ backgroundColor: 'var(--color-bg-light)', marginTop: '3rem' }}>
-          <h2>Budget Management Best Practices</h2>
-          <p>
-            Here's how successful owner-builders manage their budgets:
-          </p>
-
-          <div className={styles.considerations}>
-            <div className={styles.consideration}>
-              <h4>Update Weekly</h4>
-              <p>
-                Review and update your budget tracker every week. Enter all expenditures, get quotes
-                for upcoming work, and adjust estimates for remaining phases. Weekly updates catch
-                problems early when you can still fix them.
-              </p>
-            </div>
-
-            <div className={styles.consideration}>
-              <h4>Track Everything</h4>
-              <p>
-                Every receipt, every payment, every material purchase - track it all. Use a dedicated
-                credit card or checking account for the build. This makes tracking easier and separates
-                construction costs from personal spending.
-              </p>
-            </div>
-
-            <div className={styles.consideration}>
-              <h4>Get Three Quotes</h4>
-              <p>
-                For any subcontracted work over $5,000, get three quotes. This validates your budget
-                estimates and ensures you're getting fair pricing. Always compare apples to apples -
-                same scope, same materials.
-              </p>
-            </div>
-
-            <div className={styles.consideration}>
-              <h4>Front-Load Contingency</h4>
-              <p>
-                Use contingency strategically on foundation and framing - getting these right matters
-                most. Don't "save" contingency for finishes. If you get to finishes under budget, you
-                can upgrade. If over budget, you can downgrade finishes easier than fixing foundation.
-              </p>
-            </div>
-
-            <div className={styles.consideration}>
-              <h4>Communicate with Lender</h4>
-              <p>
-                If using construction financing, keep your lender updated on budget status. If you see
-                overruns coming, discuss additional funding options early. Last-minute funding requests
-                are expensive and often declined.
-              </p>
-            </div>
-
-            <div className={styles.consideration}>
-              <h4>Build a Cash Reserve</h4>
-              <p>
-                Beyond your contingency, maintain a personal cash reserve (5-10% of budget) for timing
-                gaps in construction financing or unexpected personal emergencies during the build.
-              </p>
-            </div>
-
-            <div className={styles.consideration}>
-              <h4>Set Phase Gates</h4>
-              <p>
-                Before starting each new phase, review budget status. If you're over budget, identify
-                cuts in the next phase before committing to work. It's easier to cut costs you haven't
-                spent than to claw back money.
-              </p>
-            </div>
-
-            <div className={styles.consideration}>
-              <h4>Track Labor Separately</h4>
-              <p>
-                Separately track what you pay subcontractors vs. what you save doing work yourself.
-                This validates your cost savings calculator estimates and helps you decide which tasks
-                to DIY vs. hire out.
-              </p>
-            </div>
+        <CalcSection label="Failure modes" title="Where owner-builder budgets break">
+          <div className={s.prose}>
+            <p>
+              <strong>Optimistic initial budgets.</strong> Most owner-builders start with
+              unrealistic numbers: best-case pricing, whole categories forgotten (site work,
+              permits, landscaping), and finish costs guessed low. Pad the estimate 10–15% before
+              you add contingency on top.
+            </p>
+            <p>
+              <strong>Scope creep.</strong> While we are at it is the most expensive phrase in
+              construction. A window here, an upgraded fixture there, and it is thousands. Track
+              every change as variance so the cumulative number is visible instead of theoretical.
+            </p>
+            <p>
+              <strong>Material price volatility.</strong> Lumber, concrete, and steel swing 30–100%
+              in a year. A budget from six months ago may be fiction. Re-price each phase with
+              current quotes before you start it.
+            </p>
+            <p>
+              <strong>Forgotten soft costs.</strong> Permits, impact fees, utility connections,
+              temporary power, dumpsters, tool rental, insurance — 8–15% of hard costs, and missing
+              from most first drafts.
+            </p>
+            <p>
+              <strong>Rework.</strong> First-time builders make mistakes, failed inspections require
+              rework, and changed minds require demolition. Budget 5–10% for the learning curve and
+              treat it as a real line item, not bad luck.
+            </p>
+            <p>
+              <strong>Finish fever.</strong> As the house takes shape people get excited and upgrade:
+              premium counters, better tile, nicer fixtures. Finish costs routinely exceed budget by
+              20–40%. Set the limits early, while the house is still framing and nothing looks
+              tempting yet.
+            </p>
           </div>
-        </section>
+        </CalcSection>
 
-        <section className={styles.reality} style={{ backgroundColor: '#fff3cd', marginTop: '3rem' }}>
-          <h2>When You're Over Budget</h2>
-          <p>
-            If your tracker shows you're headed over budget, here are your options in order of preference:
-          </p>
-
-          <div className={styles.considerations}>
-            <div className={styles.consideration}>
-              <h4>1. Use Contingency Reserve</h4>
-              <p>
-                This is what contingency is for. If you're 5-10% over on a phase, use contingency to
-                cover it but make cuts elsewhere to replenish the reserve.
-              </p>
-            </div>
-
-            <div className={styles.consideration}>
-              <h4>2. Downgrade Finishes</h4>
-              <p>
-                The easiest cuts are finishes you haven't purchased yet. Switch from hardwood to luxury
-                vinyl, granite to laminate, or custom cabinets to stock. You can always upgrade later.
-              </p>
-            </div>
-
-            <div className={styles.consideration}>
-              <h4>3. Do More Yourself</h4>
-              <p>
-                Increase your DIY percentage on upcoming phases. Paint, trim, flooring, and landscaping
-                are all DIY-friendly and can save 30-50% over hiring out.
-              </p>
-            </div>
-
-            <div className={styles.consideration}>
-              <h4>4. Reduce Scope</h4>
-              <p>
-                Eliminate nice-to-have features. Skip the deck, finish the basement later, reduce
-                landscaping scope, or eliminate the garage. Reduce scope before cutting quality on
-                structural items.
-              </p>
-            </div>
-
-            <div className={styles.consideration}>
-              <h4>5. Defer Work</h4>
-              <p>
-                Complete the home to certificate of occupancy standards, then finish non-essential
-                items after move-in. Fencing, landscaping, garage, and basement can wait.
-              </p>
-            </div>
-
-            <div className={styles.consideration}>
-              <h4>6. Increase Funding</h4>
-              <p>
-                As a last resort, request additional construction financing, take a personal loan,
-                or use savings. This is expensive and should only be used for essential structural
-                items you can't defer or downgrade.
-              </p>
-            </div>
+        <CalcSection label="Practice" title="How the disciplined ones do it">
+          <div className={s.prose}>
+            <p>
+              <strong>Update weekly.</strong> Enter every expenditure, get quotes for what is coming,
+              and adjust the estimates for the phases ahead. Weekly updates catch problems while they
+              are still fixable.
+            </p>
+            <p>
+              <strong>Track everything.</strong> Every receipt, every payment, every material run.
+              Use a dedicated card or checking account for the build — it makes tracking mechanical
+              and keeps construction costs separate from personal spending.
+            </p>
+            <p>
+              <strong>Get three quotes.</strong> For any subcontracted work over $5,000. Three quotes
+              validate your budget as much as they get you a price. Compare identical scope and
+              identical materials or the comparison is meaningless.
+            </p>
+            <p>
+              <strong>Front-load the contingency.</strong> Spend it on foundation and framing, where
+              getting it right matters most. Do not save it for finishes: if you reach finishes under
+              budget you can upgrade, and if you are over you can downgrade finishes far more easily
+              than you can fix a foundation.
+            </p>
+            <p>
+              <strong>Keep the lender current.</strong> With construction financing, tell your lender
+              early when you see overruns coming. Last-minute funding requests are expensive and are
+              often declined.
+            </p>
+            <p>
+              <strong>Hold a cash reserve.</strong> Beyond contingency, keep 5–10% of the budget in
+              personal cash for timing gaps between draws or an emergency that has nothing to do with
+              the house.
+            </p>
+            <p>
+              <strong>Set phase gates.</strong> Before starting a new phase, review the budget. If
+              you are over, identify the cuts in the next phase before you commit to the work. It is
+              far easier to cut money you have not spent than to claw back money you have.
+            </p>
+            <p>
+              <strong>Track labor separately.</strong> Keep what you paid subs apart from what you
+              saved doing the work yourself. That is what tells you whether your{' '}
+              <a href="/feasibility/cost-savings-calculator">cost-savings estimate</a> was real, and
+              which trades are worth keeping on the next phase.
+            </p>
           </div>
-        </section>
+        </CalcSection>
 
-        <BinderCTA
-          context="budget-tracker"
-          lead="Ready to track a real budget? The Job Site Binder includes an auto-calculating Excel budget workbook — 21 cost categories with live variance and subtotal formulas — plus the printed tracking sheets for the job site."
-        />
-
-        <section className={styles.nextSteps}>
-          <h2>Next Steps</h2>
-          <p>Continue planning your owner-builder project with our other calculators.</p>
-          <div className={styles.ctaButtons}>
-            <a href="/calculators/material-estimator" className={styles.primaryButton}>
-              Estimate Materials
-            </a>
-            <a href="/calculators/timeline-estimator" className={styles.secondaryButton}>
-              Estimate Timeline
-            </a>
+        <CalcSection label="Recovery" title="When you are over budget, in order">
+          <div className={s.prose}>
+            <p>
+              <strong>1. Use the contingency reserve.</strong> This is what it is for. If you are
+              5–10% over on a phase, cover it — then make cuts elsewhere to rebuild the reserve
+              before the next phase.
+            </p>
+            <p>
+              <strong>2. Downgrade finishes.</strong> The easiest cuts are on things you have not
+              bought. Hardwood to luxury vinyl, granite to laminate, custom cabinets to stock. You
+              can upgrade later, after you are living in the house.
+            </p>
+            <p>
+              <strong>3. Do more yourself.</strong> Raise your DIY share on the phases ahead. Paint,
+              trim, flooring, and landscaping are DIY-friendly and save 30–50% against hiring out —
+              at the cost of weeks on the{' '}
+              <a href="/calculators/timeline-estimator">schedule</a>.
+            </p>
+            <p>
+              <strong>4. Reduce scope.</strong> Cut the nice-to-haves: skip the deck, leave the
+              basement unfinished, shrink the landscaping. Reduce scope before you cut quality on
+              anything structural.
+            </p>
+            <p>
+              <strong>5. Defer work.</strong> Finish to certificate-of-occupancy standard, move in,
+              and complete the rest after. Fencing, landscaping, the garage, and the basement can all
+              wait until the pressure is off.
+            </p>
+            <p>
+              <strong>6. Increase funding.</strong> Last resort. Additional construction financing, a
+              personal loan, or savings — expensive, and worth it only for essential structural work
+              you cannot defer or downgrade.
+            </p>
           </div>
-        </section>
+        </CalcSection>
+
+        <CalcSection label="Questions" title="Owner-builders ask" meta="FAQ" noPrint>
+          <CalcFAQ items={FAQS.map((f) => ({ question: f.question, answer: f.answer }))} />
+        </CalcSection>
+
+        <RelatedCalcs slug="budget-tracker" />
+
+        <div className={`${s.block} ${s.blockLast} no-print`}>
+          <BinderCTA
+            context="budget-tracker"
+            lead="Ready to track a real budget? The Job Site Binder includes an auto-calculating Excel budget workbook — 21 cost categories with live variance and subtotal formulas — plus the printed tracking sheets for the job site."
+          />
+        </div>
       </div>
     </div>
   );

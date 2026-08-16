@@ -30,11 +30,22 @@ export interface CalcResult {
     unit: string;
     label: string;
     detail?: string;
+    /**
+     * How to format the hero: 'qty' (default) renders formatQty + unit,
+     * 'currency' renders as dollars, 'duration' renders like qty (unit
+     * carries "months"/"weeks"). Lets planning worksheets (W-01…W-04)
+     * share the sheet without faking a material quantity.
+     */
+    kind?: 'qty' | 'currency' | 'duration';
   };
   lines: CalcLine[];
-  /** Total material cost range across lines. */
-  costLow: number;
-  costHigh: number;
+  /**
+   * Total material cost range across lines. Optional: worksheets whose
+   * hero IS the dollar figure (or whose output is a schedule) omit it and
+   * the sheet skips the cost dimension line.
+   */
+  costLow?: number;
+  costHigh?: number;
   /**
    * Run-specific assumption notes ("Includes 10% waste", "Excludes labor").
    * The page's static methodology section covers the full math; these are

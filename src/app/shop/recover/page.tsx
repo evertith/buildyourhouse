@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, FormEvent } from 'react';
-import Section from '@/components/Section';
 import { trackEvent } from '@/lib/analytics';
+import styles from '../transaction.module.css';
 
 const WORKER_BASE_URL = 'https://buildyourhouse-downloads.azerothcorner.workers.dev';
 
@@ -54,114 +54,110 @@ export default function RecoverPage() {
   };
 
   return (
-    <div className="content-container">
-      <Section spacing="large">
-        <div style={{ textAlign: 'center', maxWidth: '600px', margin: '0 auto' }}>
-          <h1 style={{ fontSize: 'var(--text-3xl)', marginBottom: 'var(--space-4)' }}>
-            Recover Your Download
-          </h1>
-          <p style={{
-            fontSize: 'var(--text-lg)',
-            color: 'var(--text-secondary)',
-            marginBottom: 'var(--space-8)',
-            lineHeight: 'var(--leading-relaxed)',
-          }}>
-            Bought the Owner-Builder Job Site Binder but lost the download page?
-            Enter the email address you used at checkout and we&apos;ll find your order.
-          </p>
-
-          {status !== 'found' && (
-            <form onSubmit={handleSubmit}>
-              {/* Honeypot — hidden from real users, bots auto-fill it */}
-              <input
-                type="text"
-                name="website"
-                value={honeypot}
-                onChange={(e) => setHoneypot(e.target.value)}
-                style={{ position: 'absolute', left: '-9999px', height: 0, width: 0, opacity: 0 }}
-                tabIndex={-1}
-                autoComplete="off"
-                aria-hidden="true"
-              />
-              <div style={{
-                display: 'flex',
-                gap: 'var(--space-3)',
-                justifyContent: 'center',
-                flexWrap: 'wrap',
-              }}>
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="you@example.com"
-                  disabled={status === 'loading'}
-                  aria-label="Purchase email address"
-                  style={{
-                    fontSize: 'var(--text-base)',
-                    padding: 'var(--space-3) var(--space-4)',
-                    border: '1px solid var(--border, #ccc)',
-                    borderRadius: 'var(--radius-md, 8px)',
-                    minWidth: '260px',
-                  }}
-                />
-                <button
-                  type="submit"
-                  className="button"
-                  disabled={status === 'loading'}
-                  style={{ padding: 'var(--space-3) var(--space-8)' }}
-                >
-                  {status === 'loading' ? 'Searching…' : 'Find My Order'}
-                </button>
-              </div>
-            </form>
-          )}
-
-          {status === 'found' && (
-            <div>
-              <p style={{
-                fontSize: 'var(--text-lg)',
-                marginBottom: 'var(--space-6)',
-              }}>
-                &#10003; Order found! Your download page is ready.
-              </p>
-              <a
-                href={downloadPageUrl}
-                className="button button-large"
-                style={{
-                  fontSize: 'var(--text-xl)',
-                  padding: 'var(--space-5) var(--space-10)',
-                }}
-              >
-                Go to Your Download Page
-              </a>
-            </div>
-          )}
-
-          {status === 'notfound' && (
-            <p style={{
-              marginTop: 'var(--space-6)',
-              fontSize: 'var(--text-base)',
-              color: 'var(--text-secondary)',
-            }} role="status">
-              We couldn&apos;t find a completed purchase under that email. Double-check
-              the address you used at checkout (it&apos;s on your Stripe receipt). Still
-              stuck? Email us at{' '}
-              <a href="mailto:info@build-your-house.com">info@build-your-house.com</a>{' '}
-              with your receipt and we&apos;ll sort it out.
+    <div className={styles.page}>
+      <section className={`${styles.hero} bp-band bp-grid`}>
+        <span className={`${styles.crop} ${styles.tl}`} />
+        <span className={`${styles.crop} ${styles.tr}`} />
+        <span className={`${styles.crop} ${styles.bl}`} />
+        <span className={`${styles.crop} ${styles.br}`} />
+        <div className={styles.heroInner}>
+          <div className={styles.heroBody}>
+            <div className={`${styles.eyebrow} bp-eyebrow`}>Download recovery</div>
+            <h1 className={styles.heroTitle}>Recover your download</h1>
+            <p className={styles.heroSub}>
+              Bought from the shop but lost the download page?
             </p>
-          )}
-
-          {status === 'error' && message && (
-            <p style={{
-              marginTop: 'var(--space-6)',
-              fontSize: 'var(--text-base)',
-              color: 'var(--danger, #b91c1c)',
-            }} role="alert">
-              {message}
+            <p className={styles.heroCopy}>
+              Enter the email address you used at checkout and we’ll find your order. Your
+              files don’t expire, so there is nothing to re-buy.
             </p>
-          )}
+          </div>
         </div>
-      </Section>
+      </section>
+
+      <section className={styles.block}>
+        <div className={styles.wrap}>
+          <div className={styles.panel}>
+            <div className={styles.panelNo}>
+              <span>Order lookup</span>
+              <span>Purchase email</span>
+            </div>
+
+            {status !== 'found' && (
+              <form className={styles.form} onSubmit={handleSubmit}>
+                {/* Honeypot — hidden from real users, bots auto-fill it */}
+                <input
+                  type="text"
+                  name="website"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                  className={styles.hp}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                />
+                <label className={styles.label} htmlFor="recover-email">
+                  Purchase email address
+                </label>
+                <div className={styles.field}>
+                  <input
+                    id="recover-email"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="you@example.com"
+                    disabled={status === 'loading'}
+                    className={styles.input}
+                  />
+                  <button
+                    type="submit"
+                    className={`${styles.btnPrimary} ${styles.submit}`}
+                    disabled={status === 'loading'}
+                  >
+                    {status === 'loading' ? 'Searching…' : 'Find My Order'}
+                  </button>
+                </div>
+                <p className={styles.formNote}>
+                  Matched against the address on your Stripe receipt
+                </p>
+              </form>
+            )}
+
+            {status === 'found' && (
+              <div className={styles.found}>
+                <p className={styles.foundLine}>
+                  <span className={styles.tick} aria-hidden="true">
+                    &#10003;
+                  </span>
+                  Order found. Your download page is ready.
+                </p>
+                <a
+                  href={downloadPageUrl}
+                  className={`${styles.btnPrimary} ${styles.btnBig}`}
+                >
+                  Go to Your Download Page
+                </a>
+              </div>
+            )}
+
+            {status === 'notfound' && (
+              <p className={styles.stateNote} role="status">
+                We couldn&apos;t find a completed purchase under that email. Double-check
+                the address you used at checkout (it&apos;s on your Stripe receipt). Still
+                stuck? Email us at{' '}
+                <a href="mailto:info@build-your-house.com">info@build-your-house.com</a>{' '}
+                with your receipt and we&apos;ll sort it out.
+              </p>
+            )}
+
+            {status === 'error' && message && (
+              <p className={styles.stateErr} role="alert">
+                {message}
+              </p>
+            )}
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

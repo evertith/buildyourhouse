@@ -112,6 +112,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Feasibility section
   const feasibilityPages = [
     {
+      url: `${baseUrl}/feasibility`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    },
+    {
       url: `${baseUrl}/feasibility/cost-savings-calculator`,
       lastModified: currentDate,
       changeFrequency: 'monthly' as const,
@@ -243,6 +249,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Planning section
   const planningPages = [
     {
+      url: `${baseUrl}/planning`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    },
+    {
       url: `${baseUrl}/planning/secure-land`,
       lastModified: currentDate,
       changeFrequency: 'monthly' as const,
@@ -299,6 +311,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Move-in section
   const moveInPages = [
+    {
+      url: `${baseUrl}/move-in`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    },
     {
       url: `${baseUrl}/move-in/punch-list`,
       lastModified: currentDate,
