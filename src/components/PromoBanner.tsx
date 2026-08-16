@@ -55,7 +55,9 @@ export default function PromoBanner() {
           </span>
           <span className={styles.then}>then $24 a year.</span>
         </span>
-        <span className={styles.button}>thehouseyear.com</span>
+        <span className={styles.button}>
+          Claim the $15 year<span className={styles.buttonArrow} aria-hidden="true">→</span>
+        </span>
       </TrackedLink>
     </div>
   );
