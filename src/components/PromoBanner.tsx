@@ -2,11 +2,10 @@ import TrackedLink from '@/components/TrackedLink';
 import styles from '@/styles/PromoBanner.module.css';
 
 /**
- * The House Year banner — ad slot under the header on every page.
- * Live-HTML adaptation of the brand leaderboard creative (green ground,
- * year-wheel mark, ticket with promo code): crisp at every width, and the
- * offer text is editable here if the pricing ever changes. Fraunces comes
- * from the site's self-hosted next/font setup (--font-display).
+ * The House Year banner — sticky ad slot pinned under the header on every
+ * page. Live-HTML version of the 2026-08-26 creative (plain download
+ * message, no offer code): wheel mark, one-line pitch, Download Now.
+ * Fraunces comes from the site's self-hosted next/font setup.
  */
 
 /* Official 12-segment year wheel from the brand creative */
@@ -33,31 +32,24 @@ export default function PromoBanner() {
   return (
     <div className={`${styles.slot} no-print`}>
       <TrackedLink
-        href="https://thehouseyear.com/?utm_source=buildyourhouse&utm_medium=banner&utm_campaign=byh15"
+        href="https://www.thehouseyear.com/?utm_source=buildyourhouse&utm_medium=banner&utm_campaign=download"
         target="_blank"
         rel="noopener"
         eventName="cross_promo_click"
         eventParams={{ destination: 'thehouseyear', location: 'leaderboard' }}
         className={styles.banner}
-        aria-label="The House Year — first year $15 with code BUILDYOURHOUSE, then $24 a year"
+        aria-label="The House Year — keep up with your house's yearly maintenance. Download now."
       >
         <span className={styles.lead}>
           <Wheel className={styles.wheel} />
           <span className={styles.titles}>
             <span className={styles.kicker}>The House Year</span>
-            <span className={styles.headline}>You built the house. Now&nbsp;keep&nbsp;it.</span>
+            <span className={styles.headline}>
+              Keep up with your house&rsquo;s yearly maintenance.
+            </span>
           </span>
         </span>
-        <span className={styles.offer}>
-          <span className={styles.ticket}>
-            <span className={styles.ticketHeader}>First year $15 with code</span>
-            <span className={styles.ticketCode}>BUILDYOURHOUSE</span>
-          </span>
-          <span className={styles.then}>then $24 a year.</span>
-        </span>
-        <span className={styles.button}>
-          Claim the $15 year<span className={styles.buttonArrow} aria-hidden="true">→</span>
-        </span>
+        <span className={styles.button}>Download Now</span>
       </TrackedLink>
     </div>
   );

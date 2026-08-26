@@ -1,14 +1,19 @@
 /* ============================================
    PROMO BANNER — The House Year ad slot
-   Under the header, above content. Brand tokens from
-   the creative: green #2E5D4F · warm white #FDFBF6 ·
-   cream #F6F1E7 · gold #C9A25E / #A9834B · ink #1B1712
+   Sticky under the 79px header (4px rule + 74px bar
+   + 1px border). Brand tokens from the creative:
+   spruce #2E5D4F · paper #FDFBF6 · brass #C9A25E ·
+   char #1B1712
    ============================================ */
 .slot {
+  position: sticky;
+  top: 79px;
+  z-index: 90; /* under the header's 100 */
   background: var(--bg-primary);
-  padding: 12px var(--container-padding-mobile);
+  padding: 10px var(--container-padding-mobile);
   display: flex;
   justify-content: center;
+  border-bottom: 1px solid var(--hairline);
 }
 
 .banner {
@@ -18,19 +23,19 @@
   gap: 20px;
   width: 100%;
   max-width: 970px;
-  min-height: 90px;
+  min-height: 76px;
   background: #2e5d4f;
   box-shadow: inset 0 0 0 1px #1b1712;
-  padding: 15px 22px;
+  padding: 12px 22px;
   font-family: var(--font-display);
   text-decoration: none;
 }
 .banner:hover { text-decoration: none; }
 .banner:hover .headline { text-decoration: underline; text-underline-offset: 4px; }
 
-.lead { display: flex; align-items: center; gap: 20px; min-width: 0; }
-.wheel { width: 56px; height: 56px; flex-shrink: 0; }
-.titles { display: flex; flex-direction: column; gap: 3px; }
+.lead { display: flex; align-items: center; gap: 18px; min-width: 0; }
+.wheel { width: 50px; height: 50px; flex-shrink: 0; }
+.titles { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
 .kicker {
   font-size: 10px;
   font-weight: 600;
@@ -40,81 +45,30 @@
 }
 .headline {
   font-weight: 600;
-  font-size: 22px;
-  line-height: 25px;
+  font-size: 21px;
+  line-height: 1.15;
   color: #fdfbf6;
 }
-
-.offer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3px;
-  flex-shrink: 0;
-}
-.ticket {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: #f6f1e7;
-  border-radius: 6px;
-  padding: 6px 18px 7px;
-}
-.ticket::after {
-  content: "";
-  position: absolute;
-  inset: 3px;
-  border: 1px solid #a9834b;
-  border-radius: 3px;
-  pointer-events: none;
-}
-.ticketHeader {
-  font-size: 7.5px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: #6a6151;
-}
-.ticketCode {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.125em;
-  color: #2a241a;
-  line-height: 1.3;
-}
-.then { font-size: 9px; color: #dfe9e2; }
 
 .button {
   flex-shrink: 0;
   background: #fdfbf6;
   border-radius: 10px;
-  padding: 9px 20px;
-  font-size: 12px;
+  padding: 10px 22px;
+  font-size: 13px;
   font-weight: 600;
   color: #2e5d4f;
   white-space: nowrap;
-}
-.buttonArrow {
-  display: inline-block;
-  margin-left: 7px;
-  transition: transform 0.18s ease;
+  transition: background 0.15s ease;
 }
 .banner:hover .button { background: #fff; }
-.banner:hover .buttonArrow { transform: translateX(3px); }
+
 @media (max-width: 640px) {
-  .banner {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 16px;
-    min-height: 0;
-    text-align: center;
-  }
-  .wheel { width: 36px; height: 36px; }
-  .titles { align-items: center; gap: 2px; }
-  .kicker { font-size: 9px; }
-  .headline { font-size: 17px; line-height: 1.25; }
-  .lead { gap: 12px; }
-  .button { padding: 10px 24px; }
+  .slot { padding: 8px 12px; }
+  .banner { gap: 12px; padding: 10px 14px; min-height: 0; }
+  .wheel { width: 32px; height: 32px; }
+  .lead { gap: 10px; }
+  .kicker { font-size: 8.5px; }
+  .headline { font-size: 14px; line-height: 1.25; }
+  .button { padding: 8px 14px; font-size: 12px; }
 }
