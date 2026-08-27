@@ -75,7 +75,11 @@ export const STATE_KITS: StateKit[] = [
   K('Maine', 'me', 'maine', { phase: 8 }),
   K('Maryland', 'md', 'maryland', { phase: 9 }),
   K('Massachusetts', 'ma', 'massachusetts', { phase: 9 }),
-  K('Michigan', 'mi', 'michigan', { phase: 1 }),
+  K('Michigan', 'mi', 'michigan', {
+    status: 'shipped',
+    checkoutUrl: 'https://buy.stripe.com/fZu5kD84f1SneI46szfAc0a',
+    hook: 'The four permits that may come from four different governments, the 3,500 sq ft rule measured in habitable space only, and the court order that froze Michigan on the 2015 code.',
+  }),
   K('Minnesota', 'mn', 'minnesota', { phase: 4 }),
   K('Mississippi', 'ms', 'mississippi', { phase: 2 }),
   K('Missouri', 'mo', 'missouri', { phase: 9 }),

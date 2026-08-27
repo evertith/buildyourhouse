@@ -235,6 +235,24 @@ const PRODUCTS = {
       'where-to-file directory, and forms index — print-ready PDFs with the statute ' +
       'and code citations on the page.',
   },
+  'mi-permit-kit': {
+    sku: 'mi-permit-kit',
+    kind: 'download',
+    name: 'Michigan Owner-Builder Permit Kit',
+    amount: 3400,
+    r2Key: 'mi-permit-kit.zip',
+    description:
+      'Michigan owner-builder permitting, start to finish: the MCL 339.2403 exemption ' +
+      'walkthrough, the four separate trade permits and who issues each, permit ' +
+      'application checklist, inspection sequence, where-to-file directory, and forms ' +
+      'index. 36 print-ready pages with the statute citations on the page. Instant download.',
+    emailSubject: 'Your Michigan Permit Kit — download inside',
+    emailBlurb:
+      'The ZIP contains the Michigan owner-builder exemption walkthrough, permit ' +
+      'application checklist, inspection sequence, the per-trade where-to-file ' +
+      'directory built on the Statewide Jurisdiction List, and forms index — ' +
+      'print-ready PDFs with the statute and rule citations on the page.',
+  },
   'sub-hiring-pack': {
     sku: 'sub-hiring-pack',
     kind: 'download',
