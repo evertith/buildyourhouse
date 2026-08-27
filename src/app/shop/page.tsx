@@ -1,9 +1,12 @@
 import type { Metadata } from 'next';
 import React from 'react';
+import Link from 'next/link';
 import CalloutBox from '@/components/CalloutBox';
 import TrackedLink from '@/components/TrackedLink';
 import SampleCapture from '@/components/SampleCapture';
 import Icon, { type IconName } from '@/components/Icon';
+import { STATE_KITS, shippedKits } from '@/lib/kits';
+import { KIT_PRICE } from '@/lib/kit-content';
 import { generateProductSchema, generateFAQSchema, schemaToScriptTag } from '@/lib/schema';
 import styles from './shop.module.css';
 
@@ -294,6 +297,9 @@ const faqSchema = generateFAQSchema(
 );
 
 export default function JobSiteBinder() {
+  const kits = shippedKits();
+  const statesTotal = STATE_KITS.length;
+
   return (
     <div className={styles.page}>
       <script
@@ -418,9 +424,11 @@ export default function JobSiteBinder() {
               eventParams={{ location: 'ladder', context: 'permit-kits' }}
               className={styles.ladderCell}
             >
-              <span className={styles.ladderPrice}>$34</span>
+              <span className={styles.ladderPrice}>${KIT_PRICE}</span>
               <span className={styles.ladderName}>State Permit Kits</span>
-              <span className={styles.ladderHint}>NC · GA · TX · VA</span>
+              <span className={styles.ladderHint}>
+                {kits.length} of {statesTotal} states
+              </span>
             </TrackedLink>
             <a href="#inside" className={`${styles.ladderCell} ${styles.ladderHere}`}>
               <span className={styles.ladderPrice}>$97</span>
@@ -887,21 +895,22 @@ export default function JobSiteBinder() {
 
           <div className={styles.more}>
             <TrackedLink
-              href="/shop/nc-permit-kit"
+              href="/shop/permit-kits"
               eventName="shop_cta_click"
-              eventParams={{ location: 'shop_more_strip', item_name: 'nc-permit-kit' }}
+              eventParams={{ location: 'shop_more_strip', item_name: 'permit-kits' }}
               className={styles.moreCard}
             >
               <span className={styles.moreTop}>
-                <span className={styles.moreKind}>North Carolina · Permit Kit</span>
-                <span className={styles.morePrice}>$34</span>
+                <span className={styles.moreKind}>One per state · Permit Kits</span>
+                <span className={styles.morePrice}>${KIT_PRICE}</span>
               </span>
-              <h3 className={styles.moreTitle}>NC Owner-Builder Permit Kit</h3>
+              <h3 className={styles.moreTitle}>State Permit Kits</h3>
               <p className={styles.moreCopy}>
-                Every permit, form, and inspection North Carolina requires of an owner-builder — 27
-                pages with the statute citations printed on the page.
+                Your state&rsquo;s owner-builder exemption, permit application packet, and
+                inspection sequence — about 30 pages with the statute citations printed on the
+                page. {kits.length} of {statesTotal} states issued.
               </p>
-              <span className={styles.moreGo}>See the kit →</span>
+              <span className={styles.moreGo}>Find your state →</span>
             </TrackedLink>
 
             <TrackedLink
@@ -921,6 +930,32 @@ export default function JobSiteBinder() {
               </p>
               <span className={styles.moreGo}>See the pack →</span>
             </TrackedLink>
+          </div>
+
+          {/* Find your state — the kit line's index in one row. Postal codes
+              only, so it still reads as a single strip at fifty states. */}
+          <div className={styles.stateStrip}>
+            <span className={styles.stateStripLabel}>Kits issued</span>
+            <div className={styles.chips}>
+              {kits.map((k) => (
+                <Link
+                  key={k.slug}
+                  href={`/shop/${k.slug}`}
+                  className={styles.chip}
+                  aria-label={`${k.state} permit kit, $${KIT_PRICE}`}
+                >
+                  {k.code.toUpperCase()}
+                </Link>
+              ))}
+              <TrackedLink
+                href="/shop/permit-kits"
+                eventName="shop_cta_click"
+                eventParams={{ location: 'shop_state_strip', item_name: 'permit-kits' }}
+                className={`${styles.chip} ${styles.chipAll}`}
+              >
+                All {statesTotal} states →
+              </TrackedLink>
+            </div>
           </div>
         </div>
       </section>

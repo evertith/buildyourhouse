@@ -113,11 +113,11 @@
   },
   "/calculators": {
     "published": "2026-05-30T17:42:13-04:00",
-    "modified": "2026-08-11T20:37:42-04:00"
+    "modified": "2026-08-16T17:21:38-04:00"
   },
   "/calculators/budget-tracker": {
     "published": "2025-11-17T08:11:01-05:00",
-    "modified": "2026-08-05T20:40:59-04:00"
+    "modified": "2026-08-16T17:21:38-04:00"
   },
   "/calculators/concrete-slab": {
     "published": "2026-08-11T20:37:42-04:00",
@@ -141,7 +141,7 @@
   },
   "/calculators/material-estimator": {
     "published": "2025-11-17T08:11:01-05:00",
-    "modified": "2026-08-11T20:37:42-04:00"
+    "modified": "2026-08-16T17:21:38-04:00"
   },
   "/calculators/paint": {
     "published": "2026-08-11T20:37:42-04:00",
@@ -153,15 +153,19 @@
   },
   "/calculators/timeline-estimator": {
     "published": "2025-11-17T08:11:01-05:00",
-    "modified": "2026-08-05T20:40:59-04:00"
+    "modified": "2026-08-16T17:21:38-04:00"
   },
   "/contact": {
     "published": "2025-11-17T08:11:01-05:00",
-    "modified": "2026-06-04T12:06:14-04:00"
+    "modified": "2026-08-16T17:21:38-04:00"
+  },
+  "/feasibility": {
+    "published": "2026-08-16T17:21:38-04:00",
+    "modified": "2026-08-16T17:21:38-04:00"
   },
   "/feasibility/cost-savings-calculator": {
     "published": "2025-11-17T08:11:01-05:00",
-    "modified": "2026-08-05T20:40:59-04:00"
+    "modified": "2026-08-16T17:21:38-04:00"
   },
   "/feasibility/is-it-right-for-you": {
     "published": "2025-11-17T08:11:01-05:00",
@@ -202,6 +206,10 @@
   "/inspections/rough-in-inspections": {
     "published": "2025-11-17T08:11:01-05:00",
     "modified": "2026-06-04T12:06:14-04:00"
+  },
+  "/move-in": {
+    "published": "2026-08-16T17:21:38-04:00",
+    "modified": "2026-08-16T17:21:38-04:00"
   },
   "/move-in/certificate-of-occupancy": {
     "published": "2025-11-18T12:57:43-05:00",
@@ -257,7 +265,7 @@
   },
   "/permitting/state-guides/california": {
     "published": "2025-11-17T08:11:01-05:00",
-    "modified": "2026-07-01T21:40:43-04:00"
+    "modified": "2026-08-17T22:54:18-04:00"
   },
   "/permitting/state-guides/colorado": {
     "published": "2025-11-17T08:11:01-05:00",
@@ -409,7 +417,7 @@
   },
   "/permitting/state-guides/texas": {
     "published": "2025-11-17T08:11:01-05:00",
-    "modified": "2026-08-11T22:32:34-04:00"
+    "modified": "2026-08-17T22:54:18-04:00"
   },
   "/permitting/state-guides/utah": {
     "published": "2026-05-30T21:47:27-04:00",
@@ -446,6 +454,10 @@
   "/permitting/working-with-building-department": {
     "published": "2025-11-17T07:59:49-05:00",
     "modified": "2026-06-04T12:06:14-04:00"
+  },
+  "/planning": {
+    "published": "2026-08-16T17:21:38-04:00",
+    "modified": "2026-08-16T17:21:38-04:00"
   },
   "/planning/budget": {
     "published": "2025-11-18T12:57:43-05:00",
@@ -505,11 +517,11 @@
   },
   "/shop/permit-kits": {
     "published": "2026-08-11T22:32:34-04:00",
-    "modified": "2026-08-11T22:32:34-04:00"
+    "modified": "2026-08-16T17:21:38-04:00"
   },
   "/shop/recover": {
     "published": "2026-07-19T13:35:57-04:00",
-    "modified": "2026-07-19T13:35:57-04:00"
+    "modified": "2026-08-16T17:21:38-04:00"
   },
   "/shop/subcontractor-pack": {
     "published": "2026-08-05T22:44:49-04:00",
@@ -517,7 +529,7 @@
   },
   "/shop/success": {
     "published": "2026-02-18T13:58:30-05:00",
-    "modified": "2026-08-11T22:32:34-04:00"
+    "modified": "2026-08-16T17:21:38-04:00"
   },
   "/shop/tx-permit-kit": {
     "published": "2026-08-11T22:32:34-04:00",

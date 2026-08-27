@@ -346,6 +346,49 @@
 .noteH { font-family: var(--font-display); font-weight: 600; font-size: 21px; margin: 0 0 6px; }
 .noteP { font-size: 15.5px; color: var(--text-secondary); margin: 0; }
 
+/* ---------- PERMITS BY STATE ----------
+   The kit line's entry point: the argument on the left, the coverage plate
+   (StatePlate.module.css) on the right. The plate holds its size from four
+   issued kits to fifty, so this module never needs re-laying out. */
+.kitGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-7);
+  align-items: start;
+}
+.kitCopy {
+  font-size: 16.5px;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  max-width: 560px;
+  margin: 0 0 var(--space-4);
+}
+.kitLinks {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-4);
+}
+.kitAlt {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+.kitAlt:hover { color: var(--accent-primary); text-decoration: underline; }
+.kitPlateCap {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: var(--space-2) 0 0;
+  max-width: none;
+}
+
 /* ---------- CTA BAND ---------- */
 .ctaBand {
   position: relative;
@@ -406,6 +449,12 @@
     padding-left: var(--container-padding-desktop);
     padding-right: var(--container-padding-desktop);
   }
+}
+/* Stacks earlier than the other two-column blocks: below this the plate's
+   cells drop under ~42px, which crowds the two-letter codes. */
+@media (max-width: 1000px) {
+  .kitGrid { grid-template-columns: 1fr; gap: var(--space-5); }
+  .kitCopy { max-width: none; }
 }
 @media (max-width: 900px) {
   .heroGrid { grid-template-columns: 1fr; gap: var(--space-5); }

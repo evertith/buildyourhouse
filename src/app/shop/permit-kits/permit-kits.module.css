@@ -3,10 +3,14 @@
 
    Same "Blueprint" language as shop.module.css and
    product.module.css: navy anchor band, hairline
-   rules, mono labels, square corners. The kits are
-   presented as a drawing set's sheet index — one
-   ruled row per state — so the hub reads as the
-   table of contents for the kits it links to.
+   rules, mono labels, square corners.
+
+   Built to hold still from four issued kits to fifty.
+   The coverage plate (StatePlate.module.css) carries
+   all 50 states at a fixed size and fills in as they
+   ship; the index below it is the drawing set's sheet
+   list, one ruled row per issued kit, and is the only
+   thing on the page that grows.
    ============================================ */
 .page { background: var(--bg-primary); }
 
@@ -60,10 +64,10 @@
   margin: 0;
 }
 
-/* Dimension strip — the kit's measurements, read like a title block. */
+/* Dimension strip — the line's measurements, read like a title block. */
 .dimstrip {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   border-top: 1px solid rgba(246, 241, 228, 0.2);
   border-bottom: 1px solid rgba(246, 241, 228, 0.2);
   margin: var(--space-5) 0 0;
@@ -90,6 +94,16 @@
   line-height: 1;
   letter-spacing: -0.01em;
   color: var(--cream);
+}
+/* The denominator on the issued count: fixed at 50, so it reads as a
+   fraction of the program rather than a second measurement. */
+.vOf {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: rgba(246, 241, 228, 0.55);
+  margin-left: 3px;
 }
 /* The price cell reads as the answer, not another dimension. */
 .vAccent { color: var(--accent-primary); }
@@ -119,6 +133,8 @@
 }
 .block { padding: var(--space-10) 0; }
 .blockTight { padding-top: 0; }
+/* Clears the sticky header when jumping to #coverage / #kits / #request. */
+.anchor { scroll-margin-top: 96px; }
 .secHead {
   display: flex;
   align-items: flex-end;
@@ -154,15 +170,60 @@
   line-height: 1.7;
   white-space: nowrap;
 }
+.lead {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-style: italic;
+  font-size: 20px;
+  line-height: 1.45;
+  color: var(--text-heading);
+  margin: 0 0 var(--space-5);
+  max-width: 780px;
+}
 
-/* ---------- KIT INDEX ----------
-   One ruled row per state, the way a drawing set
-   indexes its sheets. The whole row is the link. */
+/* ---------- COVERAGE PLATE ---------- */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+  margin-top: var(--space-3);
+}
+.legendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+.swatch {
+  width: 13px;
+  height: 13px;
+  flex: none;
+  border: 1px solid var(--hairline-strong);
+}
+.swatchOn {
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
+}
+.plateNote {
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: var(--space-3) 0 0;
+  max-width: 720px;
+}
+
+/* ---------- ISSUE INDEX ----------
+   One ruled row per issued kit, the way a drawing set indexes its sheets.
+   The whole row is the link. */
 .index { border-bottom: 1px solid var(--hairline); }
 .kitRow {
   position: relative;
   display: grid;
-  grid-template-columns: 96px 1fr 140px;
+  grid-template-columns: 100px minmax(0, 1fr) 116px;
   gap: var(--space-4);
   align-items: start;
   padding: var(--space-4) 0;
@@ -188,15 +249,15 @@ a.kitRow:hover::before {
   width: 3px;
   background: var(--accent-primary);
 }
-.kitCode {
+.kitNo {
   font-family: var(--font-mono);
-  font-size: 20px;
+  font-size: 17px;
   font-weight: 500;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.08em;
   line-height: 1.1;
   color: var(--accent-primary);
 }
-.kitCodeSub {
+.kitNoSub {
   display: block;
   margin-top: 8px;
   font-family: var(--font-mono);
@@ -214,26 +275,16 @@ a.kitRow:hover::before {
   line-height: 1.15;
   letter-spacing: -0.015em;
   color: var(--text-heading);
-  margin: 0 0 10px;
+  margin: 0 0 8px;
 }
 .kitHook {
+  display: block;
   font-size: 15.5px;
   line-height: 1.6;
   color: var(--text-secondary);
-  margin: 0;
   max-width: 640px;
 }
-.kitGo {
-  display: inline-block;
-  margin-top: 12px;
-  font-family: var(--font-mono);
-  font-size: 11.5px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--accent-primary);
-}
-a.kitRow:hover .kitGo { color: var(--link-hover); }
-.kitPrice {
+.kitBuy {
   font-family: var(--font-display);
   font-size: 27px;
   font-weight: 600;
@@ -242,24 +293,64 @@ a.kitRow:hover .kitGo { color: var(--link-hover); }
   color: var(--accent-primary);
   text-align: right;
 }
-.kitPriceNote {
+.kitGo {
   display: block;
   margin-top: 9px;
   font-family: var(--font-mono);
-  font-size: 10.5px;
+  font-size: 10px;
   font-weight: 400;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text-secondary);
 }
+a.kitRow:hover .kitGo { color: var(--accent-primary); }
 
-/* The states that aren't built yet: same row, no link, quieter. */
-.kitRowQuiet { align-items: center; }
-.kitRowQuiet .kitCode { color: var(--text-secondary); }
-.kitRowQuiet .kitState {
-  font-size: 20px;
+/* ---------- THE FORMAT ----------
+   Same index rules, no price column: these are the six slots, not products. */
+.docRow {
+  display: grid;
+  grid-template-columns: 100px minmax(0, 1fr);
+  gap: var(--space-4);
+  align-items: start;
+  padding: var(--space-4) 0;
+  border-top: 1px solid var(--hairline);
+}
+.docNo {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  color: var(--accent-primary);
+}
+/* The state code is the variable part of a kit's sheet number — set it back
+   so the slot number reads as the constant. */
+.docProto { color: var(--text-secondary); }
+.docTitle {
+  font-family: var(--font-display);
+  font-size: 21px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--text-heading);
+  margin: 0 0 10px;
+}
+.docCopy {
+  font-size: 15.5px;
+  line-height: 1.55;
   color: var(--text-secondary);
-  margin-bottom: 8px;
+  margin: 0;
+  max-width: none;
+}
+.formatNote {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  margin: var(--space-4) 0 0;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--hairline);
+  line-height: 1.8;
+  max-width: none;
+  text-transform: uppercase;
 }
 
 /* ---------- REQUEST A STATE ----------
@@ -267,6 +358,12 @@ a.kitRow:hover .kitGo { color: var(--link-hover); }
    built for; the block padding here already pays for that separation. */
 .capture { max-width: 760px; }
 .capture > div { margin-bottom: 0; }
+
+/* ---------- CROSS-SELL ----------
+   BinderCTA carries its own vertical margin; the block above already pays
+   for the separation. */
+.crossSell { padding: 0 0 var(--space-10); }
+.crossSell aside { margin-top: 0; }
 
 /* ---------- RESPONSIVE ---------- */
 @media (min-width: 768px) {
@@ -286,32 +383,40 @@ a.kitRow:hover .kitGo { color: var(--link-hover); }
 
 @media (max-width: 900px) {
   .secMeta { display: none; }
+  /* Price rides under the sheet number rather than opening a third column. */
   .kitRow {
-    grid-template-columns: 68px 1fr;
+    grid-template-columns: 68px minmax(0, 1fr);
     gap: var(--space-3);
   }
-  /* Price rides under the code rather than opening a third column. */
   .kitMain {
     grid-column: 2;
     grid-row: 1 / span 2;
   }
-  .kitPrice {
+  .kitBuy {
     grid-column: 1;
     grid-row: 2;
     text-align: left;
     font-size: 22px;
     margin-top: 12px;
   }
-  .kitCode { font-size: 17px; }
-  .kitPriceNote { display: none; }
+  .kitNo { font-size: 14px; }
+  .kitGo { display: none; }
+
+  .docRow {
+    grid-template-columns: 1fr;
+    gap: var(--space-2);
+  }
+  .docNo { font-size: 13px; }
 }
 
 @media (max-width: 600px) {
-  .dimstrip { grid-template-columns: repeat(2, 1fr); }
+  .dimstrip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .dimcell:nth-child(odd) { border-left: none; padding-left: 0; }
   .dimcell:nth-child(n + 3) { border-top: 1px solid rgba(246, 241, 228, 0.14); }
-  .kitRow { grid-template-columns: 56px 1fr; }
+  .kitRow { grid-template-columns: 60px minmax(0, 1fr); }
+  .kitNo { font-size: 13px; }
   .kitState { font-size: 21px; }
+  .legend { gap: 10px var(--space-3); }
 }
 
 @media (prefers-reduced-motion: reduce) {

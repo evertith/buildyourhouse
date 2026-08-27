@@ -1,6 +1,9 @@
 import Link from 'next/link';
 import type { Metadata } from "next";
 import Icon, { type IconName } from '@/components/Icon';
+import StatePlate from '@/components/shop/StatePlate';
+import { STATE_KITS, shippedKits } from '@/lib/kits';
+import { KIT_PRICE } from '@/lib/kit-content';
 import styles from './page.module.css';
 
 export const metadata: Metadata = {
@@ -26,6 +29,9 @@ const NOTES: { n: string; h: string; p: string }[] = [
 ];
 
 export default function Home() {
+  const kitsIssued = shippedKits().length;
+  const statesTotal = STATE_KITS.length;
+
   return (
     <div className={styles.page}>
       {/* HERO */}
@@ -120,10 +126,54 @@ export default function Home() {
         </div>
       </div>
 
+      {/* PERMITS BY STATE */}
+      <section className={styles.block}>
+        <div className={styles.wrap}>
+          <div className={styles.secHead}>
+            <div>
+              <div className={styles.num}>04 / Permits by State</div>
+              <h2 className={styles.secTitle}>Permitting is a state problem</h2>
+            </div>
+            <div className={styles.secMeta}>
+              {kitsIssued} of {statesTotal} kits issued
+              <br />
+              ${KIT_PRICE} each
+            </div>
+          </div>
+          <div className={styles.kitGrid}>
+            <div>
+              <p className={styles.kitCopy}>
+                Every state writes its own owner-builder exemption, its own permit packet, and its
+                own inspection order. The free state guide tells you the rules. The permit kit
+                turns them into the paperwork — the exemption walkthrough, the application
+                checklist, the inspection sequence, and the where-to-file directory, with the
+                statute citations printed beside them.
+              </p>
+              <div className={styles.kitLinks}>
+                <Link href="/shop/permit-kits" className={styles.btnPrimary}>
+                  Find your state →
+                </Link>
+                <Link href="/permitting/state-guides" className={styles.kitAlt}>
+                  Or read the free guide for your state
+                </Link>
+              </div>
+            </div>
+            <div>
+              <StatePlate coming="inert" />
+              <p className={styles.kitPlateCap}>
+                {kitsIssued < statesTotal
+                  ? 'Filled states have a kit. The rest are in production.'
+                  : 'Every state has a kit.'}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA BAND */}
       <section className={styles.ctaBand}>
         <div className={styles.ctaInner}>
-          <div className={styles.eyebrow}>Sheet 04 — Break Ground</div>
+          <div className={styles.eyebrow}>Sheet 05 — Break Ground</div>
           <h2 className={styles.ctaTitle}>Ready to build the house you&rsquo;ve been drawing in your head?</h2>
           <p className={styles.ctaSub}>Start with the roadmap that takes you from feasibility study to final certificate of occupancy.</p>
           <div className={styles.heroCtas}>

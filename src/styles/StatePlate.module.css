@@ -1,0 +1,81 @@
+/* ============================================
+   STATE PLATE — the permit-kit coverage grid
+
+   Fifty postal codes on a drafting grid, issued kits
+   filled in orange. Column counts are the two exact
+   divisors of 50 (5 and 10), so the plate is always a
+   closed rectangle — never a short last row — at any
+   width and at any number of issued kits.
+   ============================================ */
+.plate {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  border-top: 1px solid var(--hairline);
+  border-left: 1px solid var(--hairline);
+}
+
+.cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  min-width: 0;
+  padding: 13px 4px 12px;
+  border-right: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.code {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  /* Tracking hangs a trailing space off the last glyph, which throws the
+     code left of centre. Take it back out of the box. */
+  margin-right: -0.1em;
+}
+.tick {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.06em;
+  line-height: 1;
+}
+
+/* Issued: the cell is filled. As states ship, the plate fills in. */
+.issued {
+  background: var(--accent-primary);
+  color: var(--cream);
+}
+.issued .tick { color: var(--cream); }
+a.issued:hover {
+  background: var(--button-primary-hover);
+  color: var(--cream);
+  text-decoration: none;
+}
+
+/* In production: ruled but empty. */
+.pending { color: var(--text-secondary); }
+.pending .tick { color: var(--text-secondary); opacity: 0.55; }
+a.pending:hover {
+  background: var(--bg-secondary);
+  color: var(--accent-primary);
+  text-decoration: none;
+}
+
+/* ---------- RESPONSIVE ----------
+   Below 600px: 5 across, 10 down. Above: 10 across, 5 down.
+   At 600px the narrowest a cell gets is (600 - 40) / 10 = 56px,
+   which still clears the two-letter code plus its tracking. */
+@media (min-width: 600px) {
+  .plate { grid-template-columns: repeat(10, minmax(0, 1fr)); }
+  .cell { padding: 15px 4px 14px; }
+  .code { font-size: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cell { transition: none; }
+}
