@@ -46,8 +46,16 @@ export const STATE_KITS: StateKit[] = [
   K('Alaska', 'ak', 'alaska', { phase: 2 }),
   K('Arizona', 'az', 'arizona', { phase: 11 }),
   K('Arkansas', 'ar', 'arkansas', { phase: 3 }),
-  K('California', 'ca', 'california', { phase: 1 }),
-  K('Colorado', 'co', 'colorado', { phase: 1 }),
+  K('California', 'ca', 'california', {
+    status: 'shipped',
+    checkoutUrl: 'https://buy.stripe.com/dRmbJ1ckvgNhfM85ovfAc09',
+    hook: 'Sprinklers in every new home, the 2023 NEC, the declaration that is stricter than § 7044, and 52 hours that makes a helper your employee.',
+  }),
+  K('Colorado', 'co', 'colorado', {
+    status: 'shipped',
+    checkoutUrl: 'https://buy.stripe.com/aFa00jbgr2WrgQceZ5fAc08',
+    hook: 'Two permit systems over one house: a local building permit that may not exist, state electrical and plumbing permits that always do, and the inspection condition that quietly voids the homeowner electrical exemption.',
+  }),
   K('Connecticut', 'ct', 'connecticut', { phase: 10 }),
   K('Delaware', 'de', 'delaware', { phase: 12 }),
   K('Florida', 'fl', 'florida', { phase: 3 }),

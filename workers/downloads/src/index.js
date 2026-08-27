@@ -197,6 +197,44 @@ const PRODUCTS = {
       'where-to-file directory, and forms index — print-ready PDFs with the RCW and WAC ' +
       'citations on the page.',
   },
+  'co-permit-kit': {
+    sku: 'co-permit-kit',
+    kind: 'download',
+    name: 'Colorado Owner-Builder Permit Kit',
+    amount: 3400,
+    r2Key: 'co-permit-kit.zip',
+    description:
+      'Colorado owner-builder permitting, start to finish: the legal position (no state ' +
+      'contractor license, no statewide building code — and the two state trade permits ' +
+      'that bind you anyway), permit application checklist, inspection sequence, ' +
+      'where-to-file directory, and forms index. 37 print-ready pages with the C.R.S. ' +
+      'citations on the page. Instant download.',
+    emailSubject: 'Your Colorado Permit Kit — download inside',
+    emailBlurb:
+      'The ZIP contains the Colorado owner-builder legal position, permit application ' +
+      'checklist (water and septic first, where Colorado actually starts), inspection ' +
+      'sequence with the authority named for each rung, where-to-file directory, and ' +
+      'forms index — print-ready PDFs with the C.R.S. citations on the page.',
+  },
+  'ca-permit-kit': {
+    sku: 'ca-permit-kit',
+    kind: 'download',
+    name: 'California Owner-Builder Permit Kit',
+    amount: 3400,
+    r2Key: 'ca-permit-kit.zip',
+    description:
+      'California owner-builder permitting, start to finish: the B&P § 7044 exemption ' +
+      'walkthrough covering all four branches, the statutory Owner-Builder Declaration ' +
+      'under H&S § 19825, permit application checklist, inspection sequence, ' +
+      'where-to-file directory, and forms index. 38 print-ready pages with the statute ' +
+      'citations on the page. Instant download.',
+    emailSubject: 'Your California Permit Kit — download inside',
+    emailBlurb:
+      'The ZIP contains the California owner-builder exemption walkthrough (all four ' +
+      '§ 7044 branches), permit application checklist, inspection sequence, ' +
+      'where-to-file directory, and forms index — print-ready PDFs with the statute ' +
+      'and code citations on the page.',
+  },
   'sub-hiring-pack': {
     sku: 'sub-hiring-pack',
     kind: 'download',

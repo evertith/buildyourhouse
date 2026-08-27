@@ -9,15 +9,21 @@ export const metadata = {
 
 # Colorado Owner-Builder Permit Guide
 
-*By a retired general contractor with 15+ years building custom homes — [about the author](/about). Last updated: May 2026.*
+*By a retired general contractor with 15+ years building custom homes — [about the author](/about). Last updated: August 2026.*
 
 Colorado offers unique opportunities for owner-builders, from Front Range urban areas to mountain communities. With varying code adoption, mountain construction challenges, and strong owner-builder traditions, Colorado rewards those willing to navigate its specific requirements.
 
-The single most important thing to understand about Colorado is **local control**. There is no statewide building code that applies to all homes, and there is no statewide general contractor license. Your county or municipality — the "authority having jurisdiction" (AHJ) — decides which codes apply and whether you need to register as a contractor. The major statewide exceptions are electrical and plumbing, which the Colorado Department of Regulatory Agencies (DORA) licenses across the entire state.
+The single most important thing to understand about Colorado is **local control**. There is no statewide building code for the structure itself, and there is no statewide general contractor license. Your county or municipality — the "authority having jurisdiction" (AHJ) — decides which codes apply and whether you need to register as a contractor. The major statewide exceptions are electrical and plumbing: the Colorado Department of Regulatory Agencies (DORA) not only licenses those trades across the entire state, its boards adopt statewide electrical, plumbing, and fuel gas codes that bind you even in a county with no building code at all — and in much of Colorado those permits come from the state, not your county.
 
 <CalloutBox type="info" title="Quick Answer: Can You Build Your Own House in Colorado?">
 
-**Yes.** Colorado has no statewide general contractor license and no mandatory statewide building code — contractor registration and building codes are set county-by-county by your local authority having jurisdiction (Denver, El Paso County/Pikes Peak Regional Building, Boulder County, etc.), so most jurisdictions let a property owner pull permits and act as their own general contractor on a home they own. Electrical and plumbing are the big statewide exceptions: DORA's State Electrical Board and State Plumbing Board license those trades statewide. But you can legally do your **own** electrical and plumbing on a home you own and live in — Colorado law specifically exempts a homeowner from needing a license to work on their own property ([C.R.S. § 12-115-116](https://colorado.public.law/statutes/crs_12-115-116) for electrical, [C.R.S. § 12-155-118](https://colorado.public.law/statutes/crs_12-155-118) for plumbing) — as long as the work is permitted and inspected and the home is not being built for sale or rent. Anyone you *hire* to do electrical or plumbing must hold a state license.
+**Yes.** Colorado has no statewide general contractor license and no mandatory statewide building code — contractor registration and building codes are set county-by-county by your local authority having jurisdiction (Denver, El Paso County/Pikes Peak Regional Building, Boulder County, etc.), so most jurisdictions let a property owner pull permits and act as their own general contractor on a home they own.
+
+Electrical and plumbing are the big statewide exceptions, and you can legally do your **own** without a license. Both statutes reach work on "his or her own property or residence" — [C.R.S. § 12-115-116(2)](https://leg.colorado.gov/colorado-revised-statutes) for electrical and § 12-155-118 for plumbing. Neither one requires that you already live in the house. That distinction matters more than it sounds: a house under construction cannot be occupied, so an occupancy condition would swallow the exemption whole. Ownership of the property is the test.
+
+**The electrical exemption comes with a condition, and it is the one that catches people.** It applies "if all such electrical work ... is inspected as provided in this article 115." Do the work and never call for the inspection and you do not end up with unpermitted-but-legal wiring — you end up having performed **unlicensed** electrical work, because the exemption never attached in the first place. That is a class 2 misdemeanor under C.R.S. § 12-115-123. The plumbing exemption carries no equivalent inspection condition.
+
+Where your local government does not run its own qualifying trade program, those permits come from the **state board**, not the county — and you can pull them yourself. The statute expressly names "a homeowner performing work on the homeowner's home" as a qualified applicant (C.R.S. § 12-115-120(11)(c)). Anyone you *hire* for electrical or plumbing must hold a state license, and both exemptions narrow when the house is being built for sale by someone in the construction business or is rental property — see the trade section below for how those two exclusions differ.
 
 </CalloutBox>
 
@@ -27,25 +33,44 @@ The single most important thing to understand about Colorado is **local control*
   rows={[
     ["Act as your own general contractor", "Yes", "No statewide GC license; local registration may apply (varies by jurisdiction)"],
     ["Framing, roofing, concrete, finish work", "Yes", "Permitted and inspected per your local building code"],
-    ["Electrical on a home you own + occupy", "Yes", "Homeowner exemption, C.R.S. 12-115-116; permit + inspection required; not for sale/rent"],
-    ["Plumbing on a home you own + occupy", "Yes", "Homeowner exemption, C.R.S. 12-155-118; permit + inspection required; not for sale/rent"],
+    ["Electrical on your own property or residence", "Yes", "Homeowner exemption, C.R.S. 12-115-116(2). No occupancy requirement — but the exemption applies only if the work is inspected under article 115"],
+    ["Plumbing on your own property or residence", "Yes", "Homeowner exemption, C.R.S. 12-155-118. No occupancy requirement; reaches the licensing provisions only, with no inspection condition attached"],
+    ["Pulling the state electrical or plumbing permit yourself", "Yes", "Where the local government runs no qualifying program, the permit comes from the state board — and a homeowner working on their own home is a qualified applicant (C.R.S. 12-115-120(11)(c))"],
     ["Hiring out electrical or plumbing", "N/A", "Whoever you hire must hold a state DORA license"],
-    ["Building to sell or rent", "Limited", "Homeowner trade exemptions do NOT apply; state-licensed trades required"],
-    ["Statewide building code", "—", "None; your county/municipality (AHJ) adopts and amends its own code"],
+    ["Building a house to sell", "Usually still yes", "The electrical exclusion targets property intended for sale by a person engaged in the business of constructing or remodeling — an owner building their own home generally is not that person"],
+    ["Rental or leased property", "No", "C.R.S. 12-115-116(4) excludes leased and rental property more broadly than the sale exclusion does"],
+    ["Statewide building code", "—", "None for the structure, with one real exception: the Colorado Plumbing Code and Colorado Fuel Gas Code are statewide construction minimums (C.R.S. 12-155-106(1)). Everything else is your county/municipality (AHJ)"],
   ]}
+/>
+
+<ProductCTA
+  href="/shop/co-permit-kit"
+  kicker="Colorado · Permit Kit"
+  title="Want this as a working checklist?"
+  lead="The Colorado Permit Kit is these rules as printable checklists with the C.R.S. citations on the page — the legal-position walkthrough, the application checklist that runs water and septic first, the inspection sequence with the authority named for every rung, and where to file each piece across both permit systems. 37 pages, verified against the Colorado Revised Statutes, DORA, DFPC, and Division of Water Resources sources."
+  price={34}
+  sku="co-permit-kit"
+  context="co-state-guide"
+  cta="See the kit"
 />
 
 ## Colorado Building Code Overview
 
 <CalloutBox type="info" title="The Big Picture">
 
-Colorado has **no mandatory statewide building code** — counties and municipalities each adopt and amend their own, so the edition in force depends entirely on where you build. Two statewide exceptions: the **State Electrical Board** sets the minimum electrical code, and the **State Plumbing Board** governs plumbing licensing and standards.
+Colorado has **no mandatory statewide building code** for the structure — counties and municipalities each adopt and amend their own, so the edition in force depends entirely on where you build.
+
+The statewide exceptions are more than licensing rules. The **State Electrical Board** sets the minimum electrical code, and the **State Plumbing Board** adopts the Colorado Plumbing Code and the Colorado Fuel Gas Code as statewide construction minimums ([C.R.S. § 12-155-106(1)](https://leg.colorado.gov/colorado-revised-statutes)). Those apply in a county with no building code at all.
 
 </CalloutBox>
 
 ### Current Code Adoption (2026)
 
-**Statewide electrical** (Colorado State Electrical Board): the **2023 National Electrical Code (NFPA 70)** is the statewide minimum, effective August 1, 2023. Local jurisdictions may add stricter requirements but cannot go below it. ([DORA State Electrical Board bulletin](https://content.govdelivery.com/accounts/CODORA/bulletins/367d589))
+**Statewide electrical** (Colorado State Electrical Board): the **2026 National Electrical Code (NFPA 70)** is the statewide minimum. The board's own rule adopts it and fixes the changeover — "The effective date shall be August 1, 2026" (3 CCR 710-1, Rule 1.5(A)). Local jurisdictions may add stricter requirements but cannot go below it. ([DPO State Electrical Board](https://dpo.colorado.gov/Electrical))
+
+**Statewide plumbing and fuel gas** (Colorado State Plumbing Board): the Colorado Plumbing Code and the Colorado Fuel Gas Code (3 CCR 720-1) are built on the **2021** model codes. ([DPO State Plumbing Board](https://dpo.colorado.gov/Plumbing))
+
+Say that out loud, because it is a real planning constraint: one house, two state boards, five model-code years apart. Your electrical rough-in is judged against a 2026 edition while your gas piping is judged against a 2021 one. Do not let a supplier or a helpful neighbor talk you into "the current code" as if Colorado had only one.
 
 For building codes, what's enforced depends entirely on where you build:
 
@@ -60,11 +85,13 @@ For building codes, what's enforced depends entirely on where you build:
   ]}
 />
 
-A locally adopted **energy code** also applies: under Colorado's [HB22-1362](https://leg.colorado.gov/bills/hb22-1362), a jurisdiction that updates its building code must adopt an energy code at least equivalent to the **2021 IECC** plus electric-ready and solar-ready provisions — and a further update toward the 2024 IECC is required by July 1, 2026.
+A locally adopted **energy code** also applies, and Colorado's [HB22-1362](https://leg.colorado.gov/bills/hb22-1362) changed how it ratchets up. The trigger is not a calendar deadline — it is the act of updating. A jurisdiction that adopts or updates a building code on or after July 1, 2026 must adopt an energy code meeting or exceeding the state's **model low energy and carbon code** ([C.R.S. § 24-38.5-401(6)](https://leg.colorado.gov/colorado-revised-statutes); § 30-28-211(3.5)(b) for counties, § 31-15-602(3.5)(b) for municipalities). Before that date, the standard was the 2021 IECC plus electric-ready and solar-ready provisions. A jurisdiction that leaves its code alone is not on a clock at all, which is why you will still find older editions in force well past 2026.
+
+Two carve-outs matter to rural and mountain builders. Counties falling under the population and construction thresholds in § 30-28-211(3.5)(c) are excused from the requirement. And adopting or updating a **wildfire** code does not trip the energy-code obligation (§ 30-28-211(3.5)(g)) — a county can strengthen its wildfire standards without being forced into an energy-code update at the same time.
 
 <CalloutBox type="tip" title="No building code still means trade rules apply">
 
-Even where no *building* code applies in a rural county, the statewide electrical and plumbing rules — and the homeowner exemptions described below — still govern those trades.
+Even where no *building* code applies in a rural county, the statewide electrical, plumbing, and fuel gas codes still govern those trades — and the permits still have to come from somewhere, usually the state boards rather than the county. "No building code" never means "no permits." The **Two Permit Systems** section below covers who issues what.
 
 </CalloutBox>
 
@@ -79,7 +106,6 @@ Even where no *building* code applies in a rural county, the statewide electrica
     ["Energy code", "Enhanced for cold climate"],
     ["Wildfire protection", "Extensive in WUI zones (most mountain areas)"],
     ["Radon", "Passive radon systems required in many jurisdictions"],
-    ["High-altitude construction", "Special considerations above 8,000 feet"],
   ]}
 />
 
@@ -101,23 +127,43 @@ In most Colorado jurisdictions, property owners may:
 
 Local jurisdictions confirm this directly — for example, Clear Creek County states that "property owners are allowed to act as the contractor for their own residence," noting that any plumbing or electrical subcontractor must hold a State of Colorado license. ([Clear Creek County FAQ](https://co.clear-creek.co.us/FAQ.aspx?QID=111))
 
+Clear Creek is also a clean illustration of Colorado's split permit authority. It appears on DPO's list of jurisdictions running their own **plumbing** program, but not on the **electrical** list. On one house in Clear Creek County, your plumbing permit and plumbing inspections come from the county, and your electrical permit and electrical inspections come from the State Electrical Board. Two applications, two inspectors, two schedules. That is not an oddity of Clear Creek — it is what happens whenever the two DPO lists disagree about your jurisdiction, and they disagree often.
+
 ### Trade Work: What a Homeowner Can Do
 
-This is where Colorado is more permissive than many states: statute exempts a homeowner from needing a state license to do **their own** electrical and plumbing work on a home they own.
+This is where Colorado is more permissive than many states: statute exempts a homeowner from needing a state license to do **their own** electrical and plumbing work.
+
+Note what the statutes do *not* say. Neither exemption requires that you live in the home, and neither uses the word "occupy." Both turn on "his or her own property or residence" — ownership, not residency. That is the only workable rule, because a house under construction cannot be occupied; a guide that tells you to own *and* live in the home has described a condition no new build could ever satisfy.
 
 <DataTable
   caption="Trade licensing rules for Colorado owner-builders"
   headers={["Trade", "Homeowner can DIY?", "Rule / condition"]}
   rows={[
-    ["Electrical", "Yes, on a home you own", "C.R.S. 12-115-116(2) exempts doing electrical work on your own property or residence. New work must still be inspected (maintenance/repair of existing wiring is exempt even from inspection). Does NOT apply if the home is for sale/resale by someone in the construction/remodeling business, is rental property, or is open to the public."],
-    ["Plumbing", "Yes, on a home you own", "C.R.S. 12-155-118(2) exempts performing plumbing work on your own property or residence. The same sale/resale, rental, and commercial exclusions apply."],
+    ["Electrical", "Yes, on your own property or residence", "C.R.S. 12-115-116(2) covers the article's inspection and licensing provisions — but only if all such electrical work is inspected as provided in article 115. No inspection, no exemption. Excluded: property intended for sale by a person engaged in the business of constructing or remodeling, leased and rental property under subsection (4), and property open to the public."],
+    ["Plumbing", "Yes, on your own property or residence", "C.R.S. 12-155-118 reaches only the provisions pertaining to licensing, and attaches no inspection condition. A permit is still required in most of the state — the difference is that skipping it is a permit violation, not a collapsed license exemption."],
     ["Electrical or plumbing you hire out", "N/A", "Anyone you pay must hold the appropriate state DORA license. There is no homeowner exemption for hired labor."],
     ["HVAC / mechanical", "Varies", "No statewide license; licensing or registration is jurisdiction-dependent (verify locally)."],
     ["Framing, roofing, concrete/foundation, insulation, drywall, finish work", "Yes", "All subject to permits and inspections under your local building code."],
   ]}
 />
 
-The exact statutory language: under [C.R.S. § 12-115-116(2)](https://colorado.public.law/statutes/crs_12-115-116), "nothing in this article 115 shall be construed to require any individual to hold a license before doing electrical work on his or her own property or residence." Under [C.R.S. § 12-155-118(2)](https://colorado.public.law/statutes/crs_12-155-118), "nothing in this article 155 shall be construed to require any individual to hold a license to perform plumbing work on his or her own property or residence."
+The exact statutory language matters here, because the two exemptions are not written the same way and flattening them into one sentence is how people get hurt.
+
+[C.R.S. § 12-115-116(2)](https://leg.colorado.gov/colorado-revised-statutes) excludes work on "his or her own property or residence" from the article's provisions pertaining to **inspection and licensing** — and then attaches a condition to that exclusion: it applies "if all such electrical work ... is inspected as provided in this article 115." Read together, the practical rule is simple. Pull the permit, call for the inspection, and you are a homeowner lawfully doing your own electrical work. Skip it, and the exemption never applied.
+
+C.R.S. § 12-155-118 is narrower in what it reaches and looser in what it demands. It excludes your own property or residence from "the provisions ... pertaining to **licensing**" — licensing only — and attaches no inspection condition at all. Same house, adjacent articles, materially different deals.
+
+<CalloutBox type="critical" title="The electrical exemption is conditioned on inspection">
+
+Colorado's homeowner electrical exemption is not a standing right. It is a conditional one, and the condition is inspection: § 12-115-116(2) applies "if all such electrical work ... is inspected as provided in this article 115."
+
+Do the work and never call for the inspection and you do not have unpermitted-but-otherwise-legal wiring. You have **unlicensed electrical work**, because the exemption you were relying on never attached. Practicing without a required license is a **class 2 misdemeanor** under C.R.S. § 12-115-123, and the work itself is buried behind drywall where an insurer or a buyer's inspector will eventually find it.
+
+The plumbing exemption carries no equivalent condition. Do not assume the two trades work the same way just because they sit in neighboring articles of Title 12.
+
+</CalloutBox>
+
+One more distinction worth keeping straight: the sale and rental exclusions are not the same size. The electrical exclusion for property intended for sale is limited to sale "by a person engaged in the business of constructing or remodeling" — aimed at spec builders, not at an owner who builds a home and later sells it. Subsection (4)'s exclusion for leased and rental property is written more broadly. If you are building to rent out, assume the exemption does not cover you. If you are building your own home and might sell it someday, that is a different question and a much narrower exclusion.
 
 ### Restrictions to Verify Locally
 
@@ -128,6 +174,30 @@ Some jurisdictions add conditions to owner-builder permits — an **owner-builde
 </CalloutBox>
 
 **License verification:** [dora.colorado.gov](https://dora.colorado.gov/) (search "Verify a License")
+
+## Two Permit Systems: Your AHJ and the State Boards
+
+The most common Colorado surprise is discovering mid-build that your county building department never issued your electrical permit and never intended to. Colorado runs two parallel permit systems, and which one you use for the trades depends on your jurisdiction — not on your preference.
+
+A local government may run its own qualifying electrical or plumbing program. Where it does, you get those permits and inspections locally, like any other trade. Where it does not — which covers a great deal of rural and mountain Colorado — the permit comes from the **State Electrical Board** or the **State Plumbing Board** through DORA's Division of Professions and Occupations (DPO), and a state inspector does the inspection.
+
+DPO publishes the lists of which jurisdictions run their own programs at [dpo.colorado.gov/ElectricalPlumbingPermits](https://dpo.colorado.gov/ElectricalPlumbingPermits). **Check both lists.** They are maintained separately and they do not match, so it is entirely normal to owe your plumbing permit to the county and your electrical permit to the state on the same house.
+
+Three things about the state permits are worth knowing before you break ground:
+
+- **You can pull them yourself.** The definition of a qualified applicant expressly includes "a homeowner performing work on the homeowner's home" ([C.R.S. § 12-115-120(11)(c)](https://leg.colorado.gov/colorado-revised-statutes)). You do not need a licensed contractor to apply on your behalf.
+- **The permit comes first.** A state electrical permit must be in hand *before* the work starts (§ 12-115-120), and the same applies to state plumbing permits (§ 12-155-120). Retroactive is not a category here.
+- **Inspection runs on a clock.** A state inspector must inspect the work within three working days of your request (§ 12-115-120(2)(b) for electrical, § 12-155-120(1)(b) for plumbing). That is a genuine scheduling advantage over jurisdictions with no such deadline — but it starts when you request, so request early.
+
+**Gas piping rides with plumbing.** Fuel gas piping is permitted and inspected under the state plumbing permit, against the Colorado Fuel Gas Code (§ 12-155-120(1)(a); 3 CCR 720-1). It is not a separate mechanical permit and it is not part of your building permit. On a propane build — which is most mountain builds — this is the permit that covers the tank line, the manifold, and every appliance drop.
+
+<CalloutBox type="critical" title="No final electrical approval, no permanent power">
+
+Colorado closes the loop at the meter. **No utility may provide permanent service to a structure without proof of final electrical approval** ([C.R.S. § 12-115-120(1)(c)](https://leg.colorado.gov/colorado-revised-statutes)).
+
+Whatever else slips on your schedule, the final electrical inspection is the single item standing between your finished house and having power in it. In a county where that inspector comes from the state rather than from down the road, it is not a same-week fix — so treat the final electrical as a scheduled milestone, not a formality you handle at the end.
+
+</CalloutBox>
 
 ## Permit Costs
 
@@ -140,7 +210,7 @@ The figures below are rough planning estimates, not quotes. Colorado building-pe
 ### County/City Examples (2,000 sq ft home, ~$400K value)
 
 <DataTable
-  caption="County and city permit cost examples for a 2,000 sq ft home (~$400K value)"
+  caption="Illustrative permit cost estimates for a 2,000 sq ft home (~$400K value) — planning figures only, not quoted rates. Confirm every number against your jurisdiction's published fee schedule."
   headers={["Jurisdiction", "Building permit", "Plan review", "Total"]}
   rows={[
     ["Denver County", "~$3,200", "~$2,000", "~$5,200"],
@@ -150,9 +220,22 @@ The figures below are rough planning estimates, not quotes. Colorado building-pe
     ["Eagle County (Vail area)", "~$3,000", "~$1,900", "~$4,900"],
     ["Summit County (Breckenridge)", "~$2,800", "~$1,800", "~$4,600"],
     ["Rural counties with codes", "—", "—", "$1,500-$3,000"],
-    ["Rural counties without codes", "$0 (no permits required)", "—", "$0"],
+    ["Rural counties without codes", "None", "None", "Not zero — state electrical and plumbing permits, the OWTS (septic) permit, and the well permit still apply"],
   ]}
 />
+
+<CalloutBox type="warning" title="A county with no building code is not a county with no permits">
+
+"No building code" is the most expensive misreading in Colorado. Even where the county issues no building permit and performs no structural plan review, four separate approvals typically still apply to a new house:
+
+- **State electrical permit**, required before the work starts ([C.R.S. § 12-115-120](https://leg.colorado.gov/colorado-revised-statutes))
+- **State plumbing permit** in most counties, covering water, drainage, and fuel gas piping (§ 12-155-120)
+- **OWTS (septic) permit** from your local public health agency, with a final inspection before the system can be used
+- **Well permit** from the Colorado Division of Water Resources, before you drill
+
+Budget for all four, and for the inspections that come with them. The savings in a no-code county are real, but what you save is the building permit and the plan review — not the trades, not the septic system, and not the water.
+
+</CalloutBox>
 
 ### Additional Fees
 
@@ -178,7 +261,7 @@ The figures below are rough planning estimates, not quotes. Colorado building-pe
     ["Urban areas", "6-12 weeks"],
     ["Mountain resorts", "8-16 weeks (high demand, limited staff)"],
     ["Rural areas with codes", "3-8 weeks"],
-    ["No-code areas", "No review"],
+    ["No-code areas", "No local building plan review — but state electrical and plumbing inspections and the OWTS final inspection still happen on their own schedules"],
   ]}
 />
 
@@ -186,8 +269,10 @@ The figures below are rough planning estimates, not quotes. Colorado building-pe
 
 Colorado spans three climate zones based on elevation.
 
+Because there is no statewide building code, the insulation and window numbers that actually bind you come from whichever IECC edition your jurisdiction adopted — and those editions vary widely across the state, from jurisdictions still on older codes to Denver on the 2024 I-Codes. Treat the table below as the shape of the requirement rather than the requirement itself. When you confirm your local energy code, write down the **edition year** alongside the values, because these numbers move between editions and a figure without an edition attached is not a specification.
+
 <DataTable
-  caption="Energy code insulation and window requirements by Colorado climate zone"
+  caption="Typical energy code insulation and window requirements by Colorado climate zone — the binding values depend on which IECC edition your jurisdiction adopted, so confirm the edition locally"
   headers={["Requirement", "Zone 5B (Denver, Colorado Springs)", "Zone 6B (7,000-9,000 ft)", "Zone 7 (Above 9,000 ft)"]}
   rows={[
     ["Wall insulation", "R-20 or R-13+10", "R-20 or R-13+10", "R-21 or R-13+15"],
@@ -249,7 +334,7 @@ In mountain areas above 8,000 ft the building season is roughly **May-October**,
 ### Utilities
 
 **Mountain Areas**:
-- No natural gas (propane only)
+- No natural gas (propane only — and the gas piping is permitted and inspected under your **plumbing** permit, against the Colorado Fuel Gas Code, not as a separate mechanical permit)
 - Electricity often overhead (reliability issues)
 - Limited high-speed internet (Starlink popular)
 - No municipal sewer (septic required)
@@ -265,7 +350,21 @@ In mountain areas above 8,000 ft the building season is roughly **May-October**,
   ]}
 />
 
-**Water Rights**: Complex in Colorado - research before buying land
+### Water Rights and the 35-Acre Rule
+
+<CalloutBox type="critical" title="Parcel size decides what your well is allowed to do">
+
+This is the most consequential thing to understand before you buy land in Colorado, and it turns on a single number: 35 acres.
+
+On a parcel **under 35 acres**, a new exempt well is typically limited to ordinary household purposes *inside* a single-family dwelling ([C.R.S. § 37-92-602(3)(b)(II)(A)](https://leg.colorado.gov/colorado-revised-statutes)). No lawn irrigation. No garden. No livestock water. Inside the house, and that is the whole permission.
+
+On **35 acres or more**, the only well on the tract can serve up to three single-family dwellings, irrigate up to one acre of home gardens and lawns, and water domestic animals — subject to a maximum production rate of 15 gallons per minute (§ 37-92-602(1)(b)).
+
+A 34.9-acre parcel and a 35.1-acre parcel are not the same purchase. Nothing on the listing will tell you that, and it is permanent once you close.
+
+</CalloutBox>
+
+Apply for the well permit early. The Division of Water Resources may take up to **49 days** to review a complete application, and drilling ahead of the permit is not a curable mistake. Colorado's prior-appropriation doctrine can complicate this further in over-appropriated basins, where an augmentation plan may be required before a well is allowed at all. If the parcel you want is under 35 acres and your plans included a garden, a few animals, or any irrigation, resolve that question before you make an offer — not after. ([DWR well permitting](https://dwr.colorado.gov/services/well-permitting))
 
 ### Septic
 
@@ -284,6 +383,12 @@ In mountain areas above 8,000 ft the building season is roughly **May-October**,
 Building in the wildland-urban interface triggers ignition-resistant requirements that add meaningfully to cost — budget for them from the start.
 
 </CalloutBox>
+
+### The 2025 Colorado Wildfire Resiliency Code
+
+Wildfire is the one area where Colorado has moved toward a statewide construction standard. The Division of Fire Prevention and Control (DFPC) administers the **Colorado Wildfire Resiliency Code**, a statewide wildland-urban interface construction layer that sits on top of whatever your local jurisdiction has adopted. Where a jurisdiction delegates the work to DFPC, the division performs the plan review and inspection itself rather than your county.
+
+Find out whether your parcel falls inside the mapped WUI *before* you design the roof, eaves, decks, vents, and exterior cladding. Those are the assemblies the code reaches, and retrofitting them to an ignition-resistant standard after framing costs multiples of specifying them correctly at the outset. ([DFPC Colorado Wildfire Resiliency Code](https://dfpc.colorado.gov/colorado-wildfire-resiliency-code))
 
 ### Requirements
 
@@ -386,26 +491,31 @@ The jurisdictions below carry the strictest codes and highest costs in the state
 
 ## Key Resources
 
-**Colorado Department of Regulatory Agencies (DORA)**
-- [dora.colorado.gov](https://dora.colorado.gov/)
-- Electrician and plumber license verification
-- State Electrical Board and State Plumbing Board permits/inspections (where the local jurisdiction does not run its own program)
+**Colorado Department of Regulatory Agencies (DORA) — Division of Professions and Occupations (DPO)**
+- [dora.colorado.gov](https://dora.colorado.gov/) — electrician and plumber license verification
+- [State electrical and plumbing permits](https://dpo.colorado.gov/ElectricalPlumbingPermits) — including the published lists of which jurisdictions run their own programs. The electrical and plumbing lists differ; check both for your jurisdiction
+- Statewide code editions: [2026 NEC for electrical](https://dpo.colorado.gov/Electrical) (3 CCR 710-1, Rule 1.5(A), effective August 1, 2026); [Colorado Plumbing Code and Colorado Fuel Gas Code](https://dpo.colorado.gov/Plumbing) built on the 2021 model codes (3 CCR 720-1)
 
 **Your county or city building department (AHJ)**
 - The actual authority for building codes, permits, and any owner-builder requirements in Colorado
 - Confirm the adopted IRC/IECC edition and local amendments before you design
 
 **Colorado Division of Water Resources**
-- [dwr.colorado.gov](https://dwr.colorado.gov/)
-- Well permits
-- Water rights
+- [dwr.colorado.gov](https://dwr.colorado.gov/) — [well permitting](https://dwr.colorado.gov/services/well-permitting)
+- Exempt well permits and the 35-acre rule; allow up to 49 days for review of a complete application
+
+**Colorado Division of Fire Prevention and Control (DFPC)**
+- [Colorado Wildfire Resiliency Code](https://dfpc.colorado.gov/colorado-wildfire-resiliency-code) — the statewide WUI construction layer, plus plan review and inspection where a jurisdiction delegates it
+
+**Colorado Revised Statutes**
+- [leg.colorado.gov/colorado-revised-statutes](https://leg.colorado.gov/colorado-revised-statutes) — the official text. Colorado repealed and reenacted all of Title 12 in 2019, so third-party statute mirrors frequently serve superseded section numbers
 
 <FAQSection
   title="Colorado Owner-Builder FAQs"
   faqs={[
     {
       question: "Can you build your own house in Colorado without a license?",
-      answer: "Yes. Colorado has no statewide general contractor license, so in most jurisdictions you can pull permits and act as your own general contractor on a home you own. Electrical and plumbing are licensed statewide by DORA, but Colorado law lets you do your own electrical and plumbing on a home you own and occupy without a license, provided the work is permitted and inspected and the home is not being built for sale or rent."
+      answer: "Yes. Colorado has no statewide general contractor license, so in most jurisdictions you can pull permits and act as your own general contractor on a home you own. Electrical and plumbing are licensed statewide by DORA, but Colorado law lets you do your own electrical and plumbing work on your own property or residence without a license. There is no requirement that you already occupy the home, which matters because a house under construction cannot be occupied. The electrical exemption does carry one condition: it applies only if the work is inspected as provided in article 115, so pulling the permit and calling for the inspection is what keeps the exemption alive."
     },
     {
       question: "Do you need a contractor's license to build your own home in Colorado?",
@@ -413,19 +523,23 @@ The jurisdictions below carry the strictest codes and highest costs in the state
     },
     {
       question: "Can a homeowner do their own electrical work in Colorado?",
-      answer: "Yes. Under C.R.S. 12-115-116, a homeowner does not need a state electrician's license to do electrical work on their own property or residence. New electrical work must still be inspected, and the exemption does not apply if the home is being built for sale or resale by someone in the construction business, is a rental, or is open to the public. If you hire someone, they must be a licensed electrician."
+      answer: "Yes. Under C.R.S. 12-115-116(2), a homeowner does not need a state electrician's license to do electrical work on their own property or residence, and there is no requirement that you live in the home. But the exemption is conditional: it applies only if all such electrical work is inspected as provided in article 115. Skip the permit and inspection and the exemption never attached, which leaves you having done unlicensed electrical work, a class 2 misdemeanor under C.R.S. 12-115-123. The exemption also does not apply to property intended for sale by a person engaged in the business of constructing or remodeling, to leased or rental property, or to property open to the public. If you hire someone, they must be a licensed electrician."
     },
     {
       question: "Can a homeowner do their own plumbing in Colorado?",
-      answer: "Yes. Under C.R.S. 12-155-118, a homeowner does not need a license to perform plumbing work on their own property or residence. The work must be permitted and inspected, and the same exclusions apply: the exemption does not cover homes built for sale or resale, rental property, or commercial buildings. Hired plumbing work must be done by a state-licensed plumber."
+      answer: "Yes. Under C.R.S. 12-155-118, a homeowner does not need a license to perform plumbing work on their own property or residence, with no occupancy requirement. Note the difference from electrical: the plumbing exclusion reaches only the provisions pertaining to licensing, and it attaches no inspection condition. A permit is still required in most of the state, from your local program or the State Plumbing Board, and that permit also covers fuel gas piping. Hired plumbing work must be done by a state-licensed plumber."
     },
     {
       question: "Does Colorado have a statewide building code?",
-      answer: "No. Colorado has no mandatory statewide building code. Each county and municipality adopts and amends its own codes, so the edition in force depends on where you build. The major statewide exceptions are electrical, where the State Electrical Board requires the 2023 National Electrical Code as a minimum, and plumbing licensing, which is governed statewide. Always confirm the adopted codes with your local building department."
+      answer: "No mandatory statewide building code applies to the structure itself. Each county and municipality adopts and amends its own codes, so the edition in force depends on where you build. There are real statewide exceptions: the State Electrical Board requires the 2026 National Electrical Code as a minimum (3 CCR 710-1, effective August 1, 2026), and the State Plumbing Board's Colorado Plumbing Code and Colorado Fuel Gas Code (3 CCR 720-1, built on the 2021 model codes) are statewide construction minimums under C.R.S. 12-155-106(1). Those trade codes apply even in a county with no building code. Always confirm the adopted building code with your local department."
     },
     {
       question: "Can I build without permits in Colorado?",
-      answer: "In some rural counties with no building code, permits may not be required for a single-family home. However, the statewide electrical and plumbing rules still apply, and building without permits makes the home much harder to finance, insure, and sell. Most populated counties and all Front Range metros require permits."
+      answer: "In some rural counties with no building code, no local building permit is required for a single-family home. That is not the same as no permits. A state electrical permit is required before the work starts, a state plumbing permit applies in most counties, the local public health agency issues the OWTS (septic) permit with a final inspection before use, and the Division of Water Resources issues the well permit before you drill. Building without permits also makes the home much harder to finance, insure, and sell. Most populated counties and all Front Range metros require building permits as well."
+    },
+    {
+      question: "Can I irrigate a garden or water livestock from a well in Colorado?",
+      answer: "It depends on the size of your parcel. On a parcel under 35 acres, a new exempt well is typically limited to ordinary household use inside a single-family dwelling under C.R.S. 37-92-602(3)(b)(II)(A) — no lawn irrigation, no garden, no livestock. On 35 acres or more, the only well on the tract can serve up to three single-family dwellings, irrigate up to one acre of home gardens and lawns, and water domestic animals, capped at 15 gallons per minute under 37-92-602(1)(b). This is the single most consequential thing to check before buying land in Colorado, and the Division of Water Resources may take up to 49 days to review a complete well permit application."
     },
     {
       question: "How much do snow loads add to building costs in Colorado?",
@@ -466,8 +580,9 @@ Colorado offers great owner-builder opportunities but requires careful planning.
 Colorado offers great owner-builder opportunities but requires careful planning:
 - **Research snow loads** - Critical for mountain building
 - **Plan for short season** - Mountains have 5-6 month building window
-- **Budget for fire protection** - Required in most desirable areas
-- **Water rights complexity** - Understand before buying land
+- **Budget for fire protection** - Required in most desirable areas, and now layered with the statewide Wildfire Resiliency Code
+- **Check the acreage before you buy** - Under 35 acres, an exempt well is household use inside the dwelling only; at 35+ acres it can serve gardens, lawns, and livestock
+- **Know who issues your trade permits** - Check both DPO lists; the electrical and plumbing answers for your county may be different
 - **Altitude challenges** - Everything costs more and takes longer in mountains
 
 <PlanningTools />
@@ -486,4 +601,4 @@ Building in a nearby Mountain West state? Check the requirements for:
 
 ---
 
-*Last updated: May 2026. This guide was reviewed against primary Colorado sources: the homeowner electrical exemption ([C.R.S. § 12-115-116](https://colorado.public.law/statutes/crs_12-115-116)) and plumbing exemption ([C.R.S. § 12-155-118](https://colorado.public.law/statutes/crs_12-155-118)); the State Electrical Board's statewide adoption of the 2023 NEC ([DORA bulletin](https://content.govdelivery.com/accounts/CODORA/bulletins/367d589)); and the absence of a statewide general contractor license or mandatory statewide building code. A prior version cited a non-existent owner-builder statute and a stale electrical code edition; both have been corrected. Permit costs, fees, and code editions vary by jurisdiction and change over time — always confirm the current requirements with your local building department before relying on any figure here.*
+*Last updated: August 2026. Every statutory claim in this guide was verified against the official [Colorado Revised Statutes](https://leg.colorado.gov/colorado-revised-statutes) at leg.colorado.gov in August 2026, alongside the Code of Colorado Regulations, DORA's Division of Professions and Occupations, the Division of Fire Prevention and Control, and the Division of Water Resources. This pass corrected several substantive errors in the prior version: the statewide electrical code is the **2026 NEC** effective August 1, 2026 (3 CCR 710-1, Rule 1.5(A)), not the 2023 edition; the homeowner trade exemptions turn on owning the property, with **no requirement that you occupy the home**; the electrical exemption is **conditioned on the work being inspected** under article 115, while the plumbing exemption reaches only the licensing provisions; a county with no building code still requires state electrical and plumbing permits, an OWTS permit, and a well permit; and HB22-1362's energy-code standard is triggered by a jurisdiction updating its building code, not by a calendar deadline. Statute citations now point to the official state source — Colorado repealed and reenacted all of Title 12 in 2019, and third-party mirrors lag session laws. Permit costs and fees shown here are illustrative planning figures, and code editions vary by jurisdiction and change over time — always confirm current requirements with your local building department and the applicable state board before relying on any figure here.*

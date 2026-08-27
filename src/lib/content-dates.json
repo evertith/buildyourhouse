@@ -433,7 +433,7 @@
   },
   "/permitting/state-guides/washington": {
     "published": "2025-11-17T08:11:01-05:00",
-    "modified": "2026-07-01T21:40:43-04:00"
+    "modified": "2026-08-27T09:07:17-04:00"
   },
   "/permitting/state-guides/west-virginia": {
     "published": "2026-05-30T21:47:27-04:00",
@@ -538,6 +538,10 @@
   "/shop/va-permit-kit": {
     "published": "2026-08-11T22:32:34-04:00",
     "modified": "2026-08-27T07:39:29-04:00"
+  },
+  "/shop/wa-permit-kit": {
+    "published": "2026-08-27T09:07:17-04:00",
+    "modified": "2026-08-27T09:07:17-04:00"
   },
   "/site-map": {
     "published": "2026-07-01T21:40:43-04:00",
