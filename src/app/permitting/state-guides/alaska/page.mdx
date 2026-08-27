@@ -13,11 +13,15 @@ export const metadata = {
 
 # Alaska Owner-Builder Permit Guide
 
-*By a retired general contractor with 15+ years building custom homes — [about the author](/about). Last updated: May 2026.*
+*By a retired general contractor with 15+ years building custom homes — [about the author](/about). Last updated: August 2026.*
 
 <CalloutBox type="info" title="Quick Answer: Can You Build Your Own House in Alaska?">
 
-**Yes — and in much of Alaska there is no building code or permit to stand in your way.** Alaska has **no statewide residential building code** for one- to three-family dwellings, and many areas (the unorganized borough, plus organized boroughs like [Matanuska-Susitna](https://planning.matsugov.us/pages/before-you-build-or-buy) and the [Fairbanks North Star Borough](https://www.fnsb.gov/512/Permitting-Inspections) outside city limits) have **no residential building code or building-permit requirement at all.** Where code is enforced — chiefly the [Municipality of Anchorage](https://www.muni.org/Departments/OCPD/development-services/codes-handouts/pages/codes.aspx), the cities of Fairbanks, North Pole, and Juneau, and a few others — it is adopted and enforced **locally** under each jurisdiction's own ordinance. Statewide, contractors must register under [AS 08.18](https://www.commerce.alaska.gov/web/cbpl/ProfessionalLicensing/ConstructionContractors.aspx), but [AS 08.18.161](https://law.justia.com/codes/alaska/title-8/chapter-18/article-4/section-08-18-161/) exempts an owner working on their own property and residence. Confirm code, permit, and trade rules with your specific borough or city before you start.
+**Yes — and in much of Alaska there is no building code or building permit to stand in your way.** Alaska has **no statewide residential building code** for one- to three-family dwellings: the State Fire Marshal's authority under AS 18.70.080(a)(2) reaches residential buildings only when they contain "four or more dwelling units," and 13 AAC 50.020 adopts the 2021 IBC with a revised Section 101.2 that excludes detached one-, two-, and three-family dwellings. Many areas (the unorganized borough, plus organized boroughs like [Matanuska-Susitna](https://planning.matsugov.us/pages/before-you-build-or-buy) and the [Fairbanks North Star Borough](https://www.fnsb.gov/512/Permitting-Inspections) outside city limits) have **no residential building code or building-permit requirement at all.** Where code is enforced — chiefly the [Municipality of Anchorage](https://www.muni.org/Departments/OCPD/development-services/codes-handouts/pages/codes.aspx), the cities of Fairbanks, North Pole, and Juneau, and a few others — it is adopted and enforced **locally** under each jurisdiction's own ordinance.
+
+Statewide, contractors must register under [AS 08.18](https://www.commerce.alaska.gov/web/cbpl/ProfessionalLicensing/ConstructionContractors.aspx). Building a **new** house for yourself falls under **AS 08.18.161(11)**, the owner-as-own-contractor paragraph, which expressly lets you hire subs and caps you at one building every two years. A **remodel** falls under the separate **AS 08.18.161(9)**, which has no cap. Getting those two paragraphs backwards is the single most common error in Alaska owner-builder writing, and the rest of this guide keeps them apart.
+
+Three statewide rules apply no matter how unregulated your borough is: the 2018 Uniform Plumbing Code and state plumbing inspection in any community of 2,500 or more people, hard-wired interconnected smoke and CO alarms in every dwelling unit, and the 2020 National Electrical Code. Confirm the local layer with your specific borough or city before you start.
 
 </CalloutBox>
 
@@ -25,18 +29,33 @@ export const metadata = {
   caption="Alaska owner-builder at a glance — verify specifics with your local borough or city"
   headers={["Requirement", "Owner-builder in Alaska"]}
   rows={[
-    ["Statewide residential building code", "None — Alaska has no statewide building code for 1-3 family dwellings; codes are adopted locally and many areas have none at all"],
-    ["State GC license to build your own home", "Not required — owners are exempt from contractor registration under AS 08.18.161"],
-    ["Who enforces residential permits/code", "Local government where one exists (Anchorage, Fairbanks/North Pole cities, Juneau, etc.); large areas have no enforcement"],
-    ["Can a homeowner pull their own permit", "Yes where a permit system exists (Anchorage requires stamped structural calcs and a surveyed plot plan); no permit needed where there is no code"],
-    ["DIY electrical & plumbing", "Allowed on your own residence not for sale under AS 08.40.190 — but work is still subject to state Mechanical Inspection where that section applies"],
-    ["Statewide energy standard", "AHFC Building Energy Efficiency Standard (BEES): 2018 IECC + ASHRAE 62.2-2016 + Alaska amendments; 5-Star rating; mandatory for state-financed homes"]
+    ["Statewide residential building code", "None for 1-3 family dwellings — AS 18.70.080(a)(2) reaches only residential buildings with four or more dwelling units, and 13 AAC 50.020's revised IBC §101.2 Exception 1 excludes detached one-, two-, and three-family dwellings. Codes are adopted locally"],
+    ["State GC registration to build your own home", "Not required — a new house is AS 08.18.161(11) (owner acts as own contractor, may hire workers or subs, one building every two years); work on an existing structure or residence is the separate AS 08.18.161(9), with no cap"],
+    ["Who enforces residential permits/code", "Local government where one exists (Anchorage, Fairbanks/North Pole cities, Juneau, etc.); large areas have no building department"],
+    ["Can a homeowner pull their own permit", "Yes where a permit system exists (Anchorage requires stamped structural calcs and a surveyed plot plan); no building permit where there is no local code"],
+    ["DIY electrical", "License excused on residential property owned by you or an immediate family member and not intended for sale at the time of installation — AS 08.40.190(b)(3). The 2020 NEC still applies (8 AAC 70.025(a))"],
+    ["DIY plumbing", "License excused on your own property, unconditionally — AS 18.60.715(c). But the 2018 UPC applies statewide and DOLWD inspects in communities of 2,500 and above"],
+    ["DIY mechanical", "License excused on a single-family or two-family residence not intended for sale — AS 08.40.390(b)(3). No ownership condition at all"],
+    ["Statewide plumbing code", "2018 UPC — AS 18.60.705 and 8 AAC 63.010, applied to all new construction by AS 18.60.715(a); AS 18.60.735 exempts communities under 2,500 population"],
+    ["Smoke and CO alarms", "Required in all dwelling units in the state — AS 18.70.095(a); 13 AAC 50.030(b) forces NFPA 72-2019 + IBC 907.2.11 installation, so a new on-grid house needs hard-wired interconnected alarms. Violation is a class B misdemeanor"],
+    ["Statewide energy standard", "AHFC Building Energy Efficiency Standard (BEES): 2018 IECC + ASHRAE 62.2-2016 + Alaska amendments; 5-Star rating; mandatory where state financing is used. Separately, AS 18.56.300 requires five construction-stage inspections before AHFC may make or purchase a loan on any home built after June 30, 1992"]
   ]}
 />
 
-Alaska is the most lightly regulated owner-builder environment in the United States — and the most physically demanding place in the country to build. There is no statewide residential building code. Whether your project is inspected at all depends entirely on where your land sits. In Anchorage and a handful of cities, you'll deal with a full local code, arctic foundation rules, and Seismic Design Category E. Drive an hour out into the Mat-Su Valley or most of the Interior and you can pour a foundation without anyone signing off on anything.
+Alaska is the most lightly regulated owner-builder environment in the United States — and the most physically demanding place in the country to build. There is no statewide residential building code, and whether your *structure* is reviewed at all depends entirely on where your land sits. In Anchorage and a handful of cities, you'll deal with a full local code, arctic foundation rules, and Seismic Design Category E. Drive an hour out into the Mat-Su Valley or most of the Interior and you can pour a foundation without anyone signing off on it. What does not vary is a thin statewide floor most guides skip entirely — plumbing code and inspection above 2,500 population, the electrical code, alarms, and wastewater approval — which this guide covers before it covers the local layer.
 
 That freedom is real, and so is the responsibility. The permafrost, frost heave, –40 °F winters, and the legacy of the 1964 magnitude-9.2 earthquake — the second-strongest ever recorded — mean a mistake here is not the cosmetic kind. This guide separates the legal picture (which is genuinely permissive) from the engineering picture (which is unforgiving).
+
+<ProductCTA
+  href="/shop/ak-permit-kit"
+  kicker="Alaska · Permit Kit"
+  title="Want this as a working checklist?"
+  lead="The Alaska Permit Kit is these rules as printable checklists with the statute citations on the page — the exemption walkthrough that separates the remodel paragraph from the new-house one, the two-path application checklist built on the statewide floor that applies with no permit at all, the inspection sequence and self-verification log, and the five-question procedure that settles who regulates your parcel. 56 pages, verified against the Alaska Statutes and Administrative Code at akleg.gov."
+  price={34}
+  sku="ak-permit-kit"
+  context="ak-state-guide"
+  cta="See the kit"
+/>
 
 ## Alaska Building Code Overview
 
@@ -48,80 +67,165 @@ Alaska operates on a **no statewide residential code, fully local adoption** mod
 
 ### What "No Statewide Code" Actually Means
 
-This is the single most important fact for an Alaska owner-builder, so be precise about it. The [Building Codes Assistance Project](https://bcapcodes.org/code-status/state/alaska/) and the U.S. Department of Energy's [Building Energy Codes Program](https://www.energycodes.gov/status/states/alaska) both confirm Alaska has no mandatory statewide building or energy code for private homes. State building-code regulations expressly do not reach residential structures of three units or fewer. As a result:
+This is the single most important fact for an Alaska owner-builder, so be precise about it — and source it to the law rather than to third-party code trackers. Two primary authorities do the work:
+
+- **AS 18.70.080(a)(2)** gives the Department of Public Safety authority to adopt building standards for residential buildings only when they contain **"four or more dwelling units."** A single-family house is outside the grant of authority.
+- **13 AAC 50.020** adopts the 2021 International Building Code, and its revised Section 101.2 Exception 1 excludes "Detached one-, two-, and **three-family** dwellings." Note *three*-family — Alaska's exception is one unit wider than the model IBC's own, so a triplex is outside the state code here even though it would not be in most states.
+
+Between them, a house of three units or fewer sits outside state building-code jurisdiction entirely. As a result:
 
 - **In an organized borough/city that adopted a code** (Anchorage; the cities of Fairbanks, North Pole, Juneau; Sitka; Kodiak; and others), the local IRC/IBC-based ordinance governs and permits are required.
-- **In an organized borough that chose not to regulate residential building** (Matanuska-Susitna; Fairbanks North Star Borough *outside* the city limits of Fairbanks/North Pole; Kenai Peninsula Borough outside its cities), there is **no residential building code and no building permit** for the house itself — only land-use, septic, and driveway-type permits may apply.
-- **In the unorganized borough** (the vast rural majority of Alaska's land area, much of it off the road system), there is generally **no building authority at all.**
+- **In an organized borough that chose not to regulate residential building** (Matanuska-Susitna; Fairbanks North Star Borough *outside* the city limits of Fairbanks/North Pole; Kenai Peninsula Borough outside its cities), there is **no residential building code and no building permit for the house itself.** Land-use, septic, floodplain, and driveway permits still apply — and so does the statewide floor covered in the next section: the 2018 Uniform Plumbing Code with state plumbing inspection in any community of 2,500 or more, the smoke and carbon-monoxide alarm statute, and the state electrical code.
+- **In the unorganized borough** (the vast rural majority of Alaska's land area, much of it off the road system), there is generally **no local building authority.** That is not the same as no rules. Smoke and CO alarms are required in every dwelling unit in the state with no geographic carve-out, and a community of 2,500 or more people is inside the state plumbing code and its inspection program even if no building department exists for a hundred miles.
 
 <DataTable
   caption="How residential building-code enforcement varies across Alaska"
   headers={["Jurisdiction type", "Residential building code & permits"]}
   rows={[
-    ["Municipality of Anchorage", "Full local code (2018 IRC/IBC amendments); building permit, stamped structural calcs, and surveyed plot plan required"],
-    ["Cities of Fairbanks, North Pole, Juneau, Sitka, Kodiak", "Local code adopted; building permit required within city limits"],
-    ["Fairbanks North Star Borough (outside cities)", "No borough building code; no building permit for the dwelling — verify driveway/septic/zoning permits"],
-    ["Matanuska-Susitna Borough", "No residential building code; no building permit for the dwelling — land-use and waterfront setback rules may apply"],
+    ["Municipality of Anchorage", "Full local code — 2024 IRC/IBC with amendments (AMC 23.05.010); building permit, stamped structural calcs, and surveyed plot plan required"],
+    ["City & Borough of Juneau", "2024 IRC adopted at CBJ 19.04.R010.1 (Serial No. 2025-26, effective October 21, 2025); building permit required"],
+    ["Cities of Fairbanks, North Pole, Sitka, Kodiak", "Local code adopted; building permit required within city limits"],
+    ["Fairbanks North Star Borough (outside cities)", "No borough building code and no building permit for the dwelling — but driveway, septic, and zoning permits apply, and Fairbanks-area communities of 2,500+ are inside the state plumbing code and inspection"],
+    ["Matanuska-Susitna Borough", "No residential building code and no building permit for the dwelling — driveway, floodplain (MSB 17.29), and address permits apply, plus the statewide plumbing and alarm floor"],
     ["Kenai Peninsula Borough (outside cities)", "No borough residential building code in most areas — verify locally"],
-    ["Unorganized borough / off-road rural", "No building authority; no code, no permit, no inspection"]
+    ["Unorganized borough / off-road rural", "No local building authority and no building permit — but AS 18.70.095 alarms apply statewide, and a community of 2,500 or more is inside the state plumbing code and DOLWD inspection regardless"]
   ]}
 />
 
 <CalloutBox type="warning" title="Confirm enforcement before assuming you're unregulated — or regulated">
 
-Alaska is the opposite of most states: here the default in most of the land area is *no* code. But never assume. Call your borough and the nearest city. Even where there is no building code, septic (DEC), driveway access, floodplain, and waterfront-setback permits can still apply, and a mortgage lender or insurer may impose code-style requirements of its own.
+Alaska is the opposite of most states: here the default across most of the land area is *no* local building code. But never assume, in either direction. Check with your borough and the nearest city. Even where there is no building code, septic (DEC), driveway access, floodplain, and waterfront-setback permits can still apply; the statewide plumbing, electrical, and alarm rules apply regardless; and a mortgage lender or insurer may impose code-style requirements of its own.
+
+</CalloutBox>
+
+### The Statewide Floor: Plumbing, Electrical, and Alarms
+
+The phrase "no code, no permit, no inspection" gets repeated about rural Alaska so often that it has become the guide's biggest blind spot. Three statewide requirements attach to your house no matter which borough it sits in, and two of them come with inspectors or criminal penalties.
+
+**The state plumbing code and inspection.** [AS 18.60.705](https://www.akleg.gov/basis/statutes.asp#18.60.705) adopts the Uniform Plumbing Code **"throughout the state."** The statute names the 1997 UPC on its face, but it does so "unless the department adopts by regulation a later edition" — and the department did: **8 AAC 63.010 adopts the 2018 UPC**, which is the edition that actually governs. AS 18.60.715(a) applies that code to **all new construction**, single-family homes included. The one carve-out is geographic: **AS 18.60.735 exempts communities under 2,500 population.** At or above that line the code applies and the Department of Labor and Workforce Development inspects — its Mechanical Inspection Section states plainly that "Plumbing Inspectors conduct inspections... in communities of 2,500 and above." That inspection happens whether or not your borough has a building department, and it is the piece that a Mat-Su or FNSB owner-builder is most likely to be blindsided by after being told there is no permit of any kind.
+
+**The state electrical code.** [8 AAC 70.025(a)](https://www.akleg.gov/basis/aac.asp) adopts the **2020 National Electrical Code** as the statewide minimum. Doing your own wiring excuses the license, not the code.
+
+**Smoke and carbon-monoxide alarms — the one Alaska construction requirement with a criminal penalty.**
+
+<CalloutBox type="warning" title="AS 18.70.095: alarms are required in every dwelling unit in the state">
+
+[AS 18.70.095(a)](https://www.akleg.gov/basis/statutes.asp#18.70.095) requires **smoke detection devices "in all dwelling units in the state"** and carbon-monoxide detection devices in every qualifying unit — which is nearly all of them, since a unit qualifies if it has any fuel-burning appliance, an attached garage or carport, or adjacent parking.
+
+**13 AAC 50.030(b)** sets the installation standard: NFPA 72-2019 plus IBC Section 907.2.11. Battery-only alarms are permitted **only** in buildings constructed before 1989 or buildings without commercial power. A new house on the grid therefore needs **hard-wired, interconnected** alarms — battery smoke detectors in a new on-grid Alaska home are not code-compliant, even in a borough with no building department.
+
+The penalty is what makes this different from everything else in this guide. Violation is a **class B misdemeanor** under AS 18.70.100(a), and **each 10 days of continued violation is a separate offense.** (The CO-specific violation is graded lower, an infraction, under AS 18.70.100(c).) No other residential construction requirement in Alaska carries criminal exposure.
+
+</CalloutBox>
+
+<CalloutBox type="tip" title="Watch the edition on Alaska's own PDFs">
+
+Alaska publishes some genuinely stale documents. The Department of Labor's downloadable "Electrical Safety Statutes and Regulations" booklet still prints the **2017 NEC** — it was authored in 2018 and never refreshed — while 8 AAC 70.025(a) has since moved the state to the **2020 NEC**. Likewise, the plumbing statute's face text still says 1997 UPC while the regulation has moved to the 2018 UPC. When an agency PDF and the live Administrative Code disagree, **the AAC governs.** Pull the current regulation, not the handout.
 
 </CalloutBox>
 
 ### Current Code Adoption Where Codes Exist
 
-Because adoption is local, editions vary by jurisdiction. The Municipality of Anchorage publishes its adopted editions in [Title 23 of the Anchorage Municipal Code](https://www.muni.org/Departments/OCPD/development-services/codes-handouts/pages/codes.aspx).
+Because adoption is local, editions vary by jurisdiction — and Anchorage moved recently enough that most published Alaska guidance is now a full code cycle out of date. The Municipality of Anchorage adopted the **2024 I-codes at [AMC 23.05.010](https://www.muni.org/Departments/OCPD/development-services/codes-handouts/pages/codes.aspx) by AO No. 2026-33, passed April 14, 2026.** If a source tells you Anchorage is on the 2018 IRC, it predates that ordinance.
 
 <DataTable
-  caption="Municipality of Anchorage adopted code editions (representative of a full-code jurisdiction)"
-  headers={["Code", "Edition adopted by Anchorage", "Title 23 chapter"]}
+  caption="Municipality of Anchorage adopted code editions (AMC 23.05.010, per AO No. 2026-33, April 14, 2026)"
+  headers={["Code", "Edition adopted by Anchorage", "Where adopted"]}
   rows={[
-    ["International Residential Code (IRC)", "2018 IRC with Anchorage amendments", "Chapter 23.85"],
-    ["International Building Code (IBC)", "2018 IBC with Anchorage amendments", "Chapter 23.15"],
-    ["International Energy Conservation Code (IECC)", "2018 IECC with amendments", "Chapter 23.60"],
-    ["National Electrical Code (NEC)", "2020 NEC with amendments", "Chapter 23.30"],
-    ["Uniform Plumbing Code (UPC)", "2009 UPC with amendments", "Chapter 23.25"],
-    ["International Mechanical Code (IMC)", "With amendments", "Chapter 23.20"]
+    ["International Residential Code (IRC)", "2024 IRC, including Appendices BA, BB, and BG", "AMC 23.05.010; local amendments at AMC ch. 23.85"],
+    ["International Building Code (IBC)", "2024 IBC with amendments", "AMC 23.05.010"],
+    ["International Energy Conservation Code (IECC)", "2024 IECC with amendments", "AMC 23.05.010"],
+    ["National Electrical Code (NEC)", "2023 NEC with amendments", "AMC 23.05.010"],
+    ["Uniform Plumbing Code (UPC)", "2024 UPC with amendments", "AMC 23.05.010"],
+    ["International Mechanical Code (IMC)", "2024 IMC with amendments", "AMC 23.05.010"],
+    ["IEBC, IFGC, and International Fire Code", "2024 editions with amendments", "AMC 23.05.010"]
   ]}
 />
 
-Other jurisdictions differ — the City and Borough of Juneau enforces its building code under [CBJ Title 19](https://juneau.org/community-development/do-i-need-a-permit), and the cities of Fairbanks and North Pole adopt their own editions. Always pull the actual ordinance for your jurisdiction; do not assume Anchorage's editions apply elsewhere.
+Other jurisdictions differ. The **City and Borough of Juneau** adopted the **2024 IRC at [CBJ 19.04.R010.1](https://juneau.org/community-development/do-i-need-a-permit)** by Serial No. 2025-26, effective **October 21, 2025**, along with the 2024 IBC, 2024 UPC, 2024 IMC, and 2024 International Fire Code, plus the **2023 NEC**. The cities of Fairbanks and North Pole adopt their own editions on their own schedules. Always pull the actual ordinance and its adopting serial number for your jurisdiction; do not assume Anchorage's editions apply elsewhere, and do not assume a guide's edition list — including this one — has outrun your local assembly's last vote.
 
 ### The Statewide Energy Standard (BEES)
 
-The one residential standard that does reach across Alaska is energy, through the [AHFC Building Energy Efficiency Standard (BEES)](https://www.ahfc.us/pros/builders/building-energy-efficiency-standard). BEES is the 2018 IECC plus ASHRAE 62.2-2016 ventilation and Alaska-specific amendments, and it requires a minimum **5-Star (Five Star Plus on some programs)** energy rating. Critically, BEES is **mandatory only where AHFC or other state financial assistance is used** — it is not a blanket statewide mandate on cash-built homes. But it's the de facto Alaska standard, lenders lean on it, and building to it is simply smart in this climate.
+The one residential standard that does reach across Alaska is energy, through the [AHFC Building Energy Efficiency Standard (BEES)](https://www.ahfc.us/pros/builders/building-energy-efficiency-standard). BEES is the 2018 IECC plus ASHRAE 62.2-2016 ventilation and Alaska-specific amendments, and it requires a minimum **5-Star (Five Star Plus on some programs)** energy rating. BEES itself is **mandatory only where AHFC or other state financial assistance is used** — it is not a blanket statewide mandate on cash-built homes.
+
+That statement is true, and it is also incomplete in exactly the way that bites owner-builders years later.
+
+<CalloutBox type="warning" title="AS 18.56.300: the five inspections that follow the house, not the loan">
+
+Separately from BEES, **AS 18.56.300** bars AHFC from making **or purchasing** a loan on a home built after **June 30, 1992** unless the construction was inspected at five stages:
+
+1. Plan approval
+2. Footings and foundation
+3. Electrical, plumbing, and framing
+4. Insulation
+5. Final
+
+Read that as a resale rule, because that is how it operates. You can build entirely with cash, in a borough with no building department, and never touch AHFC — and the requirement still reaches you the day you sell to a buyer who wants AHFC financing. If the inspections were never performed, the only cure is a **case-by-case destructive inspection**: opening up finished assemblies to prove after the fact what an inspector would have seen for free at the time.
+
+The practical move for a no-code-area owner-builder is to arrange these five inspections voluntarily as you build, through an AHFC-approved inspector, even though nobody is making you. It costs a few hundred dollars per stage and preserves your buyer pool.
+
+</CalloutBox>
+
+BEES is also the de facto Alaska standard in every other sense: lenders lean on it, appraisers know the star ratings, and building to it is simply smart in this climate.
 
 ## Alaska Owner-Builder Laws
 
 <CalloutBox type="info" title="Where the freedom comes from">
 
-Alaska requires **contractors** to register with the state — but an owner building their own residence is statutorily **exempt**. There is no general-contractor *license exam* in Alaska at all; the statewide requirement is registration, and owners working on their own property are carved out of it entirely.
+Alaska requires **contractors** to register with the state — but an owner building their own home is statutorily **exempt**. There is no general-contractor *license exam* in Alaska at all; the statewide requirement is registration, and AS 08.18.161 carves owners out of it. The catch is that it does so in **two different paragraphs**, one for new construction and one for remodels, with different limits attached. Read the next section carefully — this is where most Alaska owner-builder guidance goes wrong.
 
 </CalloutBox>
 
 Statewide, anyone who builds, alters, or repairs structures **for compensation** must register as a construction contractor under [AS 08.18.011](https://www.commerce.alaska.gov/web/cbpl/ProfessionalLicensing/ConstructionContractors.aspx), administered by the [Division of Corporations, Business and Professional Licensing (DCBPL)](https://www.commerce.alaska.gov/web/cbpl/ProfessionalLicensing/ConstructionContractors.aspx). Registration requires a surety bond, liability insurance, and — for residential work — a special endorsement (more below). But none of that applies to you building your own home.
 
-### Legal Rights
+### Legal Rights: Two Different Exemptions, and You Need the Right One
 
-The owner-builder exemption lives in [AS 08.18.161](https://law.justia.com/codes/alaska/title-8/chapter-18/article-4/section-08-18-161/). It exempts:
+[AS 08.18.161](https://www.akleg.gov/basis/statutes.asp#08.18.161) lists the exemptions from contractor registration. Two of its numbered paragraphs matter to an owner-builder, and **most published Alaska guidance quotes the wrong one for a new house.** Getting this right is the difference between an exemption that covers your project and one that does not.
 
-- **A person performing work on that person's own property**, whether occupied by the person or not, and
-- **A person working on that person's own existing residence**, whether owned by the person or not.
+**Paragraph (9) — the remodel and repair exemption.** Verbatim, AS 08.18.161(9) exempts:
 
-In plain terms: you may act as your own general contractor on your own home — pull permits (where they exist), hire workers on an hourly basis, hire subcontractors, buy materials, and pay for it all — without registering as a contractor.
+> a person working on **an existing structure** on that person's own property, whether occupied by the person or not, and a person working on that person's **own existing residence**, whether owned by the person or not
 
-### Critical Restrictions and Requirements
+The controlling word, dropped in nearly every secondary summary, is **"existing."** Paragraph (9) is about a structure that is already there. It covers remodels, repairs, additions, and finishing work — on property you own, or on a residence you live in but don't own. It carries **no project cap and no two-year rules whatsoever.** What it does not do is authorize building a house from nothing, because there is no existing structure to work on.
 
-The AS 08.18.161 exemption comes with two hard limits straight from the statute:
+**Paragraph (11) — the new-construction exemption.** This is the paragraph that actually governs a ground-up build, and the one almost no guide names. AS 08.18.161(11) covers:
 
-**The one-project-every-two-years rule.** An owner who acts as their own contractor — hiring labor, hiring subs, buying materials, and paying for it all — is **limited to construction of one home, duplex, triplex, four-plex, or commercial building every two years.** This is the state's anti-speculator guardrail. Build your home, and you can't turn around and owner-build a second one inside 24 months.
+> an owner who acts as the owner's own contractor and in doing so performs the work independently or hires workers or subcontractors
 
-**The two-year for-sale notice rule.** If an owner-builder **advertises the structure for sale, or sells it, during construction or within two years after construction begins**, the statute requires the owner to file a notice (on a state form) stating they are not operating a business that requires contractor registration. The state then investigates whether the circumstances show the owner is really running a contracting business. The exemption is for people building a home to live in (or hold), not to flip — build and sell quickly and you invite that scrutiny.
+Three things follow directly from that text:
+
+- **Hiring subcontractors is expressly permitted.** You are not confined to swinging your own hammer. The statute names hiring workers and subcontractors as within the exemption.
+- **There is no occupancy requirement.** Paragraph (11) does not condition the exemption on your living in the finished house.
+- **It is capped.** The exemption runs to **one home, duplex, triplex, four-plex, or commercial building every two years.**
+
+<CalloutBox type="warning" title="The misquote to watch for">
+
+You will repeatedly encounter AS 08.18.161(9) rendered as exempting "a person performing work on that person's own property, whether occupied by the person or not" — with "an existing structure on" quietly deleted. That single dropped phrase converts a **remodel** exemption into a general one, and then the writer attaches paragraph (11)'s two-year rules to it, producing a rule that exists nowhere in Alaska law.
+
+If a source tells you the two-year cap comes from paragraph (9), it has not read the statute. The cap and the sale notice both live in **(11)**.
+
+</CalloutBox>
+
+### Critical Restrictions on New Construction — AS 08.18.161(11)
+
+The two hard limits below apply to the **new-construction** exemption. They do not apply to a paragraph (9) remodel.
+
+**The one-project-every-two-years rule.** An owner acting as their own contractor is **limited to construction of one home, duplex, triplex, four-plex, or commercial building every two years.** This is the state's anti-speculator guardrail: build your house, and you cannot owner-build a second one inside 24 months without registering.
+
+**The for-sale notice rule — and the trap in when the clock starts.** If an owner-builder advertises the structure for sale, or sells it, during construction or **within two years after construction begins**, the owner must file a notice on a state form stating they are not operating a business that requires contractor registration. The state then examines whether the circumstances show the owner is really running a contracting business.
+
+The detail that catches people is the definition of *begins*. Construction begins at the **earlier** of:
+
+- the date you start actual work on the structure, **or**
+- the date you enter into **any** agreement for labor, for a subcontract, or for materials.
+
+That second branch is the one that surprises owner-builders. Signing a lumber-package purchase agreement or a foundation subcontract in February starts the two-year clock in February, even if the ground is still frozen and you don't break ground until June. Date and file those agreements — that paperwork is what fixes your start date, and the four-month difference can decide whether a sale falls inside or outside the window.
+
+<CalloutBox type="tip" title="Which paragraph is your project?">
+
+Ground-up new house on bare land — **(11)**, capped, sale-notice rules apply. Gutting and rebuilding a cabin that is standing today, adding a wing, finishing a basement, re-roofing — **(9)**, no cap, no notice. A teardown-and-rebuild is (11): once the existing structure is gone, there is nothing for (9) to attach to.
+
+</CalloutBox>
 
 <CalloutBox type="warning" title="The exemption protects you, not the contractors you hire">
 
@@ -129,28 +233,89 @@ A property owner's consent does **not** give an unregistered contractor the righ
 
 </CalloutBox>
 
-**The Residential Contractor Endorsement (for hired pros, not for you).** This is a distinctly Alaskan rule worth understanding. Any contractor doing work on dwellings of four units or fewer must hold a **Residential Contractor Endorsement** on their registration. To get it, they complete a 16-hour course and pass a 50-question exam covering **arctic engineering, cold-climate building science, and AS 08.18 licensing law.** Work on a small dwelling without the endorsement is a violation that voids the registration. You, the owner-builder, don't need it — but it tells you something: Alaska considers cold-climate construction a specialized competency. Take that seriously even though the law lets you opt out of proving it.
+### The Residential Contractor Endorsement (for the pros you hire)
 
-### Trade Work: Electrical, Plumbing, Mechanical
+This is a distinctly Alaskan rule, and it is widely misdescribed. Under [AS 08.18.025](https://www.akleg.gov/basis/statutes.asp#08.18.025), **a general contractor** undertaking the construction or alteration of a residential structure of **four units or fewer** must hold a **Residential Contractor Endorsement** on their registration. "Alteration" here means changes exceeding **25% of the structure's value** — smaller work doesn't trigger it.
 
-Alaska certifies **electrical administrators** and **mechanical/plumbing administrators** at the state level through the [Division of Corporations, Business and Professional Licensing](https://www.commerce.alaska.gov/web/cbpl/ProfessionalLicensing/ElectricalAdministrators.aspx), and the [Department of Labor's Mechanical Inspection Section](https://labor.alaska.gov/lss/plumbing_electrical.htm) inspects electrical and plumbing work in much of the state. But there is a homeowner exemption here too.
+AS 08.18.025(b) sets three requirements, and none of them is the "16-hour course and 50-question exam" that circulates online:
+
+1. **Registration as a general contractor** in the first place.
+2. **A departmental examination**, which may test arctic structural and thermal construction techniques. Under 12 AAC 21.680 it is administered by PSI with a **70% pass** threshold; the statute and regulation set no question count.
+3. **Within the two preceding years**, completion of the **Alaska Craftsman Home Program**, a postsecondary **arctic engineering** course, or an equivalent approved course. No hour count appears in the statute. DCCED's own web page describes the option as a "16-hour cold climate course" — if you see that figure, it comes from the agency's description, not from the law.
+
+The real statutory 16 is elsewhere and gets confused with the above: **renewal** requires **16 contact hours** of continuing education under 12 AAC 21.650(a).
+
+One more direction to get right: under **AS 08.18.121(h)**, the **endorsement is suspended while the underlying registration is suspended** — not the other way around. The registration is the thing the endorsement hangs on; lose it and the endorsement goes with it.
+
+You, the owner-builder, need none of this. But the fact that Alaska makes professionals pass an arctic-engineering exam to touch a single-family house — while letting you build one with no demonstration of competence at all — is the clearest signal in the statute book about what this climate does to buildings.
+
+### Contractor Registration Rules Worth Knowing as the Person Paying
+
+Even though registration doesn't apply to you, four provisions govern the people you hire, and knowing them changes how you write checks.
+
+**An unregistered contractor cannot sue you for payment.** [AS 08.18.151](https://www.akleg.gov/basis/statutes.asp#08.18.151) bars a contractor from bringing an action for compensation for work requiring registration unless they allege and prove they were registered **at the time of contracting**. Registering later does not fix a contract signed while unregistered. This is a real defense if a dispute goes sideways — and equally a warning, since a contractor with nothing to lose in court has less reason to finish your job.
+
+**Bond amounts (AS 08.18.071(b))** tell you how much recourse actually stands behind a registration:
 
 <DataTable
-  caption="Alaska trade-work rules for owner-builders"
-  headers={["Trade", "Statewide rule", "Homeowner on own residence"]}
+  caption="Alaska contractor surety bond requirements — AS 08.18.071(b)"
+  headers={["Registration type", "Required bond"]}
   rows={[
-    ["Electrical", "Electrical administrators certified under AS 08.40; commercial electrical contractors must register", "Exempt from licensure on residential property you own and that is not for sale — AS 08.40.190"],
-    ["Plumbing / mechanical", "Mechanical administrators certified; Dept. of Labor inspects in much of Alaska", "Same owner-occupied / not-for-sale exemption applies under AS 08.40.190"],
-    ["Inspection still applies", "Exempt work remains subject to inspection under AS 08.40.070 where that section is enforced", "You skip the license, not the code or the inspection"],
-    ["Remote / very small jobs", "Work under $5,000 in communities under 500 population, or 50+ miles by air/water from a licensed administrator, is also excluded", "Useful for genuinely remote bush builds — verify it applies"]
+    ["General contractor", "$25,000"],
+    ["General contractor with Residential Contractor Endorsement", "$20,000"],
+    ["Specialty contractor", "$10,000"],
+    ["Handyman (projects of $10,000 or less)", "$5,000"]
   ]}
 />
 
-The key statute is [AS 08.40.190](https://codes.findlaw.com/ak/title-8-business-and-professions/ak-st-sect-08-40-190.html), which excludes electrical and mechanical installation on residential property owned by the installer or an immediate family member and **not intended for sale** at the time of the work. The catch — and it's a real one — is that the exclusion is from *licensure*, not from the *code* or the *inspection*: where the Department of Labor's Mechanical Inspection Section has jurisdiction, exempt homeowner work is still subject to inspection under [AS 08.40.070](https://labor.alaska.gov/lss/plumbing_electrical.htm) and must meet the adopted standards.
+**Insurance floors (AS 08.18.101(a)(2))** are the number that should worry you: **$20,000 property damage, $50,000 per person, and $100,000 per occurrence.** Those minimums have not tracked construction costs in decades and sit far below the replacement cost of the house they are working on. A framing error that has to be torn out, or a fire during rough-in, will exhaust a $100,000 occurrence limit without difficulty. **Demand a certificate of insurance well above the statutory floor** — $1,000,000 per occurrence is the ordinary ask — and have it sent to you by the insurer, not handed to you by the contractor.
 
-<CalloutBox type="tip" title="Three constraints on doing your own trade work">
+**Penalties for working unregistered** are milder on a first offense than most guides claim:
 
-It must be your own residential property, the property must not be intended for sale at the time of the work, and the installation is held to the same code standards (and, where applicable, the same state inspection) as a licensed pro's. In a no-code area off the road system the practical oversight may be minimal — but the physics of arctic wiring and plumbing don't care whether anyone inspects.
+- **AS 08.18.125(a)** — administrative fine of **$1,000** for a first violation, **$1,500** for subsequent ones.
+- **AS 08.18.131** — civil penalty of up to **$1,000 per day.**
+- **AS 08.18.141** — a **class B misdemeanor only on a repeat offense.** A first offense is a violation, the infraction grade. Guides routinely describe unregistered contracting in Alaska as flatly criminal; it isn't, the first time.
+- **AS 08.18.125(e)** — a provision that exists nowhere else: **no administrative fine may be imposed in an area with a population of 1,000 or less that is not connected by road or rail to Anchorage or Fairbanks.** In much of bush Alaska the administrative-fine mechanism simply does not operate, which is worth knowing about the enforcement climate you're building in.
+
+### Trade Work: Electrical, Plumbing, Mechanical
+
+Alaska certifies **electrical administrators** and **mechanical administrators** at the state level through the [Division of Corporations, Business and Professional Licensing](https://www.commerce.alaska.gov/web/cbpl/ProfessionalLicensing/ElectricalAdministrators.aspx), and the [Department of Labor's Mechanical Inspection Section](https://labor.alaska.gov/lss/plumbing_electrical.htm) inspects electrical and plumbing work across much of the state. Each of the three trades has a homeowner exclusion — but they live in **three different statutes with three genuinely different tests.** Most guides collapse them into a single "your own home, not for sale" rule, which is wrong for two of the three.
+
+<DataTable
+  caption="The three homeowner trade exclusions — different statutes, different tests"
+  headers={["Trade", "Statute", "What the exclusion actually requires"]}
+  rows={[
+    ["Electrical", "AS 08.40.190(b)(3)", "Residential property \"owned by the installer or a member of the installer's immediate family and not intended for sale at the time of making the installation.\" Two conditions: ownership (yours or immediate family) AND not for sale"],
+    ["Mechanical", "AS 08.40.390(b)(3)", "\"A single-family residence or a two-family residence that is not intended for sale.\" The test is the building type plus not-for-sale — there is NO ownership condition at all"],
+    ["Plumbing", "AS 18.60.715(c)", "\"Nothing in AS 18.60.705 — 18.60.740 prohibits a person from performing plumbing work on the person's own property.\" Unconditional — no not-for-sale limit, no family limit"],
+    ["What every one of them excuses", "All three", "The LICENSE only. Never the code, and never the inspection where an inspector has jurisdiction"]
+  ]}
+/>
+
+<CalloutBox type="warning" title="AS 08.40.190 is the electrical article — it does not cover mechanical work">
+
+A correction worth making loudly, because the error is everywhere: **AS 08.40.190 sits in the electrical administrators article and governs electrical work only.** The mechanical exclusion is a different section entirely, **AS 08.40.390(b)(3)**. Any source that cites AS 08.40.190 for a plumbing or mechanical rule has mis-mapped the statute, and its description of what the exclusion requires will be wrong too — the mechanical test has no ownership element, which is a meaningful difference if you're working on a residence you don't own.
+
+</CalloutBox>
+
+**Remote and small-job exclusions differ by an order of magnitude.** Both articles carve out small jobs in small, distant communities, but the numbers are not the same and are frequently reported as if they were:
+
+- **Electrical — AS 08.40.190(b)(2):** work under **$5,000** in communities of fewer than **500** people, or more than 50 miles by air or water from a licensed administrator.
+- **Mechanical — AS 08.40.390(b)(2):** work under **$50,000** in communities of fewer than **5,000** people.
+
+Ten times the dollar threshold and ten times the population threshold. If you've seen the $5,000/500 figures quoted as "the" Alaska remote exclusion, that is the electrical rule only.
+
+### The Exclusion Is From Licensure — Not From the Code
+
+Here the common framing overstates one thing and understates another. **AS 08.40.070 is an investigatory power over licensees**, not a general homeowner inspection duty; citing it for the proposition that your own wiring "is still subject to inspection under AS 08.40.070" reads more into it than the section says.
+
+What actually binds you is **AS 08.40.190(c)**: the department's **regulations continue to apply** to excluded work. In practice that means the **2020 NEC**, adopted at 8 AAC 70.025(a), governs your wiring exactly as it governs a licensed electrician's. Enforcement runs through **AS 08.40.180**, a misdemeanor carrying a fine of up to **$5,000**.
+
+On the plumbing side the inspection is real and specific: in a community of **2,500 or more**, DOLWD plumbing inspectors inspect new construction under the 2018 UPC, single-family homes included, whether or not a local building department exists.
+
+<CalloutBox type="tip" title="What doing your own trade work actually costs you">
+
+You skip the license. You do not skip the 2020 NEC, the 2018 UPC, the state plumbing inspection above 2,500 population, or the alarm statute. In a no-code area off the road system the practical oversight may be minimal — but arctic wiring and plumbing fail on physics, not on enforcement. A frozen supply line or an undersized service does the same damage whether or not anyone signed a card.
 
 </CalloutBox>
 
@@ -163,30 +328,50 @@ As an owner-builder in Alaska:
 - You're personally liable for injuries on-site (workers' comp is required for paid employees under Alaska law)
 - Builder's risk insurance is strongly advised; winter fire, freeze, and snow-collapse losses are common claims
 - Lenders financing an owner-build often require inspections and a path to a 5-Star BEES rating even where no code applies
-- Alaska's residential property disclosure law requires you to disclose known defects when you later sell
+- Contractors you hire carry statutory insurance floors of only $20,000 property / $50,000 per person / $100,000 per occurrence (AS 08.18.101(a)(2)) — far below your house's replacement cost, so demand higher limits in writing
+- Alaska's residential property disclosure law requires you to disclose known defects when you later sell, unless the narrow AS 34.70.120 first-transfer-and-never-occupied exemption applies; a willful violation exposes you to treble damages under AS 34.70.090(c)
 
 </CalloutBox>
 
 ### Seller Disclosure
 
-Alaska's [Residential Real Property Transfer Disclosure statute (AS 34.70)](https://law.justia.com/codes/alaska/title-34/chapter-70/) requires sellers of residential real property to give buyers a written disclosure of the property's condition and known defects. Owner-built homes don't have to be flagged as such, but unpermitted or non-code work, foundation movement, or moisture problems you know about must be disclosed. Keep your build records.
+Alaska's [Residential Real Property Transfer Disclosure statute (AS 34.70)](https://www.akleg.gov/basis/statutes.asp#34.70) requires sellers of residential real property to give buyers a written disclosure of the property's condition and known defects. Owner-built homes don't have to be flagged as such, but unpermitted or non-code work, foundation movement, or moisture problems you know about must be disclosed. Keep your build records.
+
+**There is an exemption written for exactly your situation, and most owner-builders never hear about it.** Under **AS 34.70.120**, the disclosure chapter "does not apply... if the transfer is the **first transfer** of the property and if the property has **never been occupied**." Both conditions have to hold. A house you build and sell without ever moving into, on its first sale, falls outside the statute entirely. Move in for a season first, or sell it a second time, and the chapter applies in full.
+
+Two more provisions belong on your radar:
+
+- **AS 34.70.110** — the disclosure requirement can be **waived in writing** by the parties. It is negotiable, not jurisdictional.
+- **AS 34.70.090(c)** — a **willful** violation exposes you to up to **three times actual damages**, plus costs and attorney fees. The treble-damages multiplier is why "I wasn't sure, so I left it off the form" is the worst available answer. If you know about it, disclose it.
+
+<CalloutBox type="tip" title="Disclosure is where sloppy build records become expensive">
+
+The AS 34.70.120 exemption is narrow and easy to lose, so plan on disclosing. That makes your build file the asset: dated photos of the foundation and insulation before cover, the geotech report, engineer's stamps, the AS 18.56.300 inspection records if you arranged them, and receipts. A seller who can document what's behind the drywall answers questions instead of guessing at them — and guessing in writing is what AS 34.70.090(c) punishes.
+
+</CalloutBox>
 
 ## Permit Costs in Alaska
 
-<CalloutBox type="warning" title="These are planning estimates — verify before budgeting">
+<CalloutBox type="warning" title="These figures are illustrative — verify every one before budgeting">
 
-The figures below are planning estimates compiled from public fee schedules and ordinances. Actual costs change often and vary by site and jurisdiction — and in much of Alaska the building-permit cost is literally **$0** because there is no permit. Confirm fees with your specific borough or city before budgeting.
+**The dollar figures in this section are illustrative planning ranges, not quoted fees.** They are the shape of an Alaska budget, useful for sanity-checking a plan, and they are not a substitute for your jurisdiction's current fee schedule. Fees change annually, vary by site and valuation, and the ranges here are not tied to a published schedule effective on any particular date. Confirm every number with your borough or city before you budget against it.
 
 </CalloutBox>
 
 Where Alaska charges for permits at all, fees are valuation-based and moderate. The dominant cost driver in Alaska is rarely the permit — it's the foundation, the freight, and the utilities. Estimates below assume a 2,000 sq ft home unless noted.
+
+<CalloutBox type="warning" title="'$0 permit cost' is true of the building permit only">
+
+You will see it said that building in Mat-Su or the unorganized borough costs nothing in permits. That is accurate about the **building permit** — there isn't one — and misleading about everything else. In a community of **2,500 or more** you still owe **state plumbing permits and inspection fees** under the 2018 UPC, because AS 18.60.735's exemption stops at that population line. Everyone, everywhere, owes wastewater costs: the soils work, the design, and the system itself, which is the largest "permit-adjacent" number in a rural Alaska build by an order of magnitude. Budget the floor, not the headline.
+
+</CalloutBox>
 
 ### Anchorage (Municipality of Anchorage)
 
 Anchorage uses a valuation-based building-permit fee. For a new single-family home valued above $40,000, the building-permit fee runs roughly **$0.009 × construction valuation**, with a separate plan-review fee of about **$0.005 × valuation (minimum $75)**, and trade inspections billed per inspection.
 
 <DataTable
-  caption="Anchorage permit costs for a 2,000 sq ft home (~$400,000 valuation)"
+  caption="Illustrative Anchorage permit costs for a 2,000 sq ft home (~$400,000 valuation) — confirm against the current fee schedule"
   headers={["Cost item", "Amount"]}
   rows={[
     ["Building permit", "~$0.009 × valuation (≈ $3,600 at a $400K valuation)"],
@@ -201,33 +386,45 @@ Anchorage uses a valuation-based building-permit fee. For a new single-family ho
 ### No-Code Boroughs (Mat-Su, FNSB outside cities, Kenai)
 
 <DataTable
-  caption="Permit costs where there is no residential building code"
+  caption="Illustrative permit costs where there is no residential building code — verify locally"
   headers={["Item", "Matanuska-Susitna Borough", "Fairbanks North Star Borough (outside cities)"]}
   rows={[
     ["Building permit for the dwelling", "$0 — no residential building code", "$0 — no borough building code outside city limits"],
-    ["Driveway / access permit", "Required where it ties to a borough road", "Required for state/borough road tie-ins"],
-    ["Septic (on-site wastewater) approval", "Through AK DEC / engineer; $500–$1,500 design + test", "Through AK DEC / engineer; $500–$1,500"],
-    ["Floodplain / waterfront setback", "Applies near regulated waters", "Applies near regulated waters"],
-    ["Total 'permit' cost", "Often a few hundred dollars or less", "Often a few hundred dollars or less"]
+    ["State plumbing permit & inspection", "Applies in communities of 2,500+ (Wasilla, Palmer) under AS 18.60.705 / 8 AAC 63.010 — not $0", "Applies in communities of 2,500+ under the same rule — not $0"],
+    ["Driveway / access permit", "Borough permit for a borough road; DOT&PF permit for a state highway", "Required for state/borough road tie-ins"],
+    ["Floodplain development permit", "Required if the parcel is in a FEMA Special Flood Hazard Area — MSB 17.29", "Applies near regulated waters"],
+    ["Address request", "Filed with the borough so the parcel gets an address for utilities and 911", "Filed with the borough"],
+    ["Septic (on-site wastewater) approval", "DEC route; engineer or approved homeowner installer; soils classification required", "DEC route; same"],
+    ["Total 'permit' cost", "Modest in fees, but never zero once plumbing and wastewater are counted", "Same — the wastewater system, not the permit, is the number that matters"]
   ]}
 />
+
+<CalloutBox type="warning" title="The Mat-Su 'Land Use Permit' is not the permit you think it is">
+
+This one wastes real time every year. The Matanuska-Susitna Borough issues a document called a **Land Use Permit**, and owner-builders find the name, assume it is the borough's building-adjacent approval for their lot, and start an application.
+
+It is not. The Borough Land Use Permit authorizes use of **borough-owned land** — it comes with insurance and deposit requirements because you are proposing to use the borough's property. **It has nothing to do with building on a private lot,** and if you own your parcel it is not a permit you need or can meaningfully apply for.
+
+What a house on a private Mat-Su lot actually needs is short: a **driveway permit** (from the borough for a borough road, from DOT&PF for a state highway), a **floodplain development permit** under **MSB 17.29** if the parcel sits in a Special Flood Hazard Area, an **address request**, and the statewide floor — plumbing code and inspection above 2,500 population, alarms, the NEC, and DEC wastewater approval. There is no borough building permit, and no Land Use Permit either.
+
+</CalloutBox>
 
 ### Cities With Codes (Fairbanks, North Pole, Juneau)
 
 <DataTable
-  caption="Representative city permit costs for a 2,000 sq ft home"
-  headers={["Jurisdiction", "Permit basis", "Typical building permit + review"]}
+  caption="Illustrative city permit costs for a 2,000 sq ft home — ranges only, not quoted fees"
+  headers={["Jurisdiction", "Permit basis", "Illustrative building permit + review"]}
   rows={[
     ["City of Fairbanks", "Valuation-based per local fee schedule", "$1,500–$3,500"],
     ["City of North Pole", "Adopted residential code; valuation-based", "$1,200–$3,000"],
-    ["City & Borough of Juneau", "CBJ Title 19; valuation-based", "$2,000–$4,500"]
+    ["City & Borough of Juneau", "CBJ Title 19 (2024 IRC per CBJ 19.04.R010.1); valuation-based", "$2,000–$4,500"]
   ]}
 />
 
 ### Hidden Costs (These Dwarf the Permit in Alaska)
 
 <DataTable
-  caption="The real Alaska budget — what actually drives cost"
+  caption="The real Alaska budget — illustrative ranges for what actually drives cost"
   headers={["Item", "Typical amount / note"]}
   rows={[
     ["Deep or insulated arctic foundation", "Often the single biggest structural cost; permafrost sites require thermosyphons, piles, or thick insulated pads"],
@@ -244,15 +441,15 @@ Anchorage uses a valuation-based building-permit fee. For a new single-family ho
 
 <CalloutBox type="info" title="Fast where code exists — instant where it doesn't">
 
-In no-code boroughs there is no building-permit wait at all. Where a city or the Municipality of Anchorage enforces code, review for one- and two-family dwellings is comparatively quick.
+In no-code boroughs there is no building-permit wait at all. Where a city or the Municipality of Anchorage enforces code, review for one- and two-family dwellings is comparatively quick. The timelines below are illustrative observed ranges, not published service standards — ask your jurisdiction what it is actually running.
 
 </CalloutBox>
 
 <DataTable
-  caption="Permit processing timelines by jurisdiction"
+  caption="Illustrative permit processing timelines by jurisdiction — verify current turnaround locally"
   headers={["Jurisdiction", "Time to permit"]}
   rows={[
-    ["Mat-Su Borough, FNSB outside cities, unorganized borough", "No building permit — proceed once any septic/driveway approvals are in hand"],
+    ["Mat-Su Borough, FNSB outside cities, unorganized borough", "No building permit — proceed once septic/driveway approvals and, in a community of 2,500+, the state plumbing permit are in hand"],
     ["Municipality of Anchorage", "~10 working days for 1-2 family dwelling plan review (longer for complex/engineered plans)"],
     ["City of Fairbanks / North Pole", "2–4 weeks"],
     ["City & Borough of Juneau", "3–5 weeks"]
@@ -289,7 +486,21 @@ BEES pairs the tight 2018 IECC envelope with ASHRAE 62.2-2016 mechanical ventila
 
 ## Inspection Requirements
 
-In no-code boroughs there may be **no building inspections of the dwelling at all** — though septic and, where the Department of Labor has jurisdiction, electrical/plumbing work may still be inspected. Where a city or Anchorage enforces code, expect a standard IRC-style schedule.
+Alaska runs **two independent inspection tracks**, and an owner-builder in a no-code borough can easily discover the second one late.
+
+**The local track** exists only where a city or borough enforces a building code. In Anchorage or Juneau it is the standard IRC-style schedule below. In Mat-Su, FNSB outside its cities, or the unorganized borough it does not exist at all: no footing inspection, no framing inspection, no certificate of occupancy.
+
+**The state track runs regardless of the local one.** In any community of **2,500 or more people**, DOLWD plumbing inspectors inspect new construction under the 2018 UPC — single-family homes included, and specifically in places with no building department. That means a house in Wasilla or Palmer gets no building inspection and still gets a state plumbing inspection. Septic approval through DEC is a third, separate process everywhere outside a sewered city.
+
+<CalloutBox type="warning" title="Two tracks, and the state one doesn't care that your borough has no code">
+
+The sentence "there is no inspection here" is true about the borough and false about the state. If your community is at or above 2,500 population, plan your rough-in schedule around a state plumbing inspector you have to call, and do it before you insulate over the work. Owner-builders who assume "no code, no inspection" discover this after the drywall is up.
+
+</CalloutBox>
+
+There is a **third track you should opt into voluntarily**, even with nobody requiring it: the five **AS 18.56.300** construction-stage inspections (plan approval; footings and foundation; electrical, plumbing, and framing; insulation; final). Without them on record, AHFC cannot make or purchase a loan on your post-1992 house, which limits who can buy it from you later. Book them as you build — the alternative is destructive inspection at resale.
+
+Where a city or Anchorage enforces code, expect a standard IRC-style schedule.
 
 <DataTable
   caption="Standard inspection schedule where a building code is enforced (e.g., Anchorage)"
@@ -387,16 +598,42 @@ A large share of Alaska owner-builds are off the road system, off the grid, or b
 
 ### Septic and Wastewater (AK DEC)
 
-Outside sewered cities, on-site wastewater is regulated by the [Alaska Department of Environmental Conservation (DEC)](https://dec.alaska.gov/water/wastewater/) and often requires an engineer.
+Outside sewered cities, on-site wastewater is regulated by the [Alaska Department of Environmental Conservation (DEC)](https://dec.alaska.gov/water/wastewater/) under 18 AAC 72 — and in a no-building-code borough this is the one approval process that will actually shape your build. It is also the area where the most confidently wrong information circulates, for a specific reason covered below.
+
+**You may be able to install your own system.** Under **18 AAC 72.400**, a conventional onsite system may be installed only by a **certified installer** or an **approved homeowner**. That second category is a real route, not a technicality. **18 AAC 72.410** makes a homeowner "approved" after completing a DEC training course, submitting an application, and paying a **$275 fee**. The approval is limited: **one system per year**, on an **owner-occupied residence** you own. Soils still have to be **classified by an engineer or a soils lab** — the homeowner approval covers installing the system, not designing it or characterizing the ground it sits in.
+
+<CalloutBox type="warning" title="Two site conditions disqualify the homeowner route outright">
+
+Under **18 AAC 72.511(d)(4)**, the homeowner-installer path is off the table where there is **known or suspected permafrost**, or where **groundwater is within 4 feet of the surface.** Both are common across the Interior and in low-lying Mat-Su ground. These are exactly the sites where an engineered system was going to be necessary anyway — treat the disqualifier as the state telling you what the soils were about to tell you.
+
+</CalloutBox>
+
+<CalloutBox type="warning" title="18 AAC 72 was rewritten in 2023 — the setback section everyone cites is repealed">
+
+Alaska rewrote its onsite wastewater regulations effective **October 1, 2023**, and this is why so much septic guidance for Alaska is wrong right now. The widely cited setback section, **18 AAC 72.020, is REPEALED.** Any source that quotes it — including older PDFs, contractor handouts, and most search results — is quoting a regulation that no longer exists.
+
+Current separation distances live in **18 AAC 72.100 and 18 AAC 72.520**. The ones that drive lot layout:
+
+- **100 feet** from a well to a septic system
+- **100 feet** to surface water — and note that the regulation's definition of surface water includes a **"slough,"** meaning swamp, bog, or marsh. On a lot with boggy ground that most people would not call "water," this setback still applies and can quietly eliminate the site you had picked.
+- **4 feet / 6 feet** vertical separation depending on the system and conditions
+
+Pull the current text before you site anything. A 100-foot radius drawn from the wrong feature is a redesign; drawn from the wrong regulation, it's a failed inspection.
+
+</CalloutBox>
+
+**Anchorage is stricter than the state floor.** In the Municipality, an onsite system **always requires an engineer-sealed design** — there is no homeowner-design path. Anchorage also requires a **Certificate of On-Site Systems Approval (COSA)** at **every title transfer** (AMC 15.65.060A and 15.55.055A), which means your system gets formally evaluated each time the property changes hands, not just at installation. Build accordingly: a system that passes today but was never documented becomes a problem at closing.
 
 <DataTable
-  caption="Alaska on-site wastewater costs"
+  caption="Illustrative Alaska on-site wastewater costs — verify with a local engineer"
   headers={["Item", "Cost"]}
   rows={[
-    ["Soils / percolation evaluation by engineer", "$600–$1,500"],
+    ["Soils classification by engineer or soils lab (required either way)", "$600–$1,500"],
+    ["DEC homeowner installer approval (18 AAC 72.410)", "$275 fee plus the training course"],
     ["Conventional septic system", "$10,000–$20,000"],
     ["Engineered / mound / advanced system (frozen or tight soils)", "$20,000–$35,000+"],
-    ["Holding tank (where nothing else works)", "$5,000–$12,000 plus ongoing pumping"]
+    ["Holding tank (where nothing else works)", "$5,000–$12,000 plus ongoing pumping"],
+    ["Anchorage engineer-sealed design (always required)", "Included in design cost; COSA evaluation due again at every title transfer"]
   ]}
 />
 
@@ -413,6 +650,18 @@ Outside sewered cities, on-site wastewater is regulated by the [Alaska Departmen
   ]}
 />
 
+### "Deferred Jurisdictions" — Why the Fire Marshal's List Doesn't Apply to Your House
+
+You will run across the State Fire Marshal's **deferred jurisdiction** list while researching, and it looks like it might govern your build. It almost certainly doesn't, and it's worth 60 seconds to understand why so you can stop chasing it.
+
+Three things about that list:
+
+- **It names cities, not boroughs.** The entries are municipalities — plus **Central Mat-Su Fire Service Area**, which is a fire service area rather than a general-purpose government. If you are looking for your borough on it, that is the wrong question.
+- **What gets deferred is narrow.** Deferral transfers **fire plan review** authority from the state to the local jurisdiction. It does not transfer building code adoption, and it does not create a residential building permit where none existed.
+- **It does not reach a one-, two-, or three-family house in the first place.** The Fire Marshal's own guidance is explicit: **"Residential housing that is three-plex or smaller is exempt from this requirement."**
+
+So for a single-family owner-build, deferred jurisdiction status is simply not part of your picture — whether or not your city appears on the list. It matters if you are building a fourplex or larger, or anything commercial, where the state fire plan review requirement attaches in the first place.
+
 ### Wildfire (Interior) and Flood
 
 Interior and Southcentral Alaska have a real wildfire season; defensible space and ignition-resistant detailing matter. Riverine and coastal flooding, plus ice-jam flooding on Interior rivers, drive floodplain rules even in no-building-code boroughs — check FEMA/borough floodplain maps before siting.
@@ -421,7 +670,8 @@ Interior and Southcentral Alaska have a real wildfire season; defensible space a
 
 ### 1. **Matanuska-Susitna Borough** (Palmer / Wasilla and the Valley)
 - **Pros**: No residential building code, no building permit for the dwelling, road-system access, fastest-growing area in Alaska, on the grid
-- **Cons**: You own all the engineering risk; seismic and frost still very real; waterfront setback rules
+- **Cons**: You own all the engineering risk; seismic and frost still very real; floodplain and waterfront setback rules; Wasilla and Palmer are over 2,500 population, so the state plumbing code and inspection do apply
+- **Watch for**: The borough's "Land Use Permit" is for using *borough-owned* land, not for building on your own lot — don't apply for it. What you need is a driveway permit, a floodplain development permit under MSB 17.29 if you're in a Special Flood Hazard Area, an address request, and DEC wastewater approval
 - **Best for**: Owner-builders who want maximum freedom with road access and utilities — the classic Alaska owner-build choice
 
 ### 2. **Fairbanks North Star Borough** (outside city limits)
@@ -454,26 +704,27 @@ The places below carry the most severe site conditions or logistics in the state
 
 ## Key Resources
 
-- **Alaska DCBPL — Construction Contractors**: contractor registration, owner-builder exemption (AS 08.18), Residential Contractor Endorsement — [commerce.alaska.gov](https://www.commerce.alaska.gov/web/cbpl/ProfessionalLicensing/ConstructionContractors.aspx)
+- **Alaska Statutes and Administrative Code (akleg.gov)**: the primary source for every AS and AAC citation in this guide — read the section itself rather than a summary of it — [akleg.gov](https://www.akleg.gov/basis/statutes.asp)
+- **Alaska DCBPL — Construction Contractors**: contractor registration, the AS 08.18.161 exemptions, Residential Contractor Endorsement — [commerce.alaska.gov](https://www.commerce.alaska.gov/web/cbpl/ProfessionalLicensing/ConstructionContractors.aspx)
 - **Alaska DCBPL — Electrical & Mechanical Administrators**: trade administrator certification — [commerce.alaska.gov](https://www.commerce.alaska.gov/web/cbpl/ProfessionalLicensing/ElectricalAdministrators.aspx)
-- **Alaska Dept. of Labor — Mechanical Inspection Section**: statewide plumbing/electrical/boiler inspection — [labor.alaska.gov](https://labor.alaska.gov/lss/plumbing_electrical.htm)
-- **Alaska Housing Finance Corporation (AHFC)**: BEES energy standard, 5-Star rating, AkWarm — [ahfc.us](https://www.ahfc.us/efficiency/codes-standards)
-- **State Fire Marshal**: statewide fire and life-safety code authority — [dps.alaska.gov/SFM](https://dps.alaska.gov/SFM/Home)
-- **Alaska DEC — Wastewater**: on-site septic standards and approvals — [dec.alaska.gov](https://dec.alaska.gov/water/wastewater/)
+- **Alaska Dept. of Labor — Mechanical Inspection Section**: state plumbing and electrical inspection, including the communities-of-2,500-and-above plumbing program — [labor.alaska.gov](https://labor.alaska.gov/lss/plumbing_electrical.htm)
+- **Alaska Housing Finance Corporation (AHFC)**: BEES energy standard, 5-Star rating, AkWarm, and the AS 18.56.300 construction-stage inspections — [ahfc.us](https://www.ahfc.us/efficiency/codes-standards)
+- **State Fire Marshal**: statewide fire and life-safety authority, deferred jurisdiction list (three-plex and smaller are exempt) — [dps.alaska.gov/SFM](https://dps.alaska.gov/SFM/Home)
+- **Alaska DEC — Wastewater**: 18 AAC 72 onsite standards, homeowner installer approval, current setbacks — [dec.alaska.gov](https://dec.alaska.gov/water/wastewater/)
 - **Structural Engineers Association of Alaska**: community snow-load data — [seaak.net](https://seaak.net/alaska-snow-loads)
 - **Your borough or city**: Anchorage Development Services, Mat-Su Planning, FNSB, CBJ — code (if any), permits, and inspections
 
 ## Common Questions
 
-**Do I need a license to build my own house in Alaska?** No. Alaska has no general-contractor license exam, and an owner working on their own property and residence is exempt from contractor registration under AS 08.18.161. You can act as your own general contractor on your own home.
+**Do I need a license to build my own house in Alaska?** No. Alaska has no general-contractor license exam, and an owner acting as their own contractor on a new house is exempt from contractor registration under AS 08.18.161(11) — which expressly permits hiring workers and subcontractors. You can act as your own general contractor on your own home.
 
-**Can you build your own house without a permit in Alaska?** In much of Alaska, yes — there is no statewide residential building code, and many boroughs (Mat-Su, FNSB outside its cities, the unorganized borough) have no building code or building permit for the dwelling at all. Where a city or the Municipality of Anchorage enforces a local code, you do need a permit.
+**Can you build your own house without a permit in Alaska?** In much of Alaska, yes — there is no statewide residential building code, and many boroughs (Mat-Su, FNSB outside its cities, the unorganized borough) have no building code or building permit for the dwelling at all. But "no building permit" is not "no rules": in a community of 2,500 or more you owe a state plumbing permit and inspection, smoke and CO alarms are required statewide, and DEC wastewater approval applies everywhere outside a sewered city. Where a city or the Municipality of Anchorage enforces a local code, you do need a building permit.
 
-**What is the Alaska owner-builder exemption?** It's AS 08.18.161, which exempts a person performing work on their own property and their own residence from contractor registration. It limits an owner-contractor to one home/duplex/triplex/four-plex or commercial building every two years, and if the owner advertises or sells the structure during construction or within two years after construction begins, the owner must file a state notice that they are not operating as a contractor.
+**What is the Alaska owner-builder exemption?** There are two, and the distinction matters. **AS 08.18.161(11)** covers new construction by "an owner who acts as the owner's own contractor" — capped at one home, duplex, triplex, four-plex, or commercial building every two years, with a state notice required if the owner advertises or sells during construction or within two years after construction begins. **AS 08.18.161(9)** is separate and covers "a person working on an existing structure on that person's own property" and "that person's own existing residence" — remodels and repairs, with no cap and no notice. The two-year rules belong to (11), not (9).
 
-**Can a homeowner do their own electrical and plumbing in Alaska?** Yes, under AS 08.40.190, on residential property you own that is not intended for sale — you're exempt from licensure. But where the Department of Labor's Mechanical Inspection Section has jurisdiction, the work is still subject to inspection and must meet code.
+**Can a homeowner do their own electrical and plumbing in Alaska?** Yes, but under three different statutes with different tests. Electrical is AS 08.40.190(b)(3): property owned by you or an immediate family member and not intended for sale. Mechanical is AS 08.40.390(b)(3): a single-family or two-family residence not intended for sale, with no ownership condition. Plumbing is AS 18.60.715(c), which is unconditional on your own property. All three excuse the license only — the 2020 NEC and the 2018 UPC still apply, and DOLWD inspects plumbing in communities of 2,500 and above.
 
-**How much does an Alaska owner-builder permit cost?** In no-code boroughs, the building permit is $0 because none is required. In Anchorage, expect roughly $6,000–$10,000 in building permit plus plan review for a typical home (utilities are separate and far larger). Smaller cities like Fairbanks and North Pole run $1,200–$3,500.
+**How much does an Alaska owner-builder permit cost?** In no-code boroughs the building permit is $0 because none is required — but the state plumbing permit above 2,500 population and the wastewater system are not. In Anchorage, illustrative planning ranges run roughly $6,000–$10,000 in building permit plus plan review for a typical home (utilities are separate and far larger). Smaller cities like Fairbanks and North Pole are in the $1,200–$3,500 range. Verify all of these against current fee schedules.
 
 **Which Alaska boroughs are best for owner-builders?** The Matanuska-Susitna Borough is the classic choice — no building code, road access, on the grid, and booming. The Kenai Peninsula offers a milder climate with light regulation. Anchorage is best if you actually want code oversight and the strongest resale market.
 
@@ -501,17 +752,21 @@ Alaska's building season is short. Foundation and exterior work realistically ha
 
 ## Final Thoughts for Alaska Owner-Builders
 
-Alaska is the freest place in America to build your own home and the least forgiving place to build it badly. The legal hurdles are genuinely low — no statewide building code, no GC license exam, a clean owner-builder exemption, and across huge swaths of the state, no permit and no inspector. If your only goal is to avoid bureaucracy, Alaska wins by a mile.
+Alaska is the freest place in America to build your own home and the least forgiving place to build it badly. The legal hurdles are genuinely low — no statewide residential building code, no GC license exam, a clean owner-builder exemption in AS 08.18.161(11), and across huge swaths of the state, no building permit and no local inspector. If your only goal is to avoid bureaucracy, Alaska wins by a mile.
 
-But that same freedom removes the guardrails. There is no inspector to catch a foundation that's going to thaw the permafrost, no plan checker to flag a roof that's under-built for hillside snow, no one but you and the engineer you hire standing between Seismic Design Category E and your family. The state's own Residential Contractor Endorsement — a 16-hour arctic-engineering course it makes the *pros* take — is the clearest signal of all: Alaska treats cold-climate construction as a specialty even while letting owners opt out of proving they've learned it.
+But that same freedom removes the guardrails. There is no inspector to catch a foundation that's going to thaw the permafrost, no plan checker to flag a roof that's under-built for hillside snow, no one but you and the engineer you hire standing between Seismic Design Category E and your family. The state's own Residential Contractor Endorsement is the clearest signal of all: to touch a four-unit-or-smaller house for pay, a general contractor must pass a departmental exam that may cover arctic structural and thermal techniques and complete an arctic engineering or Alaska Craftsman Home Program course. Alaska treats cold-climate construction as a specialty even while letting owners opt out of proving they've learned it.
+
+And "no permit" was never the same as "no rules." Even at the most unregulated address in the state, your house owes hard-wired interconnected smoke and CO alarms under AS 18.70.095 — the one requirement here with a criminal penalty attached — the 2020 NEC on the wiring, DEC approval on the wastewater system, and, in any community of 2,500 or more, the 2018 UPC with a state plumbing inspector who will come look at it.
 
 The big decisions:
 
 1. **Pick your regulatory posture deliberately**: Mat-Su or Kenai for maximum freedom and road access; Anchorage if you actually want code oversight and the best resale.
-2. **Buy the geotech report**: In permafrost or hillside country it's the cheapest insurance you'll ever buy. Believe what it tells you.
-3. **Hire an Alaska structural engineer even where no one will check**: SDC E and deep frost are not DIY guesswork.
-4. **Obsess over the envelope**: Build to BEES 5-Star, pair the tight envelope with an HRV/ERV, and treat the insulation/vapor inspection as sacred — even self-inspected.
-5. **Respect the season and the freight**: Order long-lead materials over the winter, get dried-in before October, and budget logistics as a major line item.
+2. **Know which paragraph you're building under**: new construction is AS 08.18.161(11), capped and notice-bound; a remodel is (9), neither. Date every labor, subcontract, and material agreement — the earlier of those and first work starts your two-year clock.
+3. **Buy the geotech report**: In permafrost or hillside country it's the cheapest insurance you'll ever buy. Believe what it tells you.
+4. **Hire an Alaska structural engineer even where no one will check**: SDC E and deep frost are not DIY guesswork.
+5. **Obsess over the envelope**: Build to BEES 5-Star, pair the tight envelope with an HRV/ERV, and treat the insulation/vapor inspection as sacred — even self-inspected.
+6. **Arrange the AS 18.56.300 inspections voluntarily**: five stages, a few hundred dollars each, and without them your cash-built house can't be sold to an AHFC-financed buyer without destructive inspection years later.
+7. **Respect the season and the freight**: Order long-lead materials over the winter, get dried-in before October, and budget logistics as a major line item.
 
 Alaska rewards the prepared, humble owner-builder and punishes the casual one. Do the engineering the law doesn't force you to do, and you can build something extraordinary in a place most people only visit.
 
@@ -520,31 +775,39 @@ Alaska rewards the prepared, humble owner-builder and punishes the casual one. D
   faqs={[
     {
       question: "Can you build your own house in Alaska without a license?",
-      answer: "Yes. Alaska has no general-contractor license exam, and an owner working on their own property and residence is exempt from contractor registration under AS 08.18.161. You can legally act as your own general contractor on a home you own. Across much of the state there is also no statewide residential building code, so in many boroughs you don't even need a building permit. Where a city or the Municipality of Anchorage enforces a local code, you still need a permit and must meet that code."
+      answer: "Yes. Alaska has no general-contractor license exam, and an owner who acts as their own contractor on a new house is exempt from contractor registration under AS 08.18.161(11) — a paragraph that expressly allows hiring workers and subcontractors and imposes no occupancy requirement. You can legally act as your own general contractor on a home you own. Across much of the state there is also no local residential building code, so in many boroughs you don't need a building permit either. Where a city or the Municipality of Anchorage enforces a local code, you still need a permit and must meet that code."
     },
     {
       question: "Does Alaska have a statewide building code?",
-      answer: "No. Alaska has no statewide residential building code for one- to three-family dwellings. Building codes are adopted locally — the Municipality of Anchorage and the cities of Fairbanks, North Pole, Juneau, and a few others enforce IRC/IBC-based codes, while the Matanuska-Susitna Borough, the Fairbanks North Star Borough outside its cities, and the unorganized borough have no residential building code at all. The only residential standard that reaches statewide is the AHFC energy standard (BEES), and even that is mandatory only on state-financed homes."
+      answer: "Not for houses. AS 18.70.080(a)(2) reaches residential buildings only when they contain four or more dwelling units, and 13 AAC 50.020 adopts the 2021 IBC with a revised Section 101.2 Exception 1 that excludes detached one-, two-, and three-family dwellings — one unit wider than the model IBC's own exception. Building codes are therefore adopted locally: Anchorage and the cities of Fairbanks, North Pole, Juneau, and a few others enforce IRC/IBC-based codes, while the Matanuska-Susitna Borough, the Fairbanks North Star Borough outside its cities, and the unorganized borough have none. Several statewide requirements still apply to every house: the 2018 Uniform Plumbing Code (AS 18.60.705 and 8 AAC 63.010) in communities of 2,500 or more, the 2020 NEC (8 AAC 70.025(a)), and smoke and CO alarms under AS 18.70.095."
     },
     {
       question: "What is the Alaska owner-builder exemption?",
-      answer: "It is AS 08.18.161, which exempts a person performing work on their own property — whether occupied or not — and on their own existing residence from the state's contractor registration requirement. Two limits apply: an owner acting as their own contractor is limited to one home, duplex, triplex, four-plex, or commercial building every two years, and if the owner advertises or sells the structure during construction or within two years after construction begins, the owner must file a state notice stating they are not operating a business that requires contractor registration. Your exemption covers you; anyone you pay must still be properly registered."
+      answer: "There are two, in different paragraphs of AS 08.18.161, and most sources conflate them. AS 08.18.161(11) is the new-construction exemption: it covers 'an owner who acts as the owner's own contractor and in doing so performs the work independently or hires workers or subcontractors,' is limited to one home, duplex, triplex, four-plex, or commercial building every two years, and requires a state notice if the owner advertises or sells during construction or within two years after construction begins — with construction beginning at the earlier of starting work or entering any agreement for labor, subcontract, or materials. AS 08.18.161(9) is the separate remodel exemption for 'a person working on an existing structure on that person's own property, whether occupied by the person or not, and a person working on that person's own existing residence, whether owned by the person or not.' Paragraph (9) has no two-year cap and no notice duty; the word 'existing' is what limits it to work on a structure that already stands. Your exemption covers you; anyone you pay must still be properly registered."
     },
     {
       question: "Can a homeowner do their own electrical and plumbing in Alaska?",
-      answer: "Yes. Under AS 08.40.190, electrical and mechanical installation on residential property owned by the installer or an immediate family member and not intended for sale is excluded from the licensure requirement. The catch is that the exclusion is from licensure, not from the code or the inspection — where the Department of Labor's Mechanical Inspection Section has jurisdiction, the work is still subject to inspection under AS 08.40.070 and must meet the adopted standards. There is also a separate exclusion for small jobs under $5,000 in communities of fewer than 500 people or more than 50 miles from a licensed administrator."
+      answer: "Yes, but the three trades sit in three different statutes with genuinely different tests. Electrical: AS 08.40.190(b)(3) excludes installation on residential property 'owned by the installer or a member of the installer's immediate family and not intended for sale at the time of making the installation.' Mechanical: AS 08.40.390(b)(3) covers 'a single-family residence or a two-family residence that is not intended for sale' — building type plus not-for-sale, with no ownership condition. Plumbing: AS 18.60.715(c) says nothing in the plumbing statutes 'prohibits a person from performing plumbing work on the person's own property,' with no conditions at all. Note that AS 08.40.190 is the electrical administrators article and does not govern mechanical work, despite being widely cited for it. Every one of these excludes the license only. The 2020 NEC still applies to your wiring under AS 08.40.190(c) and 8 AAC 70.025(a), enforceable under AS 08.40.180 by a fine of up to $5,000, and DOLWD plumbing inspectors inspect new construction in communities of 2,500 and above. The remote small-job exclusions also differ by an order of magnitude: under $5,000 in communities under 500 population for electrical (AS 08.40.190(b)(2)) versus under $50,000 in communities under 5,000 for mechanical (AS 08.40.390(b)(2))."
     },
     {
       question: "Can you build your own house without a permit in Alaska?",
-      answer: "In much of Alaska, yes. There is no statewide residential building code, and boroughs like Matanuska-Susitna, the Fairbanks North Star Borough outside its cities, and the unorganized borough do not require a building permit for the dwelling itself. Septic (through Alaska DEC), driveway/access, and floodplain permits can still apply even where there is no building code. Where a city or the Municipality of Anchorage enforces a code, a building permit is required."
+      answer: "In much of Alaska you can build without a building permit. There is no statewide residential building code, and boroughs like Matanuska-Susitna, the Fairbanks North Star Borough outside its cities, and the unorganized borough do not require one for the dwelling itself. But that is not the same as no requirements. In a community of 2,500 or more, the 2018 UPC applies and the state inspects your plumbing regardless of whether a building department exists. Smoke and CO alarms are required in all dwelling units in the state under AS 18.70.095, and violation is a class B misdemeanor. DEC wastewater approval, driveway access, and floodplain permits apply on top. Where a city or the Municipality of Anchorage enforces a code, a building permit is required as well."
     },
     {
       question: "How much does an Alaska owner-builder permit cost?",
-      answer: "In no-code boroughs the building permit is $0 because none is required. In Anchorage, a new single-family home runs roughly $0.009 of construction valuation for the building permit plus about $0.005 for plan review — on the order of $6,000–$10,000 total for a typical home, with utility connections separate and much larger. Smaller code cities like Fairbanks and North Pole generally run $1,200–$3,500. In Alaska the permit is rarely the expensive part — the arctic foundation, freight, well, and septic are."
+      answer: "In no-code boroughs the building permit itself is $0 because none is required — but state plumbing permits apply in communities of 2,500 or more, and everyone owes wastewater costs, so the true floor is never zero. In Anchorage, illustrative planning figures put a new single-family home at roughly $0.009 of construction valuation for the building permit plus about $0.005 for plan review, on the order of $6,000–$10,000 total, with utility connections separate and much larger. Smaller code cities like Fairbanks and North Pole are generally in the $1,200–$3,500 range. These are illustrative ranges rather than quoted fees — confirm against the current schedule. In Alaska the permit is rarely the expensive part; the arctic foundation, freight, well, and septic are."
     },
     {
       question: "What building code does Anchorage use?",
-      answer: "The Municipality of Anchorage enforces local amendments to the 2018 International Residential Code (Title 23 Chapter 23.85) and 2018 International Building Code (Chapter 23.15), the 2018 IECC (Chapter 23.60), the 2020 National Electrical Code (Chapter 23.30), and the 2009 Uniform Plumbing Code (Chapter 23.25), among others. Anchorage requires stamped structural calculations and a surveyed plot plan for a new home, and it sits in Seismic Design Category E with a roughly 42-inch frost-depth footing requirement."
+      answer: "The 2024 I-codes. The Municipality of Anchorage adopted them at AMC 23.05.010 by AO No. 2026-33, passed April 14, 2026: the 2024 IRC including Appendices BA, BB, and BG with local amendments at AMC chapter 23.85, plus the 2024 IBC, IMC, IECC, IEBC, IFGC, and IFC, the 2024 Uniform Plumbing Code, and the 2023 National Electrical Code. Older guidance citing the 2018 IRC, 2018 IECC, 2020 NEC, or 2009 UPC for Anchorage predates that ordinance. Anchorage requires stamped structural calculations and a surveyed plot plan for a new home, sits in Seismic Design Category E, and has a roughly 42-inch frost-depth footing requirement."
+    },
+    {
+      question: "Do smoke alarms have to be hard-wired in a new Alaska house?",
+      answer: "Yes, in a new house on commercial power. AS 18.70.095(a) requires smoke detection devices in all dwelling units in the state, plus carbon monoxide devices in qualifying units — which is nearly all of them, since a unit qualifies if it has any combustion appliance, an attached garage or carport, or adjacent parking. 13 AAC 50.030(b) requires installation to NFPA 72-2019 and IBC Section 907.2.11, and permits battery-only alarms only in buildings constructed before 1989 or buildings without commercial power. A new on-grid house therefore needs hard-wired, interconnected alarms even in a borough with no building department. This is the only Alaska residential construction requirement carrying a criminal penalty: a class B misdemeanor under AS 18.70.100(a), with each 10 days of continued violation a separate offense."
+    },
+    {
+      question: "Can I install my own septic system in Alaska?",
+      answer: "Sometimes. Under 18 AAC 72.400 a conventional onsite system may be installed only by a certified installer or an approved homeowner, and 18 AAC 72.410 lets you become an approved homeowner by completing a DEC training course, applying, and paying a $275 fee — good for one system per year on an owner-occupied residence you own. Soils must still be classified by an engineer or a soils lab. Two conditions disqualify the route outright under 18 AAC 72.511(d)(4): known or suspected permafrost, and groundwater within 4 feet of the surface. Note also that 18 AAC 72 was rewritten effective October 1, 2023 — the widely cited setback section 18 AAC 72.020 is repealed, and current separations live in 18 AAC 72.100 and 72.520 (100 feet well to septic, 100 feet to surface water including a 'slough,' meaning swamp, bog, or marsh, and 4 or 6 feet of vertical separation). Anchorage always requires an engineer-sealed design and a COSA certificate at every title transfer."
     },
     {
       question: "Do I need to worry about permafrost and earthquakes when building in Alaska?",
@@ -552,7 +815,7 @@ Alaska rewards the prepared, humble owner-builder and punishes the casual one. D
     },
     {
       question: "What energy standard do Alaska homes have to meet?",
-      answer: "The AHFC Building Energy Efficiency Standard (BEES) — the 2018 IECC plus ASHRAE 62.2-2016 ventilation and Alaska-specific amendments — covering climate zones 6 through 8 and requiring a minimum 5-Star energy rating. BEES is mandatory only where AHFC or other state financial assistance is used, but it is the de facto Alaska standard, and lenders rely on it. In practice that means a very tight, heavily insulated envelope (R-49 ceilings, R-21 walls, low-U windows) paired with a heat-recovery ventilator — building airtight without balanced ventilation is the classic Alaska moisture failure."
+      answer: "The AHFC Building Energy Efficiency Standard (BEES) — the 2018 IECC plus ASHRAE 62.2-2016 ventilation and Alaska-specific amendments — covering climate zones 6 through 8 and requiring a minimum 5-Star energy rating. BEES itself is mandatory only where AHFC or other state financial assistance is used, but it is the de facto Alaska standard and lenders rely on it. Separately, AS 18.56.300 bars AHFC from making or purchasing a loan on any home built after June 30, 1992 unless construction was inspected at five stages: plan approval, footings and foundation, electrical/plumbing/framing, insulation, and final. That reaches a cash-built house at any future resale to an AHFC-financed buyer, and the only cure for missed inspections is a case-by-case destructive inspection — so arrange the five inspections voluntarily even in a no-code borough. In practice BEES means a very tight, heavily insulated envelope (R-49 ceilings, R-21 walls, low-U windows) paired with a heat-recovery ventilator; building airtight without balanced ventilation is the classic Alaska moisture failure."
     }
   ]}
 />
@@ -573,4 +836,8 @@ Building in another cold-climate or low-regulation Western state? Check the requ
 
 ---
 
-*Last updated: May 2026. Verified this update: Alaska has no statewide residential building code for one- to three-family dwellings — codes are adopted and enforced locally, and many areas (Matanuska-Susitna Borough, the Fairbanks North Star Borough outside its cities, and the unorganized borough) have no residential building code or building permit at all, per the [Building Codes Assistance Project](https://bcapcodes.org/code-status/state/alaska/) and the U.S. DOE [Building Energy Codes Program](https://www.energycodes.gov/status/states/alaska). Contractors register under [AS 08.18](https://www.commerce.alaska.gov/web/cbpl/ProfessionalLicensing/ConstructionContractors.aspx); owners working on their own property and residence are exempt under [AS 08.18.161](https://law.justia.com/codes/alaska/title-8/chapter-18/article-4/section-08-18-161/) (limited to one project every two years; advertising or selling the structure during construction or within two years after construction begins requires filing a state notice). Homeowner electrical/mechanical work on a not-for-sale residence is excluded from licensure under [AS 08.40.190](https://codes.findlaw.com/ak/title-8-business-and-professions/ak-st-sect-08-40-190.html) but remains subject to inspection where the [Department of Labor Mechanical Inspection Section](https://labor.alaska.gov/lss/plumbing_electrical.htm) has jurisdiction. The residential energy standard is the [AHFC BEES](https://www.ahfc.us/pros/builders/building-energy-efficiency-standard) (2018 IECC + ASHRAE 62.2-2016 + Alaska amendments, 5-Star, climate zones 6–8), mandatory on state-financed homes. The Municipality of Anchorage enforces the 2018 IRC/IBC (Title 23), sits in Seismic Design Category E, and requires roughly 42-inch frost-depth footings. Code editions, permit fees, frost depths, snow loads, and trade rules all vary by jurisdiction — verify with your specific borough or city building department before relying on any figure here.*
+*Last updated: August 2026. Verified this update against the Alaska Statutes and Administrative Code at [akleg.gov](https://www.akleg.gov/basis/statutes.asp), each jurisdiction's municipal code through its own official publisher, and primary documents from DOLWD, DCCED, DEC, DPS, and AHFC.*
+
+*Key findings as verified. There is no statewide residential building code for one- to three-family dwellings: AS 18.70.080(a)(2) reaches residential buildings only at four or more dwelling units, and 13 AAC 50.020's revised IBC §101.2 Exception 1 excludes detached one-, two-, and three-family dwellings. Contractor registration is required under [AS 08.18](https://www.commerce.alaska.gov/web/cbpl/ProfessionalLicensing/ConstructionContractors.aspx), with two distinct owner exemptions: **AS 08.18.161(11)** for an owner acting as their own contractor on new construction (may hire workers or subcontractors; one home, duplex, triplex, four-plex, or commercial building every two years; sale-notice duty running from the earlier of first work or any labor, subcontract, or materials agreement), and **AS 08.18.161(9)** for work on "an existing structure on that person's own property, whether occupied by the person or not," and "that person's own existing residence, whether owned by the person or not" — remodels, with no cap. The three homeowner trade exclusions are separate: electrical AS 08.40.190(b)(3), mechanical AS 08.40.390(b)(3), plumbing AS 18.60.715(c); AS 08.40.190 is the electrical administrators article and does not govern mechanical work. Each excuses the license only — the 2020 NEC applies under 8 AAC 70.025(a) per AS 08.40.190(c), enforceable through AS 08.40.180. The statewide plumbing code is the 2018 UPC (AS 18.60.705 with 8 AAC 63.010; applied to all new construction by AS 18.60.715(a)), with AS 18.60.735 exempting communities under 2,500 population and [DOLWD](https://labor.alaska.gov/lss/plumbing_electrical.htm) inspecting at or above it. Smoke and CO alarms are required in all dwelling units in the state under AS 18.70.095(a) with 13 AAC 50.030(b) installation standards; violation is a class B misdemeanor under AS 18.70.100(a). The energy standard is the [AHFC BEES](https://www.ahfc.us/pros/builders/building-energy-efficiency-standard) (2018 IECC + ASHRAE 62.2-2016 + Alaska amendments, 5-Star, zones 6–8), mandatory where state financing is used, with AS 18.56.300 separately requiring five construction-stage inspections for AHFC to make or purchase a loan on a post-June-30-1992 home. Anchorage adopted the 2024 I-codes and the 2023 NEC at AMC 23.05.010 by AO No. 2026-33 (April 14, 2026); Juneau adopted the 2024 IRC at CBJ 19.04.R010.1 (Serial No. 2025-26, effective October 21, 2025). Onsite wastewater follows 18 AAC 72 as rewritten effective October 1, 2023 — 18 AAC 72.020 is repealed and setbacks now live in 18 AAC 72.100 and 72.520.*
+
+*A caution about Alaska's own publications: at least three official DOLWD PDFs still print superseded code editions, including an "Electrical Safety Statutes and Regulations" booklet authored in 2018 that shows the 2017 NEC. AS 18.60.705 likewise still names the 1997 UPC on its face while 8 AAC 63.010 has moved the state to the 2018 edition. Where an agency handout and the live Administrative Code disagree, **the AAC governs.** Dollar figures and timelines in this guide are illustrative planning ranges, not quoted fees. Code editions, permit fees, frost depths, snow loads, and trade rules all vary by jurisdiction — verify with your specific borough or city before relying on any figure here.*

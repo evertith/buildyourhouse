@@ -294,6 +294,28 @@ const PRODUCTS = {
       'your parcel’s code status from the public record, and the forms index — ' +
       'print-ready PDFs with the statute citations on the page.',
   },
+  'ak-permit-kit': {
+    sku: 'ak-permit-kit',
+    kind: 'download',
+    name: 'Alaska Owner-Builder Permit Kit',
+    amount: 3400,
+    r2Key: 'ak-permit-kit.zip',
+    description:
+      'Alaska owner-builder permitting, start to finish, in a state where most of ' +
+      'the requirements do not arrive through a permit counter: the AS 08.18.161(11) ' +
+      'exemption walkthrough, a permit checklist for both the local-permit and ' +
+      'no-building-department paths, the inspection sequence and self-verification ' +
+      'log, the five questions that establish who regulates your parcel, and the ' +
+      'forms index. 55 print-ready pages with the statute citations on the page. ' +
+      'Instant download.',
+    emailSubject: 'Your Alaska Permit Kit — download inside',
+    emailBlurb:
+      'The ZIP contains the Alaska owner-builder exemption walkthrough, the ' +
+      'two-path permit checklist (with and without a building department), the ' +
+      'inspection sequence and self-verification log, the where-to-file directory ' +
+      'with the borough-by-borough map, and the forms index — print-ready PDFs ' +
+      'with the statute and regulation citations on the page.',
+  },
   'sub-hiring-pack': {
     sku: 'sub-hiring-pack',
     kind: 'download',

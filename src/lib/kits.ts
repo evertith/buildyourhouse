@@ -43,7 +43,11 @@ const K = (
 
 export const STATE_KITS: StateKit[] = [
   K('Alabama', 'al', 'alabama', { phase: 5 }),
-  K('Alaska', 'ak', 'alaska', { phase: 2 }),
+  K('Alaska', 'ak', 'alaska', {
+    status: 'shipped',
+    checkoutUrl: 'https://buy.stripe.com/7sYeVd5W7dB543qdV1fAc0d',
+    hook: 'The exemption paragraph almost everyone cites is the remodel one, a state plumbing inspector arrives where no building department exists, and the code that actually binds your house comes through the mortgage — with the building official employed by the lender.',
+  }),
   K('Arizona', 'az', 'arizona', { phase: 11 }),
   K('Arkansas', 'ar', 'arkansas', { phase: 3 }),
   K('California', 'ca', 'california', {

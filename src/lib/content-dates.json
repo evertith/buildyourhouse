@@ -341,7 +341,7 @@
   },
   "/permitting/state-guides/mississippi": {
     "published": "2026-05-30T21:21:00-04:00",
-    "modified": "2026-07-01T21:40:43-04:00"
+    "modified": "2026-08-27T15:04:53-04:00"
   },
   "/permitting/state-guides/missouri": {
     "published": "2026-05-30T21:21:00-04:00",
@@ -349,7 +349,7 @@
   },
   "/permitting/state-guides/montana": {
     "published": "2026-05-30T21:21:00-04:00",
-    "modified": "2026-07-01T21:40:43-04:00"
+    "modified": "2026-08-27T15:04:53-04:00"
   },
   "/permitting/state-guides/nebraska": {
     "published": "2026-05-30T21:21:00-04:00",
@@ -522,6 +522,14 @@
   "/shop/mi-permit-kit": {
     "published": "2026-08-27T10:27:46-04:00",
     "modified": "2026-08-27T10:27:46-04:00"
+  },
+  "/shop/ms-permit-kit": {
+    "published": "2026-08-27T15:04:53-04:00",
+    "modified": "2026-08-27T15:04:53-04:00"
+  },
+  "/shop/mt-permit-kit": {
+    "published": "2026-08-27T15:04:53-04:00",
+    "modified": "2026-08-27T15:04:53-04:00"
   },
   "/shop/nc-permit-kit": {
     "published": "2026-08-05T22:44:49-04:00",
