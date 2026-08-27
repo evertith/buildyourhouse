@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next';
 import contentDates from '@/lib/content-dates.json';
+import { shippedKits } from '@/lib/kits';
 
 export const dynamic = 'force-static';
 
@@ -43,8 +44,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly' as const,
       priority: 0.8,
     },
-    ...['nc', 'ga', 'tx', 'va'].map((st) => ({
-      url: `${baseUrl}/shop/${st}-permit-kit`,
+    ...shippedKits().map((k) => ({
+      url: `${baseUrl}/shop/${k.slug}`,
       lastModified: currentDate,
       changeFrequency: 'monthly' as const,
       priority: 0.8,

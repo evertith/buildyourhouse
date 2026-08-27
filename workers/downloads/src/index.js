@@ -179,6 +179,24 @@ const PRODUCTS = {
       'sequences, where-to-file directory, and forms index — print-ready PDFs with ' +
       'the statute citations on the page.',
   },
+  'wa-permit-kit': {
+    sku: 'wa-permit-kit',
+    kind: 'download',
+    name: 'Washington Owner-Builder Permit Kit',
+    amount: 3400,
+    r2Key: 'wa-permit-kit.zip',
+    description:
+      'Washington owner-builder permitting, start to finish: the contractor-registration ' +
+      'exemption walkthrough, permit application checklist, inspection sequence with the ' +
+      'L&I electrical split named for every call, where-to-file directory, and forms ' +
+      'index. 35 print-ready pages with the RCW and WAC citations on the page. Instant download.',
+    emailSubject: 'Your Washington Permit Kit — download inside',
+    emailBlurb:
+      'The ZIP contains the Washington owner-builder exemption walkthrough, permit ' +
+      'application checklist, inspection sequence with the agency named for every call, ' +
+      'where-to-file directory, and forms index — print-ready PDFs with the RCW and WAC ' +
+      'citations on the page.',
+  },
   'sub-hiring-pack': {
     sku: 'sub-hiring-pack',
     kind: 'download',

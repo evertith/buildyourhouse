@@ -104,7 +104,11 @@ export const STATE_KITS: StateKit[] = [
     checkoutUrl: 'https://buy.stripe.com/9B64gz84f2WrarOg39fAc05',
     hook: 'The § 54.1-1101 exemption, the lien agent that protects you, VDH septic shot clocks, and the VDOT driveway permit almost nobody expects.',
   }),
-  K('Washington', 'wa', 'washington', { phase: 1 }),
+  K('Washington', 'wa', 'washington', {
+    status: 'shipped',
+    checkoutUrl: 'https://buy.stripe.com/fZu6oHesD7cH9nKcQXfAc07',
+    hook: 'The electrical permit that comes from the State instead of your county, the 950-gallon well cap that replaced the 5,000-gallon one, and the three energy tests with no visual alternative.',
+  }),
   K('West Virginia', 'wv', 'west-virginia', { phase: 5 }),
   K('Wisconsin', 'wi', 'wisconsin', { phase: 3 }),
   K('Wyoming', 'wy', 'wyoming', { phase: 6 }),
