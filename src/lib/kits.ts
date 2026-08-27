@@ -74,7 +74,11 @@ export const STATE_KITS: StateKit[] = [
   K('Indiana', 'in', 'indiana', { phase: 7 }),
   K('Iowa', 'ia', 'iowa', { phase: 4 }),
   K('Kansas', 'ks', 'kansas', { phase: 10 }),
-  K('Kentucky', 'ky', 'kentucky', { phase: 2 }),
+  K('Kentucky', 'ky', 'kentucky', {
+    status: 'shipped',
+    checkoutUrl: 'https://buy.stripe.com/9B67sLacn40v7fC5ovfAc0e',
+    hook: 'The building permit your county may not require, the three state permits that apply anyway, and the two utilities that cannot connect you until someone signs.',
+  }),
   K('Louisiana', 'la', 'louisiana', { phase: 3 }),
   K('Maine', 'me', 'maine', { phase: 8 }),
   K('Maryland', 'md', 'maryland', { phase: 9 }),

@@ -306,7 +306,7 @@ const PRODUCTS = {
       'exemption walkthrough, a permit checklist for both the local-permit and ' +
       'no-building-department paths, the inspection sequence and self-verification ' +
       'log, the five questions that establish who regulates your parcel, and the ' +
-      'forms index. 55 print-ready pages with the statute citations on the page. ' +
+      'forms index. 56 print-ready pages with the statute citations on the page. ' +
       'Instant download.',
     emailSubject: 'Your Alaska Permit Kit — download inside',
     emailBlurb:
@@ -315,6 +315,29 @@ const PRODUCTS = {
       'inspection sequence and self-verification log, the where-to-file directory ' +
       'with the borough-by-borough map, and the forms index — print-ready PDFs ' +
       'with the statute and regulation citations on the page.',
+  },
+  'ky-permit-kit': {
+    sku: 'ky-permit-kit',
+    kind: 'download',
+    name: 'Kentucky Owner-Builder Permit Kit',
+    amount: 3400,
+    r2Key: 'ky-permit-kit.zip',
+    description:
+      'Kentucky owner-builder permitting, start to finish: the local-option ' +
+      'building permit under KRS 198B.060, the three state permits that apply ' +
+      'in every county, the homeowner electrical, plumbing and HVAC exemptions ' +
+      'and their three different tests, the current code editions including ' +
+      'Kentucky’s delayed 2023 NEC articles, and the per-county inspector ' +
+      'directory. 39 print-ready pages with the statute citations on the page. ' +
+      'Instant download.',
+    emailSubject: 'Your Kentucky Permit Kit — download inside',
+    emailBlurb:
+      'The ZIP contains the Kentucky owner-builder exemption walkthrough (does ' +
+      'a building permit even exist where you are building), the permit ' +
+      'application checklist with the state plumbing, HVAC and septic permits, ' +
+      'the inspection sequence, the where-to-file directory built on the ' +
+      'Department’s own county inspector sheets, and the forms index — ' +
+      'print-ready PDFs with the statute citations on the page.',
   },
   'sub-hiring-pack': {
     sku: 'sub-hiring-pack',
