@@ -253,6 +253,47 @@ const PRODUCTS = {
       'directory built on the Statewide Jurisdiction List, and forms index — ' +
       'print-ready PDFs with the statute and rule citations on the page.',
   },
+  'mt-permit-kit': {
+    sku: 'mt-permit-kit',
+    kind: 'download',
+    name: 'Montana Owner-Builder Permit Kit',
+    amount: 3400,
+    r2Key: 'mt-permit-kit.zip',
+    description:
+      'Montana owner-builder permitting, start to finish: the exemption walkthrough ' +
+      '(the 2026 construction contractor license, the building code that does not reach ' +
+      'a house of fewer than five dwelling units, and the electrical permit, energy ' +
+      'certification, and sanitation law that bind you anyway), permit application ' +
+      'checklist, inspection sequence, where-to-file directory, and forms index. ' +
+      '52 print-ready pages with the MCA citations on the page. Instant download.',
+    emailSubject: 'Your Montana Permit Kit — download inside',
+    emailBlurb:
+      'The ZIP contains the Montana owner-builder exemption walkthrough, the permit ' +
+      'application checklist that runs sanitation and water first, the inspection ' +
+      'sequence, the where-to-file directory built on the state’s certified-jurisdiction ' +
+      'list, and the forms index — print-ready PDFs with the MCA and ARM citations on ' +
+      'the page.',
+  },
+  'ms-permit-kit': {
+    sku: 'ms-permit-kit',
+    kind: 'download',
+    name: 'Mississippi Owner-Builder Permit Kit',
+    amount: 3400,
+    r2Key: 'ms-permit-kit.zip',
+    description:
+      'Mississippi owner-builder permitting, start to finish: the § 73-59-15 exemption ' +
+      'walkthrough, how to establish whether any building code binds your parcel, the ' +
+      'wastewater approval that applies statewide even where none does, permit ' +
+      'application checklist, inspection sequence, where-to-file directory, and forms ' +
+      'index. 36 print-ready pages with the statute citations on the page. Instant download.',
+    emailSubject: 'Your Mississippi Permit Kit — download inside',
+    emailBlurb:
+      'The ZIP contains the Mississippi owner-builder exemption walkthrough (all four ' +
+      '§ 73-59-15 exemptions), the permit application checklist that runs wastewater ' +
+      'first, the inspection sequence, the where-to-file directory that establishes ' +
+      'your parcel’s code status from the public record, and the forms index — ' +
+      'print-ready PDFs with the statute citations on the page.',
+  },
   'sub-hiring-pack': {
     sku: 'sub-hiring-pack',
     kind: 'download',
