@@ -74,7 +74,7 @@ const KY: KitContent = {
       no: 'KY.5',
       pages: '5 pages',
       title: 'Forms & Documents Index',
-      copy: 'Every document you will meet, named as the Department names it, with what needs no permit at all — including the farmstead carve-out that is real but far narrower than people assume.',
+      copy: 'Every document you will meet, named as the Department names it, including the septic construction permit and the one trade a Kentucky homeowner may not do themselves — plus what needs no permit at all.',
     },
   ],
 
@@ -93,7 +93,7 @@ const KY: KitContent = {
     {
       icon: 'permit',
       label: 'Your building permit may not exist',
-      copy: 'Permits, inspections and certificates of occupancy “shall not be mandatory for single-family residences unless a local government passes an ordinance” (KRS 198B.060(1)), and the code regulation repeats it (815 KAR 7:125 §2(2)(a)). The state is then barred from filling the gap: it “shall not preempt or assert jurisdiction for the enforcement of the code on single-family dwellings” (KRS 198B.060(4)(b)).',
+      copy: 'Permits, inspections and certificates of occupancy “shall not be mandatory for single-family residences unless a local government passes an ordinance” (KRS 198B.060(1)), and the code regulation repeats it (815 KAR 7:125 §2(2)(a)). The state is then barred from filling the gap: it “shall not preempt or assert jurisdiction for the enforcement of the code on single-family dwellings” (KRS 198B.060(4)(b)). On the Department’s own county sheets, 41 of 119 show no local building inspector at all.',
     },
     {
       icon: 'check',
@@ -103,7 +103,7 @@ const KY: KitContent = {
     {
       icon: 'bolt',
       label: 'The utilities are the real inspectors',
-      copy: 'No utility may “initiate permanent electrical service to any new building” until a certified electrical inspector issues a final certificate of approval (KRS 198B.060(11)), and no public utility or water district may provide permanent water until the plumbing is installed and approved (KRS 318.165). In a no-ordinance county those two signatures are the enforcement.',
+      copy: 'Once a certified electrical inspector has been provided for, no utility may “initiate permanent electrical service to any new building” without their final certificate of approval (KRS 198B.060(11)) — and all 119 published county sheets name one. No public utility or water district may provide permanent water until the plumbing is approved (KRS 318.165). On a septic site the health department gates the electricity too (KRS 211.350(8)). In a no-ordinance county those signatures are the enforcement.',
     },
     {
       icon: 'doc',
@@ -124,7 +124,7 @@ const KY: KitContent = {
     {
       question: 'Does the Kentucky Residential Code still apply if my county has no building permit?',
       answer:
-        'Yes. The code is mandatory statewide and reaches your house by definition — KRS 198B.010(4) says “building” “also means single-family dwellings,” and KRS 198B.050(1) requires a mandatory Uniform State Building Code. What disappears in a county with no ordinance is the inspection, not the standard and not your liability. Kentucky also adds a specific cost to skipping the certificate of occupancy: under KRS 198B.130, an award against you in a code-violation claim “may also include reasonable attorney’s fees” if no certificate of occupancy was issued, for up to ten years after first occupation.',
+        'Yes. The code is mandatory statewide and reaches your house by definition — KRS 198B.010(4) says “building” “also means single-family dwellings,” and the code itself bars local governments from adopting any other building code for one- and two-family dwellings and townhouses (Kentucky Residential Code R101.3). What disappears in a county with no ordinance is the inspection, not the standard and not your liability. Kentucky also adds a specific cost to skipping the certificate of occupancy: under KRS 198B.130, an award against you in a code-violation claim “may also include reasonable attorney’s fees” if no certificate of occupancy was issued, for up to ten years after first occupation.',
     },
     {
       question: 'Can a homeowner do their own electrical work in Kentucky?',
@@ -137,9 +137,9 @@ const KY: KitContent = {
         'Yes, wherever you build. KRS 318.134(1)(a) bars anyone from constructing or altering plumbing “without first having procured a plumbing installation permit therefor from the department,” and KRS 318.015(1) puts the chapter “in full force and effect in all counties of the Commonwealth” — with one carve-out, farmsteads. A homeowner can hold the permit under 815 KAR 20:050 Section 2(1)(b) by filing an affidavit, performing all the work personally, and not having obtained another homeowner permit for a new home in the last five years. The fee is set in regulation: $50 base plus $14 per fixture, with five inspections included.',
     },
     {
-      question: 'Is there a general contractor license in Kentucky?',
+      question: 'Can I install my own septic system in Kentucky?',
       answer:
-        'No. Kentucky licenses trades, not builders — electricians and electrical contractors under KRS Chapter 227A, master and journeyman plumbers under KRS Chapter 318, and HVAC contractors and mechanics under KRS 198B.650 to 198B.689, plus elevator, boiler, fire sprinkler and manufactured-housing work. There is no state residential general contractor or home builder license, so acting as your own builder is not an exemption you claim; it is simply something you are allowed to do. Your city or county may still require a local business or contractor registration.',
+        'Yes. Permits normally issue only to certified installers, but 902 KAR 10:110 Section 2(4) allows one to be issued to a homeowner if you apply before starting and all work “is personally performed by the homeowner” — except excavation and backfill, which a certified installer may do only if you name them on the application. You may hold only one homeowner septic permit in any five-year period, and it is not available if you are building for sale or resale. The site evaluation that precedes it is not a perc test; Kentucky rates soil morphology, and the health department must complete the evaluation within 15 working days (KRS 211.350(3)). Note the contrast: you may not drill your own well — KRS 223.405 requires a certified driller and has no homeowner exemption.',
     },
     {
       question: 'What building code does Kentucky use in 2026?',
@@ -149,7 +149,7 @@ const KY: KitContent = {
   ],
 
   productDescription:
-    'A 39-page print-ready permit kit for building your own home in Kentucky, in six documents. Covers the local-option building permit under KRS 198B.060, the three state permits that apply regardless, the homeowner electrical, plumbing and HVAC exemptions and their three different tests, the current code editions including Kentucky’s delayed 2023 NEC articles, and a per-county directory built from the Department of Housing, Buildings and Construction’s own inspector sheets. Every claim is cited on the page it appears on and was verified against the Kentucky Revised Statutes, the Kentucky Administrative Regulations and the Department’s own documents in August 2026.',
+    'A 39-page print-ready permit kit for building your own home in Kentucky, in six documents. Covers the local-option building permit under KRS 198B.060, the three state permits that apply regardless, the homeowner electrical, plumbing, HVAC and septic exemptions and their different tests, the current code editions including Kentucky’s delayed 2023 NEC articles, and a per-county directory built from the Department of Housing, Buildings and Construction’s own inspector sheets. Every claim is cited on the page it appears on and was verified against the Kentucky Revised Statutes, the Kentucky Administrative Regulations and the Department’s own documents in August 2026.',
 
   verifyNote:
     'Statutes, regulations and code editions change, and in Kentucky the building permit itself depends on a local ordinance. Confirm each rule with your city and your county — and with the Department for the state plumbing and HVAC permits. The kit prints its sources so you can.',
