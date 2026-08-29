@@ -1,0 +1,275 @@
+/* ============================================
+   FINANCING HERO — the /financing title band
+   Same composition as the /shop and /start-here heroes (navy band,
+   blueprint grid, crop marks, spec-sheet panel), sized for a band that
+   lives inside the MDX prose column. It breaks out to full bleed and
+   re-aligns its content with --band-inset exactly the way the default
+   article h1 band does in article.module.css.
+   ============================================ */
+.hero {
+  width: 100vw;
+  /* Negative top margin cancels .article's padding-top so the band sits
+     flush under the sticky header — same values as .article h1. */
+  margin: calc(-1 * var(--space-7)) 0 var(--space-6) calc(-50vw + 50%);
+  border-bottom: 5px solid var(--accent-primary);
+}
+
+/* Softens the .bp-grid texture toward the edges of the band. */
+.hero::before {
+  -webkit-mask-image: radial-gradient(ellipse 95% 85% at 68% 40%, #000 55%, transparent 100%);
+  mask-image: radial-gradient(ellipse 95% 85% at 68% 40%, #000 55%, transparent 100%);
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  padding: var(--space-8) var(--band-inset, var(--container-padding-mobile)) var(--space-6);
+}
+
+/* The band aligns to the 1080px prose column, not the 1200px page container,
+   so the copy track is tighter than the /shop hero's. Capping the spec sheet
+   at 310px (rather than a 1fr share) is what keeps both CTAs on one line;
+   minmax(0, …) stops the long mono button labels forcing the track wider. */
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(250px, 310px);
+  gap: var(--space-6);
+  align-items: end;
+}
+
+/* ---------- COPY COLUMN ---------- */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: var(--space-3);
+}
+.eyebrow::after {
+  content: "";
+  height: 1px;
+  flex: 0 1 90px;
+  background: rgba(246, 241, 228, 0.25);
+}
+
+/* Two-class selectors throughout: inside an MDX article these elements are
+   also matched by `.article h1` / `.article p` / `.article a` (0,1,1), which
+   would otherwise repaint the h1 as its own navy band and underline the
+   buttons in link orange. */
+.hero .title {
+  width: auto;
+  margin: 0 0 var(--space-3);
+  padding: 0;
+  background: none;
+  border-bottom: none;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(34px, 4.6vw, 60px);
+  line-height: 1;
+  letter-spacing: -0.022em;
+  color: var(--cream);
+}
+.hero .title::before,
+.hero .title::after {
+  content: none;
+}
+.hero .title em {
+  font-style: italic;
+  color: var(--accent-primary);
+}
+
+.hero .lead {
+  font-size: var(--text-lg);
+  line-height: 1.6;
+  color: rgba(246, 241, 228, 0.84);
+  max-width: 46ch;
+  margin: 0 0 var(--space-5);
+}
+
+.ctas {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+  flex-wrap: wrap;
+}
+.hero .btnPrimary,
+.hero .btnGhost {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  text-decoration: none;
+  line-height: 1.35;
+  padding: 15px 22px;
+  border: 1px solid transparent;
+  border-radius: 0;
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.18s ease;
+}
+.hero .btnPrimary {
+  background: var(--accent-primary);
+  color: var(--cream);
+  border-color: var(--accent-primary);
+}
+.hero .btnPrimary:hover {
+  background: var(--button-primary-hover);
+  border-color: var(--button-primary-hover);
+  color: var(--cream);
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+.hero .btnGhost {
+  color: var(--cream);
+  border-color: rgba(246, 241, 228, 0.35);
+  background: transparent;
+}
+.hero .btnGhost:hover {
+  border-color: var(--cream);
+  background: rgba(246, 241, 228, 0.06);
+  color: var(--cream);
+  text-decoration: none;
+}
+
+.hero .fine {
+  margin: var(--space-3) 0 0;
+  max-width: none;
+  font-size: var(--text-sm);
+  color: rgba(246, 241, 228, 0.7);
+}
+
+/* ---------- SPEC SHEET ---------- */
+.specsheet {
+  border: 1px solid rgba(246, 241, 228, 0.22);
+  background: rgba(11, 32, 50, 0.5);
+  padding: var(--space-3) var(--space-3) var(--space-2);
+}
+.sheetNo {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(246, 241, 228, 0.5);
+  margin-bottom: var(--space-2);
+}
+.dimrow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: 13px 0;
+  border-top: 1px solid rgba(246, 241, 228, 0.14);
+}
+.k {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(246, 241, 228, 0.6);
+}
+.v {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--cream);
+  text-align: right;
+}
+/* Word values sit a size down so they read as a caption, not a measurement. */
+.vText {
+  font-size: 17px;
+  letter-spacing: -0.01em;
+}
+.vAccent { color: var(--accent-primary); }
+
+/* ---------- SHEET INDEX ---------- */
+.index {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px var(--space-3);
+  border-top: 1px solid rgba(246, 241, 228, 0.18);
+  padding: 14px var(--band-inset, var(--container-padding-mobile));
+}
+.indexLabel {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(246, 241, 228, 0.5);
+}
+.hero .indexLink {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(246, 241, 228, 0.82);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.hero .indexLink:hover {
+  color: var(--cream);
+  border-bottom-color: var(--accent-primary);
+  text-decoration: none;
+}
+
+/* ---------- CROP MARKS ---------- */
+.crop {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  z-index: 2;
+}
+.tl { top: 20px; left: 20px; border-top: 1px solid rgba(246, 241, 228, 0.45); border-left: 1px solid rgba(246, 241, 228, 0.45); }
+.tr { top: 20px; right: 20px; border-top: 1px solid rgba(246, 241, 228, 0.45); border-right: 1px solid rgba(246, 241, 228, 0.45); }
+.bl { bottom: 20px; left: 20px; border-bottom: 1px solid rgba(246, 241, 228, 0.45); border-left: 1px solid rgba(246, 241, 228, 0.45); }
+.br { bottom: 20px; right: 20px; border-bottom: 1px solid rgba(246, 241, 228, 0.45); border-right: 1px solid rgba(246, 241, 228, 0.45); }
+
+/* ---------- RESPONSIVE ----------
+   Top margin tracks .article's padding-top at each breakpoint. */
+@media (min-width: 768px) {
+  .hero { margin-top: calc(-1 * var(--space-8)); }
+  .inner { padding-top: var(--space-10); padding-bottom: var(--space-7); }
+}
+@media (min-width: 1024px) {
+  .hero { margin-top: calc(-1 * var(--space-10)); }
+}
+
+/* Below the tablet breakpoint the band inset is only 20px, which is where the
+   crop marks sit — they would print on top of the copy. Trim the trim marks. */
+@media (max-width: 767px) {
+  .crop { display: none; }
+}
+
+@media (max-width: 860px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+    align-items: start;
+  }
+  .specsheet { max-width: 460px; }
+}
+
+@media (max-width: 560px) {
+  .ctas { flex-direction: column; align-items: stretch; }
+  .hero .btnPrimary,
+  .hero .btnGhost {
+    justify-content: center;
+    text-align: center;
+    white-space: normal;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero .btnPrimary,
+  .hero .btnGhost,
+  .hero .indexLink { transition: none; }
+  .hero .btnPrimary:hover { transform: none; }
+}

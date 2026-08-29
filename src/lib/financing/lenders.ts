@@ -1,5 +1,5 @@
 /**
- * Editorial lender directory for /planning/financing.
+ * Editorial lender directory for /financing.
  *
  * Facts verified against the lenders' public pages in August 2026 — state
  * footprints and terms change, so entries describe what each lender

@@ -71,6 +71,9 @@
   background: var(--accent-primary);
   margin-bottom: var(--space-2);
 }
+/* Hand-written ids mark jump targets (the MDX pipeline has no slug plugin) —
+   offset them so the sticky header doesn't cover the heading. */
+.article :is(h2, h3)[id] { scroll-margin-top: 96px; }
 .article h3 {
   font-size: var(--text-xl);
   font-weight: var(--weight-semibold);

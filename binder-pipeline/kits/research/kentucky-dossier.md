@@ -562,3 +562,220 @@ them.**
   "inspected, copied, or obtained, subject to applicable copyright law" at the Department, 500 Mero
   Street, Frankfort, Monday–Friday 8 a.m.–4:30 p.m. (815 KAR 7:125 §3(2)). Buyers wanting the full text
   must buy it or read it at the Department.
+
+---------------------------------------------------------------------------
+## LATE ADDENDUM — corrections applied after first hand-off (27–28 August 2026)
+
+All four research sub-agents' reports arrived AFTER the kit had been built and handed off. Five items
+corrected something already printed; the rest filled the acknowledged septic gap. The kit was rebuilt,
+re-audited and re-zipped. Final build: **39 pages (3 / 10 / 10 / 5 / 6 / 5)**, audit-clean.
+
+### CORRECTION 1 — the county tally was WRONG: 35 → **41 of 119**
+My classifier treated a "Local Building Inspector:" heading with an EMPTY value as a named inspector.
+Six sheets do exactly that: **Hancock, Livingston, Ohio, Todd, Union, Webster**. Verified by hand.
+Correct tally of the 119 published sheets:
+  explicit "None" ......... 25
+  heading present, blank ... 6
+  no such line at all ..... 10   => **41 of 119 (34%) show no local building inspector**
+  "State & Local" ......... 2
+  named ................... 76
+[H] **A second caveat was added at the same time, and matters as much as the number:** several of the
+76 name an inspector for a CITY ONLY — sheets carry wording like "City Limits ONLY", "(No County
+Building Inspector)", "Fulton City Limits ONLY", "(County ONLY)". My regex caught 7 (Bath, Boyd,
+Carroll, Fleming, Floyd, Franklin, Fulton); a wider net finds ~12. So "76 named" materially overstates
+county-wide coverage, and the kit now says so. Do NOT print "78 counties require permits" or any
+derived figure.
+INDEPENDENT PROOF EXHIBIT worth keeping: Boyd County's own site publishes, under "Building Permits for
+Residential Construction & Remodeling", the words **"Non Required"** — a county government confirming
+the statutory result. (boydcountyky.gov/202/Construction-Permits-Inspection-Contacts)
+
+### CORRECTION 2 — KRS 198B.060(11) is CONDITIONAL and I had printed it flat
+The bar operates only "**After a certified electrical inspector has been provided for by the local
+government or the department**." KY.1's table carried the condition; KY.1's and KY.3's callouts and
+KY.5's row had dropped it. All now carry it, with the evidence that it bites in practice: **all 119
+published county sheets name a State Electrical Inspector.** Phrase it that way, never as a flat
+unconditional bar.
+
+### CORRECTION 3 — the "mini/maxi" preemption IS real, and open question 1 is CLOSED
+I could not find it in KRS 198B and the kit avoided the claim. It is not in the statutes — it is in the
+code book. **Kentucky Residential Code R101.3:** "The purpose of this code is to establish minimum and
+maximum requirements … **Local governments shall not adopt or enforce any other building code for
+detached single family dwellings, two-family dwellings and townhouses.**" (KBC 101.3 is the commercial
+analogue.) The kit now quotes it. The right framing, which the guide gets muddled: **locals may not
+change the technical standard (R101.3), but KRS 198B.060(1) plainly does let them switch enforcement
+on.** Same code everywhere; local choice about whether anyone checks.
+=> **My state-guide error list was wrong on this point and was retracted.** The live guide's mini/maxi
+claim is substantially correct; its fault is citing 815 KAR 7:125 for it instead of KRC R101.3, and
+building an unsupported radon-preemption argument on top.
+
+### CORRECTION 4 — NFPA 54 edition: the agency's own documents CONFLICT
+HBC's adopted-codes list says **2012 NFPA 54**. The Kentucky Residential Code's own referenced-standards
+chapter (Ch. 44) says **54-09**, referenced at G2401.1. Kentucky adopts **no IFGC at all** — residential
+fuel gas runs through KRC Chapter 24. The kit no longer pins the year; it names NFPA 54, states that
+the two sources disagree, and tells the reader to ask their inspector. [H] Firm this up if HBC
+reconciles its documents.
+
+### CORRECTION 5 — scope trap: the permit exemption says "single-family" only
+Both KRS 198B.060(1) and 815 KAR 7:125 §2(2)(a) say "single-family residences"/"single-family
+dwelling," while 815 KAR 7:125 §1 defines "two (2) family dwelling" and "townhouse" as separate terms
+and §2(1) applies the code to all three. So the permit/inspection/CO waiver arguably does **not** reach
+a duplex or a townhouse. A caveat line was added to KY.1.
+
+### GAP CLOSED — septic, and it turns out to gate the ELECTRICITY too
+The largest omission at first hand-off is now filled and printed.
+* Regs, all Current: **902 KAR 10:085** (main systems reg, site evaluation, sizing, setbacks; cert. eff.
+  8-10-2023), **902 KAR 10:081** (component construction standards), **902 KAR 10:110** (permit
+  issuance, incl. homeowner permits; eff. 6-16-2021), **902 KAR 10:140** (installer certification),
+  **902 KAR 10:170** (septic tank servicing).
+  **DO NOT CITE — INACTIVE/REPEALED: 902 KAR 10:060 (the old fee reg), 10:090, 10:100, 10:130.** Several
+  web guides still cite 10:060 for fees; that is dead law. The $50 fee now lives at 10:110 §2(1)(b).
+* It is a **CONSTRUCTION permit**, on form **DFS-307, "On-site Sewage Disposal System Construction
+  Application and Permit" (10/20)**, incorporated at 902 KAR 10:110 §3. **There is NO separate operation
+  permit for a residential system** — "operation permit" returns zero hits across 10:085 and 10:110.
+  What follows installation is an inspection before backfill (10:085 §9(1)).
+* **NOT a perc test.** "Percolation" appears zero times in 902 KAR 10:085. Ratings are by soil
+  morphology from borings or backhoe pits to 42 inches: SUITABLE / PROVISIONALLY SUITABLE / UNSUITABLE.
+* **Statutory shot clock, KRS 211.350(3):** site evaluations completed "within fifteen (15) working
+  days of receipt of the application," plus "an additional ten (10) working days" after any further
+  information is submitted. Printed — it is the only septic deadline Kentucky gives the applicant.
+* **Homeowners MAY install their own system** — 902 KAR 10:110 §2(4): permits "may be issued to
+  homeowners" if applied for before starting, work done to the regulations, "**all work is personally
+  performed by the homeowner, except that necessary excavation and backfilling work may be performed by
+  a certified installer if notification of intent is made at the time of application**" with the
+  installer named; and "**No person shall be issued more than one (1) homeowner permit to construct or
+  alter an on-site sewage disposal system in any five (5) year period**," repairs excepted. That is a
+  **THIRD five-year ration**, separate from the plumbing and HVAC ones. "Homeowner" (§1(8)) excludes
+  anyone "who is a builder or contractor who engages in a business of constructing or rehabilitating
+  residential structures for sale or resale."
+* Fees are hybrid: **$50** state permit fee in regulation (10:110 §2(1)(b)) plus the local board of
+  health's fees under KRS 211.355. [H] Local examples verified by the sub-agent (not by me): Lincoln
+  Trail District HD site eval $300 / new system permit $320 / **homeowner installation $520**; Green
+  River $200 site eval; Franklin County $250 / $270. **A homeowner-install permit is not automatically
+  cheaper** — the kit says so without printing the county figures.
+* **KRS 211.350(8) — THE THIRD GATE, and it strengthens the kit's whole thesis.** A certified electrical
+  inspector shall not issue certificates of approval of temporary or permanent wiring "unless the
+  inspector has in his or her possession a **notice of release**" from the local health department:
+  initial release on application for the site evaluation (that is your CONSTRUCTION power), final
+  release "upon approval of an on-site sewage disposal plan." Exception at (8)(c): does not apply in a
+  county that has adopted the Uniform State Building Code and enforces on-site sewage permitting.
+  => On a septic site the health department gates the plumbing permit (KRS 318.134(2)) **and** the
+  electricity. Printed in KY.1 and KY.3.
+
+### GAP CLOSED — wells, and the contrast is the point
+**A Kentucky homeowner may NOT drill their own well.** KRS 223.405: "It is unlawful for any person …
+to construct, alter, or repair a water well without first having obtained a valid certificate as a
+water well driller or as a water well driller's assistant." **There is no homeowner exemption** — the
+only KRS 223.425(3) exemption is for dowsers, and it expressly does not extend to installing wells.
+No drilling permit is required; the controls are the certified driller, the well record filed with the
+cabinet, and a fecal coliform test on a potable well (KRS 223.440). [H] Statute says **30 days** for the
+record; the current reg 401 KAR 6:310 §1(6) says **60**. Real conflict — the kit prints neither number.
+Farm carve-out by definition, KRS 223.400(7): "water well" excludes stock and general farmstead wells
+"if the wells do not provide water for human consumption" — a farm DRINKING-water well is fully covered.
+This is a sharp, printable contrast: electrical, plumbing, HVAC and septic all have homeowner routes;
+the well does not.
+
+### GAP CLOSED — floodplain, now firmly cited
+**KRS 151.250(2)**, verbatim: "No person, city, county, or other political subdivision of the state
+shall commence the filling of, or **place a building**, barrier, or obstruction of any sort in, any area
+in the floodplain or floodway unless plans and specifications for such work have been submitted to and
+approved by the cabinet and a permit issued as required in subsection (1) above." Subsection (1) opens
+"**Notwithstanding any other provision of law**" and nothing conditions either subsection on a local
+ordinance. So the state floodplain permit applies **in full in a county with no building permit at
+all** — the pairing with 815 KAR 7:125 §2(2)(a) is now printed in KY.5.
+Also verified: KRS 151.260(2) plans "shall be drawn by an engineer … unless waived by the cabinet"
+(a real cost item); KRS 151.260(3) 20-working-day response; KRS 151.280(1) starting site preparation
+before issuance counts as commencing without a permit; 401 KAR 4:060 §6(2)(a) lowest floor at or above
+BFE; 401 KAR 4:050 §1 exemption where the stream's watershed is under one square mile.
+
+### ADDED — KRS 198B.990(1), the penalty I had missed
+"…shall be fined not less than ten dollars ($10) nor more than **one thousand dollars ($1,000)**. Each
+day the violation continues shall constitute a separate offense." It reaches KRS 198B.140, **198B.6671
+(installing HVAC without the permit)**, 198B.6672, the Uniform State Building Code and the Residential
+Code. Ten times the plumbing penalty and now printed alongside it. [H] Not verified by me: KRS
+198B.686(1) HVAC unlicensed practice = Class A misdemeanor; KRS 227A.130 electrical = $500–$5,000
+and/or 10–180 days, but it penalizes only KRS 227A.020 violations and homeowners are exempted out of
+227A by 227A.030(3).
+
+### AVAILABLE BUT DELIBERATELY NOT PRINTED — the KRC's own tables
+A sub-agent recovered the Kentucky Residential Code's internal amendments from **up.codes' reproduction**
+of the code, not from a purchased copy (ICC Digital Codes 403s and HBC does not host the copyrighted
+book). Its own confidence note: "for anything going into print I'd have someone eyeball a purchased
+copy of the Third Edition." Under this kit's accuracy standard that is not a primary source, so **none
+of the following was printed**, and the kit's silence on frost depth and seismic remains deliberate:
+* Table R301.2(1) replaced by a Kentucky per-county table; ground snow 15 psf most counties, 20 psf in a
+  northern/eastern band; **ultimate design wind speed 115 mph for all Kentucky counties**; weathering
+  severe and termite moderate-to-heavy statewide. Kentucky's table omits winter design temp, ice
+  barrier, air freezing index and mean annual temp — while R905.1.2 and R303.10 still key off them.
+* Table R403.1.4 frost depth: **24 in for "All other KY Counties"**, 27 in (Bell, Clay, Knox, Lawrence,
+  Owsley), 30 in (Boone, Breathitt, Campbell, Harlan, Johnson, Kenton, Leslie, Magoffin, Perry), 33 in
+  (Floyd, Knott, Letcher, Martin, Pike). Plus Kentucky language allowing footings to bear on exposed
+  solid rock without reaching frost depth.
+* Table R301.2.2.1 seismic: **D2** Fulton, Hickman, Carlisle, Ballard, McCracken, Graves; **D1** Calloway,
+  Marshall, Livingston; **D0** Lyon, Crittenden, Trigg, Caldwell, Union; **C** Webster, Henderson, McLean,
+  Christian, Ohio; **B** everywhere else including Jefferson and Fayette. And R301.2.2 exempts detached
+  one- and two-family dwellings in SDC A/B/C from the seismic provisions entirely — so seismic only
+  bites in the far-western block.
+* **R313 automatic sprinklers: DELETED** — the heading survives with no body. **Appendix F radon: NOT
+  adopted** (R102.5 admits only Appendices K, R and S).
+* R101.2 exception 3 exempts farm dwellings and farm buildings outside a municipality; R105.2 exempts
+  sheds ≤200 sf, decks ≤200 sf and ≤30 in above grade if unattached and not serving the required exit
+  door, fences ≤7 ft, retaining walls ≤4 ft.
+**Recommendation for the second edition:** buy the 2018 Kentucky Residential Code, Third Edition and
+verify these against it. The seismic table and the frost-depth table are the two highest-value pieces of
+Kentucky content still missing from the kit, and the sprinkler/radon deletions would let the kit answer
+two very common search queries.
+
+### ALSO AVAILABLE, NOT YET PRINTED (second-edition candidates)
+* **KRS 376.010(5) owner-occupied lien protection** — for a single or double family dwelling the
+  non-privity notice window is a flat **75 days** (5)(a), and (5)(d) is genuinely protective: the lien
+  "shall not be applicable to the extent that an owner-occupant … has, **prior to receipt of the notice**
+  …, **paid the contractor**." (5)(e): the contractor cannot be the owner's authorized agent. Filing:
+  KRS 376.080(1) six months, plus a copy mailed to the owner within 7 days or the lien dissolves;
+  enforcement suit within 12 months (KRS 376.090(1)).
+* **KRS 342.610(2) up-the-ladder workers' comp.** The trigger is work "of a kind which is a regular or
+  recurrent part of the work of the trade, business, occupation, or profession of such person," so a
+  one-time owner-builder is not "deemed a contractor." [H] There is **no express homeowner carve-out**;
+  the only express exclusion in (2) is agricultural land, and KRS 342.650(2)'s 20-consecutive-work-day
+  exemption covers "maintenance, repair, remodeling," **not new construction**. Risk to flag: someone who
+  builds repeatedly, or who is in the construction trade, can be pulled in. Pairs with KRS 342.610(6),
+  which requires the building official to demand proof of coverage before issuing the permit.
+* **KRS 227A.020(6): local licensing of electricians is PREEMPTED**, not permitted — the chapter
+  "shall supersede all ordinances or regulations regulating electricians … of any city, county,
+  urban-county, charter county, or consolidated local government," preserving only zoning and
+  occupational payroll taxes. Combined with KRS 82.082(1)–(2) home rule (a local power is barred where
+  "there is a comprehensive scheme of legislation on the same general subject"), this explains the
+  asymmetry precisely: locals **may** register general contractors (no state scheme exists) but **may
+  not** license electricians or plumbers.
+* **KRS 227.480(1)(a)** requires an electrical permit before commencing work, and **227.480(2)(a)**
+  exempts "a homeowner or farmer who does construction, alteration, or repairs of any electrical system
+  on his or her own premises" from the proof-of-licensure requirement — the homeowner gets the permit
+  without a license. **815 KAR 35:020 §1(1)(b)**: a department inspector inspects "if a certified
+  electrical inspector has not been made available by the local government" — the state electrical
+  backstop that has no building-code equivalent.
+* **The Division of Plumbing Inspector Itinerary** (dhbc.ky.gov/Documents/Itinerary 7.6.26.pdf) — a
+  weekday county circuit assigning each state plumbing inspector a county per day with a **~90-minute
+  daily availability window** (typically 8:00–9:30 am). Jefferson and Fayette are split by ZIP instead.
+  This is arguably the single best practical detail in Kentucky owner-building and belongs in KY.4's
+  next edition.
+* **Roving contract inspectors** explain the rural pattern: KRS 198B.060(14)–(15) let local governments
+  associate and contract out, and one named individual covers up to 11 counties. In Ballard, Carlisle,
+  Hickman, Fulton and Graves the state inspector is contracted as the local inspector.
+* **Eight different permit portal products** across ten sampled jurisdictions (OpenGov, iWorQ, GovBuilt,
+  GovWell, Accela, Tyler EnerGov, SmartGov, Lexington's custom One-Stop Shop). There is no Kentucky
+  standard — a sellable observation in its own right.
+* Verified fee schedules for a worked-example table: **Lexington** $0.10/sq ft (min $150) + $180/unit,
+  $25 residential plan review, double fees for work started without a permit; **Madison County**
+  valuation-based, $380 for the first $100,000 plus $2.25 per additional thousand, $30 CO, $50 minimum.
+  [H] The **state electrical permit fee sheet** (dhbc.ky.gov/documents/ElectricalPermitFee.pdf) is tiered
+  by "complete value" and, read literally, would put a $300k house at $4,500 — almost certainly the
+  value of the ELECTRICAL WORK, not the house. **Do not print a figure until HBC confirms the basis.**
+
+### STILL OPEN AFTER THE ADDENDUM
+1. The plumbing plan-submission conflict (item 26) — still needs an answer in writing from the Division
+   of Plumbing.
+2. Gallatin County has no published inspector sheet. Why, and who covers it?
+3. 815 KAR 35:015 has a proposed amendment pending; 815 KAR 7:070 does too. Neither 7:120 nor 7:125 has
+   one, so no move off the 2015 IRC is filed.
+4. The state electrical permit fee valuation basis (above).
+5. Whether the "January 1, 2025" NEC mandatory date repeated by the live state guide has any primary
+   source. None was found; the documented date is 815 KAR 7:125's 12-3-2024 effective date.

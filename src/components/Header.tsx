@@ -40,9 +40,6 @@ export default function Header() {
 
         {/* Desktop Navigation */}
         <nav className={`${styles.nav} ${mobileMenuOpen ? styles.navOpen : ''}`}>
-          <Link href="/" className={styles.navLink} onClick={closeMobileMenu}>
-            Home
-          </Link>
           <Link href="/start-here" className={styles.navLink} onClick={closeMobileMenu}>
             Start Here
           </Link>
@@ -51,6 +48,9 @@ export default function Header() {
           </Link>
           <Link href="/permitting/state-guides" className={styles.navLink} onClick={closeMobileMenu}>
             State Guides
+          </Link>
+          <Link href="/financing" className={styles.navLink} onClick={closeMobileMenu}>
+            Financing
           </Link>
           <Link href="/resources" className={styles.navLink} onClick={closeMobileMenu}>
             Resources

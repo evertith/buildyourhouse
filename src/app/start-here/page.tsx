@@ -29,7 +29,7 @@ const PHASES: Phase[] = [
     blurb: 'Set yourself up for success with proper planning.',
     links: [
       { href: '/planning/secure-land', label: 'Secure land', note: "if you don't have it" },
-      { href: '/planning/financing', label: 'Get financing / construction loan approved' },
+      { href: '/financing', label: 'Get financing / construction loan approved' },
       { href: '/planning/house-plans', label: 'Choose or design your house plans' },
       { href: '/planning/budget', label: 'Create detailed budget' },
       { href: '/planning/timeline', label: 'Develop project timeline' },

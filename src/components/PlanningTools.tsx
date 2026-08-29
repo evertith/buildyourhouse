@@ -34,7 +34,7 @@ export default function PlanningTools() {
           <Link href="/planning/budget">Setting a realistic construction budget</Link>
         </li>
         <li>
-          <Link href="/planning/financing">Construction financing for owner-builders</Link>
+          <Link href="/financing">Construction financing for owner-builders</Link>
         </li>
       </ul>
     </aside>

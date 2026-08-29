@@ -502,7 +502,7 @@
 }
 @media (max-width: 600px) {
   .heroCtas { flex-direction: column; align-items: stretch; }
-  .btnPrimary, .btnGhost, .btnPrimaryDark { justify-content: center; }
+  .btnPrimary, .btnGhost, .btnPrimaryDark { justify-content: center; white-space: normal; text-align: center; }
   .resources { grid-template-columns: 1fr; }
   .resourceCard:nth-child(4n) { border-right: none; }
   .phase { grid-template-columns: 46px 1fr; gap: var(--space-3); }

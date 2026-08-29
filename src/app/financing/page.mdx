@@ -1,10 +1,12 @@
+import FinancingHero from '@/components/financing/FinancingHero';
+
 export const metadata = {
-  alternates: { canonical: '/planning/financing' },
+  alternates: { canonical: '/financing' },
   title: 'Construction Loans for Owner-Builders — How to Get Approved',
   description: 'How construction loans work for owner-builders. Lender requirements, down payments, draw schedules, and alternatives if banks say no.',
 };
 
-# Construction Financing: How to Fund Your Owner-Builder Project
+<FinancingHero />
 
 ## Overview
 
@@ -26,11 +28,25 @@ Securing financing is often the biggest hurdle for owner-builders. Many lenders 
 
 </CalloutBox>
 
-<CalloutBox type="tip" title="Want the shortlist for your project?">
+## Get Matched With a Lender
 
-This guide shows you the whole landscape. If you'd rather skip to names: [send me your project details](#lender-match) and I'll reply with the lenders most likely to say yes for your state, timeline, and land situation — free, no obligation.
+Calling fifteen banks to find the three that do owner-builder loans is a real
+strategy — it's also fifteen phone calls. If you'd rather start from a shortlist,
+tell me about your project:
 
-</CalloutBox>
+<LenderMatchForm />
+
+<h2 id="lender-directory">Lenders That Publicly Advertise Owner-Builder Programs</h2>
+
+Most lender lists online are padded with banks that will hang up the moment you say
+"acting as my own GC." These are the ones whose **public marketing says otherwise** —
+specialists whose whole business is owner-builder lending, and regional lenders with
+purpose-built programs:
+
+<LenderDirectory />
+
+The rest of this guide is the landscape behind that shortlist: what each loan type
+costs, what lenders want to see, and what to do when one says no.
 
 ## When This Step Happens
 
@@ -44,7 +60,7 @@ This guide shows you the whole landscape. If you'd rather skip to names: [send m
   ]}
 />
 
-## Types of Construction Financing
+<h2 id="loan-types">Types of Construction Financing</h2>
 
 <CalloutBox type="tip" title="Five paths to funding a build">
 
@@ -195,7 +211,7 @@ Most owner-builders end up with one of these five structures. The table below co
 - Check credit unions in your area
 - Search for "owner-builder construction loans [your state]"
 
-## Construction Loan Requirements
+<h2 id="requirements">Construction Loan Requirements</h2>
 
 <CalloutBox type="info" title="Lenders evaluate four things">
 
@@ -260,7 +276,7 @@ The documentation you'll provide at the formal-application stage (Step 2):
 - Asset statements (investments, retirement)
 - Debt statements (credit cards, loans, mortgage)
 
-## How Construction Draws Work
+<h2 id="draws">How Construction Draws Work</h2>
 
 <CalloutBox type="info" title="Draws release funds in stages, after inspection">
 
@@ -352,20 +368,15 @@ The lenders most likely to say yes are local: community banks, credit unions, an
 
 <FeaturedLenderSlot />
 
-### Lenders That Publicly Advertise Owner-Builder Programs
-
-Most lender lists online are padded with banks that will hang up the moment you say
-"acting as my own GC." These are the ones whose **public marketing says otherwise** —
-specialists whose whole business is owner-builder lending, and regional lenders with
-purpose-built programs:
-
-<LenderDirectory />
-
 **5. Mortgage Brokers**
 - Access to multiple lenders
 - Can shop on your behalf
 - Know which lenders accept owner-builders
 - Worth the fee if struggling
+
+The lenders that publicly advertise owner-builder programs — the specialists and
+regional banks worth calling first — are named in the [directory at the top of this
+page](#lender-directory).
 
 ### Questions to Ask Lenders
 
@@ -399,15 +410,7 @@ These responses mean the lender isn't owner-builder friendly — don't waste an 
 
 </CalloutBox>
 
-## Get Matched With a Lender
-
-Calling fifteen banks to find the three that do owner-builder loans is a real
-strategy — it's also fifteen phone calls. If you'd rather start from a shortlist,
-tell me about your project:
-
-<LenderMatchForm />
-
-## Common Obstacles and Solutions
+<h2 id="obstacles">Common Obstacles and Solutions</h2>
 
 ### Obstacle 1: "We Don't Lend to Owner-Builders"
 
@@ -543,7 +546,7 @@ Typical costs for a $250,000 construction loan:
 - Inspection fees (per draw)
 - Any required re-inspections
 
-## Alternative Financing Strategies
+<h2 id="alternatives">Alternative Financing Strategies</h2>
 
 <CalloutBox type="tip" title="When traditional construction loans don't fit">
 

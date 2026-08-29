@@ -23,7 +23,7 @@ const SHEETS: { no: string; href: string; title: string; desc: string; out: stri
   },
   {
     no: 'PL-02',
-    href: '/planning/financing',
+    href: '/financing',
     title: 'Construction Financing',
     desc: 'How construction loans work for owner-builders: lender requirements, down payments, draw schedules, and the alternatives when banks say no.',
     out: '4–12 weeks',
