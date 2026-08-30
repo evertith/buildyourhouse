@@ -691,6 +691,9 @@ Either way — what are you building, and where are you in it? Reply and tell me
 Seth
 Build Your House
 ${SITE}
+
+PS — Already own a home while you plan the build? The House Year is my free maintenance calendar — the whole year of house upkeep on one wheel:
+https://www.thehouseyear.com/?utm_source=buildyourhouse&utm_medium=email&utm_campaign=drip
 ${f.text}`;
   const html = `<p>Hi,</p>
 <p>A few days ago you grabbed 19 sample pages from the Owner-Builder Job Site Binder. Honest question: <strong>did they earn a spot in your truck?</strong></p>
@@ -698,6 +701,7 @@ ${f.text}`;
 <p>Rather skip the office-store printing run? The <a href="${SITE}/shop#printed">coil-bound printed edition</a> ships to your door for $149, digital included.</p>
 <p>Either way — what are you building, and where are you in it? Reply and tell me. I read every one of these, and it shapes what I build next.</p>
 <p>Seth<br>Build Your House<br><a href="${SITE}">build-your-house.com</a></p>
+<p style="color:#6b6b6b;font-size:13px;">PS — Already own a home while you plan the build? <a href="https://www.thehouseyear.com/?utm_source=buildyourhouse&amp;utm_medium=email&amp;utm_campaign=drip">The House Year</a> is my free maintenance calendar — the whole year of house upkeep on one wheel.</p>
 ${f.html}`;
   return { subject: 'Did the sample pages earn a spot in your truck?', text, html };
 }
@@ -733,6 +737,9 @@ Which county are you building in? Permitting is local, and the quirks are where 
 Seth
 Build Your House
 ${SITE}
+
+PS — Already own a home while you plan the build? The House Year is my free maintenance calendar — the whole year of house upkeep on one wheel:
+https://www.thehouseyear.com/?utm_source=buildyourhouse&utm_medium=email&utm_campaign=drip
 ${f.text}`;
   const html = `<p>Hi,</p>
 <p>Three permit mistakes that cost owner-builders real money — all three avoidable for the price of doing things in the right order:</p>
@@ -742,6 +749,7 @@ ${f.text}`;
 ${ncHtml}
 <p>Which county are you building in? Permitting is local, and the quirks are where the money hides — reply and tell me yours, and I'll point you at what I know.</p>
 <p>Seth<br>Build Your House<br><a href="${SITE}">build-your-house.com</a></p>
+<p style="color:#6b6b6b;font-size:13px;">PS — Already own a home while you plan the build? <a href="https://www.thehouseyear.com/?utm_source=buildyourhouse&amp;utm_medium=email&amp;utm_campaign=drip">The House Year</a> is my free maintenance calendar — the whole year of house upkeep on one wheel.</p>
 ${f.html}`;
   return { subject: 'Three permit mistakes that cost owner-builders real money', text, html };
 }
