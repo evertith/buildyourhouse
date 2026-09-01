@@ -94,12 +94,16 @@
 .tr { top: 18px; right: 18px; border-top: 1px solid rgba(246, 241, 228, 0.45); border-right: 1px solid rgba(246, 241, 228, 0.45); }
 
 /* ---------- SHELL ---------- */
+/* The editor is the one surface that earns the whole viewport: full-bleed
+   breakout (the hero's idiom) with a flat 20px gutter, while the prose
+   below stays at the site container width. The studio's own grid gives all
+   extra width to the canvas column. */
 .studioWrap {
   position: relative;
   z-index: 2;
-  max-width: var(--width-full);
-  margin: -56px auto 0;
-  padding: 0 var(--container-padding-mobile);
+  width: 100vw;
+  margin: -56px 0 0 calc(-50vw + 50%);
+  padding: 0 20px;
 }
 .content {
   max-width: var(--width-full);
@@ -107,13 +111,13 @@
   padding: 0 var(--container-padding-mobile);
 }
 @media (min-width: 768px) {
-  .heroInner, .studioWrap, .content {
+  .heroInner, .content {
     padding-left: var(--container-padding-tablet);
     padding-right: var(--container-padding-tablet);
   }
 }
 @media (min-width: 1024px) {
-  .heroInner, .studioWrap, .content {
+  .heroInner, .content {
     padding-left: var(--container-padding-desktop);
     padding-right: var(--container-padding-desktop);
   }

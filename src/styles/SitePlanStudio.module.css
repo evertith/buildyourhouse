@@ -370,6 +370,10 @@
   width: 100%;
   aspect-ratio: 4 / 3;
   min-height: 300px;
+  /* Full-bleed width would otherwise make a portrait lot's aspect-driven
+     canvas taller than the screen; the SVG letterboxes inside the cap. */
+  max-height: min(76vh, 880px);
+  margin: 0 auto;
   background:
     linear-gradient(rgba(35, 32, 25, 0.045) 1px, transparent 1px),
     linear-gradient(90deg, rgba(35, 32, 25, 0.045) 1px, transparent 1px),
