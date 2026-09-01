@@ -290,4 +290,73 @@ export function sheetRows(result: CheckResult): MeasureRow[] {
   return result.rows.filter((r) => r.status !== 'unplaced');
 }
 
+/**
+ * The classic plot-plan dimension set, measured on geometry alone: dwelling
+ * to each property line, well to septic tank / drainfield / dwelling, and
+ * septic to dwelling. These carry no requirement — they are what a reviewer
+ * reads off the sheet whatever the state says. A rule row that already
+ * measures the same physical pair wins; geometry fills in around it.
+ */
+export function geometryRows(plan: Plan, existing: MeasureRow[]): MeasureRow[] {
+  const covered = new Set<string>();
+  for (const r of existing) {
+    if (r.status === 'unplaced') continue;
+    if (r.fromId && r.toId) {
+      covered.add(`${r.fromId}:${r.toId}`);
+      covered.add(`${r.toId}:${r.fromId}`);
+    }
+    if (r.fromId && r.edge) covered.add(`${r.fromId}:${r.edge}`);
+  }
+
+  const out: MeasureRow[] = [];
+  const of = (k: PlanElement['kind']) => plan.elements.filter((e) => e.kind === k);
+  const pair = (label: string, a: PlanElement, b: PlanElement) => {
+    if (covered.has(`${a.id}:${b.id}`)) return;
+    out.push({
+      id: `geo-${a.id}-${b.id}`,
+      label,
+      requiredFeet: null,
+      citation: null,
+      hedged: false,
+      geometric: true,
+      measuredFeet: elementDistance(a, b),
+      status: 'ok',
+      fromId: a.id,
+      toId: b.id,
+    });
+  };
+
+  for (const w of of('well')) {
+    for (const t of of('septicTank')) pair('Well → septic tank', w, t);
+    for (const d of of('drainfield')) pair('Well → drainfield', w, d);
+    for (const h of of('house')) pair('Well → dwelling', w, h);
+  }
+  for (const h of of('house')) {
+    for (const t of of('septicTank')) pair('Septic tank → dwelling', t, h);
+    for (const d of of('drainfield')) pair('Drainfield → dwelling', d, h);
+  }
+
+  if (plan.lot) {
+    for (const h of of('house')) {
+      (['north', 'east', 'south', 'west'] as EdgeName[]).forEach((edge) => {
+        if (covered.has(`${h.id}:${edge}`)) return;
+        const d = distanceToLotEdges(h, plan.lot!)[edge];
+        out.push({
+          id: `geo-${h.id}-${edge}`,
+          label: `Dwelling → ${EDGE_LABEL[edge].toLowerCase()}`,
+          requiredFeet: null,
+          citation: null,
+          hedged: false,
+          geometric: true,
+          measuredFeet: d,
+          status: 'ok',
+          fromId: h.id,
+          edge,
+        });
+      });
+    }
+  }
+  return out;
+}
+
 export { EDGE_LABEL };

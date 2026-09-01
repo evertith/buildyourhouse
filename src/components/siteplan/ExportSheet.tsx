@@ -20,7 +20,7 @@ import { useMemo, useRef } from 'react';
 import s from '@/styles/ExportSheet.module.css';
 import { barScale, formatScale, pickScale } from '@/lib/siteplan/scale';
 import { formatFeetShort } from '@/lib/siteplan/geometry';
-import { sheetRows } from '@/lib/siteplan/check';
+import { geometryRows, sheetRows } from '@/lib/siteplan/check';
 import type { StateSiteplanRules } from '@/lib/siteplan/rules';
 import type { CheckResult, Plan, TitleFields } from '@/lib/siteplan/types';
 import { ELEMENT_KINDS, KIND_LABEL } from '@/lib/siteplan/types';
@@ -68,6 +68,7 @@ export default function ExportSheet({
     : 20;
   const bar = barScale(feetPerInch);
   const rows = sheetRows(result);
+  const geo = geometryRows(plan, result.rows);
   const conditional = result.notes.filter((n) => n.conditional);
   const negatives = result.notes.filter((n) => n.id.startsWith('null-'));
   const hedged = result.treatment === 'hedged';
@@ -280,6 +281,22 @@ export default function ExportSheet({
                   {r.citation && <p className={s.rowCite}>{r.citation}</p>}
                 </div>
               ))}
+
+            {geo.length > 0 && (
+              <>
+                <p className={s.tableMeasuredHead}>Measured from the drawing</p>
+                {geo.map((g) => (
+                  <div key={g.id} className={s.tableRow}>
+                    <p className={s.rowLabel}>{g.label}</p>
+                    <p className={s.rowNums}>
+                      <span className={s.rowAct}>
+                        {formatFeetShort(g.measuredFeet ?? 0)}
+                      </span>
+                    </p>
+                  </div>
+                ))}
+              </>
+            )}
 
             <p className={s.tableFoot}>
               {hedged ? (

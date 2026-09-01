@@ -14,7 +14,7 @@ import {
   formatFeet,
   type Pt,
 } from '@/lib/siteplan/geometry';
-import { liveRows } from '@/lib/siteplan/check';
+import { geometryRows, liveRows } from '@/lib/siteplan/check';
 import type { CheckResult, EdgeName, Plan, PlanElement } from '@/lib/siteplan/types';
 import ElementShape from './ElementShape';
 import DimensionLine, { type DimTone } from './DimensionLine';
@@ -132,6 +132,24 @@ export default function PlanScene({
     });
   });
 
+  // ---- The sheet always carries the classic plot-plan set: dwelling to each
+  // property line, well↔septic pairs, septic↔dwelling — measured, no
+  // requirement, whatever the state publishes. Rule rows already drawn win.
+  if (mode === 'sheet') {
+    geometryRows(plan, result.rows).forEach((row, i) => {
+      const dim = dimForRow(row.fromId, row.toId, row.edge, byId, lot);
+      if (!dim) return;
+      dims.push({
+        key: `geo-${row.id}`,
+        a: dim[0],
+        b: dim[1],
+        label: formatFeet(row.measuredFeet ?? 0),
+        tone: 'normal',
+        shift: [0, -0.16, 0.16, -0.3, 0.3][(live.length + i) % 5],
+      });
+    });
+  }
+
   // ---- The selected element's four distances to the property lines
   const sel = selectedId ? byId.get(selectedId) : null;
   if (sel && mode === 'screen' && showSelectionDims) {
@@ -151,6 +169,39 @@ export default function PlanScene({
         tone: outside ? 'violation' : 'normal',
       });
     });
+  }
+
+  // ---- The selected element's distances to its related elements, so the
+  // well↔septic line is live under the cursor while dragging — whatever the
+  // state's rules say. Pairs the rule engine already draws are skipped.
+  if (sel && mode === 'screen' && showSelectionDims) {
+    const RELATED: Partial<Record<PlanElement['kind'], PlanElement['kind'][]>> = {
+      well: ['septicTank', 'drainfield', 'house'],
+      septicTank: ['well', 'house'],
+      drainfield: ['well', 'house'],
+      house: ['well', 'septicTank', 'drainfield'],
+    };
+    const kinds = RELATED[sel.kind] ?? [];
+    const drawnPairs = new Set(
+      live
+        .filter((r) => r.fromId && r.toId)
+        .map((r) => [r.fromId, r.toId].sort().join(':'))
+    );
+    plan.elements
+      .filter((e) => e.id !== sel.id && kinds.includes(e.kind))
+      .forEach((other, j) => {
+        if (drawnPairs.has([sel.id, other.id].sort().join(':'))) return;
+        const [a, b] = closestPoints(sel, other);
+        const feet = Math.hypot(b.x - a.x, b.y - a.y);
+        dims.push({
+          key: `rel-${other.id}`,
+          a,
+          b,
+          label: formatFeet(feet),
+          tone: 'normal',
+          shift: [0, -0.16, 0.16][j % 3],
+        });
+      });
   }
 
   // ---- Setback crossings the OWNER entered — their own visual language

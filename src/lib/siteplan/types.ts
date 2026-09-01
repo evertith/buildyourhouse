@@ -186,6 +186,8 @@ export interface MeasureRow {
   note?: string;
   /** True when the requirement is a typical value, not this state's rule. */
   hedged: boolean;
+  /** True for pure-geometry dimensions carrying no requirement at all. */
+  geometric?: boolean;
   /** Element ids to draw the dimension line between. */
   fromId?: string;
   toId?: string;
