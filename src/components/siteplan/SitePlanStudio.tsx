@@ -234,7 +234,12 @@ export default function SitePlanStudio() {
       if (e.key === 'Escape') setSheetOpen(false);
     };
     window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      document.body.style.overflow = prevOverflow;
+    };
   }, [sheetOpen]);
 
   const setState = (code: string) => {
@@ -485,16 +490,30 @@ function SheetModal({
   onTitleChange: (key: keyof TitleFields, value: string) => void;
   onExport: (method: 'print' | 'svg') => void;
 }) {
+  const closeOnSelf = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) onClose();
+  };
   return (
-    <div className={s.modal} role="dialog" aria-modal="true" aria-label="Sheet preview">
+    <div
+      className={s.modal}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Sheet preview"
+      onMouseDown={closeOnSelf}
+    >
+      <button
+        type="button"
+        className={`${s.modalClose} no-print`}
+        onClick={onClose}
+        aria-label="Close sheet preview"
+      >
+        ×
+      </button>
       <div className={`${s.modalBar} no-print`}>
         <span className={s.toolbarNo}>SP-01 · Sheet preview</span>
         <span className={s.toolbarSpacer} />
-        <button type="button" className={s.ghostBtn} onClick={onClose}>
-          Close
-        </button>
       </div>
-      <div className={s.modalBody}>
+      <div className={s.modalBody} onMouseDown={closeOnSelf}>
         <ExportSheet
           plan={plan}
           result={result}
