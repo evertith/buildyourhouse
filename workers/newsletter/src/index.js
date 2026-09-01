@@ -432,6 +432,152 @@ async function handleEstimate(request, env, ctx, origin) {
   return json({ ok: true }, 200, origin);
 }
 
+// ---------------------------------------------------------------- site plan
+
+/**
+ * POST /siteplan { email, website?, state, stateName, verified, lot,
+ *                  rows: [{label, value}], notes: [string], sourcePath? }
+ * Emails the user the measurements and citations from their Site Plan
+ * Studio session — a real deliverable at capture time, modeled on
+ * /estimate (same honeypot, rate limit, storage semantics: the sheet
+ * email replaces the welcome for new signups).
+ */
+function siteplanEmail(unsubUrl, d) {
+  const f = emailFooter(unsubUrl);
+  const toolUrl = `${SITE}/site-plan-studio`;
+  const rowsText = d.rows.map((r) => `  ${r.label}: ${r.value}`).join('\n');
+  const notesText = d.notes.map((n) => `  · ${n}`).join('\n');
+  const rowsHtml = d.rows
+    .map(
+      (r) =>
+        `<tr><td style="padding:4px 16px 4px 0;color:#56503f">${escapeHtml(r.label)}</td><td style="padding:4px 0;color:#232019"><strong>${escapeHtml(r.value)}</strong></td></tr>`
+    )
+    .join('');
+  const notesHtml = d.notes.length
+    ? `<p style="margin:16px 0 4px;color:#56503f;font-size:13px;text-transform:uppercase;letter-spacing:0.08em">Notes for your state</p>${d.notes
+        .map((n) => `<p style="margin:4px 0;color:#56503f;font-size:13px">· ${escapeHtml(n)}</p>`)
+        .join('')}`
+    : '';
+  const verifyLine = d.verified
+    ? `Distances checked against ${d.stateName} requirements as published — citations shown are the governing rules.`
+    : `${d.stateName}'s separation requirements were not verified for this tool — figures marked typical are common practice only. Confirm every distance with your county health department before construction.`;
+  return {
+    subject: `Your site plan measurements — ${d.stateName}`,
+    text: `Hi,
+
+Here are the measurements from the site plan you drew at build-your-house.com — your lot (${d.lot}), your separations, and the citations, kept where you can find them.
+
+${rowsText}
+${d.notes.length ? `\nNotes for your state:\n${notesText}\n` : ''}
+${verifyLine}
+
+Your plan is saved in your browser — pick it up any time: ${toolUrl}
+
+The plot plan is one sheet of the paperwork. Your state's Permit Kit is the rest of the permit path as working checklists with the statute citations printed on each page: ${SITE}/shop/permit-kits
+
+Questions about your site? Just reply — I read these.
+
+Seth
+Build Your House
+${SITE}
+${f.text}`,
+    html: `<p>Hi,</p>
+<p>Here are the measurements from the site plan you drew at <a href="${toolUrl}">build-your-house.com</a> — your lot (${escapeHtml(d.lot)}), your separations, and the citations, kept where you can find them.</p>
+<table style="border-collapse:collapse;font-size:14px">${rowsHtml}</table>
+${notesHtml}
+<p style="color:#56503f;font-size:13px">${escapeHtml(verifyLine)}</p>
+<p>Your plan is saved in your browser — <a href="${toolUrl}">pick it up any time</a>.</p>
+<p>The plot plan is one sheet of the paperwork. Your state's <a href="${SITE}/shop/permit-kits">Permit Kit</a> is the rest of the permit path as working checklists with the statute citations printed on each page.</p>
+<p>Questions about your site? Just reply — I read these.</p>
+<p>Seth<br>Build Your House<br><a href="${SITE}">build-your-house.com</a></p>
+${f.html}`,
+  };
+}
+
+async function handleSiteplan(request, env, ctx, origin) {
+  let payload;
+  try {
+    payload = await request.json();
+  } catch {
+    return json({ error: 'invalid JSON' }, 400, origin);
+  }
+
+  if (typeof payload.website === 'string' && payload.website.trim() !== '') {
+    return json({ ok: true }, 200, origin);
+  }
+
+  const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
+  if (estimateRateLimited(ip)) {
+    return json({ error: 'too many requests' }, 429, origin);
+  }
+
+  const email = typeof payload.email === 'string' ? payload.email.trim().toLowerCase() : '';
+  if (!email || email.length > MAX_EMAIL_LENGTH || !EMAIL_RE.test(email)) {
+    return json({ error: 'invalid email' }, 400, origin);
+  }
+
+  const data = {
+    stateName: cleanText(payload.stateName, 40) || 'your state',
+    verified: payload.verified === true,
+    lot: cleanText(payload.lot, 60) || 'as drawn',
+    rows: cleanRows(payload.rows, 20),
+    notes: Array.isArray(payload.notes)
+      ? payload.notes.slice(0, 10).map((n) => cleanText(n, 300)).filter(Boolean)
+      : [],
+  };
+  if (!data.rows.length) {
+    return json({ error: 'no measurements' }, 400, origin);
+  }
+
+  const source = cleanText(payload.sourcePath, 200) || '/site-plan-studio';
+  const now = new Date().toISOString();
+
+  try {
+    const existing = await env.DB.prepare(
+      'SELECT unsubscribed_at FROM subscribers WHERE email = ?1'
+    ).bind(email).first();
+    if (!existing) {
+      await env.DB.prepare(
+        'INSERT INTO subscribers (email, source, created_at) VALUES (?1, ?2, ?3)'
+      ).bind(email, source, now).run();
+    } else if (existing.unsubscribed_at) {
+      await env.DB.prepare(
+        'UPDATE subscribers SET unsubscribed_at = NULL WHERE email = ?1'
+      ).bind(email).run();
+    }
+  } catch (err) {
+    console.error('siteplan upsert failed:', err);
+    return json({ error: 'storage error' }, 500, origin);
+  }
+
+  ctx.waitUntil((async () => {
+    try {
+      await upsertContact(env, email, false);
+    } catch (err) {
+      console.error('resend contact sync failed:', err);
+    }
+    try {
+      const unsubUrl = await unsubscribeUrl(env, request.url, email);
+      const msg = siteplanEmail(unsubUrl, data);
+      await resend(env, '/emails', {
+        method: 'POST',
+        body: {
+          from: FROM,
+          to: [email],
+          reply_to: REPLY_TO,
+          subject: msg.subject,
+          text: msg.text,
+          html: msg.html,
+        },
+      });
+    } catch (err) {
+      console.error('siteplan email failed:', err);
+    }
+  })());
+
+  return json({ ok: true }, 200, origin);
+}
+
 // ---------------------------------------------------------------- financing leads
 
 const LEAD_NOTIFY_TO = 'seth@build-your-house.com';
@@ -1026,6 +1172,9 @@ export default {
       }
       if (request.method === 'POST' && url.pathname === '/estimate') {
         return await handleEstimate(request, env, ctx, origin);
+      }
+      if (request.method === 'POST' && url.pathname === '/siteplan') {
+        return await handleSiteplan(request, env, ctx, origin);
       }
       if (request.method === 'POST' && url.pathname === '/financing-lead') {
         return await handleFinancingLead(request, env, ctx, origin);
