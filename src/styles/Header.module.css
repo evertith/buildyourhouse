@@ -92,6 +92,59 @@
 }
 .navLink:hover::after { width: 100%; }
 
+/* Category dropdowns */
+.navItem {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 74px;
+}
+.chev {
+  font-size: 8px;
+  margin-left: 5px;
+  color: var(--text-secondary);
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+.navItem:hover .chev,
+.navItem:focus-within .chev {
+  transform: translateY(1px);
+  color: var(--accent-primary);
+}
+.menu {
+  position: absolute;
+  top: 100%;
+  left: -18px;
+  min-width: 232px;
+  background: var(--bg-primary);
+  border: 1px solid var(--hairline-strong);
+  border-top: 2px solid var(--accent-primary);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+  padding: 6px 0;
+  display: none;
+  z-index: 110;
+}
+.navItem:hover .menu,
+.navItem:focus-within .menu {
+  display: block;
+}
+.menuLink {
+  display: block;
+  padding: 9px 18px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+.menuLink:hover {
+  color: var(--text-heading);
+  background: rgba(0, 0, 0, 0.035);
+  text-decoration: none;
+}
+
 /* CTA "ticket" button */
 .ctaLink {
   color: var(--cream);
@@ -174,5 +227,30 @@
   .ctaLink {
     text-align: center;
     margin-top: var(--space-2);
+  }
+  /* Categories flatten to labeled groups in the drawer */
+  .navItem {
+    height: auto;
+    flex-direction: column;
+    align-items: stretch;
+    position: static;
+  }
+  .navItem .navLink { display: block; }
+  .chev { display: none; }
+  .menu {
+    position: static;
+    display: block;
+    min-width: 0;
+    border: none;
+    border-left: 1px solid var(--hairline);
+    box-shadow: none;
+    padding: 2px 0 6px 14px;
+    margin: 2px 0 4px 2px;
+    background: transparent;
+  }
+  .menuLink {
+    padding: 8px 0;
+    font-size: 13px;
+    white-space: normal;
   }
 }
