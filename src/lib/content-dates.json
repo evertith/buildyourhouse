@@ -113,7 +113,7 @@
   },
   "/calculators": {
     "published": "2026-05-30T17:42:13-04:00",
-    "modified": "2026-08-16T17:21:38-04:00"
+    "modified": "2026-08-31T23:26:20-04:00"
   },
   "/calculators/budget-tracker": {
     "published": "2025-11-17T08:11:01-05:00",
@@ -485,7 +485,7 @@
   },
   "/resources": {
     "published": "2025-11-18T12:57:43-05:00",
-    "modified": "2026-06-04T12:06:14-04:00"
+    "modified": "2026-08-31T23:26:20-04:00"
   },
   "/resources/checklists": {
     "published": "2025-11-17T08:11:01-05:00",
@@ -574,6 +574,10 @@
   "/site-map": {
     "published": "2026-07-01T21:40:43-04:00",
     "modified": "2026-07-01T21:40:43-04:00"
+  },
+  "/site-plan-studio": {
+    "published": "2026-08-31T23:26:20-04:00",
+    "modified": "2026-08-31T23:26:20-04:00"
   },
   "/start-here": {
     "published": "2025-11-17T08:11:01-05:00",
