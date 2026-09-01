@@ -184,6 +184,13 @@
 }
 .prose p:last-child { margin-bottom: 0; }
 .prose strong { color: var(--text-heading); }
+/* A bearing quoted in prose reads as data, not emphasis. */
+.mono {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  color: var(--text-heading);
+  white-space: nowrap;
+}
 
 /* Numbered checklist in the drafting hand. */
 .checklist {

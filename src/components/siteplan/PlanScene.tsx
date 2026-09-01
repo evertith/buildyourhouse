@@ -6,16 +6,32 @@
  * symbol can never drift between the two. The only differences are the
  * `mode` flag (interaction and hover chrome are screen-only) and the
  * viewBox the caller sets.
+ *
+ * v1.5: the boundary is a rectangle or a polygon. A polygon carries its
+ * length on EVERY side — the plat idiom, and the thing that makes an
+ * owner-drawn sheet read as a real plot plan rather than a sketch — in place
+ * of the two dimension lines a rectangle gets on its north and west edges.
  */
 
 import {
   closestPoints,
   edgeDimension,
   formatFeet,
+  formatFeetShort,
+  lotRing,
+  nearestBoundary,
+  sideLengths,
   type Pt,
 } from '@/lib/siteplan/geometry';
 import { geometryRows, liveRows } from '@/lib/siteplan/check';
-import type { CheckResult, EdgeName, Plan, PlanElement } from '@/lib/siteplan/types';
+import type {
+  CheckResult,
+  EdgeName,
+  Lot,
+  Plan,
+  PlanElement,
+  RectLot,
+} from '@/lib/siteplan/types';
 import ElementShape from './ElementShape';
 import DimensionLine, { type DimTone } from './DimensionLine';
 
@@ -27,7 +43,7 @@ interface Props {
   /** World units per text pixel. Defaults to `u`; a narrow canvas passes a
       smaller value so labels stay proportionate to the drawing. */
   textU?: number;
-  /** Below the drag breakpoint the inspector lists the four property-line
+  /** Below the drag breakpoint the inspector lists the property-line
       distances numerically, so drawing them too only clutters a small canvas. */
   showSelectionDims?: boolean;
   mode: 'screen' | 'sheet';
@@ -39,6 +55,8 @@ interface Props {
   onElementPointerDown?: (e: React.PointerEvent, id: string) => void;
   onRotateDown?: (e: React.PointerEvent, id: string) => void;
   onRowHover?: (id: string | null) => void;
+  /** Polygon mode: clicking a boundary side marks it as the road frontage. */
+  onSegmentClick?: (index: number) => void;
 }
 
 interface Dim {
@@ -73,35 +91,41 @@ export default function PlanScene({
   onElementPointerDown,
   onRotateDown,
   onRowHover,
+  onSegmentClick,
 }: Props) {
   const lot = plan.lot;
   if (!lot) return null;
 
   const tu = textU ?? u;
   const byId = new Map(plan.elements.map((e) => [e.id, e]));
+  const ring = lotRing(lot);
   const dims: Dim[] = [];
 
-  // ---- Lot dimensions, north and west edges (§2.2 step 2)
-  const off = 20 * u;
-  dims.push({
-    key: 'lot-w',
-    a: { x: 0, y: -off },
-    b: { x: lot.w, y: -off },
-    label: formatFeet(lot.w),
-    tone: 'normal',
-  });
-  dims.push({
-    key: 'lot-d',
-    a: { x: -off, y: 0 },
-    b: { x: -off, y: lot.d },
-    label: formatFeet(lot.d),
-    tone: 'normal',
-  });
+  // ---- Lot dimensions. A rectangle takes its two dimension lines on the
+  // north and west edges (§2.2 step 2); a polygon takes a length on every
+  // side instead, drawn below by SideLabels.
+  if (lot.kind === 'rect') {
+    const off = 20 * u;
+    dims.push({
+      key: 'lot-w',
+      a: { x: 0, y: -off },
+      b: { x: lot.w, y: -off },
+      label: formatFeet(lot.w),
+      tone: 'normal',
+    });
+    dims.push({
+      key: 'lot-d',
+      a: { x: -off, y: 0 },
+      b: { x: -off, y: lot.d },
+      label: formatFeet(lot.d),
+      tone: 'normal',
+    });
+  }
 
   // ---- Every rule measuring under 1.5x its minimum, selection-independent
   const live = liveRows(result);
   live.forEach((row, i) => {
-    const dim = dimForRow(row.fromId, row.toId, row.edge, byId, lot);
+    const dim = dimForRow(row.fromId, row.toId, row.edge, row.boundary, byId, lot);
     if (!dim) return;
     const short = row.status === 'violation' || row.status === 'watch';
     const req = row.requiredFeet;
@@ -132,12 +156,12 @@ export default function PlanScene({
     });
   });
 
-  // ---- The sheet always carries the classic plot-plan set: dwelling to each
-  // property line, well↔septic pairs, septic↔dwelling — measured, no
+  // ---- The sheet always carries the classic plot-plan set: dwelling to the
+  // property lines, well↔septic pairs, septic↔dwelling — measured, no
   // requirement, whatever the state publishes. Rule rows already drawn win.
   if (mode === 'sheet') {
     geometryRows(plan, result.rows).forEach((row, i) => {
-      const dim = dimForRow(row.fromId, row.toId, row.edge, byId, lot);
+      const dim = dimForRow(row.fromId, row.toId, row.edge, row.boundary, byId, lot);
       if (!dim) return;
       dims.push({
         key: `geo-${row.id}`,
@@ -150,25 +174,39 @@ export default function PlanScene({
     });
   }
 
-  // ---- The selected element's four distances to the property lines
+  // ---- The selected element's distance to the property line. Four named
+  // distances on a rectangle; one, to the nearest side, on a polygon —
+  // because "north line" means nothing on an eight-sided boundary and
+  // "side 6" would mean less.
   const sel = selectedId ? byId.get(selectedId) : null;
   if (sel && mode === 'screen' && showSelectionDims) {
-    (['north', 'east', 'south', 'west'] as EdgeName[]).forEach((edge) => {
-      const [a, b] = edgeDimension(sel, lot, edge);
-      const feet = Math.hypot(b.x - a.x, b.y - a.y);
-      const outside =
-        (edge === 'north' && a.y < 0) ||
-        (edge === 'south' && a.y > lot.d) ||
-        (edge === 'west' && a.x < 0) ||
-        (edge === 'east' && a.x > lot.w);
-      dims.push({
-        key: `sel-${edge}`,
-        a,
-        b,
-        label: formatFeet(feet),
-        tone: outside ? 'violation' : 'normal',
+    if (lot.kind === 'rect') {
+      (['north', 'east', 'south', 'west'] as EdgeName[]).forEach((edge) => {
+        const [a, b] = edgeDimension(sel, lot, edge);
+        const feet = Math.hypot(b.x - a.x, b.y - a.y);
+        const outside =
+          (edge === 'north' && a.y < 0) ||
+          (edge === 'south' && a.y > lot.d) ||
+          (edge === 'west' && a.x < 0) ||
+          (edge === 'east' && a.x > lot.w);
+        dims.push({
+          key: `sel-${edge}`,
+          a,
+          b,
+          label: formatFeet(feet),
+          tone: outside ? 'violation' : 'normal',
+        });
       });
-    });
+    } else {
+      const n = nearestBoundary(sel, lot);
+      dims.push({
+        key: 'sel-boundary',
+        a: n.a,
+        b: n.b,
+        label: formatFeet(Math.abs(n.feet)),
+        tone: n.feet < 0 ? 'violation' : 'normal',
+      });
+    }
   }
 
   // ---- The selected element's distances to its related elements, so the
@@ -204,35 +242,56 @@ export default function PlanScene({
       });
   }
 
-  // ---- Setback crossings the OWNER entered — their own visual language
-  for (const w of result.setbacks) {
-    const el = byId.get(w.elementId);
-    if (!el) continue;
-    const [a, b] = edgeDimension(el, lot, w.edge);
-    dims.push({
-      key: `sb-${w.id}`,
-      a,
-      b,
-      label: `${formatFeet(w.measuredFeet)} (${w.requiredFeet}' setback)`,
-      tone: 'setback',
-      dashed: true,
-    });
+  // ---- Setback crossings the OWNER entered — their own visual language.
+  // Rectangles only; `check` produces none for a polygon.
+  if (lot.kind === 'rect') {
+    for (const w of result.setbacks) {
+      const el = byId.get(w.elementId);
+      if (!el) continue;
+      const [a, b] = edgeDimension(el, lot, w.edge);
+      dims.push({
+        key: `sb-${w.id}`,
+        a,
+        b,
+        label: `${formatFeet(w.measuredFeet)} (${w.requiredFeet}' setback)`,
+        tone: 'setback',
+        dashed: true,
+      });
+    }
   }
 
   return (
     <>
       {/* Property line: solid heavy, the drawing's outer boundary. */}
-      <rect
-        x={0}
-        y={0}
-        width={lot.w}
-        height={lot.d}
-        fill="none"
-        stroke="var(--text-heading)"
-        strokeWidth={2.4}
-        vectorEffect="non-scaling-stroke"
-      />
-      <Setbacks plan={plan} />
+      {lot.kind === 'rect' ? (
+        <rect
+          x={0}
+          y={0}
+          width={lot.w}
+          height={lot.d}
+          fill="none"
+          stroke="var(--text-heading)"
+          strokeWidth={2.4}
+          vectorEffect="non-scaling-stroke"
+        />
+      ) : (
+        <path
+          d={`${ring.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ')} Z`}
+          fill="none"
+          stroke="var(--text-heading)"
+          strokeWidth={2.4}
+          strokeLinejoin="round"
+          vectorEffect="non-scaling-stroke"
+        />
+      )}
+
+      {lot.kind === 'poly' && (
+        <Frontage ring={ring} index={plan.frontSegment} u={u} tu={tu} />
+      )}
+
+      {lot.kind === 'rect' && <Setbacks lot={lot} plan={plan} />}
+
+      {lot.kind === 'poly' && <SideLabels ring={ring} u={u} tu={tu} />}
 
       {plan.elements.map((el) => (
         <ElementShape
@@ -264,6 +323,36 @@ export default function PlanScene({
           onLeave={d.rowId && onRowHover ? () => onRowHover(null) : undefined}
         />
       ))}
+
+      {/* Fat invisible pick targets, drawn LAST so they sit above the
+          elements — marking the road frontage has to work even where the
+          driveway already covers that side. */}
+      {onSegmentClick && lot.kind === 'poly' && (
+        <g>
+          {ring.map((a, i) => {
+            const b = ring[(i + 1) % ring.length];
+            return (
+              <line
+                key={`pick-${i}`}
+                x1={a.x}
+                y1={a.y}
+                x2={b.x}
+                y2={b.y}
+                stroke="transparent"
+                strokeWidth={11 * u}
+                style={{ cursor: 'pointer' }}
+                onClick={() => onSegmentClick(i)}
+              >
+                <title>
+                  {plan.frontSegment === i
+                    ? 'Road frontage — click to clear'
+                    : 'Mark this side as the road frontage'}
+                </title>
+              </line>
+            );
+          })}
+        </g>
+      )}
     </>
   );
 }
@@ -272,24 +361,160 @@ function dimForRow(
   fromId: string | undefined,
   toId: string | undefined,
   edge: EdgeName | undefined,
+  boundary: boolean | undefined,
   byId: Map<string, PlanElement>,
-  lot: { w: number; d: number }
+  lot: Lot
 ): [Pt, Pt] | null {
   const from = fromId ? byId.get(fromId) : null;
   if (!from) return null;
-  if (edge) return edgeDimension(from, lot, edge);
+  if (edge && lot.kind === 'rect') return edgeDimension(from, lot, edge);
+  if (boundary) {
+    const n = nearestBoundary(from, lot);
+    return [n.a, n.b];
+  }
   const to = toId ? byId.get(toId) : null;
   if (!to) return null;
   return closestPoints(from, to);
 }
 
 /**
+ * A length on every side, printed outside the boundary along the side it
+ * measures. This is required plot-plan content — a reviewer reads the
+ * boundary off these — and it is what makes the sheet look like a plat
+ * rather than a shape someone drew.
+ *
+ * Sides too short to hold their own label at the current scale are skipped
+ * rather than overprinted; the sheet's separations table still carries the
+ * distances that matter, and an unreadable smear of overlapping numbers
+ * would cost more than the missing label.
+ */
+function SideLabels({ ring, u, tu }: { ring: Pt[]; u: number; tu: number }) {
+  const lengths = sideLengths(ring);
+  const fs = 9.5 * tu;
+  return (
+    <g pointerEvents="none">
+      {lengths.map((len, i) => {
+        const a = ring[i];
+        const b = ring[(i + 1) % ring.length];
+        const label = formatFeetShort(len);
+        // Needs room for the text along its own side, or it is left off.
+        if (len / u < label.length * 6.4) return null;
+        const mid = { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 };
+        const nx = (b.y - a.y) / len;
+        const ny = -(b.x - a.x) / len;
+        // Clear of the frontage right-of-way dash at 5u, and inside the ROAD
+        // caption at 26tu, so the three never stack on one side.
+        const px = mid.x + nx * 12 * tu;
+        const py = mid.y + ny * 12 * tu;
+        const raw = (Math.atan2(b.y - a.y, b.x - a.x) * 180) / Math.PI;
+        const deg = raw > 90 || raw < -90 ? raw + 180 : raw;
+        return (
+          <g key={`side-${i}`} transform={`rotate(${deg} ${px} ${py})`}>
+            <rect
+              x={px - (label.length * fs * 0.6) / 2 - 2 * tu}
+              y={py - fs * 0.72}
+              width={label.length * fs * 0.6 + 4 * tu}
+              height={fs * 1.44}
+              fill="var(--bg-primary)"
+            />
+            <text
+              x={px}
+              y={py}
+              textAnchor="middle"
+              dominantBaseline="central"
+              fontFamily="var(--font-mono)"
+              fontSize={fs}
+              fill="var(--text-secondary)"
+            >
+              {label}
+            </text>
+          </g>
+        );
+      })}
+    </g>
+  );
+}
+
+/**
+ * The marked road frontage: the side drawn heavy with a thin line offset
+ * outside it, which is how a right-of-way is shown on a plat, and labeled
+ * so the sheet says which side the road is on without a legend entry.
+ */
+function Frontage({
+  ring,
+  index,
+  u,
+  tu,
+}: {
+  ring: Pt[];
+  index: number | null;
+  u: number;
+  tu: number;
+}) {
+  if (index === null || !ring[index]) return null;
+  const a = ring[index];
+  const b = ring[(index + 1) % ring.length];
+  const len = Math.hypot(b.x - a.x, b.y - a.y);
+  if (len < 1e-6) return null;
+  const nx = (b.y - a.y) / len;
+  const ny = -(b.x - a.x) / len;
+  const off = 5 * u;
+  const mid = { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 };
+  const raw = (Math.atan2(b.y - a.y, b.x - a.x) * 180) / Math.PI;
+  const deg = raw > 90 || raw < -90 ? raw + 180 : raw;
+  const lx = mid.x + nx * 26 * tu;
+  const ly = mid.y + ny * 26 * tu;
+  return (
+    <g pointerEvents="none">
+      <line
+        x1={a.x}
+        y1={a.y}
+        x2={b.x}
+        y2={b.y}
+        stroke="var(--text-heading)"
+        strokeWidth={4}
+        vectorEffect="non-scaling-stroke"
+      />
+      <line
+        x1={a.x + nx * off}
+        y1={a.y + ny * off}
+        x2={b.x + nx * off}
+        y2={b.y + ny * off}
+        stroke="var(--text-secondary)"
+        strokeWidth={1}
+        strokeDasharray="10 5"
+        vectorEffect="non-scaling-stroke"
+      />
+      {len / u > 90 && (
+        <text
+          x={lx}
+          y={ly}
+          transform={`rotate(${deg} ${lx} ${ly})`}
+          textAnchor="middle"
+          dominantBaseline="central"
+          fontFamily="var(--font-mono)"
+          fontSize={9 * tu}
+          letterSpacing={0.14 * 9 * tu}
+          fill="var(--text-secondary)"
+        >
+          ROAD
+        </text>
+      )}
+    </g>
+  );
+}
+
+/**
  * Long-dash lines inset from the lot edges. Drawn as four separate lines,
  * not one inset rectangle, because front, side and rear can differ and a
  * blank one must simply not appear.
+ *
+ * Rectangles only. A mitered inward offset of an eight-sided boundary is a
+ * different piece of geometry, and a wrong setback line drawn confidently on
+ * a permit sheet is worse than no setback line at all — so polygon mode says
+ * so in the toolbox and measures the nearest boundary instead.
  */
-function Setbacks({ plan }: { plan: Plan }) {
-  const lot = plan.lot!;
+function Setbacks({ lot, plan }: { lot: RectLot; plan: Plan }) {
   const { front, side, rear } = plan.setbacks;
   const lines: { key: string; x1: number; y1: number; x2: number; y2: number }[] = [];
 

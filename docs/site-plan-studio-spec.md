@@ -647,3 +647,105 @@ verbatim and never from this spec.
    if there is appetite for a small worker change.
 3. **Sheet orientation.** Fixed portrait keeps it to one stylesheet. If wide rural lots turn
    out to be the norm, landscape moves from v2 to v1 and the print CSS doubles.
+
+---
+
+## 12. V1.5 — polygon lots (shipped)
+
+**Status:** built and verified, September 2026. This section un-defers §11 Q1 at
+**reduced scope** and records what was deliberately left out. §11's other rulings and
+Amendments A–C are unchanged and still binding.
+
+### 12.1 What shipped
+
+**The lot is a discriminated union.** `Plan.lot` is now
+`{ kind: 'rect'; w; d } | { kind: 'poly'; pts: Pt[] }` — world feet, clockwise, first
+point not repeated. The rectangle stays the default and the fast path; §11 Q1's original
+recommendation was right that the polygon is more work than the rest of the editor, and the
+answer was to keep the rectangle's code path intact rather than generalise everything onto
+a polygon that most users do not have.
+
+**Two ways in.** A single toggle in the lot form — *"This lot isn't rectangular"* — opens
+`LotShapeEditor`, which offers:
+
+- **Click the corners.** Click in sequence, click the first corner to close, then drag any
+  corner, insert one at a side's midpoint, or delete one. Snapped to the foot. The world
+  window is fixed at a chosen extent rather than fitted to the points as they land: a view
+  that refits itself between clicks moves the ground under the cursor.
+- **Enter it from your deed.** Bearing and distance per row, walked turtle-style from the
+  point of beginning. `bearing.ts` reads quadrant bearings (`N 42°15' E`, `N42-15-30E`,
+  `S 7 W`, spelled-out `North 42 East`), azimuths (`azimuth 132.5`, `az 132-30`, bare
+  numbers) and cardinals (`due north`). Running closure error is on screen the whole time.
+
+**Closure, and the guard on it.** The closure readout is the thing a surveyor checks first,
+so it is never hidden. "Close the gap" moves the last corner onto the point of beginning —
+but it is **only offered when the gap is under max(3 ft, 2% of perimeter)**. A deed whose
+final "thence to the point of beginning" call was never typed misses closure by the length
+of a whole side, and nudging the last corner there would collapse a real corner onto the
+start and silently destroy the shape. That case gets an explanation instead.
+
+**Measurement.** `nearestBoundary(el, lot)` is the single entry point for
+element-to-property-line distance. On a rectangle it is the v1 named-edge maths untouched,
+so every number a rect plan printed before prints identically. On a polygon it sweeps
+**both** directions — element vertices against boundary segments and boundary vertices
+against element edges — because on a notched parcel the closest approach is routinely the
+notch corner facing the middle of a wall, which a one-directional sweep misses by feet.
+
+**Boundary crossing** is three tests, and a notched parcel needs all three: a corner off
+the parcel, a boundary corner inside the element, and — the one the tests caught — a notch
+narrower than the house slicing in one wall and out the other, where no vertex of either
+shape is inside the other. Overshoot depth is sampled on a grid in the element's own frame,
+because the deepest overhang of a sliced house is in its middle, not at any corner.
+
+**Drawing.** Every side carries its length in the plat idiom — a mono label along the
+segment, outside the boundary, skipped on sides too short to hold one at the current scale
+rather than overprinted. The marked road frontage is drawn heavy with an offset dashed
+right-of-way line and a `ROAD` caption.
+
+### 12.2 Scope cuts — deliberate, and why
+
+- **No setback offsets.** Setback lines remain rectangle-only. Front, side and rear are
+  named against four squared-off edges; a mitered inward offset of an eight-sided boundary
+  is a different piece of geometry, and a confidently wrong setback line on a permit sheet
+  is worse than none. The toolbox says exactly that in one line and shows nearest-boundary
+  distances instead. This upholds the original §11 ruling that mitered polygon offsets stay
+  cut.
+- **No easements or rights-of-way.** Still v2. The lot note prints on the sheet and is the
+  place for one today.
+- **No curves.** There are no arcs, chords or radii. A curved call is entered as one or more
+  straight **meander segments** — which is also how a creek or a lake edge is carried on a
+  plat, so the motivating "21-acre strip whose north boundary is a creek" is expressible
+  today at whatever fidelity the owner wants to click.
+- **No self-intersection solver.** A crossing boundary warns (*"boundary crosses itself —
+  check your corners"*) and still draws. An owner mid-entry has a self-crossing boundary for
+  as long as it takes to place the next corner, and refusing to draw it would make the tool
+  feel broken exactly when they need to see what they typed.
+- **Road frontage is marked, not inferred.** A polygon has no north edge to pick from a
+  list, so the owner clicks the side. **Unmarked frontage silences driveway boundary
+  crossings entirely** rather than crying wolf on every parcel whose owner has not found the
+  control yet.
+- **Position editing on a polygon is x/y**, not "distance from the west line" — there is no
+  west line. This matters because below 768px the inspector is the only way to move anything
+  (§5), so the fields could not simply be dropped.
+
+### 12.3 Storage
+
+`byh.siteplan.v1` → **`byh.siteplan.v2`**, with a real migration rather than the discard a
+version bump normally implies: v1 is read once, its `{ w, d }` becomes
+`{ kind: 'rect', w, d }`, the plan is rewritten under the new key and the old key removed.
+The absent `kind` **is** the version marker, so no separate migration flag can drift from
+the data. `clearPlan` removes both keys, or "start over" would resurrect a v1 record that
+had never been loaded.
+
+### 12.4 Frozen, still
+
+`rules.ts` was not touched. No citation, distance or note moved. Amendment B still holds:
+`extraSeparations` never reaches the conflict engine, on any lot shape.
+
+### 12.5 v2 backlog, revised
+
+Easements and rights-of-way · true curves (arc calls with radius and chord) · mitered
+setback offsets for polygons · contours, slope and drainage · multiple buildings with
+per-building setbacks · existing vs proposed · utility runs · well protection-radius circles
+· landscape sheet · PNG export · `/site-plan-studio/[state]` landing pages · parcel import
+from county GIS (which would make hand entry the fallback rather than the primary path).

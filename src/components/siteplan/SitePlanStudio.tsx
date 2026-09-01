@@ -19,6 +19,7 @@ import { trackEvent } from '@/lib/analytics';
 import { check } from '@/lib/siteplan/check';
 import { treatmentFor } from '@/lib/siteplan/adapt';
 import { placeElement } from '@/lib/siteplan/defaults';
+import { lotBox } from '@/lib/siteplan/geometry';
 import { getStateRules } from '@/lib/siteplan/rules';
 import { clearPlan, loadPlan, savePlan } from '@/lib/siteplan/storage';
 import type {
@@ -26,6 +27,8 @@ import type {
   ElementKind,
   Plan,
   PlanElement,
+  Pt,
+  RectLot,
   Setbacks,
   TitleFields,
 } from '@/lib/siteplan/types';
@@ -41,6 +44,8 @@ import Toolbox from './Toolbox';
 
 type Action =
   | { t: 'SET_LOT'; w: number; d: number; frontEdge?: EdgeName }
+  | { t: 'SET_POLY_LOT'; pts: Pt[] }
+  | { t: 'SET_FRONT_SEGMENT'; index: number | null }
   | { t: 'ADD_ELEMENT'; kind: ElementKind }
   | { t: 'MOVE_ELEMENT'; id: string; x: number; y: number }
   | { t: 'NUDGE'; dx: number; dy: number }
@@ -71,12 +76,35 @@ function reducer(plan: Plan, a: Action): Plan {
     case 'SET_LOT':
       return {
         ...plan,
-        lot: { w: a.w, d: a.d },
+        lot: { kind: 'rect', w: a.w, d: a.d },
         frontEdge: a.frontEdge ?? plan.frontEdge,
+        // A rectangle names its road edge from a list; the polygon index it
+        // held meant something about a boundary that no longer exists.
+        frontSegment: null,
       };
+    case 'SET_POLY_LOT': {
+      const same =
+        plan.lot?.kind === 'poly' && plan.lot.pts.length === a.pts.length;
+      return {
+        ...plan,
+        lot: { kind: 'poly', pts: a.pts },
+        // Redrawing the boundary with a different number of corners
+        // renumbers the sides, so a frontage index kept from before would
+        // silently point at a different side of the parcel.
+        frontSegment: same ? plan.frontSegment : null,
+      };
+    }
+    case 'SET_FRONT_SEGMENT':
+      return { ...plan, frontSegment: a.index };
     case 'ADD_ELEMENT': {
       if (!plan.lot) return plan;
-      const el = placeElement(a.kind, plan.lot, plan.elements, plan.frontEdge);
+      const el = placeElement(
+        a.kind,
+        plan.lot,
+        plan.elements,
+        plan.frontEdge,
+        plan.frontSegment
+      );
       return { ...plan, elements: [...plan.elements, el], selectedId: el.id };
     }
     case 'MOVE_ELEMENT':
@@ -92,7 +120,9 @@ function reducer(plan: Plan, a: Action): Plan {
     case 'SET_EDGE_DISTANCE': {
       // Translate so the element's NEAREST edge sits `feet` off that line —
       // the way a surveyor states a position, and it holds under rotation.
-      if (!plan.lot) return plan;
+      // Rectangles only: a polygon has no named line to measure off, and the
+      // inspector offers plain coordinates there instead.
+      if (plan.lot?.kind !== 'rect') return plan;
       const el = plan.elements.find((e) => e.id === a.id);
       if (!el) return plan;
       const cur = currentEdgeDistance(el, plan.lot, a.edge);
@@ -139,7 +169,7 @@ function reducer(plan: Plan, a: Action): Plan {
 /** Distance from one lot edge to the element's nearest corner. */
 function currentEdgeDistance(
   el: PlanElement,
-  lot: { w: number; d: number },
+  lot: RectLot,
   edge: EdgeName
 ): number {
   const hw = Math.abs(el.w / 2);
@@ -151,6 +181,18 @@ function currentEdgeDistance(
   if (edge === 'east') return lot.w - (el.x + projX);
   if (edge === 'north') return el.y - projY;
   return lot.d - (el.y + projY);
+}
+
+/**
+ * Remount key for the canvas. A new lot resets zoom and pan by REMOUNTING
+ * rather than by an effect that resets state, so there is never a render
+ * where a 40 ft lot is showing a 400 ft pan — which means the key has to
+ * change whenever the boundary does, corner for corner.
+ */
+function lotKey(lot: Plan['lot']): string {
+  if (!lot) return 'none';
+  if (lot.kind === 'rect') return `r${lot.w}x${lot.d}`;
+  return `p${lot.pts.map((p) => `${p.x},${p.y}`).join(';')}`;
 }
 
 /** Matches a media query, hydration-safe: false on the server, set in an effect. */
@@ -263,6 +305,24 @@ export default function SitePlanStudio() {
     }
   };
 
+  const startPolyPlan = (pts: Pt[]) => {
+    dispatch({ t: 'SET_POLY_LOT', pts });
+    setEditingLot(false);
+    if (!startFired.current) {
+      startFired.current = true;
+      const b = lotBox({ kind: 'poly', pts });
+      // Same event, same two params: the bounding box is what "how big is
+      // this lot" means for a polygon, and reporting it keeps one funnel
+      // rather than two that have to be added together in GA4.
+      trackEvent('siteplan_start', {
+        lot_w: Math.round(b.w),
+        lot_d: Math.round(b.d),
+        state: plan.stateCode || 'none',
+      });
+    }
+    trackEvent('siteplan_lot_shape', { shape: 'poly', corners: pts.length });
+  };
+
   const addElement = (kind: ElementKind) => {
     dispatch({ t: 'ADD_ELEMENT', kind });
     trackEvent('siteplan_element_add', { kind });
@@ -307,8 +367,11 @@ export default function SitePlanStudio() {
         <div className={s.emptyWrap}>
           <LotForm
             stateCode={plan.stateCode}
+            lot={plan.lot}
             onStateChange={setState}
             onSubmit={startPlan}
+            onSubmitPoly={startPolyPlan}
+            onCancel={plan.lot ? () => setEditingLot(false) : undefined}
           />
         </div>
       </div>
@@ -351,6 +414,10 @@ export default function SitePlanStudio() {
               onEditLot={() => setEditingLot(true)}
               onSetback={(key, value) => dispatch({ t: 'SET_SETBACK', key, value })}
               onFrontEdge={(edge) => dispatch({ t: 'SET_FRONT_EDGE', edge })}
+              onFrontSegment={(index) => dispatch({ t: 'SET_FRONT_SEGMENT', index })}
+              onLotNote={(value) =>
+                dispatch({ t: 'SET_TITLE_FIELD', key: 'irregular', value })
+              }
               onNorth={(deg) => dispatch({ t: 'SET_NORTH', deg })}
             />
           </div>
@@ -368,7 +435,7 @@ export default function SitePlanStudio() {
             compact
           />
           <PlanCanvas
-            key={`${plan.lot.w}x${plan.lot.d}`}
+            key={lotKey(plan.lot)}
             plan={plan}
             result={result}
             activeRowId={activeRowId}
@@ -381,6 +448,15 @@ export default function SitePlanStudio() {
             onDelete={() =>
               plan.selectedId &&
               dispatch({ t: 'DELETE_ELEMENT', id: plan.selectedId })
+            }
+            onSegmentClick={
+              plan.lot.kind === 'poly'
+                ? (index) =>
+                    dispatch({
+                      t: 'SET_FRONT_SEGMENT',
+                      index: plan.frontSegment === index ? null : index,
+                    })
+                : undefined
             }
             draggable={canDrag}
           />
@@ -395,6 +471,7 @@ export default function SitePlanStudio() {
             onSetEdgeDistance={(id, edge, feet) =>
               dispatch({ t: 'SET_EDGE_DISTANCE', id, edge, feet })
             }
+            onSetPosition={(id, x, y) => dispatch({ t: 'MOVE_ELEMENT', id, x, y })}
             onDelete={(id) => dispatch({ t: 'DELETE_ELEMENT', id })}
             onHoverElement={setHoverElementId}
             draggable={canDrag}
@@ -415,6 +492,10 @@ export default function SitePlanStudio() {
               onEditLot={() => setEditingLot(true)}
               onSetback={(key, value) => dispatch({ t: 'SET_SETBACK', key, value })}
               onFrontEdge={(edge) => dispatch({ t: 'SET_FRONT_EDGE', edge })}
+              onFrontSegment={(index) => dispatch({ t: 'SET_FRONT_SEGMENT', index })}
+              onLotNote={(value) =>
+                dispatch({ t: 'SET_TITLE_FIELD', key: 'irregular', value })
+              }
               onNorth={(deg) => dispatch({ t: 'SET_NORTH', deg })}
             />
           </div>

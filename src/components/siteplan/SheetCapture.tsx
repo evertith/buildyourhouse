@@ -20,11 +20,19 @@
 import { FormEvent, useState } from 'react';
 import s from '@/styles/SitePlanStudio.module.css';
 import { trackEvent } from '@/lib/analytics';
-import { formatFeet } from '@/lib/siteplan/geometry';
+import { formatFeet, lotArea, lotBox } from '@/lib/siteplan/geometry';
 import { measureAllPairs, sheetRows } from '@/lib/siteplan/check';
 import type { StateSiteplanRules } from '@/lib/siteplan/rules';
-import type { CheckResult, Plan } from '@/lib/siteplan/types';
+import type { CheckResult, Lot, Plan } from '@/lib/siteplan/types';
 import { EDGE_LABEL, KIND_LABEL } from '@/lib/siteplan/types';
+
+/** One line describing the parcel, for the email the worker prints verbatim. */
+function describeLot(lot: Lot | null): string {
+  if (!lot) return 'as drawn';
+  if (lot.kind === 'rect') return `${lot.w} × ${lot.d} ft`;
+  const box = lotBox(lot);
+  return `${lot.pts.length}-sided parcel, ${(lotArea(lot) / 43560).toFixed(2)} acres, spanning ${Math.round(box.w)} × ${Math.round(box.d)} ft`;
+}
 
 const WORKER_BASE =
   process.env.NEXT_PUBLIC_NEWSLETTER_WORKER_BASE ??
@@ -45,7 +53,9 @@ export function capturePayloadRows(plan: Plan, result: CheckResult) {
   for (const b of result.boundary) {
     rows.push({
       label: `${b.label} — outside the property line`,
-      value: `crosses the ${EDGE_LABEL[b.edge].toLowerCase()} by ${formatFeet(b.overFeet)}`,
+      value: b.edge
+        ? `crosses the ${EDGE_LABEL[b.edge].toLowerCase()} by ${formatFeet(b.overFeet)}`
+        : `reaches past the property line by ${formatFeet(b.overFeet)}`,
     });
   }
   for (const w of result.setbacks) {
@@ -126,7 +136,7 @@ export default function SheetCapture({ plan, result, rules }: Props) {
           // wrong value here would put a hedged number in an inbox with a
           // verified sentence around it.
           verified: rules?.verified ?? false,
-          lot: plan.lot ? `${plan.lot.w} × ${plan.lot.d} ft` : 'as drawn',
+          lot: describeLot(plan.lot),
           rows,
           notes,
         }),

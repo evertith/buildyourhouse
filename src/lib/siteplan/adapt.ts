@@ -72,7 +72,7 @@ const LABEL: Record<SeparationKey, string> = {
  * alone — so BOTH are measured and the worse of the two is reported. The
  * exception is a note that narrows the rule to sealed components or names
  * the tank on its own; Montana's own well-to-tank row does exactly that, so
- * the phrase has to be honoured rather than assumed away.
+ * the phrase has to be honored rather than assumed away.
  */
 function narrowsToTank(note?: string): boolean {
   if (!note) return false;
@@ -197,7 +197,7 @@ export function separationsFor(
  *
  * Most local-rule states repeat one finding across all seven keys (Michigan
  * has one, California one, Alaska four distinct ones), so they are deduped
- * by text and labelled with every separation they cover. That turns seven
+ * by text and labeled with every separation they cover. That turns seven
  * identical paragraphs into one paragraph that says what it governs.
  */
 export function groupedNegatives(

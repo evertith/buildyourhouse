@@ -16,6 +16,7 @@ import {
   distanceToLotEdges,
   elementDistance,
   formatFeet,
+  nearestBoundary,
 } from '@/lib/siteplan/geometry';
 import type { EdgeName, Plan, PlanElement } from '@/lib/siteplan/types';
 import { EDGE_LABEL, KIND_LABEL } from '@/lib/siteplan/types';
@@ -26,6 +27,8 @@ interface Props {
   onResize: (id: string, w: number, d: number) => void;
   onRotate: (id: string, rot: number) => void;
   onSetEdgeDistance: (id: string, edge: EdgeName, feet: number) => void;
+  /** Polygon mode: no named lines to measure off, so position is x and y. */
+  onSetPosition: (id: string, x: number, y: number) => void;
   onDelete: (id: string) => void;
   onHoverElement: (id: string | null) => void;
   /** True on desktop, where dragging is the primary way to place. */
@@ -78,11 +81,13 @@ export default function Inspector({
   onResize,
   onRotate,
   onSetEdgeDistance,
+  onSetPosition,
   onDelete,
   onHoverElement,
   draggable,
 }: Props) {
   const lot = plan.lot!;
+  const rect = lot.kind === 'rect' ? lot : null;
 
   if (!selected) {
     return (
@@ -99,7 +104,8 @@ export default function Inspector({
     );
   }
 
-  const edges = distanceToLotEdges(selected, lot);
+  const edges = rect ? distanceToLotEdges(selected, rect) : null;
+  const boundary = rect ? null : nearestBoundary(selected, lot);
   const others = plan.elements.filter((e) => e.id !== selected.id);
   const isPoint = selected.kind === 'well';
   const isLine = selected.kind === 'waterEdge';
@@ -165,34 +171,66 @@ export default function Inspector({
       )}
 
       <p className={s.railLabel}>Position</p>
-      <div className={s.sbGrid}>
-        <NumField
-          label="From west line"
-          value={edges.west}
-          onChange={(v) => onSetEdgeDistance(selected.id, 'west', v)}
-        />
-        <NumField
-          label="From north line"
-          value={edges.north}
-          onChange={(v) => onSetEdgeDistance(selected.id, 'north', v)}
-        />
-      </div>
+      {edges ? (
+        <div className={s.sbGrid}>
+          <NumField
+            label="From west line"
+            value={edges.west}
+            onChange={(v) => onSetEdgeDistance(selected.id, 'west', v)}
+          />
+          <NumField
+            label="From north line"
+            value={edges.north}
+            onChange={(v) => onSetEdgeDistance(selected.id, 'north', v)}
+          />
+        </div>
+      ) : (
+        /* A polygon has no west line to measure off, so position is stated as
+           the coordinates the drawing itself uses. This is also the only way
+           to move anything below 768px, so it cannot simply be dropped. */
+        <div className={s.sbGrid}>
+          <NumField
+            label="East (x)"
+            value={selected.x}
+            onChange={(v) => onSetPosition(selected.id, v, selected.y)}
+          />
+          <NumField
+            label="South (y)"
+            value={selected.y}
+            onChange={(v) => onSetPosition(selected.id, selected.x, v)}
+          />
+        </div>
+      )}
 
       <p className={s.railLabel}>Distances</p>
       <ul className={s.distList}>
-        {(['north', 'east', 'south', 'west'] as EdgeName[]).map((edge) => (
-          <li key={edge} className={s.distRow}>
-            <span className={s.distKey}>{EDGE_LABEL[edge]}</span>
-            <span className={s.distLeader} />
-            <span
-              className={`${s.distVal} ${edges[edge] < 0 ? s.distValBad : ''}`}
-            >
-              {edges[edge] < 0
-                ? `${formatFeet(Math.abs(edges[edge]))} over`
-                : formatFeet(edges[edge])}
-            </span>
-          </li>
-        ))}
+        {edges
+          ? (['north', 'east', 'south', 'west'] as EdgeName[]).map((edge) => (
+              <li key={edge} className={s.distRow}>
+                <span className={s.distKey}>{EDGE_LABEL[edge]}</span>
+                <span className={s.distLeader} />
+                <span
+                  className={`${s.distVal} ${edges[edge] < 0 ? s.distValBad : ''}`}
+                >
+                  {edges[edge] < 0
+                    ? `${formatFeet(Math.abs(edges[edge]))} over`
+                    : formatFeet(edges[edge])}
+                </span>
+              </li>
+            ))
+          : boundary && (
+              <li className={s.distRow} data-testid="boundary-distance">
+                <span className={s.distKey}>Boundary</span>
+                <span className={s.distLeader} />
+                <span
+                  className={`${s.distVal} ${boundary.feet < 0 ? s.distValBad : ''}`}
+                >
+                  {boundary.feet < 0
+                    ? `${formatFeet(Math.abs(boundary.feet))} over`
+                    : formatFeet(boundary.feet)}
+                </span>
+              </li>
+            )}
         {others.map((o) => (
           <li
             key={o.id}

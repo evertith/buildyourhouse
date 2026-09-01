@@ -23,7 +23,12 @@ import {
   treatmentFor,
   type AdaptedRule,
 } from './adapt';
-import { distanceToLotEdges, elementDistance, nearestEdge } from './geometry';
+import {
+  distanceToLotEdges,
+  elementDistance,
+  elementOutside,
+  nearestBoundary,
+} from './geometry';
 import type { StateSiteplanRules } from './rules';
 import type {
   BoundaryWarning,
@@ -63,12 +68,16 @@ function measureRule(rule: AdaptedRule, plan: Plan, hedged: boolean): MeasureRow
   const from = pickBy(plan.elements, rule.from);
 
   if (rule.to === 'propertyLine') {
-    if (!from.length || !plan.lot) {
+    const lot = plan.lot;
+    if (!from.length || !lot) {
       return { ...base, measuredFeet: null, status: 'unplaced' };
     }
-    let worst: { el: PlanElement; edge: EdgeName; feet: number } | null = null;
+    // On a rectangle the answer keeps its compass name — "22 ft off the west
+    // line" is what the plan says. A polygon side has no compass name, so the
+    // row reports the nearest boundary and the drawing points at it.
+    let worst: { el: PlanElement; edge: EdgeName | null; feet: number } | null = null;
     for (const el of from) {
-      const n = nearestEdge(el, plan.lot);
+      const n = nearestBoundary(el, lot);
       if (!worst || n.feet < worst.feet) worst = { el, edge: n.edge, feet: n.feet };
     }
     const w = worst!;
@@ -77,7 +86,7 @@ function measureRule(rule: AdaptedRule, plan: Plan, hedged: boolean): MeasureRow
       measuredFeet: w.feet,
       status: statusFor(w.feet, rule.feet, hedged),
       fromId: w.el.id,
-      edge: w.edge,
+      ...(w.edge ? { edge: w.edge } : { boundary: true }),
     };
   }
 
@@ -123,10 +132,26 @@ function boundaryExempt(el: PlanElement, edge: EdgeName, frontEdge: EdgeName): b
 }
 
 function boundaryWarnings(plan: Plan): BoundaryWarning[] {
-  if (!plan.lot) return [];
+  const lot = plan.lot;
+  if (!lot) return [];
   const out: BoundaryWarning[] = [];
+
   for (const el of plan.elements) {
-    const d = distanceToLotEdges(el, plan.lot);
+    if (lot.kind === 'poly') {
+      if (!elementOutside(el, lot)) continue;
+      const n = nearestBoundary(el, lot);
+      if (polyBoundaryExempt(el, n.segment, plan.frontSegment)) continue;
+      out.push({
+        id: `outside-${el.id}`,
+        elementId: el.id,
+        label: KIND_LABEL[el.kind],
+        overFeet: Math.abs(n.feet),
+        edge: null,
+      });
+      continue;
+    }
+
+    const d = distanceToLotEdges(el, lot);
     let worst: { edge: EdgeName; feet: number } | null = null;
     (Object.keys(d) as EdgeName[]).forEach((edge) => {
       if (d[edge] >= -0.01) return;
@@ -147,6 +172,26 @@ function boundaryWarnings(plan: Plan): BoundaryWarning[] {
   return out;
 }
 
+/**
+ * The polygon reading of the same exemptions.
+ *
+ * A driveway has to cross the property line — that is what meeting the road
+ * means — but only at the road. On a rectangle the tool knows which side that
+ * is because the owner picked one from a list. On a polygon it only knows if
+ * the owner marked a side, so an UNMARKED frontage silences driveway
+ * crossings entirely rather than crying wolf on every parcel whose owner has
+ * not found the control yet.
+ */
+function polyBoundaryExempt(
+  el: PlanElement,
+  segment: number,
+  frontSegment: number | null
+): boolean {
+  if (el.kind === 'waterEdge') return true;
+  if (el.kind !== 'driveway') return false;
+  return frontSegment === null || segment === frontSegment;
+}
+
 /** Which of the three entered setbacks governs a given edge. */
 function setbackForEdge(plan: Plan, edge: EdgeName): number | null {
   if (edge === plan.frontEdge) return plan.setbacks.front;
@@ -154,12 +199,21 @@ function setbackForEdge(plan: Plan, edge: EdgeName): number | null {
   return plan.setbacks.side;
 }
 
+/**
+ * Setbacks are RECTANGLE-ONLY, and that is a ruling rather than an omission
+ * (see the V1.5 addendum). Front, side and rear are named against four
+ * squared-off edges; a mitered inward offset of an eight-sided boundary is a
+ * different piece of geometry, and drawing a wrong one on a permit sheet
+ * would be worse than drawing none. The toolbox says so in one line and
+ * shows the nearest-boundary distances instead.
+ */
 function setbackWarnings(plan: Plan): SetbackWarning[] {
-  if (!plan.lot) return [];
+  const lot = plan.lot;
+  if (!lot || lot.kind !== 'rect') return [];
   const out: SetbackWarning[] = [];
   for (const el of plan.elements) {
     if (el.kind !== 'house' && el.kind !== 'structure') continue;
-    const d = distanceToLotEdges(el, plan.lot);
+    const d = distanceToLotEdges(el, lot);
     (Object.keys(d) as EdgeName[]).forEach((edge) => {
       const req = setbackForEdge(plan, edge);
       if (req === null || !Number.isFinite(req) || req <= 0) return;
@@ -267,7 +321,9 @@ export function measureAllPairs(
     if (rule.to === 'propertyLine') {
       if (!plan.lot) continue;
       let worst = Infinity;
-      for (const el of from) worst = Math.min(worst, nearestEdge(el, plan.lot).feet);
+      for (const el of from) {
+        worst = Math.min(worst, nearestBoundary(el, plan.lot).feet);
+      }
       if (Number.isFinite(worst)) out.push({ label: rule.label, feet: worst });
       continue;
     }
@@ -306,6 +362,7 @@ export function geometryRows(plan: Plan, existing: MeasureRow[]): MeasureRow[] {
       covered.add(`${r.toId}:${r.fromId}`);
     }
     if (r.fromId && r.edge) covered.add(`${r.fromId}:${r.edge}`);
+    if (r.fromId && r.boundary) covered.add(`${r.fromId}:boundary`);
   }
 
   const out: MeasureRow[] = [];
@@ -336,11 +393,12 @@ export function geometryRows(plan: Plan, existing: MeasureRow[]): MeasureRow[] {
     for (const d of of('drainfield')) pair('Drainfield → dwelling', d, h);
   }
 
-  if (plan.lot) {
+  const lot = plan.lot;
+  if (lot?.kind === 'rect') {
     for (const h of of('house')) {
       (['north', 'east', 'south', 'west'] as EdgeName[]).forEach((edge) => {
         if (covered.has(`${h.id}:${edge}`)) return;
-        const d = distanceToLotEdges(h, plan.lot!)[edge];
+        const d = distanceToLotEdges(h, lot)[edge];
         out.push({
           id: `geo-${h.id}-${edge}`,
           label: `Dwelling → ${EDGE_LABEL[edge].toLowerCase()}`,
@@ -353,6 +411,25 @@ export function geometryRows(plan: Plan, existing: MeasureRow[]): MeasureRow[] {
           fromId: h.id,
           edge,
         });
+      });
+    }
+  } else if (lot) {
+    // Four rows named for four compass edges collapse to one honest row: a
+    // polygon's sides have no compass names, and printing "dwelling → side 6"
+    // would tell a reviewer nothing they could check.
+    for (const h of of('house')) {
+      if (covered.has(`${h.id}:boundary`)) continue;
+      out.push({
+        id: `geo-${h.id}-boundary`,
+        label: 'Dwelling → nearest property line',
+        requiredFeet: null,
+        citation: null,
+        hedged: false,
+        geometric: true,
+        measuredFeet: nearestBoundary(h, lot).feet,
+        status: 'ok',
+        fromId: h.id,
+        boundary: true,
       });
     }
   }

@@ -75,12 +75,41 @@ export interface PlanElement {
   rot: number;
 }
 
-export interface Lot {
+/** A point in world feet. Lives here so `Lot` can hold one without geometry.ts
+    and types.ts importing each other; geometry.ts re-exports it. */
+export interface Pt {
+  x: number;
+  y: number;
+}
+
+/** The common case, and still the default path: a rectangle from two numbers. */
+export interface RectLot {
+  kind: 'rect';
   /** East-west, feet. */
   w: number;
   /** North-south, feet. */
   d: number;
 }
+
+/**
+ * A boundary as it actually runs (v1.5).
+ *
+ * `pts` are world feet, CLOCKWISE, and the first point is NOT repeated at the
+ * end — the ring closes implicitly. Clockwise is enforced on entry
+ * (`ensureClockwise`) so the outward normal used for side labels is the same
+ * for a boundary someone clicked and a boundary read off a deed, which may
+ * call its courses in either direction.
+ *
+ * There are no curves. A curved call is entered as one or more straight
+ * meander segments, which is also how a creek or a lake edge is carried on a
+ * plat — see the V1.5 addendum in the spec.
+ */
+export interface PolyLot {
+  kind: 'poly';
+  pts: Pt[];
+}
+
+export type Lot = RectLot | PolyLot;
 
 export type EdgeName = 'north' | 'east' | 'south' | 'west';
 
@@ -133,6 +162,14 @@ export interface Plan {
   selectedId: string | null;
   setbacks: Setbacks;
   frontEdge: EdgeName;
+  /**
+   * Which boundary side the street is on, in POLYGON mode: an index into
+   * `lot.pts` naming the segment that runs from `pts[i]` to `pts[i+1]`.
+   * `null` means unmarked, and an unmarked frontage is why a driveway
+   * crossing the boundary raises nothing in poly mode — the tool cannot tell
+   * a legitimate approach from a mistake without being told where the road is.
+   */
+  frontSegment: number | null;
   /** North arrow bearing, 0–359 degrees clockwise from up. */
   north: number;
   title: TitleFields;
@@ -145,6 +182,7 @@ export const EMPTY_PLAN: Plan = {
   selectedId: null,
   setbacks: { front: null, side: null, rear: null },
   frontEdge: 'north',
+  frontSegment: null,
   north: 0,
   title: EMPTY_TITLE,
 };
@@ -191,8 +229,13 @@ export interface MeasureRow {
   /** Element ids to draw the dimension line between. */
   fromId?: string;
   toId?: string;
-  /** Set when the rule measures against the property line rather than a pair. */
+  /** Named lot edge the rule measured to. Rectangular lots only. */
   edge?: EdgeName;
+  /**
+   * The rule measured to the nearest point on a polygon boundary, which has
+   * no edge name. `fromId` plus this flag is enough to redraw the dimension.
+   */
+  boundary?: boolean;
 }
 
 /** An element wholly or partly outside the lot. Outranks every separation. */
@@ -202,7 +245,8 @@ export interface BoundaryWarning {
   label: string;
   /** How far past the line, feet (always positive). */
   overFeet: number;
-  edge: EdgeName;
+  /** Null on a polygon lot: the boundary it crossed has no compass name. */
+  edge: EdgeName | null;
 }
 
 /** A building crossing a setback the OWNER entered. Never a state rule. */

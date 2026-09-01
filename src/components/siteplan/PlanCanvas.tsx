@@ -13,7 +13,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import s from '@/styles/SitePlanStudio.module.css';
-import { clamp, snapFoot } from '@/lib/siteplan/geometry';
+import { clamp, lotBox, snapFoot } from '@/lib/siteplan/geometry';
 import type { CheckResult, Plan } from '@/lib/siteplan/types';
 import PlanScene from './PlanScene';
 
@@ -28,6 +28,8 @@ interface Props {
   onRotate: (id: string, rot: number) => void;
   onNudge: (dx: number, dy: number) => void;
   onDelete: () => void;
+  /** Polygon mode: clicking a boundary side marks it as the road frontage. */
+  onSegmentClick?: (index: number) => void;
   /** False below 768px: numeric editing replaces dragging (§5). */
   draggable: boolean;
 }
@@ -59,11 +61,16 @@ export default function PlanCanvas({
   onRotate,
   onNudge,
   onDelete,
+  onSegmentClick,
   draggable,
 }: Props) {
   const svgRef = useRef<SVGSVGElement | null>(null);
   const wrapRef = useRef<HTMLDivElement | null>(null);
   const dragRef = useRef<Drag>(null);
+  // A pan that travelled ends in a click on whatever was under the pointer.
+  // Without this the frontage side under a dragged-across boundary would be
+  // marked every time somebody panned the drawing.
+  const pannedRef = useRef(false);
   const [zoom, setZoom] = useState(1);
   const [center, setCenter] = useState<{ x: number; y: number } | null>(null);
   const [box, setBox] = useState({ w: 800, h: 560 });
@@ -98,15 +105,20 @@ export default function PlanCanvas({
   if (!lot) return null;
 
   // Room OUTSIDE the property line for the lot dimension lines and their
-  // labels. Deliberately asymmetric: both dimension lines run along the north
-  // and west edges, so the default view is nudged south-east to give them the
-  // margin rather than splitting it evenly and clipping the labels.
-  const fitW = lot.w * 1.38;
-  const fitH = lot.d * 1.38;
+  // labels, measured off the BOUNDING BOX so a notched parcel is framed by
+  // what it actually spans. On a rectangle the framing is deliberately
+  // asymmetric: both dimension lines run along the north and west edges, so
+  // the default view is nudged south-east to give them the margin rather
+  // than splitting it evenly and clipping the labels. A polygon labels every
+  // side, so it is centerd and given the margin all round.
+  const span = lotBox(lot);
+  const fitW = span.w * 1.38;
+  const fitH = span.d * 1.38;
   const vw = fitW / zoom;
   const vh = fitH / zoom;
-  const cx = center?.x ?? lot.w * 0.54;
-  const cy = center?.y ?? lot.d * 0.54;
+  const bias = lot.kind === 'rect' ? 0.04 : 0;
+  const cx = center?.x ?? span.cx + span.w * bias;
+  const cy = center?.y ?? span.cy + span.d * bias;
   const viewBox = `${cx - vw / 2} ${cy - vh / 2} ${vw} ${vh}`;
   // preserveAspectRatio="meet" fits the viewBox inside the box, so the
   // effective scale is whichever axis is tighter.
@@ -118,7 +130,7 @@ export default function PlanCanvas({
   // The canvas takes the lot's own proportions so a deep parcel is not
   // letterboxed into a strip down the middle of a landscape box. Clamped
   // either side so an extreme lot cannot make a canvas nobody can use.
-  const aspect = Math.max(0.72, Math.min(1.9, lot.w / lot.d));
+  const aspect = Math.max(0.72, Math.min(1.9, span.w / span.d));
 
   const onElementPointerDown = (e: React.PointerEvent, id: string) => {
     if (!draggable) {
@@ -150,6 +162,7 @@ export default function PlanCanvas({
     // Converting each move through the live CTM feeds the viewBox's own
     // motion back into the delta and the pan oscillates toward the pointer
     // instead of tracking it.
+    pannedRef.current = false;
     dragRef.current = {
       kind: 'pan',
       startClientX: e.clientX,
@@ -183,6 +196,12 @@ export default function PlanCanvas({
     }
     // Pan: hold the world point that was grabbed under the pointer, using
     // the drag-start scale so the viewBox's motion never feeds back.
+    if (
+      Math.abs(e.clientX - drag.startClientX) > 4 ||
+      Math.abs(e.clientY - drag.startClientY) > 4
+    ) {
+      pannedRef.current = true;
+    }
     setCenter({
       x: drag.cx - (e.clientX - drag.startClientX) / drag.pxPerWorld,
       y: drag.cy - (e.clientY - drag.startClientY) / drag.pxPerWorld,
@@ -254,6 +273,14 @@ export default function PlanCanvas({
             onElementPointerDown={onElementPointerDown}
             onRotateDown={draggable ? onRotateDown : undefined}
             onRowHover={onRowHover}
+            onSegmentClick={
+              onSegmentClick
+                ? (i) => {
+                    if (pannedRef.current) return;
+                    onSegmentClick(i);
+                  }
+                : undefined
+            }
           />
         </svg>
       </div>
@@ -300,6 +327,7 @@ export default function PlanCanvas({
           {draggable
             ? 'Drag to move · Alt for free placement · arrows nudge 1 ft'
             : 'Tap an element, then edit its position below'}
+          {onSegmentClick ? ' · click a boundary side to mark the road' : ''}
         </span>
       </div>
     </div>

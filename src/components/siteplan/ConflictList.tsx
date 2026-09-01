@@ -120,7 +120,9 @@ export default function ConflictList({
                   <span className={s.ruleMark} aria-hidden="true">✗</span>
                 </div>
                 <p className={s.ruleNums}>
-                  Crosses the {EDGE_LABEL[b.edge].toLowerCase()} by{' '}
+                  {b.edge
+                    ? `Crosses the ${EDGE_LABEL[b.edge].toLowerCase()} by `
+                    : 'Reaches past the property line by '}
                   <span className={s.ruleMeasured}>{formatFeetShort(b.overFeet)}</span>.
                 </p>
               </li>

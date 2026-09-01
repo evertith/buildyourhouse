@@ -18,8 +18,8 @@
 
 import { useMemo, useRef } from 'react';
 import s from '@/styles/ExportSheet.module.css';
-import { barScale, formatScale, pickScale } from '@/lib/siteplan/scale';
-import { formatFeetShort } from '@/lib/siteplan/geometry';
+import { barScale, formatScale, pickScaleForLot } from '@/lib/siteplan/scale';
+import { formatFeetShort, lotBox } from '@/lib/siteplan/geometry';
 import { geometryRows, sheetRows } from '@/lib/siteplan/check';
 import type { StateSiteplanRules } from '@/lib/siteplan/rules';
 import type { CheckResult, Plan, TitleFields } from '@/lib/siteplan/types';
@@ -64,7 +64,7 @@ export default function ExportSheet({
   }, []);
 
   const feetPerInch = lot
-    ? pickScale(lot.w, lot.d, WIN_W - WIN_PAD, WIN_H - WIN_PAD)
+    ? pickScaleForLot(lot, WIN_W - WIN_PAD, WIN_H - WIN_PAD)
     : 20;
   const bar = barScale(feetPerInch);
   const rows = sheetRows(result);
@@ -76,10 +76,13 @@ export default function ExportSheet({
   if (!lot) return null;
 
   // One inch of paper is exactly `feetPerInch` feet, so the viewBox spans
-  // the window's width in inches times the scale.
+  // the window's width in inches times the scale. It is centerd on the lot's
+  // BOUNDING BOX, which is the lot itself for a rectangle and the only
+  // sensible frame for a boundary that runs where it likes.
+  const box = lotBox(lot);
   const vw = feetPerInch * WIN_W;
   const vh = feetPerInch * WIN_H;
-  const viewBox = `${lot.w / 2 - vw / 2} ${lot.d / 2 - vh / 2} ${vw} ${vh}`;
+  const viewBox = `${box.cx - vw / 2} ${box.cy - vh / 2} ${vw} ${vh}`;
   const u = vw / (WIN_W * PX_PER_IN);
 
   // The bar's viewBox has to carry the SAME aspect as the box it is drawn in,
@@ -151,7 +154,11 @@ export default function ExportSheet({
                 height={`${WIN_H}in`}
                 preserveAspectRatio="xMidYMid meet"
                 role="img"
-                aria-label={`Site plan, ${lot.w} by ${lot.d} feet, drawn at ${formatScale(feetPerInch)}`}
+                aria-label={
+                  lot.kind === 'rect'
+                    ? `Site plan, ${lot.w} by ${lot.d} feet, drawn at ${formatScale(feetPerInch)}`
+                    : `Site plan, ${lot.pts.length}-sided parcel spanning ${Math.round(box.w)} by ${Math.round(box.d)} feet, drawn at ${formatScale(feetPerInch)}`
+                }
               >
                 <PlanScene plan={plan} result={result} u={u} mode="sheet" />
               </svg>

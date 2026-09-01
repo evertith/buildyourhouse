@@ -13,21 +13,35 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 
 import {
+  boundaryClosest,
   bounds,
   closestPoints,
   corners,
   distanceToLotEdges,
   elementDistance,
+  elementOutside,
+  ensureClockwise,
   formatFeet,
   formatFeetShort,
+  innerPoint,
+  lotArea,
+  lotBox,
+  lotRing,
+  nearestBoundary,
   nearestEdge,
+  outwardNormal,
   pointInPoly,
   pointSegmentDistance,
+  pointToRing,
   polyDistance,
+  polygonArea,
   segmentsIntersect,
+  selfIntersects,
+  sideLengths,
+  signedArea2,
   snapFoot,
 } from './geometry.ts';
-import type { PlanElement } from './types.ts';
+import type { PlanElement, PolyLot, Pt, RectLot } from './types.ts';
 
 const near = (a: number, b: number, tol = 1e-6, msg?: string) =>
   assert.ok(Math.abs(a - b) < tol, msg ?? `${a} !== ${b} (tol ${tol})`);
@@ -228,7 +242,7 @@ test('segmentsIntersect: crossing, parallel, and collinear touching', () => {
 // ------------------------------------------------------- lot edge distance
 
 test('distanceToLotEdges: four distances from a centered house', () => {
-  const lot = { w: 150, d: 200 };
+  const lot: RectLot = { kind: 'rect', w: 150, d: 200 };
   const d = distanceToLotEdges(el({ x: 75, y: 100, w: 40, d: 28 }), lot);
   near(d.west, 55);
   near(d.east, 55);
@@ -237,7 +251,7 @@ test('distanceToLotEdges: four distances from a centered house', () => {
 });
 
 test('distanceToLotEdges: negative means over the property line', () => {
-  const lot = { w: 150, d: 200 };
+  const lot: RectLot = { kind: 'rect', w: 150, d: 200 };
   const d = distanceToLotEdges(el({ x: 10, y: 100, w: 40, d: 28 }), lot);
   near(d.west, -10, 1e-9, 'the west wall is 10 ft onto the neighbor');
   assert.ok(d.west < 0);
@@ -246,7 +260,7 @@ test('distanceToLotEdges: negative means over the property line', () => {
 });
 
 test('distanceToLotEdges: a rotated house reaches further than its half-width', () => {
-  const lot = { w: 200, d: 200 };
+  const lot: RectLot = { kind: 'rect', w: 200, d: 200 };
   const flat = distanceToLotEdges(el({ x: 100, y: 100, w: 40, d: 28 }), lot);
   const turned = distanceToLotEdges(el({ x: 100, y: 100, w: 40, d: 28, rot: 30 }), lot);
   near(flat.west, 80);
@@ -257,6 +271,7 @@ test('distanceToLotEdges: a rotated house reaches further than its half-width', 
 
 test('distanceToLotEdges: a well is a point on all four edges', () => {
   const d = distanceToLotEdges(el({ kind: 'well', x: 30, y: 40, w: 0, d: 0 }), {
+    kind: 'rect',
     w: 150,
     d: 200,
   });
@@ -267,7 +282,7 @@ test('distanceToLotEdges: a well is a point on all four edges', () => {
 });
 
 test('nearestEdge: picks the smallest, including a negative one', () => {
-  const lot = { w: 150, d: 200 };
+  const lot: RectLot = { kind: 'rect', w: 150, d: 200 };
   assert.equal(nearestEdge(el({ x: 20, y: 100, w: 10, d: 10 }), lot).edge, 'west');
   assert.equal(nearestEdge(el({ x: 75, y: 6, w: 10, d: 10 }), lot).edge, 'north');
   const over = nearestEdge(el({ x: 75, y: 198, w: 10, d: 10 }), lot);
@@ -308,4 +323,302 @@ test('snapFoot: whole feet unless free placement', () => {
   assert.equal(snapFoot(12.4, false), 12);
   assert.equal(snapFoot(12.6, false), 13);
   assert.equal(snapFoot(12.437, true), 12.44);
+});
+
+// ============================================================ POLYGON LOTS
+
+/**
+ * The working parcel for these tests: 200 x 200 with a 60 x 80 notch cut up
+ * into the middle of the south side. Eight would be the motivating lot; this
+ * one is six corners, one of them reflex, which is the shape that breaks
+ * naive distance code.
+ *
+ *   (0,0) ────────────────────── (200,0)
+ *     │                              │
+ *     │                              │
+ *   (0,200) ─ (60,200)   (120,200) ─ (200,200)
+ *              │            │
+ *            (60,120) ── (120,120)
+ */
+const NOTCHED: PolyLot = {
+  kind: 'poly',
+  pts: [
+    { x: 0, y: 0 },
+    { x: 200, y: 0 },
+    { x: 200, y: 200 },
+    { x: 120, y: 200 },
+    { x: 120, y: 120 },
+    { x: 60, y: 120 },
+    { x: 60, y: 200 },
+    { x: 0, y: 200 },
+  ],
+};
+
+const RECT: RectLot = { kind: 'rect', w: 150, d: 200 };
+
+test('lotRing: a rectangle is a four-corner ring, clockwise', () => {
+  const ring = lotRing(RECT);
+  assert.deepEqual(
+    ring.map((p) => [p.x, p.y]),
+    [
+      [0, 0],
+      [150, 0],
+      [150, 200],
+      [0, 200],
+    ]
+  );
+  assert.ok(signedArea2(ring) > 0, 'clockwise in a y-down world sums positive');
+});
+
+test('signedArea2: sign follows the winding, magnitude does not', () => {
+  const cw = lotRing(RECT);
+  const ccw = [...cw].reverse();
+  assert.ok(signedArea2(cw) > 0);
+  assert.ok(signedArea2(ccw) < 0);
+  near(polygonArea(cw), polygonArea(ccw), 1e-9);
+  near(polygonArea(cw), 30000, 1e-9);
+});
+
+test('ensureClockwise: leaves a clockwise ring alone, reverses the other', () => {
+  const cw = lotRing(RECT);
+  assert.equal(ensureClockwise(cw), cw, 'no copy when nothing to do');
+  const ccw = [...cw].reverse();
+  const fixed = ensureClockwise(ccw);
+  assert.ok(signedArea2(fixed) > 0);
+  near(polygonArea(fixed), polygonArea(ccw), 1e-9);
+});
+
+test('lotArea: the notch is subtracted', () => {
+  near(lotArea(NOTCHED), 200 * 200 - 60 * 80, 1e-9);
+  near(lotArea(RECT), 30000, 1e-9);
+});
+
+test('lotBox: bounds and center of a notched parcel', () => {
+  const b = lotBox(NOTCHED);
+  near(b.minX, 0);
+  near(b.maxX, 200);
+  near(b.w, 200);
+  near(b.d, 200);
+  near(b.cx, 100);
+  near(b.cy, 100);
+  // The bounding-box center of THIS parcel is on the land; on an L it is not,
+  // which is what innerPoint exists for.
+  assert.equal(pointInPoly({ x: b.cx, y: b.cy }, NOTCHED.pts), true);
+});
+
+test('sideLengths: every side, in ring order', () => {
+  assert.deepEqual(sideLengths(NOTCHED.pts), [200, 200, 80, 80, 60, 80, 60, 200]);
+  // Eight sides, and they are the labels the plat idiom prints.
+  assert.equal(sideLengths(NOTCHED.pts).length, NOTCHED.pts.length);
+});
+
+test('outwardNormal: points away from the land on every side', () => {
+  const ring = NOTCHED.pts;
+  for (let i = 0; i < ring.length; i++) {
+    const a = ring[i];
+    const b = ring[(i + 1) % ring.length];
+    const mid = { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 };
+    const n = outwardNormal(ring, i);
+    near(Math.hypot(n.x, n.y), 1, 1e-9, 'unit length');
+    const out = { x: mid.x + n.x * 2, y: mid.y + n.y * 2 };
+    const inn = { x: mid.x - n.x * 2, y: mid.y - n.y * 2 };
+    assert.equal(pointInPoly(out, ring), false, `side ${i} normal points inward`);
+    assert.equal(pointInPoly(inn, ring), true, `side ${i} inward step left the lot`);
+  }
+});
+
+test('outwardNormal: the north side of a rectangle points north', () => {
+  const n = outwardNormal(lotRing(RECT), 0);
+  near(n.x, 0, 1e-9);
+  near(n.y, -1, 1e-9, 'north is negative y');
+});
+
+// ------------------------------------------------------------ pointToRing
+
+test('pointToRing: nearest side and the foot of the perpendicular', () => {
+  const r = pointToRing({ x: 100, y: 40 }, NOTCHED.pts);
+  near(r.feet, 40, 1e-9, 'the north side is nearest');
+  near(r.at.x, 100);
+  near(r.at.y, 0);
+  assert.equal(r.index, 0);
+});
+
+test('pointToRing: a point in the notch measures to the notch, not the far side', () => {
+  // (90, 160) is in the notch — off the parcel — 40 ft below the notch head.
+  const p: Pt = { x: 90, y: 160 };
+  assert.equal(pointInPoly(p, NOTCHED.pts), false, 'the notch is not the lot');
+  const r = pointToRing(p, NOTCHED.pts);
+  // The notch is 60 wide, so its two sides are 30 ft off the middle — nearer
+  // than the notch head 40 ft up, and far nearer than the south side.
+  near(r.feet, 30, 1e-9);
+  assert.ok(r.at.x === 60 || r.at.x === 120, 'the foot lands on a notch side');
+  near(r.at.y, 160, 1e-9);
+});
+
+// -------------------------------------------------------- boundaryClosest
+
+test('boundaryClosest: containment does not zero the distance', () => {
+  // The whole point: polyDistance would say 0 for a house inside its own lot.
+  const house = corners(el({ x: 75, y: 100, w: 40, d: 28 }));
+  const ring = lotRing(RECT);
+  assert.equal(polyDistance(house, ring), 0, 'polyDistance sees containment');
+  const c = boundaryClosest(house, ring);
+  near(c.feet, 55, 1e-9, 'and the house is 55 ft off the west line');
+});
+
+test('boundaryClosest: a boundary corner facing the middle of a wall', () => {
+  // House 100 x 40 centerd at (90, 70): its south wall spans x 40..140 at
+  // y = 90, and the notch corners at y = 120 face the MIDDLE of that wall.
+  // Sweeping only the house's own corners against the ring gives 36.06 ft
+  // (corner to corner) and misses the true 30 ft — which is the error that
+  // would quietly print a passing setback on a failing plan.
+  const house = corners(el({ x: 90, y: 70, w: 100, d: 40 }));
+  const ring = NOTCHED.pts;
+  let cornersOnly = Infinity;
+  for (const p of house) {
+    cornersOnly = Math.min(cornersOnly, pointToRing(p, ring).feet);
+  }
+  near(cornersOnly, 36.0555, 1e-3, 'the one-directional sweep');
+  const c = boundaryClosest(house, ring);
+  near(c.feet, 30, 1e-9, 'the two-directional sweep finds the notch corner');
+});
+
+test('boundaryClosest: symmetric in its two sweeps', () => {
+  const shape = corners(el({ x: 100, y: 60, w: 30, d: 20, rot: 25 }));
+  const a = boundaryClosest(shape, NOTCHED.pts);
+  const b = boundaryClosest(NOTCHED.pts, shape);
+  near(a.feet, b.feet, 1e-9);
+});
+
+// ------------------------------------------------------- nearestBoundary
+
+test('nearestBoundary: on a rectangle it is the old named-edge answer', () => {
+  const house = el({ x: 20, y: 100, w: 10, d: 10 });
+  const n = nearestBoundary(house, RECT);
+  assert.equal(n.edge, 'west');
+  near(n.feet, nearestEdge(house, RECT).feet, 1e-9);
+  near(n.feet, 15, 1e-9);
+});
+
+test('nearestBoundary: a polygon has no edge name', () => {
+  const n = nearestBoundary(el({ x: 100, y: 40, w: 40, d: 28 }), NOTCHED);
+  assert.equal(n.edge, null);
+  near(n.feet, 26, 1e-9, '40 less half the 28 ft depth');
+  near(n.b.y, 0, 1e-9, 'the dimension lands on the north side');
+});
+
+test('nearestBoundary: a well is a point on the polygon too', () => {
+  // 25 ft off the west side, 35 off the notch side — no tie to argue about.
+  const n = nearestBoundary(el({ kind: 'well', x: 25, y: 150, w: 0, d: 0 }), NOTCHED);
+  near(n.feet, 25, 1e-9, 'the west side is nearest');
+  near(n.a.x, 25);
+  near(n.b.x, 0);
+});
+
+test('nearestBoundary: outside the polygon goes negative, by the overshoot', () => {
+  // A septic tank sitting in the notch — on the neighbor's land. The notch
+  // is 60 wide, so the deepest any point in it sits off the parcel is 30 ft.
+  const tank = el({ kind: 'septicTank', x: 90, y: 160, w: 8, d: 5 });
+  const n = nearestBoundary(tank, NOTCHED);
+  assert.ok(n.feet < 0, 'outside reads negative');
+  near(n.feet, -30, 1e-9);
+  assert.equal(elementOutside(tank, NOTCHED), true);
+});
+
+test('nearestBoundary: negative on a rectangle keeps the old sign and edge', () => {
+  const house = el({ x: 10, y: 100, w: 40, d: 28 });
+  const n = nearestBoundary(house, RECT);
+  assert.equal(n.edge, 'west');
+  near(n.feet, -10, 1e-9);
+});
+
+test('elementOutside: a house sliced by the notch is caught', () => {
+  // The notch is narrower than the house and starts above its north wall, so
+  // the boundary enters one wall and leaves the other: every corner of the
+  // house is on the parcel, every corner of the parcel is outside the house,
+  // and the middle of the house is on the neighbor's land. Neither vertex
+  // test sees it — only the edge-crossing test does.
+  const house = el({ x: 90, y: 150, w: 100, d: 40 });
+  for (const p of corners(house)) {
+    assert.equal(pointInPoly(p, NOTCHED.pts), true, 'every corner is on the land');
+  }
+  for (const v of NOTCHED.pts) {
+    assert.equal(pointInPoly(v, corners(house)), false, 'no lot corner is in the house');
+  }
+  assert.equal(elementOutside(house, NOTCHED), true);
+  const n = nearestBoundary(house, NOTCHED);
+  assert.ok(n.feet < 0, 'and it reports as over the line');
+  near(n.feet, -30, 1e-9, 'the middle of the notch is 30 ft off the parcel');
+});
+
+test('elementOutside: a wall drawn ON the line is touching, not crossing', () => {
+  // Exactly on the west line. A crossing test that counted a touch would
+  // flag every building someone deliberately draws to the boundary.
+  const shed = el({ kind: 'structure', x: 12, y: 60, w: 24, d: 24 });
+  assert.equal(elementOutside(shed, NOTCHED), false);
+  near(nearestBoundary(shed, NOTCHED).feet, 0, 1e-9);
+});
+
+test('elementOutside: a house well inside is not flagged', () => {
+  assert.equal(elementOutside(el({ x: 100, y: 50, w: 40, d: 28 }), NOTCHED), false);
+  assert.equal(elementOutside(el({ x: 75, y: 100, w: 40, d: 28 }), RECT), false);
+});
+
+// -------------------------------------------------------- selfIntersects
+
+test('selfIntersects: a bowtie crosses, a notched parcel does not', () => {
+  const bowtie: Pt[] = [
+    { x: 0, y: 0 },
+    { x: 100, y: 100 },
+    { x: 100, y: 0 },
+    { x: 0, y: 100 },
+  ];
+  assert.equal(selfIntersects(bowtie), true);
+  assert.equal(selfIntersects(NOTCHED.pts), false);
+  assert.equal(selfIntersects(lotRing(RECT)), false);
+});
+
+test('selfIntersects: a triangle cannot cross itself', () => {
+  assert.equal(
+    selfIntersects([
+      { x: 0, y: 0 },
+      { x: 100, y: 0 },
+      { x: 50, y: 80 },
+    ]),
+    false
+  );
+});
+
+// ------------------------------------------------------------ innerPoint
+
+test('innerPoint: lands on the land, not in the notch', () => {
+  const p = innerPoint(NOTCHED);
+  assert.equal(pointInPoly(p, NOTCHED.pts), true);
+});
+
+test('innerPoint: an L-shaped parcel whose box center is off the land', () => {
+  const L: PolyLot = {
+    kind: 'poly',
+    pts: [
+      { x: 0, y: 0 },
+      { x: 200, y: 0 },
+      { x: 200, y: 40 },
+      { x: 40, y: 40 },
+      { x: 40, y: 200 },
+      { x: 0, y: 200 },
+    ],
+  };
+  const box = lotBox(L);
+  assert.equal(
+    pointInPoly({ x: box.cx, y: box.cy }, L.pts),
+    false,
+    'the box center is in the missing quarter'
+  );
+  assert.equal(pointInPoly(innerPoint(L), L.pts), true);
+});
+
+test('innerPoint: a rectangle is its own center', () => {
+  const p = innerPoint(RECT);
+  near(p.x, 75);
+  near(p.y, 100);
 });

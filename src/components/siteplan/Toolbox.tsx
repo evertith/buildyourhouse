@@ -11,6 +11,7 @@
 
 import s from '@/styles/SitePlanStudio.module.css';
 import { acres, KIND_HINT } from '@/lib/siteplan/defaults';
+import { formatFeetShort, lotBox, sideLengths } from '@/lib/siteplan/geometry';
 import type { EdgeName, ElementKind, Plan, Setbacks } from '@/lib/siteplan/types';
 import { EDGE_LABEL, ELEMENT_KINDS, KIND_LABEL } from '@/lib/siteplan/types';
 
@@ -20,6 +21,8 @@ interface Props {
   onEditLot: () => void;
   onSetback: (key: keyof Setbacks, value: number | null) => void;
   onFrontEdge: (edge: EdgeName) => void;
+  onFrontSegment: (index: number | null) => void;
+  onLotNote: (value: string) => void;
   onNorth: (deg: number) => void;
 }
 
@@ -184,9 +187,15 @@ export default function Toolbox({
   onEditLot,
   onSetback,
   onFrontEdge,
+  onFrontSegment,
+  onLotNote,
   onNorth,
 }: Props) {
   const lot = plan.lot!;
+  const poly = lot.kind === 'poly' ? lot : null;
+  const rect = lot.kind === 'rect' ? lot : null;
+  const box = lotBox(lot);
+  const sides = poly ? sideLengths(poly.pts) : [];
   return (
     <div className={s.toolbox}>
       <section className={s.rail}>
@@ -213,53 +222,126 @@ export default function Toolbox({
       <section className={s.rail}>
         <p className={s.railLabel}>Lot</p>
         <p className={s.lotSummary}>
-          {lot.w} × {lot.d} ft
-          <span className={s.lotSummarySub}>{acres(lot).toFixed(2)} acres</span>
+          {poly ? (
+            <>
+              {poly.pts.length}-sided
+              <span className={s.lotSummarySub}>
+                {acres(lot).toFixed(2)} acres · {Math.round(box.w)} ×{' '}
+                {Math.round(box.d)} ft across
+              </span>
+            </>
+          ) : rect ? (
+            <>
+              {rect.w} × {rect.d} ft
+              <span className={s.lotSummarySub}>{acres(lot).toFixed(2)} acres</span>
+            </>
+          ) : null}
         </p>
         <button type="button" className={s.ghostBtn} onClick={onEditLot}>
           Edit lot
         </button>
-        <label className={s.sbField}>
-          <span className={s.sbLabel}>Road is on the</span>
-          <span className={s.selectBox}>
-            <select
-              className={s.selectInput}
-              value={plan.frontEdge}
-              onChange={(e) => onFrontEdge(e.target.value as EdgeName)}
-            >
-              {(['north', 'east', 'south', 'west'] as EdgeName[]).map((e) => (
-                <option key={e} value={e}>
-                  {EDGE_LABEL[e]}
-                </option>
-              ))}
-            </select>
-          </span>
-        </label>
+
+        {poly ? (
+          <div className={s.frontageBox}>
+            <span className={s.sbLabel}>Road frontage</span>
+            {plan.frontSegment !== null && sides[plan.frontSegment] !== undefined ? (
+              <p className={s.frontageOn}>
+                Side {plan.frontSegment + 1} ·{' '}
+                {formatFeetShort(sides[plan.frontSegment])}
+                <button
+                  type="button"
+                  className={s.linkBtn}
+                  onClick={() => onFrontSegment(null)}
+                >
+                  Clear
+                </button>
+              </p>
+            ) : (
+              <p className={s.railHint}>
+                Click the boundary side the road runs along, on the plan. The
+                driveway is allowed to cross that side and no other.
+              </p>
+            )}
+          </div>
+        ) : (
+          <label className={s.sbField}>
+            <span className={s.sbLabel}>Road is on the</span>
+            <span className={s.selectBox}>
+              <select
+                className={s.selectInput}
+                value={plan.frontEdge}
+                onChange={(e) => onFrontEdge(e.target.value as EdgeName)}
+              >
+                {(['north', 'east', 'south', 'west'] as EdgeName[]).map((e) => (
+                  <option key={e} value={e}>
+                    {EDGE_LABEL[e]}
+                  </option>
+                ))}
+              </select>
+            </span>
+          </label>
+        )}
       </section>
 
       <section className={s.rail}>
         <p className={s.railLabel}>Setbacks</p>
-        <div className={s.sbGrid}>
-          <SetbackField
-            label="Front"
-            value={plan.setbacks.front}
-            onChange={(v) => onSetback('front', v)}
-          />
-          <SetbackField
-            label="Side"
-            value={plan.setbacks.side}
-            onChange={(v) => onSetback('side', v)}
-          />
-          <SetbackField
-            label="Rear"
-            value={plan.setbacks.rear}
-            onChange={(v) => onSetback('rear', v)}
-          />
-        </div>
+        {poly ? (
+          /* One honest line rather than a control that would draw a wrong
+             line. Front, side and rear are named against four squared-off
+             edges; mitering them inward around an eight-sided boundary is a
+             different piece of geometry, and a confidently wrong setback on a
+             permit sheet is worse than none. */
+          <p className={s.railHint}>
+            Setback lines are drawn for rectangular lots only — your
+            nearest-boundary distances are measured below.
+          </p>
+        ) : (
+          <>
+            <div className={s.sbGrid}>
+              <SetbackField
+                label="Front"
+                value={plan.setbacks.front}
+                onChange={(v) => onSetback('front', v)}
+              />
+              <SetbackField
+                label="Side"
+                value={plan.setbacks.side}
+                onChange={(v) => onSetback('side', v)}
+              />
+              <SetbackField
+                label="Rear"
+                value={plan.setbacks.rear}
+                onChange={(v) => onSetback('rear', v)}
+              />
+            </div>
+            <p className={s.railHint}>
+              Yours, not the state&apos;s. Zoning setbacks are county and city
+              and vary parcel to parcel, so the tool asks rather than guessing.
+              Get them in writing from the planning counter.
+            </p>
+          </>
+        )}
+      </section>
+
+      <section className={s.rail}>
+        <p className={s.railLabel}>Lot note</p>
+        <textarea
+          className={s.noteInput}
+          rows={3}
+          maxLength={240}
+          value={plan.title.irregular}
+          placeholder={
+            poly
+              ? 'Optional. E.g. north boundary follows the creek; drawn as straight meander segments.'
+              : 'Optional. E.g. detail view of the building area — see recorded plat for the full 21-acre parcel.'
+          }
+          onChange={(e) => onLotNote(e.target.value)}
+          aria-label="Lot note, prints on the sheet"
+        />
         <p className={s.railHint}>
-          Yours, not the state&apos;s. Zoning setbacks are county and city and
-          vary parcel to parcel, so the tool asks rather than guessing. Get them
-          in writing from the planning counter.
+          Prints on the sheet under Notes. Use it for what the drawing cannot
+          show — a detail view of a large parcel, a boundary that follows a
+          creek, or an easement.
         </p>
       </section>
 

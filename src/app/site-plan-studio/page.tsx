@@ -321,16 +321,21 @@ export default function SitePlanStudioPage() {
               is how large-parcel site plans are routinely submitted.
             </p>
             <p>
-              <strong>An odd-shaped lot is a different problem</strong> — a
-              notched, angled, or metes-and-bounds boundary can&rsquo;t be
-              honestly approximated by a rectangle when the structures sit
-              close to the lines that bend. For those, use the lot-shape note
-              and your plat for the true boundary, and keep the drawing&rsquo;s
-              measured distances for the pairs that don&rsquo;t depend on the
-              odd edges — well to septic, well to dwelling. Where a distance
-              runs to an angled boundary, measure it on your plat and write it
-              on the printed sheet by hand; a pen note with a plat behind it
-              beats a wrong line drawn confidently.
+              <strong>An odd-shaped lot the tool draws properly.</strong> Tick{' '}
+              <em>this lot isn&rsquo;t rectangular</em> in the lot form and draw
+              the boundary as it actually runs — click the corners, or enter the
+              bearing and distance calls straight off your deed
+              (<span className={s.mono}>N 42&deg;15&apos; E</span>,{' '}
+              <span className={s.mono}>150.4</span>, one row per call). The tool
+              walks the calls, tells you how far the boundary missed closing,
+              and closes the gap for you. Every side prints its length the way a
+              plat does, and distances to the property line are measured to the
+              nearest boundary wherever it bends — so a notched or
+              metes-and-bounds parcel gets real numbers instead of a rectangle
+              standing in for it. Setback lines stay a rectangle-only feature:
+              mitering front, side and rear around an eight-sided boundary is a
+              different piece of geometry, and a confidently wrong setback on a
+              permit sheet is worse than none.
             </p>
           </div>
         </section>
