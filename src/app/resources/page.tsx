@@ -93,6 +93,13 @@ export default function ResourcesPage() {
             <p>Track expenses and stay on budget</p>
             <div className="resource-link">Track Budget →</div>
           </Link>
+
+          <Link href="/site-plan-studio" className="resource-card">
+            <div className="resource-icon"><Icon name="ruler" size={32} /></div>
+            <h3>Site Plan Studio</h3>
+            <p>Draw a to-scale plot plan for your permit application</p>
+            <div className="resource-link">Draw Site Plan →</div>
+          </Link>
         </div>
       </Section>
 

@@ -11,6 +11,10 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
+    // Lets the geometry unit test import './geometry.ts' verbatim, which is
+    // what `node --test --experimental-strip-types` needs to resolve it with
+    // no build step. Safe with noEmit; app code still imports extensionless.
+    "allowImportingTsExtensions": true,
     "jsx": "react-jsx",
     "incremental": true,
     "plugins": [

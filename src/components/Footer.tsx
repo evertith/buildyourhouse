@@ -42,6 +42,7 @@ export default function Footer() {
             <h3>Resources</h3>
             <ul className={styles.links}>
               <li><Link href="/calculators">Calculators</Link></li>
+              <li><Link href="/site-plan-studio">Site Plan Studio</Link></li>
               <li><Link href="/tools-and-equipment">Tools &amp; Equipment</Link></li>
               <li><Link href="/resources/checklists">Checklists</Link></li>
               <li><Link href="/resources/templates">Templates</Link></li>

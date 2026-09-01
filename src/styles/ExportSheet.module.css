@@ -1,0 +1,504 @@
+/* ============================================
+   EXPORT SHEET — SP-01, letter portrait
+   Sized in inches throughout, because it is a drawing sheet before it is a
+   web page: 8.5 x 11 less a 0.5in printer margin leaves 7.5 x 10, and every
+   band below is a real fraction of that. What is on screen is what prints.
+   ============================================ */
+
+@page {
+  size: letter portrait;
+  margin: 0.5in;
+}
+
+/* The sheet is 7.5in wide by definition, which is wider than a phone. The
+   frame scrolls it and the scaler shrinks it, so the sheet keeps its true
+   proportions and the BODY never scrolls sideways (§5). */
+.sheetFrame {
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+  margin: 0 auto;
+  width: fit-content;
+  max-height: none;
+}
+.sheetScaler {
+  width: 7.5in;
+  height: 10in;
+  transform-origin: top left;
+}
+
+.sheetRoot {
+  width: 7.5in;
+  height: 10in;
+  background: #fff;
+  color: var(--text-primary);
+  padding: 0.28in 0.3in 0.24in;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 34px rgba(16, 44, 66, 0.28);
+  font-family: var(--font-body);
+  position: relative;
+  /* One page, always. A state with a long notes block must be clipped by the
+     sheet rather than allowed to push a second sheet out of the printer. */
+  overflow: hidden;
+}
+
+.rule {
+  /* flex: none or the column crushes it to nothing when the sheet is full —
+     which is exactly how the orange rule silently disappeared from print. */
+  flex: none;
+  height: 4pt;
+  background: var(--accent-primary);
+  margin: -0.28in -0.3in 0.14in;
+}
+
+/* ---------- HEAD ---------- */
+.sheetHead {
+  flex: none;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.2in;
+  border-bottom: 1px solid var(--hairline-strong);
+  padding-bottom: 0.08in;
+  margin-bottom: 0.12in;
+}
+.sheetTitle {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1;
+  margin: 0 0 3px;
+  color: var(--text-heading);
+}
+.sheetSub {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin: 0;
+  max-width: none;
+}
+
+.northBox {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid var(--hairline);
+  padding: 3px 7px 3px 4px;
+  flex: none;
+}
+.northSvg { width: 0.32in; height: 0.32in; }
+.northKey {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+}
+
+/* ---------- MAIN: drawing + separations ---------- */
+.sheetMain {
+  display: flex;
+  gap: 0.14in;
+  align-items: flex-start;
+  flex: none;
+}
+.drawingCol { flex: none; }
+.window {
+  border: 1px solid var(--hairline-strong);
+  background: #fff;
+  width: 5.05in;
+  height: 5.85in;
+  overflow: hidden;
+}
+.drawing { display: block; }
+
+.barScale {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 0.06in;
+  height: 0.32in;
+  flex: none;
+}
+.barLabel {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+/* ---------- SEPARATIONS PANEL ---------- */
+.tableCol {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid var(--hairline-strong);
+  padding: 0.09in 0.1in;
+  height: 5.85in;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.tableHead {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-heading);
+  margin: 0 0 6px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--hairline-strong);
+  max-width: none;
+}
+.tableState {
+  display: block;
+  font-size: 8.5px;
+  letter-spacing: 0.12em;
+  color: var(--accent-primary);
+  margin-top: 3px;
+}
+.tableEmpty,
+.tableNegText {
+  font-size: 9px;
+  line-height: 1.45;
+  color: var(--text-secondary);
+  margin: 0 0 7px;
+  max-width: none;
+}
+.tableNegative { flex: 1; min-height: 0; overflow: hidden; }
+
+.tableRow {
+  border-bottom: 1px solid var(--hairline);
+  padding: 5px 0;
+}
+.tableRowBad { border-left: 2.5px solid var(--accent-critical); padding-left: 5px; }
+.tableRowWatch { border-left: 2.5px solid var(--accent-warning); padding-left: 5px; }
+.rowLabel {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-heading);
+  margin: 0 0 2px;
+  max-width: none;
+}
+.rowNums {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--text-secondary);
+  margin: 0;
+  max-width: none;
+}
+.rowAct { color: var(--text-heading); }
+.rowMark { margin-left: auto; font-size: 10px; }
+.tableRowBad .rowMark { color: var(--accent-critical); }
+.tableRowWatch .rowMark { color: var(--accent-warning); }
+.rowCite {
+  font-family: var(--font-mono);
+  font-size: 7.5px;
+  letter-spacing: 0.02em;
+  color: var(--accent-primary);
+  margin: 2px 0 0;
+  max-width: none;
+  word-break: break-word;
+}
+.tableFoot {
+  margin: auto 0 0;
+  padding-top: 6px;
+  border-top: 1px solid var(--hairline-strong);
+  font-family: var(--font-mono);
+  font-size: 7.5px;
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
+  max-width: none;
+}
+
+/* ---------- LEGEND ---------- */
+.legend {
+  flex: none;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 3px 0.14in;
+  border-top: 1px solid var(--hairline-strong);
+  border-bottom: 1px solid var(--hairline);
+  padding: 0.05in 0;
+  margin-top: 0.1in;
+}
+.legendKey {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent-primary);
+}
+.legendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+.legendSvg { width: 0.17in; height: 0.1in; flex: none; }
+
+/* ---------- NOTES ---------- */
+.notes {
+  display: flex;
+  gap: 0.1in;
+  padding: 0.06in 0;
+  border-bottom: 1px solid var(--hairline);
+  max-height: 0.8in;
+  overflow: hidden;
+  flex: none;
+}
+.notesKey {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent-primary);
+  flex: none;
+  width: 0.42in;
+  padding-top: 1px;
+}
+.notesBody { flex: 1; min-width: 0; }
+.note {
+  font-size: 8px;
+  line-height: 1.4;
+  color: var(--text-secondary);
+  margin: 0 0 3px;
+  max-width: none;
+}
+.note strong { color: var(--text-heading); font-weight: 600; }
+
+/* ---------- TITLE BLOCK ---------- */
+.titleGrid {
+  flex: none;
+  display: flex;
+  gap: 0.12in;
+  margin-top: auto;
+  padding-top: 0.09in;
+  align-items: stretch;
+}
+.titleFields {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid var(--hairline-strong);
+  padding: 0.07in 0.09in 0;
+}
+.writeIn {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  margin-bottom: 0.05in;
+}
+.writeInKey {
+  font-family: var(--font-mono);
+  font-size: 7.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  flex: none;
+  width: 0.62in;
+}
+/* Prints as the typed value, or as a ruled blank line for a pen. */
+.writeInField {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  border-bottom: 1px solid var(--hairline-strong);
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: 10px;
+  color: var(--text-heading);
+  padding: 1px 2px;
+}
+.writeInField:focus { outline: none; border-bottom-color: var(--accent-primary); }
+
+.titleCells {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--hairline-strong);
+  margin: 0.05in -0.09in 0;
+}
+.titleCell {
+  padding: 4px 0.09in 5px;
+  border-left: 1px solid var(--hairline);
+}
+.titleCell:first-child { border-left: none; }
+.titleCellKey {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 7px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 2px;
+}
+.titleCellVal {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-heading);
+}
+
+.disclaimer {
+  flex: 0 0 2.55in;
+  border: 1px solid var(--hairline-strong);
+  padding: 0.07in 0.09in;
+  display: flex;
+  flex-direction: column;
+}
+.disclaimerHead {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent-primary);
+  margin: 0 0 4px;
+  max-width: none;
+}
+.disclaimerBody {
+  font-size: 7.5px;
+  line-height: 1.42;
+  color: var(--text-secondary);
+  margin: 0;
+  max-width: none;
+}
+.disclaimerBody strong { color: var(--text-heading); font-weight: 700; }
+.disclaimerMark {
+  font-family: var(--font-mono);
+  font-size: 7px;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  margin: auto 0 0;
+  padding-top: 4px;
+  max-width: none;
+}
+
+/* ---------- TOOLS UNDER THE SHEET ---------- */
+.sheetTools {
+  max-width: 7.5in;
+  margin: var(--space-3) auto 0;
+}
+.printHint {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--cream);
+  margin: 0 0 12px;
+  max-width: none;
+}
+.printHint strong { color: var(--cream); }
+.sheetBtns { display: flex; gap: 10px; flex-wrap: wrap; }
+.printBtn,
+.svgBtn {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  border-radius: 0;
+  padding: 14px 20px;
+  min-height: 48px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.printBtn {
+  background: var(--accent-primary);
+  color: var(--cream);
+  border: 1px solid var(--accent-primary);
+}
+.printBtn:hover { background: var(--button-primary-hover); }
+.svgBtn {
+  background: transparent;
+  color: var(--cream);
+  border: 1px solid rgba(246, 241, 228, 0.4);
+}
+.svgBtn:hover { border-color: var(--cream); }
+
+/* ---------- PREVIEW SCALING ----------
+   A 7.5in sheet is 720 CSS px. Below these widths it is scaled down so the
+   whole sheet is visible without a sideways drag; the frame's height is
+   trimmed to match so no dead space is left under it. */
+@media (max-width: 1100px) {
+  .sheetScaler { transform: scale(0.78); }
+  .sheetFrame { height: 7.8in; }
+}
+@media (max-width: 820px) {
+  .sheetScaler { transform: scale(0.62); }
+  .sheetFrame { height: 6.2in; }
+}
+@media (max-width: 640px) {
+  .sheetScaler { transform: scale(0.44); }
+  .sheetFrame { height: 4.4in; }
+}
+@media (max-width: 420px) {
+  .sheetScaler { transform: scale(0.38); }
+  .sheetFrame { height: 3.8in; }
+}
+
+/* ---------- PRINT ----------
+   The sheet lives inside a modal deep in the React tree, so the spec's
+   `body > *:not(.sheetRoot)` cannot reach it. Hiding by VISIBILITY instead
+   of display keeps every ancestor laid out while blanking everything that
+   is not the sheet, and the absolute position pulls the sheet to the top
+   left of the printable page. */
+@media print {
+  :global(html),
+  :global(body) {
+    background: #fff !important;
+  }
+  /* Backstop for anything outside this page's own stylesheets (the promo
+     banner, injected chrome): blank it without disturbing the layout. */
+  :global(body *) {
+    visibility: hidden !important;
+  }
+  .sheetRoot,
+  .sheetRoot * {
+    visibility: visible !important;
+  }
+  /* Normal flow, not absolute: the sheet is the only thing left with any
+     height, so it lands at the top of page one and — critically — generates
+     no second page from content sitting invisibly beneath it. */
+  .sheetRoot {
+    position: static !important;
+    margin: 0;
+    box-shadow: none;
+    width: 7.5in;
+    height: 10in;
+    overflow: hidden;
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+  .sheetFrame {
+    overflow: visible !important;
+    height: auto !important;
+    width: auto !important;
+  }
+  .sheetScaler {
+    transform: none !important;
+    width: auto;
+    height: auto;
+  }
+  .writeInField {
+    /* A ruled line and the value, never a form control. */
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .sheetRoot * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}

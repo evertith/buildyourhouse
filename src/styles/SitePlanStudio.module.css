@@ -1,0 +1,880 @@
+/* ============================================
+   SITE PLAN STUDIO — the editor (SP-01)
+   Built from the Blueprint primitives in globals.css: hairline rules,
+   mono labels, drafting ticks, warm paper, navy anchors. The sheet the
+   editor produces has to sit beside the binder's pages without
+   embarrassment, so the editor is drawn in the same hand.
+   ============================================ */
+
+.studio {
+  border: 1px solid var(--hairline-strong);
+  background: var(--bg-primary);
+  box-shadow:
+    0 1px 2px rgba(35, 32, 25, 0.1),
+    0 14px 30px rgba(16, 44, 66, 0.13);
+}
+
+/* ---------- TOOLBAR ---------- */
+.toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px var(--space-2);
+  padding: 12px var(--space-3);
+  border-bottom: 1px solid var(--hairline);
+  background: var(--bg-primary);
+}
+.toolbarNo {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent-primary);
+  white-space: nowrap;
+}
+.toolbarFlag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-critical);
+  border: 1px solid var(--accent-critical);
+  padding: 4px 9px;
+  white-space: nowrap;
+}
+.toolbarSpacer { flex: 1 1 auto; min-width: 0; }
+
+/* ---------- BUTTONS ---------- */
+.primaryBtn,
+.primaryBtnSm,
+.ghostBtn,
+.deleteBtn,
+.zoomFit {
+  font-family: var(--font-mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  border-radius: 0;
+  cursor: pointer;
+  transition: background 0.16s ease, border-color 0.16s ease, color 0.16s ease;
+  white-space: nowrap;
+}
+.primaryBtn {
+  font-size: 13px;
+  background: var(--accent-primary);
+  color: var(--cream);
+  border: 1px solid var(--accent-primary);
+  padding: 14px 22px;
+  min-height: 48px;
+}
+.primaryBtn:hover { background: var(--button-primary-hover); }
+.primaryBtnSm {
+  font-size: 11.5px;
+  background: var(--accent-primary);
+  color: var(--cream);
+  border: 1px solid var(--accent-primary);
+  padding: 9px 14px;
+}
+.primaryBtnSm:hover { background: var(--button-primary-hover); }
+.primaryBtnSm:disabled {
+  opacity: 0.45;
+  cursor: default;
+  background: var(--accent-primary);
+}
+.ghostBtn,
+.zoomFit {
+  font-size: 11px;
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--hairline-strong);
+  padding: 9px 13px;
+}
+.ghostBtn:hover,
+.zoomFit:hover { border-color: var(--accent-primary); color: var(--accent-primary); }
+.deleteBtn {
+  font-size: 10.5px;
+  background: transparent;
+  color: var(--accent-critical);
+  border: 1px solid var(--hairline-strong);
+  padding: 5px 10px;
+}
+.deleteBtn:hover { border-color: var(--accent-critical); }
+.linkBtn {
+  font: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--link-color);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* ---------- NOTICES ---------- */
+.restored,
+.mobileNote {
+  margin: 0;
+  max-width: none;
+  padding: 10px var(--space-3);
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--hairline);
+  background: var(--bg-secondary);
+}
+
+/* ---------- LAYOUT ----------
+   minmax(0, 1fr) on the middle track is load-bearing: without it the SVG's
+   intrinsic width pushes the grid wider than the viewport. */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 1024px) {
+  .grid { grid-template-columns: 208px minmax(0, 1fr) 304px; }
+  .colLeft { border-right: 1px solid var(--hairline); }
+  .colRight { border-left: 1px solid var(--hairline); }
+}
+.colMain { min-width: 0; }
+.colLeft,
+.colRight { min-width: 0; }
+@media (max-width: 1023px) {
+  .colLeft { border-top: 1px solid var(--hairline); }
+  .colRight { border-top: 1px solid var(--hairline); }
+}
+
+/* ---------- EMPTY STATE / LOT FORM ---------- */
+.emptyWrap { padding: var(--space-6) var(--space-3) var(--space-8); }
+.lotForm { max-width: 620px; margin: 0 auto; }
+.lotFormLabel {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent-primary);
+  margin: 0 0 8px;
+  max-width: none;
+}
+.lotFormTitle {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(24px, 3vw, 32px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0 0 10px;
+}
+.lotFormLead {
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0 0 var(--space-4);
+  max-width: none;
+}
+.lotFields {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: end;
+  gap: 10px;
+}
+.lotTimes {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  color: var(--text-secondary);
+  padding-bottom: 14px;
+}
+.lotAcres {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  margin: 10px 0 0;
+  max-width: none;
+}
+.lotRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+/* ---------- FIELDS ---------- */
+.field { display: block; }
+.fieldLabel {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-heading);
+  margin-bottom: 7px;
+}
+.fieldBox {
+  display: flex;
+  align-items: stretch;
+  background: #fff;
+  border: 1px solid var(--hairline-strong);
+}
+.fieldBox:focus-within { border-color: var(--accent-primary); }
+.fieldInput {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  padding: 12px 4px 12px 14px;
+  font-family: var(--font-mono);
+  font-size: 17px;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-heading);
+  text-align: right;
+  min-height: 46px;
+}
+.fieldInput:focus { outline: none; }
+.fieldInput::-webkit-outer-spin-button,
+.fieldInput::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.fieldInput[type='number'] { -moz-appearance: textfield; appearance: textfield; }
+.fieldUnit {
+  display: flex;
+  align-items: center;
+  padding: 0 13px 0 8px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  border-left: 1px dotted var(--hairline-strong);
+  margin-left: 8px;
+}
+.fieldHint {
+  display: block;
+  margin-top: 6px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--text-secondary);
+}
+.fieldError {
+  display: block;
+  margin-top: 10px;
+  font-size: 13.5px;
+  color: var(--accent-critical);
+}
+
+.selectBox {
+  position: relative;
+  display: block;
+  background: #fff;
+  border: 1px solid var(--hairline-strong);
+}
+.selectBox:focus-within { border-color: var(--accent-primary); }
+.selectInput {
+  width: 100%;
+  border: none;
+  background: transparent;
+  padding: 11px 36px 11px 13px;
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  color: var(--text-heading);
+  min-height: 44px;
+  appearance: none;
+  cursor: pointer;
+}
+.selectInput:focus { outline: none; }
+.selectBox::after {
+  content: "";
+  position: absolute;
+  right: 13px;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  border-right: 1.5px solid var(--text-secondary);
+  border-bottom: 1.5px solid var(--text-secondary);
+  transform: translateY(-70%) rotate(45deg);
+  pointer-events: none;
+}
+
+/* ---------- STATE SELECT + VERIFICATION ---------- */
+.stateBlock {
+  padding: var(--space-3);
+  border-bottom: 1px solid var(--hairline);
+}
+.stateRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px var(--space-2);
+}
+.stateLabel {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-heading);
+}
+.stateRow .selectBox { flex: 1 1 190px; min-width: 0; max-width: 280px; }
+
+.chip {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border: 1px solid currentColor;
+  white-space: nowrap;
+}
+.chipVerified { color: var(--accent-secondary); }
+.chipHedged { color: var(--accent-warning); }
+.chipNone { color: var(--text-secondary); }
+
+.band {
+  margin-top: var(--space-2);
+  padding: 12px 14px;
+  border-left: 3px solid;
+  background: var(--bg-secondary);
+}
+.band p {
+  margin: 0;
+  max-width: none;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-primary);
+}
+.bandHedged { border-left-color: var(--accent-warning); }
+.bandLocal { border-left-color: var(--accent-secondary); }
+
+.ownerDrawn,
+.counterNote {
+  margin: var(--space-2) 0 0;
+  max-width: none;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+.ownerDrawnKey {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-heading);
+  margin-bottom: 3px;
+}
+.counterNote {
+  border-top: 1px dotted var(--hairline-strong);
+  padding-top: 10px;
+  font-style: italic;
+}
+
+/* ---------- CANVAS ---------- */
+.canvasWrap { padding: var(--space-3); }
+.canvasBox {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  min-height: 300px;
+  background:
+    linear-gradient(rgba(35, 32, 25, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(35, 32, 25, 0.045) 1px, transparent 1px),
+    var(--bg-secondary);
+  background-size: 24px 24px;
+  border: 1px solid var(--hairline);
+}
+/* The SVG never has an intrinsic width, so it cannot overflow: the viewBox
+   does all the scaling (§5). */
+.canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}
+.canvas:focus-visible { outline: 2px solid var(--accent-primary); outline-offset: -2px; }
+
+.zoomBar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+  margin-top: 10px;
+}
+.zoomBtn {
+  width: 32px;
+  height: 32px;
+  font-family: var(--font-mono);
+  font-size: 15px;
+  line-height: 1;
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--hairline-strong);
+  cursor: pointer;
+}
+.zoomBtn:hover { border-color: var(--accent-primary); color: var(--accent-primary); }
+.zoomRange { flex: 1 1 90px; min-width: 80px; max-width: 200px; accent-color: var(--accent-primary); }
+.zoomPct {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-secondary);
+  min-width: 44px;
+}
+.zoomHint {
+  font-size: 12px;
+  color: var(--text-secondary);
+  flex: 1 1 100%;
+}
+@media (min-width: 1280px) {
+  .zoomHint { flex: 0 1 auto; margin-left: auto; }
+}
+
+/* ---------- RAILS (toolbox + inspector) ---------- */
+.toolbox,
+.inspector,
+.rulesPanel { padding: 0; }
+.rail,
+.panelSection {
+  padding: var(--space-3);
+  border-bottom: 1px solid var(--hairline);
+}
+.railLabel {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin: 0 0 12px;
+  max-width: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.railLabel::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: var(--hairline);
+}
+.railLabelBad { color: var(--accent-critical); }
+.railLabelWarn { color: var(--accent-warning); }
+.railLabelInfo { color: var(--accent-info); }
+.railHint {
+  margin: 12px 0 0;
+  max-width: none;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.palette {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4px;
+}
+@media (max-width: 1023px) {
+  .palette { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+}
+.tool {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 9px 10px;
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.tool:hover { background: var(--bg-secondary); border-color: var(--hairline-strong); }
+.toolGlyph { width: 22px; height: 16px; flex: none; }
+.toolName {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-heading);
+}
+
+.lotSummary {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-heading);
+  margin: 0 0 10px;
+  max-width: none;
+}
+.lotSummarySub {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+/* ---------- SMALL NUMBER FIELDS ---------- */
+.sbGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(88px, 1fr));
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.sbField { display: block; margin-bottom: 10px; }
+.sbLabel {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 5px;
+}
+.sbBox {
+  display: flex;
+  align-items: stretch;
+  background: #fff;
+  border: 1px solid var(--hairline-strong);
+}
+.sbBox:focus-within { border-color: var(--accent-primary); }
+.sbInput {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  border: none;
+  background: transparent;
+  padding: 8px 2px 8px 10px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-heading);
+  text-align: right;
+  min-height: 40px;
+}
+.sbInput:focus { outline: none; }
+.sbInput::-webkit-outer-spin-button,
+.sbInput::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.sbInput[type='number'] { -moz-appearance: textfield; appearance: textfield; }
+.sbUnit {
+  display: flex;
+  align-items: center;
+  padding: 0 9px 0 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.northRow { display: flex; align-items: center; gap: var(--space-2); }
+.northDial { width: 68px; height: 68px; flex: none; }
+.northRow .sbField { flex: 1; min-width: 0; margin-bottom: 0; }
+
+/* ---------- INSPECTOR ---------- */
+.inspectorHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+.inspectorHead .railLabel { margin-bottom: 0; flex: 1; }
+.inspector {
+  padding: var(--space-3);
+  border-bottom: 1px solid var(--hairline);
+}
+.inspector > .railLabel { margin-top: var(--space-3); }
+.inspectorHead { margin-bottom: var(--space-3); }
+.inspectorEmpty {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  margin: 0;
+  max-width: none;
+}
+
+.rotRow { display: flex; gap: 4px; margin-bottom: var(--space-3); }
+.rotBtn {
+  flex: 1;
+  min-height: 34px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-secondary);
+  background: #fff;
+  border: 1px solid var(--hairline-strong);
+  cursor: pointer;
+}
+.rotBtn:hover { border-color: var(--accent-primary); color: var(--accent-primary); }
+.rotBtnOn,
+.rotBtnOn:hover { background: var(--navy); color: var(--cream); border-color: var(--navy); }
+
+.distList { list-style: none; margin: 0; padding: 0; }
+.distRow {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 6px 0;
+  margin: 0;
+}
+.distKey {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  min-width: 0;
+}
+.distLeader {
+  flex: 1;
+  min-width: 14px;
+  border-bottom: 1px dotted var(--hairline-strong);
+  transform: translateY(-3px);
+}
+.distVal {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-heading);
+  white-space: nowrap;
+}
+.distValBad { color: var(--accent-critical); }
+
+/* ---------- RULES PANEL ---------- */
+.panelEmpty,
+.panelNote {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  margin: 0 0 10px;
+  max-width: none;
+}
+.ruleList { list-style: none; margin: 0; padding: 0; }
+.ruleRow {
+  margin: 0 0 10px;
+  padding: 10px 11px;
+  border: 1px solid var(--hairline);
+  border-left: 3px solid var(--hairline-strong);
+  background: var(--bg-secondary);
+}
+.ruleRowBad { border-left-color: var(--accent-critical); background: var(--critical-bg); }
+.ruleRowWatch { border-left-color: var(--accent-warning); }
+.ruleRowSetback { border-left-color: var(--accent-info); }
+.ruleRowIdle { opacity: 0.62; }
+.ruleRowActive { border-color: var(--accent-primary); border-left-color: var(--accent-primary); }
+.ruleHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+.ruleLabel {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-heading);
+  min-width: 0;
+}
+.ruleMark { font-family: var(--font-mono); font-size: 13px; color: var(--text-secondary); }
+.ruleRowBad .ruleMark { color: var(--accent-critical); }
+.ruleRowWatch .ruleMark { color: var(--accent-warning); }
+.ruleNums {
+  margin: 6px 0 0;
+  max-width: none;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+.ruleMeasured {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--text-heading);
+  font-variant-numeric: tabular-nums;
+}
+.ruleVerb { color: var(--text-secondary); }
+.ruleReq { font-family: var(--font-mono); font-size: 13px; color: var(--text-heading); }
+/* The mark itself is downgraded, not just the banner (§2.5). */
+.ruleReqHedged {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-style: italic;
+  color: var(--accent-warning);
+}
+.ruleEdge { font-size: 12px; }
+.ruleIdleText { font-style: italic; }
+.ruleCite {
+  margin: 6px 0 0;
+  max-width: none;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  color: var(--accent-primary);
+  word-break: break-word;
+}
+.ruleNote {
+  margin: 6px 0 0;
+  max-width: none;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+.daggerNote {
+  margin: 0;
+  max-width: none;
+  font-size: 12.5px;
+  line-height: 1.5;
+  font-style: italic;
+  color: var(--accent-warning);
+}
+
+.noteList { list-style: none; margin: 0; padding: 0; }
+.noteRow { margin: 0 0 12px; }
+.noteRow:last-child { margin-bottom: 0; }
+.noteLabel {
+  margin: 0 0 3px;
+  max-width: none;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-heading);
+}
+.noteFeet { color: var(--accent-primary); }
+.noteText {
+  margin: 0;
+  max-width: none;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+.mustList {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+.mustList li { margin-bottom: 3px; }
+
+/* ---------- SHEET MODAL ---------- */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  background: rgba(16, 44, 66, 0.55);
+  backdrop-filter: blur(2px);
+}
+.modalBar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 12px var(--space-3);
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--hairline);
+  flex: none;
+}
+.modalBody {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-4) var(--space-3) var(--space-8);
+}
+
+/* ---------- CAPTURE ---------- */
+.capture {
+  max-width: 7.5in;
+  margin: var(--space-4) auto 0;
+  background: var(--bg-primary);
+  border: 1px solid var(--hairline-strong);
+  border-top: 1px dashed var(--hairline-strong);
+  padding: var(--space-4);
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: var(--space-2) var(--space-5);
+  align-items: center;
+}
+.captureHead {
+  font-family: var(--font-display);
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text-heading);
+  margin: 0 0 7px;
+  max-width: none;
+}
+.captureSub {
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  margin: 0;
+  max-width: none;
+}
+.captureForm { display: flex; gap: 10px; }
+.captureInput {
+  flex: 1;
+  min-width: 0;
+  background: #fff;
+  border: 1px solid var(--hairline-strong);
+  border-radius: 0;
+  padding: 0 14px;
+  min-height: 48px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--text-heading);
+}
+.captureInput:focus { outline: none; border-color: var(--accent-primary); }
+.captureBtn {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  background: var(--accent-primary);
+  color: var(--cream);
+  border: 1px solid var(--accent-primary);
+  border-radius: 0;
+  padding: 0 18px;
+  min-height: 48px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.captureBtn:hover { background: var(--button-primary-hover); }
+.captureBtn:disabled { opacity: 0.6; cursor: default; }
+.captureFine {
+  grid-column: 1 / -1;
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  margin: 0;
+  max-width: none;
+}
+.captureDone {
+  font-size: 15px;
+  color: var(--text-heading);
+  margin: 0;
+  max-width: none;
+}
+@media (max-width: 900px) {
+  .capture { grid-template-columns: 1fr; }
+  .captureForm { flex-direction: column; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .primaryBtn,
+  .primaryBtnSm,
+  .ghostBtn,
+  .tool { transition: none; }
+}
+
+/* The editor is a tool, not a document — the SHEET is what prints, and
+   ExportSheet.module.css does the hiding. All that is needed here is to
+   take the modal out of fixed positioning so the sheet can lay itself out
+   against the page rather than against a viewport-sized box. */
+@media print {
+  .modal {
+    position: static;
+    background: none;
+    backdrop-filter: none;
+  }
+  .modalBody { overflow: visible; padding: 0; }
+  .modalBar,
+  .capture,
+  .toolbar,
+  .zoomBar,
+  .grid,
+  .restored,
+  .mobileNote { display: none !important; }
+  .studio { border: none; box-shadow: none; }
+}

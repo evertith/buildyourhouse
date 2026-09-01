@@ -280,6 +280,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/site-plan-studio`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/planning/timeline`,
       lastModified: currentDate,
       changeFrequency: 'monthly' as const,

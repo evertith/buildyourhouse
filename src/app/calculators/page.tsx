@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/calculators' },
   title: 'Free Construction Calculators — Framing, Drywall, Concrete & More',
   description:
-    'Eleven free calculators for owner-builders: framing lumber, drywall, concrete, roofing, paint, flooring, insulation, plus cost, timeline, and budget worksheets. Formulas shown, no signup.',
+    'Eleven free calculators for owner-builders: framing lumber, drywall, concrete, roofing, paint, flooring, insulation, plus cost, timeline, and budget worksheets — and a site plan drawing tool. Formulas shown, no signup.',
 };
 
 /** Output summaries for the index rows ("studs · plates · sheathing"). */
@@ -39,7 +39,7 @@ export default function CalculatorsPage() {
         title="Owner-Builder Calculators"
         sub="Takeoff sheets for the materials that dominate your budget — quantities first, cost ranges second, every formula shown."
         cells={[
-          { k: 'Sheets', v: '11 tools' },
+          { k: 'Sheets', v: '12 tools' },
           { k: 'Signup', v: 'None' },
           { k: 'Formulas', v: 'Shown' },
           { k: 'Output', v: 'Print-ready' },
@@ -84,6 +84,28 @@ export default function CalculatorsPage() {
                 <span className={h.idxGo} aria-hidden="true">→</span>
               </Link>
             ))}
+          </div>
+        </CalcSection>
+
+        <CalcSection
+          label="Drawing sheets"
+          title="Draw it, don't just count it"
+          meta="SP-01"
+        >
+          <div>
+            <Link href="/site-plan-studio" className={h.idxRow}>
+              <span className={h.idxNo}>SP-01</span>
+              <span>
+                <span className={h.idxTitle}>Site Plan Studio</span>
+                <span className={h.idxDesc}>
+                  Draw your lot, house, well, septic and driveway to scale,
+                  check your state&rsquo;s separation distances, and print a
+                  letter-size plot plan for the permit application.
+                </span>
+              </span>
+              <span className={h.idxOut}>plot plan &middot; to scale</span>
+              <span className={h.idxGo} aria-hidden="true">&rarr;</span>
+            </Link>
           </div>
         </CalcSection>
 
