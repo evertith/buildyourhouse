@@ -38,7 +38,14 @@ const MAX_ZOOM = 4;
 type Drag =
   | { kind: 'element'; id: string; offX: number; offY: number }
   | { kind: 'rotate'; id: string; cx: number; cy: number }
-  | { kind: 'pan'; startX: number; startY: number; cx: number; cy: number }
+  | {
+      kind: 'pan';
+      startClientX: number;
+      startClientY: number;
+      cx: number;
+      cy: number;
+      pxPerWorld: number;
+    }
   | null;
 
 export default function PlanCanvas({
@@ -137,8 +144,20 @@ export default function PlanCanvas({
 
   const onBackgroundPointerDown = (e: React.PointerEvent) => {
     onSelect(null);
-    const w = toWorld(e.clientX, e.clientY);
-    dragRef.current = { kind: 'pan', startX: w.x, startY: w.y, cx, cy };
+    // Native text-selection during a fast drag paints ghost highlights.
+    e.preventDefault();
+    // Pan deltas are measured in SCREEN pixels against a scale frozen here.
+    // Converting each move through the live CTM feeds the viewBox's own
+    // motion back into the delta and the pan oscillates toward the pointer
+    // instead of tracking it.
+    dragRef.current = {
+      kind: 'pan',
+      startClientX: e.clientX,
+      startClientY: e.clientY,
+      cx,
+      cy,
+      pxPerWorld,
+    };
     svgRef.current?.setPointerCapture(e.pointerId);
   };
 
@@ -162,10 +181,11 @@ export default function PlanCanvas({
       onRotate(drag.id, e.altKey ? Math.round(norm) : Math.round(norm / 15) * 15);
       return;
     }
-    // Pan: hold the world point that was grabbed under the pointer.
+    // Pan: hold the world point that was grabbed under the pointer, using
+    // the drag-start scale so the viewBox's motion never feeds back.
     setCenter({
-      x: drag.cx - (w.x - drag.startX),
-      y: drag.cy - (w.y - drag.startY),
+      x: drag.cx - (e.clientX - drag.startClientX) / drag.pxPerWorld,
+      y: drag.cy - (e.clientY - drag.startClientY) / drag.pxPerWorld,
     });
   };
 
