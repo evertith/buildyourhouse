@@ -300,6 +300,44 @@ export default function SitePlanStudioPage() {
         <section className={s.block}>
           <div className={s.secHead}>
             <div>
+              <p className={s.secLabel}>Big or odd-shaped land</p>
+              <h2 className={s.secTitle}>Large or irregular parcel?</h2>
+            </div>
+            <p className={s.secMeta}>Detail view</p>
+          </div>
+          <div className={s.prose}>
+            <p>
+              <strong>A large parcel doesn&rsquo;t need all of itself on the
+              sheet.</strong> On acreage, reviewers read the building area, not
+              the back forty — at a scale that fits twenty acres on letter
+              paper, your house would be smaller than a pencil dot. The
+              standard move is a <strong>detail view</strong>: draw a rectangle
+              covering just the building site — big enough to hold the house,
+              well, septic and their separations — and treat each drawn edge as
+              the nearest real boundary line, using the distances from your
+              plat. Note the parcel&rsquo;s true size and shape in the
+              lot-shape note (it prints on the sheet), and staple your recorded
+              plat behind the plan. That pairing — detail drawing plus plat —
+              is how large-parcel site plans are routinely submitted.
+            </p>
+            <p>
+              <strong>An odd-shaped lot is a different problem</strong> — a
+              notched, angled, or metes-and-bounds boundary can&rsquo;t be
+              honestly approximated by a rectangle when the structures sit
+              close to the lines that bend. For those, use the lot-shape note
+              and your plat for the true boundary, and keep the drawing&rsquo;s
+              measured distances for the pairs that don&rsquo;t depend on the
+              odd edges — well to septic, well to dwelling. Where a distance
+              runs to an angled boundary, measure it on your plat and write it
+              on the printed sheet by hand; a pen note with a plat behind it
+              beats a wrong line drawn confidently.
+            </p>
+          </div>
+        </section>
+
+        <section className={s.block}>
+          <div className={s.secHead}>
+            <div>
               <p className={s.secLabel}>Know the limit</p>
               <h2 className={s.secTitle}>When you need a surveyor instead</h2>
             </div>
