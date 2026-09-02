@@ -29,27 +29,27 @@ export const LENDERS: LenderEntry[] = [
     name: 'Owner Builder Loans, LLC',
     kind: 'Owner-builder specialist',
     url: 'https://www.ownerbuilderloans.com/',
-    states: 'AZ · CA · CO · FL · GA · MI · SC · TX',
+    states: 'AZ · CA · CO · FL · GA · MI · NC · SC · TX',
     notes:
-      'Owner-builder construction loans are their entire business — no general contractor or project supervisor required. Advertises 12-month terms up to $700K, unlimited draws with no draw fees, and land equity counting toward the down payment.',
+      'Owner-builder construction loans are their entire business — no general contractor or project supervisor required. Advertises 12-month terms up to $700K, unlimited draws with no draw fees, and land equity counting toward the down payment. Says construction loans are not available in every state it is licensed in, so confirm your state before you plan around it.',
   },
   {
     id: 'normandy',
     name: 'Normandy Corporation',
     kind: 'Owner-builder specialist',
     url: 'https://normandy.com/self-build-owner-build-loans/',
-    states: 'NC · CA · MI · NJ · NY · WA and others',
+    states: 'CA · CT · DE · FL · IA · MA · MI · NC · NJ · NY · OR · RI · VA · WA',
     notes:
-      'Licensed mortgage banker with a dedicated self-build / owner-build program for borrowers acting as their own GC. Advertises up to 90% loan-to-cost on conforming amounts, with jumbo programs above that.',
+      'Licensed mortgage banker with a dedicated self-build / owner-build program for borrowers acting as their own GC — no site supervisor and no general contractor on the payroll. Advertises up to 90% loan-to-cost on conforming amounts, with jumbo programs up to 80%. The state list above is their owner-occupied footprint; they lend in more states for non-owner-occupied projects.',
   },
   {
-    id: 'agsouth',
-    name: 'AgSouth Farm Credit',
+    id: 'farm-credit-virginias',
+    name: 'Farm Credit of the Virginias',
     kind: 'Regional lender',
-    url: 'https://agsouthfc.com/',
-    states: 'GA · SC · parts of NC',
+    url: 'https://www.farmcreditofvirginias.com/loans/construction-loans/',
+    states: 'VA · WV',
     notes:
-      'Farm Credit cooperative doing construction-to-permanent lending on rural and country property — a strong fit for owner-builders outside city limits, where many national lenders won’t go.',
+      'One of the few Farm Credit associations that puts owner-builders in writing — its construction page advertises allowances for owner and self-builds, with customer-managed builds carrying extra documentation and credit requirements. Interest-only during construction with scheduled draws and inspections, across a 96-county rural service area.',
   },
   {
     id: 'cfsbank',
@@ -76,4 +76,4 @@ export interface FeaturedLender {
 
 export const FEATURED_LENDER: FeaturedLender | null = null;
 
-export const LENDERS_VERIFIED = 'August 2026';
+export const LENDERS_VERIFIED = 'September 2026';
