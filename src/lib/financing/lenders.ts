@@ -52,6 +52,42 @@ export const LENDERS: LenderEntry[] = [
       'One of the few Farm Credit associations that puts owner-builders in writing — its construction page advertises allowances for owner and self-builds, with customer-managed builds carrying extra documentation and credit requirements. Interest-only during construction with scheduled draws and inspections, across a 96-county rural service area.',
   },
   {
+    id: 'timberland-bank',
+    name: 'Timberland Bank',
+    kind: 'Regional lender',
+    url: 'https://www.timberlandbank.com/lending/personal/construction-loan',
+    states: 'WA',
+    notes:
+      'Washington community bank that advertises a named Owner-Builder program — "whether you hire a contractor or choose to build your own home" — with the owner-builder actively managing the project alongside a local lender. Advertises two-step construction financing at a maximum 80% loan-to-value, a 12-month construction term, interest-only payments during construction, and loan servicing kept in house.',
+  },
+  {
+    id: 'olympia-federal',
+    name: 'Olympia Federal Savings',
+    kind: 'Regional lender',
+    url: 'https://www.olyfed.com/home/construction/',
+    states: 'WA (South Sound)',
+    notes:
+      'South Sound mutual savings bank that advertises taking either kind of project — "whether you’re going to do it yourself or work with a builder". Advertises all-in-one construction-to-permanent financing closed up front so there is no refinance at completion, no risk-based pricing, and human underwriting rather than automated. Read the fine print on leverage: the advertised 95% loan-to-cost applies to owner-occupied homes built with a licensed contractor.',
+  },
+  {
+    id: 'greenstone',
+    name: 'GreenStone Farm Credit Services',
+    kind: 'Regional lender',
+    url: 'https://www.greenstonefcs.com/loans/home-land-loans/home-construction-loans/',
+    states: 'MI · northeast WI',
+    notes:
+      'Farm Credit cooperative that says it plainly: "You can use a licensed builder, do it yourself, or opt for a combination of both." Advertises a one-time close with interest-only payments during the build rolling straight into the end mortgage, direct-deposit draws, and as little as 5% down with PMI. Builder’s risk insurance is required and the budget has to be adequate.',
+  },
+  {
+    id: 'kalamazoo-county-state-bank',
+    name: 'Kalamazoo County State Bank',
+    kind: 'Regional lender',
+    url: 'https://kcsbank.com/construction-loan/',
+    states: 'MI (southwest)',
+    notes:
+      'Southwest Michigan community bank that lists "Self-Contracting Builds" as a construction loan use case and describes itself as one of the few banks financing owner-builders. Advertises letting you work with a builder, do some of the work yourself, or self-contract the entire project — including sweat equity on trades like drywall, electrical, plumbing, flooring and trim.',
+  },
+  {
     id: 'cfsbank',
     name: 'cfsbank',
     kind: 'Regional lender',
