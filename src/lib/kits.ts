@@ -49,7 +49,11 @@ export const STATE_KITS: StateKit[] = [
     hook: 'The exemption paragraph almost everyone cites is the remodel one, a state plumbing inspector arrives where no building department exists, and the code that actually binds your house comes through the mortgage — with the building official employed by the lender.',
   }),
   K('Arizona', 'az', 'arizona', { phase: 11 }),
-  K('Arkansas', 'ar', 'arkansas', { phase: 3 }),
+  K('Arkansas', 'ar', 'arkansas', {
+    status: 'shipped',
+    checkoutUrl: 'https://buy.stripe.com/00w5kD0BN9kPdE09ELfAc0i',
+    hook: 'One code for the whole state, a building permit most counties never created, three trade exemptions that are three different tests, and a ten-acre septic exemption that is missing from the rule book.',
+  }),
   K('California', 'ca', 'california', {
     status: 'shipped',
     checkoutUrl: 'https://buy.stripe.com/dRmbJ1ckvgNhfM85ovfAc09',
@@ -62,7 +66,11 @@ export const STATE_KITS: StateKit[] = [
   }),
   K('Connecticut', 'ct', 'connecticut', { phase: 10 }),
   K('Delaware', 'de', 'delaware', { phase: 12 }),
-  K('Florida', 'fl', 'florida', { phase: 3 }),
+  K('Florida', 'fl', 'florida', {
+    status: 'shipped',
+    checkoutUrl: 'https://buy.stripe.com/5kQ4gzckv8gL8jG04bfAc0f',
+    hook: 'Two owner-builder exemptions with two different sale tests, the courthouse filing that gates your first inspection, the approval number every window needs, and the septic permit that must exist before your building permit does.',
+  }),
   K('Georgia', 'ga', 'georgia', {
     status: 'shipped',
     checkoutUrl: 'https://buy.stripe.com/7sYeVd5W7gNhdE0eZ5fAc04',
@@ -79,7 +87,11 @@ export const STATE_KITS: StateKit[] = [
     checkoutUrl: 'https://buy.stripe.com/9B67sLacn40v7fC5ovfAc0e',
     hook: 'The building permit your county may not require, the three state permits that apply anyway, and the two utilities that cannot connect you until someone signs.',
   }),
-  K('Louisiana', 'la', 'louisiana', { phase: 3 }),
+  K('Louisiana', 'la', 'louisiana', {
+    status: 'shipped',
+    checkoutUrl: 'https://buy.stripe.com/eVqbJ10BN68D8jG4krfAc0g',
+    hook: 'The exemption statute everyone cites was repealed in 2022, the whole code chapter moved to a different Title on 1 August 2026, the filing date locks your code edition, and you may dig your own drainfield but not drill your own well.',
+  }),
   K('Maine', 'me', 'maine', { phase: 8 }),
   K('Maryland', 'md', 'maryland', { phase: 9 }),
   K('Massachusetts', 'ma', 'massachusetts', { phase: 9 }),
@@ -138,7 +150,11 @@ export const STATE_KITS: StateKit[] = [
     hook: 'The electrical permit that comes from the State instead of your county, the 950-gallon well cap that replaced the 5,000-gallon one, and the three energy tests with no visual alternative.',
   }),
   K('West Virginia', 'wv', 'west-virginia', { phase: 5 }),
-  K('Wisconsin', 'wi', 'wisconsin', { phase: 3 }),
+  K('Wisconsin', 'wi', 'wisconsin', {
+    status: 'shipped',
+    checkoutUrl: 'https://buy.stripe.com/eVqfZh3NZ68D8jG18ffAc0h',
+    hook: 'The 2023 electrical code that took effect on 1 September 2026, two Uniform Dwelling Code zone maps numbered backwards from each other, the septic permit that must come before the building permit, and the well you may drill yourself but the septic you may not install.',
+  }),
   K('Wyoming', 'wy', 'wyoming', { phase: 6 }),
 ];
 

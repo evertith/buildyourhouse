@@ -339,6 +339,93 @@ const PRODUCTS = {
       'Department’s own county inspector sheets, and the forms index — ' +
       'print-ready PDFs with the statute citations on the page.',
   },
+  'fl-permit-kit': {
+    sku: 'fl-permit-kit',
+    kind: 'download',
+    name: 'Florida Owner-Builder Permit Kit',
+    amount: 3400,
+    r2Key: 'fl-permit-kit.zip',
+    description:
+      'Florida owner-builder permitting, start to finish: both owner-builder ' +
+      'exemptions and their two different sale tests, the twelve-paragraph ' +
+      'disclosure statement, Florida Product Approval and the FL number every ' +
+      'exterior opening needs, the Notice of Commencement that gates your ' +
+      'first inspection, the statutory plan-review clock, and the ' +
+      'county-by-county split in septic permitting. 45 print-ready pages ' +
+      'with the statute citations on the page. Instant download.',
+    emailSubject: 'Your Florida Permit Kit — download inside',
+    emailBlurb:
+      'The ZIP contains the Florida owner-builder exemption walkthrough ' +
+      '(both exemptions, side by side), the permit application checklist ' +
+      'with every code edition in force, the inspection sequence built ' +
+      'around the Notice of Commencement, the where-to-file directory, and ' +
+      'the forms index — print-ready PDFs with the statute citations on ' +
+      'the page.',
+  },
+  'la-permit-kit': {
+    sku: 'la-permit-kit',
+    kind: 'download',
+    name: 'Louisiana Owner-Builder Permit Kit',
+    amount: 3400,
+    r2Key: 'la-permit-kit.zip',
+    description:
+      'Louisiana owner-builder permitting, start to finish: the current ' +
+      'exemption at R.S. 37:2157(A)(13) after the 2022 repeal every guide ' +
+      'missed, the notarized affidavit your permit clerk must collect, the ' +
+      'code-edition date lock ahead of the 2027 cycle, the ASCE 24 freeboard ' +
+      'floor, and the parish-by-parish enforcement directory. 47 print-ready ' +
+      'pages with the statute citations on the page. Instant download.',
+    emailSubject: 'Your Louisiana Permit Kit — download inside',
+    emailBlurb:
+      'The ZIP contains the Louisiana owner-builder exemption walkthrough ' +
+      '(the current statute, not the repealed one), the permit application ' +
+      'checklist with the code-edition date lock, the inspection sequence, ' +
+      'the parish where-to-file directory, and the forms index — print-ready ' +
+      'PDFs with the statute citations on the page.',
+  },
+  'wi-permit-kit': {
+    sku: 'wi-permit-kit',
+    kind: 'download',
+    name: 'Wisconsin Owner-Builder Permit Kit',
+    amount: 3400,
+    r2Key: 'wi-permit-kit.zip',
+    description:
+      'Wisconsin owner-builder permitting, start to finish: the four trade ' +
+      'exemptions that are four different tests, the Uniform Dwelling Code ' +
+      'and the 2023 electrical code that took effect September 2026, the two ' +
+      'zone maps numbered opposite ways, the sanitary permit that precedes ' +
+      'the building permit, and the NR 812 well separation table. 52 ' +
+      'print-ready pages with the statute citations on the page. Instant ' +
+      'download.',
+    emailSubject: 'Your Wisconsin Permit Kit — download inside',
+    emailBlurb:
+      'The ZIP contains the Wisconsin owner-builder exemption walkthrough ' +
+      '(all four trades, side by side), the permit application checklist ' +
+      'with every code edition in force, the inspection sequence, the ' +
+      'where-to-file directory with the delegation map, and the forms ' +
+      'index — print-ready PDFs with the statute citations on the page.',
+  },
+  'ar-permit-kit': {
+    sku: 'ar-permit-kit',
+    kind: 'download',
+    name: 'Arkansas Owner-Builder Permit Kit',
+    amount: 3400,
+    r2Key: 'ar-permit-kit.zip',
+    description:
+      'Arkansas owner-builder permitting, start to finish: the one-per-year ' +
+      'owner exemption, the three trade exemptions that are three different ' +
+      'tests, the building permit most counties never created, the septic ' +
+      'permit that is the rural builder’s one real gate, and the ' +
+      'ten-acre exemption the rule book leaves out. 40 print-ready pages ' +
+      'with the statute citations on the page. Instant download.',
+    emailSubject: 'Your Arkansas Permit Kit — download inside',
+    emailBlurb:
+      'The ZIP contains the Arkansas owner-builder exemption walkthrough, ' +
+      'the permit application checklist with the septic separation table, ' +
+      'the inspection sequence, the county where-to-file directory with the ' +
+      'ten-minute verification method, and the forms index — print-ready ' +
+      'PDFs with the statute citations on the page.',
+  },
   'sub-hiring-pack': {
     sku: 'sub-hiring-pack',
     kind: 'download',

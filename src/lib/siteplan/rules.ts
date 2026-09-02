@@ -552,6 +552,95 @@ const VERIFIED_STATES: StateSiteplanRules[] = [
     ],
   },
   {
+    code: 'ar',
+    state: 'Arkansas',
+    guideSlug: 'arkansas',
+    verified: true,
+    verifiedDate: 'September 2026',
+    separations: {
+      wellToSeptic: {
+        feet: 100,
+        citation: '§ 6.2.3, ADH Rules Pertaining to Onsite Wastewater Systems (eff. Sept. 5, 2024)',
+        note:
+          'Tank and absorption field carry the same numbers — the rule ' +
+          'measures to "facilities used for the collection, treatment, and ' +
+          'renovation of wastewater." The well-side rule (17 CAR ' +
+          '§ 11-502(c)) also sets 100 ft in clay and loam soils and directs ' +
+          'doubling in highly pervious gravel formations — in karst country ' +
+          'treat 200 ft as the working number.',
+      },
+      wellToDrainfield: {
+        feet: 100,
+        citation: '§ 6.2.3, ADH Rules Pertaining to Onsite Wastewater Systems',
+        note: 'Same provision as the tank; Arkansas does not distinguish components.',
+      },
+      wellToPropertyLine: unknown(
+        'No general number exists — ADH sets 50 ft to the lot line only for ' +
+          'subdivision lot-sizing (§ 5.2); outside that context none was found.'
+      ),
+      septicToPropertyLine: {
+        feet: 10,
+        citation: '§ 6.2.7, ADH Rules Pertaining to Onsite Wastewater Systems',
+        note: 'From all property lines. These distances are floors — "greater distances shall be required where local conditions demand" (§ 6.1).',
+      },
+      septicToBuilding: {
+        feet: 10,
+        citation: '§ 6.2.6, ADH Rules Pertaining to Onsite Wastewater Systems',
+        note: 'From any dwelling or building.',
+      },
+      septicToSurfaceWater: {
+        feet: 100,
+        citation: '§ 6.2.4, ADH Rules Pertaining to Onsite Wastewater Systems',
+        note:
+          'To the high-water mark of any stream or lake. Rises to 300 ft ' +
+          'within a quarter mile of a public water supply intake (§ 6.2.1); ' +
+          'a pond on your own property gets 50 ft (§ 6.2.5).',
+      },
+      wellToSurfaceWater: unknown(NO_STATE_RULE),
+    },
+    extraSeparations: [
+      {
+        label: 'Septic to any sinkhole',
+        feet: 100,
+        citation: '§ 6.2.9, ADH Rules Pertaining to Onsite Wastewater Systems',
+      },
+      {
+        label: 'Septic to any water service line',
+        feet: 10,
+        citation: '§ 6.2.8, ADH Rules Pertaining to Onsite Wastewater Systems',
+      },
+      {
+        label: 'Septic to a pond on adjacent property, in the pond watershed',
+        feet: 100,
+        citation: '§ 6.2.5, ADH Rules Pertaining to Onsite Wastewater Systems',
+      },
+      {
+        label: 'Field line to property line under the 10-acre exemption',
+        feet: 200,
+        citation: 'Ark. Code Ann. § 14-236-104(c)',
+        note:
+          'A condition of the exemption from ADH permitting on tracts of ten ' +
+          'acres or larger — not a general setback. The exemption lives only ' +
+          'in the statute and is absent from the 2024 rule, so cite the ' +
+          'statute; county staff may not know it.',
+      },
+    ],
+    setbacksNote:
+      'Building setbacks are city zoning where a permit system exists at ' +
+      'all — most Arkansas counties never created a building permit. The ' +
+      'septic permit is the rural builder’s one real gate.',
+    negativeFindings: [
+      'No statewide number exists for swimming pools, basements beyond the ' +
+        'generic 10 ft building distance, slopes, or wet-weather ditches — ' +
+        'and no minimum lot size: a soil suitability test substitutes ' +
+        '(§ 4.2).',
+      'A homeowner may install their own system (§ 14-236-102(b)(2)) — the ' +
+        'design must still come from a Designated Representative — and may ' +
+        'drill their own well (§ 17-50-108(b)). No well permit exists; a ' +
+        'construction report is due within 90 days.',
+    ],
+  },
+  {
     code: 'ca',
     state: 'California',
     guideSlug: 'california',
@@ -662,6 +751,100 @@ const VERIFIED_STATES: StateSiteplanRules[] = [
     ],
   },
   {
+    code: 'fl',
+    state: 'Florida',
+    guideSlug: 'florida',
+    verified: true,
+    verifiedDate: 'September 2026',
+    separations: {
+      wellToSeptic: {
+        feet: 75,
+        citation: 'Rule 62-6.005(1)(a), F.A.C.',
+        note:
+          'From a private potable well or multi-family water well to the ' +
+          'system. The rule does not distinguish the tank from the ' +
+          'drainfield — the distance runs to the system as a whole.',
+      },
+      wellToDrainfield: {
+        feet: 75,
+        citation: 'Rule 62-6.005(1)(a), F.A.C.',
+        note:
+          'Same provision as the tank — Florida measures to the onsite ' +
+          'sewage treatment and disposal system without distinguishing ' +
+          'components.',
+      },
+      wellToPropertyLine: unknown(
+        'Not set in the septic chapter, and the private-well construction ' +
+          'rule carries no property-line number in the shipped research — ' +
+          'your water management district and county set well siting.'
+      ),
+      septicToPropertyLine: {
+        feet: 5,
+        citation: 'Rule 62-6.005(2), F.A.C.',
+        note:
+          'Except where the line abuts a utility easement with no ' +
+          'underground utilities, or a recorded shared-system easement.',
+      },
+      septicToBuilding: {
+        feet: 5,
+        citation: 'Rule 62-6.005(2), F.A.C.',
+        note:
+          'From building foundations including pilings, mobile home walls ' +
+          'and pool walls. Sidewalks, decks and patios are not subject to ' +
+          'the 5 ft setback, but a drainfield may not be installed beneath ' +
+          'them.',
+      },
+      septicToSurfaceWater: {
+        feet: 75,
+        citation: 'Rule 62-6.005(3), F.A.C.',
+        note:
+          'Lateral, to permanent or tidally influenced surface water ' +
+          'bodies. A normally dry ditch, swale or retention area gets 15 ft ' +
+          'to its design high-water line instead.',
+      },
+      wellToSurfaceWater: unknown(NO_STATE_RULE),
+    },
+    extraSeparations: [
+      {
+        label: 'Septic to a public drinking water well (system ≤2,000 gal/day)',
+        feet: 100,
+        citation: 'Rule 62-6.005(1)(b), F.A.C.',
+        note: 'Rises to 200 ft where the well serves a facility over 2,000 gal/day (62-6.005(1)(c)).',
+      },
+      {
+        label: 'Septic to a non-potable water well',
+        feet: 50,
+        citation: 'Rule 62-6.005(1)(d), F.A.C.',
+      },
+      {
+        label: 'Septic to potable water lines',
+        feet: 10,
+        citation: 'Rule 62-6.005(2)(b), F.A.C.',
+        note: 'A sealed sleeve alternative exists; water lines within 24 inches of the system are restricted either way.',
+      },
+      {
+        label: 'Septic to a dry ditch, swale or retention area',
+        feet: 15,
+        citation: 'Rule 62-6.005(1)(f), F.A.C.',
+        note: 'To the design high-water line, where water stands less than 72 hours after rainfall.',
+      },
+    ],
+    setbacksNote:
+      'Building setbacks are county and municipal zoning. The septic chapter ' +
+      'itself is under active rulemaking — core rules were amended 8 June ' +
+      '2026 — so confirm the current text at flrules.org before you dig.',
+    negativeFindings: [
+      'The 75 ft surface-water setback is uniform — no larger coastal or ' +
+        'tidal number exists in Rule 62-6.005; tidal and nontidal bodies get ' +
+        'the same distance.',
+      'Where you file is split mid-transfer: DEP permits directly in 17 ' +
+        'counties (the Panhandle plus Marion); the other 50 still file with ' +
+        'the county health department (ch. 2020-150, Laws of Florida).',
+      'A lot served by a private well needs at least a half acre — 21,780 ' +
+        'square feet — under Rule 62-6.005(7)(a).',
+    ],
+  },
+  {
     code: 'ga',
     state: 'Georgia',
     guideSlug: 'georgia',
@@ -735,6 +918,98 @@ const VERIFIED_STATES: StateSiteplanRules[] = [
         '902 KAR 10:085. Ratings come from soil morphology to 42 inches.',
       'Do not cite 902 KAR 10:060, 10:090, 10:100 or 10:130 — inactive or ' +
         'repealed, though web guides still quote 10:060 for fees.',
+    ],
+  },
+  {
+    code: 'la',
+    state: 'Louisiana',
+    guideSlug: 'louisiana',
+    verified: true,
+    verifiedDate: 'September 2026',
+    separations: {
+      wellToSeptic: {
+        feet: 50,
+        citation: 'LAC 51:XII.327.A.2',
+        note: 'The Sanitary Code table row "Septic tanks — 50," for any water well.',
+      },
+      wellToDrainfield: {
+        feet: 50,
+        citation: 'LAC 51:XII.327.A.2 and footnote 2',
+        note:
+          'The table prints 100 ft to absorption fields, and footnote 2 ' +
+          'reduces it to 50 ft for a PRIVATE water well — the single ' +
+          'most-misreported number in Louisiana. A public water supply well ' +
+          'keeps the full 100 ft.',
+      },
+      wellToPropertyLine: unknown(NO_STATE_RULE),
+      septicToPropertyLine: {
+        feet: 10,
+        citation: 'LAC 51:XIII.719.I',
+        note:
+          'Absorption trenches at least 10 ft from any property line — and ' +
+          'sand filter beds, effluent reduction fields and rock plant ' +
+          'filters carry the same 10 ft. The TANK itself has no stated ' +
+          'minimum: LDH prints "No minimum stated."',
+      },
+      septicToBuilding: {
+        feet: 10,
+        citation: 'LAC 51:XIII.719.I',
+        note: 'Absorption trenches at least 10 ft from any dwelling.',
+      },
+      septicToSurfaceWater: unknown(
+        'No statewide septic-to-surface-water minimum was found — the ' +
+          'well side carries 50 ft to a canal, ditch, stream, pond or lake ' +
+          'instead. Your parish sanitarian sets siting on wet ground.'
+      ),
+      wellToSurfaceWater: {
+        feet: 50,
+        citation: 'LAC 51:XII.327.A.2; LAC 56:I.315.A',
+        note:
+          'To a drainage canal, ditch or stream — measured from the highest ' +
+          'water level of the last ten years, and the well agency’s own ' +
+          'table adds ponds and lakes.',
+      },
+    },
+    extraSeparations: [
+      {
+        label: 'Water well to the land-side toe of a levee',
+        feet: 250,
+        citation: 'LAC 56:I.317.A; R.S. 38:225(6)',
+        note: 'Within 1,500 ft of a state or federal flood-control levee, levee board permission is required first (LAC 56:I.317.B).',
+      },
+      {
+        label: 'Water well to another water well',
+        feet: 25,
+        citation: 'LAC 51:XII.327.A.2',
+      },
+      {
+        label: 'Underground potable water line to absorption trenches or any effluent reduction option',
+        feet: 25,
+        citation: 'LAC 51:XIV.613.G',
+        note: 'Ten feet to the septic tank or a mechanical plant (LAC 51:XIV.613.H).',
+      },
+      {
+        label: 'Absorption trench to the adjacent trench, centerline',
+        feet: 6,
+        citation: 'LAC 51:XIII.719.I',
+      },
+    ],
+    setbacksNote:
+      'Building setbacks are parish and municipal zoning. Whether your soil ' +
+      'takes a conventional field or forces a mechanical plant is the state ' +
+      'health officer’s determination — and it changes which septic rules ' +
+      'and which installer rules apply to you.',
+    negativeFindings: [
+      'The distances are split across four separate rule sets — LAC 51:XII ' +
+        '(wells), 51:XIII (sewage), 51:XIV (water lines) and 56:I (the well ' +
+        'agency) — which is why third-party summaries reading one part ' +
+        'produce an incomplete table.',
+      'Several published figures are advisory "should" language, not ' +
+        'requirements — including the ATU-to-property-line distance. The ' +
+        'numbers above are the mandatory ones.',
+      'Hand-drawn site plans are explicitly accepted by LDH; the property ' +
+        'plat behind them needs a surveyor’s seal or a Clerk of Court ' +
+        '"true copy" designation — the second option costs far less.',
     ],
   },
   {
@@ -914,6 +1189,87 @@ const VERIFIED_STATES: StateSiteplanRules[] = [
       'A permit is required before constructing, altering, or deepening a ' +
         'private well; the owner or agent applies at the local health ' +
         'department.',
+    ],
+  },
+  {
+    code: 'wi',
+    state: 'Wisconsin',
+    guideSlug: 'wisconsin',
+    verified: true,
+    verifiedDate: 'September 2026',
+    separations: {
+      wellToSeptic: {
+        feet: 25,
+        citation: 's. NR 812.08 Table A, Wis. Adm. Code',
+        note:
+          'Well to a septic or holding tank. Table A as amended by CR ' +
+          '25-013, effective 1 March 2026 — cite the current table; older ' +
+          'references abound.',
+      },
+      wellToDrainfield: {
+        feet: 50,
+        citation: 's. NR 812.08 Table A, Wis. Adm. Code',
+        note: 'Well to a POWTS dispersal component — drainfield or mound.',
+      },
+      wellToPropertyLine: unknown(NO_STATE_RULE),
+      septicToPropertyLine: unknown(
+        'POWTS component setbacks live in SPS 383.43 Table 383.43-1, and ' +
+          'determining POWTS setbacks is itself a regulated act reserved to ' +
+          'licensed credential-holders (SPS 385.10(2)) — your master ' +
+          'plumber or POWTS designer produces that plan.'
+      ),
+      septicToBuilding: unknown(
+        'Set in SPS 383.43 Table 383.43-1 — the POWTS plan your licensed ' +
+          'designer prepares carries it; the sanitary permit application ' +
+          'cannot be completed without one.'
+      ),
+      septicToSurfaceWater: unknown(
+        'Set POWTS-side in SPS 383.43, and county shoreland zoning under ' +
+          'NR 115 separately controls structures near water — the county ' +
+          'sanitary office answers both.'
+      ),
+      wellToSurfaceWater: {
+        feet: 25,
+        citation: 's. NR 812.08 Table A, Wis. Adm. Code',
+        note:
+          'Well to a shoreline. The pond-shoreline distance does not apply ' +
+          'to synthetically lined decorative yard ponds on residential lots.',
+      },
+    },
+    extraSeparations: [
+      {
+        label: 'Vertical: dispersal component above groundwater and bedrock',
+        feet: 2,
+        citation: 'SPS 383.44(3)(a), Wis. Adm. Code',
+        note:
+          '24 inches minimum. The 36-inch figure is the pre-2000 rule and ' +
+          'the code says so itself — printing 3 feet would be wrong.',
+      },
+      {
+        label: 'Well to a building sewer',
+        feet: 8,
+        citation: 's. NR 812.08 Table A, Wis. Adm. Code',
+      },
+    ],
+    setbacksNote:
+      'Building setbacks are local zoning plus shoreland and floodplain ' +
+      'overlays the county administers (NR 115 puts structures 75 ft from ' +
+      'the ordinary high-water mark, with a 35 ft floor where an existing ' +
+      'development pattern allows). On unsewered land the sanitary permit ' +
+      'must exist before the building permit can issue (s. 145.195(1)).',
+    negativeFindings: [
+      'You may drill your own well (s. 280.15(4); NR 812.10(1)(a)) after ' +
+        'the mandatory pre-drilling notification (s. 281.34(3)(a)) — but ' +
+        'you may NOT install your own septic: the sanitary permit ' +
+        'application requires a licensed master plumber or MPRS (SPS ' +
+        '383.21(2)(c)4.).',
+      'A drainfield setback "does not apply if the component has been ' +
+        'abandoned in accordance with s. SPS 383.33" (Table A footnote) — ' +
+        'properly abandoning an old system can rescue a tight lot.',
+      'No municipality may require your building-permit plans to be ' +
+        'stamped by an architect or engineer for a UDC dwelling (SPS ' +
+        '320.09(6)(c)) — the strongest owner-drawn-plan language of any ' +
+        'state in this corpus.',
     ],
   },
 ];

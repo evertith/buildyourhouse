@@ -13,7 +13,7 @@ export const metadata = {
 
 # Florida Owner-Builder Permit Guide
 
-*By a retired general contractor with 15+ years building custom homes — [about the author](/about). Last updated: May 2026.*
+*By a retired general contractor with 15+ years building custom homes — [about the author](/about). Last updated: September 2026.*
 
 Florida presents unique challenges and opportunities for owner-builders. With mandatory statewide building codes driven by hurricane requirements, a clear contractor-licensing system, and significant regional variations, building your own home in the Sunshine State requires careful navigation. However, the state's strong owner-builder exemption and year-round building season make it very achievable.
 
@@ -30,16 +30,29 @@ Florida presents unique challenges and opportunities for owner-builders. With ma
     ["Act as your own general contractor", "Yes", "Fla. Stat. 489.103(7) owner-builder exemption; you must provide direct on-site supervision and sign the permit in person"],
     ["Electrical wiring", "Yes, on a home you own and occupy", "Permitted under 489.103(7) and 489.503(6); permits and inspections still required. You may NOT pay an unlicensed person to do it"],
     ["Plumbing", "Yes, on a home you own and occupy", "Permitted under the same owner-builder exemption; permits and inspections still required"],
-    ["HVAC, roofing, pool/spa, septic, wells", "Yes if you do it yourself, otherwise license required", "If you hire it out, the contractor must be state-licensed; you cannot hire unlicensed help"],
+    ["HVAC, roofing, pool/spa", "Yes if you do it yourself, otherwise license required", "All three are licensed inside Part I of chapter 489, so the owner-builder exemption reaches them. If you hire it out, the contractor must be state-licensed"],
+    ["Septic system", "Partly — you may install it, but you may not evaluate the site", "Fla. Stat. 381.0065(4) exempts an owner who personally works on a system serving their own owner-occupied single-family residence from registration only, and leaves them subject to all permitting requirements. The site evaluation for a new system must come from one of five named credential-holders under Rule 62-6.004(3)"],
+    ["Private well", "Rarely — the owner exemption covers 2-inch wells only", "Fla. Stat. 373.326(2) exempts a well 2 inches or under in diameter on your own property. That is a driven well point, not the 4-6 inch cased well a household needs. The water management district permit is required either way"],
     ["Sell or lease the home", "Not within 1 year", "Sale or lease within 1 year of completion presumes you built it for sale and voids the exemption"],
   ]}
+/>
+
+<ProductCTA
+  href="/shop/fl-permit-kit"
+  kicker="Florida · Permit Kit"
+  title="Want this as a working checklist?"
+  lead="The Florida Permit Kit is these rules as printable checklists with the statute citations on the page — both owner-builder exemptions side by side with their two different sale tests, the application checklist with every code edition in force and the FL number every window needs, the inspection sequence built around the Notice of Commencement, and where to file each piece including the county-by-county septic split. 45 pages, verified against the Florida Statutes and the Building Commission's own documents."
+  price={34}
+  sku="fl-permit-kit"
+  context="fl-state-guide"
+  cta="See the kit"
 />
 
 ## Florida Building Code Overview
 
 <CalloutBox type="info" title="The Big Picture">
 
-Florida has had a **mandatory statewide building code** since 1974, strengthened significantly after Hurricane Andrew in 1992.
+Florida enforces a **single statewide building code**, and it is newer than most people assume. State minimum-building-standards legislation goes back to the 1970s, but the unified **Florida Building Code** you actually build to today took effect in **2002** — the direct legislative answer to what Hurricane Andrew exposed in 1992 about a patchwork of local codes.
 
 </CalloutBox>
 
@@ -53,13 +66,22 @@ As of 2026, Florida uses the **8th Edition (2023) Florida Building Code**, which
   rows={[
     ["Florida Building Code, Residential", "2023 (8th Edition), based on 2021 IRC"],
     ["Florida Energy Conservation Code", "2023, based on 2021 IECC"],
-    ["National Electrical Code (NFPA 70)", "2020, adopted via FBC Chapter 27 with Florida amendments"],
+    ["National Electrical Code (NFPA 70)", "2020 as originally adopted via FBC Chapter 27; the Commission has since updated the referenced standard to the 2023 NEC — see the note below"],
     ["Florida Plumbing Code", "2023"],
-    ["Florida Mechanical Code", "2023"]
+    ["Florida Mechanical Code", "2023"],
+    ["Wind design standard", "ASCE 7-22 (up from ASCE 7-16 in the prior edition)"]
   ]}
 />
 
-**Update Cycle**: Florida updates codes on a 3-year cycle, usually 1-2 years after a new IRC release. The 9th Edition (2026) Florida Building Code is in development, with enforcement expected to begin December 31, 2026. Confirm which edition applies to your permit by your application date.
+<CalloutBox type="warning" title="A note on the electrical edition: you will find both answers in print">
+
+Do not be surprised when one document says 2020 NEC and another says 2023. Both are defensible right now. The 8th Edition **as adopted** referenced the **2020 NEC** through FBC Building chapter 27. The Commission has **since revised that referenced standard to the 2023 NEC**, using a fast-track power the Legislature gave it specifically for the electrical code at [Fla. Stat. § 553.73(8)(a)6.](https://www.flsenate.gov/Laws/Statutes/2026/553.73) — the electrical code does not have to wait for the triennial cycle.
+
+Ask your electrical plan reviewer which edition your permit will be reviewed against, and **write down the answer with the date and the name of the person who gave it to you.** Rough-in is a bad place to discover you guessed.
+
+</CalloutBox>
+
+**Update Cycle**: Florida updates the code on a 3-year cycle, usually 1-2 years behind a new IRC release. The **9th Edition (2026)** is in development, and that is all anyone can honestly tell you: the Building Commission's own [code menu](https://www.floridabuilding.org/bc/bc_default.aspx) labels it a *draft*, a second comment period on glitch changes ran into the fall of 2026, and **no effective date has been adopted**. [Fla. Stat. § 553.73(7)(e)](https://www.flsenate.gov/Laws/Statutes/2026/553.73) separately requires an adopting rule to take effect no sooner than six months after the updated code is published. Treat any guide that hands you a firm 9th Edition enforcement date as guessing. Which edition applies to your project is set by your permit application date.
 
 ### Florida-Specific Amendments
 
@@ -74,6 +96,29 @@ Florida's amendments are extensive, primarily driven by hurricane protection:
 7. **Pool Safety**: Comprehensive barriers required for all pools
 8. **Energy Code**: Enhanced for hot, humid climate
 9. **Product Approval**: Products must have Florida Product Approval number
+
+### Local Amendments Expire on the Code Cycle
+
+This is one of the genuinely reassuring facts about building in Florida, and almost nobody tells owner-builders about it. Your county can amend the code, but only in one direction and only for so long. Under [Fla. Stat. § 553.73(4)](https://www.flsenate.gov/Laws/Statutes/2026/553.73):
+
+- **Administrative amendments** must be *more stringent* than the state code, and get transmitted to the Commission within 30 days
+- **Technical amendments** come no more than once every 6 months, only after a hearing advertised 10 days ahead, only on evidence of a specific local need, only as stringent as that need requires — and they **may not introduce a subject the state code does not address**
+- Wind resistance and water intrusion provisions **may not be weakened at all**, under § 553.73(7)(f)
+- And the part worth remembering, § 553.73(4)(e): a local technical amendment **"is effective only until the adoption of the new edition of the Florida Building Code by the commission every third year."** At that point the Commission either adopts it statewide or it dies.
+
+Practical effect: a local rule someone confidently tells you about at the lumber yard may have expired with the last code cycle. Ask the building department to point you at the currently adopted amendment, not a memory of one.
+
+### Florida Product Approval Is a Purchasing Constraint, Not Paperwork
+
+Most guides file product approval under "paperwork." It is not paperwork. It decides what you are allowed to buy.
+
+[Fla. Stat. § 553.842(5)](https://www.flsenate.gov/Laws/Statutes/2026/553.842) requires statewide approval for **"panel walls, exterior doors, roofing, skylights, windows, shutters, impact protective systems, and structural components."** At plan review you identify a Florida Product Approval number — an **FL number** — for every one of those on your house. You look them up in the Commission's own [product approval search](https://www.floridabuilding.org/pr/pr_app_srch.aspx).
+
+What that means on a Saturday at the supply house: **a window with no Florida approval cannot be permitted here**, no matter how well built it is or how much cheaper it is than the one next to it. Check the FL number *before* you buy, not after the truck arrives. This is the trap that catches owner-builders who order online, buy out of state, or take a deal on a cancelled order.
+
+The trade is a real one, though. Under § 553.842(4), a statewide approval **"shall preclude local jurisdictions from requiring further testing, evaluation, or submission of other evidence as a condition of using the product"** when it is installed consistently with that approval. And if a building official rejects an approved product anyway, § 553.842(9) requires a **signed written report** stating the inconsistency — you are entitled to the reason in writing, not a shrug at the counter.
+
+One practical warning: outside the HVHZ there is no single statewide "product approval schedule" form. The format is set locally. Ask your department for their template early, because assembling FL numbers for every exterior opening takes longer than anyone budgets for.
 
 ### High Velocity Hurricane Zone (HVHZ)
 
@@ -134,7 +179,7 @@ There is **no square-footage cap and no dollar cap** on a one- or two-family res
 **Lien Rights**:
 - As an owner-builder you are not entitled to the contractor's "Construction Industries Recovery Fund" protections, and you take on the contractor's legal responsibility
 - Suppliers and subcontractors CAN file construction liens against your property
-- File a **Notice of Commencement** and collect lien releases as you pay to protect yourself
+- Record a **Notice of Commencement** before work starts and collect lien releases as you pay. In Florida that document does double duty — it is also what gates your first inspection, which is why it gets its own section under *Inspection Requirements* below
 
 ### Doing Your Own Trade Work
 
@@ -176,9 +221,10 @@ Some building departments are stricter than the statute in practice and will scr
 ### Contractor License Lookup
 
 Verify all contractor licenses:
-- **Department of Business and Professional Regulation (DBPR)**: www.myfloridalicense.com
+- **Department of Business and Professional Regulation (DBPR)**: [myfloridalicense.com](https://www.myfloridalicense.com)
 - Check status, disciplinary actions, insurance
 - Required to provide license number before contracting
+- Read whether the license is **certified** or **registered**. Under Fla. Stat. § 489.105(8) a certified contractor may contract anywhere in the state; under § 489.105(10) a registered contractor met one jurisdiction's local competency requirements and may contract **only there**. Seeing "Registered" is not the same as seeing a license that is good on your parcel
 
 ## Permit Costs in Florida
 
@@ -188,12 +234,18 @@ Florida permit costs are among the highest in the nation, particularly in coasta
 
 </CalloutBox>
 
+<CalloutBox type="warning" title="Every dollar figure in this section is illustrative — verify each one before you budget">
+
+**The numbers below are illustrative planning ranges, not quoted fees.** Florida sets permit fees locally, not by statute, and the schedules change on each jurisdiction's own timetable. These ranges are useful for sanity-checking whether a plan is in the right order of magnitude; they are not a substitute for your county's current published fee schedule. One statutory fact does help you: [Fla. Stat. § 553.80(7)](https://www.flsenate.gov/Laws/Statutes/2026/553.80) restricts permit fees to carrying out the local government's code-enforcement responsibilities, and gives an owner or builder holding a permit a civil action to enforce that. Ask for the published schedule and the methodology behind it.
+
+</CalloutBox>
+
 ### Typical Fee Structure
 
 Fees based on construction valuation (square footage x local multiplier):
 
 <DataTable
-  caption="Typical Florida permit fee structure"
+  caption="Typical Florida permit fee structure — illustrative ranges, confirm with your county"
   headers={["Fee", "Basis / rate", "Amount"]}
   rows={[
     ["Building permit", "Construction value x fee rate; $5-$8 per $1,000 of construction value (varies by county)", "Minimum $200-$500"],
@@ -207,10 +259,10 @@ Fees based on construction valuation (square footage x local multiplier):
 
 ### County-Specific Examples
 
-Estimates below are for a 2,000 sq ft home (Miami-Dade example assumes ~$400K construction value):
+Estimates below are for a 2,000 sq ft home (Miami-Dade example assumes ~$400K construction value). They are illustrative planning figures compiled to show the *spread* between HVHZ, coastal, and inland counties — not quotes, and not tied to any schedule effective on a particular date.
 
 <DataTable
-  caption="County-specific permit costs for a 2,000 sq ft home"
+  caption="County permit costs for a 2,000 sq ft home — illustrative, not quoted fees"
   headers={["County", "Building permit", "Plan review", "Other line items", "Total permits"]}
   rows={[
     ["Miami-Dade (HVHZ)", "~$5,000", "~$3,200", "Structural review ~$800; hurricane windstorm mitigation ~$400; technology surcharge $150; plus separate trade permits ~$600", "~$9,550 permits (~$10,150 grand total with trade permits)"],
@@ -227,12 +279,14 @@ Estimates below are for a 2,000 sq ft home (Miami-Dade example assumes ~$400K co
 
 <CalloutBox type="warning" title="Impact fees are a major cost in growing areas">
 
-Total impact fees run **$7,000-$30,000+** and vary dramatically by county/city.
+Total impact fees run **$7,000-$30,000+** and vary dramatically by county/city. The ranges below are illustrative.
+
+Two statutory facts are worth more than any range. Collection **may not be required earlier than the date the building permit issues** ([Fla. Stat. § 163.31801(4)(e)](https://www.flsenate.gov/Laws/Statutes/2026/163.31801)) — so this is not a cost you carry through design. And a new or increased fee takes 90 days' notice and **may not apply to permit applications submitted before its effective date**, § 163.31801(4)(d). If your county has announced an increase, filing ahead of it locks the old rate. The same section requires every local government to publish its schedule and methodology, which is your path to a real number instead of a range.
 
 </CalloutBox>
 
 <DataTable
-  caption="Florida impact fees (major cost in growing areas)"
+  caption="Florida impact fees — illustrative ranges; get your county's published schedule"
   headers={["Impact fee category", "Typical amount"]}
   rows={[
     ["Schools", "$2,000-$8,000"],
@@ -245,7 +299,7 @@ Total impact fees run **$7,000-$30,000+** and vary dramatically by county/city.
 />
 
 <DataTable
-  caption="Other Florida permit-related fees"
+  caption="Other Florida permit-related fees — illustrative ranges, verify locally"
   headers={["Fee", "Typical amount", "Applies to"]}
   rows={[
     ["Address assignment", "$25-$50", "—"],
@@ -265,10 +319,29 @@ Florida timelines vary widely but are generally longer than most states due to s
 
 </CalloutBox>
 
+### The County Is on a Statutory Clock, and Running Late Costs Them
+
+Start here, because almost no owner-builder knows this clock exists and fewer still notice when it is missed. [Fla. Stat. § 553.792](https://www.flsenate.gov/Laws/Statutes/2026/553.792) puts hard day counts on your local government:
+
+- **30 business days** to approve, approve with conditions, or deny a residential building permit where the structure is **under 7,500 square feet**. At or above that, 60 business days.
+- **5 business days** to tell you what your application is missing. Miss that window and the application is **automatically deemed complete**.
+- Run past the review deadline and the **permit fee is reduced 10% for every business day late**.
+- If a deficiency notice does go out, you get 10 business days to revise and the government gets 10 more to review — and on that second pass the penalty rises to **20% per business day**.
+
+<CalloutBox type="tip" title="How to actually use the clock">
+
+Date-stamp your submittal and keep the receipt. Then count business days, not calendar days. You are not being difficult by asking, at day 31, whether the fee reduction applies — it is the statute's own remedy, and the reason it exists is that the alternative is an owner-builder with a construction loan accruing interest against a silent plan reviewer.
+
+Cite **§ 553.792**. Do *not* cite § 553.7921, which people confuse with it constantly — that one is the Uniform Fire Alarm Permit Application statute and has nothing to do with house permit timing.
+
+</CalloutBox>
+
 ### Plan Review Timeline
 
+The table below shows what jurisdictions actually run in practice, which is a different question from what the statute allows. These are illustrative observed ranges, not published service standards — ask your department what its current turnaround is.
+
 <DataTable
-  caption="Florida plan review timelines by jurisdiction type"
+  caption="Florida plan review timelines by jurisdiction type — illustrative observed ranges"
   headers={["Jurisdiction type", "First review", "Resubmittal", "Total to approval"]}
   rows={[
     ["HVHZ Counties (Miami-Dade, Broward)", "30-60 business days", "15-30 business days", "10-16 weeks typical (16-24 weeks for complex designs); structural review 20-40 business days, concurrent"],
@@ -282,6 +355,17 @@ Florida timelines vary widely but are generally longer than most states due to s
 - Timeline: Cut in half
 - Not all counties offer this
 
+### You Can Hire Your Own Plan Reviewer and Inspector
+
+Florida is one of the few states that lets you go around the queue entirely, and it is badly underused by owner-builders. Under [Fla. Stat. § 553.791](https://www.flsenate.gov/Laws/Statutes/2026/553.791) you may retain a **private provider** — a licensed building code administrator, engineer, or architect — to do your plan review, your inspections, or both.
+
+- **You give notice in writing** at permit application, or by 2:00 p.m. two business days before the first inspection you want the private provider to handle.
+- The local jurisdiction **"must reduce the permit fee by the amount of cost savings"** and **"may not charge fees for building inspections"** it is no longer performing. You are not paying twice.
+- Deemed-approved windows are short: **20 business days** generally, **10** if an engineer or architect sealed the affidavit, and **5** for a single-trade review on a one- or two-family dwelling.
+- Certificate of occupancy in **2 business days** for a one- or two-family dwelling.
+
+The trade is straightforward: you are paying a private professional instead of waiting on a public one. On a build where the construction loan is accruing and the county is quoting 10 to 16 weeks, run that arithmetic before you assume the county route is cheaper. Note that a private provider is bound by the same Notice of Commencement gate the building department is — § 713.135(1)(e)1. names private providers explicitly.
+
 ### Permit Issuance
 
 Once approved:
@@ -290,10 +374,13 @@ Once approved:
 
 ### Permit Validity
 
-- Initial validity: **6 months** without inspection (Florida Statute requirement)
-- Can be extended if work progressing
-- Expires if no inspections for 180 days
-- Must complete within reasonable time or resubmit
+Here is a rule almost every Florida guide gets wrong, including this one until this update. **Permit life is not in the statutes.** It lives in the administrative chapter of the FBC Building volume, which means it is also administratively amendable by your local government — so confirm the numbers below with your department rather than assuming the state-level version governs your parcel.
+
+- **Application abandoned at 180 days** — FBC Building **105.3.2**. An application that sits without action dies before the permit ever issues.
+- **Permit invalid if work is not commenced within 6 months**, or if work is suspended or abandoned for 6 months — **105.4.1**.
+- And the one that actually saves owner-builders, **105.4.1.3**: *"Work shall be considered to be in active progress when the permit has received an approved inspection within 180 days."*
+
+That last line is the whole game for anyone building part-time. You do not have to finish on a schedule. You have to **keep passing an inspection inside every 180-day window**. Plan your inspection sequence so no gap runs long — a slow stretch waiting on cabinets or a subcontractor is exactly when a permit quietly lapses, and re-permitting a partly built house is far worse than scheduling one inspection you could have taken earlier.
 
 ## Hurricane and Wind Requirements
 
@@ -305,18 +392,19 @@ Hurricane and wind requirements are the single biggest driver of Florida's const
 
 ### Wind Speed Design Requirements
 
-Florida uses **Ultimate Wind Speed** (3-second gust):
+Florida uses **Ultimate Wind Speed** (3-second gust), and this guide deliberately does not print a county-by-county wind speed table.
 
-<DataTable
-  caption="Florida ultimate wind speed (3-second gust) by region"
-  headers={["Region", "Ultimate wind speed", "Areas"]}
-  rows={[
-    ["South Florida Coast", "170-185 mph", "Miami-Dade, Broward, Palm Beach coastal; highest requirements in nation"],
-    ["Southeast/Southwest Coastal", "160-170 mph", "Monroe (Keys), Collier, Lee coastal; Martin, St. Lucie coastal"],
-    ["Gulf Coast", "150-170 mph", "Pinellas, Hillsborough, Manatee, Sarasota coastal; Panhandle coastal counties"],
-    ["Inland Florida", "120-140 mph", "Central Florida; still higher than most U.S. states"]
-  ]}
-/>
+Here is why. The 8th Edition moved wind design to **ASCE 7-22**, and ASCE 7-22 works from a location-specific geodatabase rather than the broad contour map people are used to reading off. A regional table gets you a number that is close, and close is the worst possible outcome — design to 150 mph on a parcel that calls for 160 and you will find out at plan review, after the trusses are engineered.
+
+**Look up your actual parcel.** The ASCE Hazard Tool ([ascehazardtool.org](https://ascehazardtool.org)) returns the design wind speed for a specific latitude and longitude under ASCE 7-22, which is the standard the code now points to. Then **confirm the number with your building department in writing** before your engineer designs to it. Two minutes of lookup, and it is the single input the rest of your structural package is built on.
+
+<CalloutBox type="warning" title="The inland lakefront trap">
+
+Do not assume "inland" means "not windborne debris region." The 8th Edition revised the first limb of the windborne debris region definition — deleting the word *coastal* and framing the test around an Exposure D condition upwind of the water line. The practical consequence, in DBPR's own words describing the change, is that **some inland areas near large bodies of water can now fall inside the windborne debris region** where the design wind speed is high enough.
+
+If you are building on a lake with a long fetch, get your parcel's windborne debris status confirmed in writing before you price windows. The difference between opening protection required and not required is tens of thousands of dollars.
+
+</CalloutBox>
 
 ### Hurricane Construction Requirements
 
@@ -328,11 +416,14 @@ Florida uses **Ultimate Wind Speed** (3-second gust):
 - Gable end bracing
 - Soffit/fascia attachments rated for wind pressure
 
-**Windows and Doors**:
-- Impact-resistant glass OR approved shutters required in many coastal areas
-- Miami-Dade: Impact glass mandatory
-- Other coastal: Impact glass or engineered shutters
-- Opening protection must withstand debris impact and pressure
+**Windows and Doors** — and this is a cost lever most guides quietly close for you:
+
+- Inside the windborne debris region, **openings must be protected**. What the code requires is *opening protection*, not impact glass specifically.
+- **Impact-resistant glazing OR approved shutters** both satisfy FBC Residential **R301.2.1.2**. This is true in Miami-Dade too — the widely repeated claim that impact glass is mandatory in Miami-Dade is wrong. Products there must meet the Miami-Dade protocols, but shutters that meet them are an option.
+- Protection is qualified by the Large Missile Test of ASTM E1996/E1886, or TAS 201/202/203, or AAMA 506; garage door glazing under ANSI/DASMA 115 or another approved standard.
+- The code even keeps a **plywood option**: 7/16-inch wood structural panels, precut, predrilled, with permanently installed corrosion-resistant hardware, where mean roof height is 33 feet or less and the ultimate design wind speed is 180 mph or less.
+
+The reason this matters: on a whole-house basis the spread between impact windows and shuttered standard windows is commonly tens of thousands of dollars. You may still want impact glass — no pre-storm labor, insurance credit, better acoustics — but that should be your decision made against real numbers, not something you were told was mandatory.
 
 **Garage Doors**:
 - Must be wind-rated for design pressure
@@ -354,7 +445,7 @@ Florida uses **Ultimate Wind Speed** (3-second gust):
 Hurricane requirements add significantly to costs:
 
 <DataTable
-  caption="Hurricane code cost impact (2,000 sq ft home, $300K base cost)"
+  caption="Hurricane code cost impact (2,000 sq ft home, $300K base cost) — illustrative planning ranges"
   headers={["Location", "Added % of construction cost", "Added cost on 2,000 sq ft home"]}
   rows={[
     ["HVHZ (Miami-Dade/Broward)", "+25-40%", "+$75,000-$120,000"],
@@ -375,22 +466,32 @@ Florida's hot, humid climate drives specific energy requirements.
 
 **Climate Zone**: All of Florida is **Climate Zone 1A** (hot-humid)
 
+Do not go looking for a single table of R-values to build to. Florida gives you **three compliance paths**, and which one you pick changes which numbers apply to your house — a prescriptive R-value that is mandatory on one path is irrelevant on another. Pick the path first, then get the numbers from the code book or your rater.
+
 <DataTable
-  caption="2023 Florida Energy Conservation Code minimum requirements (Climate Zone 1A)"
-  headers={["Requirement", "Minimum"]}
+  caption="Florida Energy Conservation Code compliance paths for a house"
+  headers={["Path", "Section", "How it works"]}
   rows={[
-    ["Wall insulation", "R-13 (or R-20 if no exterior insulation)"],
-    ["Ceiling insulation", "R-38 (R-30 acceptable in some applications)"],
-    ["Windows", "U-0.50, SHGC 0.25 (solar heat gain critical)"],
-    ["Ducts", "R-6 minimum (R-8 if in attic)"],
-    ["Air sealing", "5 ACH or less (blower door test)"]
+    ["Prescriptive", "R402", "Meet the listed envelope values component by component. Documented on Form R402-2023, which now carries SEER2/HSPF2 equipment labeling"],
+    ["Performance (simulated energy)", "R405", "Model the whole house against a reference design using Commission-approved software. The 8th Edition tightened the maximum total e-Ratio from 1.00 to 0.95. There is no static Form R405 PDF — the submittal is the software output"],
+    ["Energy Rating Index", "R406", "Comply against an ERI target instead of the prescriptive envelope"]
   ]}
 />
 
-**Duct Testing Required**:
-- Total leakage: Less than 6 CFM per 100 sq ft
-- Professional testing required
-- Cost: $300-$500
+Every path also requires **Form R400-2023**, the Residential Energy Conservation Code Documentation Checklist. Get all of these from the Building Commission's own [forms and code pages](https://www.floridabuilding.org/c/default.aspx) — not from a national energy-code site, which will hand you the wrong document.
+
+<CalloutBox type="critical" title="The blower door number is 7 ACH50, and you cannot certify it yourself">
+
+**FBC Energy Conservation R402.4.1.2** sets the maximum at **7 air changes per hour at 50 pascals** in Florida's climate zones — not 5, which is the figure that circulates in most Florida guides and is simply wrong.
+
+Two things that follow from it, both of which surprise owner-builders:
+
+- **Go below 3 ACH50 and the code then requires whole-house mechanical ventilation.** Building an unusually tight house is not a free win here; it adds a system. Decide that deliberately, not by accident.
+- **The test may not be self-certified.** It has to be run by an energy auditor or rater, a Class A or B air-conditioning or mechanical contractor, or a third party your code official approves. The test happens after envelope penetrations are sealed. Line up the tester early — this is a common source of last-minute delay before the final.
+
+</CalloutBox>
+
+**Duct Testing**: duct leakage testing is required and is typically performed with the blower door by the same rater. The specific leakage threshold moves between code editions and paths, so **ask your rater or plan reviewer for the figure that applies to your permit** rather than trusting a number from a guide. Budget roughly $300-$500 for the testing, illustratively.
 
 **Cool Roof Requirements** (some jurisdictions):
 - Solar reflectance index (SRI) requirements
@@ -400,7 +501,7 @@ Florida's hot, humid climate drives specific energy requirements.
 ### Florida-Specific Energy Strategies
 
 **Critical for Florida**:
-- **High SEER AC**: Minimum 14 SEER, but 16+ SEER recommended
+- **High-efficiency AC**: check the rating system before you shop. Florida's current energy forms are written in **SEER2 and HSPF2**, not the older SEER and HSPF. A SEER2 number is not the same as the SEER number on an older spec sheet, so a "14 SEER" figure from a pre-2023 guide will not match what your Form R402-2023 asks for. Get the minimum that applies to your permit from your HVAC contractor or rater, then buy above it — cooling runs most of the year here and the payback is real
 - **Dehumidification**: Separate dehumidification or AC with dehumidification mode
 - **Radiant Barrier**: Required in attic in some counties, highly recommended everywhere
 - **Proper Ventilation**: Ridge and soffit vents essential
@@ -453,7 +554,7 @@ Flood zone status is a critical consideration — much of Florida sits within ma
 - Significantly more expensive (+$40,000-$100,000)
 
 <DataTable
-  caption="Flood zone cost impact"
+  caption="Flood zone cost impact — illustrative planning ranges"
   headers={["Item", "Cost"]}
   rows={[
     ["Elevated slab (Zone AE)", "+$15,000-$35,000"],
@@ -464,17 +565,69 @@ Flood zone status is a critical consideration — much of Florida sits within ma
 
 <CalloutBox type="tip" title="Check before buying">
 
-- FEMA Flood Maps: msc.fema.gov
-- Get Elevation Certificate before purchasing
+- FEMA Flood Maps: [msc.fema.gov](https://msc.fema.gov/portal/home)
+- Get an Elevation Certificate before purchasing
 - Factor flood insurance into budget
 
 </CalloutBox>
+
+### The Coastal Construction Control Line: A Second Permit From a Second Agency
+
+If your lot is anywhere near the beach, this is the item that can stop a project cold, and it is missing from most Florida owner-builder guides entirely.
+
+Construction **seaward of the coastal construction control line (CCCL)** requires a **separate permit from the Florida Department of Environmental Protection**, under [Fla. Stat. § 161.053](https://www.flsenate.gov/Laws/Statutes/2026/161.053) and Rule **62B-33, F.A.C.** This is not a step inside your building permit and it is not something your county handles for you. It is an independent state permit from a different agency, on its own timeline. DEP publishes the line and its program materials on the [coastal construction control line page](https://floridadep.gov/rcp/coastal-construction-control-line).
+
+Three things to understand before you buy a coastal lot:
+
+1. **The 30-year erosion projection can bar the permit outright.** Section 161.053(5)(b) prohibits a permit for a structure proposed for a location that will be seaward of the seasonal high-water line **within 30 years** of the application date. There is a narrow exception at § 161.053(5)(c) for certain pre-existing platted single-family lots. A lot can be legally subdivided, taxed, and for sale, and still be unbuildable under this test.
+2. **Some local governments run their own coastal program "in lieu of" the state process**, under DEP oversight (§ 161.053(3)). Find out which applies to your parcel before you file anything.
+3. **The coastal building zone is a different and much larger area.** Under § 161.54(1) it runs from the seasonal high-water line to **1,500 feet landward of the CCCL** — and on coastal barrier islands, 5,000 feet landward or the entire island, whichever is less. **All of Monroe County** is included. Being in the coastal building zone triggers the § 161.55 construction standards; it does **not** by itself require the separate DEP permit. Two different lines, two different consequences — confirm which one your lot sits behind.
 
 ## Inspection Requirements
 
 <CalloutBox type="info" title="Florida has comprehensive inspection requirements">
 
 Plan for a full inspection schedule from foundation through final certificate of occupancy.
+
+</CalloutBox>
+
+### The Notice of Commencement: A Courthouse Filing That Gates Your First Inspection
+
+If you read only one section of this guide, read this one. The Notice of Commencement is filed at the **clerk of the circuit court**, not the building department, which is exactly why owner-builders miss it — it is not on the counter with everything else, and nobody at the permit desk is required to remind you.
+
+Here is what it controls. Under [Fla. Stat. § 713.135(1)(e)1.](https://www.flsenate.gov/Laws/Statutes/2026/713.135):
+
+> *"In the absence of the filing of a copy of the notice of commencement, the issuing authority or a private provider performing inspection services may not perform or approve subsequent inspections until the applicant files… such copy with the issuing authority."*
+
+Note who that binds: the building department **and a private provider**. Hiring your own inspector does not get you around it.
+
+**But the permit itself is not held up by it.** Sections 713.135(1)(f) and (1)(e)4. bar the department from requiring the recorded notice as a condition of applying for, processing, or issuing the permit. So the sequence is: permit can issue, then the notice gates the inspections. People conflate these two halves constantly and end up either filing far too early or discovering the problem at footing inspection.
+
+**Three different dollar thresholds apply, and they are not the same number:**
+
+<DataTable
+  caption="Notice of Commencement thresholds — three different figures, commonly conflated"
+  headers={["Threshold", "What it triggers", "Citation"]}
+  rows={[
+    ["Over $2,500", "Recording the Notice of Commencement is required at all", "Fla. Stat. 713.02(5) — note this lives here, not in 713.13"],
+    ["Over $5,000", "A copy must be filed with the building department before the first inspection", "Fla. Stat. 713.135(1)(e)"],
+    ["Under $15,000", "HVAC repair or replacement contracts are carved out of 713.135(1) entirely", "Fla. Stat. 713.135(1)"]
+  ]}
+/>
+
+**The mechanics, and the two clocks inside them:**
+
+- **Record it before you commence work** ([§ 713.13(1)(a)](https://www.flsenate.gov/Laws/Statutes/2026/713.13)), then post a certified copy or a notarized statement at the job site.
+- **You sign it personally.** Section 713.13(1)(g) says *"no one else may be permitted to sign in his or her stead."* It is sworn, so the form carries a notary block — Florida does permit online notarization.
+- **Void if work does not begin within 90 days of recording** (§ 713.13(2)). Record too early and it expires before you break ground.
+- **Effective for 1 year from recording** unless the notice states otherwise (§ 713.13(6)). You can amend it to extend, but changing contractors requires a new notice.
+- **Payments made after it expires are "improper payments."** The statutory form's own WARNING TO OWNER says they *"CAN RESULT IN YOUR PAYING TWICE."* On a build that runs past a year — and part-time owner-builder projects routinely do — this is not a paperwork problem, it is a paying-for-your-framing-twice problem. Diary the expiration date the day you record it.
+
+<CalloutBox type="critical" title="Why this hits owner-builders harder than anyone else">
+
+As your own contractor, the lien documents that normally flow *from* a general contractor *to* an owner have nobody to flow from. Nobody is going to hand you a Notice of Commencement to sign, chase your lien releases, or produce a final payment affidavit. Every one of those jobs is now yours, on top of building the house.
+
+The 90-day and 1-year clocks above are the two most commonly blown. Put both on a calendar the day you record.
 
 </CalloutBox>
 
@@ -490,7 +643,7 @@ Plan for a full inspection schedule from foundation through final certificate of
     ["4", "Electrical Underground", "Before covering"],
     ["5", "Plumbing Underground", "Before covering, must pressure test"],
     ["6", "Building Frame", "After framing complete"],
-    ["7", "Structural Frame", "Special inspector if engineered (trusses, beams)"],
+    ["7", "Structural Frame", "Engineered elements — trusses, beams, connectors — checked against the sealed truss package and the engineer of record's plans"],
     ["8", "Electrical Rough-In", "Before insulation/drywall"],
     ["9", "Plumbing Rough-In", "Before covering, must pressure test"],
     ["10", "Mechanical Rough-In", "Before covering"],
@@ -506,12 +659,22 @@ Plan for a full inspection schedule from foundation through final certificate of
   ]}
 />
 
+<CalloutBox type="info" title="You do not need a special inspector for a house">
+
+A persistent piece of bad advice tells Florida owner-builders they must hire a **special inspector** once their frame is engineered. That is not the law for a one- or two-family dwelling.
+
+The special-inspector regime attaches to **threshold buildings**, defined at [Fla. Stat. § 553.71(12)](https://www.flsenate.gov/Laws/Statutes/2026/553.71) as buildings greater than **three stories or 50 feet in height**, or assembly occupancies over 5,000 square feet holding more than 500 occupants. **A house never qualifies.** Your structural frame is inspected by the building department like everything else.
+
+Your engineer of record may still want to see the frame, and your truss supplier's engineering has to be on site — but that is a design-team question, not a statutory special-inspector requirement, and it should not appear as a line item in someone's quote to you.
+
+</CalloutBox>
+
 ### Additional Inspections (as needed)
 
 - **Pool/Spa**: Multiple inspections (steel, gunite, plaster, barrier)
 - **Seawall**: If waterfront property
-- **Hurricane Protection**: Impact windows, shutters
-- **Elevations**: Flood zone properties
+- **Hurricane Protection**: the building official schedules an inspection to confirm the impact-resistant coverings or systems on your plans were installed per the manufacturer's instructions **and per the product approval** — this is where your FL numbers get checked against what is actually hanging in the wall
+- **Elevations (flood hazard areas)**: **two** separate certifications, not one — an elevation certification **upon placement of the lowest floor, before further vertical construction**, and a final certification at the final inspection. Getting the first one late stops the job
 
 ### Inspection Scheduling
 
@@ -565,47 +728,71 @@ Termite pressure in Florida is serious — take it seriously and budget for it.
 
 ### Septic Systems
 
-Much of Florida uses septic - important considerations.
+Much of Florida is on septic, and on a rural lot the septic permit is not a side errand — it is the first domino.
 
-Because the water table drives so much of the layout here, it pays to draw the lot first: the free [Site Plan Studio](/site-plan-studio) places the well, tank and drainfield to scale, measures the distance between them, and prints a letter-size sheet for the health-department application.
+Because the water table drives so much of the layout here, it pays to draw the lot first: the free [Site Plan Studio](/site-plan-studio) places the well, tank and drainfield to scale, measures the distance between them, and prints a letter-size sheet for your septic application.
 
-**Florida Department of Health** regulates septic:
+<CalloutBox type="critical" title="Your septic permit has to exist before your building permit does">
+
+This one statute reorders your entire filing sequence, and it is missing from nearly every Florida owner-builder guide. [Fla. Stat. § 381.0065(4)](https://www.flsenate.gov/Laws/Statutes/2026/381.0065) says a municipality or political subdivision:
+
+> *"may not issue a building or plumbing permit for any building that requires the use of an onsite sewage treatment and disposal system unless the owner or builder has received a construction permit for such system from the department. A building or structure may not be occupied and a municipality, political subdivision, or any state or federal agency may not authorize occupancy until the department approves the final installation…"*
+
+Read that twice. **Septic construction permit before building permit. Septic final approval before occupancy.** Both are statutory, neither is discretionary, and the permit office will simply enforce both without explaining why.
+
+On a rural lot the practical order is: site evaluation, then septic construction permit, then building permit application. If you plan a spring start and book the site evaluation for March, you have already lost the season.
+
+</CalloutBox>
+
+#### Who Actually Issues Your Septic Permit — the Answer Is Split
+
+Most guides get this wrong in one direction or the other, and both common answers are wrong for a large part of the state.
+
+The onsite sewage program **transferred from the Department of Health to the Department of Environmental Protection effective 1 July 2021**, under the Clean Waterways Act (ch. 2020-150, Laws of Florida). The rule chapter was renumbered from **64E-6 to 62-6, F.A.C.** in the same move, which is why county forms and older handouts still say 64E-6.
+
+**But the transfer is phased and it is not finished.**
+
+- **DEP issues permits directly in 17 counties**: Bay, Calhoun, Escambia, Franklin, Gadsden, Gulf, Holmes, Jackson, Jefferson, Leon, Liberty, Marion, Okaloosa, Santa Rosa, Wakulla, Walton, and Washington.
+- **In the other 50 counties — including every major metro** — you still file with the **Environmental Health program of your county health department**.
+
+DEP's own [onsite sewage permitting FAQ](https://floridadep.gov/water/onsite-sewage/content/onsite-sewage-faq-permitting) says the remaining transitions depend on legislative approval, and publishes no schedule. So "the health department regulates septic" is out of date, and "DEP regulates septic" is misleading for 50 of the 67 counties. **Check which office covers your county before you file, and check again if your project spans a year.**
 
 <DataTable
-  caption="Florida septic system types"
+  caption="Florida septic system types — illustrative cost ranges, verify with your installer"
   headers={["System type", "Cost", "Notes"]}
   rows={[
-    ["Conventional", "—", "Rare now, most areas require advanced"],
-    ["Aerobic Treatment Unit (ATU)", "$8,000-$15,000", "Most common"],
-    ["Performance-Based", "$12,000-$25,000", "Advanced systems"]
+    ["Conventional", "—", "Still the norm on ordinary lots. Enhanced nutrient-reducing systems are required in specific designated areas such as BMAP and impaired-basin areas, not statewide"],
+    ["Aerobic Treatment Unit (ATU)", "$8,000-$15,000", "Common where an advanced system is required or where site conditions demand one"],
+    ["Performance-Based", "$12,000-$25,000", "Advanced systems, engineered to a performance standard"]
   ]}
 />
 
-**Site Evaluation**:
-- Required first step: $400-$800
-- Soil testing, water table evaluation
-- High water table common in Florida (challenging)
+**Site Evaluation** — and note who is allowed to do it:
+- Required first step; illustratively $400-$800
+- Soil testing and wet-season water table evaluation. A high water table is common in Florida, and it is why filled and mound systems are so often the answer
+- **You cannot self-perform this one.** Rule 62-6.004(3) limits the site evaluation for a new system to five credential-holders: a Florida licensed engineer with soils training, department personnel, a Master Septic Tank Contractor, a certified professional soil scientist, or a person certified under § 381.0101
 
 **Permits and Timeline**:
-- Permit: $400-$1,000
-- Licensed contractor required for installation
-- Timeline: 6-10 weeks from evaluation to final approval
+- Permit: illustratively $400-$1,000
+- Timeline: roughly 6-10 weeks from evaluation to final approval — build this into the front of your schedule, not the middle
+- **You may install it yourself, within limits.** Section 381.0065(4) exempts *"a property owner who personally performs construction, maintenance, or repairs to a system serving his or her own owner-occupied single-family residence"* from **registration requirements only** — and expressly leaves that owner *"subject to all permitting requirements."* Read the conditions literally: **personally**, **your own**, **owner-occupied**, **single-family**. Anyone you pay to install it must be a registered septic contractor
 
 **Maintenance**:
-- ATU systems require maintenance contracts: $200-$400/year
-- Pumping: Every 3-5 years, $300-$500
+- ATU and performance-based systems carry operating permits and maintenance contracts, illustratively $200-$400/year
+- An ordinary residential gravity system outside a BMAP or impacted area generally does not require an operating permit
+- Pumping: every 3-5 years, illustratively $300-$500
 
 ### Wells
 
-Common in rural Florida areas.
+Common in rural Florida areas — and a different agency again. Well permits come from one of the **five water management districts** under Rule 62-532, F.A.C. and each district's own chapter, not from the county and not from DEP's septic program.
 
 **Requirements**:
-- Must use licensed well driller
-- Permit required: $200-$500
-- Setback from septic: 75 feet minimum
-- Depth: 100-800 feet (varies by region)
-- Cost: $3,500-$15,000
-- Testing required: $150-$300
+- **A permit is required before construction, repair, or abandonment**, applied for by the owner or by the water well contractor on the owner's behalf (Rule 62-532.400(1)). Illustratively $200-$500
+- **Practically, you will hire a licensed driller.** The owner exemption at [Fla. Stat. § 373.326(2)](https://www.flsenate.gov/Laws/Statutes/2026/373.326) is much narrower than people assume: it reaches a well *"2 inches or under in diameter"* on your own or leased property for a single-family house that is your residence. That describes a driven well point, **not the 4-6 inch cased well a household needs.** And it is an exemption from **licensure only** — the district permit still applies
+- Setback from septic: **75 feet minimum** for a private potable well, Rule 62-6.005(1)(a)
+- Depth: 100-800 feet, varies by region
+- Cost: illustratively $3,500-$15,000
+- **Water testing**: Florida's rules do **not** mandate a bacteriological test before occupancy for a true single-family private well — the testing regime in Rule 64E-8.003(5) is scoped to multifamily and limited-use public systems. Your lender or title company will very likely require one anyway. That is a lending requirement, not a state rule, and it is worth knowing which one you are satisfying. Budget $150-$300 either way
 
 **Water Quality Issues**:
 - High sulfur common (rotten egg smell)
@@ -631,7 +818,7 @@ Common in rural Florida areas.
 ### Hurricane Shutters vs. Impact Windows
 
 <DataTable
-  caption="Hurricane shutters vs. impact windows"
+  caption="Hurricane shutters vs. impact windows — illustrative cost ranges for a typical home"
   headers={["Option", "Pros", "Cons", "Cost / notes"]}
   rows={[
     ["Impact Windows", "Permanent, no prep, insurance discount, noise reduction, UV protection", "Expensive", "$40,000-$80,000 for typical home; required in HVHZ"],
@@ -714,54 +901,34 @@ The counties below carry the strictest codes, highest fees, or toughest site con
 
 ### State-Level Resources
 
-**Florida Building Commission**
-- www.floridabuilding.org
-- Florida Building Code (free download)
-- Code interpretations
-- Product approvals
-- (850) 487-1824
+**[Florida Building Commission](https://www.floridabuilding.org)** — the code editions themselves (free to read), the analyses of changes between editions, code interpretations, and the [product approval search](https://www.floridabuilding.org/pr/pr_app_srch.aspx) where you look up FL numbers. This is the source of record for anything about the code; check it before you believe a summary anywhere else.
 
-**Department of Business and Professional Regulation (DBPR)**
-- www.myfloridalicense.com
-- Contractor license verification
-- File complaints
-- Educational resources
-- (850) 487-1395
+**[Department of Business and Professional Regulation (DBPR)](https://www.myfloridalicense.com)** — contractor license verification, complaints, and the licensing rules behind chapter 489. Verify every license here before you sign anything, and read the *certified* versus *registered* distinction: a registered contractor may contract only in the jurisdictions where they met local competency requirements, so seeing "Registered" does not mean the license is good on your parcel.
 
-**Florida Department of Health**
-- www.floridahealth.gov (septic regulations)
-- County health departments (septic permits)
+**[Florida Statutes](https://www.flsenate.gov/Laws/Statutes)** — the official compilation. Every statutory claim in this guide links here. Note the year in the URL: Florida republishes each year's compilation at a near-identical address, so an old bookmark can quietly serve you a superseded year.
+
+**[Florida Administrative Code](https://www.flrules.org)** — the rules, including septic (chapter 62-6), wells (62-532), and the coastal construction control line (62B-33). Rule chapter 62-6 has been amended repeatedly and moves faster than most; check the effective date on any rule you rely on.
+
+**Septic — and check which office covers your county.** [Florida DEP's onsite sewage program](https://floridadep.gov/water/onsite-sewage) issues permits directly in 17 counties; in the other 50 you file with your **county health department's Environmental Health program**. The [permitting FAQ](https://floridadep.gov/water/onsite-sewage/content/onsite-sewage-faq-permitting) is where DEP publishes the current split. Note that drinking-water quality rules stayed with the Department of Health — only the onsite sewage program moved.
 
 ### County Building Departments
 
-**Miami-Dade County**:
-- (786) 315-2400
-- www.miamidade.gov/building
-- Online portal: ePermits
+A note on how these are listed. When the obvious deep permitting URLs for thirty Florida counties were tested for this update, **eleven were dead or silently redirected somewhere unrelated** — several counties use reassignable numeric page IDs, and one "building department" link resolved to a stormwater master plan. So this guide gives you **root domains** and lets you search from there. It is one extra click and it will still work next year.
 
-**Broward County**:
-- (954) 765-4500
-- www.broward.org/Building
+- **Miami-Dade County** — [miamidade.gov](https://www.miamidade.gov) (online portal: ePermits)
+- **Broward County** — [broward.org](https://www.broward.org)
+- **Palm Beach County** — [discover.pbc.gov](https://discover.pbc.gov)
+- **Orange County** — [ocfl.net](https://www.ocfl.net)
+- **Hillsborough County** — [hillsboroughcounty.org](https://www.hillsboroughcounty.org)
+- **Polk County** — [polkfl.gov](https://www.polkfl.gov)
+- **Pasco County** — [pascocountyfl.gov](https://www.pascocountyfl.gov)
+- **Collier County** — [collier.gov](https://www.collier.gov)
 
-**Palm Beach County**:
-- (561) 233-5000
-- www.pbcgov.org/buildingdivision
-
-**Orange County**:
-- (407) 836-5550
-- www.ocfl.net/development
-
-**Hillsborough County**:
-- (813) 272-5600
-- www.hillsboroughcounty.org/en/residents/public-safety/development-services
+Search "building permit" from the county's home page. If you are not certain which jurisdiction has your parcel — and with 67 counties and 400-plus municipalities in Florida, plenty of people are wrong about this — start at the **county property appraiser** and confirm the jurisdiction from the parcel record before you file anywhere.
 
 ### Helpful Organizations
 
-**Florida Home Builders Association**
-- www.fhba.com
-- Local chapters
-- Educational resources
-- (850) 224-4316
+**[Florida Home Builders Association](https://www.fhba.com)** — local chapters and educational resources.
 
 **Owner-Builder Organizations**:
 - Local building material suppliers often offer classes
@@ -769,13 +936,15 @@ The counties below carry the strictest codes, highest fees, or toughest site con
 
 ### Online Resources
 
-**FEMA Flood Maps**: msc.fema.gov
+**[FEMA Flood Maps](https://msc.fema.gov/portal/home)** — flood zone and Base Flood Elevation lookup.
 
-**Florida Product Approval**: www.floridabuilding.org/pr/pr_app_srch.aspx
+**[ASCE Hazard Tool](https://ascehazardtool.org)** — parcel-specific design wind speed under ASCE 7-22, the standard the 8th Edition points to.
 
-**REScheck**: www.energycodes.gov/rescheck (energy code compliance)
+**[Florida Product Approval search](https://www.floridabuilding.org/pr/pr_app_srch.aspx)** — FL numbers for windows, doors, roofing, shutters, and structural components.
 
-**MyFloridaLicense**: www.myfloridalicense.com (verify all contractor licenses)
+**Energy code forms**: Florida does **not** use REScheck. Use Florida's own forms — **R400-2023** (documentation checklist, all paths) plus **R402-2023** for the prescriptive path, or the output of Commission-approved software for the R405 performance path. There is no static "Form R405" PDF; the performance submittal *is* the software report. Get all of these from [floridabuilding.org](https://www.floridabuilding.org).
+
+**[MyFloridaLicense](https://www.myfloridalicense.com)** — verify every contractor license.
 
 ## Common Questions from Florida Owner-Builders
 
@@ -791,7 +960,7 @@ A: Yes, but challenging. Look for:
 - Expect 20-25% down, higher rates
 
 **Q: How much does hurricane code really add to costs?**
-A: HVHZ (Miami-Dade/Broward): +$50,000-$100,000 on typical home. Other coastal: +$30,000-$60,000. Inland: +$10,000-$25,000. But you get insurance discounts and storm protection.
+A: Illustratively — HVHZ (Miami-Dade/Broward): +$50,000-$100,000 on a typical home. Other coastal: +$30,000-$60,000. Inland: +$10,000-$25,000. You get insurance discounts and storm protection in return. One lever people give away for free: opening protection can be satisfied by approved shutters rather than impact glass, including in Miami-Dade, and on a whole house that difference is real money.
 
 **Q: Should I build in a flood zone?**
 A: Only if you understand costs. Zone AE: manageable (+$15,000-$35,000). Zone VE: expensive (+$50,000-$150,000). Factor in flood insurance ($1,000-$5,000/year). Consider higher ground if available.
@@ -804,7 +973,14 @@ A: More than most guides claim. On a home you own and will occupy, the owner-bui
 The catch: you may **not pay an unlicensed person** to do this work. Anything you hire out — electrical, plumbing, HVAC, roofing, pools, septic, wells — must go to a state-licensed contractor. Some building departments scrutinize owner-performed trade work closely, so confirm your county's policy before planning to self-perform.
 
 **Q: What's the biggest mistake Florida owner-builders make?**
-A: Underestimating hurricane code costs and timeline. Get detailed quotes early. Plan for longer permit reviews in coastal counties. Don't cut corners on wind protection - it'll fail inspection and cost more to fix.
+A: Two, and they are both sequencing mistakes rather than construction ones.
+
+The first is underestimating hurricane code cost and timeline. Get detailed quotes early, plan for longer reviews in coastal counties, and don't cut corners on wind protection — it will fail inspection and cost more to fix than to do right.
+
+The second is treating Florida's gates as paperwork you handle later. On a rural lot the **septic construction permit has to exist before the building permit can issue** (§ 381.0065(4)), and the **Notice of Commencement has to be recorded at the courthouse and filed with the department before anyone will inspect you** (§ 713.135(1)(e)1.). Neither is optional, neither is on the building department's counter, and both stop the job dead when they're missed. Handle them in month one.
+
+**Q: Who issues my septic permit — the health department or DEP?**
+A: Depends on your county, which is why most guides get this wrong. The onsite sewage program transferred from the Department of Health to DEP effective 1 July 2021 under the Clean Waterways Act, but the transfer is phased and unfinished. DEP issues directly in 17 counties; in the other 50 — including every major metro — you file with your county health department's Environmental Health program. Check the current split on [DEP's permitting FAQ](https://floridadep.gov/water/onsite-sewage/content/onsite-sewage-faq-permitting) before you file.
 
 ## Florida Owner-Builder Timeline Example
 
@@ -815,10 +991,10 @@ Timeline for 2,000 sq ft home in coastal county (not HVHZ).
 </CalloutBox>
 
 <DataTable
-  caption="Phased build timeline: 2,000 sq ft Florida coastal home (not HVHZ)"
+  caption="Phased build timeline: 2,000 sq ft Florida coastal home (not HVHZ) — illustrative durations, not commitments"
   headers={["Phase", "Tasks and durations"]}
   rows={[
-    ["Months 1-3: Planning & Permitting", "Land purchase: 2-8 weeks; plans (with engineering): 4-8 weeks; permit submittal and review: 6-10 weeks; impact fees and permit issuance: 1 week"],
+    ["Months 1-3: Planning & Permitting", "Land purchase: 2-8 weeks; septic site evaluation and construction permit: 6-10 weeks, and it must come FIRST because the building permit cannot issue without it; plans (with engineering): 4-8 weeks; record the Notice of Commencement before work starts; permit submittal and review: 6-10 weeks; impact fees and permit issuance: 1 week"],
     ["Month 3-4: Site Work", "Clear and rough grade: 1 week; septic installation: 2-3 weeks; well drilling: 1-3 weeks; driveway: 1 week; temporary power: 1-2 weeks"],
     ["Month 4-5: Foundation", "Layout: 2-3 days; plumbing under slab: 3-5 days; foundation forms and pour: 1-2 weeks; cure: 1 week"],
     ["Month 5-7: Framing", "Frame walls: 2-4 weeks; frame roof with hurricane ties: 2-3 weeks; sheathing with enhanced nailing: 1-2 weeks; windows and doors (impact-rated): 1-2 weeks"],
@@ -842,10 +1018,11 @@ Florida's combination of strict building codes and a strong owner-builder exempt
 
 1. **Budget for hurricane requirements** - They're expensive but non-negotiable and protect your investment
 2. **Use licensed trades when you hire out** - You can self-perform under the exemption, but you can't pay unlicensed help; for most owner-builders, licensed electricians, plumbers, and HVAC techs are worth it for the expertise and inspection sign-off
-3. **Plan for longer timelines** - Permit reviews take months in many counties
-4. **Check flood zones** - Can add $50,000+ to costs, factor in early
-5. **Focus on energy efficiency** - AC runs most of the year, good ROI
-6. **Don't fight the code** - Florida's requirements are there for good reasons (Hurricane Andrew taught hard lessons)
+3. **Respect the gates, and handle them first** - the septic construction permit before the building permit, the Notice of Commencement before the first inspection. Neither is on the building department's counter and both stop the job cold
+4. **Plan for longer timelines** - permit reviews take months in many counties. Know that § 553.792 puts the county on a clock, and that § 553.791 lets you hire your own plan reviewer and inspector if waiting is costing you more than paying
+5. **Check flood zones, and the coastal control line** - flood zone status can add $50,000+; a lot seaward of the CCCL needs a separate state permit and may fail the 30-year erosion test outright
+6. **Focus on energy efficiency** - AC runs most of the year, good ROI
+7. **Don't fight the code** - Florida's requirements are there for good reasons (Hurricane Andrew taught hard lessons)
 
 Whether building in the panhandle, central Florida, or south Florida, respect the climate, follow the code, and build for the long term. Your home will withstand hurricanes that would destroy standard construction, and that peace of mind is priceless.
 
@@ -862,7 +1039,7 @@ Whether building in the panhandle, central Florida, or south Florida, respect th
     },
     {
       question: "Can a homeowner do their own electrical and plumbing work in Florida?",
-      answer: "Yes, on a home you own and occupy. Section 489.103(7) covers all work not performed by licensed contractors, and Fla. Stat. 489.503(6) specifically lets an owner doing and supervising the work act as their own electrical contractor on a single-family or duplex residence for their own use, not for sale or lease. Permits and inspections are still required, and the work must meet the full Florida Building Code and 2020 NEC. The key limit: you may not pay an unlicensed person to do the work for you. Some building departments scrutinize owner-performed trade work, so confirm your county's policy first."
+      answer: "Yes, on a home you own and occupy — but under two different exemptions, because chapter 489 is split. Plumbing, mechanical, air-conditioning and roofing are all licensed inside Part I, and Fla. Stat. 489.103 opens by saying this part does not apply to owners acting as their own contractor, so when Part I stops applying to you it stops applying for those trades. Electrical is licensed separately under Part II, which is exactly why it needs its own exemption at Fla. Stat. 489.503(6) with its own disclosure statement. Permits and inspections are still required either way. On the electrical code edition, ask your plan reviewer: the 8th Edition as adopted referenced the 2020 NEC, and the Commission has since updated the referenced standard to the 2023 NEC using a fast-track power that applies only to the electrical code. The key limit: you may not pay an unlicensed person to do the work for you. Some building departments scrutinize owner-performed trade work, so confirm your county's policy first."
     },
     {
       question: "What is the Florida owner-builder one-year rule?",
@@ -870,7 +1047,15 @@ Whether building in the panhandle, central Florida, or south Florida, respect th
     },
     {
       question: "Which Florida Building Code is in effect in 2026?",
-      answer: "Florida is on the 8th Edition (2023) Florida Building Code, effective December 31, 2023, including the 2020 National Electrical Code adopted through FBC Chapter 27. The 9th Edition (2026) is in development, with enforcement expected to begin December 31, 2026. Which edition applies to your project is set by your permit application date."
+      answer: "Florida is on the 8th Edition (2023) Florida Building Code, effective December 31, 2023. The Residential volume is based on the 2021 IRC, the Energy Conservation volume on the 2021 IECC, and wind design moved to ASCE 7-22 in this edition. The 9th Edition (2026) exists only as a draft on the Building Commission's own code menu, with no adopted effective date — treat any guide that gives you one as guessing, since Fla. Stat. 553.73(7)(e) also requires the adopting rule to take effect no sooner than six months after the updated code is published. The electrical answer is genuinely split: the 8th Edition as adopted referenced the 2020 NEC through FBC Chapter 27, and the Commission has since updated that referenced standard to the 2023 NEC under a fast-track power specific to the electrical code. Ask your electrical plan reviewer which edition your permit is reviewed against. Which edition applies to your project overall is set by your permit application date."
+    },
+    {
+      question: "Do I need a Notice of Commencement in Florida?",
+      answer: "For a house, yes — and the sequencing matters more than the form. You record it with the clerk of the circuit court before commencing work, post a certified copy or notarized statement at the site, and file a copy with the building department before the first inspection. Until that copy is filed, Fla. Stat. 713.135(1)(e)1. bars the building department or a private provider from performing or approving inspections. But the same statute bars the department from requiring it as a condition of issuing the permit, so the permit can issue first. Three thresholds apply and they are commonly conflated: recording is required above $2,500 under Fla. Stat. 713.02(5), filing a copy with the department applies above $5,000, and HVAC repair or replacement contracts under $15,000 are carved out of 713.135(1) entirely. The notice is void if work does not start within 90 days of recording, and it expires one year after recording unless it says otherwise — payments made after it expires are improper payments and can result in paying twice."
+    },
+    {
+      question: "Who issues septic permits in Florida, the health department or DEP?",
+      answer: "Both, depending on your county. The onsite sewage program transferred from the Department of Health to the Department of Environmental Protection effective 1 July 2021 under the Clean Waterways Act, and the rule chapter was renumbered from 64E-6 to 62-6, F.A.C. But the transfer is phased and unfinished: DEP issues permits directly in 17 counties — Bay, Calhoun, Escambia, Franklin, Gadsden, Gulf, Holmes, Jackson, Jefferson, Leon, Liberty, Marion, Okaloosa, Santa Rosa, Wakulla, Walton and Washington — while in the other 50, including every major metro, you file with your county health department's Environmental Health program. One thing that does not vary: under Fla. Stat. 381.0065(4) no building or plumbing permit may issue until you hold the septic construction permit, and occupancy cannot be authorized until the final installation is approved."
     },
     {
       question: "Do owner-builders have to hire licensed contractors for major trades in Florida?",
@@ -895,4 +1080,4 @@ Building in a nearby Southeast state? Check the requirements for:
 
 ---
 
-*Last updated: May 2026. Verified against primary sources: the owner-builder exemption and disclosure statement (Fla. Stat. § 489.103(7)), the owner electrical exemption (§ 489.503(6)), and the current 8th Edition (2023) Florida Building Code with the 2020 NEC. Corrected the code edition (the 8th Edition, not the 7th, is in effect) and the trade-work rules (owners may self-perform their own electrical and plumbing on a home they occupy; only hired-out trade work requires a licensed contractor). Florida updates its building code on a roughly 3-year cycle. Permit fees, impact fees, and owner-builder trade policies vary by county — always verify current requirements with your local building department before beginning construction.*
+*Last updated: September 2026. Verified this update against the Florida Statutes at [flsenate.gov](https://www.flsenate.gov/Laws/Statutes), the Florida Administrative Code at [flrules.org](https://www.flrules.org), and the Florida Building Commission's own documents at [floridabuilding.org](https://www.floridabuilding.org). This pass corrected several substantive errors in the prior version: septic is regulated by the **Department of Environmental Protection**, not the Department of Health, following the 1 July 2021 transfer under the Clean Waterways Act — but the transfer is phased, and 50 of 67 counties still permit through the county health department's Environmental Health program; the **9th Edition (2026) has no adopted effective date** and the previously printed December 31, 2026 figure was not supportable; the blower door limit is **7 ACH50**, not 5; **impact glass is not mandatory in Miami-Dade** — approved shutters satisfy FBC Residential R301.2.1.2, which even retains a plywood option; permit validity lives in the FBC administrative chapter (105.3.2, 105.4.1, 105.4.1.3), not in statute; **special inspectors do not apply to houses**, since threshold buildings under § 553.71(12) are over three stories or 50 feet; Florida does **not** use REScheck; the septic and well owner-DIY claims were narrowed to what § 381.0065(4), Rule 62-6.004(3) and § 373.326(2) actually say; and the county wind-speed table was replaced with the parcel-specific ASCE 7-22 lookup the code itself now points to. Added this pass: the Notice of Commencement and its three thresholds (§§ 713.02(5), 713.13, 713.135), the statutory rule that a septic construction permit must precede the building permit (§ 381.0065(4)), Florida Product Approval as a purchasing constraint (§ 553.842), the § 553.792 plan review clock and its fee reductions, the § 553.791 private provider option, the coastal construction control line (§ 161.053, Rule 62B-33), and the expiry of local code amendments on the triennial cycle (§ 553.73(4)(e)). All cost, fee, and timeline figures in this guide are illustrative planning ranges, not quoted fees or published schedules. Permit fees, impact fees, code editions, and owner-builder trade policies vary by county and change without notice — always verify current requirements with your local building department, and separately with the office that permits septic and wells for your parcel, before beginning construction.*

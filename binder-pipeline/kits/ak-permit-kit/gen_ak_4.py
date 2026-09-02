@@ -50,7 +50,7 @@ sys.path.insert(0, _HERE)
 sys.path.insert(0, os.path.dirname(os.path.dirname(_HERE)))
 
 from reportlab.lib.units import inch
-from reportlab.platypus import Paragraph, Spacer
+from reportlab.platypus import CondPageBreak, Paragraph, Spacer
 
 import design as d
 import kit as k
@@ -492,6 +492,9 @@ flow.append(k.body(
     "number."))
 
 flow.append(Spacer(1, 4))
+# Bold body text acting as a heading gets no break protection from the
+# style system — without this it strands alone at a page foot.
+flow.append(CondPageBreak(1.2 * inch))
 flow.append(Paragraph("<b>THE FIVE ANSWERS</b>", S["body"]))
 flow.append(d.FillInRow([("Borough (or Unorganized):", 0.5),
                          ("Inside a city? Which:", 0.5)]))
