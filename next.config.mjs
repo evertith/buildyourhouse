@@ -16,6 +16,12 @@ const nextConfig = {
   }
 };
 
-const withMDX = createMDX();
+const withMDX = createMDX({
+  options: {
+    // String form: required for Turbopack (Next 16 default). Gives every MDX
+    // heading a stable id so in-page anchors and AI-surface deep links resolve.
+    rehypePlugins: [['rehype-slug']],
+  },
+});
 
 export default withMDX(nextConfig);
