@@ -152,43 +152,6 @@ export default function Contact() {
             </div>
           </section>
 
-          <section className={styles.socialSection}>
-            <h2>Connect on Social Media</h2>
-            <p>
-              Follow along for tips, updates, and real stories from owner-builders:
-            </p>
-            <div className={styles.socialLinks}>
-              <a href="#" className={styles.socialLink}>
-                <span className={styles.socialIcon}>📘</span>
-                Facebook
-                <span className={styles.placeholder}>[link placeholder]</span>
-              </a>
-              <a href="#" className={styles.socialLink}>
-                <span className={styles.socialIcon}>📸</span>
-                Instagram
-                <span className={styles.placeholder}>[link placeholder]</span>
-              </a>
-              <a href="#" className={styles.socialLink}>
-                <span className={styles.socialIcon}>🐦</span>
-                Twitter/X
-                <span className={styles.placeholder}>[link placeholder]</span>
-              </a>
-              <a href="#" className={styles.socialLink}>
-                <span className={styles.socialIcon}>▶️</span>
-                YouTube
-                <span className={styles.placeholder}>[link placeholder]</span>
-              </a>
-              <a href="#" className={styles.socialLink}>
-                <span className={styles.socialIcon}>💼</span>
-                LinkedIn
-                <span className={styles.placeholder}>[link placeholder]</span>
-              </a>
-            </div>
-            <p className={styles.socialNote}>
-              <em>Social media accounts coming soon. Email is the best way to reach us for now.</em>
-            </p>
-          </section>
-
           <section className={styles.ctaSection}>
             <h2>Ready to Start Building?</h2>
             <p>
