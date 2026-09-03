@@ -193,13 +193,31 @@ export default function CalcSheet({
             {result.hero.detail && <p className={s.heroQtyDetail}>{result.hero.detail}</p>}
 
             <ul className={s.schedule}>
-              {result.lines.map((line) => (
-                <li key={line.id} className={s.schedLine}>
-                  <span className={s.schedKey}>{line.label}</span>
-                  <span className={s.schedLeader} />
-                  <span className={s.schedVal}>{formatQty(line.qty)} {line.unit}</span>
-                </li>
-              ))}
+              {result.lines.map((line) => {
+                const hasLineCost = line.costLow !== undefined && line.costHigh !== undefined;
+                return (
+                  <li key={line.id} className={s.schedItem}>
+                    <div className={s.schedLine}>
+                      <span className={s.schedKey}>{line.label}</span>
+                      <span className={s.schedLeader} />
+                      <span className={s.schedVal}>{formatQty(line.qty)} {line.unit}</span>
+                    </div>
+                    {/* Spec detail under the row: what the line covers, and its own
+                        cost band when the engine prices per line. Session replays
+                        showed visitors tapping schedule rows for exactly this. */}
+                    {(line.detail || hasLineCost) && (
+                      <p className={s.schedDetail}>
+                        {line.detail}
+                        {hasLineCost && (
+                          <span className={s.schedCost}>
+                            {formatCostRange(line.costLow!, line.costHigh!)}
+                          </span>
+                        )}
+                      </p>
+                    )}
+                  </li>
+                );
+              })}
             </ul>
 
             {hasCost && (
