@@ -10,6 +10,7 @@ import AmazonLink from '@/components/AmazonLink';
 import ArticleSchema from '@/components/ArticleSchema';
 import BinderCTA from '@/components/BinderCTA';
 import ProductCTA from '@/components/ProductCTA';
+import CodeAlertCapture from '@/components/CodeAlertCapture';
 import PlanningTools from '@/components/PlanningTools';
 import LenderDirectory, { FeaturedLenderSlot } from '@/components/financing/LenderDirectory';
 import LenderMatchForm from '@/components/financing/LenderMatchForm';
@@ -34,6 +35,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ArticleSchema,
     BinderCTA,
     ProductCTA,
+    CodeAlertCapture,
     PlanningTools,
     LenderDirectory,
     FeaturedLenderSlot,
