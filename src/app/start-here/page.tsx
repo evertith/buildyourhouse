@@ -6,8 +6,8 @@ import styles from './start-here.module.css';
 
 export const metadata: Metadata = {
   alternates: { canonical: '/start-here' },
-  title: 'Start Here — Your Owner-Builder Roadmap From Day 1 to Move-In',
-  description: 'The complete owner-builder roadmap. Where to start, what order to tackle things, and the step-by-step path from idea to moving into your new home.',
+  title: 'So You Want to Build Your Own House — Where to Actually Start',
+  description: 'Want to build your own house? Here is where to actually start: the owner-builder roadmap from feasibility to move-in — what order to tackle things, what each phase costs, and the step-by-step path from idea to keys.',
 };
 
 type PhaseLink = { href: string; label: string; note?: string };
@@ -119,10 +119,10 @@ export default function StartHere() {
           <div className={styles.heroGrid}>
             <div>
               <div className={styles.eyebrow}>Owner-Builder Roadmap</div>
-              <h1 className={styles.heroTitle}>Your roadmap, <em>day one to move-in.</em></h1>
+              <h1 className={styles.heroTitle}>So you want to build <em>your own house.</em></h1>
               <p className={styles.heroSub}>
-                Building your own home is one of the most rewarding projects you&rsquo;ll ever undertake.
-                This guide walks you through every phase &mdash; from the first feasibility check to the day you turn the key.
+                Here&rsquo;s where you actually start. Building your own home is one of the most rewarding projects you&rsquo;ll ever undertake,
+                and this roadmap walks you through every phase &mdash; from the first feasibility check to the day you turn the key.
               </p>
               <div className={styles.heroCtas}>
                 <Link href="/feasibility/is-it-right-for-you" className={styles.btnPrimary}>Take the Assessment →</Link>
