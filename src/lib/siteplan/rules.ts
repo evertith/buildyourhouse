@@ -1272,6 +1272,450 @@ const VERIFIED_STATES: StateSiteplanRules[] = [
         'state in this corpus.',
     ],
   },
+  {
+    code: 'pa',
+    state: 'Pennsylvania',
+    guideSlug: 'pennsylvania',
+    verified: true,
+    verifiedDate: 'September 2026',
+    separations: {
+      // 25 Pa. Code § 73.13 keeps three tables: treatment tanks (b), the
+      // absorption-area perimeter (c), and spray fields (d). The absorption
+      // area is the governing one for a conventional system, so its numbers
+      // lead; the tank's smaller distances ride in notes.
+      wellToSeptic: {
+        feet: 50,
+        citation: '25 Pa. Code § 73.13(b)',
+        note:
+          'Treatment tank to an individual water supply or suction line. ' +
+          'The absorption area needs 100 ft — that larger circle usually ' +
+          'controls the layout.',
+      },
+      wellToDrainfield: {
+        feet: 100,
+        citation: '25 Pa. Code § 73.13(c)',
+        note:
+          'Measured from the perimeter of the aggregate to an individual ' +
+          'water supply or its suction line. § 73.13(a): these are minimums ' +
+          'and "if conditions warrant, greater isolation distances may be ' +
+          'required" — the Sewage Enforcement Officer decides.',
+      },
+      wellToPropertyLine: unknown(
+        'Pennsylvania has no statewide private well construction standard — ' +
+          'no state well permit and no state well-to-line distance. Some ' +
+          'counties and municipalities regulate wells; ask yours.'
+      ),
+      septicToPropertyLine: {
+        feet: 10,
+        citation: '25 Pa. Code § 73.13(c)',
+        note:
+          'Absorption area to a property line, easement, or right-of-way. ' +
+          'Same 10 ft for the treatment tank (§ 73.13(b)).',
+      },
+      septicToBuilding: {
+        feet: 10,
+        citation: '25 Pa. Code § 73.13(c)',
+        note:
+          'Absorption area to occupied buildings, swimming pools, and ' +
+          'driveways alike.',
+      },
+      septicToSurfaceWater: {
+        feet: 50,
+        citation: '25 Pa. Code § 73.13(c)',
+        note:
+          'Absorption area to streams, watercourses, lakes, ponds, or other ' +
+          'surface water; the treatment tank itself needs 25 ft. One gloss ' +
+          'the chapter states outright: "wetlands are not surface waters" ' +
+          'for these rules — do not apply this buffer to a mapped wetland.',
+      },
+      wellToSurfaceWater: unknown(
+        'No statewide well construction standard exists, so no state number ' +
+          'for a well near surface water.'
+      ),
+    },
+    extraSeparations: [
+      {
+        label: 'Absorption area to mine subsidence areas, bore holes, or sinkholes',
+        feet: 100,
+        citation: '25 Pa. Code § 73.13(c)',
+      },
+      {
+        label: 'Absorption area to another active on-lot system',
+        feet: 5,
+        citation: '25 Pa. Code § 73.13(c)',
+      },
+      {
+        label: 'Absorption area to a surface drainageway or a slope over 25%',
+        feet: 10,
+        citation: '25 Pa. Code § 73.13(c)',
+      },
+      {
+        label: 'Absorption area to a cistern used as a water supply',
+        feet: 25,
+        citation: '25 Pa. Code § 73.13(c)',
+      },
+    ],
+    setbacksNote:
+      'Building setbacks from lot lines are municipal zoning — roughly ' +
+      '2,560 municipalities, no statewide value, so the write-in lines are ' +
+      'the answer there. The septic permit comes from your municipality’s ' +
+      'Sewage Enforcement Officer on a DEP form, and § 73.12 carries hard ' +
+      'disqualifiers worth knowing before you sketch: slope over 25%, a ' +
+      'mapped floodway (or 50 ft from the top of the stream bank where ' +
+      'unmapped), rock outcrops in the absorption area, and sinkhole ' +
+      'depressions in limestone country. Fill is unusable until it has ' +
+      'been in place four years.',
+    negativeFindings: [
+      'Pennsylvania issues no state permit for a private residential ' +
+        'water well and sets no statewide construction standard — the ' +
+        'driller’s contract and any county rules are the only controls.',
+      'Perc faster than 3.0 min/inch is Unsuitable (§ 73.16) — very fast ' +
+        'ground fails, not just slow ground. Design flow is 400 gpd ' +
+        'through three bedrooms plus 100 gpd per bedroom beyond.',
+    ],
+  },
+  {
+    code: 'oh',
+    state: 'Ohio',
+    guideSlug: 'ohio',
+    verified: true,
+    verifiedDate: 'September 2026',
+    separations: {
+      // Ohio groups its septic setbacks into two numbers (OAC
+      // 3701-29-06(G)(3)) instead of a row-per-feature table; the well side
+      // is a genuine 34-row table at OAC 3701-28-07(J). The two chapters
+      // agree at the boundary: 50 ft between a live well and any part of
+      // the system, stated from both sides.
+      wellToSeptic: {
+        feet: 50,
+        citation: 'OAC 3701-29-06(G)(3)(c); OAC 3701-28-07(J) Table 1',
+        note:
+          'To any component of the system — tank, lines, or field; Ohio ' +
+          'does not distinguish. The 50 ft applies to a live well. A ' +
+          'properly sealed (abandoned) well needs only 10 ft — the ' +
+          'asymmetry that rescues some small lots.',
+      },
+      wellToDrainfield: {
+        feet: 50,
+        citation: 'OAC 3701-29-06(G)(3)(c); OAC 3701-28-07(J) Table 1',
+        note:
+          'Same provision as the tank. The well must also clear the ' +
+          'required replacement area (OAC 3701-29-06(G)(2)) — see the ' +
+          'note below the tables.',
+      },
+      wellToPropertyLine: {
+        feet: 10,
+        citation: 'OAC 3701-28-07(J) Table 1',
+        note: 'Lot lines and easements alike.',
+      },
+      septicToPropertyLine: {
+        feet: 10,
+        citation: 'OAC 3701-29-06(G)(3)(a)',
+        note:
+          'All system components to a property line or right-of-way ' +
+          'boundary. Every Ohio number is a statewide floor the local ' +
+          'health district may raise (OAC 3701-29-22).',
+      },
+      septicToBuilding: {
+        feet: 10,
+        citation: 'OAC 3701-29-06(G)(3)(a)',
+        note: 'Any building or other structure, driveways and hardscape too.',
+      },
+      septicToSurfaceWater: {
+        feet: 50,
+        citation: 'OAC 3701-29-06(G)(3)(b)',
+        note:
+          'Absorption field to a lake, river, perennial stream, wetland, ' +
+          'or impoundment. An intermittent stream or swale needs only ' +
+          '10 ft from any component (G)(3)(a) — the field-vs-tank and ' +
+          'perennial-vs-intermittent distinctions both matter here.',
+      },
+      wellToSurfaceWater: {
+        feet: 25,
+        citation: 'OAC 3701-28-07(J) Table 1',
+        note: 'Permanent bodies of water — streams, lakes, ponds.',
+      },
+    },
+    extraSeparations: [
+      {
+        label: 'Well to a leaching pit, drywell, or leaching privy not properly abandoned',
+        feet: 100,
+        citation: 'OAC 3701-28-07(J) Table 1',
+      },
+      {
+        label: 'Well to a fuel or chemical tank under 1,100 gallons',
+        feet: 50,
+        citation: 'OAC 3701-28-07(J) Table 1',
+      },
+      {
+        label: 'Well to a propane or natural gas heating tank',
+        feet: 20,
+        citation: 'OAC 3701-28-07(J) Table 1',
+      },
+      {
+        label: 'Well to a dwelling foundation (10 ft) or deck edge (5 ft)',
+        feet: 10,
+        citation: 'OAC 3701-28-07(D)',
+      },
+      {
+        label: 'Septic to a geothermal vertical loop (horizontal closed loops need 10 ft)',
+        feet: 50,
+        citation: 'OAC 3701-29-06(G)(3)(c)',
+      },
+    ],
+    setbacksNote:
+      'The rule that actually kills Ohio lots is not a setback: every new ' +
+      'system needs a second, fully compliant replacement area meeting ' +
+      'every distance above (OAC 3701-29-06(G)(1)), and the well must ' +
+      'clear both areas (G)(2). Sketch the reserve area before falling in ' +
+      'love with a site plan. Floodways, wetlands, and any public well’s ' +
+      'sanitary isolation radius are prohibited outright (G)(H). Building ' +
+      'setbacks from lot lines are local zoning — and in much of rural ' +
+      'Ohio the health district is the only office that will ever review ' +
+      'this drawing, because no residential building department is ' +
+      'certified there.',
+    negativeFindings: [
+      'No statewide minimum lot size exists — but every separation is a ' +
+        'floor the local health district may raise (OAC 3701-29-22), so ' +
+        'confirm the local rules before staking anything.',
+      'You cannot perform your own soil evaluation (certified soil ' +
+        'scientist or equivalent required), and there is no blanket ' +
+        'homeowner exemption for installing your own system — the ' +
+        'fee/bond waiver in OAC 3701-29-03(H) applies to a registered ' +
+        'installer working on their own home, so registration comes ' +
+        'first. Drilling your own well is allowed only after registering ' +
+        'with the Department of Health.',
+    ],
+  },
+  {
+    code: 'tn',
+    state: 'Tennessee',
+    guideSlug: 'tennessee',
+    verified: true,
+    verifiedDate: 'September 2026',
+    separations: {
+      // One table governs statewide: Rule 0400-48-01-.11(1). It measures
+      // tank and disposal field in separate columns; where they differ the
+      // field number leads and the tank rides in the note.
+      wellToSeptic: {
+        feet: 50,
+        citation: 'Rule 0400-48-01-.11(1), "Water Supply" row',
+        note:
+          'The rule keeps one undifferentiated "Water Supply" row — it ' +
+          'does not separate private wells from public lines. The well ' +
+          'chapter states the same 50 ft from its side twice over ' +
+          '(0400-45-09 Table A and .15(2)(j), which makes the driller ' +
+          'confirm it on the completion report).',
+      },
+      wellToDrainfield: {
+        feet: 50,
+        citation: 'Rule 0400-48-01-.11(1), "Water Supply" row',
+        note:
+          'Same 50 ft as the tank. Beware a 25 ft figure floating around ' +
+          'the well chapter — that is for closed-loop geothermal ' +
+          'boreholes (Rule 0400-45-09-.17), not water wells.',
+      },
+      wellToPropertyLine: {
+        feet: 10,
+        citation: 'Rule 0400-45-09-.10(2)(d)',
+        note:
+          'Graduated, not flat: under 10 ft prohibited; 10–25 ft allowed ' +
+          'only with 35 ft of cased-and-grouted construction; 25 ft or ' +
+          'more is the normal case. Treat 25 ft as the planning number.',
+      },
+      septicToPropertyLine: {
+        feet: 10,
+        citation: 'Rule 0400-48-01-.11(1)',
+        note: 'Tank and disposal field alike; same 10 ft to easements.',
+      },
+      septicToBuilding: {
+        feet: 10,
+        citation: 'Rule 0400-48-01-.11(1), "Dwellings" row',
+        note: 'Disposal field 10 ft; the tank itself needs only 5 ft.',
+      },
+      septicToSurfaceWater: {
+        feet: 25,
+        citation: 'Rule 0400-48-01-.11(1), starred row',
+        note:
+          'Disposal field 25 ft, tank 15 ft — to streams, sinkholes, ' +
+          'gullies, drainageways, and cut banks alike. The starred row is ' +
+          'adjustable in BOTH directions by the Commissioner after a soil ' +
+          'consultant’s investigation, so treat it as a default, not a ' +
+          'hard line.',
+      },
+      wellToSurfaceWater: unknown(
+        'No number found in either the septic or the well chapter — the ' +
+          'well rules control contamination sources, not surface water ' +
+          'distances.'
+      ),
+    },
+    extraSeparations: [
+      {
+        label: 'Disposal field to water lines (tank the same)',
+        feet: 10,
+        citation: 'Rule 0400-48-01-.11(1)',
+      },
+      {
+        label: 'Septic tank to dosing tank',
+        feet: 5,
+        citation: 'Rule 0400-48-01-.11(1)',
+      },
+      {
+        label: 'House-to-tank sewer connection to the disposal field',
+        feet: 10,
+        citation: 'Rule 0400-48-01-.11(1)',
+      },
+    ],
+    setbacksNote:
+      'Tennessee sizes lots before it sets distances: 20,000 sq ft ' +
+      'minimum on public water and 25,000 sq ft on a private well ' +
+      '(0400-48-01-.09), and every system needs a 100% duplicate reserve ' +
+      'area — sketch the reserve before committing to a layout, and if ' +
+      'you are planning an LDGP system the reserve must be sized as if a ' +
+      'conventional system were going in it. Slope over 30% is ' +
+      'rebuttable, over 50% is a hard stop. Building setbacks from lot ' +
+      'lines are local zoning; the septic permit is TDEC’s (form ' +
+      'CN-0971), not the county health department’s, except in the nine ' +
+      'contract counties.',
+    negativeFindings: [
+      'No numeric rule exists for driveways, springs, cisterns, or ' +
+        'embankments as horizontal setbacks — those are handled as ' +
+        'excluded areas (0400-48-01-.04(4)(b), which also names caves) ' +
+        'or construction specs, so do not invent numbers for them.',
+      'Draining stormwater into a sinkhole can create a regulated Class ' +
+        'V injection well (TDEC UIC chapter 0400-45-06: an "improved ' +
+        'sinkhole" is an injection well requiring authorization). Keep ' +
+        'roof and driveway runoff away from karst features entirely.',
+      'You may not drill your own well — Tennessee licenses well ' +
+        'drillers, and TDEC states that even licensed GCs, electricians, ' +
+        'and plumbers may not install or maintain wells or well pumps ' +
+        'without a TDEC license.',
+    ],
+  },
+  {
+    code: 'sc',
+    state: 'South Carolina',
+    guideSlug: 'south-carolina',
+    verified: true,
+    verifiedDate: 'September 2026',
+    separations: {
+      // R.61-56 § 200.6(1) measures from any part of the system (solid
+      // pipes excluded); R.61-71 § E.1 measures from the well. The two
+      // regulations agree at the boundary: 75 ft both directions.
+      wellToSeptic: {
+        feet: 75,
+        citation: 'R.61-56 § 200.6(1)(b); R.61-71 § E.1.c',
+        note:
+          'Private well — both regulations state the same 75 ft from ' +
+          'their own side. A public well needs 100 ft (§ 200.6(1)(c)).',
+      },
+      wellToDrainfield: {
+        feet: 75,
+        citation: 'R.61-56 § 200.6(1)(b)',
+        note:
+          'Same provision — the rule measures to any part of the system, ' +
+          'tank and field alike.',
+      },
+      wellToPropertyLine: {
+        feet: 5,
+        citation: 'R.61-71 § E.1.k',
+        note: 'Same 5 ft to a building. The Department may require more ' +
+          'for certain well types over fractured rock or shallow ' +
+          'limestone (§ E.2).',
+      },
+      septicToPropertyLine: {
+        feet: 5,
+        citation: 'R.61-56 § 200.6(1)(k)',
+        note:
+          'The floor. Alternative-system appendices escalate it: four ' +
+          'standards carry 75 ft on contiguous lots in subdivisions ' +
+          'approved after the standard took effect, and Appendix P ' +
+          '(elevated systems) carries an unconditional 50 ft from the ' +
+          'retaining wall. Fill-cap systems measure from where the fill ' +
+          'taper meets natural grade — roughly 15–20 ft beyond the ' +
+          'trench per side.',
+      },
+      septicToBuilding: {
+        feet: 5,
+        citation: 'R.61-56 § 200.6(1)(a)',
+        note:
+          'Basements change it: 25 ft upslope, 15 ft on the sides — and ' +
+          '25 ft on the sides where foundation drains sit at or below ' +
+          'trench bottom (§ 200.6(1)(i)). The system also may not be ' +
+          'placed under a driveway or parking area at all.',
+      },
+      septicToSurfaceWater: {
+        feet: 75,
+        citation: 'R.61-56 § 200.6(1)(d)',
+        note:
+          'To mean high water or the critical area line. Eight ' +
+          'alternative-system appendices raise this to 125 ft — and ' +
+          '"environmentally sensitive waters" includes lakes over 40 ' +
+          'acres statewide, so a lakefront lot needing a fill-cap or ' +
+          'mounded system gets the 125 ft line, not 75.',
+      },
+      wellToSurfaceWater: {
+        feet: 50,
+        citation: 'R.61-71 § E.1.b',
+        note: 'Lake, stream, or other surface-water body.',
+      },
+    },
+    extraSeparations: [
+      {
+        label: 'Septic to a public well',
+        feet: 100,
+        citation: 'R.61-56 § 200.6(1)(c)',
+      },
+      {
+        label: 'Septic to a drainage ditch or stormwater detention pond (max water elevation)',
+        feet: 25,
+        citation: 'R.61-56 § 200.6(1)(f)',
+      },
+      {
+        label: 'Septic to an inground pool',
+        feet: 15,
+        citation: 'R.61-56 § 200.6(1)(h)',
+      },
+      {
+        label: 'Well to a sewer line',
+        feet: 20,
+        citation: 'R.61-71 § E.1.a',
+      },
+      {
+        label: 'Septic to an upslope curtain drain (downslope needs 25 ft)',
+        feet: 10,
+        citation: 'R.61-56 § 200.6(1)(e)',
+      },
+    ],
+    setbacksNote:
+      'Enforcement is mandatory statewide (§ 6-9-10), so unlike the ' +
+      'no-inspector states this drawing will be reviewed. Every new ' +
+      'system needs a repair area of 50% of the original system’s size ' +
+      '(§ 200.7). The trap on small lots is the alternative-system ' +
+      'escalation: shallow water tables push you into fill-cap and ' +
+      'mounded standards whose setbacks are measured from the fill ' +
+      'taper and rise to 125 ft from water — a mounded system can ' +
+      'consume a small lot’s buildable area outright. Building setbacks ' +
+      'from lot lines are local zoning; wind and seismic design values ' +
+      'cannot be printed by county because § 6-9-105(C) forbids drawing ' +
+      'climatological boundaries on political lines — get both from ' +
+      'your building official in writing.',
+    negativeFindings: [
+      'You may drill your own well — R.61-44 defines a well driller to ' +
+        'include owners building wells on their own property for ' +
+        'personal use, exempt from licensing and bonding. File the ' +
+        'Notice of Intent ($70 residential): the agency must answer ' +
+        'within 48 hours excluding weekends, or coverage is deemed ' +
+        'approved.',
+      'Vertical criteria decide lots as often as setbacks: 36 in to the ' +
+        'zone of saturation below natural grade, 6 in below the deepest ' +
+        'point of effluent application, and 12 in to rock ' +
+        '(§§ 200.4–200.5).',
+      'Since July 2024 septic and wells are SCDES (des.sc.gov) — DHEC ' +
+        'no longer exists and scdhec.gov serves nothing, though many ' +
+        'county pages still link to it.',
+    ],
+  },
 ];
 
 const VERIFIED_BY_CODE = new Map(VERIFIED_STATES.map((s) => [s.code, s]));

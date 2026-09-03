@@ -426,6 +426,99 @@ const PRODUCTS = {
       'ten-minute verification method, and the forms index — print-ready ' +
       'PDFs with the statute citations on the page.',
   },
+  'pa-permit-kit': {
+    sku: 'pa-permit-kit',
+    kind: 'download',
+    name: 'Pennsylvania Owner-Builder Permit Kit',
+    amount: 3400,
+    r2Key: 'pa-permit-kit.zip',
+    description:
+      'Pennsylvania owner-builder permitting, start to finish: who inspects ' +
+      'your house in each of the six enforcement arrangements, the five ' +
+      'statutory inspections, the third-party agency you hire yourself in an ' +
+      'opt-out municipality and the appeal right you give up there, the ' +
+      'amendments that override the printed 2021 IRC, and the septic ' +
+      'isolation distances. 40 print-ready pages with the statute citations ' +
+      'on the page. Instant download.',
+    emailSubject: 'Your Pennsylvania Permit Kit — download inside',
+    emailBlurb:
+      'The ZIP contains the who-inspects-your-house walkthrough (all six ' +
+      'enforcement arrangements), the permit application checklist with ' +
+      'Pennsylvania’s own energy table, the five-inspection sequence with ' +
+      'the opt-out appeals gap, the where-to-file directory built around ' +
+      'the L&I municipal elections table, and the forms index — print-ready ' +
+      'PDFs with the statute citations on the page.',
+  },
+  'oh-permit-kit': {
+    sku: 'oh-permit-kit',
+    kind: 'download',
+    name: 'Ohio Owner-Builder Permit Kit',
+    amount: 3400,
+    r2Key: 'oh-permit-kit.zip',
+    description:
+      'Ohio owner-builder permitting, start to finish: the code section ' +
+      'that excuses you from permits where no department is certified, the ' +
+      '23 counties with no residential certification anywhere, the 2023 NEC ' +
+      'change hidden behind a strikethrough, the state trade licenses that ' +
+      'stop at your property line, and the health-district septic and well ' +
+      'permits that apply everywhere. 51 print-ready pages with the ' +
+      'citations on the page. Instant download.',
+    emailSubject: 'Your Ohio Permit Kit — download inside',
+    emailBlurb:
+      'The ZIP contains the owner-builder exemption walkthrough (the two ' +
+      'texts that decide whether anyone permits your parcel), the permit ' +
+      'application checklist with every code edition in force, the ' +
+      'inspection sequence, the where-to-file directory built on the ' +
+      'certification lookup, and the forms index — print-ready PDFs with ' +
+      'the citations on the page.',
+  },
+  'tn-permit-kit': {
+    sku: 'tn-permit-kit',
+    kind: 'download',
+    name: 'Tennessee Owner-Builder Permit Kit',
+    amount: 3400,
+    r2Key: 'tn-permit-kit.zip',
+    description:
+      'Tennessee owner-builder permitting, start to finish: the three-way ' +
+      'jurisdiction map and the opt-out that expires 180 days after the ' +
+      'next election, the electrical permit that survives it in all 37 ' +
+      'no-code counties, the exemption and the two-year rule that is two ' +
+      'different rules, the moment your trades become prime contractors at ' +
+      '$25,000, the 2017 NEC, and the TDEC septic sequence with its nine ' +
+      'contract counties. 39 print-ready pages with the citations on the ' +
+      'page. Instant download.',
+    emailSubject: 'Your Tennessee Permit Kit — download inside',
+    emailBlurb:
+      'The ZIP contains the owner-builder exemption walkthrough (with the ' +
+      'five-minute jurisdiction lookup), the permit application checklist ' +
+      'with every code edition in force, the two-program inspection ' +
+      'sequence, the where-to-file directory, and the forms index — ' +
+      'print-ready PDFs with the citations on the page.',
+  },
+  'sc-permit-kit': {
+    sku: 'sc-permit-kit',
+    kind: 'download',
+    name: 'South Carolina Owner-Builder Permit Kit',
+    amount: 3400,
+    r2Key: 'sc-permit-kit.zip',
+    description:
+      'South Carolina owner-builder permitting, start to finish: the ' +
+      'register-of-deeds notice that revokes your exemption if you skip ' +
+      'it, the $500 threshold that decides who you may hire, the energy ' +
+      'code set by statute instead of by the code council, the septic and ' +
+      'well separations that decide whether a lot works, and the ' +
+      'beachfront setback measured in erosion rates. 55 print-ready pages ' +
+      'with the citations on the page. Instant download.',
+    emailSubject: 'Your South Carolina Permit Kit — download inside',
+    emailBlurb:
+      'The ZIP contains the owner-builder exemption walkthrough (with the ' +
+      'disclosure statement printed word for word and the register-of-' +
+      'deeds notice), the permit application checklist with every code ' +
+      'edition in force, the inspection sequence with the septic ' +
+      'separations and beachfront lines, the where-to-file directory, ' +
+      'and the forms index — print-ready PDFs with the citations on the ' +
+      'page.',
+  },
   'sub-hiring-pack': {
     sku: 'sub-hiring-pack',
     kind: 'download',
