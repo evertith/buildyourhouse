@@ -548,6 +548,56 @@ const PRODUCTS = {
     emailSubject: 'Order confirmed — your printed Job Site Binder',
     emailBlurb: null,
   },
+  'ne-permit-kit': {
+    sku: 'ne-permit-kit',
+    kind: 'download',
+    name: 'Nebraska Owner-Builder Permit Kit',
+    amount: 3400,
+    r2Key: 'ne-permit-kit.zip',
+    description:
+      'Nebraska owner-builder permitting, start to finish: the 2018 code ' +
+      'that binds your house whether or not anyone enforces it, the state ' +
+      'electrical inspection enforced at the power meter and the felony ' +
+      'behind a missed request since July 2026, the license-only homeowner ' +
+      'wiring exemption, the septic system you may not install and the well ' +
+      'you may, the energy code you enforce on yourself, and the ' +
+      'where-to-file directory built around the State Electrical Division ' +
+      'map. 51 print-ready pages with the statute citations on the page. ' +
+      'Instant download.',
+    emailSubject: 'Your Nebraska Permit Kit — download inside',
+    emailBlurb:
+      'The ZIP contains the what-binds-you-and-who-can-stop-you walkthrough, ' +
+      'the permit application checklist with the 2023 NEC and its five ' +
+      'held-back sections, the inspection sequence with the three permit ' +
+      'clocks, the where-to-file directory built around the State ' +
+      'Electrical Division map, and the forms index — print-ready PDFs with ' +
+      'the statute citations on the page.',
+  },
+  'id-permit-kit': {
+    sku: 'id-permit-kit',
+    kind: 'download',
+    name: 'Idaho Owner-Builder Permit Kit',
+    amount: 3400,
+    r2Key: 'id-permit-kit.zip',
+    description:
+      'Idaho owner-builder permitting, start to finish: the building permit ' +
+      'only your county can require and what happens where it never did, ' +
+      'the three state trade permits that apply everywhere and are enforced ' +
+      'at the meter, the three owner exemptions with their three different ' +
+      'tests, the homeowner permit that cannot get construction power turned ' +
+      'on, the 2023 NEC amended downward, the energy table Idaho pinned by ' +
+      'statute, and the 48-business-hour inspection rule with its refund. ' +
+      '43 print-ready pages with the statute citations on the page. Instant ' +
+      'download.',
+    emailSubject: 'Your Idaho Permit Kit — download inside',
+    emailBlurb:
+      'The ZIP contains the building-permit-is-optional walkthrough with the ' +
+      'three owner exemptions, the permit application checklist with the ' +
+      'NEC and energy amendments, the inspection sequence with the statutory ' +
+      'clocks, the where-to-file directory for DOPL, the health districts ' +
+      'and IDWR, and the forms index — print-ready PDFs with the statute ' +
+      'citations on the page.',
+  },
 };
 
 const DEFAULT_SKU = 'job-site-binder';

@@ -13,8 +13,9 @@
  * product line rests on. Reach for DEFAULTS only as an explicitly-labelled
  * fallback; it is common practice, not law, and it is wrong somewhere.
  *
- * Only the 12 shipped kit states carry verified data. The other 38 fall back to
- * DEFAULTS and must be presented to the user as unverified.
+ * Only the shipped kit states in VERIFIED_STATES carry verified data. Every
+ * other state falls back to DEFAULTS and must be presented to the user as
+ * unverified.
  */
 
 import { STATE_KITS } from '@/lib/kits';
@@ -140,7 +141,7 @@ const VA_LOCAL =
   'health department. The kit prints no statewide separation distance.';
 
 /**
- * Commonly-cited practice, for the 38 states with no kit yet.
+ * Commonly-cited practice, for the states with no kit yet.
  *
  * Every number here is drawn from the corpus's own values rather than outside
  * research, and each carries where it came from. Two fields are deliberately
@@ -211,9 +212,10 @@ export const DEFAULT_SEPARATIONS = (): CoreSeparations => ({
     feet: null,
     citation: null,
     note:
-      'The corpus states no well-to-surface-water rule for any shipped state — ' +
-      'the 100 ft surface-water setbacks it does carry are measured from the ' +
-      'wastewater system, not the well. No number is offered here rather than ' +
+      'Most shipped states set no well-to-surface-water rule; where one exists ' +
+      '(Louisiana 50 ft, Ohio 25 ft, South Carolina 50 ft, Wisconsin 25 ft) it lives on that state’s own entry. ' +
+      'The 100 ft surface-water setbacks the defaults do carry are measured ' +
+      'from the wastewater system, not the well. No number is offered here rather than ' +
       'a guessed one.',
   },
 });
@@ -228,7 +230,7 @@ export const DEFAULTS: StateSiteplanRules = {
 };
 
 /**
- * The 12 shipped kit states. Anything absent here is absent from the corpus.
+ * The shipped kit states. Anything absent here is absent from the corpus.
  */
 const VERIFIED_STATES: StateSiteplanRules[] = [
   {
@@ -1716,12 +1718,391 @@ const VERIFIED_STATES: StateSiteplanRules[] = [
         'county pages still link to it.',
     ],
   },
+  {
+    code: 'id',
+    state: 'Idaho',
+    guideSlug: 'idaho',
+    verified: true,
+    verifiedDate: 'September 2026',
+    separations: {
+      // Three tables, read from both sides. DEQ's septic rules keep one for
+      // the drainfield (IDAPA 58.01.03.008.01.d, by soil group A/B/C) and
+      // one for the tank (58.01.03.007.18); IDWR's well construction
+      // standards keep a third measured from the well (37.03.09.025.01.d).
+      // They agree at the boundary — 50 ft to a tank, 100 ft to a
+      // drainfield — and the drainfield column governs a conventional
+      // system, so it leads and the tank rides in notes. Every number is a
+      // statewide minimum the health district may raise: 58.01.03.001.02
+      // lets the higher standard prevail, and the well rule says districts
+      // set "additional siting and separation distance requirements."
+      wellToSeptic: {
+        feet: 50,
+        citation: 'IDAPA 58.01.03.007.18; IDAPA 37.03.09.025.01.d',
+        note:
+          'Septic tank to a well, spring, or suction line that is not a ' +
+          'public water supply (a public one needs 100 ft). The well rule ' +
+          'states the same 50 ft from its side. The drainfield needs ' +
+          '100 ft — that larger circle usually controls the layout.',
+      },
+      wellToDrainfield: {
+        feet: 100,
+        citation: 'IDAPA 58.01.03.008.01.d; IDAPA 37.03.09.025.01.d',
+        note:
+          'Drainfield to all wells and other domestic water supplies, the ' +
+          'same in every soil group; the well rule states the same 100 ft ' +
+          'from its side, and the well owner must keep the distance up ' +
+          'after the well is in (37.03.09.036.04).',
+      },
+      wellToPropertyLine: {
+        feet: 5,
+        citation: 'IDAPA 37.03.09.025.01.d',
+        note:
+          'A sanitation number from the well construction standards, not ' +
+          'a zoning setback — your county or city zoning may keep the ' +
+          'well farther from the line.',
+      },
+      septicToPropertyLine: {
+        feet: 5,
+        citation: 'IDAPA 58.01.03.008.01.d; IDAPA 58.01.03.007.18',
+        note:
+          'Drainfield and septic tank alike, in every soil group. Like the ' +
+          'well figure this is a sanitation minimum, not the zoning ' +
+          'setback for the house.',
+      },
+      septicToBuilding: {
+        feet: 10,
+        citation: 'IDAPA 58.01.03.008.01.d',
+        note:
+          'Drainfield to a building foundation on a crawl space or slab. ' +
+          'It becomes 20 ft the moment the foundation is a basement — ' +
+          'sketch to 20 ft if the house will have one. The tank needs ' +
+          '5 ft to a dwelling foundation or building (58.01.03.007.18).',
+      },
+      septicToSurfaceWater: {
+        feet: 200,
+        citation: 'IDAPA 58.01.03.008.01.d',
+        note:
+          'Drainfield to permanent or intermittent surface water other ' +
+          'than canals and ditches, in Group A soils (coarse to fine sand, ' +
+          'loamy sand). Group B (very fine sand, sandy loam, loam, silt ' +
+          'loam, silt) needs 125 ft and Group C (clay loam, sandy clay ' +
+          'loam, silty clay loam) 100 ft. The soil group comes from the ' +
+          'district\'s test hole, so the largest figure is drawn until ' +
+          'you have it. The tank needs 50 ft (58.01.03.007.18).',
+      },
+      wellToSurfaceWater: {
+        feet: 50,
+        citation: 'IDAPA 37.03.09.025.01.d',
+        note:
+          'Well to permanent (over 6 months) or intermittent (over 2 ' +
+          'months) surface water; 25 ft to canals, ditches, laterals, and ' +
+          'temporary surface water.',
+      },
+    },
+    extraSeparations: [
+      {
+        label: 'Drainfield to a basement foundation (crawl space or slab needs 10 ft; tank 5 ft)',
+        feet: 20,
+        citation: 'IDAPA 58.01.03.008.01.d',
+      },
+      {
+        label: 'Drainfield to temporary surface water or an irrigation canal or ditch (tank needs 25 ft)',
+        feet: 50,
+        citation: 'IDAPA 58.01.03.008.01.d',
+      },
+      {
+        label: 'Drainfield to a water distribution line that is not double-encased (10 ft double-encased; tank 10 ft to a private line, 25 ft to a public one)',
+        feet: 25,
+        citation: 'IDAPA 58.01.03.008.01.d',
+      },
+      {
+        label: 'Drainfield to a downslope cut or scarp with an impermeable layer above its base, Group A soil (50 ft in Groups B and C; 50/25/25 ft where the layer is below the base; tank 10 ft)',
+        feet: 75,
+        citation: 'IDAPA 58.01.03.008.01.d',
+      },
+      {
+        label: 'Undisturbed earth between drainfield trenches, and between the tank and the nearest trench',
+        feet: 6,
+        citation: 'IDAPA 58.01.03.008.03',
+      },
+      {
+        label: 'Vertical: drainfield bottom above an impermeable layer, every soil group',
+        feet: 4,
+        citation: 'IDAPA 58.01.03.008.01.c',
+      },
+      {
+        label: 'Vertical: drainfield bottom above normal high groundwater or fractured bedrock, Group A soil (4 ft in Group B, 3 ft in Group C; 1 ft above seasonal high groundwater)',
+        feet: 6,
+        citation: 'IDAPA 58.01.03.008.01.c',
+      },
+      {
+        label: 'Vertical: seasonal high water level below the top of the septic tank',
+        feet: 2,
+        citation: 'IDAPA 58.01.03.007.18',
+      },
+      {
+        label: 'Well to a permanent building other than a well or plumbing house — and nobody may build closer once the well exists',
+        feet: 10,
+        citation: 'IDAPA 37.03.09.025.01.d; 37.03.09.036.03',
+      },
+      {
+        label: 'Well to another existing well under separate ownership (50 ft to a public water supply well)',
+        feet: 25,
+        citation: 'IDAPA 37.03.09.025.01.d',
+      },
+      {
+        label: 'Well to an effluent pipe or a gravity sewer main (pressurized main 100 ft; pressure-tested single-residence sewer line 25 ft)',
+        feet: 50,
+        citation: 'IDAPA 37.03.09.025.01.d',
+      },
+      {
+        label: 'Well to an above-ground chemical storage tank',
+        feet: 20,
+        citation: 'IDAPA 37.03.09.025.01.d',
+      },
+    ],
+    setbacksNote:
+      'Every number above is a statewide minimum, not the answer: where a ' +
+      'local ordinance is stricter the higher standard prevails ' +
+      '(IDAPA 58.01.03.001.02), and each of the seven health districts ' +
+      'may set "additional siting and separation distance requirements" ' +
+      '(37.03.09.025.01.d) — get the district\'s septic checklist before ' +
+      'you sketch. Sketch two drainfields: an acceptable site "must be ' +
+      'large enough to construct two (2) complete drainfields," each ' +
+      'sized for the full design flow (58.01.03.008.02.c), and the ' +
+      'replacement area stays vacant, free of vehicles and of any soil ' +
+      'modification (004.06). Hard disqualifiers: a standard drainfield ' +
+      'site "will not exceed twenty percent (20%)" slope (008.01.a), an ' +
+      'absorption bed cannot sit on a slope over 8% (008.09.b), gravel, ' +
+      'sandy clay, silty clay, clay, shrink-swell clays, organic mucks and ' +
+      'hardpan are unsuitable soils (008.01.b), and the permit may be ' +
+      'denied where public or central sewer is "reasonably accessible" ' +
+      '(005.05.c). Building setbacks from lot lines are zoning under the ' +
+      'Local Land Use Planning Act — 44 counties and about 200 cities, no ' +
+      'statewide value — and frost depth, ground snow load, wind and ' +
+      'seismic are the county\'s to set by name (IRC R301 Design ' +
+      'Criteria, § 39-4116(4)(c)(iii)); no state table exists. The one ' +
+      'statewide depth figure is the 42-inch cover on the water service ' +
+      'line (IDAPA 24.39.20.600.21), a plumbing rule for the utility ' +
+      'trench, not a frost depth. Get all four from your building ' +
+      'official in writing.',
+    negativeFindings: [
+      'You may install your own standard or basic alternative septic ' +
+        'system — the installer\'s registration is not required for ' +
+        '"owners installing their own standard or basic alternative ' +
+        'system" (58.01.03.006.08.b), though the installation permit ' +
+        'still is (005.01) and a complex system needs a registered ' +
+        'complex installer. You may NOT drill your own well: § 42-238(3) ' +
+        'defines a person to include "any individual who drills or ' +
+        'abandons any well for himself or another," and the $75 IDWR ' +
+        'drilling permit (§ 42-235) comes before any drilling.',
+      'Design flow is 250 gpd for three bedrooms, plus or minus 50 gpd ' +
+        'per bedroom (58.01.03.007.09). The tank is 1,000 gal minimum, ' +
+        'plus 250 gal for each bedroom over four (007.08.a). Drainfield ' +
+        'area is design flow divided by an application rate of 1.0, 0.5, ' +
+        'or 0.2 gal per sq ft per day for soil Groups A, B and C ' +
+        '(008.02.b) — 500 sq ft of trench bottom for three bedrooms on ' +
+        'Group B, twice over for the replacement area. Laterals run ' +
+        '100 ft at most, trenches 1–6 ft wide and 2–4 ft deep under at ' +
+        'least 12 in of cover, and a system tops out at 1,500 sq ft of ' +
+        'trench (008.03).',
+      'The septic permit runs through the health district: a test-hole ' +
+        'or site inspection on 48 hours\' notice, then a final with an ' +
+        'as-built before any wastewater enters the system ' +
+        '(58.01.03.011.03, .05). The driller files the well report with ' +
+        'IDWR within 30 days (§ 42-238(11)), and the casing must stand at ' +
+        'least 12 in above finished grade (37.03.09.025.04).',
+      'None of the above is a building setback or a design-criteria ' +
+        'value, and in a county with no building ordinance no building ' +
+        'permit is issued at all (§ 39-4111) — the health-district septic ' +
+        'permit and the IDWR drilling permit are then the only land ' +
+        'approvals that exist.',
+    ],
+  },
+  {
+    code: 'ne',
+    state: 'Nebraska',
+    guideSlug: 'nebraska',
+    verified: true,
+    verifiedDate: 'September 2026',
+    separations: {
+      // Two tables, read from both sides. NDEE Title 124 ch. 2 Table 2.1
+      // (effective 27 June 2022) keeps tank / absorption / lagoon columns;
+      // the absorption column governs a conventional system, so it leads
+      // and the tank rides in notes. DWEE Title 134 ch. 4 Chart 1
+      // (effective 28 June 2026, superseding Title 178 ch. 12) measures
+      // from the well and agrees at the boundary: 50 ft to a tank, 100 ft
+      // to a lateral field. Every number is a state floor a delegated
+      // local program may raise (Title 124 ch. 2 § 014; Title 134 ch. 4
+      // § 001).
+      wellToSeptic: {
+        feet: 50,
+        citation: 'Title 124 ch. 2 Table 2.1; Title 134 ch. 4 Chart 1',
+        note:
+          'Septic tank to a private drinking-water well. Chart 1 states ' +
+          'the same 50 ft from the well side ("Any septic tank"). The ' +
+          'absorption system needs 100 ft — that larger circle usually ' +
+          'controls the layout. A public community well needs 500 ft ' +
+          'from either.',
+      },
+      wellToDrainfield: {
+        feet: 100,
+        citation: 'Title 124 ch. 2 Table 2.1; Title 134 ch. 4 Chart 1',
+        note:
+          'Absorption system to a private well; Chart 1 states the same ' +
+          '100 ft from the well side ("Any septic lateral field"). Chart 2 ' +
+          'lets a driller close to 50–100 ft only where Chart 1 cannot be ' +
+          'met, with prior written DWEE approval and full-length bentonite ' +
+          'grout — a variance, not a planning number.',
+      },
+      wellToPropertyLine: unknown(
+        'Title 134 ch. 4 Chart 1 has no property-line row — a verified ' +
+          'absence. The only ownership-based distances (600 ft to an ' +
+          'irrigation well, 1,000 ft to an industrial or community well ' +
+          'under different ownership) apply only to drilling irrigation ' +
+          'and industrial wells.'
+      ),
+      septicToPropertyLine: {
+        feet: 5,
+        citation: 'Title 124 ch. 2 Table 2.1',
+        note:
+          'Tank and absorption system alike; a lagoon needs 50 ft. The ' +
+          'same 5 ft applies to a driveway, parking area, sidewalk, or ' +
+          'other impermeable surface.',
+      },
+      septicToBuilding: {
+        feet: 10,
+        citation: 'Title 124 ch. 2 Table 2.1',
+        note:
+          'Absorption system to a Class 2 foundation — the house higher in ' +
+          'elevation than the system, the default case. It becomes 30 ft ' +
+          'the moment any part of the basement, footing, or slab living ' +
+          'quarters sits LOWER than the system (Class 1); a slab that is ' +
+          'not living quarters (Class 3) stays at 10 ft. The tank needs ' +
+          '10 ft (Class 2) or 15 ft (Class 1); a lagoon needs 100 ft.',
+      },
+      septicToSurfaceWater: {
+        feet: 50,
+        citation: 'Title 124 ch. 2 Table 2.1',
+        note: 'Tank, absorption system, and lagoon all 50 ft.',
+      },
+      wellToSurfaceWater: unknown(
+        'Title 134 ch. 4 Chart 1 has no surface-water row — a verified ' +
+          'absence. The nearest rules are 10 ft to any storm water way and ' +
+          '10 ft to any depression that could retain stagnant water.'
+      ),
+    },
+    extraSeparations: [
+      {
+        label: 'Absorption area to a pressure water main, service line, or suction line (tank needs 10 ft)',
+        feet: 25,
+        citation: 'Title 124 ch. 2 Table 2.1',
+      },
+      {
+        label: 'Absorption area to a driveway, parking area, sidewalk, or impermeable surface (reserve area too)',
+        feet: 5,
+        citation: 'Title 124 ch. 2 Table 2.1; GTS220000 § III.K.12',
+      },
+      {
+        label: 'Absorption area to a neighbour’s Class 2 foundation (40 ft if theirs sits lower, Class 1)',
+        feet: 30,
+        citation: 'Title 124 ch. 2 Table 2.1',
+      },
+      {
+        label: 'Septic to a horizontal closed-loop geothermal well (tank and field alike)',
+        feet: 25,
+        citation: 'Title 124 ch. 2 Table 2.1',
+      },
+      {
+        label: 'Well to a pressurized or non-watertight sanitary sewer line (watertight sanitary or storm sewer needs 10 ft)',
+        feet: 50,
+        citation: 'Title 134 ch. 4 Chart 1',
+      },
+      {
+        label: 'Well to a wastewater lagoon, privy, cesspool, or subsurface disposal system',
+        feet: 100,
+        citation: 'Title 134 ch. 4 Chart 1',
+      },
+      {
+        label: 'Well to an animal-waste structure or feeding-operation holding pens',
+        feet: 100,
+        citation: 'Title 134 ch. 4 Chart 1',
+      },
+      {
+        label: 'Well to a storm water way, frost-proof hydrant, or well pit',
+        feet: 10,
+        citation: 'Title 134 ch. 4 Chart 1',
+      },
+      {
+        label: 'Vertical: trench or bed bottom above seasonal high groundwater or a barrier layer',
+        feet: 4,
+        citation: 'GTS220000 § III.C, § III.K.1',
+      },
+      {
+        label: 'Undisturbed soil between trenches, and tank to nearest trench, on slopes under 10% (6 ft at 10–20%, 10 ft over 20%)',
+        feet: 4,
+        citation: 'GTS220000 § III.K.9',
+      },
+    ],
+    setbacksNote:
+      'Every number above is a state floor: Title 124 ch. 2 § 014 and ' +
+      'Title 134 ch. 4 § 001 both let local requirements be stricter, and ' +
+      'the delegated programs (Lincoln-Lancaster, Douglas, Sarpy and others ' +
+      'under § 81-15,248(3)) may be — treat their counter as the ceiling, ' +
+      'not this table. Sketch the reserve area first: it is mandatory and ' +
+      'carries every setback (ch. 2 § 008), and once the system is in, ' +
+      'nobody may build a foundation, well, water line, surface-water ' +
+      'feature, or property line inside a Table 2.1 distance without a PE ' +
+      'letter (§ 011). GTS220000 disqualifiers: a system in fill is ' +
+      'prohibited except sand fill or where the bottom 12 in of trench ' +
+      'sits in undisturbed native soil; slope over 3% needs drop-box or ' +
+      'pressure distribution unless every trench bottom is at one ' +
+      'elevation; a gravity trench runs 150 ft at most. Building setbacks ' +
+      'from lot lines are county zoning (§ 23-114(2)(c)) or city zoning ' +
+      'with no statewide value, and frost depth, snow load, and wind speed ' +
+      'are filled in locally on IRC Table R301.2 — no state table exists, ' +
+      'and the "42 inches" often quoted for Omaha is unverified. Get all ' +
+      'four from your building official in writing.',
+    ownerDrawnAccepted:
+      'The septic drawing is not yours to file. General-permit coverage ' +
+      '(GTS220000 § II.A) requires "an appropriately scaled drawing of the ' +
+      'onsite wastewater treatment system" submitted with the registration ' +
+      'and a certification signed by the PE, REHS, or certified installer ' +
+      'who supervised the work — and § 81-15,248(1) puts that professional ' +
+      'on site for the siting and layout, so draft here, then hand it ' +
+      'over. For a well variance you file the map yourself: "a scaled map ' +
+      'showing the location of the well in relation to property lines, ' +
+      'structures, utilities, and contamination sources," at least 10 days ' +
+      'before drilling (Title 134 ch. 4 § 012.01). The building-permit ' +
+      'site plan is local, where a program exists at all.',
+    negativeFindings: [
+      'You may drill your own well on land you own and use as your place ' +
+        'of abode (§ 46-1233(2)) and register it yourself within 60 days ' +
+        '(§ 46-602(1)) — but you may NOT install your own septic system: a ' +
+        'certified installer, PE, or REHS must be physically present and ' +
+        'supervising (§ 81-15,248(1); Title 124 ch. 9 § 004).',
+      'Perc faster than 5 min/inch fails without a 12-inch loamy-sand ' +
+        'liner, and slower than 60 min/inch is off the general permit ' +
+        '(GTS220000 § III.J). Design flow is 100 gpd plus 100 gpd per ' +
+        'bedroom — 400 gpd for three bedrooms (Table 1). A three-bedroom ' +
+        'tank is 1,000 gal, 1,250 with a grinder pump or a tub over 50 ' +
+        'gal, 1,500 with both (Table 3); its trench bottom area runs from ' +
+        '495 sq ft at 5–10 min/inch to 1,050 sq ft at 50–60 (Table 5).',
+      'The house-to-drainfield distance triples — 10 ft to 30 ft — when ' +
+        'any part of the basement or footing sits lower than the system ' +
+        '(Title 124 Table 2.1, Class 1).',
+      'Title 134 ch. 4 (2026) has no well-to-property-line rule; the ' +
+        '600/1,000 ft rows apply only to irrigation and industrial wells. ' +
+        'Anything citing Title 178 ch. 12 for well distances is stale — it ' +
+        'was superseded 28 June 2026.',
+    ],
+  },
 ];
 
 const VERIFIED_BY_CODE = new Map(VERIFIED_STATES.map((s) => [s.code, s]));
 
 /**
- * All 50 states. The 12 with shipped kits carry verified data; the other 38 are
+ * All 50 states. Those with shipped kits carry verified data; the rest are
  * generated from the kit registry and carry DEFAULTS, so adding a state means
  * adding one entry to VERIFIED_STATES rather than editing a list of 50.
  */
