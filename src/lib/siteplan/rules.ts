@@ -2097,6 +2097,579 @@ const VERIFIED_STATES: StateSiteplanRules[] = [
         'was superseded 28 June 2026.',
     ],
   },
+  {
+    code: 'az',
+    state: 'Arizona',
+    guideSlug: 'arizona',
+    verified: true,
+    verifiedDate: 'September 2026',
+    separations: {
+      // Two rulebooks, read from both sides. ADEQ's onsite table, A.A.C.
+      // R18-9-A312(C) Table 1 (text current through the 19 June 2023
+      // amendment, 29 A.A.R. 1023), measures from the whole facility —
+      // tank, disposal works and, in the table's own words, "Including
+      // Reserve Area" — and is administered by the county agency ADEQ has
+      // delegated under § 49-107. ADWR's well construction rule
+      // R12-15-818 measures from the well and agrees at the boundary:
+      // 100 ft to any septic tank system or sewage disposal area. Every
+      // number is a regulatory minimum: A312(C)(3) lets the agency set "a
+      // more stringent setback on a site- or area-specific basis."
+      wellToSeptic: {
+        feet: 100,
+        citation: 'A.A.C. R18-9-A312(C), Table 1; A.A.C. R12-15-818',
+        note:
+          'Septic tank to a public or private water supply well. ADWR ' +
+          'states the same 100 ft from the well side: "no well shall be ' +
+          'drilled within 100 feet of any septic tank system, sewage ' +
+          'disposal area," waivable only in writing by the ADWR Director. ' +
+          'The disposal works and their reserve area need the same 100 ft.',
+      },
+      wellToDrainfield: {
+        feet: 100,
+        citation: 'A.A.C. R18-9-A312(C), Table 1; A.A.C. R12-15-818',
+        note:
+          'Disposal works to a public or private water supply well, and ' +
+          'the reserve area counts: the table\'s setbacks apply to the ' +
+          'facility "Including Reserve Area." The well rule\'s "sewage ' +
+          'disposal area" states the same 100 ft from its side, and it is ' +
+          'the same 100 ft a neighbor must promise in the property-line ' +
+          'waiver below.',
+      },
+      wellToPropertyLine: unknown(
+        'No well-to-property-line distance exists in A.R.S. Title 45 or ' +
+          '12 A.A.C. 15 Article 8 — a verified absence. R12-15-818 fixes ' +
+          '100 ft to septic systems and contamination sources only; the ' +
+          'property line is reached indirectly, through ADEQ\'s 50 ft ' +
+          'septic-to-line rule where the neighbor has no well.'
+      ),
+      septicToPropertyLine: {
+        feet: 50,
+        citation: 'A.A.C. R18-9-A312(C), Table 1',
+        note:
+          'Tank, disposal works and reserve area alike, to a property ' +
+          'line shared with any adjoining lot "not served by a common ' +
+          'drinking water system or an existing water well" — the ' +
+          'undeveloped rural neighbor who could still drill. All other ' +
+          'property lines need 5 ft. The 50 ft drops "to a minimum of ' +
+          '5 feet" only where the affected neighbors agree, in a recorded ' +
+          'document, to keep any new well at least 100 ft from the system ' +
+          'and its reserve, and the agency approves; the larger figure is ' +
+          'drawn until that document is on record.',
+      },
+      septicToBuilding: {
+        feet: 10,
+        citation: 'A.A.C. R18-9-A312(C), Table 1',
+        note:
+          'Tank, disposal works and reserve area to a building, and ' +
+          '"building" reaches further than the house: it "Includes ' +
+          'porches, decks (including pool decks), and steps (covered or ' +
+          'uncovered), breezeways, roofed patios, carports, covered walks, ' +
+          'and similar structures." A swimming pool excavation needs 5 ft.',
+      },
+      septicToSurfaceWater: {
+        feet: 100,
+        citation: 'A.A.C. R18-9-A312(C), Table 1',
+        note:
+          'To a perennial or intermittent stream, measured "from the high ' +
+          'water line of the peak streamflow from a 10-year, 24-hour ' +
+          'rainfall event," and the same 100 ft to a lake, reservoir, or ' +
+          'canal (a canal "from the edge of the canal"). A drinking water ' +
+          'intake from a surface water source needs 200 ft; a wash or ' +
+          'drainage easement draining more than 20 acres needs 50 ft.',
+      },
+      wellToSurfaceWater: unknown(
+        'No well-to-surface-water distance in the shipped research. ' +
+          'R12-15-818 (Well Location) lists septic tank systems, sewage ' +
+          'disposal areas, landfills, hazardous waste facilities and ' +
+          'petroleum storage — not surface water — and R12-15-821 lets ' +
+          'the Director require a greater distance from any potential ' +
+          'source of contamination.'
+      ),
+    },
+    extraSeparations: [
+      {
+        label: 'Septic (reserve area included) to earth fissures',
+        feet: 100,
+        citation: 'A.A.C. R18-9-A312(C), Table 1',
+      },
+      {
+        label: 'Septic to a wash or drainage easement with a drainage area over 20 acres, from the natural channel bank or easement boundary (25 ft with erosion protection the floodplain administrator approves)',
+        feet: 50,
+        citation: 'A.A.C. R18-9-A312(C), Table 1',
+      },
+      {
+        label: 'Septic to a drinking water intake from a surface water source',
+        feet: 200,
+        citation: 'A.A.C. R18-9-A312(C), Table 1',
+      },
+      {
+        label: 'Septic to a water main or branch water line (domestic service line, including a domestic water holding tank, 5 ft)',
+        feet: 10,
+        citation: 'A.A.C. R18-9-A312(C), Table 1',
+      },
+      {
+        label: 'Trench, bed, chamber or gravelless trench to a downslope or cut bank over 15%, culvert or ditch, to the closest point of daylighting (50 ft with a limiting subsurface condition; treatment works 10 ft; drip lines 3 ft)',
+        feet: 20,
+        citation: 'A.A.C. R18-9-A312(C), Table 1',
+      },
+      {
+        label: 'Septic to a driveway, to the nearest edge of the excavation (a reinforced tank may sit under a driveway; disposal works may not)',
+        feet: 5,
+        citation: 'A.A.C. R18-9-A312(C), Table 1',
+      },
+      {
+        label: 'Septic to a swimming pool excavation, and to any easement other than a drainage easement',
+        feet: 5,
+        citation: 'A.A.C. R18-9-A312(C), Table 1',
+      },
+      {
+        label: 'Between trenches: twice the effective depth or 5 ft, whichever is greater',
+        feet: 5,
+        citation: 'A.A.C. R18-9-E302(C)(2)(c)',
+      },
+      {
+        label: 'Vertical: trench or chamber to the seasonal high water table at a soil absorption rate of 0.63–1.20 gal/day/sq ft (5 ft at 0.20–0.63; a seepage pit 60 ft; outside 0.20–1.20 "Not allowed for septic tank effluent")',
+        feet: 10,
+        citation: 'A.A.C. R18-9-A312(E)(1)',
+      },
+    ],
+    setbacksNote:
+      'Every number above is a regulatory minimum, not an approval: the ' +
+      'table applies unless the Department "Establishes a more stringent ' +
+      'setback on a site- or area-specific basis" (R18-9-A312(C)(3)), and ' +
+      'the delegated county agency that issues the permit under § 49-107 ' +
+      'may do exactly that — get its setback sheet before you sketch. Every ' +
+      'setback is measured to the facility "Including Reserve Area," so ' +
+      'sketch the reserve first: for a dwelling it is "a reserve area of ' +
+      '100 percent of the primary area, excluding the footprint of the ' +
+      'treatment works" (A312(D)(4)(a)), waived only for a lot in a ' +
+      'subdivision approved before 1974 that keeps its original ' +
+      'configuration. Arizona names no disqualifiers; it names "limiting ' +
+      'conditions," and any one of them takes away the standard ' +
+      'septic-tank design (E302(A)(1)) and pushes you to an alternative ' +
+      'system with a designer of record. Surface (A310(C)(2)): slope ' +
+      '"greater than 15 percent at the intended location," a setback in ' +
+      'the table not met, adverse surface drainage, a 100-year flood ' +
+      'hazard zone on the property that may affect the system, "An ' +
+      'outcropping of rock that cannot be excavated," or fill in the ' +
+      'intended location. Subsurface, within 12 ft of grade (A310(D)(2)): ' +
+      'a soil absorption rate above 1.20 or below 0.20 gal/day/sq ft, less ' +
+      'vertical separation than A312(E)(1), seasonal saturation, an ' +
+      'impervious layer, "Soil with more than 50 percent rock fragments," ' +
+      'or open fractures, karst, or cobbles. Before any of it, ask whether ' +
+      'a sewer stub reaches the lot line: R18-9-A309(A)(5) requires ' +
+      'connection where "A sewer service line extension is available at ' +
+      'the property boundary" and the connection fee is not more than ' +
+      '$6,000 and the building sewer not more than $3,000 (the rule\'s ' +
+      'thresholds, not fees), or where a county, municipal, or sanitary ' +
+      'district ordinance says so. Building setbacks from lot lines are ' +
+      'zoning — county under A.R.S. Title 11, Ch. 6, Art. 1 and municipal ' +
+      'under § 9-462.01 — with no statewide value. Frost depth, ground ' +
+      'snow load, wind, seismic and flood are the locally adopted IRC ' +
+      'Table R301.2 as amended; no state table exists. Even the code ' +
+      'edition is local: Arizona has no statewide residential code, only ' +
+      'adoption by reference under § 11-861 (counties) and § 9-802 ' +
+      '(cities), the unincorporated spread runs from the 2003 IRC (Graham ' +
+      'County) to the 2024 IRC, and Greenlee County has adopted no ' +
+      'building code at all. Get all of it from your building official in ' +
+      'writing, with the adopting ordinance number.',
+    ownerDrawnAccepted:
+      'Two drawings, and you file both. For a domestic well on a parcel of ' +
+      'five acres or less, § 45-596(F) puts "a well site plan of the ' +
+      'property" in your own notice of intention to drill — the notice ' +
+      '"shall be signed by the owner or lessee of the property" ' +
+      '(R12-15-809) — showing the assessor\'s parcel number, the proposed ' +
+      'well, any septic tank or sewer system on the property or "within ' +
+      'one hundred feet of the proposed well site," and the county health ' +
+      'authority\'s written approval. For a conventional septic system the ' +
+      'Discharge Authorization turns on the applicant\'s own site plan: it ' +
+      'must accurately reflect "the final location and configuration of ' +
+      'the components of the treatment and disposal works" ' +
+      '(R18-9-A309(C)(1)(a)), with changes made during construction ' +
+      'recorded on it (A301(D)(1)(e)), and no installer license number is ' +
+      'asked for. What you cannot draw is the soils: the site ' +
+      'investigation behind the numbers belongs to an Arizona-registered ' +
+      'engineer, geologist, or sanitarian, or a holder of a ' +
+      'Department-recognized training certificate (A310(H)). The ' +
+      'building-permit site plan is local; in a county it is at least "a ' +
+      'sketch of the proposed construction containing sufficient ' +
+      'information for the enforcement of the zoning ordinance" ' +
+      '(§ 11-815(B)).',
+    mustShow: [
+      'For a domestic well on five acres or less, the county assessor\'s parcel identification number (§ 45-596(F))',
+      'The proposed well location, and any septic tank or sewer system on the property or within 100 ft of the proposed well site (§ 45-596(F))',
+      'Written approval by the county health authority that controls septic installation (§ 45-596(F))',
+      'The final location and configuration of every treatment and disposal component, reserve area included (R18-9-A309(C)(1)(a); A312(C))',
+    ],
+    negativeFindings: [
+      'You may install your own conventional septic system: for a facility ' +
+        'permitted entirely under R18-9-E302, the Discharge Authorization ' +
+        'turns on an accurate site plan and a certified tank ' +
+        'watertightness test (A309(C)(1)) — no installer license number ' +
+        'is required — and § 32-1121(A)(5) lets an owner "do the work ' +
+        'themselves." An alternative system (anything under E303 to E323) ' +
+        'is different: A309(C)(2) requires "The name of the installation ' +
+        'contractor and the Registrar of Contractor\'s license number" and ' +
+        'a Certificate of Completion from the designer of record, who must ' +
+        'verify the installation before backfill. In both cases the site ' +
+        'investigation is a licensed act (A310(H)): an owner-builder ' +
+        'cannot self-certify the percolation test, and it takes at least ' +
+        'two test locations in the primary area and one in the reserve ' +
+        '(A310(E)(1), (F)(1)(a)).',
+      'You may drill your own exempt well on your own land, but only ' +
+        'under a single well license (§ 45-595(D)) — no fee, yet ' +
+        'R12-15-807 makes it an examination, offered at least six times a ' +
+        'year with a 70 percent passing grade, good for one well at one ' +
+        'location for one year. Anyone else is a licensed well driller ' +
+        '(§ 45-595(A)). Either way the notice of intention to drill comes ' +
+        'first (§ 45-454(G), § 45-596): $150, or $100 for a domestic well ' +
+        'of 35 gpm or less outside an active management area or ' +
+        'irrigation nonexpansion area (§ 45-596(L)); the drilling card ' +
+        'arrives within 15 days and must be at the well site before ' +
+        'drilling starts (§ 45-596(D); R12-15-810(A)); the well must be ' +
+        'completed within one year (§ 45-596(E)). The driller reports ' +
+        'within 30 days and the owner files a completion report within ' +
+        '30 days of pump installation (§ 45-600). Casing is steel or ' +
+        'thermoplastic and stands at least 1 ft above ground, over a ' +
+        'surface seal of at least 20 ft of steel casing and cement grout ' +
+        'placed in one continuous application (R12-15-811(A)(1), ' +
+        '(B)(1)); the Director may require a longer seal or a greater ' +
+        'distance from a contamination source (R12-15-821).',
+      'Inside an active management area established on or before 1 July ' +
+        '1994, no exempt well may be drilled "if any part of the land is ' +
+        'within one hundred feet of the operating water distribution ' +
+        'system of a municipal provider with an assured water supply ' +
+        'designation" (§ 45-454(C)) — a 100 ft rule that runs from the ' +
+        'utility\'s mains, not from your septic. Exemptions exist on ' +
+        'request where service is refused within 30 days, connecting ' +
+        'costs more than the well, an easement is refused, or a ' +
+        'no-service agreement is signed (§ 45-454(D)); one exempt well ' +
+        'per use per site is the AMA rule (§ 45-454(I)). An exempt well ' +
+        'is one pumping at most 35 gallons per minute (§ 45-454(B)).',
+      'Sizing is by bedrooms AND fixture count (R18-9-A314(A)(4)(a)). ' +
+        'Three bedrooms with 21 fixture units or fewer is 450 gpd and a ' +
+        '1,000 gal tank; over 21 it is 600 gpd and 1,250 gal; the minimum ' +
+        'tank on any dwelling is 1,000 gal. A 1.6 gpf water closet counts ' +
+        '3 units, a tub, clothes washer, dishwasher, or kitchen sink 2, a ' +
+        'lavatory 1 — two full baths, a kitchen, laundry and a utility ' +
+        'sink already sit near the 21-unit line. Absorption area is design ' +
+        'flow divided by the soil absorption rate (A312(D)(1)); at a 10 ' +
+        'min/in percolation rate the trench SAR is 0.63, so 450 ÷ 0.63 is ' +
+        'about 714 sq ft, then the same again in reserve. Faster than 1 ' +
+        'min/in or slower than 120 needs a site-specific SAR; between ' +
+        'listed values use the slower rate (A312(D)(2)). A trench runs ' +
+        '100 ft at most with a 12–36 in bottom, and nothing may be paved ' +
+        'over a disposal works (E302(C)(2)(c), (C)(1)(h)).',
+      'The septic permit is a two-step Aquifer Protection Permit: no ' +
+        'construction "until the Director issues a Construction ' +
+        'Authorization," construction complete within two years, then a ' +
+        'Request for Discharge Authorization, which the agency may inspect ' +
+        'before the Discharge Authorization issues — miss the two years ' +
+        'and the Notice of Intent expires (R18-9-A301(D)). ADEQ\'s own ' +
+        'Notice of Intent form (DWS 402, April 2025) states its clock ' +
+        'under R18-1-525 as 73 business days overall, 42 administrative ' +
+        'plus 31 substantive, with each A312(G) alternative-setback ' +
+        'request adding eight; a delegated county\'s clock is the ' +
+        'county\'s own, and a county residential-lot permit sits outside ' +
+        'the statutory time-frame rules altogether (§ 11-1605(M)(2)).',
+      'Title 45 and 12 A.A.C. 15 Article 8 set no well-to-property-line ' +
+        'distance; the line is reached only through ADEQ\'s 50 ft ' +
+        'septic-to-line rule where the neighbor has no well. And none of ' +
+        'the above is a building setback or a design-criteria value: ' +
+        'every county must issue a building permit for construction over ' +
+        '$1,000 (§ 11-321(A)), but whether that permit carries a building ' +
+        'code — plan review and inspections — is the county\'s choice ' +
+        'under § 11-861(A), and in Greenlee County it carries none.',
+    ],
+  },
+  {
+    code: 'ny',
+    state: 'New York',
+    guideSlug: 'new-york',
+    verified: true,
+    verifiedDate: 'September 2026',
+    separations: {
+      // New York State outside New York City, which keeps its own codes
+      // (Executive Law § 383(1)(c)). Two Health Department tables, read
+      // from both sides. 10 NYCRR Appendix 75-A Table 2 (§ 75-A.4(b),
+      // effective 16 March 2016) measures from each wastewater component —
+      // house sewer, tank, distribution box, absorption field, seepage pit
+      // — to a well, surface water, the dwelling and the property line;
+      // Appendix 5-B Table 1 (effective 23 November 2005) measures from
+      // the well. They agree at the boundary — 50 ft to a tank, 100 ft to
+      // an absorption field, 150 ft to a seepage pit, 200 ft where the
+      // field drains toward the well — and the absorption-field row
+      // governs a conventional system, so it leads and the tank rides in
+      // notes. Both appendices are inside the Uniform Code by reference
+      // ([NY] P2602.1.2 for 75-A, [NY] P2602.1.1 for 5-B), so the code
+      // official enforces them and the county health department, or the
+      // DOH district office where the county has no full-service health
+      // department, approves; a deviation is a "specific waiver" only
+      // that office can grant (DOH Fact Sheet #6).
+      wellToSeptic: {
+        feet: 50,
+        citation: 'App. 75-A Table 2; App. 5-B Table 1',
+        note:
+          'Septic tank or watertight treatment unit to a well or suction ' +
+          'line; Table 1 states the same 50 ft from the well side ("Septic ' +
+          'tank, aerobic unit, watertight effluent line to distribution ' +
+          'box"). The absorption field needs 100 ft — that larger circle ' +
+          'usually controls the layout. Every well distance in both tables ' +
+          'grows by 50% where aquifer water enters the well less than ' +
+          '50 ft below grade (Table 2 note g), so 75 ft for a shallow well.',
+      },
+      wellToDrainfield: {
+        feet: 100,
+        citation: 'App. 75-A Table 2; App. 5-B Table 1',
+        note:
+          'Absorption field to a well or suction line, and the well rule ' +
+          'states the same 100 ft from its side ("Absorption field or ' +
+          'bed"). It becomes 150 ft for a shallow well (aquifer water ' +
+          'entering less than 50 ft below grade, note g) and 200 ft where ' +
+          'the system sits upgrade and in the direct path of surface-water ' +
+          'drainage to the well (note a) — sketch to the larger figure ' +
+          'until the well depth and the drainage direction are known. A ' +
+          'seepage pit needs 150 ft; a raised, mound, or sand-filter ' +
+          'system the same 100 ft. Where the system involves fill, measure ' +
+          'from the toe of the fill slope (note c).',
+      },
+      wellToPropertyLine: unknown(
+        'App. 5-B Table 1 has no property-line row and no dwelling row — ' +
+          'a verified absence. The well is placed by contamination ' +
+          'sources, not lot lines: "A well shall be located upgradient of ' +
+          'any potential or known source of contamination unless property ' +
+          'boundaries, site topography, location of structures and ' +
+          'accessibility require a different location" (§ 5-B.2(c)). On ' +
+          'Long Island the Nassau and Suffolk sanitary codes govern house ' +
+          'wells and were not read for this entry.'
+      ),
+      septicToPropertyLine: {
+        feet: 10,
+        citation: 'App. 75-A Table 2',
+        note:
+          'Absorption field, septic tank, distribution box, house sewer ' +
+          'and seepage pit alike — every row of Table 2 is 10 ft to the ' +
+          'property line. Measured from the edge of the 50% reserve area ' +
+          'too (note d), and from the toe of the fill slope on a raised ' +
+          'or mound system (note c).',
+      },
+      septicToBuilding: {
+        feet: 20,
+        citation: 'App. 75-A Table 2',
+        note:
+          'Absorption field to the dwelling; the distribution box, seepage ' +
+          'pit, and raised or mound system need the same 20 ft. The septic ' +
+          'tank and the effluent line to the distribution box need 10 ft, ' +
+          'the house sewer 3 ft. Measured from the edge of the reserve ' +
+          'area as well (note d).',
+      },
+      septicToSurfaceWater: {
+        feet: 100,
+        citation: 'App. 75-A Table 2',
+        note:
+          'Absorption field to a stream, lake or watercourse, measured to ' +
+          'the mean high water mark (note b), or to a wetland — wetlands ' +
+          'count as surface water here. The distribution box, seepage pit, ' +
+          'and raised or mound system need the same 100 ft; the septic ' +
+          'tank and effluent line 50 ft; the house sewer 25 ft. A sand ' +
+          'filter built watertight may close to 50 ft (note f).',
+      },
+      wellToSurfaceWater: {
+        feet: 25,
+        citation: 'App. 5-B Table 1',
+        note:
+          'Well to a stream, lake, watercourse, drainage ditch, or ' +
+          'wetland, from the well side; 37.5 ft for a shallow well (the ' +
+          '50% increase where aquifer water enters less than 50 ft below ' +
+          'grade). The well may not sit "in a direct line of flow" from ' +
+          'any listed contaminant source, "nor in any contaminant plume."',
+      },
+    },
+    extraSeparations: [
+      {
+        label: 'Absorption field to a well when the system is upgrade and in the direct path of surface-water drainage to the well (Table 1 states the same 200 ft from the well side, and for a field in coarse gravel)',
+        feet: 200,
+        citation: 'App. 75-A Table 2 note a; App. 5-B Table 1',
+      },
+      {
+        label: 'Absorption field to a well where aquifer water enters the well less than 50 ft below grade — every well distance in both tables grows 50%',
+        feet: 150,
+        citation: 'App. 75-A Table 2 note g; App. 5-B Table 1',
+      },
+      {
+        label: 'Seepage pit to a well or suction line (Table 1 states the same 150 ft from the well side)',
+        feet: 150,
+        citation: 'App. 75-A Table 2; App. 5-B Table 1',
+      },
+      {
+        label: 'Distribution box to a well or suction line, and to surface water (20 ft to the dwelling, 10 ft to the property line)',
+        feet: 100,
+        citation: 'App. 75-A Table 2',
+      },
+      {
+        label: 'House sewer with watertight joints to a well (25 ft if cast iron; 25 ft to surface water, 3 ft to the dwelling, 10 ft to the property line)',
+        feet: 50,
+        citation: 'App. 75-A Table 2',
+      },
+      {
+        label: 'Closest part of the wastewater treatment system to any water service line',
+        feet: 10,
+        citation: 'App. 75-A Table 2 note e',
+      },
+      {
+        label: 'Well to a cesspool, or to land application or pile storage of manure, septage, or municipal sludge',
+        feet: 200,
+        citation: 'App. 5-B Table 1',
+      },
+      {
+        label: 'Well to a fertilizer or pesticide mixing area, a seepage pit, or a single-walled underground chemical or petroleum tank (300 ft to an unprotected salt or chemical storage site or a landfill)',
+        feet: 150,
+        citation: 'App. 5-B Table 1',
+      },
+      {
+        label: 'Well to non-watertight septic components, an unlined sand filter, a privy pit, stormwater recharge from paved areas, a cemetery, or a barnyard, silo, or animal pen — and to "all known sources of contamination not shown"',
+        feet: 100,
+        citation: 'App. 5-B Table 1',
+      },
+      {
+        label: 'Well to a sanitary or combined sewer, a watertight privy vault, or a clear-water recharge basin',
+        feet: 50,
+        citation: 'App. 5-B Table 1',
+      },
+      {
+        label: 'Separate subsurface discharge for water-softener backwash, to wells or watercourses (backwash goes into the septic system only where such a discharge is unavailable)',
+        feet: 250,
+        citation: 'App. 75-A § 75-A.3(a)',
+      },
+      {
+        label: 'Vertical: useable soil above rock, unsuitable soil, and high seasonal groundwater for a conventional absorption field',
+        feet: 4,
+        citation: 'App. 75-A § 75-A.4(a)(2)',
+      },
+      {
+        label: 'Vertical: highest groundwater level below the proposed trench bottom (at least one test hole 6 ft deep)',
+        feet: 2,
+        citation: 'App. 75-A § 75-A.4(c)(2)',
+      },
+    ],
+    setbacksNote:
+      'This entry is New York State outside New York City, which keeps its ' +
+      'own construction codes (Executive Law § 383(1)(c)). Every number ' +
+      'above is the Health Department standard the code official enforces ' +
+      'through the Uniform Code ([NY] P2602.1.1, P2602.1.2), and the ' +
+      'county health department — or the DOH district office where the ' +
+      'county has no full-service health department — is the approver: ' +
+      '"specific waivers" from the standards "can only be granted by the ' +
+      'local health department" (DOH Fact Sheet #6), a local well-driller ' +
+      'law stands if it is "at least as comprehensive" (ECL § 15-1525(6)), ' +
+      'and on Long Island the Nassau and Suffolk sanitary codes govern ' +
+      'house wells and no Long Island sanitary-code number was read for ' +
+      'this entry — get the county\'s own sheet before you sketch. Sketch ' +
+      'the reserve area: "An additional useable area of 50 percent shall ' +
+      'be set aside for future expansion or replacement whenever ' +
+      'possible" (§ 75-A.4(a)(5)), and every Table 2 distance is measured ' +
+      'from its edge as well (note d). Two regional overlays add setbacks ' +
+      'the state table does not, and apply only inside their boundary. ' +
+      'Inside the Adirondack Park, Executive Law § 806 keeps every on-site ' +
+      'sewage drainage field or seepage pit 100 ft from the mean ' +
+      'high-water mark in all land use areas, and the principal building ' +
+      '50 ft (hamlet, moderate intensity), 75 ft (low intensity, rural ' +
+      'use), or 100 ft (resource management) back from it; a single-family ' +
+      'dwelling in a Resource Management area, or close to forest preserve ' +
+      'or a state or federal highway, is a class B regional project that ' +
+      'may need an Agency permit before undertaking (§§ 809(2)(a), 810(2)). ' +
+      'Inside the New York City watershed (10 NYCRR Part 128 — the parcel ' +
+      'test is DEP\'s watershed map, not the county) the septic plans need ' +
+      'NYC DEP approval and no part of a new absorption field may lie ' +
+      'within 100 ft of a watercourse or wetland or 300 ft of a reservoir, ' +
+      'reservoir stem, or controlled lake (§ 128-3.8(a)(1), (5)). Building ' +
+      'setbacks from lot lines are zoning, which the Uniform Code leaves to ' +
+      'each city, town, and village (Executive Law § 379(3)) — no ' +
+      'statewide value. Frost depth, wind speed, and ground snow load are ' +
+      'the authority having jurisdiction\'s to fill in on Table R301.2 ' +
+      '([NY] R301.2 notes b, d, o); no state frost table exists, and the ' +
+      'snow load is the parcel\'s, the larger of Figures R301.2(3) and ' +
+      'R301.2(4) plus 2 psf for every 100 ft of elevation above 1,000 ft, ' +
+      'with anything over 70 psf pushed to engineered design ' +
+      '([NY] R301.2.3; Figure R301.2(4) Note 1). Where the Department of ' +
+      'State is the enforcing agency you supply those criteria yourself, ' +
+      'and if the town never set them a licensed architect or engineer ' +
+      'establishes them (19 NYCRR § 1202.12). Get all of it from your ' +
+      'code enforcement official in writing.',
+    ownerDrawnAccepted:
+      'The septic drawing is not yours to file: plans "shall be prepared ' +
+      'directly by or under the supervision of a design professional" ' +
+      '(10 NYCRR § 75.5(b)), so draft here, then hand it over. The ' +
+      'building-permit site plan has a statewide floor, and it starts with ' +
+      'a surveyor: 19 NYCRR § 1203.3(a)(3) requires "a site plan, drawn to ' +
+      'scale and drawn in accordance with an accurate boundary survey," so ' +
+      'a sketch from the deed alone does not meet the rule. Whether the ' +
+      'house plans themselves need a stamp is the 1,500 sq ft line: a ' +
+      'residence of more than 1,500 sq ft gross, not counting garage, ' +
+      'carport, porches, cellar, or uninhabitable basement or attic, needs ' +
+      'an architect\'s or engineer\'s seal statewide (Education Law ' +
+      '§§ 7307(5), 7209(7)(b)); at or under it the state does not require ' +
+      'one, but the local code enforcement program may ([NY] R106.6). The ' +
+      'well plan is the driller\'s: only a DEC-registered driller may ' +
+      'install a private well ([NY] P2602.1.1), and the driller files the ' +
+      'completion report with DEC and "shall provide a copy … to the water ' +
+      'well owner" (ECL § 15-1525(3)).',
+    mustShow: [
+      'The size and location of new construction and existing structures and appurtenances on the site, drawn to scale in accordance with an accurate boundary survey (19 NYCRR § 1203.3(a)(3))',
+      'Distances from lot lines (19 NYCRR § 1203.3(a)(3))',
+      'The established street grades and the proposed finished grades (19 NYCRR § 1203.3(a)(3))',
+      'As applicable, flood hazard areas, floodways, and design flood elevations (19 NYCRR § 1203.3(a)(3))',
+      'On the application, the tax map number and street address (19 NYCRR § 1203.3(a)(2))',
+    ],
+    negativeFindings: [
+      'You may NOT drill your own well: "Individual water supplies (private ' +
+        'wells) shall be installed by a well driller registered with the ' +
+        'Department of Environmental Conservation" ([NY] P2602.1.1). The ' +
+        'Environmental Conservation Law itself reaches only "the business ' +
+        'of water well drilling" (ECL § 15-1525(1)), which is why some ' +
+        'guides say an owner may drill; the Uniform Code closes that door ' +
+        'for a house. The driller\'s on-site supervisor must have passed ' +
+        'the NGWA exam (§ 15-1525(5)), and on Long Island a DEC well ' +
+        'permit under ECL § 15-1527 is needed only above 45 gallons a ' +
+        'minute — ordinary house wells sit below it. You may NOT design ' +
+        'your own septic system: plans "shall be prepared directly by or ' +
+        'under the supervision of a design professional" (10 NYCRR ' +
+        '§ 75.5(b)). Installing a conventional system is not restricted by ' +
+        'the state rule, but an alternative system needs the health ' +
+        'department\'s prior approval, a design professional supervising ' +
+        'construction, and a post-construction certification (§ 75.5(c)).',
+      'Design flow is "a minimum daily flow of 110 gallons per day per ' +
+        'bedroom" for new construction (§ 75-A.3(b), Table 1) — 330 gpd ' +
+        'for three bedrooms. The tank is 1,000 gal for one to three ' +
+        'bedrooms, 1,250 for four, 1,500 for five, 1,750 for six, then ' +
+        '250 gal and seven square feet of liquid surface for each ' +
+        'additional bedroom; "A garbage grinder shall be considered ' +
+        'equivalent to an additional bedroom," and so shall an expansion ' +
+        'attic (§ 75-A.6(a)(1), Table 3). Set aside a 50% reserve area ' +
+        '"whenever possible" (§ 75-A.4(a)(5)).',
+      'Site disqualifiers (§ 75-A.4(a)): "Areas lower than the 10 year ' +
+        'flood level are unacceptable for on-site systems. Slopes greater ' +
+        'than 15% are also unacceptable"; a conventional absorption field ' +
+        'needs "at least four feet of useable soil available above rock, ' +
+        'unsuitable soil, and high seasonal groundwater"; and soils ' +
+        'percolating faster than one minute per inch "are not suitable" ' +
+        'unless the site is modified by blending. The highest groundwater ' +
+        'level must be at least two feet below the proposed trench ' +
+        'bottom, from at least one test hole six feet deep ' +
+        '(§ 75-A.4(c)(2)).',
+      'App. 5-B Table 1 carries no well-to-property-line and no ' +
+        'well-to-dwelling distance — verified absences, not gaps. The well ' +
+        'is placed by contamination sources and the rule that it be ' +
+        'upgradient of them (§ 5-B.2(c)). Wetlands count as surface water ' +
+        'in both tables.',
+      'None of the above is a building setback or a design-criteria ' +
+        'value. Lot-line setbacks are local zoning (Executive Law ' +
+        '§ 379(3)); frost depth and ground snow load are filled in by the ' +
+        'authority having jurisdiction on Table R301.2, and any inch or ' +
+        'psf figure quoted for a county is a local custom, not a state ' +
+        'rule.',
+    ],
+  },
 ];
 
 const VERIFIED_BY_CODE = new Map(VERIFIED_STATES.map((s) => [s.code, s]));

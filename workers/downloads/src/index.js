@@ -598,6 +598,30 @@ const PRODUCTS = {
       'and IDWR, and the forms index — print-ready PDFs with the statute ' +
       'citations on the page.',
   },
+  'ny-permit-kit': {
+    sku: 'ny-permit-kit',
+    kind: 'download',
+    name: 'New York Owner-Builder Permit Kit',
+    amount: 3400,
+    r2Key: 'ny-permit-kit.zip',
+    description:
+      'New York owner-builder permitting outside New York City, start to ' +
+      'finish: the one code on every parcel and the three governments that ' +
+      'might issue your permit, the workers’ compensation form that gates ' +
+      'it, the electrical inspector your town must pre-approve, energy ' +
+      'values stricter than the model code, the all-electric rule with its ' +
+      'court-set clock, and the septic and well separations the county ' +
+      'health department applies. 45 print-ready pages with the statute ' +
+      'citations on the page. Instant download.',
+    emailSubject: 'Your New York Permit Kit — download inside',
+    emailBlurb:
+      'The ZIP contains the who-enforces-your-house walkthrough with the ' +
+      'permit gate, the permit application checklist with New York’s own ' +
+      'energy table, the inspection sequence with the appeal route, the ' +
+      'where-to-file directory for the enforcement ladder and the county ' +
+      'health departments, and the forms index — print-ready PDFs with the ' +
+      'statute citations on the page.',
+  },
 };
 
 const DEFAULT_SKU = 'job-site-binder';

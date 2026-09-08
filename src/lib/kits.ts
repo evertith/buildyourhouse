@@ -125,7 +125,11 @@ export const STATE_KITS: StateKit[] = [
   K('New Hampshire', 'nh', 'new-hampshire', { phase: 10 }),
   K('New Jersey', 'nj', 'new-jersey', { phase: 8 }),
   K('New Mexico', 'nm', 'new-mexico', { phase: 6 }),
-  K('New York', 'ny', 'new-york', { phase: 5 }),
+  K('New York', 'ny', 'new-york', {
+    status: 'shipped',
+    checkoutUrl: 'https://buy.stripe.com/aFafZhacn68D57u5ovfAc0p',
+    hook: 'One code on every parcel and three governments that might issue the permit, a workers’ compensation form that gates it, an electrical inspector your town must pre-approve, energy values stricter than the model code — and an all-electric rule whose court-set clock is already running.',
+  }),
   K('North Carolina', 'nc', 'north-carolina', {
     status: 'shipped',
     checkoutUrl: 'https://buy.stripe.com/7sYaEX3NZ40vgQc2cjfAc01',
