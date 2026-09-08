@@ -622,6 +622,30 @@ const PRODUCTS = {
       'health departments, and the forms index — print-ready PDFs with the ' +
       'statute citations on the page.',
   },
+  'az-permit-kit': {
+    sku: 'az-permit-kit',
+    kind: 'download',
+    name: 'Arizona Owner-Builder Permit Kit',
+    amount: 3400,
+    r2Key: 'az-permit-kit.zip',
+    description:
+      'Arizona owner-builder permitting, start to finish: the county ' +
+      'building permit no board of supervisors may waive, the one no-code ' +
+      'county and the two opt-outs that record a notice on your title, the ' +
+      'signed statement on every application that names your licensed ' +
+      'subs, the one-year sale rule and the deed-and-move-in switch that ' +
+      'turns it off, the city-versus-county clocks, and the ADEQ septic and ' +
+      'ADWR well rules. 49 print-ready pages with the statute citations on ' +
+      'the page. Instant download.',
+    emailSubject: 'Your Arizona Permit Kit — download inside',
+    emailBlurb:
+      'The ZIP contains the code-is-local-permit-is-not walkthrough with the ' +
+      'exemption statement, the permit application checklist with the ' +
+      'county and city edition maps, the inspection sequence with the ' +
+      'city-versus-county clocks, the where-to-file directory for all 15 ' +
+      'counties, ADEQ and ADWR, and the forms index — print-ready PDFs with ' +
+      'the statute citations on the page.',
+  },
 };
 
 const DEFAULT_SKU = 'job-site-binder';

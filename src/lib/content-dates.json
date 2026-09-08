@@ -377,7 +377,7 @@
   },
   "/permitting/state-guides/new-york": {
     "published": "2026-05-30T21:34:24-04:00",
-    "modified": "2026-09-02T22:15:51-04:00"
+    "modified": "2026-09-08T14:25:16-04:00"
   },
   "/permitting/state-guides/north-carolina": {
     "published": "2025-11-17T08:11:01-05:00",
@@ -562,6 +562,10 @@
   "/shop/ne-permit-kit": {
     "published": "2026-09-08T14:08:02-04:00",
     "modified": "2026-09-08T14:08:02-04:00"
+  },
+  "/shop/ny-permit-kit": {
+    "published": "2026-09-08T14:25:16-04:00",
+    "modified": "2026-09-08T14:25:16-04:00"
   },
   "/shop/oh-permit-kit": {
     "published": "2026-09-02T23:35:30-04:00",

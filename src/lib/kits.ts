@@ -48,7 +48,11 @@ export const STATE_KITS: StateKit[] = [
     checkoutUrl: 'https://buy.stripe.com/7sYeVd5W7dB543qdV1fAc0d',
     hook: 'The exemption paragraph almost everyone cites is the remodel one, a state plumbing inspector arrives where no building department exists, and the code that actually binds your house comes through the mortgage — with the building official employed by the lender.',
   }),
-  K('Arizona', 'az', 'arizona', { phase: 5 }),
+  K('Arizona', 'az', 'arizona', {
+    status: 'shipped',
+    checkoutUrl: 'https://buy.stripe.com/cNi00jacn9kP1Vi2cjfAc0q',
+    hook: 'No statewide code but a county permit no board of supervisors may waive, one no-code county and two opt-outs that record a notice on your title, a signed statement on every application that names your licensed subs, and a one-year sale rule you switch off by recording the deed and moving in.',
+  }),
   K('Arkansas', 'ar', 'arkansas', {
     status: 'shipped',
     checkoutUrl: 'https://buy.stripe.com/00w5kD0BN9kPdE09ELfAc0i',
