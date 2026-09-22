@@ -14,15 +14,17 @@ interface CalcHeroProps {
   cells: { k: string; v: string }[]; // exactly 4
   /** Hub variant — no sheet overlaps the band below. */
   flat?: boolean;
+  /** Eyebrow text — defaults to the free-tool label; services override it. */
+  eyebrow?: string;
 }
 
-export function CalcHero({ title, sub, cells, flat }: CalcHeroProps) {
+export function CalcHero({ title, sub, cells, flat, eyebrow = 'Free tool' }: CalcHeroProps) {
   return (
     <section className={`${s.hero} bp-band bp-grid no-print`}>
       <span className={`${s.crop} ${s.tl}`} />
       <span className={`${s.crop} ${s.tr}`} />
       <div className={`${s.heroInner} ${flat ? s.heroInnerFlat : ''}`}>
-        <p className={`bp-eyebrow ${s.eyebrow}`}>Free tool</p>
+        <p className={`bp-eyebrow ${s.eyebrow}`}>{eyebrow}</p>
         <h1 className={s.heroTitle}>{title}</h1>
         <p className={s.heroSub}>{sub}</p>
         <div className={s.dimstrip}>

@@ -15,8 +15,8 @@ export interface CalcMeta {
   heroUnit: string;
   relatedGuide: { href: string; label: string };
   relatedCalcs: string[];
-  /** Trade takeoff (TO-*) or planning worksheet (W-*). Default 'takeoff'. */
-  kind?: 'takeoff' | 'worksheet';
+  /** Trade takeoff (TO-*), planning worksheet (W-*), or an outside service the hub lists (PT-*). Default 'takeoff'. */
+  kind?: 'takeoff' | 'worksheet' | 'service';
   /** Route override for entries outside /calculators/<slug>. */
   href?: string;
 }
@@ -34,7 +34,7 @@ export const CALCULATORS: CalcMeta[] = [
     blurb: 'Studs, plates, headers, and sheathing for every wall in the house.',
     heroUnit: 'studs',
     relatedGuide: { href: '/build-phases/framing', label: 'Framing phase guide' },
-    relatedCalcs: ['drywall', 'insulation', 'roofing'],
+    relatedCalcs: ['plan-takeoff', 'drywall', 'insulation'],
   },
   {
     slug: 'drywall',
@@ -110,7 +110,7 @@ export const CALCULATORS: CalcMeta[] = [
     heroUnit: 'estimate',
     kind: 'worksheet',
     relatedGuide: { href: '/planning/creating-budget', label: 'Budget planning guide' },
-    relatedCalcs: ['framing-lumber', 'concrete-slab', 'cost-savings-calculator'],
+    relatedCalcs: ['plan-takeoff', 'framing-lumber', 'concrete-slab'],
   },
   {
     slug: 'timeline-estimator',
@@ -131,6 +131,16 @@ export const CALCULATORS: CalcMeta[] = [
     kind: 'worksheet',
     relatedGuide: { href: '/planning/creating-budget', label: 'Budget planning guide' },
     relatedCalcs: ['material-estimator', 'timeline-estimator', 'cost-savings-calculator'],
+  },
+  {
+    slug: 'plan-takeoff',
+    sheetNo: 'PT-01',
+    name: 'Plan Set Takeoff (StudTally)',
+    blurb: 'Upload a residential plan set and get the framing list the yard can key in, every number traced to the sheet. $79 per job, under an hour.',
+    heroUnit: 'framing list',
+    kind: 'service',
+    relatedGuide: { href: '/build-phases/framing', label: 'Framing phase guide' },
+    relatedCalcs: ['framing-lumber', 'material-estimator', 'roofing'],
   },
 ];
 

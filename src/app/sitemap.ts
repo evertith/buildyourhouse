@@ -170,6 +170,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly' as const,
       priority: 0.9,
     },
+    // Plan-set takeoff (PT-01) — StudTally front door
+    {
+      url: `${baseUrl}/calculators/plan-takeoff`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    },
     // Trade takeoff calculators (TO-01 … TO-07)
     ...[
       'framing-lumber',

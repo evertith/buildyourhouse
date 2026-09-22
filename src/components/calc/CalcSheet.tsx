@@ -18,6 +18,8 @@ import { calcBySlug, calcHref } from '@/lib/calc/registry';
 import { formatCostRange, formatCurrency, formatQty } from '@/lib/calc/format';
 import { trackEvent } from '@/lib/analytics';
 import EstimateCapture from './EstimateCapture';
+import TrackedLink from '@/components/TrackedLink';
+import { PLAN_TAKEOFF_SLUGS, STUDTALLY_PRICE, studTallyUrl } from '@/lib/studtally';
 
 export interface BarRow {
   key: string;
@@ -69,6 +71,7 @@ export default function CalcSheet({
   const resultKey = useMemo(() => JSON.stringify(result), [result]);
 
   const hasCost = typeof result.costLow === 'number' && typeof result.costHigh === 'number';
+  const offersTakeoff = PLAN_TAKEOFF_SLUGS.has(slug);
   // Registry href, not /calculators/<slug> — W-01 lives under /feasibility.
   const meta = calcBySlug(slug);
   const sheetPath = meta ? calcHref(meta) : `/calculators/${slug}`;
@@ -256,12 +259,51 @@ export default function CalcSheet({
               </div>
             )}
 
+            {offersTakeoff && (
+              <div className={`${s.planTakeoff} no-print`}>
+                <p className={s.costDimLabel}>
+                  From your plans
+                  <span className={s.costDimNote}>StudTally</span>
+                </p>
+                <p className={s.planTakeoffText}>
+                  This sheet estimates from what you type in. When you have a plan set,
+                  StudTally reads it and returns the framing list the lumber yard can key
+                  in, with every quantity traced to the drawing it came from. Review the
+                  measurements against the sheet, then download a PDF or spreadsheet.
+                  ${STUDTALLY_PRICE} per job, under an hour.
+                </p>
+                <TrackedLink
+                  href={studTallyUrl(slug)}
+                  target="_blank"
+                  rel="noopener"
+                  className={s.planTakeoffLink}
+                  eventName="studtally_click"
+                  eventParams={{ calculator: slug, location: 'sheet' }}
+                >
+                  Upload a plan set at StudTally →
+                </TrackedLink>
+                <span className={s.planTakeoffMeta}>From the people behind this site</span>
+              </div>
+            )}
+
             <p className={s.finePrint}>
               {hasCost ? (
                 <>
-                  Estimate only. Assumes {finePrintBasis}; order after a takeoff
-                  from your actual plans. Prices are national ranges, August
-                  2026 — get local quotes.
+                  Estimate only. Assumes {finePrintBasis}; order after{' '}
+                  {offersTakeoff ? (
+                    <TrackedLink
+                      href={studTallyUrl(slug)}
+                      target="_blank"
+                      rel="noopener"
+                      eventName="studtally_click"
+                      eventParams={{ calculator: slug, location: 'fineprint' }}
+                    >
+                      a takeoff from your actual plans
+                    </TrackedLink>
+                  ) : (
+                    'a takeoff from your actual plans'
+                  )}
+                  . Prices are national ranges, August 2026 — get local quotes.
                 </>
               ) : (
                 <>Estimate only. Assumes {finePrintBasis}.</>

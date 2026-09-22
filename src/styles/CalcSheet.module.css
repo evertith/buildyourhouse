@@ -564,6 +564,47 @@
 }
 
 /* ---------- FINE PRINT + ASSUMPTIONS ---------- */
+/* ---------- FROM YOUR PLANS (StudTally step) ---------- */
+.planTakeoff {
+  border-top: 1px solid var(--hairline);
+  padding-top: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+.planTakeoffText {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin: 0 0 10px;
+  max-width: none;
+}
+.planTakeoffLink {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-primary);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent-primary);
+  padding-bottom: 1px;
+}
+.planTakeoffLink:hover { color: var(--text-heading); border-bottom-color: var(--text-heading); }
+.planTakeoffMeta {
+  display: block;
+  margin-top: 8px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+.finePrint a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 2px;
+}
+
 .finePrint {
   font-size: 13px;
   line-height: 1.5;

@@ -3,7 +3,8 @@ import type { Metadata } from 'next';
 import s from '@/styles/CalcSheet.module.css';
 import h from '@/styles/CalcHub.module.css';
 import { CalcHero, CalcSection } from '@/components/calc/sections';
-import { CALCULATORS, calcHref } from '@/lib/calc/registry';
+import { CALCULATORS, calcBySlug, calcHref } from '@/lib/calc/registry';
+import { STUDTALLY_PRICE } from '@/lib/studtally';
 import BinderCTA from '@/components/BinderCTA';
 
 export const metadata: Metadata = {
@@ -26,10 +27,12 @@ const OUTPUTS: Record<string, string> = {
   'material-estimator': 'all majors · total cost',
   'timeline-estimator': 'months · phases',
   'budget-tracker': 'variance · contingency',
+  'plan-takeoff': 'framing list · from your PDF',
 };
 
 const TAKEOFFS = CALCULATORS.filter((c) => (c.kind ?? 'takeoff') === 'takeoff');
 const WORKSHEETS = CALCULATORS.filter((c) => c.kind === 'worksheet');
+const PLAN_TAKEOFF = calcBySlug('plan-takeoff')!;
 
 export default function CalculatorsPage() {
   return (
@@ -104,6 +107,29 @@ export default function CalculatorsPage() {
                 </span>
               </span>
               <span className={h.idxOut}>plot plan &middot; to scale</span>
+              <span className={h.idxGo} aria-hidden="true">&rarr;</span>
+            </Link>
+          </div>
+        </CalcSection>
+
+        <CalcSection
+          label="From your plans"
+          title="When you have a plan set"
+          meta="PT-01"
+        >
+          <div>
+            <Link href={calcHref(PLAN_TAKEOFF)} className={h.idxRow}>
+              <span className={h.idxNo}>{PLAN_TAKEOFF.sheetNo}</span>
+              <span>
+                <span className={h.idxTitle}>{PLAN_TAKEOFF.name}</span>
+                <span className={h.idxDesc}>
+                  The sheets above estimate from square footage or field
+                  measurements. StudTally reads an uploaded residential plan
+                  set and returns the framing list the yard can key in, every
+                  number traced to the drawing. ${STUDTALLY_PRICE} per job, under an hour.
+                </span>
+              </span>
+              <span className={h.idxOut}>{OUTPUTS['plan-takeoff']}</span>
               <span className={h.idxGo} aria-hidden="true">&rarr;</span>
             </Link>
           </div>
