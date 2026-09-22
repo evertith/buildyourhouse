@@ -676,6 +676,16 @@ const verifiedSessions = new Map();
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 /**
+ * The Stripe account is shared with StudTally (studtally.com), whose Checkout Sessions carry
+ * metadata.app = "studtally". Payment Links made here never set metadata.app, so any session
+ * that has one belongs to another product: no binder email, no download, no recovery entry.
+ */
+function isForeignSession(session) {
+  const app = session?.metadata?.app;
+  return Boolean(app) && app !== 'buildyourhouse';
+}
+
+/**
  * A session is fulfillable when Stripe collected payment OR nothing was owed —
  * a 100%-off promotion code produces payment_status 'no_payment_required'.
  */
@@ -801,6 +811,9 @@ async function verifyStripeSession(sessionId, env) {
       `/checkout/sessions/${encodeURIComponent(sessionId)}?expand[]=line_items.data.price.product`
     );
   } catch {
+    return { paid: false, email: null, sku: null, session: null };
+  }
+  if (isForeignSession(session)) {
     return { paid: false, email: null, sku: null, session: null };
   }
   const paid = isPaidStatus(session.payment_status);
@@ -933,7 +946,10 @@ async function handleRecover(request, env, ctx, origin) {
     params.set('customer_details[email]', email);
     const res = await stripe(env, `/checkout/sessions?${params}`);
     paidSessions = res.data.filter(
-      (s) => isPaidStatus(s.payment_status) && s.customer_details?.email?.toLowerCase() === email
+      (s) =>
+        !isForeignSession(s) &&
+        isPaidStatus(s.payment_status) &&
+        s.customer_details?.email?.toLowerCase() === email
     );
   } catch (err) {
     console.error('recovery Stripe lookup failed:', err);
@@ -1334,6 +1350,10 @@ async function handleStripeWebhook(request, env) {
   }
 
   const session = event.data.object;
+  if (isForeignSession(session)) {
+    // Another product's order on the shared account (StudTally). Acknowledge, do nothing.
+    return new Response('not ours', { status: 200 });
+  }
   if (!isPaidStatus(session.payment_status)) {
     // Async payment methods complete later; the async_payment_succeeded event covers those.
     return new Response('not paid yet', { status: 200 });
