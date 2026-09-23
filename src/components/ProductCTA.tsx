@@ -1,4 +1,5 @@
 import TrackedLink from '@/components/TrackedLink';
+import ImpressionSentinel from '@/components/ImpressionSentinel';
 import styles from '@/styles/ProductCTA.module.css';
 
 interface ProductCTAProps {
@@ -38,6 +39,7 @@ export default function ProductCTA({
 }: ProductCTAProps) {
   return (
     <aside className={styles.productCta}>
+      <ImpressionSentinel placement="kit-cta" params={{ context }} />
       <p className={styles.kicker}>{kicker ?? 'From the shop'}</p>
       <h3 className={styles.title}>{title}</h3>
       <p className={styles.copy}>{lead}</p>

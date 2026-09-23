@@ -1,5 +1,6 @@
 import s from '@/styles/Financing.module.css';
 import TrackedLink from '@/components/TrackedLink';
+import ImpressionSentinel from '@/components/ImpressionSentinel';
 import { lendersForState, LENDERS_VERIFIED } from '@/lib/financing/lenders';
 import { SPONSOR_PAGE, sponsorForState } from '@/lib/financing/sponsors';
 
@@ -25,6 +26,7 @@ export default function StateLenders({ code, state }: Props) {
 
   return (
     <section className={`${s.stateLenders} no-print`} aria-labelledby={`lenders-${c}`}>
+      <ImpressionSentinel placement="state-lenders" params={{ state: c, sponsored: Boolean(sponsor) }} />
       <div className={s.stateLendersHead}>
         <h2 id={`lenders-${c}`} className={s.stateLendersTitle}>
           Lenders advertising owner-builder loans in {state}

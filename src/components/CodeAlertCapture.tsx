@@ -1,4 +1,5 @@
 'use client';
+import ImpressionSentinel from '@/components/ImpressionSentinel';
 
 /**
  * Code Change Alerts — the revision watch as a subscriber promise.
@@ -52,6 +53,7 @@ export default function CodeAlertCapture({ state }: { state: string }) {
 
   return (
     <aside className={s.band} aria-label={`${state} code change alerts`}>
+      <ImpressionSentinel placement="code-alerts" params={{ state }} />
       <div className={s.copy}>
         <p className={s.kicker}>Revision watch · {state}</p>
         <p className={s.head}>Codes change. This page changes with them.</p>

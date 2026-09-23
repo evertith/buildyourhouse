@@ -1,4 +1,5 @@
 'use client';
+import ImpressionSentinel from '@/components/ImpressionSentinel';
 
 /**
  * The tear-off stub (design spec §6): emails the visitor their takeoff via
@@ -57,6 +58,7 @@ export default function EstimateCapture({ payload }: { payload: EstimatePayload 
 
   return (
     <div className={`${s.tearoff} no-print`}>
+      <ImpressionSentinel placement="estimate-capture" params={{}} />
       <div>
         <p className={s.tearoffHead}>Send this takeoff to your inbox</p>
         <p className={s.tearoffSub}>

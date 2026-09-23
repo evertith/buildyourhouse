@@ -245,3 +245,13 @@
 .rateList { margin: 8px 0 0; padding-left: 18px; font-size: 14px; line-height: 1.55; color: var(--text-heading); }
 .rateList li { margin: 0 0 4px; }
 @media (max-width: 720px) { .statGrid { grid-template-columns: repeat(2, 1fr); } .rateGrid { grid-template-columns: 1fr; } }
+
+/* ---------- FIRST-SCREEN LENDER LINE (under the at-a-glance table) ---------- */
+.lenderLine { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 10px; margin: -4px 0 var(--space-4); padding: 8px 0; border-bottom: 1px dotted var(--hairline-strong); font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: none; }
+.lenderLineSponsored { border-top: 1px solid var(--accent-primary); border-bottom: 1px solid var(--accent-primary); padding: 10px 0; }
+.lenderLineK { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-heading); }
+.lenderLineName { font-family: var(--font-display); font-size: 16px; font-weight: 600; color: var(--text-heading); text-decoration: none; }
+.lenderLineName:hover { color: var(--accent-primary); }
+.lenderLinePitch { color: var(--text-secondary); }
+.lenderLineMore { color: var(--accent-primary); text-decoration: none; border-bottom: 1px solid var(--accent-primary); padding-bottom: 1px; }
+.lenderLineMore:hover { color: var(--text-heading); border-bottom-color: var(--text-heading); }
