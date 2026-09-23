@@ -287,6 +287,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/financing/sponsor`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.5,
+    },
+    {
       url: `${baseUrl}/site-plan-studio`,
       lastModified: currentDate,
       changeFrequency: 'monthly' as const,

@@ -1,6 +1,7 @@
 import s from '@/styles/Financing.module.css';
 import TrackedLink from '@/components/TrackedLink';
 import { FEATURED_LENDER, LENDERS, LENDERS_VERIFIED } from '@/lib/financing/lenders';
+import { SPONSOR_PAGE, SPONSORS } from '@/lib/financing/sponsors';
 
 /**
  * Editorial list of lenders that publicly advertise owner-builder programs.
@@ -15,6 +16,23 @@ export default function LenderDirectory() {
         <p className={s.dirTitle}>Lenders advertising owner-builder programs</p>
         <p className={s.dirVerified}>Checked {LENDERS_VERIFIED}</p>
       </div>
+      {Object.entries(SPONSORS).map(([code, sp]) => (
+        <aside key={`sponsor-${code}`} className={s.sponsored}>
+          <span className={s.sponsoredTag}>Sponsored · {code}</span>
+          <p className={s.lenderName}>
+            <TrackedLink
+              eventName="lender_click"
+              eventParams={{ lender: sp.lenderId ?? sp.name, placement: 'hub-sponsored', state: code }}
+              href={sp.url}
+              target="_blank"
+              rel="sponsored noopener"
+            >
+              {sp.name}
+            </TrackedLink>
+          </p>
+          <p className={s.lenderNotes}>{sp.pitch}</p>
+        </aside>
+      ))}
       {LENDERS.map((l) => (
         <div key={l.id} className={s.lenderRow}>
           <div>
@@ -37,8 +55,8 @@ export default function LenderDirectory() {
       ))}
       <p className={s.dirFoot}>
         What each lender advertises, not an endorsement — programs, states, and terms
-        change, so verify directly before applying. No lender pays us to appear here;
-        if a sponsored placement ever exists, it will be labeled as such.
+        change, so verify directly before applying. No lender pays to appear in this list; a sponsored placement is always labeled as such.{' '}
+        <a href={SPONSOR_PAGE}>Lenders: how sponsorship works.</a>
       </p>
     </div>
   );

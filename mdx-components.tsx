@@ -12,6 +12,7 @@ import BinderCTA from '@/components/BinderCTA';
 import ProductCTA from '@/components/ProductCTA';
 import CodeAlertCapture from '@/components/CodeAlertCapture';
 import PlanningTools from '@/components/PlanningTools';
+import StateLenders from '@/components/financing/StateLenders';
 import LenderDirectory, { FeaturedLenderSlot } from '@/components/financing/LenderDirectory';
 import LenderMatchForm from '@/components/financing/LenderMatchForm';
 import styles from '@/styles/article.module.css';
@@ -37,6 +38,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ProductCTA,
     CodeAlertCapture,
     PlanningTools,
+    StateLenders,
     LenderDirectory,
     FeaturedLenderSlot,
     LenderMatchForm,
