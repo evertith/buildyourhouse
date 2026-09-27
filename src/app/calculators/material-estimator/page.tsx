@@ -7,9 +7,9 @@ import { generateFAQSchema, schemaToScriptTag } from '@/lib/schema';
 
 export const metadata: Metadata = {
   alternates: { canonical: '/calculators/material-estimator' },
-  title: 'Building Material Cost Calculator — Whole-House Estimator',
+  title: 'Material Cost to Build a House Calculator — Whole-House Estimate',
   description:
-    'How much do materials cost to build a house? Estimate lumber, concrete, drywall, roofing, flooring, and insulation quantities and costs from your square footage — free, no signup.',
+    'Material cost to build a house, calculated from your square footage: lumber, concrete, drywall, roofing, flooring, and insulation quantities with an honest price range — free, no signup.',
 };
 
 const FAQS = [
@@ -56,7 +56,7 @@ export default function MaterialEstimatorPage() {
       />
 
       <CalcHero
-        title="Building Material Cost Calculator"
+        title="Material Cost to Build a House Calculator"
         sub="Whole-house material quantities and cost from your square footage — concrete through insulation, with every rate and multiplier shown."
         cells={[
           { k: 'Sheet', v: 'W-02' },
