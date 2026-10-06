@@ -39,7 +39,9 @@
  *
  * DRIP SEQUENCE: a daily cron (see wrangler.jsonc triggers) sends one
  * follow-up per branch at day 3 — '/shop-sample' signups get the sample
- * follow-up; everyone else gets the permit-mistakes email (with an NC kit
+ * follow-up; framing-calculator signups get the StudTally takeoff email;
+ * state-guide signups whose kit is live get the permit-mistakes email with
+ * that state's kit; everyone else gets the permit-mistakes email (with an NC kit
  * variant when the source is the NC state guide). Suppressed for
  * unsubscribed or purchased subscribers; sends are recorded in
  * sequence_sends so each step fires at most once per address.
@@ -813,10 +815,62 @@ const SEQUENCE_MIN_AGE_DAYS = 3;
 // against blasting a backlog if a new step ships months from now.
 const SEQUENCE_MAX_AGE_DAYS = 21;
 
+/**
+ * Mirror of the shipped set in src/lib/kits.ts, keyed by the state-guide slug
+ * that appears in a subscriber's source path (the worker cannot import the
+ * site's modules). Add a line when a kit ships — it is part of the kit wiring
+ * procedure. A state missing here just gets the generic planning email.
+ */
+const SHIPPED_KITS = {
+  'alaska': ['ak', 'Alaska'],
+  'arizona': ['az', 'Arizona'],
+  'arkansas': ['ar', 'Arkansas'],
+  'california': ['ca', 'California'],
+  'colorado': ['co', 'Colorado'],
+  'florida': ['fl', 'Florida'],
+  'georgia': ['ga', 'Georgia'],
+  'idaho': ['id', 'Idaho'],
+  'kentucky': ['ky', 'Kentucky'],
+  'louisiana': ['la', 'Louisiana'],
+  'michigan': ['mi', 'Michigan'],
+  'mississippi': ['ms', 'Mississippi'],
+  'montana': ['mt', 'Montana'],
+  'nebraska': ['ne', 'Nebraska'],
+  'new-york': ['ny', 'New York'],
+  'north-carolina': ['nc', 'North Carolina'],
+  'ohio': ['oh', 'Ohio'],
+  'pennsylvania': ['pa', 'Pennsylvania'],
+  'south-carolina': ['sc', 'South Carolina'],
+  'tennessee': ['tn', 'Tennessee'],
+  'texas': ['tx', 'Texas'],
+  'virginia': ['va', 'Virginia'],
+  'washington': ['wa', 'Washington'],
+  'wisconsin': ['wi', 'Wisconsin'],
+};
+
+/** The shipped kit for a state-guide signup, or null. Source looks like '/permitting/state-guides/virginia#code-alerts'. */
+function kitForSource(source) {
+  const m = /\/permitting\/state-guides\/([a-z-]+)/.exec(source || '');
+  const k = m && SHIPPED_KITS[m[1]];
+  return k ? { code: k[0], name: k[1] } : null;
+}
+
+/** Calculators whose takeoff is a framing list — the StudTally offer only fits these (mirrors PLAN_TAKEOFF_SLUGS). */
+const TAKEOFF_CALCULATORS = ['/calculators/material-estimator', '/calculators/framing-lumber'];
+
+/**
+ * One day-3 email per signup, chosen by where they signed up:
+ *   sample-d3   grabbed the binder sample pages → did they earn a spot?
+ *   takeoff-d3  ran a framing takeoff → the exact takeoff from plans (StudTally)
+ *   kit-d3      a state guide whose kit is live → the three mistakes + that kit
+ *   planning-d3 everyone else → the three mistakes + the free guides
+ */
 function sequenceStepFor(sub) {
   const source = sub.source || '';
   if (source.startsWith('/purchase')) return null;
   if (source === '/shop-sample') return 'sample-d3';
+  if (TAKEOFF_CALCULATORS.some((c) => source.startsWith(c))) return 'takeoff-d3';
+  if (kitForSource(source)) return 'kit-d3';
   return 'planning-d3';
 }
 
@@ -854,18 +908,20 @@ ${f.html}`;
 
 function planningD3Email(unsubUrl, source) {
   const f = emailFooter(unsubUrl);
-  const nc = (source || '').includes('north-carolina');
-  const ncText = nc
+  const kit = kitForSource(source);
+  const kitUrl = kit ? `${SITE}/shop/${kit.code}-permit-kit` : '';
+  const ST = kit ? kit.code.toUpperCase() : '';
+  const ncText = kit
     ? `
 
-Since you found us through the North Carolina guide: the NC Permit Kit is those rules as working checklists — the owner exemption walkthrough, the application checklist, and the inspection sequence, with the statute citations printed on each page. $34:
-${SITE}/shop/nc-permit-kit`
+Since you found us through the ${kit.name} guide: the ${ST} Permit Kit is those rules as working checklists — the owner exemption walkthrough, the application checklist, and the inspection sequence, with the statute citations printed on each page. $34:
+${kitUrl}`
     : `
 
 Your state's specifics are in the free state guides:
 ${SITE}/permitting/state-guides`;
-  const ncHtml = nc
-    ? `<p>Since you found us through the North Carolina guide: the <a href="${SITE}/shop/nc-permit-kit"><strong>NC Permit Kit</strong></a> is those rules as working checklists — the owner exemption walkthrough, the application checklist, and the inspection sequence, with the statute citations printed on each page. $34.</p>`
+  const ncHtml = kit
+    ? `<p>Since you found us through the ${kit.name} guide: the <a href="${kitUrl}"><strong>${ST} Permit Kit</strong></a> is those rules as working checklists — the owner exemption walkthrough, the application checklist, and the inspection sequence, with the statute citations printed on each page. $34.</p>`
     : `<p>Your state's specifics are in the free <a href="${SITE}/permitting/state-guides">state guides</a>.</p>`;
 
   const text = `Hi,
@@ -898,6 +954,53 @@ ${ncHtml}
 <p style="color:#6b6b6b;font-size:13px;">PS — Already own a home while you plan the build? <a href="https://www.thehouseyear.com/?utm_source=buildyourhouse&amp;utm_medium=email&amp;utm_campaign=drip">The House Year</a> is my free maintenance calendar — the whole year of house upkeep on one wheel.</p>
 ${f.html}`;
   return { subject: 'Three permit mistakes that cost owner-builders real money', text, html };
+}
+
+const STUDTALLY_DRIP_URL =
+  'https://studtally.com/?utm_source=build-your-house.com&utm_medium=email&utm_campaign=plan-takeoff&utm_content=drip-takeoff-d3';
+
+function takeoffD3Email(unsubUrl) {
+  const f = emailFooter(unsubUrl);
+  const text = `Hi,
+
+A few days ago you ran a material takeoff at build-your-house.com and asked for a copy. One honest caveat about that number: it came from square footage and the assumptions printed on the calculator page. It is a budgeting figure, not an order list.
+
+When you have a plan set, the order list should come from the plans. StudTally is the tool we built for that step — upload the residential plan set and it returns the framing list with every quantity traced to the sheet it came from. $79 per job, no subscription:
+${STUDTALLY_DRIP_URL}
+
+Two things worth doing before you order anything:
+
+1. Get three lumber quotes on the same list. Yards price an identical takeoff further apart than you'd expect, and the spread is usually more than the takeoff cost.
+
+2. Log every delivery against the list the day it lands. Shorts and substitutions are a phone call on day one and a change order on day thirty. The Job Site Binder's materials section is built for exactly that — takeoffs, quotes, and delivery logs on paper that survives the truck: ${SITE}/shop
+
+What are you building, and do you have plans yet? Reply and tell me — I read every one of these, and it shapes what I build next.
+
+Seth
+Build Your House
+${SITE}
+
+PS — Already own a home while you plan the build? The House Year is my free maintenance calendar — the whole year of house upkeep on one wheel:
+https://www.thehouseyear.com/?utm_source=buildyourhouse&utm_medium=email&utm_campaign=drip
+${f.text}`;
+  const html = `<p>Hi,</p>
+<p>A few days ago you ran a material takeoff at build-your-house.com and asked for a copy. One honest caveat about that number: it came from square footage and the assumptions printed on the calculator page. It is a budgeting figure, not an order list.</p>
+<p>When you have a plan set, the order list should come from the plans. <a href="${STUDTALLY_DRIP_URL}"><strong>StudTally</strong></a> is the tool we built for that step — upload the residential plan set and it returns the framing list with every quantity traced to the sheet it came from. $79 per job, no subscription.</p>
+<p>Two things worth doing before you order anything:</p>
+<p><strong>1. Get three lumber quotes on the same list.</strong> Yards price an identical takeoff further apart than you'd expect, and the spread is usually more than the takeoff cost.</p>
+<p><strong>2. Log every delivery against the list the day it lands.</strong> Shorts and substitutions are a phone call on day one and a change order on day thirty. The <a href="${SITE}/shop">Job Site Binder</a>'s materials section is built for exactly that — takeoffs, quotes, and delivery logs on paper that survives the truck.</p>
+<p>What are you building, and do you have plans yet? Reply and tell me — I read every one of these, and it shapes what I build next.</p>
+<p>Seth<br>Build Your House<br><a href="${SITE}">build-your-house.com</a></p>
+<p style="color:#6b6b6b;font-size:13px;">PS — Already own a home while you plan the build? <a href="https://www.thehouseyear.com/?utm_source=buildyourhouse&amp;utm_medium=email&amp;utm_campaign=drip">The House Year</a> is my free maintenance calendar — the whole year of house upkeep on one wheel.</p>
+${f.html}`;
+  return { subject: 'Before you order lumber: the takeoff should come from the plans', text, html };
+}
+
+/** The day-3 email for a step. One place, so the cron and the admin preview render identical mail. */
+function dripEmailFor(step, unsubUrl, source) {
+  if (step === 'sample-d3') return sampleD3Email(unsubUrl);
+  if (step === 'takeoff-d3') return takeoffD3Email(unsubUrl);
+  return planningD3Email(unsubUrl, source);   // kit-d3 and planning-d3 share the body; the kit pitch keys off source
 }
 
 /**
@@ -1004,18 +1107,19 @@ async function runSequence(env, workerOrigin) {
       report.skipped++;
       continue;
     }
+    // Any recorded send means this address already had its day-3 email — the
+    // step names changed when routing split (planning → kit/takeoff), and a
+    // renamed step must not re-mail someone who got the old one.
     const already = await env.DB.prepare(
-      'SELECT 1 AS x FROM sequence_sends WHERE email = ?1 AND step = ?2'
-    ).bind(sub.email, step).first();
+      'SELECT 1 AS x FROM sequence_sends WHERE email = ?1'
+    ).bind(sub.email).first();
     if (already) {
       report.skipped++;
       continue;
     }
     try {
       const unsubUrl = await unsubscribeUrl(env, workerOrigin, sub.email);
-      const msg = step === 'sample-d3'
-        ? sampleD3Email(unsubUrl)
-        : planningD3Email(unsubUrl, sub.source);
+      const msg = dripEmailFor(step, unsubUrl, sub.source);
       await resend(env, '/emails', {
         method: 'POST',
         body: {
@@ -1200,6 +1304,17 @@ export default {
         }
         const report = await runSequence(env, WORKER_ORIGIN);
         return json(report, 200, origin);
+      }
+      if (request.method === 'GET' && url.pathname === '/admin/api/drip-preview') {
+        // Render the day-3 email a given signup source would receive, without sending.
+        if (!(await isAuthorized(request, env))) {
+          return json({ error: 'unauthorized' }, 401, origin);
+        }
+        const source = url.searchParams.get('source') || '';
+        const step = sequenceStepFor({ source });
+        if (!step) return json({ source, step: null }, 200, origin);
+        const msg = dripEmailFor(step, new URL('/unsubscribe', WORKER_ORIGIN).toString(), source);
+        return json({ source, step, subject: msg.subject, text: msg.text, html: msg.html }, 200, origin);
       }
       if (request.method === 'POST' && url.pathname === '/admin/api/run-digest') {
         if (!(await isAuthorized(request, env))) {

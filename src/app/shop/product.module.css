@@ -641,3 +641,63 @@
   }
   .btnPrimary:hover { transform: none; }
 }
+
+/* ---------- Page lightbox: tap a sheet to read it ---------- */
+.zoomable { cursor: zoom-in; }
+.zoomHint { color: var(--accent-primary); }
+
+.lightbox {
+  /* The global reset zeroes margins; a <dialog> centers itself only via margin:auto. */
+  margin: auto;
+  inset: 0;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  max-width: min(92vw, 760px);
+  max-height: 94vh;
+  overflow: visible;
+}
+.lightbox::backdrop { background: rgba(10, 14, 24, 0.82); }
+.lightboxInner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.lightboxImg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: calc(94vh - 72px);
+  object-fit: contain;
+  background: #fff;
+  border: 1px solid var(--hairline);
+}
+.lightboxBar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--cream);
+}
+.lightboxCap {
+  flex: 1;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.lightboxClose {
+  appearance: none;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: var(--cream);
+  width: 40px;
+  height: 40px;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+.lightboxClose:hover, .lightboxClose:focus-visible { border-color: var(--cream); outline: none; }
+@media (max-width: 640px) {
+  .lightboxBar { flex-wrap: wrap; }
+  .lightboxCap { flex-basis: 100%; }
+}

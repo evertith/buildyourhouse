@@ -1,5 +1,6 @@
 import BinderCTA from '@/components/BinderCTA';
 import TrackedLink from '@/components/TrackedLink';
+import SheetLightbox from '@/components/shop/SheetLightbox';
 import Icon from '@/components/Icon';
 import { kitBySlug, shippedKits } from '@/lib/kits';
 import { KIT_PRICE, countWord, dim, type KitContent } from '@/lib/kit-content';
@@ -153,14 +154,18 @@ export default function KitProductPage({ content }: { content: KitContent }) {
                 alt={content.heroSheets.back.alt}
                 width={700}
                 height={906}
-                className={`${styles.sheet} ${styles.sheetDark} ${styles.stackBack}`}
+                data-sheet="hero-back"
+                data-caption={content.heroSheets.back.alt}
+                className={`${styles.sheet} ${styles.sheetDark} ${styles.stackBack} ${styles.zoomable}`}
               />
               <img
                 src={content.heroSheets.front.src}
                 alt={content.heroSheets.front.alt}
                 width={700}
                 height={906}
-                className={`${styles.sheet} ${styles.sheetDark} ${styles.stackFront}`}
+                data-sheet="hero-front"
+                data-caption={content.heroSheets.front.alt}
+                className={`${styles.sheet} ${styles.sheetDark} ${styles.stackFront} ${styles.zoomable}`}
               />
             </div>
           </div>
@@ -181,6 +186,8 @@ export default function KitProductPage({ content }: { content: KitContent }) {
               Print-ready PDFs
               <br />
               Letter size
+              <br />
+              <span className={styles.zoomHint}>Tap a page to read it</span>
             </div>
           </div>
 
@@ -203,7 +210,9 @@ export default function KitProductPage({ content }: { content: KitContent }) {
                       width={700}
                       height={906}
                       loading="lazy"
-                      className={styles.sheet}
+                      data-sheet={d.no}
+                      data-caption={d.caption}
+                      className={`${styles.sheet} ${styles.zoomable}`}
                     />
                     <figcaption className={styles.sheetCap}>{d.caption}</figcaption>
                   </figure>
@@ -410,6 +419,8 @@ export default function KitProductPage({ content }: { content: KitContent }) {
           <BinderCTA context={slug} lead={content.binderLead ?? BINDER_LEAD} />
         </div>
       </section>
+
+      <SheetLightbox checkoutUrl={checkout} slug={slug} ev={ev} price={KIT_PRICE} />
     </div>
   );
 }
