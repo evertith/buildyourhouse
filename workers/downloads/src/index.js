@@ -86,7 +86,9 @@ const PRINT_PHONE_FALLBACK = '9999999999';
  * Product registry — one entry per SKU. `kind: 'download'` streams r2Key on
  * /download; `kind: 'ship'` is a physical product (printed binder) that ALSO
  * grants the digital download (r2Key) and triggers an owner notification with
- * the shipping address on purchase. Stripe objects are provisioned/aligned by
+ * the shipping address on purchase; `kind: 'lead'` has no file — a lender buys
+ * a borrower introduction, fulfilled by hand (receipt + owner alert only).
+ * Stripe objects are provisioned/aligned by
  * POST /admin/api/provision-products, which stamps metadata.sku on the
  * Product and Payment Link so sessions resolve back to a SKU.
  */
@@ -109,6 +111,22 @@ const PRODUCTS = {
       'The ZIP contains 367 pages of printable PDFs, plus editable Word contracts and ' +
       'Excel budget spreadsheets. Open the "HOW TO USE THIS BINDER" guide first — it ' +
       'walks you through printing and assembling the binder.',
+  },
+  'financing-lead': {
+    // kind 'lead': nothing in R2. The buyer is a LENDER paying a flat fee for a
+    // consented introduction to one borrower from the /financing match form.
+    // Fulfillment is manual (Seth confirms with the borrower, then replies to
+    // the lender's receipt); the webhook sends the receipt + an owner alert.
+    sku: 'financing-lead',
+    kind: 'lead',
+    name: 'Owner-Builder Borrower Introduction',
+    amount: 14900,
+    description:
+      'A flat-fee introduction to one owner-builder borrower who used the Build Your House ' +
+      'lender-match form and agrees in writing to be introduced. Sold to one lender. ' +
+      'Delivered by email within one business day of the borrower\'s confirmation; full ' +
+      'refund if they decline. The fee is the same whether or not a loan closes.',
+    emailSubject: 'Your borrower introduction — what happens next',
   },
   'nc-permit-kit': {
     sku: 'nc-permit-kit',
@@ -858,6 +876,9 @@ async function handleDownload(request, env, ctx, origin) {
   }
 
   const product = productForSku(sku);
+  if (!product.r2Key) {
+    return new Response('This order has no file to download.', { status: 404 });
+  }
   const object = await env.DOWNLOADS_BUCKET.get(product.r2Key);
   if (!object) {
     console.error(`R2 object missing: ${product.r2Key} (sku ${product.sku})`);
@@ -1185,10 +1206,45 @@ async function sendResendEmail(env, { to, subject, text, html }) {
 }
 
 /** Send the product-delivery email via Resend. Returns the Resend message id. */
-async function sendFulfillmentEmail(env, { email, name, sessionId, product }) {
+async function sendFulfillmentEmail(env, { email, name, sessionId, product, ref }) {
   const link = successUrl(sessionId);
   const first = (name || '').trim().split(/\s+/)[0] || '';
   const greeting = first ? `Hi ${first},` : 'Hi,';
+  if (product.kind === 'lead') {
+    const refLine = ref ? ` (ref ${ref})` : '';
+    const text = `${greeting}
+
+Payment received for the owner-builder borrower introduction${refLine}.
+
+What happens next:
+
+1. We confirm with the borrower, in writing, that they want to be introduced to you by name.
+
+2. Within one business day of their yes, you get their name, email, phone if they gave one, and their project details — by reply to this email.
+
+3. If they decline, the fee is refunded in full within one business day.
+
+The terms, for your file: the fee is flat and the same whether or not a loan closes. The introduction is sold to one lender and not resold. If the contact details turn out to be dead, say so within 7 days and we refund in full. Build Your House is a publisher, not a broker or lender.
+
+Questions — just reply to this email.
+
+Seth
+Build Your House
+https://build-your-house.com
+`;
+    const html = `<p>${greeting}</p>
+<p>Payment received for the owner-builder borrower introduction${refLine}.</p>
+<p><strong>What happens next:</strong></p>
+<ol>
+<li>We confirm with the borrower, in writing, that they want to be introduced to you by name.</li>
+<li>Within one business day of their yes, you get their name, email, phone if they gave one, and their project details &mdash; by reply to this email.</li>
+<li>If they decline, the fee is refunded in full within one business day.</li>
+</ol>
+<p>The terms, for your file: the fee is flat and the same whether or not a loan closes. The introduction is sold to one lender and not resold. If the contact details turn out to be dead, say so within 7 days and we refund in full. Build Your House is a publisher, not a broker or lender.</p>
+<p>Questions &mdash; just reply to this email.</p>
+<p>Seth<br>Build Your House<br><a href="https://build-your-house.com">build-your-house.com</a></p>`;
+    return sendResendEmail(env, { to: email, subject: product.emailSubject, text, html });
+  }
 
   if (product.kind === 'ship') {
     const text = `${greeting}
@@ -1376,12 +1432,31 @@ async function handleStripeWebhook(request, env) {
 
   // Throwing here → 500 → Stripe retries the webhook, so a transient Resend
   // outage still results in the customer getting their email.
+  const ref = session.client_reference_id || null;
   const resendId = await sendFulfillmentEmail(env, {
     email,
     name: session.customer_details?.name,
     sessionId: session.id,
     product,
+    ref,
   });
+  if (product.kind === 'lead') {
+    try {
+      await ownerEmail(env, {
+        subject: `Introduction sold${ref ? ` — ${ref}` : ''}: $${(product.amount / 100).toFixed(0)} from ${email}`,
+        text: `A lender paid for a borrower introduction.
+
+Ref: ${ref || '(none — the link was opened without ?ref)'}
+Lender email: ${email}
+Lender name: ${session.customer_details?.name || '(none)'}
+Stripe session: ${session.id}
+
+Next: ask the borrower (financing lead ${ref || '?'}) in writing whether they want the introduction to this lender. On yes, reply to the lender's receipt email with the borrower's name, email, phone and project details. On no, refund the session in Stripe.`,
+      });
+    } catch (err) {
+      console.error('lead owner notification failed:', err);
+    }
+  }
 
   if (product.kind === 'ship') {
     let job = null;
@@ -1419,6 +1494,10 @@ async function handleStripeWebhook(request, env) {
   // newsletter (quiet — the fulfillment email is enough for today); everyone
   // else is only marked purchased IF they were already a subscriber, so the
   // drip sequence never tries to sell them what they just bought.
+  if (product.kind === 'lead') {
+    // A lender is not an owner-builder; keep them off the reader list.
+    return new Response('sent', { status: 200 });
+  }
   try {
     const optedIn = session.consent?.promotions === 'opt_in';
     await fetch(NEWSLETTER_SUBSCRIBE_URL, {
@@ -1727,7 +1806,7 @@ async function handleProvisionProducts(env) {
       body.set('line_items[0][price]', price.id);
       body.set('line_items[0][quantity]', '1');
       body.set('allow_promotion_codes', 'true');
-      body.set('consent_collection[promotions]', 'auto');
+      if (def.kind !== 'lead') body.set('consent_collection[promotions]', 'auto');
       body.set('metadata[sku]', def.sku);
       body.set('after_completion[type]', 'redirect');
       body.set(
@@ -1742,7 +1821,7 @@ async function handleProvisionProducts(env) {
     } else {
       const patch = new URLSearchParams();
       if (link.metadata?.sku !== def.sku) patch.set('metadata[sku]', def.sku);
-      if (link.consent_collection?.promotions !== 'auto') {
+      if (def.kind !== 'lead' && link.consent_collection?.promotions !== 'auto') {
         patch.set('consent_collection[promotions]', 'auto');
       }
       if ([...patch.keys()].length) {

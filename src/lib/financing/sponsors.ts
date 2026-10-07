@@ -39,3 +39,16 @@ export const SPONSOR_MIN_MONTHS = 3;
 export function sponsorForState(code: string): StateSponsor | null {
   return SPONSORS[code.toUpperCase()] ?? null;
 }
+
+/**
+ * Consented borrower introduction — the one exception to "we don't route form
+ * submissions": a borrower from the match form agrees in writing to be
+ * introduced to a named lender, and that lender pays a flat fee. One lender,
+ * never resold, same fee whether or not a loan closes, refund if the borrower
+ * declines. Sold from /financing/lead (noindex; Seth sends the link).
+ */
+export const LEAD_PRICE = 149;
+export const LEAD_SKU = 'financing-lead';
+export const LEAD_PAGE = '/financing/lead';
+/** Stripe Payment Link for LEAD_SKU, created by the downloads worker's provision-products. */
+export const LEAD_CHECKOUT_URL = 'https://buy.stripe.com/bJeaEXgAL54z6by3gnfAc0r';

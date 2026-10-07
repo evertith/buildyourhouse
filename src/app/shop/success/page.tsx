@@ -14,7 +14,7 @@ function downloadUrl(sessionId: string) {
 interface OrderProduct {
   sku: string;
   name: string;
-  kind: 'download' | 'ship';
+  kind: 'download' | 'ship' | 'lead';
   amountCents?: number;
 }
 
@@ -122,6 +122,7 @@ function SuccessContent() {
     };
   }, [sessionId]);
 
+  const isLead = product?.kind === 'lead';
   if (!sessionId) {
     return (
       <div className={styles.page}>
@@ -164,9 +165,11 @@ function SuccessContent() {
             <div className={`${styles.eyebrow} bp-eyebrow`}>Payment received</div>
             <h1 className={styles.heroTitle}>Thank you for your purchase.</h1>
             <p className={styles.heroSub}>
-              {product?.kind === 'ship'
-                ? 'Your printed binder is headed to production — and your digital copy is ready to download right now.'
-                : `Your ${product?.name ?? 'purchase'} is ready to download.`}
+              {isLead
+                ? 'Your borrower introduction is in motion. We confirm with the borrower, then email you their details within one business day.'
+                : product?.kind === 'ship'
+                  ? 'Your printed binder is headed to production — and your digital copy is ready to download right now.'
+                  : `Your ${product?.name ?? 'purchase'} is ready to download.`}
             </p>
             <p className={styles.heroCopy}>
               You’ll also receive a receipt from Stripe at the email you provided.
@@ -180,8 +183,8 @@ function SuccessContent() {
                 </span>
               </div>
               <div className={styles.rcell}>
-                <span className={styles.k}>Access</span>
-                <span className={styles.v}>Lifetime</span>
+                <span className={styles.k}>{isLead ? 'Delivery' : 'Access'}</span>
+                <span className={styles.v}>{isLead ? '1 business day' : 'Lifetime'}</span>
               </div>
               <div className={styles.rcell}>
                 <span className={styles.k}>Order ref</span>
@@ -191,6 +194,13 @@ function SuccessContent() {
               </div>
             </div>
 
+            {isLead ? (
+              <p className={styles.heroFine}>
+                If the borrower declines the introduction, the fee is refunded in full within one
+                business day. Questions: reply to your receipt email.
+              </p>
+            ) : (
+              <>
             <div className={styles.heroCtas}>
               <a
                 href={downloadUrl(sessionId)}
@@ -212,10 +222,13 @@ function SuccessContent() {
                   ? ', editable Word contracts, and Excel budget workbooks'
                   : ''}
             </p>
+              </>
+            )}
           </div>
         </div>
       </section>
 
+      {!isLead && (<>
       {/* ---------- WHAT TO DO NEXT ---------- */}
       <section className={styles.block}>
         <div className={styles.wrap}>
@@ -263,6 +276,7 @@ function SuccessContent() {
           </div>
         </div>
       </section>
+      </>)}
     </div>
   );
 }

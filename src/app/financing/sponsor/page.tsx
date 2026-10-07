@@ -39,7 +39,7 @@ const FAQS = [
   {
     question: 'Why flat fee and not per lead?',
     answer:
-      'Because this is advertising, and it stays advertising. We do not sell leads, we do not steer individual borrowers to a paying lender, and we do not take compensation tied to a closing. That keeps the placement on the right side of RESPA for both of us and keeps the directory honest for the reader. Your compliance team can review the arrangement; we will put it in writing.',
+      'Because this is advertising, and it stays advertising. Placement is never priced per lead, we do not steer individual borrowers to a paying lender, and we do not take compensation tied to a closing. Separately from placement, when a borrower agrees in writing to be introduced to a lender, that lender pays a flat fee for the introduction, one lender, never bundled with placement, and the same whether or not a loan closes. That keeps both on the right side of RESPA for both of us and keeps the directory honest for the reader. Your compliance team can review either arrangement; we will put it in writing.',
   },
   {
     question: 'Do we have to qualify?',
@@ -156,8 +156,10 @@ export default function SponsorPage() {
             </p>
             <p>
               <strong>Advertising, not referral.</strong> We publish a directory and sell
-              placement in it. We do not hand you borrowers, route form submissions to you, or
-              take a cent tied to a loan closing.
+              placement in it. We do not route form submissions to you, and we never take a cent
+              tied to a loan closing. The one exception is explicit and separate: when a borrower
+              who used our match form agrees in writing to be introduced to a named lender, that
+              lender pays a flat fee for the introduction, the same whether or not a loan closes.
             </p>
             <p>
               <strong>Facts stay facts.</strong> Your pitch sentence describes what you
