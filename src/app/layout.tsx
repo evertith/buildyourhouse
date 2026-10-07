@@ -131,6 +131,14 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${fraunces.variable} ${hankenGrotesk.variable} ${jetBrainsMono.variable}`}>
       <head>
+        {/* Journey by Mediavine — the ad script. First in <head>, async; the
+            data-* attributes keep Cloudflare Rocket Loader and optimizers off it. */}
+        <script
+          async
+          data-noptimize="1"
+          data-cfasync="false"
+          src="//scripts.scriptwrapper.com/tags/bd7852bf-ed62-472e-94a3-48b1e746aeb1.js"
+        />
         <meta name="google-adsense-account" content="ca-pub-2899164454337185" />
         <link
           rel="alternate"
