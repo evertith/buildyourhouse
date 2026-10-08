@@ -16,7 +16,6 @@ import StateLenders from '@/components/financing/StateLenders';
 import StateLendersLine from '@/components/financing/StateLendersLine';
 import DecisionFork from '@/components/DecisionFork';
 import LenderDirectory, { FeaturedLenderSlot } from '@/components/financing/LenderDirectory';
-import LenderMatchForm from '@/components/financing/LenderMatchForm';
 import styles from '@/styles/article.module.css';
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
@@ -45,6 +44,5 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     DecisionFork,
     LenderDirectory,
     FeaturedLenderSlot,
-    LenderMatchForm,
   };
 }
