@@ -60,8 +60,9 @@ export default function StateLenders({ code, state }: Props) {
           {state}, as of {LENDERS_VERIFIED}. That is a finding, not an oversight: the lenders
           that do this work are community banks, credit unions and Farm Credit associations
           that write their own programs, and {state} does not have one that says so in
-          public. Use the <a href="/financing#lender-match">lender match form</a> and we will
-          reply with the nearest options and what to ask them.
+          public. Start with the community banks and the Farm Credit association nearest the
+          land, and ask the one question that matters: do you write construction loans where
+          the owner acts as general contractor?
         </p>
       ) : (
         lenders.map((l) => (

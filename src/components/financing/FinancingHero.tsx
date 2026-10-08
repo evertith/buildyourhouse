@@ -7,10 +7,10 @@ import s from '@/styles/FinancingHero.module.css';
  * a navy blueprint band (article.module.css); this replaces that default with
  * a full hero in the same language as /shop and /start-here — crop marks,
  * spec-sheet panel, mono sheet number — because /financing is a landing page
- * for the lender-match form, not just another guide.
+ * for the directory, not just another guide.
  *
- * The two CTAs are the page's conversion pair in priority order: the form
- * first (#lender-match, owned by LenderMatchForm), then the directory.
+ * The two CTAs: the directory first (the reader contacts lenders directly;
+ * the site never brokers), then the guide.
  */
 
 // Jump targets into the guide below the two conversion blocks. Ids live on the
@@ -48,24 +48,24 @@ export default function FinancingHero() {
 
             <div className={s.ctas}>
               <TrackedLink
-                href="#lender-match"
-                eventName="financing_cta_click"
-                eventParams={{ location: 'hero_lender_match' }}
-                className={s.btnPrimary}
-              >
-                Get your lender shortlist — free
-              </TrackedLink>
-              <TrackedLink
                 href="#lender-directory"
                 eventName="financing_cta_click"
                 eventParams={{ location: 'hero_lender_directory' }}
+                className={s.btnPrimary}
+              >
+                See who lends to owner-builders ↓
+              </TrackedLink>
+              <TrackedLink
+                href={GUIDE_INDEX[0].href}
+                eventName="financing_cta_click"
+                eventParams={{ location: 'hero_guide' }}
                 className={s.btnGhost}
               >
-                See the lenders ↓
+                How the loans work ↓
               </TrackedLink>
             </div>
             <p className={s.fine}>
-              No obligation · A reply within a couple of business days
+              Every lender verified against its own website · You contact them directly
             </p>
           </div>
 
@@ -83,7 +83,7 @@ export default function FinancingHero() {
               <span className={`${s.v} ${s.vText}`}>{LENDERS_VERIFIED}</span>
             </div>
             <div className={s.dimrow}>
-              <span className={s.k}>Lender matching</span>
+              <span className={s.k}>Cost to you</span>
               <span className={`${s.v} ${s.vAccent}`}>Free</span>
             </div>
           </aside>
