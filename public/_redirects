@@ -9,3 +9,6 @@
 
 # Journey by Mediavine hosts ads.txt and keeps the partner list current (Oct 2026).
 /ads.txt  https://adstxt.journeymv.com/sites/bd7852bf-ed62-472e-94a3-48b1e746aeb1/ads.txt  301
+
+# The lender lead-purchase page was removed Oct 8 2026; the one link in the wild goes to the rate card.
+/financing/lead  /financing/sponsor  301
