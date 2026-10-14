@@ -32,7 +32,8 @@ export interface PlanReadView {
   geometry: MeasuredPayload | null;
   reason: string | null;
   refunded: boolean;
-  upgrade: { code: string; expiresAt: string | null } | null;
+  /** The $20-off code, and the signed link that opens the read job in the buyer's StudTally workspace. */
+  upgrade: { code: string | null; expiresAt: string | null; claimUrl: string | null } | null;
   /** The serialized profile (finish, state, diy) from the attach moment. */
   profile: string;
   createdAt: string;

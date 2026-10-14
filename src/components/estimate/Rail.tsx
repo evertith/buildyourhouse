@@ -207,7 +207,9 @@ function MeasuredCard({
 function UpgradeCard({ view }: { view: PlanReadView | null }) {
   const [copied, setCopied] = useState(false);
   const code = view?.upgrade?.code ?? null;
+  const claimUrl = view?.upgrade?.claimUrl ?? null;
   const expires = view?.upgrade?.expiresAt ? new Date(view.upgrade.expiresAt) : null;
+  const more = STUDTALLY_PRICE - PLAN_READ_PRICE;
   const copy = async () => {
     if (!code) return;
     try {
@@ -220,12 +222,51 @@ function UpgradeCard({ view }: { view: PlanReadView | null }) {
   };
   return (
     <div className={`${s.card} ${s.cardGhost} no-print`}>
-      <p className={s.cardTitle}>Framing list, ${STUDTALLY_PRICE}, ${PLAN_READ_PRICE} back</p>
+      <p className={s.cardTitle}>Framing list, ${more} more</p>
       <p className={s.cardBody}>
-        Every stud, plate, header, sheet and hanger, counted per wall and reviewed by a person. Framing only:
-        the other thirteen phases stay estimates.
+        This job is already read at StudTally. Open it, review each wall with the sheet beside it, and
+        the framing list is ${more}: every stud, plate, header, sheet and hanger, counted per wall and
+        reviewed by a person, with the ${PLAN_READ_PRICE} you paid taken off the ${STUDTALLY_PRICE}.
+        Framing only: the other thirteen phases stay estimates.
       </p>
-      {code ? (
+      {claimUrl ? (
+        <>
+          <TrackedLink
+            href={claimUrl}
+            target="_blank"
+            rel="noopener"
+            className={s.btn}
+            eventName="studtally_upgrade_click"
+            eventParams={{ calculator: 'material-estimator', location: 'estimator-rail-measured', kind: 'claim' }}
+          >
+            Open this job at StudTally
+          </TrackedLink>
+          <p className={s.cardFine}>
+            Sign in with {view?.emailHint || 'the email you used here'} and the job is in your workspace.
+            {expires && !Number.isNaN(expires.getTime())
+              ? ` The link is good until ${expires.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}.`
+              : ''}
+          </p>
+        </>
+      ) : (
+        <>
+          <TrackedLink
+            href={studTallyUrl('measured-estimate')}
+            target="_blank"
+            rel="noopener"
+            className={`${s.btn} ${s.btnGhost}`}
+            eventName="studtally_upgrade_click"
+            eventParams={{ calculator: 'material-estimator', location: 'estimator-rail-measured', kind: 'link' }}
+          >
+            Open at StudTally
+          </TrackedLink>
+          <p className={s.cardFine}>
+            The link that opens this job directly is in the email that said your estimate was ready; this
+            page picks it up on its next load.
+          </p>
+        </>
+      )}
+      {code && (
         <>
           <div className={s.code}>
             <span>{code}</span>
@@ -234,27 +275,12 @@ function UpgradeCard({ view }: { view: PlanReadView | null }) {
             </button>
           </div>
           <p className={s.cardFine}>
-            Enter it at StudTally&apos;s checkout and ${PLAN_READ_PRICE} comes off the ${STUDTALLY_PRICE}.
-            {expires && !Number.isNaN(expires.getTime())
-              ? ` Good until ${expires.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}.`
-              : ''}
+            {claimUrl
+              ? `Starting over with a fresh upload instead? This code takes $${PLAN_READ_PRICE} off at checkout.`
+              : `Enter it at StudTally's checkout and $${PLAN_READ_PRICE} comes off the $${STUDTALLY_PRICE}.`}
           </p>
         </>
-      ) : (
-        <p className={s.cardFine}>
-          Your ${PLAN_READ_PRICE} credit code is in the email that said this estimate was ready; reply to it if it is missing.
-        </p>
       )}
-      <TrackedLink
-        href={studTallyUrl('measured-estimate')}
-        target="_blank"
-        rel="noopener"
-        className={`${s.btn} ${s.btnGhost}`}
-        eventName="studtally_upgrade_click"
-        eventParams={{ calculator: 'material-estimator', location: 'estimator-rail-measured' }}
-      >
-        Open at StudTally
-      </TrackedLink>
     </div>
   );
 }

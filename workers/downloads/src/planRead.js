@@ -135,7 +135,10 @@ function publicView(row, extra = {}) {
     geometry: row.status === 'ready' ? parseJson(row.geometry_json, null) : null,
     reason: row.unsupported_reason || null,
     refunded: row.status === 'refunded',
-    upgrade: row.upgrade_code ? { code: row.upgrade_code, expiresAt: row.upgrade_expires_at || null } : null,
+    upgrade:
+      row.upgrade_code || row.claim_url
+        ? { code: row.upgrade_code || null, expiresAt: row.upgrade_expires_at || null, claimUrl: row.claim_url || null }
+        : null,
     profile: row.profile_json || '',
     createdAt: row.created_at,
     readyAt: row.ready_at || null,
@@ -236,17 +239,42 @@ ${htmlFooter()}`;
   return deps.sendResendEmail(env, { to: row.email, subject: "We're reading your plans", text, html });
 }
 
+const UPGRADE_LEAD =
+  "When you are ready to order framing, this job is already read at StudTally: open it, review each wall with the sheet beside it, and the framing list is $59, the $79 less the $20 you paid here. Every stud, plate, header, sheet and hanger, counted per wall and reviewed by a person. Framing only; the other thirteen phases stay estimates.";
+const STUDTALLY_FALLBACK =
+  'https://studtally.com/?utm_source=build-your-house.com&utm_medium=email&utm_campaign=plan-takeoff&utm_content=measured-estimate';
+
 function upgradeParagraphText(row) {
-  if (!row.upgrade_code) return '';
-  return `
-When you are ready to order framing, the $20 comes off StudTally's $79 framing list: every stud, plate, header, sheet and hanger, counted per wall and reviewed by a person. Framing only; the other thirteen phases stay estimates. Enter this code at StudTally's checkout: ${row.upgrade_code}
-https://studtally.com/?utm_source=build-your-house.com&utm_medium=email&utm_campaign=plan-takeoff&utm_content=measured-estimate
-`;
+  if (!row.upgrade_code && !row.claim_url) return '';
+  const lines = [UPGRADE_LEAD];
+  if (row.claim_url) lines.push(`Open your job at StudTally (sign in with this email):\n${row.claim_url}`);
+  else lines.push(`Open StudTally: ${STUDTALLY_FALLBACK}`);
+  if (row.upgrade_code) {
+    lines.push(
+      row.claim_url
+        ? `Starting over with a fresh upload instead? Code ${row.upgrade_code} takes the $20 off at checkout.`
+        : `Enter this code at StudTally's checkout: ${row.upgrade_code}`
+    );
+  }
+  return `\n${lines.join('\n\n')}\n`;
 }
 
 function upgradeParagraphHtml(row) {
-  if (!row.upgrade_code) return '';
-  return `<p>When you are ready to order framing, the $20 comes off StudTally&rsquo;s $79 framing list: every stud, plate, header, sheet and hanger, counted per wall and reviewed by a person. Framing only; the other thirteen phases stay estimates. Enter this code at <a href="https://studtally.com/?utm_source=build-your-house.com&amp;utm_medium=email&amp;utm_campaign=plan-takeoff&amp;utm_content=measured-estimate">StudTally&rsquo;s checkout</a>: <strong>${escapeHtml(row.upgrade_code)}</strong></p>`;
+  if (!row.upgrade_code && !row.claim_url) return '';
+  const parts = [`<p>${escapeHtml(UPGRADE_LEAD)}</p>`];
+  if (row.claim_url) {
+    parts.push(`<p><a href="${escapeHtml(row.claim_url)}"><strong>Open your job at StudTally</strong></a> (sign in with this email).</p>`);
+  } else {
+    parts.push(`<p><a href="${STUDTALLY_FALLBACK.replace(/&/g, '&amp;')}">Open StudTally</a></p>`);
+  }
+  if (row.upgrade_code) {
+    parts.push(
+      row.claim_url
+        ? `<p>Starting over with a fresh upload instead? Code <strong>${escapeHtml(row.upgrade_code)}</strong> takes the $20 off at checkout.</p>`
+        : `<p>Enter this code at StudTally&rsquo;s checkout: <strong>${escapeHtml(row.upgrade_code)}</strong></p>`
+    );
+  }
+  return parts.join('\n');
 }
 
 async function sendReadyEmail(env, deps, row) {
@@ -506,8 +534,9 @@ export async function refreshRow(env, deps, row, { force = false } = {}) {
     )
       .bind(row.token, JSON.stringify(geometry), progress, plan.upgrade_code || null, plan.upgrade_expires_at || null, now)
       .run();
-    const fresh = await getRow(env, row.token);
+    let fresh = await getRow(env, row.token);
     if ((res.meta?.changes ?? 0) === 1) {
+      fresh = await ensureClaimUrl(env, fresh);
       try {
         await sendReadyEmail(env, deps, fresh);
       } catch (err) {
@@ -597,10 +626,35 @@ Results page: ${readUrl(deps, fresh.token)}
   return getRow(env, row.token);
 }
 
+/**
+ * The signed link that lets the buyer pull this job into their own StudTally
+ * workspace, where the framing list is $20 less. Fetched once when the read
+ * is ready (before the ready email) and backfilled on later status reads.
+ */
+async function ensureClaimUrl(env, row) {
+  if (row.status !== 'ready' || row.claim_url) return row;
+  try {
+    const link = await studtally(env, `/api/partner/plans/${encodeURIComponent(row.plan_id)}/claim-link`, {
+      method: 'POST',
+      body: {},
+    });
+    if (link?.url) {
+      await env.DB.prepare('UPDATE plan_reads SET claim_url = ?2, updated_at = ?3 WHERE token = ?1')
+        .bind(row.token, link.url, nowIso())
+        .run();
+      return getRow(env, row.token);
+    }
+  } catch (err) {
+    console.error('plan-read claim link failed:', err);
+  }
+  return row;
+}
+
 export async function handleStatus(request, env, ctx, origin, deps, token) {
   let row = await getRow(env, token);
   if (!row) return deps.json({ error: 'not found' }, 404, origin);
   if (ACTIVE.has(row.status)) row = await refreshRow(env, deps, row);
+  if (row.status === 'ready' && !row.claim_url) row = await ensureClaimUrl(env, row);
   return deps.json(publicView(row), 200, origin);
 }
 

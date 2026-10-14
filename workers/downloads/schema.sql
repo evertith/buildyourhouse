@@ -63,6 +63,7 @@ CREATE TABLE IF NOT EXISTS plan_reads (
   refund_error TEXT,
   upgrade_code TEXT,
   upgrade_expires_at TEXT,
+  claim_url TEXT,
   ip TEXT,
   paid_at TEXT,
   ready_at TEXT,
