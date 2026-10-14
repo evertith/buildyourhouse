@@ -1,6 +1,6 @@
 # Whole-House Estimator v2 — Implementation Plan
 
-**Status:** M1 done 2026-10-14 (StudTally on Railway). M2 built 2026-10-14 in the working tree, lint, typecheck, engine tests, and the static build pass; not yet committed or pushed. Written 2026-10-13.
+**Status:** M1 done 2026-10-14 (StudTally on Railway). M2 live 2026-10-14 (commit 5ca2d67, Pages deployment 802849e4); the one-week `estimate_use` watch in §7 runs to 2026-10-21, then M3. Written 2026-10-13.
 **Design:** Direction D on the canvas, https://claude.ai/artifact/8zMPvCzBY9iZH92DGy4Hwq (row 4: free estimate and plans-attached, desktop and phone).
 **Companion:** `~/Repositories/studtally/docs/10-railway-and-partner-api.md` (hosting move, Claude API auth, partner API).
 **Route:** stays `/calculators/material-estimator`. It is the site's most-cited page; the URL, canonical, and inbound links do not move.
@@ -22,7 +22,7 @@
 | M | Deliverable | Depends on | Effort |
 |---|---|---|---|
 | M1 | StudTally API + worker on Railway, vision on a service-account API key, Mac tunnel retired. Started 2026-10-13: project, services, variables, first deploys, trial DB restore, custom domain registered; Done 2026-10-14: R2 token, storage sync, Anthropic key (30-day, expires 2026-11-13), smoke test, final DB restore, DNS switch, Mac agents stopped, web app redeployed with the 100 MB copy. Remaining: watch for a day and the first real paid job (StudTally `docs/10` §5 step 7) | nothing | 1–2 days |
-| M2 | Free whole-house estimator live at the existing URL, old W-02 engine retired. Built 2026-10-14: `src/lib/estimate/` (geometry, prices, 50-state index, labor, 14 phases, runner, URL profile, default run, 11 node tests), `src/components/estimate/` (Direction D page), `materialEstimator.ts` and `MaterialEstimatorCalc.tsx` deleted, registry, hub, and home copy updated, newsletter Worker `/estimate` widened to 24 rows with custom headings and deployed. Awaiting commit and push (CF Pages deploys from main). | nothing (parallel with M1) | 5–7 days |
+| M2 | Free whole-house estimator live at the existing URL, old W-02 engine retired. Built 2026-10-14: `src/lib/estimate/` (geometry, prices, 50-state index, labor, 14 phases, runner, URL profile, default run, 11 node tests), `src/components/estimate/` (Direction D page), `materialEstimator.ts` and `MaterialEstimatorCalc.tsx` deleted, registry, hub, and home copy updated, newsletter Worker `/estimate` widened to 24 rows with custom headings and deployed. Committed as 5ca2d67 and live on production 2026-10-14 11:02Z; the live page checked for title, H1, FAQ schema, and the generated figures. | nothing (parallel with M1) | 5–7 days |
 | M3 | Plans-attached rung live: upload, $20 checkout, reading status, measured ledger, emails, refunds | M1, M2 | 4–6 days |
 | M4 | 50 state pages from the same engine, hub and sitemap updated, launch content | M2 | 2–3 days |
 
@@ -275,7 +275,7 @@ Summary here, runbook in the StudTally doc. Two Railway services from one repo a
 
 ## 7. Rollout and measurement
 
-- M2 ships behind the same URL with a one-week watch on `estimate_use`, scroll depth, and the FAQ-driven queries in Search Console; the old page's impressions should hold or rise.
+- M2 ships behind the same URL with a one-week watch on `estimate_use`, scroll depth, and the FAQ-driven queries in Search Console; the old page's impressions should hold or rise. Shipped 2026-10-14; review the watch on 2026-10-21 before starting M3.
 - M3 ships with billing on from day one and Seth's own plan sets as the smoke test. Success metric for the first month: ten paid reads, zero unrefunded unsupported jobs, median time to ready under one hour.
 - M4 pages are judged by the state guides' own pattern: impressions by week three.
 
