@@ -12,6 +12,8 @@ interface Props {
   open: boolean;
   onToggleOpen: (id: PhaseId) => void;
   onChoice: (id: PhaseId, diy: boolean) => void;
+  /** Plans attached: tag derived rows too, so the two bases read side by side. */
+  showBasis?: boolean;
 }
 
 const mid = (r: { low: number; high: number }) => (r.low + r.high) / 2;
@@ -21,7 +23,7 @@ const mid = (r: { low: number; high: number }) => (r.low + r.high) / 2;
  * rail's split bar, the cash this phase costs, and the who-does-it switch.
  * The name opens the lines. Orange appears only on an owner's own hours.
  */
-export default function LedgerRow({ row, maxShare, open, onToggleOpen, onChoice }: Props) {
+export default function LedgerRow({ row, maxShare, open, onToggleOpen, onChoice, showBasis = false }: Props) {
   const mat = mid(row.materials);
   const lab = mid(row.labor);
   const total = mat + lab;
@@ -46,11 +48,16 @@ export default function LedgerRow({ row, maxShare, open, onToggleOpen, onChoice 
               <path d="M1 1l7 5-7 5z" fill="currentColor" />
             </svg>
             <span>{row.name}</span>
-            {row.basis === 'measured' && <span className={`${s.tag} ${s.tagM}`}>measured</span>}
+            {row.basis === 'measured' ? (
+              <span className={`${s.tag} ${s.tagM}`}>measured</span>
+            ) : showBasis && !row.soft ? (
+              <span className={`${s.tag} ${s.tagD}`}>derived</span>
+            ) : null}
           </button>
         ) : (
           <p className={s.name} style={{ paddingLeft: 20, cursor: 'default' }}>
             <span>{row.name}</span>
+            {showBasis && !row.soft && <span className={`${s.tag} ${s.tagD}`}>derived</span>}
           </p>
         )}
         <p className={s.note}>{row.note}</p>

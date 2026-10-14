@@ -6,6 +6,12 @@
  * string so an estimate is shareable and the state pages can pre-set it;
  * localStorage only remembers the last profile for convenience.
  *
+ * Plans attached: `?read=<token>` names a plan read on the downloads
+ * Worker. While it is unpaid, queued, or running, the ledger stays the free
+ * estimate with a status strip under the title; when the read is ready the
+ * geometry comes from the drawings and the chips become plan facts. The
+ * `session_id` Stripe appends on return is verified once and dropped.
+ *
  * The engine runs in well under a millisecond, so nothing is debounced
  * except the screen-reader announcement and the one-shot analytics event.
  */
@@ -17,24 +23,36 @@ import { runEstimate } from '@/lib/estimate/estimate';
 import { PROFILE_DEFAULTS } from '@/lib/estimate/geometry';
 import type { Profile } from '@/lib/estimate/geometry';
 import { DIY_DEFAULT } from '@/lib/estimate/labor';
+import { measuredGeometry, planTitle } from '@/lib/estimate/measured';
 import { parseProfile, serializeProfile } from '@/lib/estimate/profile';
 import type { ProfileState } from '@/lib/estimate/profile';
 import type { PhaseId } from '@/lib/estimate/types';
+import AttachPanel from './AttachPanel';
 import Ledger from './Ledger';
+import MeasuredChips from './MeasuredChips';
 import ProfileChips from './ProfileChips';
 import Rail from './Rail';
 import type { ExportKind } from './Rail';
+import ReadingStatus from './ReadingStatus';
 import StickyStrip from './StickyStrip';
 import { CALCULATOR_SLUG, csvFilename, estimateCsv, estimateText } from './exports';
 import { money100 } from './format';
+import { usePlanRead } from './usePlanRead';
 
 const STORAGE_KEY = 'byh-estimate-profile';
 const ANNOUNCE_MS = 600;
 const PROFILE_KEYS = ['sqft', 'stories', 'finish', 'found', 'state', 'roof', 'height', 'diy'];
+const TOKEN_RE = /^[a-f0-9]{32}$/;
 
 interface Props {
   /** next/font variable classes for Instrument Serif and Sans, scoped to this root. */
   fontClass: string;
+}
+
+interface ReadRef {
+  token: string | null;
+  sessionId: string | null;
+  cancelled: boolean;
 }
 
 export default function Estimator({ fontClass }: Props) {
@@ -42,8 +60,12 @@ export default function Estimator({ fontClass }: Props) {
   const [openId, setOpenId] = useState<PhaseId | null>('framing');
   const [copied, setCopied] = useState(false);
   const [announcement, setAnnouncement] = useState('');
+  const [read, setRead] = useState<ReadRef>({ token: null, sessionId: null, cancelled: false });
+  const [panelOpen, setPanelOpen] = useState(false);
   const hydrated = useRef(false);
   const useTracked = useRef(false);
+  const urlHadProfile = useRef(false);
+  const readProfileApplied = useRef(false);
   const rootRef = useRef<HTMLDivElement | null>(null);
 
   // The site header and promo banner are sticky; the phone strip and the
@@ -67,15 +89,29 @@ export default function Estimator({ fontClass }: Props) {
   }, []);
 
   const { profile, diy } = state;
-  const estimate = useMemo(
-    () => runEstimate(profile, profile.finish, profile.state, { diy }),
-    [profile, diy]
+  const planRead = usePlanRead(read.token, read.sessionId);
+  const view = planRead.view;
+  const measured = useMemo(
+    () => (view?.status === 'ready' && view.geometry ? measuredGeometry(view.geometry, profile) : null),
+    [view, profile]
   );
+  const estimate = useMemo(
+    () => runEstimate(measured ?? profile, profile.finish, profile.state, { diy }),
+    [measured, profile, diy]
+  );
+  const planName = view?.plan.name ?? undefined;
 
   // Hydrate from the URL, else the last profile this browser used.
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
+    const token = params.get('read');
+    const sessionId = params.get('session_id');
+    const cancelled = params.get('cancelled') === '1';
+    if (token && TOKEN_RE.test(token)) {
+      setRead({ token, sessionId, cancelled });
+    }
     const fromUrl = PROFILE_KEYS.some((k) => params.has(k));
+    urlHadProfile.current = fromUrl;
     if (fromUrl) {
       setState(parseProfile(params));
     } else {
@@ -86,6 +122,13 @@ export default function Estimator({ fontClass }: Props) {
         // Storage unavailable: defaults are fine.
       }
     }
+    if (sessionId || cancelled) {
+      // Verified once; a reload must not re-verify or re-announce the cancel.
+      params.delete('session_id');
+      params.delete('cancelled');
+      const q = params.toString();
+      window.history.replaceState(window.history.state, '', `${window.location.pathname}${q ? `?${q}` : ''}`);
+    }
     // Let the state settle before URL sync starts.
     const id = window.setTimeout(() => {
       hydrated.current = true;
@@ -93,14 +136,25 @@ export default function Estimator({ fontClass }: Props) {
     return () => window.clearTimeout(id);
   }, []);
 
+  // A results link opened cold adopts the finish, state, and switches saved at attach time.
+  useEffect(() => {
+    if (!view || readProfileApplied.current) return;
+    readProfileApplied.current = true;
+    if (urlHadProfile.current || !view.profile) return;
+    setState(parseProfile(new URLSearchParams(view.profile)));
+  }, [view]);
+
   // Sync the URL and storage, announce the new total, fire estimate_use once.
   useEffect(() => {
     if (!hydrated.current) return;
-    const q = serializeProfile(state).toString();
-    const url = `${window.location.pathname}${q ? `?${q}` : ''}${window.location.hash}`;
+    const profileQuery = serializeProfile(state);
+    const q = new URLSearchParams(profileQuery);
+    if (read.token) q.set('read', read.token);
+    const qs = q.toString();
+    const url = `${window.location.pathname}${qs ? `?${qs}` : ''}${window.location.hash}`;
     window.history.replaceState(window.history.state, '', url);
     try {
-      window.localStorage.setItem(STORAGE_KEY, q);
+      window.localStorage.setItem(STORAGE_KEY, profileQuery.toString());
     } catch {
       // ignore
     }
@@ -118,13 +172,14 @@ export default function Estimator({ fontClass }: Props) {
           finish: profile.finish,
           foundation: profile.foundation,
           state: profile.state,
+          measured: Boolean(measured),
         });
       }
     }, ANNOUNCE_MS);
     return () => window.clearTimeout(t);
     // The estimate is derived from state; profile fields are read for the event only.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state]);
+  }, [state, read.token, measured]);
 
   const onProfileChange = useCallback((patch: Partial<Profile>) => {
     setState((prev) => ({ ...prev, profile: { ...prev.profile, ...patch } }));
@@ -152,7 +207,7 @@ export default function Estimator({ fontClass }: Props) {
       }
       if (kind === 'copy') {
         try {
-          await navigator.clipboard.writeText(estimateText(estimate, profile, window.location.href));
+          await navigator.clipboard.writeText(estimateText(estimate, profile, window.location.href, planName));
           setCopied(true);
           window.setTimeout(() => setCopied(false), 1500);
         } catch {
@@ -161,19 +216,35 @@ export default function Estimator({ fontClass }: Props) {
         return;
       }
       if (kind === 'csv') {
-        const blob = new Blob([estimateCsv(estimate, profile)], { type: 'text/csv;charset=utf-8' });
+        const blob = new Blob([estimateCsv(estimate, profile, planName)], { type: 'text/csv;charset=utf-8' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = csvFilename(profile);
+        a.download = csvFilename(profile, planName);
         document.body.appendChild(a);
         a.click();
         a.remove();
         window.setTimeout(() => URL.revokeObjectURL(url), 1000);
       }
     },
-    [estimate, profile]
+    [estimate, profile, planName]
   );
+
+  const openPanel = useCallback(() => {
+    setPanelOpen(true);
+    trackEvent('plan_read_open', { calculator: CALCULATOR_SLUG });
+    window.setTimeout(() => {
+      document.getElementById('attach-panel')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 0);
+  }, []);
+
+  const attachAnother = useCallback(() => {
+    setRead({ token: null, sessionId: null, cancelled: false });
+    openPanel();
+  }, [openPanel]);
+
+  const showStatus = Boolean(read.token) && !measured;
+  const panelVisible = panelOpen && !measured;
 
   return (
     <div className={`${s.root} ${fontClass}`} ref={rootRef}>
@@ -181,20 +252,53 @@ export default function Estimator({ fontClass }: Props) {
 
       <div className={`${s.wrap} ${s.titleBlock}`}>
         <p className={s.eyebrow}>Cost to build a house calculator</p>
-        <h1 className={s.h1}>Your house, costed.</h1>
+        <h1 className={s.h1}>{measured ? planTitle(planName) : 'Your house, costed.'}</h1>
         <p className={s.lede}>
-          Every phase from the permit to the mailbox, priced from your square footage with materials
-          and labor shown apart. Flip a phase to do it yourself and the number moves. Change the
-          state and the index moves it again.
+          {measured
+            ? 'Every phase the plans could settle is priced from your drawings, with the sheet beside each number; the rest is derived from the measured size and says so. Flip a phase to do it yourself and the number moves.'
+            : 'Every phase from the permit to the mailbox, priced from your square footage with materials and labor shown apart. Flip a phase to do it yourself and the number moves. Change the state and the index moves it again. Attach your plans and the same ledger is measured from your drawings.'}
         </p>
-        <ProfileChips profile={profile} onChange={onProfileChange} />
+        {measured ? (
+          <MeasuredChips geometry={measured} profile={profile} onChange={onProfileChange} />
+        ) : (
+          <ProfileChips profile={profile} onChange={onProfileChange} />
+        )}
+        {showStatus && (
+          <ReadingStatus
+            view={view}
+            missing={planRead.phase === 'missing'}
+            cancelled={read.cancelled}
+            error={planRead.error}
+            onAttachAnother={attachAnother}
+          />
+        )}
+        {panelVisible && (
+          <div id="attach-panel">
+            <AttachPanel profileQuery={serializeProfile(state).toString()} onClose={() => setPanelOpen(false)} />
+          </div>
+        )}
       </div>
 
       <div className={`${s.wrap} ${s.body}`}>
         <div className={s.grid}>
-          <Ledger estimate={estimate} openId={openId} onToggleOpen={onToggleOpen} onChoice={onChoice} />
+          <Ledger
+            estimate={estimate}
+            openId={openId}
+            onToggleOpen={onToggleOpen}
+            onChoice={onChoice}
+            measuredMode={Boolean(measured)}
+          />
           <aside className={s.rail} aria-label="Cash to build">
-            <Rail estimate={estimate} profile={profile} copied={copied} onExport={onExport} />
+            <Rail
+              estimate={estimate}
+              profile={profile}
+              copied={copied}
+              onExport={onExport}
+              view={view}
+              measured={measured}
+              planName={planName}
+              onAttach={openPanel}
+            />
           </aside>
         </div>
       </div>

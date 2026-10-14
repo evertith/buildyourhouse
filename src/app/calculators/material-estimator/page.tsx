@@ -10,6 +10,7 @@ import { PROFILE_DEFAULTS } from '@/lib/estimate/geometry';
 import { CONTINGENCY_SHARE, FINISH_MULTIPLIER, PRICES_AS_OF } from '@/lib/estimate/prices';
 import { HOURLY_RATE, LABOR_RATIO } from '@/lib/estimate/labor';
 import type { PhaseId } from '@/lib/estimate/types';
+import { PLAN_READ_PRICE } from '@/lib/planRead';
 import { STUDTALLY_PRICE } from '@/lib/studtally';
 
 // Scoped to this page's root: the rest of the site keeps Fraunces and Hanken Grotesk.
@@ -31,7 +32,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/calculators/material-estimator' },
   title: 'Cost to Build a House Calculator: Every Phase, Materials and Labor',
   description:
-    'What it costs to build a house, phase by phase, from your square footage: materials and labor shown apart, a Hire it or Do it myself switch on every phase, and a state index that moves the numbers. Free, no signup.',
+    'What it costs to build a house, phase by phase, from your square footage: materials and labor shown apart, a Hire it or Do it myself switch on every phase, and a state index that moves the numbers. Free, no signup; attach your plans for $20 and the same ledger is measured from your drawings.',
 };
 
 // Every number cited below comes from the engine's default run, so a price
@@ -75,13 +76,17 @@ const FAQS = [
       'Anything the ledger lets you flip, with two cautions. Plumbing, electrical, and HVAC are licensed trades in many states, and some require a licensed contractor to pull the permit even on a house you own; those three rows carry a note, and your state guide has the rule. And framing, roofing, and drywall are hard, fast work on a schedule, so price your own hours honestly: the ledger converts each phase to hours at a crew rate, and a first-timer takes longer than the crew.',
   },
   {
-    question: `What does the $${STUDTALLY_PRICE} at StudTally buy?`,
-    answer: `The framing list only. StudTally reads your plan set and returns every stud, plate, header, sheet, and hanger, counted per wall and reviewed by a person, as the list the lumberyard keys in. It does not price the other thirteen phases; those stay estimates from this page. Use it when you are ready to order framing, not to budget the house.`,
+    question: `What does the $${PLAN_READ_PRICE} measured estimate buy?`,
+    answer: `The same fourteen-phase ledger, measured from your drawings instead of derived from your square footage. Attach the plan set as one PDF, answer three questions the drawings rarely settle (foundation, floor framing, roof framing), and pay $${PLAN_READ_PRICE}. StudTally reads the set, usually within a few hours, and this page re-draws itself from the footprint, every wall, window and door, the roof as drawn, and the rooms, with the sheet each number came from beside it. Phases the plans cannot settle (site work, electrical, HVAC, the final phase) stay derived from the measured size and are tagged that way. The results link is emailed to you and keeps working; if the set cannot be read, the $${PLAN_READ_PRICE} is refunded automatically.`,
   },
   {
-    question: 'How big can the plan PDF be for StudTally?',
+    question: `What does the $${STUDTALLY_PRICE} at StudTally buy?`,
+    answer: `The framing list only. StudTally reads your plan set and returns every stud, plate, header, sheet, and hanger, counted per wall and reviewed by a person, as the list the lumberyard keys in. It does not price the other thirteen phases; those stay estimates from this page. Use it when you are ready to order framing, not to budget the house. If you paid for the measured estimate here, the $${PLAN_READ_PRICE} comes off the $${STUDTALLY_PRICE} with the code on your results page.`,
+  },
+  {
+    question: 'How big can the plan PDF be?',
     answer:
-      '100 MB and 40 sheets. A full set from an architect is usually well under that; if yours is not, export the PDF at a lower raster resolution or send only the architectural sheets (plans, elevations, sections, schedules), which are the ones that get read.',
+      '100 MB and 40 sheets, here and at StudTally. A full set from an architect is usually well under that; if yours is not, export the PDF at a lower raster resolution or send only the architectural sheets (plans, elevations, sections, schedules), which are the ones that get read.',
   },
   {
     question: 'Why is my quote different from this estimate?',

@@ -2,6 +2,12 @@
   "name": "buildyourhouse-downloads",
   "main": "src/index.js",
   "compatibility_date": "2024-12-01",
+  "vars": {
+    "STUDTALLY_API_URL": "https://api.studtally.com"
+  },
+  "triggers": {
+    "crons": ["*/5 * * * *"]
+  },
   "r2_buckets": [
     {
       "binding": "DOWNLOADS_BUCKET",

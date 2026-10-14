@@ -14,6 +14,12 @@
  *   GET  /print-assets/<token>/cover.pdf
  *                                     Token-gated print-ready PDFs. Lulu fetches the
  *                                     source files by URL when normalising a print job.
+ *   POST /plan-read                   Raw PDF body + X-Plan-* headers: stream the set to
+ *                                     StudTally, open a $20 Checkout Session (planRead.js).
+ *   GET  /plan-read/<token>           Where the read stands; the measured geometry when ready.
+ *   POST /plan-read/<token>/verify    { session_id } after checkout: ask Stripe, start the read.
+ *   POST /plan-read/<token>/checkout  A checkout URL again after a cancelled session.
+ *   cron, every 5 minutes             Follow active reads for closed tabs (emails, refunds).
  *
  * Webhook:
  *   POST /stripe-webhook              Stripe checkout.session.completed → send the buyer
@@ -41,6 +47,7 @@
  */
 
 import { ADMIN_HTML } from './admin.js';
+import * as planRead from './planRead.js';
 
 const SITE_ORIGIN = 'https://build-your-house.com';
 const WORKER_ORIGIN = 'https://buildyourhouse-downloads.azerothcorner.workers.dev';
@@ -93,6 +100,21 @@ const PRINT_PHONE_FALLBACK = '9999999999';
  * Product and Payment Link so sessions resolve back to a SKU.
  */
 const PRODUCTS = {
+  'plan-read': {
+    // kind 'service': nothing in R2 and no payment link. The Worker creates a
+    // Checkout Session per upload (checkout: 'session', see planRead.js); the
+    // webhook's service branch starts the read instead of sending a download.
+    sku: 'plan-read',
+    kind: 'service',
+    checkout: 'session',
+    name: 'Measured Whole-House Estimate',
+    amount: 2000,
+    description:
+      'Your plan set read by StudTally and the cost-to-build ledger on build-your-house.com ' +
+      'priced from the drawings: footprint, walls, openings, roof and rooms, with the sheet ' +
+      'each number came from. Refunded automatically if the set cannot be read.',
+    emailSubject: "We're reading your plans",
+  },
   'job-site-binder': {
     sku: 'job-site-binder',
     kind: 'download',
@@ -718,7 +740,8 @@ function successUrl(sessionId) {
 function corsHeaders(origin) {
   const headers = {
     'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    'Access-Control-Allow-Headers':
+      'Content-Type, Authorization, X-Plan-Email, X-Plan-Name, X-Plan-Foundation, X-Plan-Floor, X-Plan-Roof, X-Plan-Profile',
   };
   if (origin === SITE_ORIGIN || origin?.endsWith('.build-your-house.com') || origin === 'http://localhost:4000') {
     headers['Access-Control-Allow-Origin'] = origin;
@@ -986,7 +1009,8 @@ async function handleRecover(request, env, ctx, origin) {
       .catch((err) => console.error('recovery log insert failed:', err))
   );
 
-  if (paidSessions.length === 0) {
+  const planReads = await planRead.recoverRows(env, planReadDeps, email);
+  if (paidSessions.length === 0 && planReads.length === 0) {
     return json({ found: false }, 200, origin);
   }
 
@@ -1015,7 +1039,8 @@ async function handleRecover(request, env, ctx, origin) {
   }
 
   // `url` kept for backward compatibility with the current recover page.
-  return json({ found: true, url: orders[0].url, orders }, 200, origin);
+  const all = [...orders, ...planReads];
+  return json({ found: true, url: all[0].url, orders: all }, 200, origin);
 }
 
 function timingSafeEqualStr(a, b) {
@@ -1430,6 +1455,24 @@ async function handleStripeWebhook(request, env) {
   const { sku } = await verifyStripeSession(session.id, env);
   const product = productForSku(sku);
 
+  if (product.kind === 'service') {
+    // A plan read: tell StudTally the job is paid (that queues it) and email
+    // "we're reading your plans". Throwing → 500 → Stripe retries, which is
+    // right: fulfillPaidSession is idempotent and the read must not be lost.
+    const { row, started } = await planRead.fulfillPaidSession(env, planReadDeps, session);
+    if (!row) {
+      console.error(`plan-read webhook: no plan_reads row for session ${session.id}`);
+      return new Response('no plan read for session', { status: 200 });
+    }
+    await env.DB.prepare(
+      'INSERT OR IGNORE INTO fulfillment_emails (session_id, email, resend_id, created_at) VALUES (?1, ?2, ?3, ?4)'
+    )
+      .bind(session.id, email, null, new Date().toISOString())
+      .run();
+    await syncNewsletterPurchase(session, email);
+    return new Response(started ? 'read started' : 'read already started', { status: 200 });
+  }
+
   // Throwing here → 500 → Stripe retries the webhook, so a transient Resend
   // outage still results in the customer getting their email.
   const ref = session.client_reference_id || null;
@@ -1498,6 +1541,18 @@ Next: ask the borrower (financing lead ${ref || '?'}) in writing whether they wa
     // A lender is not an owner-builder; keep them off the reader list.
     return new Response('sent', { status: 200 });
   }
+  await syncNewsletterPurchase(session, email);
+
+  return new Response('sent', { status: 200 });
+}
+
+/**
+ * List sync after a purchase: buyers who ticked Stripe's promotions-consent box
+ * join the newsletter (quiet — the fulfillment email is enough for today);
+ * everyone else is only marked purchased IF they were already a subscriber, so
+ * the drip sequence never tries to sell them what they just bought.
+ */
+async function syncNewsletterPurchase(session, email) {
   try {
     const optedIn = session.consent?.promotions === 'opt_in';
     await fetch(NEWSLETTER_SUBSCRIBE_URL, {
@@ -1514,8 +1569,6 @@ Next: ask the borrower (financing lead ${ref || '?'}) in writing whether they wa
   } catch (err) {
     console.error('newsletter purchase sync failed:', err);
   }
-
-  return new Response('sent', { status: 200 });
 }
 
 async function findPaymentLink(env) {
@@ -1797,6 +1850,14 @@ async function handleProvisionProducts(env) {
     }
     out.price_id = price.id;
 
+    if (def.checkout === 'session') {
+      // Sold through a Checkout Session the Worker creates per order; no payment link.
+      out.checkout = 'session';
+      if (out.actions.length === 0) out.actions.push('already provisioned');
+      results[def.sku] = out;
+      continue;
+    }
+
     // ---- Payment link: by metadata.sku or the seeded URL, else create.
     let link =
       linksRes.data.find((l) => l.metadata?.sku === def.sku) ||
@@ -1926,7 +1987,24 @@ async function handleOrders(env) {
   return json({ orders }, 200);
 }
 
+/** What planRead.js borrows from this module. */
+const planReadDeps = {
+  stripe,
+  json,
+  sendResendEmail,
+  ownerEmail,
+  isPaidStatus,
+  SITE_ORIGIN,
+  EMAIL_RE,
+  PLAN_READ_AMOUNT: PRODUCTS['plan-read'].amount,
+};
+
 export default {
+  /** Cron (wrangler.jsonc triggers): follow active plan reads for closed tabs. */
+  async scheduled(_event, env, ctx) {
+    ctx.waitUntil(planRead.sweep(env, planReadDeps));
+  },
+
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
     const origin = request.headers.get('Origin');
@@ -1946,6 +2024,23 @@ export default {
 
       if (request.method === 'POST' && url.pathname === '/recover') {
         return await handleRecover(request, env, ctx, origin);
+      }
+
+      if (request.method === 'POST' && url.pathname === '/plan-read') {
+        return await planRead.handleCreate(request, env, ctx, origin, planReadDeps);
+      }
+      const planReadRoute = url.pathname.match(/^\/plan-read\/([a-f0-9]{32})(?:\/(verify|checkout))?$/);
+      if (planReadRoute) {
+        const [, token, action] = planReadRoute;
+        if (request.method === 'GET' && !action) {
+          return await planRead.handleStatus(request, env, ctx, origin, planReadDeps, token);
+        }
+        if (request.method === 'POST' && action === 'verify') {
+          return await planRead.handleVerify(request, env, ctx, origin, planReadDeps, token);
+        }
+        if (request.method === 'POST' && action === 'checkout') {
+          return await planRead.handleCheckout(request, env, ctx, origin, planReadDeps, token);
+        }
       }
 
       const printAsset = url.pathname.match(/^\/print-assets\/([^/]+)\/(interior|cover)\.pdf$/);

@@ -1,6 +1,6 @@
 # Whole-House Estimator v2 — Implementation Plan
 
-**Status:** M1 done 2026-10-14 (StudTally on Railway). M2 live 2026-10-14 (commit 5ca2d67, Pages deployment 802849e4); the one-week `estimate_use` watch in §7 runs to 2026-10-21, then M3. Written 2026-10-13.
+**Status:** M1 done 2026-10-14 (StudTally on Railway). M2 live 2026-10-14 (commit 5ca2d67). M3 built and deployed 2026-10-14 (StudTally partner API commit 477208f on Railway, downloads Worker version 22610f58 with the `plan_reads` table and the $20 Stripe product, the page in this commit); the first real card payment through checkout is still to come (§4.7). M4 next. Written 2026-10-13.
 **Design:** Direction D on the canvas, https://claude.ai/artifact/8zMPvCzBY9iZH92DGy4Hwq (row 4: free estimate and plans-attached, desktop and phone).
 **Companion:** `~/Repositories/studtally/docs/10-railway-and-partner-api.md` (hosting move, Claude API auth, partner API).
 **Route:** stays `/calculators/material-estimator`. It is the site's most-cited page; the URL, canonical, and inbound links do not move.
@@ -23,7 +23,7 @@
 |---|---|---|---|
 | M1 | StudTally API + worker on Railway, vision on a service-account API key, Mac tunnel retired. Started 2026-10-13: project, services, variables, first deploys, trial DB restore, custom domain registered; Done 2026-10-14: R2 token, storage sync, Anthropic key (30-day, expires 2026-11-13), smoke test, final DB restore, DNS switch, Mac agents stopped, web app redeployed with the 100 MB copy. Remaining: watch for a day and the first real paid job (StudTally `docs/10` §5 step 7) | nothing | 1–2 days |
 | M2 | Free whole-house estimator live at the existing URL, old W-02 engine retired. Built 2026-10-14: `src/lib/estimate/` (geometry, prices, 50-state index, labor, 14 phases, runner, URL profile, default run, 11 node tests), `src/components/estimate/` (Direction D page), `materialEstimator.ts` and `MaterialEstimatorCalc.tsx` deleted, registry, hub, and home copy updated, newsletter Worker `/estimate` widened to 24 rows with custom headings and deployed. Committed as 5ca2d67 and live on production 2026-10-14 11:02Z; the live page checked for title, H1, FAQ schema, and the generated figures. | nothing (parallel with M1) | 5–7 days |
-| M3 | Plans-attached rung live: upload, $20 checkout, reading status, measured ledger, emails, refunds | M1, M2 | 4–6 days |
+| M3 | Plans-attached rung live: upload, $20 checkout, reading status, measured ledger, emails, refunds. Built 2026-10-14: `workers/downloads/src/planRead.js` (upload stream-through, Checkout Session, fulfillment, polling, refunds, three buyer emails, owner alerts, cron sweep), D1 `plan_reads`, Stripe product `plan-read` ($20, `metadata.sku`), the StudTally partner API (`studtally/docs/10` §6), `src/lib/estimate/measured.ts` (summary → Geometry), `src/lib/planRead.ts`, `AttachPanel`, `ReadingStatus`, `MeasuredChips`, `usePlanRead`, the rail's attach, status, measured and upgrade cards. Smoke read of the Thompson sample through the real pipeline on 2026-10-14 (§4.7). | M1, M2 | 4–6 days |
 | M4 | 50 state pages from the same engine, hub and sitemap updated, launch content | M2 | 2–3 days |
 
 Effort is working days of focused build with Claude Code, not calendar time.
@@ -261,6 +261,23 @@ Copy rule for the upgrade card, the email, and the FAQ: the card is titled "Fram
 
 v2 (after M3 proves demand): a claim link that attaches the partner plan to the buyer's StudTally workspace on sign-in with the same email, so the $79 flow starts from the job already read instead of a second upload, with the code applied to that session automatically.
 
+### 4.6a What M3 built, and where it departs from the sketch above
+
+- One request, raw body: the browser streams the PDF as the body of `POST /plan-read` with the email, file name, the three answers and the serialized profile in `X-Plan-*` headers, and the Worker streams it on to StudTally's `POST /api/partner/plans` (raw body plus headers there too) without buffering. A 100 MB multipart body would not fit a Worker's memory. The Worker checks `Content-Type`, `Content-Length` (413 with the size named) and the answer values; StudTally checks the PDF header, pages and encryption and the Worker relays its message.
+- Two more routes and a cron: `POST /plan-read/:token/checkout` hands back the open session's URL (or a new session) after a cancelled checkout, and `scheduled()` runs every five minutes over active reads so a closed tab still gets its ready email and its refund. `GET /plan-read/:token` asks StudTally at most every 4 s per read.
+- Payment fulfillment is one function (`fulfillPaidSession`) called by the webhook's `kind === 'service'` branch and by `/verify`; a conditional `UPDATE … WHERE status = 'setup'` decides which caller sends the "we're reading your plans" email when they race. StudTally's `/paid` is idempotent on the session id.
+- Status mapping: StudTally `queued` → `queued`, `processing` → `reading`, `review`/`complete` → `ready` (geometry stored in D1, ready email), `unsupported`/`failed` → a Stripe refund of the payment intent → `refunded` (or `unsupported` when nothing was charged), the buyer gets the reason, the owner an alert, StudTally a `refund-notice`.
+- The ready email names what was read (heated area, sheets, exterior wall length) instead of the headline number: the Worker does not run the engine.
+- `kind: 'service'` products with `checkout: 'session'` get no payment link from provision-products; the Worker finds the price by `metadata.sku` and caches it (`PLAN_READ_PRICE_ID` can pin it). The product and price were created on 2026-10-14 (`prod_VRJ4zWvN20Y5gc`, `price_1UQQSDGbj9fxgEfUXxozmBMJ`).
+- Page: the rail's "Attach plans, $20" opens the panel in the title block; unpaid, queued, reading and could-not-read states are a strip under the chips with the pay-again and attach-another actions; the ready state swaps the chips for plan facts with their sheets (finish and state stay editable, tagged "you"), every row carries a `measured` or `derived` tag, the rail shows the measured card with "what was assumed" and the upgrade card with the copy rule, the code and its expiry. `?read=<token>` stays in the URL with the profile; `session_id` and `cancelled` are dropped after one use; a results link opened cold adopts the finish, state and switches saved at attach time.
+- Exports and the inbox email carry the plan name, the facts and the assumed lines; the CSV gains a basis column.
+- `/recover` lists plan reads for an email beside downloads (`kind: 'service'`, the results URL).
+- Analytics: `plan_read_open`, `begin_checkout` (value 20), `plan_read_verified` + `purchase` (deduped per session id), `plan_read_ready` (per token), `studtally_upgrade_click`.
+
+### 4.7 Smoke test, 2026-10-14
+
+The Thompson sample went through the production path: the Worker streamed it to StudTally (201 in 5.4 s, plan in `setup` with the partner fields), a live Checkout Session was created and left unpaid, `/paid` was called directly with a marker session id (StudTally queued the job and minted upgrade code B868UTGJ, the repeat call answered the same), the D1 row was moved to `queued` by hand in place of the Stripe step, and the Worker's status route followed the read. Not exercised with real money: a card payment through Checkout and the webhook/verify fulfillment that follows it. For that, a 100%-off promotion code `BYHSMOKE20` (coupon `ZwVTzxNT`, restricted to the plan-read product, two uses) exists on the Stripe account: attach a set on the live page, enter the code at checkout, and the whole path runs for $0; delete the coupon afterwards.
+
 ### 4.6 Security
 
 Partner key compared constant-time on StudTally; tokens are the only credential for results, like share links; the attach endpoint is rate-limited per IP with the recovery pattern; PDF header and size checked before forwarding; StudTally keeps its own 100 MB / 40-sheet / encrypted-PDF rejections; no plan bytes are stored on the BYH side.
@@ -276,7 +293,7 @@ Summary here, runbook in the StudTally doc. Two Railway services from one repo a
 ## 7. Rollout and measurement
 
 - M2 ships behind the same URL with a one-week watch on `estimate_use`, scroll depth, and the FAQ-driven queries in Search Console; the old page's impressions should hold or rise. Shipped 2026-10-14; review the watch on 2026-10-21 before starting M3.
-- M3 ships with billing on from day one and Seth's own plan sets as the smoke test. Success metric for the first month: ten paid reads, zero unrefunded unsupported jobs, median time to ready under one hour.
+- M3 ships with billing on from day one and Seth's own plan sets as the smoke test. Success metric for the first month: ten paid reads, zero unrefunded unsupported jobs, median time to ready under one hour. Deployed 2026-10-14 (§4.7).
 - M4 pages are judged by the state guides' own pattern: impressions by week three.
 
 ## 8. Risks

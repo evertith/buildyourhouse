@@ -15,6 +15,7 @@ const WORKER_BASE =
 interface Props {
   estimate: Estimate;
   profile: Profile;
+  planName?: string;
   onSent: () => void;
 }
 
@@ -23,7 +24,7 @@ interface Props {
  * and subscribes the address. Results are never gated; the ask comes after
  * the number is on the page. generate_lead fires only on confirmed success.
  */
-export default function InboxForm({ estimate, profile, onSent }: Props) {
+export default function InboxForm({ estimate, profile, planName, onSent }: Props) {
   const [email, setEmail] = useState('');
   const [honeypot, setHoneypot] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
@@ -43,8 +44,8 @@ export default function InboxForm({ estimate, profile, onSent }: Props) {
           sourcePath: window.location.pathname + window.location.search,
           calculator: CALCULATOR_SLUG,
           calculatorName: CALCULATOR_NAME,
-          hero: `${money100(t.cash.mid)} cash to build`,
-          inputs: profileRows(profile, estimate),
+          hero: `${money100(t.cash.mid)} cash to build${planName ? `, measured from ${planName}` : ''}`,
+          inputs: profileRows(profile, estimate, planName),
           lines: [...phaseRows(estimate), ...splitRows(estimate)],
           linesLabel: 'Phases',
           cost: `${money100(t.cash.low)} – ${money100(t.cash.high)}, about ${money(t.perSqFt.mid)} per sq ft`,

@@ -11,10 +11,12 @@ interface Props {
   openId: PhaseId | null;
   onToggleOpen: (id: PhaseId) => void;
   onChoice: (id: PhaseId, diy: boolean) => void;
+  /** The geometry came from a plan read: tag every row's basis. */
+  measuredMode?: boolean;
 }
 
 /** The phase rows, the cash-to-build footer, and the fine print. */
-export default function Ledger({ estimate, openId, onToggleOpen, onChoice }: Props) {
+export default function Ledger({ estimate, openId, onToggleOpen, onChoice, measuredMode = false }: Props) {
   const t = estimate.totals;
   const maxShare = Math.max(...estimate.phases.map((p) => p.share));
   return (
@@ -34,6 +36,7 @@ export default function Ledger({ estimate, openId, onToggleOpen, onChoice }: Pro
           open={openId === row.id}
           onToggleOpen={onToggleOpen}
           onChoice={onChoice}
+          showBasis={measuredMode}
         />
       ))}
 
@@ -42,9 +45,11 @@ export default function Ledger({ estimate, openId, onToggleOpen, onChoice }: Pro
         <span className={s.ledgerFootCash}>{money100(t.cash.mid)}</span>
       </div>
       <p className={s.finePrint}>
-        Quantities are derived from your square footage and a typical footprint; the sheet below the
-        ledger says how. Prices are national ranges for {estimate.asOf}, scaled to{' '}
-        {estimate.state.name}. An estimate, not a quote; order after a takeoff from your plans.
+        {measuredMode
+          ? 'Measured quantities come from the sheets named beside them; derived rows are priced from the measured area. '
+          : 'Quantities are derived from your square footage and a typical footprint; the sheet below the ledger says how. '}
+        Prices are national ranges for {estimate.asOf}, scaled to {estimate.state.name}. An estimate, not a
+        quote; order after a takeoff from your plans.
       </p>
     </div>
   );

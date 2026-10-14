@@ -7,6 +7,7 @@ import type { Estimate } from '@/lib/estimate/estimate';
 import { FINISH_LABEL } from '@/lib/estimate/prices';
 import { FOUNDATION_LABEL, ROOF_LABEL } from '@/lib/estimate/geometry';
 import type { Profile } from '@/lib/estimate/geometry';
+import { humanizePlanName, isMeasured, measuredFacts, sheetLabel } from '@/lib/estimate/measured';
 import { hoursApprox, money, money100 } from './format';
 
 export const CALCULATOR_SLUG = 'material-estimator';
@@ -14,7 +15,23 @@ export const CALCULATOR_NAME = 'Cost to Build a House Calculator';
 
 const mid = (r: { low: number; high: number }) => (r.low + r.high) / 2;
 
-export function profileRows(p: Profile, e: Estimate): { label: string; value: string }[] {
+export function profileRows(p: Profile, e: Estimate, planName?: string): { label: string; value: string }[] {
+  if (isMeasured(e.geometry)) {
+    const diyRow = {
+      label: 'Doing yourself',
+      value: e.diy.length ? e.phases.filter((x) => x.diy).map((x) => x.name).join(', ') : 'nothing, every trade hired',
+    };
+    return [
+      { label: 'Plans', value: planName ? humanizePlanName(planName) : 'attached plan set' },
+      ...measuredFacts(e.geometry).map((f) => ({
+        label: f.you ? 'Your answer' : 'Measured',
+        value: f.ref ? `${f.text} (${sheetLabel(f.ref)})` : f.text,
+      })),
+      { label: 'Finish', value: FINISH_LABEL[p.finish] },
+      { label: 'State', value: e.state.name },
+      diyRow,
+    ];
+  }
   return [
     { label: 'Finished area', value: `${p.heatedSf.toLocaleString('en-US')} sq ft` },
     { label: 'Stories', value: String(p.stories) },
@@ -49,16 +66,17 @@ export function splitRows(e: Estimate): { label: string; value: string }[] {
   ];
 }
 
-export function estimateText(e: Estimate, p: Profile, url: string): string {
+export function estimateText(e: Estimate, p: Profile, url: string, planName?: string): string {
   const t = e.totals;
+  const measured = isMeasured(e.geometry);
   return [
-    `${CALCULATOR_NAME}`,
+    `${CALCULATOR_NAME}${measured ? ' (measured from plans)' : ''}`,
     url,
     '',
     `Cash to build: ${money100(t.cash.mid)} (likely ${money100(t.cash.low)} to ${money100(t.cash.high)}), about ${money(t.perSqFt.mid)} per sq ft`,
     '',
-    'Profile:',
-    ...profileRows(p, e).map((r) => `  ${r.label}: ${r.value}`),
+    measured ? 'Plans:' : 'Profile:',
+    ...profileRows(p, e, planName).map((r) => `  ${r.label}: ${r.value}`),
     '',
     'Phases:',
     ...phaseRows(e).map((r) => `  ${r.label}: ${r.value}`),
@@ -66,19 +84,21 @@ export function estimateText(e: Estimate, p: Profile, url: string): string {
     ...splitRows(e).map((r) => `${r.label}: ${r.value}`),
     '',
     `Prices are national ranges for ${e.asOf}, scaled to ${e.state.name}. An estimate, not a quote.`,
+    ...(measured ? ['', 'Assumed:', ...e.geometry.assumed.map((a) => `  ${a}`)] : []),
   ].join('\n');
 }
 
-export function estimateCsv(e: Estimate, p: Profile): string {
+export function estimateCsv(e: Estimate, p: Profile, planName?: string): string {
   const q = (v: string | number) => `"${String(v).replace(/"/g, '""')}"`;
   const rows: (string | number)[][] = [
-    ['Phase', 'Who does it', 'Materials low', 'Materials mid', 'Materials high', 'Labor low', 'Labor mid', 'Labor high', 'Hours', 'Cash'],
+    ['Phase', 'Basis', 'Who does it', 'Materials low', 'Materials mid', 'Materials high', 'Labor low', 'Labor mid', 'Labor high', 'Hours', 'Cash'],
   ];
   for (const ph of e.phases) {
     const mat = mid(ph.materials);
     const lab = mid(ph.labor);
     rows.push([
       ph.name,
+      ph.basis,
       ph.soft ? 'paid, not built' : ph.diy ? 'yourself' : 'hired',
       Math.round(ph.materials.low),
       Math.round(mat),
@@ -99,8 +119,13 @@ export function estimateCsv(e: Estimate, p: Profile): string {
     }
   }
   rows.push([]);
-  rows.push(['Profile']);
-  for (const r of profileRows(p, e)) rows.push([r.label, r.value]);
+  rows.push([isMeasured(e.geometry) ? 'Plans' : 'Profile']);
+  for (const r of profileRows(p, e, planName)) rows.push([r.label, r.value]);
+  if (isMeasured(e.geometry)) {
+    rows.push([]);
+    rows.push(['Assumed']);
+    for (const a of e.geometry.assumed) rows.push([a]);
+  }
   rows.push([]);
   for (const r of splitRows(e)) rows.push([r.label, r.value]);
   rows.push(['Cash to build', Math.round(e.totals.cash.mid)]);
@@ -108,6 +133,10 @@ export function estimateCsv(e: Estimate, p: Profile): string {
   return rows.map((r) => r.map(q).join(',')).join('\n');
 }
 
-export function csvFilename(p: Profile): string {
+export function csvFilename(p: Profile, planName?: string): string {
+  if (planName) {
+    const slug = planName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 60) || 'plans';
+    return `cost-to-build-${slug}-measured.csv`;
+  }
   return `cost-to-build-${p.heatedSf}-sqft-${p.state.toLowerCase()}.csv`;
 }
