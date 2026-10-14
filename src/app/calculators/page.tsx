@@ -24,7 +24,7 @@ const OUTPUTS: Record<string, string> = {
   flooring: 'sq ft · boxes · underlay',
   insulation: 'batt bags · blown-in bags',
   'cost-savings-calculator': 'savings · GC fee',
-  'material-estimator': 'all majors · total cost',
+  'material-estimator': '14 phases · cash to build',
   'timeline-estimator': 'months · phases',
   'budget-tracker': 'variance · contingency',
   'plan-takeoff': 'framing list · from your PDF',

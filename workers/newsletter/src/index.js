@@ -309,10 +309,10 @@ ${d.calculatorName}: ${d.hero}
 Your inputs:
 ${inputsText}
 
-Materials:
+${d.linesLabel}:
 ${linesText}
 
-Estimated material cost: ${d.cost}
+${d.costLabel}: ${d.cost}
 
 Estimate only — quantities come from the assumptions shown on the calculator page. Order after a takeoff from your actual plans, and get local prices.
 
@@ -331,9 +331,9 @@ ${f.text}`,
 <p style="font-size:18px"><strong>${escapeHtml(d.calculatorName)}: ${escapeHtml(d.hero)}</strong></p>
 <p style="margin-bottom:4px;color:#56503f;font-size:13px;text-transform:uppercase;letter-spacing:0.08em">Your inputs</p>
 <table style="border-collapse:collapse;font-size:14px">${rowsHtml(d.inputs)}</table>
-<p style="margin:16px 0 4px;color:#56503f;font-size:13px;text-transform:uppercase;letter-spacing:0.08em">Materials</p>
+<p style="margin:16px 0 4px;color:#56503f;font-size:13px;text-transform:uppercase;letter-spacing:0.08em">${escapeHtml(d.linesLabel)}</p>
 <table style="border-collapse:collapse;font-size:14px">${rowsHtml(d.lines)}</table>
-<p style="margin-top:16px"><strong>Estimated material cost: ${escapeHtml(d.cost)}</strong></p>
+<p style="margin-top:16px"><strong>${escapeHtml(d.costLabel)}: ${escapeHtml(d.cost)}</strong></p>
 <p style="color:#56503f;font-size:13px">Estimate only — quantities come from the assumptions shown on the calculator page. Order after a takeoff from your actual plans, and get local prices.</p>
 <p><a href="${calcUrl}">Re-run it any time</a>.</p>
 <p>When you start ordering, the <a href="${SITE}/shop">Job Site Binder</a>'s materials section is built for exactly this — takeoffs, quotes, and delivery logs on paper that survives the truck.</p>
@@ -377,7 +377,10 @@ async function handleEstimate(request, env, ctx, origin) {
     hero: cleanText(payload.hero, 60),
     cost: cleanText(payload.cost, 60),
     inputs: cleanRows(payload.inputs, 12),
-    lines: cleanRows(payload.lines, 12),
+    lines: cleanRows(payload.lines, 24),
+    // The whole-house estimator sends phases and a split rather than materials.
+    linesLabel: cleanText(payload.linesLabel, 30) || 'Materials',
+    costLabel: cleanText(payload.costLabel, 40) || 'Estimated material cost',
   };
   if (!data.hero || !data.lines.length) {
     return json({ error: 'invalid takeoff' }, 400, origin);

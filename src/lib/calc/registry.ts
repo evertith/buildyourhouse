@@ -105,9 +105,9 @@ export const CALCULATORS: CalcMeta[] = [
   {
     slug: 'material-estimator',
     sheetNo: 'W-02',
-    name: 'Whole-House Material Estimator',
-    blurb: 'Planning-level quantities for the entire build — concrete through insulation — from square footage and finish level.',
-    heroUnit: 'estimate',
+    name: 'Cost to Build a House Calculator',
+    blurb: 'Every phase from the permit to the mailbox, materials and labor apart, with a Hire it / Do it myself switch on each and a state index.',
+    heroUnit: 'cash to build',
     kind: 'worksheet',
     relatedGuide: { href: '/planning/creating-budget', label: 'Budget planning guide' },
     relatedCalcs: ['plan-takeoff', 'framing-lumber', 'concrete-slab'],

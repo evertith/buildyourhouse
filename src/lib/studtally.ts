@@ -24,4 +24,4 @@ export function studTallyUrl(content: string): string {
 }
 
 /** Calculators whose results sheet offers the StudTally step. Framing-adjacent only — the offer must match the page. */
-export const PLAN_TAKEOFF_SLUGS = new Set(['material-estimator', 'framing-lumber']);
+export const PLAN_TAKEOFF_SLUGS = new Set(['framing-lumber']);

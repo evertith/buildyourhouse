@@ -1,53 +1,109 @@
 import type { Metadata } from 'next';
+import { Instrument_Sans, Instrument_Serif } from 'next/font/google';
 import s from '@/styles/CalcSheet.module.css';
-import MaterialEstimatorCalc from '@/components/calc/MaterialEstimatorCalc';
-import { CalcHero, CalcSection, AssumptionsTable, CalcFAQ, RelatedCalcs } from '@/components/calc/sections';
+import Estimator from '@/components/estimate/Estimator';
+import { CalcSection, AssumptionsTable, CalcFAQ, RelatedCalcs } from '@/components/calc/sections';
 import BinderCTA from '@/components/BinderCTA';
 import { generateFAQSchema, schemaToScriptTag } from '@/lib/schema';
+import { DEFAULT_ALL_HIRED, DEFAULT_ESTIMATE, defaultPhase, roundDollar, roundK } from '@/lib/estimate/defaults';
+import { PROFILE_DEFAULTS } from '@/lib/estimate/geometry';
+import { CONTINGENCY_SHARE, FINISH_MULTIPLIER, PRICES_AS_OF } from '@/lib/estimate/prices';
+import { HOURLY_RATE, LABOR_RATIO } from '@/lib/estimate/labor';
+import type { PhaseId } from '@/lib/estimate/types';
+import { STUDTALLY_PRICE } from '@/lib/studtally';
+
+// Scoped to this page's root: the rest of the site keeps Fraunces and Hanken Grotesk.
+const instrumentSerif = Instrument_Serif({
+  subsets: ['latin'],
+  weight: '400',
+  style: ['normal', 'italic'],
+  display: 'swap',
+  variable: '--ff-est-serif',
+});
+const instrumentSans = Instrument_Sans({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
+  variable: '--ff-est-sans',
+});
 
 export const metadata: Metadata = {
   alternates: { canonical: '/calculators/material-estimator' },
-  title: 'Material Cost to Build a House Calculator — Whole-House Estimate',
+  title: 'Cost to Build a House Calculator: Every Phase, Materials and Labor',
   description:
-    'Material cost to build a house, calculated from your square footage: lumber, concrete, drywall, roofing, flooring, and insulation quantities with an honest price range — free, no signup.',
+    'What it costs to build a house, phase by phase, from your square footage: materials and labor shown apart, a Hire it or Do it myself switch on every phase, and a state index that moves the numbers. Free, no signup.',
 };
+
+// Every number cited below comes from the engine's default run, so a price
+// refresh moves the copy with the ledger.
+const D = DEFAULT_ESTIMATE;
+const H = DEFAULT_ALL_HIRED;
+const SQFT = PROFILE_DEFAULTS.heatedSf.toLocaleString('en-US');
+const allHired = roundK(H.totals.allHired.mid);
+const allHiredLow = roundK(H.totals.cash.low);
+const allHiredHigh = roundK(H.totals.cash.high);
+const perSf = roundDollar(H.totals.perSqFt.mid);
+const cashDiy = roundK(D.totals.cash.mid);
+const diyHours = Math.round(D.totals.hours / 10) * 10;
+const laborPct = Math.round((H.totals.hiredLabor.mid / H.totals.allHired.mid) * 100);
+const hiredLabor = roundK(H.totals.hiredLabor.mid);
+const materials = roundK(H.totals.materials.mid);
+const softCosts = roundK(H.totals.soft.mid);
+const framing = defaultPhase('framing');
+const framingTotal = roundK(
+  (framing.materials.low + framing.materials.high + framing.labor.low + framing.labor.high) / 2
+);
+const framingHours = Math.round(framing.hours / 10) * 10;
+const lineQty = (phase: PhaseId, id: string) => {
+  const l = defaultPhase(phase).lines.find((x) => x.id === id);
+  return l ? Math.round(l.qty).toLocaleString('en-US') : '—';
+};
+const ASSUMED_LABELS = ['Footprint', 'Walls', 'Openings', 'Rooms', 'Roof', 'Foundation', 'Porch'];
 
 const FAQS = [
   {
-    question: 'How much do materials cost to build a house?',
-    answer:
-      'For a 2,000 sq ft single-story home with a hip roof and standard finishes, this calculator lands near $50,000 in shell materials — about $25 a square foot — with a realistic range of roughly $39,000 to $61,000 depending on where you buy and when. That covers concrete, framing lumber, drywall, roofing, flooring, and insulation only. Windows, doors, cabinets, appliances, HVAC, electrical, plumbing, and exterior finishes are all on top of it, and they typically add more than the shell costs.',
+    question: `How much does it cost to build a ${SQFT} sq ft house?`,
+    answer: `With every trade hired, this calculator puts a ${SQFT} sq ft one-story house on a slab with standard finishes in North Carolina at about ${allHired}, or ${perSf} a square foot, with a likely range of ${allHiredLow} to ${allHiredHigh}. That is cash to build: materials, hired labor, and the soft costs before you break ground, without the land, the loan, or a contingency. Do the insulation, interior finish, and final phase yourself, as the ledger starts out, and cash drops to about ${cashDiy} for roughly ${diyHours.toLocaleString('en-US')} hours of your own work. Change the state and the index moves every line.`,
   },
   {
-    question: 'What percentage of a build budget is materials?',
-    answer:
-      'Materials usually run 40–50% of hard construction cost on a conventionally built house, with labor taking most of the rest. That is exactly why owner-building pencils out for some people: you cannot negotiate lumber down 30%, but you can replace a general contractor fee and some subcontracted labor with your own hours. Materials are the part of the budget you can plan precisely — labor is the part you can trade for time.',
+    question: 'How much of the cost of building a house is labor?',
+    answer: `About ${laborPct}% in the default house: ${hiredLabor} of ${allHired} is hired labor, ${materials} is materials, and ${softCosts} is permits, fees, insurance, and plans. That split is the whole case for owner-building. You cannot talk a lumberyard down by half, but you can replace a crew with your own hours on the phases you are able to do, and the ledger shows what each one is worth. Framing alone is about ${framingTotal} hired, or ${framingHours.toLocaleString('en-US')} hours of yours.`,
   },
   {
-    question: 'How many board feet of lumber does a 2,000 sq ft house need?',
+    question: 'Which phases can I do myself?',
     answer:
-      'About 14,000 board feet for a single-story 2,000 sq ft home with 8 ft walls — roughly 7 board feet per finished square foot, which is the standard rule of thumb for light wood framing. That total covers wall studs and plates, exterior sheathing, floor joists, subfloor, and roof framing with its deck, plus 15% waste. The same 2,000 sq ft built as a two-story comes in lower — around 6.3 board feet per square foot — because the roof and floor system cover half the area even though the walls get taller.',
+      'Anything the ledger lets you flip, with two cautions. Plumbing, electrical, and HVAC are licensed trades in many states, and some require a licensed contractor to pull the permit even on a house you own; those three rows carry a note, and your state guide has the rule. And framing, roofing, and drywall are hard, fast work on a schedule, so price your own hours honestly: the ledger converts each phase to hours at a crew rate, and a first-timer takes longer than the crew.',
   },
   {
-    question: 'Does this estimate include labor?',
-    answer:
-      'No. Every number here is material cost delivered to your site — no labor, no equipment rental, no dumpsters, no fasteners. If you are subbing out the work, a rough planning check is to expect labor to roughly match or exceed material cost on the shell trades, more on finish work. The savings side of that trade is what the cost savings worksheet walks through.',
+    question: `What does the $${STUDTALLY_PRICE} at StudTally buy?`,
+    answer: `The framing list only. StudTally reads your plan set and returns every stud, plate, header, sheet, and hanger, counted per wall and reviewed by a person, as the list the lumberyard keys in. It does not price the other thirteen phases; those stay estimates from this page. Use it when you are ready to order framing, not to budget the house.`,
   },
   {
-    question: 'Why is my lumberyard quote different from this estimate?',
+    question: 'How big can the plan PDF be for StudTally?',
     answer:
-      'Three reasons, in order of size. Lumber prices swing 50–100% with market conditions, so a quote from a different quarter is a different number. Regional pricing varies widely — concrete, in particular, is priced by how far the truck drives. And a contractor account at a real lumberyard usually beats big-box retail by 10–20%, which is the single easiest discount an owner-builder can pick up. Use this estimate to size your budget and to sanity-check quotes, not to replace them.',
+      '100 MB and 40 sheets. A full set from an architect is usually well under that; if yours is not, export the PDF at a lower raster resolution or send only the architectural sheets (plans, elevations, sections, schedules), which are the ones that get read.',
   },
   {
-    question: 'How accurate is a square-footage material estimate?',
+    question: 'Why is my quote different from this estimate?',
     answer:
-      'Close enough to budget with, not close enough to order from. This sheet derives a footprint and wall areas from your square footage rather than from your plans, so an unusual shape, a walk-out basement, or a lot of glass will move the numbers. Once you have real dimensions, run the trade sheets — framing lumber, concrete slab, drywall, roofing, flooring, insulation — which take actual measurements and give you order quantities.',
+      'Three reasons, in order of size. Prices move: lumber swings 50 to 100% with the market, so a quote from a different quarter is a different number. Your lot is not the typical one: rock, a steep grade, a long drive, or a well and septic in place of a tap fee each move a phase by thousands. And a contractor account at a real lumberyard beats big-box retail by 10 to 20%, the easiest discount an owner-builder can pick up. Use the ledger to size the budget and sanity-check quotes, not to replace them.',
+  },
+  {
+    question: 'How accurate is a square-footage estimate?',
+    answer:
+      'Close enough to budget with, not close enough to order from. The ledger derives a footprint, walls, openings, and a roof from your square footage by the rules stated below, so an unusual shape, a walk-out basement, or a lot of glass will move the numbers. Once you have plans, the trade sheets (framing lumber, concrete, drywall, roofing, flooring, insulation) take real dimensions and give you order quantities, and StudTally reads the plan set itself for the framing list.',
+  },
+  {
+    question: 'What does this estimate leave out?',
+    answer:
+      'The land and everything about buying it, the construction loan and its interest, and the furniture. It also assumes a buildable lot with utilities at the street: a well and septic, a long power run, rock, or fill beyond the allowance are on top. Carry the 10% contingency the rail shows; every build finds something.',
   },
 ];
 
 const faqSchema = generateFAQSchema(FAQS);
 
 export default function MaterialEstimatorPage() {
+  const g = D.geometry;
   return (
     <div className={s.calcPage}>
       <script
@@ -55,103 +111,133 @@ export default function MaterialEstimatorPage() {
         dangerouslySetInnerHTML={{ __html: schemaToScriptTag(faqSchema) }}
       />
 
-      <CalcHero
-        title="Material Cost to Build a House Calculator"
-        sub="Whole-house material quantities and cost from your square footage — concrete through insulation, with every rate and multiplier shown."
-        cells={[
-          { k: 'Sheet', v: 'W-02' },
-          { k: 'Returns', v: 'Cost + quantities' },
-          { k: 'Scope', v: 'Structural shell' },
-          { k: 'Basis', v: 'Sq ft + finish' },
-        ]}
-      />
-
-      <div className={s.sheetWrap}>
-        <MaterialEstimatorCalc />
-      </div>
+      <Estimator fontClass={`${instrumentSerif.variable} ${instrumentSans.variable}`} />
 
       <div className={s.content}>
-        <CalcSection label="Methodology" title="How the estimate is figured" meta="SHEET W-02">
+        <CalcSection label="Methodology" title="How the ledger is figured" meta="SHEET W-02">
           <div className={s.prose}>
             <p>
               Everything starts from one division: finished square footage ÷ stories = footprint.
-              A 2,000 sq ft two-story sits on a 1,000 sq ft slab, so it roofs exactly half the area
-              of the same house built on one level and pours about 45% less concrete — footings
-              shrink with the perimeter, not with the area. That is why stories move the total as
-              much as they do.
+              The footprint is treated as a 1.5:1 rectangle for wall lengths, openings and rooms are
+              counted by density rules, and the roof is drawn over the footprint, the garage, and
+              the porch. Those few derived numbers feed every phase, each of which prices a short
+              list of real line items at national rates as of {PRICES_AS_OF}, scaled by the state
+              you pick. Open any row on the ledger to see its lines; the defaults below are for the{' '}
+              {SQFT} sq ft house.
             </p>
             <p>
-              <strong>Concrete and foundation.</strong> A 4&quot; slab over the footprint plus a
-              16&quot; wide × 12&quot; deep continuous footing around the perimeter of an equal-area
-              square, converted to cubic yards and priced at $150 per yard delivered. Rebar, vapor
-              barrier, and under-slab insulation are <em>not</em> in that number — budget another
-              15–20% for them. For a real pour with your actual dimensions and thickness, use the{' '}
-              <a href="/calculators/concrete-slab">concrete slab calculator</a>.
+              <strong>Before you break ground.</strong> The building permit is a state base plus
+              $0.35 per heated square foot, with plan review, the survey, the water and sewer tap
+              or impact fees (the state table carries the band), twelve months of builder&apos;s
+              risk insurance at half a percent of the hard cost, and the plans. Paid, not built, so
+              there is no labor switch.
             </p>
             <p>
-              <strong>Framing lumber.</strong> The footprint is treated as a 1.5:1 rectangle to get
-              wall length. Board feet are built up per system — 0.6 bf per sq ft of wall surface for
-              studs and plates, 0.5 for exterior sheathing, 1.4 for floor joists and 0.75 for
-              subfloor per sq ft of framed floor, 1.5 per sq ft of roof for rafters or trusses plus
-              the deck — then 15% waste on the total. That lands near 7 board feet per finished
-              square foot, the standard rule of thumb. Lumber prices can swing 50–100% on market
-              conditions, so get current quotes from more than one supplier and consider locking a
-              price in when the market is in your favor. Stud-by-stud counts for walls come from
-              the <a href="/calculators/framing-lumber">framing lumber calculator</a>.
+              <strong>Site work.</strong> Fill and topsoil, a 100-ft gravel drive at 8 in deep,
+              silt fence around the disturbed area, a stone construction entrance, and a temporary
+              power pole. Clearing and grading are equipment and labor, which is why this phase
+              carries the highest labor ratio on the ledger.
             </p>
             <p>
-              <strong>Drywall.</strong> Interior partitions are estimated at 1 linear foot per 4 sq
-              ft of floor, per story. Board area is both faces of every partition plus every
-              ceiling, divided into 4×8 sheets (32 sq ft each). Joint compound, tape, corner bead,
-              and screws are separate — the <a href="/calculators/drywall">drywall calculator</a>{' '}
-              works those out. Finish level moves the sheet price because premium builds run
-              5/8&quot; board on ceilings and add moisture-resistant or sound-rated sheets.
+              <strong>Foundation.</strong> A slab is 4 in over the house and garage with a
+              20 × 12 in turned-down footing, mesh, rebar in the footing, a vapor barrier, and 4 in
+              of gravel ({lineQty('foundation', 'concrete')} yd³ in the default house, with a 10%
+              order factor). A crawl space swaps that for a continuous footing, a 3-ft block stem
+              wall, piers every 200 sq ft, a treated sill, and vents, and the first floor becomes
+              framed. A basement is 8-ft poured walls on footings with a slab, waterproofing, and
+              drain tile. The{' '}
+              <a href="/calculators/concrete-slab">concrete slab calculator</a> prices a pour from
+              your actual dimensions.
             </p>
             <p>
-              <strong>Roofing.</strong> Roof area is the footprint times a complexity multiplier —
-              1.1 for a simple gable, 1.3 for hip or mixed, 1.5 for a cut-up roof with multiple
-              valleys — which absorbs pitch, overhang, and cutting waste in one factor. That area is
-              divided into squares (100 sq ft) and priced for shingles and underlayment. Ridge vent,
-              drip edge, flashing, and ice-and-water shield add another 15–25% on top of shingle
-              cost; the <a href="/calculators/roofing">roofing calculator</a> separates pitch from
-              waste and counts those accessories.
+              <strong>Framing.</strong> The same conventions as the{' '}
+              <a href="/calculators/framing-lumber">framing lumber calculator</a>: one stud per
+              linear foot of wall at 16 in on center, three runs of plate in 16-ft sticks, a
+              doubled header per opening, 4 × 8 OSB with 10% waste, house wrap, then joists and
+              subfloor for any framed floor, trusses at 2 ft on center over the plan area, roof
+              sheathing, porch posts, and allowances for blocking and fasteners. The default house
+              takes {lineQty('framing', 'ext-studs')} exterior studs,{' '}
+              {lineQty('framing', 'int-studs')} partition studs, and{' '}
+              {lineQty('framing', 'trusses')} trusses.
             </p>
             <p>
-              <strong>Flooring.</strong> Finished square footage at a per-foot material rate: basic
-              is laminate or sheet vinyl, standard is mid-grade hardwood or tile, premium is
-              high-end hardwood or natural stone. Material only — professional installation
-              typically adds $2–$8 per square foot depending on what you picked. Room-by-room
-              quantities with waste are in the{' '}
-              <a href="/calculators/flooring">flooring calculator</a>.
+              <strong>Roofing.</strong> Sloped area is the plan area times the pitch factor
+              (6:12 by default), with 10, 15, or 20% waste by how cut up the roof is; three
+              bundles per square ({lineQty('roofing', 'shingles')} in the default house),
+              synthetic underlayment, ice and water on the eaves, starter, cap, drip edge, ridge
+              vent, flashing, and nails, as the{' '}
+              <a href="/calculators/roofing">roofing calculator</a> counts them.
             </p>
             <p>
-              <strong>Insulation.</strong> Exterior wall area plus finished floor area, the second
-              term standing in for ceilings and floor systems. Rates rise with finish level because
-              higher-end builds carry higher R-values and more spray foam. Do not cut this line to
-              save money — energy payback is usually 3–7 years and it drives how the house feels
-              every day. Cavity-by-cavity quantities are in the{' '}
-              <a href="/calculators/insulation">insulation calculator</a>.
+              <strong>Windows and exterior doors.</strong> One window per 110 sq ft at 15 sq ft
+              each, an entry door with sidelights, a patio door, a back door, and a 16-ft garage
+              door with its opener when the house is large enough to carry a garage. Finish level
+              moves these: basic is {FINISH_MULTIPLIER.basic}× the standard rate, premium{' '}
+              {FINISH_MULTIPLIER.premium}×.
+            </p>
+            <p>
+              <strong>Exterior finish.</strong> Fiber-cement lap siding on the wall area after
+              openings with 10% waste, trim at corners, openings, and the band, soffit and fascia on
+              the eaves and rakes, aluminum gutters with four downspouts, and a caulk-and-flashing
+              allowance. Finish-sensitive.
+            </p>
+            <p>
+              <strong>Plumbing, electrical, HVAC.</strong> Plumbing is priced per fixture for the
+              rough-in (three per bath, two in the kitchen, two in the laundry, two hose bibs) plus
+              the service lines, water heater, and finish fixtures. Electrical is a 200-amp
+              service, wire and boxes per heated square foot, devices and a fixture allowance per
+              room, and detectors. HVAC is a heat pump at one ton per 600 sq ft, moved by the
+              state&apos;s climate, with ductwork per square foot, a thermostat, and bath fans.
+              These three carry a licensed-trade note because many states require one.
+            </p>
+            <p>
+              <strong>Insulation, drywall, paint.</strong> R-19 batts in the walls and blown
+              fiberglass to R-49 in the attic by the{' '}
+              <a href="/calculators/insulation">insulation calculator</a>&apos;s bag charts, with
+              floor batts under a crawl space or rigid foam on basement walls. Board is the{' '}
+              <a href="/calculators/drywall">drywall calculator</a>&apos;s 3.7 × floor area
+              ({lineQty('drywallPaint', 'board')} sheets in the default house) with compound, tape,
+              screws, and corner bead; paint is the{' '}
+              <a href="/calculators/paint">paint calculator</a>&apos;s primer plus two coats at
+              350 sq ft per gallon, with trim enamel per room.
+            </p>
+            <p>
+              <strong>Interior finish and final.</strong> Interior doors are rooms minus two;
+              baseboard runs the finished wall perimeter; flooring is the heated area with 8% waste
+              at a blended plank, tile, and carpet rate (the{' '}
+              <a href="/calculators/flooring">flooring calculator</a> does it by room); cabinets,
+              vanities, countertops, bath tile, shower glass, and accessories are counted by kitchen
+              and bath. The final phase is the appliance package, 870 sq ft of concrete drive and
+              walks, seed and shrubs, the last clean, three dumpsters, and the odds and ends.
+            </p>
+            <p>
+              <strong>Labor and the state index.</strong> Each phase&apos;s labor is its material
+              cost times a ratio calibrated to 2026 subcontractor quotes (framing{' '}
+              {LABOR_RATIO.framing}, drywall and paint {LABOR_RATIO.drywallPaint}, electrical{' '}
+              {LABOR_RATIO.electrical}, openings {LABOR_RATIO.openings}), then the state&apos;s
+              labor index. Hours are that figure at a blended crew rate of ${HOURLY_RATE.framing} an
+              hour (${HOURLY_RATE.plumbing} for the licensed trades). The materials index is narrow,
+              since lumber and concrete travel; the labor index is wide, since crews do not. North
+              Carolina is 1.00. The permit base and tap fees are set per state and are not scaled
+              again.
             </p>
           </div>
         </CalcSection>
 
-        <CalcSection label="Assumptions" title="Rates, waste, and multipliers" meta="ADJUST ABOVE">
+        <CalcSection label="Assumptions" title="What the default house assumes" meta="CHANGE THE CHIPS">
           <AssumptionsTable
             rows={[
-              { label: 'Footprint', value: 'Finished area ÷ stories' },
-              { label: 'Footprint shape', value: '1.5:1 rectangle' },
-              { label: 'Slab thickness', value: '4 in' },
-              { label: 'Footing', value: '16 in × 12 in continuous' },
-              { label: 'Concrete price', value: '$150 / yd³ delivered' },
-              { label: 'Interior partitions', value: '1 lf per 4 sq ft floor, per story' },
-              { label: 'Framing waste', value: '15%' },
-              { label: 'Lumber price', value: '$0.85 – $1.50 / bf by finish' },
-              { label: 'Drywall sheet', value: '4 × 8 (32 sq ft)' },
-              { label: 'Roof area', value: '1.1 – 1.5 × footprint' },
-              { label: 'Roofing price', value: '$250 – $500 / square by finish' },
-              { label: 'Flooring price', value: '$3 – $8 / sq ft by finish' },
-              { label: 'Insulation price', value: '$1.25 – $2.50 / sq ft by finish' },
-              { label: 'Prices', value: 'National range, Aug 2026' },
+              ...g.assumed.map((a, i) => ({ label: ASSUMED_LABELS[i] ?? 'Also', value: a })),
+              {
+                label: 'Finish multiplier',
+                value: `Basic ${FINISH_MULTIPLIER.basic}×, standard 1×, premium ${FINISH_MULTIPLIER.premium}× on openings, exterior, drywall and paint, interior`,
+              },
+              {
+                label: 'Labor ratios',
+                value: `Site ${LABOR_RATIO.site}, foundation ${LABOR_RATIO.foundation}, framing ${LABOR_RATIO.framing}, roofing ${LABOR_RATIO.roofing}, plumbing ${LABOR_RATIO.plumbing}, electrical ${LABOR_RATIO.electrical}, HVAC ${LABOR_RATIO.hvac}, drywall and paint ${LABOR_RATIO.drywallPaint}, interior ${LABOR_RATIO.interior}, final ${LABOR_RATIO.final}`,
+              },
+              { label: 'Contingency', value: `${Math.round(CONTINGENCY_SHARE * 100)}% of cash to build, shown apart` },
+              { label: 'Prices', value: `National ranges, ${PRICES_AS_OF}; the ledger prints the middle of each range` },
             ]}
           />
         </CalcSection>
@@ -159,23 +245,13 @@ export default function MaterialEstimatorPage() {
         <CalcSection label="Scope" title="What this estimate leaves out">
           <div className={s.prose}>
             <p>
-              This sheet prices the structural shell. A complete material budget carries a second
-              list that is often larger than the first — these are planning ranges for a typical
-              single-family home, and they are the line items that surprise first-time builders
-              most. Track them against your actual spend in the{' '}
-              <a href="/calculators/budget-tracker">budget tracker</a>.
+              The land, the loan, and the furniture. The ledger also assumes a buildable lot with
+              utilities at the street and a typical footprint; a well and septic, a long power run,
+              rock, extra fill, a retaining wall, or an unusual shape are on top. Track what you
+              actually spend against the phases in the{' '}
+              <a href="/calculators/budget-tracker">budget tracker</a>, and carry the contingency.
             </p>
           </div>
-          <AssumptionsTable
-            rows={[
-              { label: 'Windows, doors & hardware', value: '$15,000 – $40,000' },
-              { label: 'HVAC, electrical & plumbing', value: '$30,000 – $60,000' },
-              { label: 'Cabinets & countertops', value: '$8,000 – $30,000' },
-              { label: 'Appliances & fixtures', value: '$15,000 – $35,000' },
-              { label: 'Siding, trim, paint & gutters', value: '$8,000 – $25,000' },
-              { label: 'Site work, utilities & drive', value: '$15,000 – $40,000' },
-            ]}
-          />
         </CalcSection>
 
         <CalcSection label="Field notes" title="Ordering materials without losing money">
@@ -229,7 +305,7 @@ export default function MaterialEstimatorPage() {
         <div className={`${s.block} ${s.blockLast} no-print`}>
           <BinderCTA
             context="material-estimator"
-            lead="Estimating materials is planning-phase work — and it's exactly what the Job Site Binder's Excel calculators do with live formulas: concrete, drywall, paint, and roofing, plus 367 print-ready pages of checklists and logs for when the build starts."
+            lead="Costing the house is planning-phase work — and it's exactly what the Job Site Binder's Excel calculators do with live formulas: concrete, drywall, paint, and roofing, plus 367 print-ready pages of checklists and logs for when the build starts."
           />
         </div>
       </div>

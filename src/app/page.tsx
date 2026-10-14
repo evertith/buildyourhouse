@@ -18,7 +18,7 @@ const SHEETS: { no: string; icon: IconName; title: string; href: string; desc: s
   { no: 'A-03', icon: 'schedule', title: 'Timing & Scheduling', href: '/timing-and-scheduling', desc: 'Build realistic timelines, dodge the common delays, and coordinate multiple trades without stalling the job.' },
   { no: 'A-04', icon: 'phases', title: 'Build Phases', href: '/build-phases', desc: 'Step-by-step playbooks for every phase, from site prep and foundation to framing and final finishes.' },
   { no: 'A-05', icon: 'tools', title: 'Tools & Equipment', href: '/tools-and-equipment', desc: "The tools that actually earn their keep, buy-vs-rent break-evens, and the safety gear you can't skip." },
-  { no: 'A-06', icon: 'calculator', title: 'Calculators & Tools', href: '/calculators/material-estimator', desc: 'Cost-savings calculator, material estimator, timeline planner, and a budget tracker that flags overruns.' },
+  { no: 'A-06', icon: 'calculator', title: 'Calculators & Tools', href: '/calculators/material-estimator', desc: 'Cost-to-build estimator, cost-savings calculator, timeline planner, and a budget tracker that flags overruns.' },
 ];
 
 const NOTES: { n: string; h: string; p: string }[] = [
