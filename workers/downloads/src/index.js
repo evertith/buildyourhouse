@@ -1277,7 +1277,7 @@ https://build-your-house.com
   if (product.kind === 'ship') {
     const text = `${greeting}
 
-Thanks for ordering the printed Owner-Builder Job Site Binder! Your order is confirmed and heads to the printer next — expect it at your door in about 7-10 business days.
+Thanks for ordering the printed Owner-Builder Job Site Binder! Your order is confirmed and heads to the printer next — expect it at your door in about two weeks.
 
 While it ships, the complete digital version is yours right now:
 ${link}
@@ -1291,7 +1291,7 @@ Build Your House
 https://build-your-house.com
 `;
     const html = `<p>${greeting}</p>
-<p>Thanks for ordering the printed Owner-Builder Job Site Binder! Your order is confirmed and heads to the printer next — expect it at your door in about 7&ndash;10 business days.</p>
+<p>Thanks for ordering the printed Owner-Builder Job Site Binder! Your order is confirmed and heads to the printer next — expect it at your door in about two weeks.</p>
 <p>While it ships, the complete digital version is yours right now:</p>
 <p><a href="${link}"><strong>Open your download page</strong></a></p>
 <p>Lose this email later? Recover your download anytime at <a href="https://build-your-house.com/shop/recover">build-your-house.com/shop/recover</a> using this email address.</p>
