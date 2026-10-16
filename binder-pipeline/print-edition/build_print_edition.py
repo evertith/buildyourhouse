@@ -22,12 +22,23 @@ Two rules drive the interior and both come from the design system:
    ends up at the top, not under the book). That also puts the landscape top
    margin -- the widest at 0.9in -- on the recto binding edge.
 
+Two failures shaped the build and verify steps. Lulu rejected the first printed
+order (Oct 2026) for both, and the original structural checks passed on it:
+
+* Every font must be embedded. ReportLab references Helvetica without embedding
+  it, and paragraph bullets are drawn in it, so both files are re-written through
+  Ghostscript's pdfwrite, which embeds a metric-identical URW clone (distill()).
+* Every source reader must outlive the merge (see build_interior), and verify()
+  now compares every interior page's text with the source page it should be.
+
 Usage:
   python3 build_print_edition.py           # build + verify
   python3 build_print_edition.py --verify  # verify an existing build only
 """
 
+import hashlib
 import os
+import re
 import subprocess
 import sys
 
@@ -116,11 +127,37 @@ def add_portrait_page(writer, page):
     writer.add_page(page)
 
 
+def distill(src, dst):
+    """Re-write a PDF through Ghostscript so that every font is embedded.
+
+    Lulu's preflight rejects any unembedded font ("Missing font"). pdfwrite
+    substitutes its metric-identical URW clone for Helvetica and embeds it.
+    AutoRotatePages=/None is load-bearing: by default pdfwrite re-orients pages
+    by their text direction, which would undo the landscape rotation.
+    """
+    subprocess.run(
+        ["gs", "-q", "-dNOPAUSE", "-dBATCH", "-dSAFER", "-sDEVICE=pdfwrite",
+         "-dPDFSETTINGS=/prepress", "-dCompatibilityLevel=1.4",
+         "-dEmbedAllFonts=true", "-dSubsetFonts=true", "-dAutoRotatePages=/None",
+         "-dDownsampleColorImages=false", "-dDownsampleGrayImages=false",
+         "-dDownsampleMonoImages=false", f"-sOutputFile={dst}", src],
+        check=True,
+    )
+
+
 def build_interior():
     writer = PdfWriter()
     plan = []
+    # PyPDF2 3.0.1 remembers which source objects it has already copied under
+    # id(reader). Rebinding `reader` lets the previous one be garbage-collected,
+    # the next reader can be allocated at the same address, and its pages then
+    # resolve to the previous document's already-copied streams and fonts. The
+    # Aug 2026 build shipped that way: 95 of 396 pages carried another document's
+    # content. Holding every reader until write() keeps the ids unique.
+    readers = []
     for path in reading_order():
         reader = PdfReader(path)
+        readers.append(reader)
         n = len(reader.pages)
         start = len(writer.pages) + 1
         if start % 2 == 0:
@@ -143,9 +180,12 @@ def build_interior():
         "/Subject": "Owner-builder construction management system, Second Edition",
     })
     os.makedirs(OUT, exist_ok=True)
-    path = os.path.join(OUT, "interior.pdf")
-    with open(path, "wb") as fh:
+    merged = os.path.join(OUT, "interior-merged.pdf")
+    with open(merged, "wb") as fh:
         writer.write(fh)
+    path = os.path.join(OUT, "interior.pdf")
+    distill(merged, path)
+    os.remove(merged)
     return path, plan, len(writer.pages), trailing
 
 
@@ -168,8 +208,8 @@ BACK_SUMMARY = [
 
 def build_cover(page_count):
     d.register_fonts()
-    path = os.path.join(OUT, "cover.pdf")
-    c = rl_canvas.Canvas(path, pagesize=(COVER_W, COVER_H))
+    raw = os.path.join(OUT, "cover-raw.pdf")
+    c = rl_canvas.Canvas(raw, pagesize=(COVER_W, COVER_H))
     c.setTitle("Owner-Builder Job Site Binder — Coil-Bound Cover")
 
     # The wrap is two trim-width panels butted together: back on the left,
@@ -272,10 +312,60 @@ def build_cover(page_count):
 
     c.showPage()
     c.save()
+    path = os.path.join(OUT, "cover.pdf")
+    distill(raw, path)
+    os.remove(raw)
     return path
 
 
 # ------------------------------------------------------------------ verify
+
+def unembedded_fonts(pdf):
+    """Names of the fonts pdffonts reports as not embedded. The emb flag is read
+    from the right because the type column can be two words ("Type 1")."""
+    out = subprocess.run(["pdffonts", pdf], capture_output=True, text=True, check=True).stdout
+    rows = [l.split() for l in out.splitlines()[2:] if l.strip()]
+    return [r[0] for r in rows if len(r) >= 6 and r[-5] == "no"]
+
+
+def gs_errors(pdf):
+    """Ghostscript's count of errors while drawing every page."""
+    r = subprocess.run(["gs", "-q", "-dNOPAUSE", "-dBATCH", "-sDEVICE=nullpage", pdf],
+                       capture_output=True, text=True)
+    return (r.stdout + r.stderr).count("Error")
+
+
+def page_words(pdf):
+    """Each page's alphanumeric words, sorted, so that the landscape rotation
+    (which changes extraction order) still compares equal."""
+    text = subprocess.run(["pdftotext", "-enc", "UTF-8", pdf, "-"],
+                          capture_output=True, text=True, check=True).stdout
+    return [sorted(re.findall(r"[A-Za-z0-9]+", page)) for page in text.split("\f")]
+
+
+def pages_not_matching_sources(interior):
+    """Walk the merge plan and compare every interior page's text with the
+    source page it should be, and check that padding pages are empty."""
+    got = page_words(interior)
+    bad, k = [], 0
+    for path in reading_order():
+        src = page_words(path)
+        n = len(PdfReader(path).pages)
+        for j in range(n):
+            if k >= len(got) or got[k] != src[j]:
+                bad.append(f"p{k + 1} ({os.path.relpath(path, SRC)} p{j + 1})")
+            k += 1
+        if n % 2:
+            if k >= len(got) or got[k]:
+                bad.append(f"p{k + 1} (blank pad)")
+            k += 1
+    return bad, k
+
+
+def md5sum(path):
+    with open(path, "rb") as fh:
+        return hashlib.md5(fh.read()).hexdigest()
+
 
 def verify(interior, cover, expected_pages):
     ok = True
@@ -298,14 +388,14 @@ def verify(interior, cover, expected_pages):
     check("every page is 612x792pt", sizes == {(TRIM_W, TRIM_H)}, str(sorted(sizes)))
     check("no page-level /Rotate", rotations == {0}, str(sorted(rotations)))
 
-    fonts = subprocess.run(["pdffonts", interior], capture_output=True, text=True).stdout
-    rows = [l.split() for l in fonts.splitlines()[2:] if l.strip()]
-    not_embedded = [r for r in rows if len(r) > 3 and r[3] == "no" and "Helvetica" not in r[0]]
-    check("all glyph-painting fonts embedded", not not_embedded,
-          "; ".join(r[0] for r in not_embedded) or f"{len(rows)} font records")
-    helv = [r[0] for r in rows if "Helvetica" in r[0]]
-    if helv:
-        print(f"         note: unused base-14 reference present ({', '.join(helv)}) — paints no glyphs")
+    bad = unembedded_fonts(interior)
+    check("every font embedded", not bad, "; ".join(sorted(set(bad))) or "all embedded")
+    errors = gs_errors(interior)
+    check("draws without Ghostscript errors", errors == 0, f"{errors} errors")
+    mismatched, walked = pages_not_matching_sources(interior)
+    check("every page carries its source page's text", not mismatched,
+          (", ".join(mismatched[:5]) + (f" and {len(mismatched) - 5} more" if len(mismatched) > 5 else ""))
+          if mismatched else f"{walked} pages")
 
     print("\nCOVER")
     cinfo = subprocess.run(["pdfinfo", cover], capture_output=True, text=True).stdout
@@ -316,10 +406,10 @@ def verify(interior, cover, expected_pages):
     ch = round(float(cr.pages[0].mediabox.height), 2)
     check("cover matches Lulu /cover-dimensions/",
           (cw, ch) == (COVER_W, COVER_H), f"{cw}x{ch}pt (want {COVER_W}x{COVER_H})")
-    cfonts = subprocess.run(["pdffonts", cover], capture_output=True, text=True).stdout
-    crows = [l.split() for l in cfonts.splitlines()[2:] if l.strip()]
-    cbad = [r for r in crows if len(r) > 3 and r[3] == "no"]
-    check("cover fonts embedded", not cbad, "; ".join(r[0] for r in cbad) or f"{len(crows)} fonts")
+    cbad = unembedded_fonts(cover)
+    check("cover fonts embedded", not cbad, "; ".join(sorted(set(cbad))) or "all embedded")
+    cerrors = gs_errors(cover)
+    check("cover draws without Ghostscript errors", cerrors == 0, f"{cerrors} errors")
 
     return ok
 
@@ -347,6 +437,9 @@ def main():
     print(f"\ninterior: {interior} ({os.path.getsize(interior)/1024/1024:.2f} MB)")
     print(f"cover:    {cover} ({os.path.getsize(cover)/1024:.1f} KB)")
     print(f"\nLulu line item page_count MUST be {expected}")
+    print("PRINT_ASSETS md5s for workers/downloads/src/index.js (upload these exact files):")
+    print(f"  interior: {md5sum(interior)}")
+    print(f"  cover:    {md5sum(cover)}")
     sys.exit(0 if ok else 1)
 
 

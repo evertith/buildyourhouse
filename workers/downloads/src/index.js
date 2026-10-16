@@ -77,8 +77,8 @@ const POD_PACKAGE_ID = '0850X1100BWSTDCO060UW444MXX';
  * it is loud, it happens at job creation, and it beats printing stale bytes.
  */
 const PRINT_ASSETS = {
-  interior: { r2Key: 'print/interior.pdf', md5: '179f61220210fae5da4ad56dd994e889' },
-  cover: { r2Key: 'print/cover.pdf', md5: '3757650d0b1f456a6729161b723d0330' },
+  interior: { r2Key: 'print/interior.pdf', md5: 'be3eba8db2f7cacf5cbddb8c2d1b225e' },
+  cover: { r2Key: 'print/cover.pdf', md5: 'dcdda2b2d763f08b0bca13312d3caef9' },
 };
 const PRINT_PAGE_COUNT = 396;
 // GROUND_HD: tracked home-delivery ground, $8.64 over MAIL at Aug 2026 rates —
