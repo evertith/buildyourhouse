@@ -21,7 +21,8 @@
  *   POST /plan-read/<token>/checkout  A checkout URL again after a cancelled session.
  *   cron, every 5 minutes             Follow active reads for closed tabs (emails, refunds),
  *                                     and follow unfinished print jobs: the owner is emailed
- *                                     when Lulu rejects or cancels one (sweepPrintJobs).
+ *                                     when Lulu rejects or cancels one, or when one sits
+ *                                     unpaid for an hour (sweepPrintJobs).
  *
  * Webhook:
  *   POST /stripe-webhook              Stripe checkout.session.completed → send the buyer
@@ -1425,6 +1426,13 @@ const LULU_FINAL_STATUSES = ['SHIPPED', 'REJECTED', 'CANCELED'];
 const LULU_FAILED_STATUSES = new Set(['REJECTED', 'CANCELED']);
 const PRINT_SWEEP_WINDOW_DAYS = 45;
 const PRINT_SWEEP_BATCH = 25;
+// Lulu charges the card on the API account within seconds of accepting a job,
+// so a job still waiting for payment an hour later means the charge failed.
+const LULU_PAYMENT_STATUSES = new Set(['UNPAID', 'PAYMENT_IN_PROGRESS']);
+const PRINT_PAYMENT_ALERT_AFTER_MS = 60 * 60 * 1000;
+// print_jobs.status once the owner has been told a job is stuck waiting for
+// payment. It stands for "still unpaid, alert sent" until Lulu moves the job on.
+const PAYMENT_ALERTED = 'PAYMENT_ALERTED';
 
 /**
  * Cron: follow every unfinished print job and email the owner when Lulu rejects
@@ -1432,9 +1440,13 @@ const PRINT_SWEEP_BATCH = 25;
  * files afterwards, so a rejection never reaches the webhook: on Oct 16 2026
  * the first printed order sat REJECTED behind a "No action needed" receipt.
  *
- * print_jobs.status holds the last status seen, so each transition alerts once.
- * The alert is sent before the row is updated: if the email fails, the next
- * sweep tries again instead of losing it.
+ * It also catches a job that Lulu accepted but could not charge for: still
+ * UNPAID (or PAYMENT_IN_PROGRESS) an hour on, which nothing else would surface.
+ *
+ * print_jobs.status holds the last status seen, so each transition alerts once;
+ * a payment stall is recorded as PAYMENT_ALERTED so it alerts once too. Alerts
+ * are sent before the row is updated: if the email fails, the next sweep tries
+ * again instead of losing it.
  */
 async function sweepPrintJobs(env) {
   const since = new Date(Date.now() - PRINT_SWEEP_WINDOW_DAYS * 24 * 60 * 60 * 1000).toISOString();
@@ -1452,15 +1464,23 @@ async function sweepPrintJobs(env) {
     try {
       const job = await lulu(env, `/print-jobs/${encodeURIComponent(row.lulu_job_id)}/`);
       const status = job.status?.name;
-      if (!status || status === row.status) continue;
+      if (!status) continue;
+
+      if (LULU_PAYMENT_STATUSES.has(status)) {
+        if (row.status === PAYMENT_ALERTED) continue; // told once; wait for Lulu to move it
+        const waitingSince = Date.parse(job.status?.changed || job.date_created || '');
+        if (Date.now() - waitingSince > PRINT_PAYMENT_ALERT_AFTER_MS) {
+          await sendPrintJobUnpaidAlert(env, { row, job, waitingSince });
+          await setPrintJobStatus(env, row, PAYMENT_ALERTED);
+          continue;
+        }
+      }
+
+      if (status === row.status) continue;
       if (LULU_FAILED_STATUSES.has(status)) {
         await sendPrintJobFailedAlert(env, { row, job });
       }
-      await env.DB.prepare(
-        'UPDATE print_jobs SET status = ?1 WHERE session_id = ?2 AND lulu_job_id = ?3'
-      )
-        .bind(status, row.session_id, row.lulu_job_id)
-        .run();
+      await setPrintJobStatus(env, row, status);
     } catch (err) {
       console.error(`print-job sweep failed for Lulu job ${row.lulu_job_id}:`, err);
     }
@@ -1496,28 +1516,46 @@ function luluShipToLines(address = {}) {
   ].filter(Boolean);
 }
 
+function setPrintJobStatus(env, row, status) {
+  return env.DB.prepare(
+    'UPDATE print_jobs SET status = ?1 WHERE session_id = ?2 AND lulu_job_id = ?3'
+  )
+    .bind(status, row.session_id, row.lulu_job_id)
+    .run();
+}
+
 /**
- * Lulu rejected or cancelled a job it had accepted. The order is paid and the
- * customer has been promised a book, so this carries Lulu's reasons and the
- * runbook. Customer details come from Stripe when it answers.
+ * What every print alert carries: who bought it, for how much, and where it
+ * ships. Customer details come from Stripe when it answers, else Lulu's copy.
  */
-async function sendPrintJobFailedAlert(env, { row, job }) {
+async function printAlertContext(env, row, job) {
   let session = null;
   try {
     session = await stripe(env, `/checkout/sessions/${encodeURIComponent(row.session_id)}`);
   } catch (err) {
     console.error(`print alert: no Stripe session for ${row.session_id}:`, err);
   }
-  const status = job.status?.name || 'FAILED';
   const shipTo = session ? shipToLines(session) : luluShipToLines(job.shipping_address);
+  const order = `Customer: ${session?.customer_details?.email || '(Stripe lookup failed: see Session)'}
+Session: ${row.session_id}
+Amount: ${session ? `$${(session.amount_total / 100).toFixed(2)}` : '(unknown)'}`;
+  return { shipTo, order };
+}
+
+/**
+ * Lulu rejected or cancelled a job it had accepted. The order is paid and the
+ * customer has been promised a book, so this carries Lulu's reasons and the
+ * runbook.
+ */
+async function sendPrintJobFailedAlert(env, { row, job }) {
+  const status = job.status?.name || 'FAILED';
+  const { shipTo, order } = await printAlertContext(env, row, job);
   const reasons = luluFailureLines(job);
 
   const text = `Printed binder order — ACTION NEEDED. Lulu ${status} job #${job.id}.
 Nothing will print or ship until a new job is placed.
 
-Customer: ${session?.customer_details?.email || '(Stripe lookup failed: see Session)'}
-Session: ${row.session_id}
-Amount: ${session ? `$${(session.amount_total / 100).toFixed(2)}` : '(unknown)'}
+${order}
 
 LULU SAYS:
 ${reasons.join('\n') || '(no reason given)'}
@@ -1531,14 +1569,56 @@ RUNBOOK:
    upload both PDFs to R2, update PRINT_ASSETS, redeploy this worker, then check
    POST /admin/api/test-lulu-job.
 2. Place a new job by hand. The webhook will not retry it: print_jobs and Lulu's
-   external_id both already hold this order. Then point this print_jobs row at
-   the new job id so GET /admin/api/print-jobs follows it.
-3. If the book cannot arrive within the promised 7-10 business days, tell the
-   customer. They already have digital access via their download page.
+   external_id both already hold this order. Then repoint this order's row so
+   the sweep and GET /admin/api/print-jobs follow the new job (from
+   workers/downloads):
+   npx wrangler d1 execute buildyourhouse-orders --remote --command "UPDATE
+   print_jobs SET lulu_job_id = '<new job id>', status = 'CREATED', created_at =
+   '<now, ISO 8601>' WHERE session_id = '${row.session_id}'"
+3. If the book will arrive later than the customer was promised, tell them.
+   They already have digital access via their download page.
 `;
 
   await ownerEmail(env, {
     subject: `ACTION: Lulu ${status.toLowerCase()} print job #${job.id} — ${shipTo[0]}`,
+    text,
+  });
+}
+
+/**
+ * Lulu accepted a job but is still waiting for payment an hour later. Lulu
+ * charges the card on the API account itself, normally within seconds, so the
+ * charge has failed and nothing prints until the job is paid.
+ */
+async function sendPrintJobUnpaidAlert(env, { row, job, waitingSince }) {
+  const { shipTo, order } = await printAlertContext(env, row, job);
+  const cost = job.costs?.total_cost_incl_tax;
+
+  const text = `Printed binder order — ACTION NEEDED. Lulu job #${job.id} is not paid.
+It has been ${job.status?.name} since ${new Date(waitingSince).toISOString()}. Lulu
+normally charges the card on the API account within seconds, so the charge has
+most likely failed (an expired or declined card). Nothing prints until it is paid.
+
+${order}
+Lulu cost: ${cost ? `$${cost}` : '(not priced yet)'}
+
+LULU SAYS:
+${job.status?.message || '(no message)'}
+
+SHIP TO:
+${shipTo.join('\n')}
+
+RUNBOOK:
+1. Sign in at https://developers.lulu.com and fix the payment method on the
+   account, then get job #${job.id} paid. Nothing else needs redoing: the files
+   already passed Lulu's checks.
+2. GET /admin/api/print-jobs shows it move on to PRODUCTION_DELAYED once paid.
+3. If the book will arrive later than the customer was promised, tell them.
+   They already have digital access via their download page.
+`;
+
+  await ownerEmail(env, {
+    subject: `ACTION: Lulu print job #${job.id} is unpaid — ${shipTo[0]}`,
     text,
   });
 }
