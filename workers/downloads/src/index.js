@@ -19,7 +19,9 @@
  *   GET  /plan-read/<token>           Where the read stands; the measured geometry when ready.
  *   POST /plan-read/<token>/verify    { session_id } after checkout: ask Stripe, start the read.
  *   POST /plan-read/<token>/checkout  A checkout URL again after a cancelled session.
- *   cron, every 5 minutes             Follow active reads for closed tabs (emails, refunds).
+ *   cron, every 5 minutes             Follow active reads for closed tabs (emails, refunds),
+ *                                     and follow unfinished print jobs: the owner is emailed
+ *                                     when Lulu rejects or cancels one (sweepPrintJobs).
  *
  * Webhook:
  *   POST /stripe-webhook              Stripe checkout.session.completed → send the buyer
@@ -1348,9 +1350,16 @@ function ownerEmail(env, { subject, text }) {
   });
 }
 
-/** Receipt for an automated print job: Lulu has it, nothing to do. */
+/**
+ * Receipt for an automated print job. Lulu accepts a job before it preflights
+ * the files, so a rejection can still follow; sweepPrintJobs() emails that.
+ */
 async function sendPrintJobNotification(env, { session, product, job, warning }) {
-  const text = `Printed binder order — Lulu job #${job.id} created. No action needed.
+  const text = `Printed binder order — Lulu job #${job.id} created.
+
+Lulu checks the print files after accepting a job. If it rejects or cancels
+this one, an ACTION email follows within about five minutes. Otherwise there
+is nothing to do.
 
 Product: ${product.name} ($${(session.amount_total / 100).toFixed(2)})
 Customer: ${session.customer_details?.email || '(no email)'}
@@ -1407,6 +1416,129 @@ Customer already has digital access via their download page.
     subject: `ACTION: Lulu job failed, print & ship manually — ${
       ship?.name || session.customer_details?.email
     }`,
+    text,
+  });
+}
+
+/** Lulu print-job statuses that never change again; the failed ones need a person. */
+const LULU_FINAL_STATUSES = ['SHIPPED', 'REJECTED', 'CANCELED'];
+const LULU_FAILED_STATUSES = new Set(['REJECTED', 'CANCELED']);
+const PRINT_SWEEP_WINDOW_DAYS = 45;
+const PRINT_SWEEP_BATCH = 25;
+
+/**
+ * Cron: follow every unfinished print job and email the owner when Lulu rejects
+ * or cancels one. POST /print-jobs/ answers CREATED and Lulu preflights the
+ * files afterwards, so a rejection never reaches the webhook: on Oct 16 2026
+ * the first printed order sat REJECTED behind a "No action needed" receipt.
+ *
+ * print_jobs.status holds the last status seen, so each transition alerts once.
+ * The alert is sent before the row is updated: if the email fails, the next
+ * sweep tries again instead of losing it.
+ */
+async function sweepPrintJobs(env) {
+  const since = new Date(Date.now() - PRINT_SWEEP_WINDOW_DAYS * 24 * 60 * 60 * 1000).toISOString();
+  const { results } = await env.DB.prepare(
+    `SELECT session_id, lulu_job_id, status FROM print_jobs
+     WHERE created_at > ?1 AND (status IS NULL OR status NOT IN (${LULU_FINAL_STATUSES.map(
+       (s) => `'${s}'`
+     ).join(', ')}))
+     ORDER BY created_at ASC LIMIT ?2`
+  )
+    .bind(since, PRINT_SWEEP_BATCH)
+    .all();
+
+  for (const row of results) {
+    try {
+      const job = await lulu(env, `/print-jobs/${encodeURIComponent(row.lulu_job_id)}/`);
+      const status = job.status?.name;
+      if (!status || status === row.status) continue;
+      if (LULU_FAILED_STATUSES.has(status)) {
+        await sendPrintJobFailedAlert(env, { row, job });
+      }
+      await env.DB.prepare(
+        'UPDATE print_jobs SET status = ?1 WHERE session_id = ?2 AND lulu_job_id = ?3'
+      )
+        .bind(status, row.session_id, row.lulu_job_id)
+        .run();
+    } catch (err) {
+      console.error(`print-job sweep failed for Lulu job ${row.lulu_job_id}:`, err);
+    }
+  }
+  return results.length;
+}
+
+/**
+ * Lulu's reasons, flattened. Line-item messages arrive as nested objects, e.g.
+ * { printable_normalization: { interior: ['...Missing font', ...] } }.
+ */
+function luluFailureLines(job) {
+  const lines = [];
+  if (job.status?.message) lines.push(job.status.message);
+  const walk = (value, path) => {
+    if (Array.isArray(value)) value.forEach((v) => walk(v, path));
+    else if (value && typeof value === 'object') {
+      for (const [k, v] of Object.entries(value)) walk(v, path ? `${path}.${k}` : k);
+    } else if (value != null && value !== '') lines.push(`${path}: ${value}`);
+  };
+  for (const item of job.line_items || []) walk(item.status?.messages, '');
+  return lines;
+}
+
+/** Ship-to from Lulu's copy of the address, for when Stripe cannot be asked. */
+function luluShipToLines(address = {}) {
+  return [
+    address.name || '(no name)',
+    address.street1,
+    address.street2,
+    `${address.city || ''}, ${address.state_code || ''} ${address.postcode || ''}`,
+    address.country_code,
+  ].filter(Boolean);
+}
+
+/**
+ * Lulu rejected or cancelled a job it had accepted. The order is paid and the
+ * customer has been promised a book, so this carries Lulu's reasons and the
+ * runbook. Customer details come from Stripe when it answers.
+ */
+async function sendPrintJobFailedAlert(env, { row, job }) {
+  let session = null;
+  try {
+    session = await stripe(env, `/checkout/sessions/${encodeURIComponent(row.session_id)}`);
+  } catch (err) {
+    console.error(`print alert: no Stripe session for ${row.session_id}:`, err);
+  }
+  const status = job.status?.name || 'FAILED';
+  const shipTo = session ? shipToLines(session) : luluShipToLines(job.shipping_address);
+  const reasons = luluFailureLines(job);
+
+  const text = `Printed binder order — ACTION NEEDED. Lulu ${status} job #${job.id}.
+Nothing will print or ship until a new job is placed.
+
+Customer: ${session?.customer_details?.email || '(Stripe lookup failed: see Session)'}
+Session: ${row.session_id}
+Amount: ${session ? `$${(session.amount_total / 100).toFixed(2)}` : '(unknown)'}
+
+LULU SAYS:
+${reasons.join('\n') || '(no reason given)'}
+
+SHIP TO:
+${shipTo.join('\n')}
+
+RUNBOOK:
+1. File errors ("Missing font", "Error in PDF syntax", an md5 mismatch) mean the
+   print files need a rebuild: binder-pipeline/print-edition/build_print_edition.py,
+   upload both PDFs to R2, update PRINT_ASSETS, redeploy this worker, then check
+   POST /admin/api/test-lulu-job.
+2. Place a new job by hand. The webhook will not retry it: print_jobs and Lulu's
+   external_id both already hold this order. Then point this print_jobs row at
+   the new job id so GET /admin/api/print-jobs follows it.
+3. If the book cannot arrive within the promised 7-10 business days, tell the
+   customer. They already have digital access via their download page.
+`;
+
+  await ownerEmail(env, {
+    subject: `ACTION: Lulu ${status.toLowerCase()} print job #${job.id} — ${shipTo[0]}`,
     text,
   });
 }
@@ -2000,9 +2132,13 @@ const planReadDeps = {
 };
 
 export default {
-  /** Cron (wrangler.jsonc triggers): follow active plan reads for closed tabs. */
+  /**
+   * Cron (wrangler.jsonc triggers): follow active plan reads for closed tabs,
+   * and unfinished print jobs so that a Lulu rejection is never silent.
+   */
   async scheduled(_event, env, ctx) {
     ctx.waitUntil(planRead.sweep(env, planReadDeps));
+    ctx.waitUntil(sweepPrintJobs(env));
   },
 
   async fetch(request, env, ctx) {
