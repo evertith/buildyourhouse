@@ -78,14 +78,16 @@ const POD_PACKAGE_ID = '0850X1100BWSTDCO060UW444MXX';
  * keys. Rebuild the PDFs and all three must be updated together — Lulu verifies
  * source_md5sum and rejects the job on a mismatch. That failure is deliberate:
  * it is loud, it happens at job creation, and it beats printing stale bytes.
+ * Upload a rebuild under a new key (print/cover-<md5 prefix>.pdf) rather than
+ * over the live one, so orders keep matching until the deploy switches over.
  */
 const PRINT_ASSETS = {
   interior: { r2Key: 'print/interior.pdf', md5: 'be3eba8db2f7cacf5cbddb8c2d1b225e' },
-  cover: { r2Key: 'print/cover.pdf', md5: 'dcdda2b2d763f08b0bca13312d3caef9' },
+  cover: { r2Key: 'print/cover-a67dbc49.pdf', md5: 'a67dbc49bab2c92c028223ce7be21e16' },
 };
 const PRINT_PAGE_COUNT = 396;
 // GROUND_HD: tracked home-delivery ground, $8.64 over MAIL at Aug 2026 rates —
-// keeps the customer email's 7-10 business day promise honest and adds tracking.
+// keeps the customer email's about-two-weeks promise honest and adds tracking.
 const PRINT_SHIPPING_LEVEL = 'GROUND_HD';
 const PRINT_CONTACT_EMAIL = 'seth@build-your-house.com';
 // Lulu requires a phone number on every address; Stripe only collects one if the
