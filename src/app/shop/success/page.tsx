@@ -6,6 +6,8 @@ import { trackEvent } from '@/lib/analytics';
 import styles from '../transaction.module.css';
 
 const WORKER_BASE_URL = 'https://buildyourhouse-downloads.azerothcorner.workers.dev';
+// The address order-delivery mail is sent from (workers/downloads sendResendEmail).
+const DELIVERY_FROM = 'seth@build-your-house.com';
 
 function downloadUrl(sessionId: string) {
   return `${WORKER_BASE_URL}/download?session_id=${encodeURIComponent(sessionId)}`;
@@ -70,6 +72,7 @@ function SuccessContent() {
   const searchParams = useSearchParams();
   const sessionId = searchParams.get('session_id');
   const [product, setProduct] = useState<OrderProduct | null>(null);
+  const [buyerEmail, setBuyerEmail] = useState<string | null>(null);
 
   // Resolve the session to its actual SKU before tracking, so the GA4
   // purchase carries the real product and price (not a hardcoded one) and
@@ -79,7 +82,7 @@ function SuccessContent() {
     if (!sessionId) return;
     let cancelled = false;
     (async () => {
-      let info: { paid?: boolean; product?: OrderProduct };
+      let info: { paid?: boolean; email?: string | null; product?: OrderProduct };
       try {
         const res = await fetch(
           `${WORKER_BASE_URL}/order-info?session_id=${encodeURIComponent(sessionId)}`
@@ -91,6 +94,7 @@ function SuccessContent() {
       }
       if (cancelled || !info.paid || !info.product) return;
       setProduct(info.product);
+      if (info.email) setBuyerEmail(info.email);
 
       const dedupeKey = `purchase_tracked_${sessionId}`;
       try {
@@ -171,9 +175,18 @@ function SuccessContent() {
                   ? 'Your printed binder is headed to production — and your digital copy is ready to download right now.'
                   : `Your ${product?.name ?? 'purchase'} is ready to download.`}
             </p>
-            <p className={styles.heroCopy}>
-              You’ll also receive a receipt from Stripe at the email you provided.
-            </p>
+            {isLead ? (
+              <p className={styles.heroCopy}>
+                You’ll also receive a receipt from Stripe at the email you provided.
+              </p>
+            ) : (
+              <p className={styles.heroCopy}>
+                Your files are right here, so you don’t need to wait for any email. We also
+                emailed your download link to {buyerEmail ? <strong>{buyerEmail}</strong> : 'the address you paid with'}{' '}
+                from <strong>{DELIVERY_FROM}</strong>. If it isn’t in your inbox in a few minutes,
+                check your spam folder and mark it “Not spam.” Stripe sends a separate receipt.
+              </p>
+            )}
 
             <div className={styles.receipt}>
               <div className={styles.rcell}>

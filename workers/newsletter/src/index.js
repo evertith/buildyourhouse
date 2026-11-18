@@ -25,7 +25,7 @@
  *     URL-stripped. Stores into financing_leads (D1), emails Seth the lead,
  *     and subscribes the address (disclosed on the form). Honeypot +
  *     per-IP rate limit.
- *   GET  /unsubscribe?e=<email>&t=<hmac>
+ *   GET|POST /unsubscribe?e=<email>&t=<hmac>   (POST = RFC 8058 one-click)
  *     HMAC-signed one-click unsubscribe (link included in every email we
  *     send from here). Marks D1 + Resend contact unsubscribed and shows a
  *     small confirmation page.
@@ -71,6 +71,39 @@ const SITE = 'https://build-your-house.com';
 const WORKER_ORIGIN = 'https://buildyourhouse-newsletter.azerothcorner.workers.dev/';
 const FROM = 'Seth at Build Your House <seth@build-your-house.com>';
 const REPLY_TO = 'seth@build-your-house.com';
+
+// List mail (onboarding, takeoffs, the drip) goes out from the marketing
+// sender so its complaints and ignores build the reputation of a separate
+// domain, not the one order-delivery mail rides on. Set MARKETING_FROM
+// (wrangler.jsonc vars) to e.g. "Seth at Build Your House
+// <seth@news.build-your-house.com>" only AFTER that domain is verified in
+// Resend; until then list mail keeps using FROM. Owner notifications (the
+// digest, financing leads) stay on FROM. Replies always go to REPLY_TO.
+function marketingFrom(env) {
+  return (env.MARKETING_FROM || '').trim() || FROM;
+}
+
+/**
+ * Resend body for a subscriber-facing email: marketing sender, plus the
+ * RFC 8058 one-click unsubscribe headers Gmail and Yahoo require from bulk
+ * senders (they show their own Unsubscribe button instead of people hitting
+ * Report spam). The URL is the same HMAC link as the footer; POST /unsubscribe
+ * handles the one-click request.
+ */
+function listEmail(env, { to, unsubUrl, msg }) {
+  return {
+    from: marketingFrom(env),
+    to: [to],
+    reply_to: REPLY_TO,
+    subject: msg.subject,
+    text: msg.text,
+    html: msg.html,
+    headers: {
+      'List-Unsubscribe': `<${unsubUrl}>`,
+      'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
+    },
+  };
+}
 const SAMPLE_URL = `${SITE}/binder-sample.pdf`;
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -229,14 +262,7 @@ async function sendOnboardEmail(env, requestUrl, email, source) {
   const msg = source === '/shop-sample' ? sampleEmail(unsubUrl) : welcomeEmail(unsubUrl);
   await resend(env, '/emails', {
     method: 'POST',
-    body: {
-      from: FROM,
-      to: [email],
-      reply_to: REPLY_TO,
-      subject: msg.subject,
-      text: msg.text,
-      html: msg.html,
-    },
+    body: listEmail(env, { to: email, unsubUrl, msg }),
   });
 }
 
@@ -420,14 +446,7 @@ async function handleEstimate(request, env, ctx, origin) {
       const msg = estimateEmail(unsubUrl, data);
       await resend(env, '/emails', {
         method: 'POST',
-        body: {
-          from: FROM,
-          to: [email],
-          reply_to: REPLY_TO,
-          subject: msg.subject,
-          text: msg.text,
-          html: msg.html,
-        },
+        body: listEmail(env, { to: email, unsubUrl, msg }),
       });
     } catch (err) {
       console.error('estimate email failed:', err);
@@ -566,14 +585,7 @@ async function handleSiteplan(request, env, ctx, origin) {
       const msg = siteplanEmail(unsubUrl, data);
       await resend(env, '/emails', {
         method: 'POST',
-        body: {
-          from: FROM,
-          to: [email],
-          reply_to: REPLY_TO,
-          subject: msg.subject,
-          text: msg.text,
-          html: msg.html,
-        },
+        body: listEmail(env, { to: email, unsubUrl, msg }),
       });
     } catch (err) {
       console.error('siteplan email failed:', err);
@@ -1125,14 +1137,7 @@ async function runSequence(env, workerOrigin) {
       const msg = dripEmailFor(step, unsubUrl, sub.source);
       await resend(env, '/emails', {
         method: 'POST',
-        body: {
-          from: FROM,
-          to: [sub.email],
-          reply_to: REPLY_TO,
-          subject: msg.subject,
-          text: msg.text,
-          html: msg.html,
-        },
+        body: listEmail(env, { to: sub.email, unsubUrl, msg }),
       });
       await env.DB.prepare(
         'INSERT INTO sequence_sends (email, step, sent_at) VALUES (?1, ?2, ?3)'
@@ -1287,6 +1292,12 @@ export default {
         return await handleFinancingLead(request, env, ctx, origin);
       }
       if (request.method === 'GET' && url.pathname === '/unsubscribe') {
+        return await handleUnsubscribe(request, env);
+      }
+      if (request.method === 'POST' && url.pathname === '/unsubscribe') {
+        // RFC 8058 one-click: the mailbox provider POSTs
+        // "List-Unsubscribe=One-Click" to the List-Unsubscribe URL. Same
+        // signed e/t query as the GET link; no login, no confirmation step.
         return await handleUnsubscribe(request, env);
       }
       if (url.pathname === '/admin/api/subscribers') {

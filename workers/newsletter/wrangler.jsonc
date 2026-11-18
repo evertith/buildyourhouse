@@ -2,6 +2,9 @@
   "name": "buildyourhouse-newsletter",
   "main": "src/index.js",
   "vars": {
+    // After news.build-your-house.com is verified in Resend, add:
+    // "MARKETING_FROM": "Seth at Build Your House <seth@news.build-your-house.com>",
+    // Until then list mail keeps sending as seth@build-your-house.com.
     "RESEND_AUDIENCE_ID": "c767f3a7-0e17-4731-82b5-940d796f0c92"
   },
   "compatibility_date": "2026-06-01",

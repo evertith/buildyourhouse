@@ -935,7 +935,7 @@ async function handleOrderInfo(request, env, origin) {
   if (!sessionId || !sessionId.startsWith('cs_')) {
     return json({ error: 'missing or invalid session_id' }, 400, origin);
   }
-  const { paid, sku } = await verifyStripeSession(sessionId, env);
+  const { paid, sku, email } = await verifyStripeSession(sessionId, env);
   if (!paid) {
     return json({ paid: false }, 200, origin);
   }
@@ -943,6 +943,9 @@ async function handleOrderInfo(request, env, origin) {
   return json(
     {
       paid: true,
+      // The buyer's own address, so the success page can say where the
+      // delivery email went. Gated by the session id like the download itself.
+      email: email || null,
       product: {
         sku: product.sku,
         name: product.name,
@@ -1235,16 +1238,83 @@ async function sendResendEmail(env, { to, subject, text, html }) {
   return data.id || null;
 }
 
-/** Send the product-delivery email via Resend. Returns the Resend message id. */
-async function sendFulfillmentEmail(env, { email, name, sessionId, product, ref }) {
-  const link = successUrl(sessionId);
+function escapeHtml(s) {
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+/** "david" / "DAVID" -> "David"; leaves mixed case ("McKenzie", "DeShawn") alone. */
+function firstNameOf(name) {
   const first = (name || '').trim().split(/\s+/)[0] || '';
+  if (!first) return '';
+  if (first === first.toLowerCase() || first === first.toUpperCase()) {
+    return first.charAt(0).toUpperCase() + first.slice(1).toLowerCase();
+  }
+  return first;
+}
+
+/** Same short reference the success page shows as "Order ref". */
+function orderRef(sessionId) {
+  return String(sessionId).slice(-8).toUpperCase();
+}
+
+/**
+ * The receipt block for a delivery email: product, amount paid, order date,
+ * order ref. A delivery email that reads like a receipt scores far better
+ * with spam filters than one that reads like marketing.
+ */
+function orderSummary({ product, sessionId, session }) {
+  const cents = Number.isFinite(session?.amount_total) ? session.amount_total : product.amount;
+  const currency = (session?.currency || 'usd').toUpperCase();
+  const amount =
+    currency === 'USD' ? `$${(cents / 100).toFixed(2)}` : `${(cents / 100).toFixed(2)} ${currency}`;
+  const created = session?.created ? new Date(session.created * 1000) : new Date();
+  const date = created.toLocaleDateString('en-US', {
+    timeZone: 'America/New_York',
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  });
+  const rows = [
+    ['Product', product.name],
+    ['Amount paid', amount],
+    ['Order date', date],
+    ['Order ref', orderRef(sessionId)],
+  ];
+  return {
+    text: rows.map(([k, v]) => `${k}: ${v}`).join('\n'),
+    html:
+      '<table cellpadding="0" cellspacing="0" style="border-collapse:collapse;margin:12px 0">' +
+      rows
+        .map(
+          ([k, v]) =>
+            `<tr><td style="padding:2px 16px 2px 0;color:#666">${k}</td><td style="padding:2px 0"><strong>${escapeHtml(v)}</strong></td></tr>`
+        )
+        .join('') +
+      '</table>',
+  };
+}
+
+/**
+ * Send the product-delivery email via Resend. Returns the Resend message id.
+ * Strictly transactional: no unsubscribe footer, no promotion, no upsell.
+ */
+async function sendFulfillmentEmail(env, { email, name, sessionId, product, ref, session }) {
+  const link = successUrl(sessionId);
+  const first = firstNameOf(name);
   const greeting = first ? `Hi ${first},` : 'Hi,';
+  const greetingHtml = escapeHtml(greeting);
+  const summary = orderSummary({ product, sessionId, session });
   if (product.kind === 'lead') {
     const refLine = ref ? ` (ref ${ref})` : '';
     const text = `${greeting}
 
 Payment received for the owner-builder borrower introduction${refLine}.
+
+${summary.text}
 
 What happens next:
 
@@ -1262,8 +1332,9 @@ Seth
 Build Your House
 https://build-your-house.com
 `;
-    const html = `<p>${greeting}</p>
+    const html = `<p>${greetingHtml}</p>
 <p>Payment received for the owner-builder borrower introduction${refLine}.</p>
+${summary.html}
 <p><strong>What happens next:</strong></p>
 <ol>
 <li>We confirm with the borrower, in writing, that they want to be introduced to you by name.</li>
@@ -1281,6 +1352,8 @@ https://build-your-house.com
 
 Thanks for ordering the printed Owner-Builder Job Site Binder! Your order is confirmed and heads to the printer next — expect it at your door in about two weeks.
 
+${summary.text}
+
 While it ships, the complete digital version is yours right now:
 ${link}
 
@@ -1292,8 +1365,9 @@ Seth
 Build Your House
 https://build-your-house.com
 `;
-    const html = `<p>${greeting}</p>
+    const html = `<p>${greetingHtml}</p>
 <p>Thanks for ordering the printed Owner-Builder Job Site Binder! Your order is confirmed and heads to the printer next — expect it at your door in about two weeks.</p>
+${summary.html}
 <p>While it ships, the complete digital version is yours right now:</p>
 <p><a href="${link}"><strong>Open your download page</strong></a></p>
 <p>Lose this email later? Recover your download anytime at <a href="https://build-your-house.com/shop/recover">build-your-house.com/shop/recover</a> using this email address.</p>
@@ -1305,6 +1379,8 @@ https://build-your-house.com
   const text = `${greeting}
 
 Thanks for buying the ${product.name}! This email is your product delivery — keep it so you can always get back to your files.
+
+${summary.text}
 
 Your download page:
 ${link}
@@ -1320,8 +1396,9 @@ Build Your House
 https://build-your-house.com
 `;
 
-  const html = `<p>${greeting}</p>
+  const html = `<p>${greetingHtml}</p>
 <p>Thanks for buying the ${product.name}! This email is your product delivery — keep it so you can always get back to your files.</p>
+${summary.html}
 <p><a href="${link}"><strong>Open your download page</strong></a></p>
 <p>${product.emailBlurb}</p>
 <p>Lose this email later? Recover your download anytime at <a href="https://build-your-house.com/shop/recover">build-your-house.com/shop/recover</a> using this email address.</p>
@@ -1696,6 +1773,7 @@ async function handleStripeWebhook(request, env) {
     sessionId: session.id,
     product,
     ref,
+    session,
   });
   if (product.kind === 'lead') {
     try {
